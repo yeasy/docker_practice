@@ -1,0 +1,1 @@
+docker容器不需要hypervisor，他是内核级的虚拟化。
