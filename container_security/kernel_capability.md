@@ -1,0 +1,17 @@
+##Linux Kernel Capabilities
+默认情况下，docker启动的容器只严格使用一部分内核capabilities。这代表什么呢？
+这是一个root或非root 二分法粒度管理的访问控制系统。比如web服务进程只需要绑定一个低于1024的端口，不需要用root来允许：那么它只需要给它授权net_bind_service功能就可以了。还有很多其他的capabilities，几乎所有需要root权限的仅需要指定一个部分capabilities就可以了。
+这对容器的安全有很多好处，通常的服务器需要允许一大堆root进程，通常有ssh cron syslogd；模块和网络配置工具等等。容器则不同，因为大部分这种人物都被容器外面的基础设施处理了：
+* ssh可以被主机上ssh服务替代
+* 硬件管理也无关紧要，容器中也就无需执行udevd或则其他类似的服务
+* 网络管理也都在主机上设置，除非特殊需求，ifconfig、route、ip也不需要了。
+
+这意味这大部分情况下，容器完全不需要“真正的”root权限。因此，容器可以运行一个减少的capabilities集，容器中的root也比“真正的root"拥有更少的capabilities,比如：
+* 完全禁止任何mount操作
+* 禁止直接访问宿主主机的socket 
+* 禁止访问一些文件系统的操作，比如创建新的设备node等等
+* 禁止模块加载
+* 还有一些其他的
+
+就算攻击者在容器中取得了root权限，他能做的破坏也少了，也不能获得主机的更高权限。
+然而这不会影响普通的web apps，恶意的用户会想各种办法来对你！默认情况下，docker丢弃了它需要的功能之外的其余部分。这里有一个白名单和黑名单，在 Linux manpages可以看到完整的清单列表。当然，你还可以启用你需要的额外capabilities。默认docker容器仅使用白名单的内capabilities。
