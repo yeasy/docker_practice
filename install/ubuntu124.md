@@ -1,4 +1,4 @@
-##Ubuntu12.04安装Docker
+##Ubuntu（低版本）安装Docker
 如果是更低版本的ubuntu
 ```
 $ sudo apt-get update

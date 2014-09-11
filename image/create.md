@@ -1,14 +1,15 @@
 ##创建我们自己的images
-别人的镜像虽然好，但不一定适合我们。我们可以对他们做一些改变，有2个方法：
+别人的镜像虽然好，但不一定适合我们。
+我们可以对这些镜像做一些修改，有2个方法：
 ###第一个方法：使用docker commit 来扩展一个image
 先使用image启动容器，更新后提交结果到新的image。
 ```
 $ sudo docker run -t -i training/sinatra /bin/bash
 root@0b2616b0e5a8:/#
 ```
-注意：记住容器的ID ，稍后我们还会用到
+注意：记住容器的ID ，稍后还会用到
 
-这里我们在容器中添加json gem
+在容器中添加json和gem两个应用
 ```
 root@0b2616b0e5a8:/# gem install json
 ```
@@ -18,7 +19,7 @@ $ sudo docker commit -m="Added json gem" -a="Kate Smith" 0b2616b0e5a8 ouruser/si
 4f177bd27a9ff0f6dc2a830403925b5360bfe0b93d476f7fc3231110e7f71b1c
 ```
 -m 来指定提交的信息，跟我们使用的版本控制工具一样。
--a 可以指定我们更新的用户信息指定我们要从哪个容器ID来创建我们的副本，最后指定目标image的名字。
+-a 可以指定我们更新的用户信息，指定我们要从哪个容器ID来创建我们的副本，最后指定目标image的名字。
 这个例子里面，我们指定了一个新用户，ouruser，使用了sinatra的image，最后指定了image的标记v2。
 
 使用docker images来查看我们创建的新image。
