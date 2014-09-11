@@ -1,3 +1,4 @@
+##底层技术
 docker底层的2个核心技术分别是Namespaces和Control groups。
 
 以下内容摘自InfoQ Docker，自1.20版本开始docker已经抛开lxc，不过下面的内容对于理解docker还是有很大帮助。
