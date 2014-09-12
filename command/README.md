@@ -2,21 +2,7 @@
 
 ##基本语法
     docker [OPTIONS] COMMAND [arg...]
-
-
-DESCRIPTION
-       docker  has  two  distinct functions. It is used for starting the Docker daemon and to run the CLI (i.e., to command the daemon to manage images, containers
-       etc.) So docker is both a server, as a daemon, and a client to the daemon, through the CLI.
-
-
-       To run the Docker daemon you do not specify any of the commands listed below but must specify the -d option.  The other options listed  below  are  for  the
-       daemon only.
-
-
-       The Docker CLI has over 30 commands. The commands are listed below and each has its own man page which explain usage and arguments.
-
-
-       To see the man page for a command run man docker .
+一般来说，docker命令可以用来管理daemon，或者通过CLI命令管理image和container。可以通过man docker来查看这些命令。
 
 
 ##选项
@@ -176,3 +162,7 @@ docker的命令可以采用`docker-CMD`或者`docker CMD`的方式执行。两�
 
     docker-wait(1)
         阻塞直到一个容器终止，然后输出它的退出符
+
+##一张图总结docker的命令周期
+
+![命令周期](../images/cmd_logic.png)
