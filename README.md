@@ -1,7 +1,7 @@
-Docker -- 从入门到实践
+Docker —— 从入门到实践
 ===============
 
-v0.11
+v0.1.2
 
 [Docker] (docker.com)是个伟大的项目！
 
@@ -17,3 +17,5 @@ v0.11
 .com/yeasy/docker_practice)
 
 欢迎大家提交pull request。
+
+本书发布时，docker的最新版本为1.20。

@@ -1,11 +1,11 @@
 # Summary
 
 * [Introduction](README.md)
-* [为什么要使用docker](why_use_docker/README.md)
-   * [快速交付应用程序](why_use_docker/fast_deployment.md)
-   * [更容易部署和扩展](why_use_docker/easy_deployment.md)
-   * [效率更高](why_use_docker/high_efficiency.md)
-   * [快速部署也意味着更简单的管理](why_use_docker/easy_management.md)
+* [为什么要使用docker](introduction/README.md)
+   * [快速交付应用程序](introduction/fast_deployment.md)
+   * [更容易部署和扩展](introduction/easy_deployment.md)
+   * [效率更高](introduction/high_efficiency.md)
+   * [快速部署也意味着更简单的管理](introduction/easy_management.md)
 * [Docker的体系结构](arch/README.md)
    * [内部组件](arch/internal.md)
    * [image的工作原理](arch/image.md)
