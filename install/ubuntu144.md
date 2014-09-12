@@ -13,19 +13,18 @@ $ sudo sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
 ###通过docker源安装最新版本
 如果要安装最新的docker版本，那么需要安装apt-get的https支持
 ```
-$apt-get install apt-transport-https
+$ sudo apt-get install apt-transport-https
 $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
-$ sudo sh -c "echo deb https://get.docker.io/ubuntu docker main /etc/apt/sources.list.d/docker.list"
+$ sudo echo "deb https://get.docker.io/ubuntu docker main" > /etc/apt/sources.list.d/docker.list"
 $ sudo apt-get update
 $ sudo apt-get install lxc-docker
 ```
 
 ###其它版本
-如果是低版本的ubuntu
+如果是低版本的ubuntu需要先更新内核。
 ```
 $ sudo apt-get update
 $ sudo apt-get install linux-image-generic-lts-raring linux-headers-generic-lts-raring
-# reboot
 $ sudo reboot
 ```
 然后重复上面的步骤即可。

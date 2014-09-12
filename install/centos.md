@@ -1,4 +1,4 @@
-##centos6\7系列安装docker
+##centos6/7系列安装docker
 
 使用EPEL软件仓库可以安装docker，版本必须在centos6 以后
 如果是centos6，用下面的命令安装
