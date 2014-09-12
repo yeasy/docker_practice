@@ -1,7 +1,8 @@
 ##docker image的工作原理
+
 docker image是怎么实现增量的修改和维护的？
 每个docker都有很多层次构成，docker使用 [Union FS](http://en.wikipedia.org/wiki/UnionFS) 将这些不同的层结合到一个image中去。
-Union FS是一种特殊的文件系统，它支持将不同目录挂载到同一个虚拟文件系统下(unite several directories into a single virtual filesystem), 
+Union FS是一种特殊的文件系统，它支持将不同目录挂载到同一个虚拟文件系统下(unite several directories into a single virtual filesystem),
 
 AUFS (AnotherUnionFS) 就是一种 Union FS, AUFS支持为每一个成员目录(类似Git Branch)设定readonly、readwrite 和 whiteout-able 权限, 同时 AUFS 里有一个类似分层的概念, 对 readonly 权限的 branch 可以逻辑上进行修改(增量地, 不影响 readonly 部分的)。
 
