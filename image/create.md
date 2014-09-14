@@ -104,6 +104,17 @@ Successfully built 324104cde6ad
 
 *注意一个image不能超过127层
 
+此外，还可以利用ADD命令复制本地文件到镜像；用EXPOSE命令来向外部开放端口；用CMD命令来描述容器启动后运行的程序等。例如
+```
+# put my local web site in myApp folder to /var/www
+ADD myApp /var/www
+# expose mysqld port
+EXPOSE 80
+# the command to run
+CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
+
+```
+
 现在可以利用新创建的images来启动一个容器。
 ```
 $ sudo docker run -t -i ouruser/sinatra:v2 /bin/bash
