@@ -1,4 +1,4 @@
-##docker image的工作原理
+##工作原理
 
 docker image是怎么实现增量的修改和维护的？
 每个docker都有很多层次构成，docker使用 [Union FS](http://en.wikipedia.org/wiki/UnionFS) 将这些不同的层结合到一个image中去。

@@ -1,14 +1,14 @@
 ##docker中的容器互联-linking系统
 docker有一个linking 系统可以连接多个容器。它会创建一对父子关系，父容器可以看到所选择的子容器的信息。
 ###容器的命名系统
-linking系统依据容器的名称来执行。当我们创建容器的时候，系统会随机分配一个名字。当然我们也可以自己来命名容器，这样做有2个好处：
+linking系统依据容器的名称来执行。当我们创建容器的时候，系统会随机分配一个名字。当然用户也可以自己来命名容器，这样做有2个好处：
 * 当我们自己指定名称的时候，比较好记，比如一个web应用我们可以给它起名叫web
 * 当我们要连接其他容器时候，可以作为一个有用的参考点，比如连接web容器到db容器
 使用--name标记可以为容器命名
 ```
 $ sudo docker run -d -P --name web training/webapp python app.py
 ```
-使用docker -ps 来验证我们设定的命名
+使用docker -ps 来验证设定的命名
 ```
 $ sudo docker ps -l
 CONTAINER ID  IMAGE                  COMMAND        CREATED       STATUS       PORTS                    NAMES
@@ -19,7 +19,7 @@ aed84ee21bde  training/webapp:latest python app.py  12 hours ago  Up 2 seconds 0
 $ sudo docker inspect -f "{{ .Name }}" aed84ee21bde
 /web
 ```
-注意：容器的名称是唯一的。如果你命名了一个叫web的容器，当你要再次使用web这个名称的时候，你需要用docker 
+注意：容器的名称是唯一的。如果你命名了一个叫web的容器，当你要再次使用web这个名称的时候，你需要用docker
 rm来删除之前创建的容器，也可以再执行docker run的时候 加—rm标记来停止旧的容器，并删除，rm 和-d 参数是不兼容的。
 
 ###容器互联
@@ -75,7 +75,7 @@ PING db (172.17.0.5): 48 data bytes
 56 bytes from 172.17.0.5: icmp_seq=0 ttl=64 time=0.267 ms
 56 bytes from 172.17.0.5: icmp_seq=1 ttl=64 time=0.250 ms
 56 bytes from 172.17.0.5: icmp_seq=2 ttl=64 time=0.256 ms
-用ping来ping db容器，它会解析成172.17.0.5 
+用ping来ping db容器，它会解析成172.17.0.5
 ```
 注意：官方的ubuntu镜像默认没有安装ping
 注意：你可以链接多个子容器到父容器，比如我们可以链接多个web到db容器上。
