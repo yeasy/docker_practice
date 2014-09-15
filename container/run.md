@@ -1,6 +1,6 @@
 # 容器
 ##启动容器
-所需要的命令主要为`docker run`
+所需要的命令主要为`docker run`。
 
 例如，下面的命令输出一个"Hello World"，之后终止容器。
 ```
@@ -32,7 +32,12 @@ bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr
 * 从地址池配置一个ip地址给容器
 * 执行用户指定的应用程序
 
-##终止容器
 
-当Docker容器中指定的应用终结时，容器也自动终止。
-例如用户通过`exit`命令或`Ctrl+d`来退出终端时，所创建的容器立刻终止。
+容器的核心为所执行的应用程序，所需要的资源都是应用程序运行所必需的。除此之外，并没有其它的资源。可以在伪终端中查看进程信息。
+```
+root@ba267838cc1b:/# ps
+  PID TTY          TIME CMD
+    1 ?        00:00:00 bash
+   11 ?        00:00:00 ps
+```
+可见，容器中仅运行了指定的bash应用。这种特点使得Docker对资源的利用率极高，是货真价实的轻量级虚拟化。
