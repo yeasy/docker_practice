@@ -55,5 +55,5 @@
    * [多台物理主机之间的容器互联](practice/container_connect.md)
    * [中小企业docker环境搭建](practice/environment.md)
 * [附录一：命令查询](command/README.md)
-* [附录二：资源链接](resourcesreadme.md)
+* [附录二：资源链接](resources/README.md)
 
