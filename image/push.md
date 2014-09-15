@@ -1,5 +1,5 @@
 ##上传镜像
-用户也可以把自己创建的image上传到docker hub中来共享。
+用户也可以把自己创建的镜像上传到docker hub中来共享。
 ```
 $ sudo docker push ouruser/sinatra
 The push refers to a repository [ouruser/sinatra] (len: 1)
