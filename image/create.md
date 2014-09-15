@@ -97,7 +97,7 @@ Removing intermediate container 5e9d0065c1f7
 Successfully built 324104cde6ad
 ```
 其中-t标记来添加tag，指定新的镜像的用户信息。
-.是Dockerfile所在的路径（当前目录），也可以替换为一个具体的Dockerfile的路径。
+“.”是Dockerfile所在的路径（当前目录），也可以替换为一个具体的Dockerfile的路径。
 
 我们可以看到build进程在执行操作。它要做的第一件事情就是上传这个Dockerfile内容，因为所有的操作都要依据Dockerfile来进行。
 然后，dockfile中的指令被一条一条的执行。每一步都创建了一个新的容器，在容器中执行指令并提交修改（就跟之前介绍过的`docker commit`一样）。当所有的指令都执行完毕之后，返回了最终的镜像 id。所有的中间步骤所产生的容器都被删除和清理了。
@@ -130,3 +130,5 @@ ouruser/sinatra     latest  5db5f8471261  11 hours ago   446.7 MB
 ouruser/sinatra     devel   5db5f8471261  11 hours ago   446.7 MB
 ouruser/sinatra     v2      5db5f8471261  11 hours ago   446.7 MB
 ```
+
+更多用法，请参考dockerfile章节。
