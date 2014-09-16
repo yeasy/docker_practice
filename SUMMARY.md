@@ -43,7 +43,7 @@
 * [数据管理](data_management/README.md)
    * [数据卷](data_management/volume.md)
    * [数据卷容器](data_management/container.md)
-   * [备份、恢复、移动数据卷](data_management/management.md)
+   * [备份、恢复、迁移数据卷](data_management/management.md)
 * [容器安全](container_security/README.md)
    * [内核名字空间](container_security/kernel_ns.md)
    * [控制组](container_security/control_group.md)

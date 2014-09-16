@@ -1,19 +1,21 @@
-##利用Data Volume Container 来备份、恢复、移动数据卷
-数据卷另外一个功能是使用他们来备份、恢复、移动数据。使用--volume标记来创建一个加载了卷的新的容器，命令如下：
+##利用数据卷容器来备份、恢复、迁移数据卷
+可以利用数据卷对其中的数据进行进行备份、恢复和迁移。
+
+###备份
+首先使用`--volume--from`标记来创建一个加载dbdata容器卷的容器，并从本地主机挂载当前到容器的/backup目录。命令如下：
 ```
 $ sudo docker run --volumes-from dbdata -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /dbdata
 ```
-这里我们创建了一个容器，先从dbdata容器来挂载数据卷。然后从本地主机挂载当前到容器的/backup目录。最后，使用tar命令来将dbdata
-卷备份为back.tar。当命令执行完、容器停止之后，我们就备份了dbdata数据卷。
+容器启动后，使用了`tar`命令来将dbdata卷备份为本地的`/backup/backup.tar`。
 
 
-你可以使用这个备份来恢复这个容器。
+###恢复
+如果要恢复数据到一个容器，首先创建一个带有数据卷的容器dbdata2。
 ```
 $ sudo docker run -v /dbdata --name dbdata2 ubuntu /bin/bash
 ```
-然后使用untar解压这个备份文件到新容器卷中。
+然后创建另一个容器，挂载dbdata2的容器，并使用`untar`解压备份文件到挂载的容器卷中。
 ```
-$ sudo docker run --volumes-from dbdata2 -v $(pwd):/backup busybox tar xvf 
+$ sudo docker run --volumes-from dbdata2 -v $(pwd):/backup busybox tar xvf
 /backup/backup.tar
 ```
-你可以用上述技术实现数据卷的备份、移动、恢复。
