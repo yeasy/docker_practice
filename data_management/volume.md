@@ -1,11 +1,12 @@
 ##数据卷
-数据卷是一个由UFS文件系统专门设计的的特殊目录，它可以提供很多有用的特性：
+数据卷是一个可供一个或多个容器使用的特殊目录，它绕过UFS，可以提供很多有用的特性：
 * 数据卷可以在容器之间共享和重用
-* 对数据卷的改变是立马生效
-* 当你更新数据卷中的数据的时候，不会被包含到image中
-* 卷会一直存在直到没有容器使用他们
+* 对数据卷的修改会立马生效
+* 对数据卷的更新，不会影响镜像
+* 卷会一直存在，直到没有容器使用
+
 ###添加一个数据卷
-在用docker run命令的时候，使用-v标记来添加一个数据卷。在一次run中多次使用可以挂载多个数据卷，下面加载一个卷到web容器上。
+在用`docker run`命令的时候，使用-v标记来添加一个数据卷。在一次run中多次使用可以挂载多个数据卷，下面加载一个卷到web容器上。
 ```
 $ sudo docker run -d -P --name web -v /webapp training/webapp python app.py
 ```
@@ -15,7 +16,7 @@ $ sudo docker run -d -P --name web -v /webapp training/webapp python app.py
 ###挂载一个主机目录作为数据卷
 使用-v标记也可以挂载一个主机的目录到容器中去
 ```
-$ sudo docker run -d -P --name web -v /src/webapp:/opt/webapp 
+$ sudo docker run -d -P --name web -v /src/webapp:/opt/webapp
 training/webapp python app.py
 ```
 上面的命令加载主机的/src/webapp到容器的/opt/webapp
@@ -24,7 +25,7 @@ training/webapp python app.py
 
 docker 加载的数据卷默认是读写权限，但我们可以把它加载为只读。
 ```
-$ sudo docker run -d -P --name web -v /src/webapp:/opt/webapp:ro 
+$ sudo docker run -d -P --name web -v /src/webapp:/opt/webapp:ro
 training/webapp python app.py
 ```
 加了ro之后，就挂载为只读了。
