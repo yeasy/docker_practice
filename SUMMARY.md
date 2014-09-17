@@ -26,6 +26,8 @@
    * [终止](container/stop.md)
    * [删除](container/rm.md)
 * [仓库](repository/README.md)
+   * [Docker Hub](repository/dockerhub.md)
+   * [仓库管理](repository/management.md)
 * [网络和互联](network/README.md)
    * [端口映射](network/port_mapping.md)
    * [容器互联](network/linking.md)
