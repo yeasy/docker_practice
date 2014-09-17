@@ -25,12 +25,12 @@ ubuntu              14.04               05ac7c0b9383        17 seconds ago      
 ###创建私有仓库
 官方指南称最简单的办法是 docker run -p 5000:5000 registry，如果被墙了，也无法下载该images。感谢CSDN，我有一个1M的腾讯云服务器，上面搭建了一个私有仓库大家可以使用
 docker pull 203.195.193.251:5000/registry
-到我的服务器下载 速度虽然慢点，但有保证！	
+到我的服务器下载 速度虽然慢点，但有保证！
 另外的方法是使用刚才的创建的ubuntu来创建，官方有个docker仓库的源码地址  https://github.com/dotcloud/docker-registry 下载私有仓库的源码，可以根据上面的docker file来创建。
 
 也可以参考：
 http://www.vpsee.com/2013/11/build-your-own-docker-private-regsitry-service/
- 
+
 ###在私有仓库上传、下载、搜索images
 创建好自己的私有仓库之后，可以使用docker tag 一个镜像，然后push，然后在别的机器上pull下来就好了。这样我们的局域网私有docker仓库就搭建好了。
 步骤如下：
@@ -70,7 +70,7 @@ apt-get install curl
 ```
 root ~ # apt-get install curl
 Reading package lists... Done
-Building dependency tree       
+Building dependency tree
 Reading state information... Done
 The following NEW packages will be installed:
   curl
@@ -93,12 +93,12 @@ root ~ # curl http://192.168.7.26:5000/v1/search
 ```
 [root@opnvz ~]# docker pull 192.168.7.26:5000/test
 Pulling repository 192.168.7.26:5000/test
-ba5877dc9bec: Download complete 
-511136ea3c5a: Download complete 
-9bad880da3d2: Download complete 
-25f11f5fb0cb: Download complete 
-ebc34468f71d: Download complete 
-2318d26665ef: Download complete 
+ba5877dc9bec: Download complete
+511136ea3c5a: Download complete
+9bad880da3d2: Download complete
+25f11f5fb0cb: Download complete
+ebc34468f71d: Download complete
+2318d26665ef: Download complete
 [root@opnvz ~]# docker images
 REPOSITORY                         TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 192.168.7.26:5000/test             latest              ba5877dc9bec        6 weeks ago         192.7 MB

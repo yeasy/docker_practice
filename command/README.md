@@ -163,6 +163,6 @@ docker的命令可以采用`docker-CMD`或者`docker CMD`的方式执行。两�
     docker-wait(1)
         阻塞直到一个容器终止，然后输出它的退出符
 
-##一张图总结docker的命令周期
+##一张图总结Docker的命令
 
-![命令周期](../images/cmd_logic.png)
+![命令周期](../_images/cmd_logic.png)

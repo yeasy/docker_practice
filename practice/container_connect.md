@@ -1,7 +1,7 @@
 ##多台物理主机之间的容器互联（暴露容器到真实网络中）
 docker 默认的桥接网卡是docker0。它只会在本机桥接所有的容器网卡，举例来说容器的虚拟网卡在主机上看一般叫做veth***  而docker只是把所有这些网卡桥接在一起，如下：
 ```
-[root@opnvz ~]# brctl show 
+[root@opnvz ~]# brctl show
 bridge name     bridge id               STP enabled     interfaces
 docker0         8000.56847afe9799       no              veth0889
                                              veth3c7b
@@ -10,17 +10,17 @@ docker0         8000.56847afe9799       no              veth0889
 在容器中看到的地址一般是像下面这样的地址：
 ```
 root@ac6474aeb31d:~# ip a
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN group default 
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN group default
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
        valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host 
+    inet6 ::1/128 scope host
        valid_lft forever preferred_lft forever
 11: eth0: <BROADCAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
     link/ether 4a:7d:68:da:09:cf brd ff:ff:ff:ff:ff:ff
     inet 172.17.0.3/16 scope global eth0
        valid_lft forever preferred_lft forever
-    inet6 fe80::487d:68ff:feda:9cf/64 scope link 
+    inet6 fe80::487d:68ff:feda:9cf/64 scope link
        valid_lft forever preferred_lft forever
 ```
 这样就可以把这个网络看成是一个私有的网络，通过nat 连接外网，如果要让外网连接到容器中，就需要做端口映射，即-p参数（更多原理参见本文第六小节）
@@ -28,7 +28,7 @@ root@ac6474aeb31d:~# ip a
 
 ###拓扑图
 主机A和主机B的网卡一都连着物理交换机的同一个vlan 101,这样网桥一和网桥三就相当于在同一个物理网络中了，而容器一、容器三、容器四也在同一物理网络中了，他们之间可以相互通信，而且可以跟同一vlan中的其他物理机器互联。
-![物理拓扑图](../images/container_connect_topology.png)
+![物理拓扑图](../_images/container_connect_topology.png)
 
 ###ubuntu示例
 下面以ubuntu为例创建多个主机的容器联网:
@@ -68,7 +68,7 @@ DOCKER_OPTS="-b=br0"
 ```
 root@ubuntudocker:~# docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                        NAMES
-58b043aa05eb        desk_hz:v1          "/startup.sh"       5 days ago          Up 2 seconds        5900/tcp, 6080/tcp, 22/tcp   yanlx               
+58b043aa05eb        desk_hz:v1          "/startup.sh"       5 days ago          Up 2 seconds        5900/tcp, 6080/tcp, 22/tcp   yanlx
 root@ubuntudocker:~# brctl show
 bridge name     bridge id               STP enabled     interfaces
 br0             8000.7e6e617c8d53       no              em1
