@@ -28,7 +28,8 @@ $ sudo docker run -i -t --rm --net=none base /bin/bash
 root@63f36fc01b5f:/#
 ```
 再开启一个新的终端，查找这个容器的进程id，然后创建它的命名空间，后面的ip netns会用到
-```$ sudo docker inspect -f '{{.State.Pid}}' 63f36fc01b5f
+```
+$ sudo docker inspect -f '{{.State.Pid}}' 63f36fc01b5f
 2778
 $ pid=2778
 $ sudo mkdir -p /var/run/netns
