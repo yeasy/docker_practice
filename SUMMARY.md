@@ -57,7 +57,7 @@
    * [使用 Supervisor来管理进程](practice/supervisor.md)
    * [创建tomcat/weblogic集群](practice/tomcat.md)
    * [多台物理主机之间的容器互联](practice/container_connect.md)
-   * [中小企业docker环境搭建](practice/environment.md)
+   * [标准化开发测试和生产环境](practice/environment.md)
 * [附录一：命令查询](command/README.md)
 * [附录二：资源链接](resources/README.md)
 
