@@ -1,28 +1,38 @@
 ##使用 Supervisor来管理进程
 docker 容器在启动的时候开启单个进程，比如，一个ssh或则apache 的daemon服务。但我们经常需要在一个机器上开启多个服务，这可以有很多方法，最简单的就是把多个启动命令方到一个启动脚本里面，启动的时候直接启动这个脚本，另外就是安装进程管理工具。.
 本小节将使用进程管理工具supervisor来管理容器中的多个进程。使用Supervisor可以更好的控制、管理、重启我们希望运行的进程。在这里我们演示一下如何同时使用ssh和apache服务。
+```
 ###dockerfile
 FROM ubuntu:13.04
 MAINTAINER examples@docker.com
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get upgrade -y
+```
 
 安装supervisor
 安装 ssh apache supervisor
 
+```
 RUN apt-get install -y openssh-server apache2 supervisor
 RUN mkdir -p /var/run/sshd
 RUN mkdir -p /var/log/supervisor
+```
+
 这里安装3个软件，还创建了2个用来允许ssh和supervisor的目录
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+    COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 添加supervisor‘s的配置文件
 添加配置文件到对应目录下面
 映射端口，开启supervisor
 使用dockerfile来映射指定的端口，使用cmd来启动supervisord
-EXPOSE 22 80
-CMD ["/usr/bin/supervisord"]
+
+    EXPOSE 22 80
+    CMD ["/usr/bin/supervisord"]
+    
 这里我们映射了22 和80端口，使用supervisord的可执行路径启动服务。
+
 ###supervisor配置文件内容
 ```
 [supervisord]
