@@ -22,9 +22,9 @@ docker的基础是Linux Container （LXC）。
 
 下面的图片比较了docker和传统虚拟化方式的不同之处，可见容器是在操作系统层面上实现虚拟化，而传统方式则是在硬件层面实现。
 
-![传统虚拟化](../images/virtualization.png)
+![传统虚拟化](../images/virtualization.PNG)
 
-![Docker](../images/docker.png)
+![Docker](../images/docker.PNG)
 
 
 ##为什么要使用docker？
