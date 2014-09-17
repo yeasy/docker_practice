@@ -2,7 +2,7 @@
 
 ##基本语法
     docker [OPTIONS] COMMAND [arg...]
-一般来说，docker命令可以用来管理daemon，或者通过CLI命令管理image和container。可以通过man docker来查看这些命令。
+一般来说，docker命令可以用来管理daemon，或者通过CLI命令管理镜像和容器。可以通过`man docker`来查看这些命令。
 
 
 ##选项
@@ -62,10 +62,10 @@ docker的命令可以采用`docker-CMD`或者`docker CMD`的方式执行。两�
         依附到一个正在运行的容器中。
 
     docker-build(1)
-        从一个Dockerfile创建一个image
+        从一个Dockerfile创建一个镜像
 
     docker-commit(1)
-        从一个容器的修改中创建一个新的image
+        从一个容器的修改中创建一个新的镜像
 
     docker-cp(1)
         从容器中复制文件到宿主系统中
@@ -80,13 +80,13 @@ docker的命令可以采用`docker-CMD`或者`docker CMD`的方式执行。两�
         导出容器内容为一个tar包
 
     docker-history(1)
-        显示一个image的历史
+        显示一个镜像的历史
 
     docker-images(1)
-        列出存在的image
+        列出存在的镜像
 
     docker-import(1)
-        导入一个tar包来创建一个image
+        导入一个文件（典型为tar包）路径或目录来创建一个镜像
 
     docker-info(1)
         显示一些相关的系统信息
@@ -98,7 +98,7 @@ docker的命令可以采用`docker-CMD`或者`docker CMD`的方式执行。两�
         关闭一个运行中的容器 (包括进程和所有资源)
 
     docker-load(1)
-        从一个tar包中加载一个image
+        从一个tar包中加载一个镜像
 
     docker-login(1)
         注册或登录到一个Docker的仓库服务器
@@ -119,10 +119,10 @@ docker的命令可以采用`docker-CMD`或者`docker CMD`的方式执行。两�
         列出容器
 
     docker-pull(1)
-        从一个Docker的注册服务器下拉一个image或仓库
+        从一个Docker的仓库服务器下拉一个镜像或仓库
 
     docker-push(1)
-        将一个image或者仓库推送到一个Docker的注册服务器
+        将一个镜像或者仓库推送到一个Docker的注册服务器
 
     docker-restart(1)
         重启一个运行中的容器
@@ -131,16 +131,16 @@ docker的命令可以采用`docker-CMD`或者`docker CMD`的方式执行。两�
         删除给定的若干个容器
 
     docker-rmi(1)
-        删除给定的若干个image
+        删除给定的若干个镜像
 
     docker-run(1)
         创建一个新容器，并在其中运行给定命令
 
     docker-save(1)
-        保存一个image为tar包文件
+        保存一个镜像为tar包文件
 
     docker-search(1)
-        在Docker index中搜索一个image
+        在Docker index中搜索一个镜像
 
     docker-start(1)
         启动一个容器
