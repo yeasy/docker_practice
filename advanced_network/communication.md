@@ -2,7 +2,9 @@
 判断2个容器之间是否能够通信，在操作系统层面，取决于3个因素：
 * 网络拓扑是否连接到容器的网络接口？默认docker会将所有的容器连接到docker0这网桥来提供数据包通信。其他拓扑结构将在稍后的文档中详细介绍。
 * 主机是否开启ip转发，ip_forward参数为1的时候可以提供数据包转发。通常你只需要为docker 设定 --ip-forward=true,
-docker 就会在服务启动的时候设定ip_forward参数为1。下面是手工检查并手工设定该参数的方法。
+docker 就会在服务启动的时候设定ip_forward参数为1。
+
+下面是手工检查并手工设定该参数的方法。
 ```
 # Usually not necessary: turning on forwarding,
 # on the host where your Docker server is running

@@ -1,20 +1,20 @@
 ##部署本地仓库
-由于网络的关系，国内用户在使用docker hub的时候，很难pull一个基本的镜像下来。
+有时候使用Docker Hub这样的公共仓库可能不方便，用户可以创建一个本地仓库供私人使用。
+
 本节介绍如何创建部署本地仓库。
 
-###安装docker
-参见本文第三小节
-###从文件系统创建一个image镜像
-创建镜像有很多方法，官方的推荐是pull一个，不过在墙内，想pull一个基本的ubuntu都没办法完成。
-这里推荐一个办法就是从一个文件系统import一个镜像，个人推荐可以使用opvz的模板来创建：（openvz可以说是容器虚拟化的先锋吧）
+###从文件系统创建一个镜像
+创建镜像有很多方法，用户可以从Docker Hub获取一个，也可以利用本地文件系统创建一个。
+
+要从本地文件系统import一个镜像，个人推荐可以使用openvz（容器虚拟化的先锋技术）的模板来创建：
 openvz的模板下载地址如下：
 http://openvz.org/Download/templates/precreated
-下载完之后，比如：下载了一个ubuntu14.04的镜像
-使用以下命令：
+比如：下载了一个ubuntu14.04的镜像，
+下载完之后，使用以下命令：
 ```
 sudo cat ubuntu-14.04-x86_64-minimal.tar.gz  |docker import - ubuntu:14.04
 ```
-然后用docker images看下：
+然后查看镜像：
 ```
 docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
@@ -23,7 +23,7 @@ ubuntu              14.04               05ac7c0b9383        17 seconds ago      
 就多了一个我们的ubuntu镜像
 
 ###创建私有仓库
-官方指南称最简单的办法是 docker run -p 5000:5000 registry，如果被墙了，也无法下载该images。感谢CSDN，我有一个1M的腾讯云服务器，上面搭建了一个私有仓库大家可以使用
+官方指南称最简单的办法是`docker run -p 5000:5000 registry` 但是如果被墙了，也无法下载该images。感谢CSDN，我有一个1M的腾讯云服务器，上面搭建了一个私有仓库大家可以使用
 docker pull 203.195.193.251:5000/registry
 到我的服务器下载 速度虽然慢点，但有保证！
 另外的方法是使用刚才的创建的ubuntu来创建，官方有个docker仓库的源码地址  https://github.com/dotcloud/docker-registry 下载私有仓库的源码，可以根据上面的docker file来创建。
@@ -32,9 +32,9 @@ docker pull 203.195.193.251:5000/registry
 http://www.vpsee.com/2013/11/build-your-own-docker-private-regsitry-service/
 
 ###在私有仓库上传、下载、搜索images
-创建好自己的私有仓库之后，可以使用docker tag 一个镜像，然后push，然后在别的机器上pull下来就好了。这样我们的局域网私有docker仓库就搭建好了。
+创建好自己的私有仓库之后，可以使用`docker tag` 一个镜像，然后push，然后在别的机器上pull下来就好了。这样我们的局域网私有Docker仓库就搭建好了。
 步骤如下：
-使用 docker run -p 5000:5000 registry 在局域网的一台机器上开启一个容器之后，我的局域网私有仓库地址为192.168.7.26:5000
+使用`docker run -p 5000:5000 registry` 在局域网的一台机器上开启一个容器之后，我的局域网私有仓库地址为192.168.7.26:5000
 先在本机看下现有的images
 ```
 root ~ # docker images
