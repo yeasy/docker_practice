@@ -1,6 +1,8 @@
 ##启动容器
 启动容器有两种方式，一种是基于镜像新建一个容器并启动，另外一个是将在终止状态（stopped）的容器重新启动。
 
+因为Docker的容器实在太轻量级了，很多时候用户都是随时删除和新创建容器。
+
 ###新建并启动
 所需要的命令主要为`docker run`。
 
@@ -9,6 +11,7 @@
 $ sudo docker run ubuntu:14.04 /bin/echo 'Hello world'
 Hello world
 ```
+这跟在本地直接执行`/bin/echo 'hello world'`几乎感觉不出任何区别。
 
 下面的命令则启动一个bash终端，可以让用户进行交互。
 ```
@@ -33,6 +36,7 @@ bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr
 * 从宿主主机配置的网桥接口中桥接一个虚拟接口到容器中去
 * 从地址池配置一个ip地址给容器
 * 执行用户指定的应用程序
+* 执行完毕后容器被终止
 
 ###启动已终止容器
 可以利用`docker start`命令，直接将一个已经终止的容器启动运行。
