@@ -32,7 +32,9 @@ $ sudo docker inspect -f "{{ .Name }}" aed84ee21bde
 在执行`docker run`的时候如果添加`--rm`标记，则容器在终止后会立刻删除。注意，`--rm`和`-d`参数是不兼容的。
 
 ###容器互联
-使用`--link`参数可以让容器之间安全的交互。下面先创建一个新的数据库容器，
+使用`--link`参数可以让容器之间安全的进行交互。
+
+下面先创建一个新的数据库容器。
 ```
 $ sudo docker run -d --name db training/postgres
 ```
@@ -44,7 +46,7 @@ $ docker rm -f web
 ```
 $ sudo docker run -d -P --name web --link db:db training/webapp python app.py
 ```
-此时，db容器和web容器建立父子关系。
+此时，db容器和web容器建立互联关系。
 
 `--link`参数的格式为`--link name:alias`，其中`name`是要链接的容器的名称，`alias`是这个连接的别名。
 
@@ -59,9 +61,9 @@ aed84ee21bde  training/webapp:latest    python app.py         16 hours ago      
 
 Docker在两个互联的容器之间创建了一个安全隧道，而且不用映射它们的端口到宿主主机上。在启动db容器的时候并没有使用-p和-P标记，从而避免了暴露数据库端口到外部网络上。
 
-Docker 通过2种方式为父子关系的容器公开连接信息：
+Docker 通过2种方式为容器公开连接信息：
 * 环境变量
-* 更新/etc/hosts文件
+* 更新`/etc/hosts`文件
 
 使用`env`命令来查看web容器的环境变量
 ```
