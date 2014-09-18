@@ -1,37 +1,43 @@
-##映射一个容器端口到宿主主机
+##映射容器端口到宿主主机的实现
 
-默认情况下，容器可以建立到外部网络的连接，但是外部网络无法连接到容器。所有到外部的连接，源地址都会被伪装成宿主主机的ip地址，iptables的 masquerading来做到这一点。
+默认情况下，容器可以主动访问到外部网络的连接，但是外部网络无法访问到容器。
+### 容器访问外部实现
+容器所有到外部网络的连接，源地址都会被NAT成本地系统的IP地址。这是使用`iptables`的源地址伪装操作实现的。
 
+查看主机的NAT规则。
 ```
-# 查看主机的masquerading规则
-$ sudo iptables -t nat -L -n
+$ sudo iptables -t nat -nL
 ...
 Chain POSTROUTING (policy ACCEPT)
 target     prot opt source               destination
 MASQUERADE  all  --  172.17.0.0/16       !172.17.0.0/16
 ...
 ```
+其中，上述规则将所有源地址在`172.17.0.0/16`网段，目标地址为其他网段（外部网络）的流量动态伪装为从系统网卡发出。MASQUERADE跟传统SNAT的好处是它能动态从网卡获取地址。
 
-当你希望容器接收外部连接时，你需要在docker run执行的时候就指定对应选项，第五章详细介绍了2种方法：
-* 指定-P --publish-all=true|false 选项会映射dockerfile
-中expose的所有端口，主机端口在49000-49900中随机挑选。当你的另外一个容器需要学习这个端口时候，很不方便。
-* 指定-p SPEC或则 --publish=SPEC,可以指定任意端口从主机映射容器内部
+### 外部访问容器实现
 
-不管用那种办法，你可以通过查看iptable的 nat表来观察docker 在网络层做了什么操作。
+容器允许外部访问，可以在`docker run`时候通过`-p`或`-P`参数来启用。
+
+不管用那种办法，其实也是在本地的`iptable`的nat表中添加相应的规则。
+
+使用`-P`时：
 ```
-#使用-P时：
-$ iptables -t nat -L -n
+$ iptables -t nat -nL
 ...
 Chain DOCKER (2 references)
 target     prot opt source               destination
 DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:49153 to:172.17.0.2:80
-#使用-p 80:80时：
-$ iptables -t nat -L -n
+```
+
+使用`-p 80:80`时：
+```
+$ iptables -t nat -nL
 Chain DOCKER (2 references)
 target     prot opt source               destination
 DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:80 to:172.17.0.2:80
 ```
 注意：
-* 这里看到docker映射了0.0.0.0.它接受主机上的所有接口地址。可以通过-p IP:host_port:container_port 或则 -p
-IP::port 来指定主机上的ip、接口，制定更严格的规则。
-* 如果你希望永久改变绑定的主机ip地址，可以 在dcoker 配置中指定--ip=IP_ADDRESS. 记得重启服务。
+* 这里的规则映射了0.0.0.0，意味着将接受主机来自所有接口的流量。用户可以通过`-p IP:host_port:container_port`或`-p
+IP::port`来指定允许访问容器的主机上的IP、接口等，以制定更严格的规则。
+* 如果希望永久绑定到某个固定的IP地址，可以在Docker 配置文件`/etc/default/docker`中指定`DOCKER_OPTS="--ip=IP_ADDRESS"`，之后重启Docker服务即可生效。

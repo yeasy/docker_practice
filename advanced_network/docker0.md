@@ -1,19 +1,22 @@
-##定制docker0
-docker服务默认会创建一个docker0接口，它在linux内核层桥接所有物理或虚拟网卡，这就将所有容器和主机接口都放到同一个物理网络。
-Docker指定了docker0的ip地址和子网掩码，让主机和容器之间可以通过网桥相互通信，它还给出了MTU-接口允许接收的最大传输单元，通常是1500bytes或宿主主机网络路由上支持的默认值，这2个都需要在服务启动的时候配置。
-* --bip=CIDR — 192.168.1.5/24.ip地址加掩码 使用这种格式
-* --mtu=BYTES —  覆盖默认的docker mtu配置
+##配置docker0
+Docker服务默认会创建一个`docker0`接口，它在内核层连通了其他的物理或虚拟网卡，这就将所有容器和本地主机都放到同一个物理网络。
 
-你可以在配置文件中配置DOCKER_OPTS，然后重启来改变这些参数。
+Docker默认指定了`docker0`的IP地址和子网掩码，让主机和容器之间可以通过网桥相互通信，它还给出了MTU（接口允许接收的最大传输单元），通常是1500bytes，或宿主主机网络路由上支持的默认值，这2个都可以在服务启动的时候进行配置。
+* --bip=CIDR -- IP地址加掩码格式，例如192.168.1.5/24
+* --mtu=BYTES -- 覆盖默认的Docker mtu配置
+
+也可以在配置文件中配置DOCKER_OPTS，然后重启服务。
+由于目前Docker网桥是Linux网桥，用户可以使用`brctl show`来查看网桥和端口连接信息。
 ```
-# 当容器启动后，你可以使用brctl来确认他们是否已经连接到docker0网桥
 $ sudo brctl show
 bridge name     bridge id               STP enabled     interfaces
 docker0         8000.3a1d7362b4ee       no              veth65f9
                                              vethdda6
-```                                             
-如果brctl命令没安装的话，在ubuntu中你可以使用apt-get install bridge-utils这个命令来安装
-docker0 网桥设置会在每次创建新容器的时候被使用。docker从可用的地址段中选择一个空闲的ip地址给容器的eth0端口，子网掩码使用网桥docker0的配置，docker主机本身的ip作为容器的网关使用。
+```
+注：`brctl`命令在Debian、Ubuntu中可以使用`sudo apt-get install bridge-utils`来安装。
+
+
+每次创建一个新容器的时候，Docker从可用的地址段中选择一个空闲的ip地址分配给容器的eth0端口。Docker主机上接口`docker0`的IP作为所有容器的默认网关。
 ```
 $ sudo docker run -i -t --rm base /bin/bash
 $ ip addr show eth0
@@ -28,4 +31,3 @@ default via 172.17.42.1 dev eth0
 172.17.0.0/16 dev eth0  proto kernel  scope link  src 172.17.0.3
 $ exit
 ```
-转发数据包需要在主机上设定ip_forward参数为1,上文介绍过。
