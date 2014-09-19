@@ -1,4 +1,5 @@
 ## 名字空间
+名字空间是Linux内核一个强大的特性。
 
 ###pid 名字空间
 不同用户的进程就是通过pid名字空间隔离开的，且不同名字空间中可以有相同pid。所有的LXC进程在Docker中的父进程为Docker进程，每个LXC进程具有不同的名字空间。同时由于允许嵌套，因此可以很方便的实现嵌套的Docker容器。
@@ -17,3 +18,5 @@ UTS("UNIX Time-sharing System") 名字空间允许每个容器拥有独立的hos
 
 ###user 名字空间
 每个容器可以有不同的用户和组id, 也就是说可以在容器内用容器内部的用户执行程序而非Host上的用户。
+
+*注：关于Linux上的名字空间，[这篇文章](http://blog.scottlowe.org/2013/09/04/introducing-linux-network-namespaces/)介绍的很好。
