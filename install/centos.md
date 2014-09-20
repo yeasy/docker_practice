@@ -10,7 +10,7 @@
 
 centos7 直接通过系统命令安装：
 ```
-yum install docker-io
+yum install docker
 ```
 如果之前的系统中存在docker这个软件，最好先删除掉这个包。
 ```
