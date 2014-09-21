@@ -1,5 +1,5 @@
 ##Docker Daemon Attack Surface
-运行一个容器或则应用程序意味着运行一个Docker 服务。Docker服务要求root权限，所以你需要了解一些重要的细节。
+运行一个容器或者应用程序意味着运行一个Docker 服务。Docker服务要求root权限，所以你需要了解一些重要的细节。
 
 首先，确保只有可信的用户可以访问docker服务，因为这会直接导致很严重的后果。因为，Docker允许你在主机和容器之间共享文件夹，这就容易让容器突破资源限制。比如当你在启动容器的时候将主机的/映射到容器的/host目录中，那么容器就可以对主机做任何更改了。这听起来很疯狂？不过，你要知道几乎所有虚拟机系统都有在物理主机和虚拟机之间共享资源的限制，所以需要你自己来考虑这一层的安全性。
 
@@ -7,7 +7,7 @@
 
 因此，REST API在docker0.5.2之后使用unix socket替代了绑定在127.0.0.1上的tcp socket（后者容易遭受跨站脚本攻击）。现在你可以使用增强的unix sockt权限来限制对控制socket的访问。
 
-你依然可以将REST API发布到http服务上。不过一定要小心确认这里的安全机制，确保只有可信的网络或则vpn或则受保护的stunnel和ssl认证可以对REST API进行访问。还可以使用https和认证HTTPS and certificates.
+你依然可以将REST API发布到http服务上。不过一定要小心确认这里的安全机制，确保只有可信的网络或者vpn或者受保护的stunnel和ssl认证可以对REST API进行访问。还可以使用https和认证HTTPS and certificates.
 最近改进的linux namespace将很快可以实现使用非root用户来运行全功能的容器。这解决了因在容器和主机共享文件系统而引起的安全问题。
 
 Docker的终极目标是改进2个安全特性：
