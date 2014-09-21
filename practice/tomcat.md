@@ -20,7 +20,7 @@ docker commit  ac6474aeb31d  tomcat
 
 新建tomcat文件夹，新建Dockerfile
 ```
-FROM tomcat
+FROM mk_tomcat
 EXPOSE  22 8080
 CMD ["/usr/bin/supervisord"]
 ```
