@@ -10,7 +10,7 @@ v0.2.1
 本书源于[WaitFish](github.com/qcpm1983)的《[Docker学习手册v1.0](https://github.com/yeasy/docker_practice/blob/master/_local/docker_manual_waitfish.pdf)》内容。后来，[yeasy](github.com/yeasy)
 根据最新Docker版本对内容进行了修订和重写，并增加了部分内容；与WaitFish协商，将所有内容开源，采用互联网合作的方式进行创作和维护。
 
-在线阅读：[http://yeasy.gitbooks.io/docker_practice/](http://yeasy.gitbooks.io/docker_practice/)。
+在线阅读：[https://www.gitbook.io/book/yeasy/docker_practice](https://www.gitbook.io/book/yeasy/docker_practice)。
 
 维护本书的Github项目： [https://github.com/yeasy/docker_practice](https://github
 .com/yeasy/docker_practice)。
