@@ -12,8 +12,7 @@ v0.2.1
 
 在线阅读：[https://www.gitbook.io/book/yeasy/docker_practice](https://www.gitbook.io/book/yeasy/docker_practice)。
 
-维护本书的Github项目： [https://github.com/yeasy/docker_practice](https://github
-.com/yeasy/docker_practice)。
+维护本书的Github项目： [https://github.com/yeasy/docker_practice](https://github.com/yeasy/docker_practice)。
 欢迎参与。
 
 另外，欢迎加入Docker QQ群（341410255）一起交流学习，共同提高。
