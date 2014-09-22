@@ -55,7 +55,7 @@
 * [安全](security/README.md)
    * [内核名字空间](security/kernel_ns.md)
    * [控制组](security/control_group.md)
-   * [守护进程安全](security/daemon_sec.md)
+   * [服务端防护](security/daemon_sec.md)
    * [内核权限](security/kernel_capability.md)
    * [其他内核安全特性](security/other_feature.md)
    * [结论](security/summary.md)
