@@ -1,8 +1,8 @@
 ##创建镜像
-别人的镜像虽然好，但不一定适合我们。
-我们可以对这些镜像做一些修改，有2个方法：利用现成的镜像进行修改或者利用dockerfile创建。
 
-###使用docker commit 来扩展一个镜像
+创建镜像有很多方法，用户可以从Docker Hub获取已有镜像并更新，也可以利用本地文件系统创建一个。
+
+### 修改已有镜像
 先使用下载的镜像启动容器。
 ```
 $ sudo docker run -t -i training/sinatra /bin/bash
@@ -112,16 +112,14 @@ ADD myApp /var/www
 EXPOSE 80
 # the command to run
 CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
-
 ```
 
 现在可以利用新创建的镜像来启动一个容器。
 ```
 $ sudo docker run -t -i ouruser/sinatra:v2 /bin/bash
 root@8196968dac35:/#
-
 ```
-还可以用tag命令来修改镜像的tag。
+还可以用`docker tag`命令来修改镜像的标签。
 ```
 $ sudo docker tag 5db5f8471261 ouruser/sinatra:devel
 $ sudo docker images ouruser/sinatra
@@ -131,4 +129,19 @@ ouruser/sinatra     devel   5db5f8471261  11 hours ago   446.7 MB
 ouruser/sinatra     v2      5db5f8471261  11 hours ago   446.7 MB
 ```
 
-更多用法，请参考dockerfile章节。
+*注：更多用法，请参考dockerfile章节。
+
+### 从本地文件系统导入
+要从本地文件系统导入一个镜像，可以使用openvz（容器虚拟化的先锋技术）的模板来创建：
+openvz的模板下载地址为http://openvz.org/Download/templates/precreated。
+
+比如：先下载了一个ubuntu14.04的镜像，之后使用以下命令导入：
+```
+sudo cat ubuntu-14.04-x86_64-minimal.tar.gz  |docker import - ubuntu:14.04
+```
+然后查看新导入的镜像。
+```
+docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+ubuntu              14.04               05ac7c0b9383        17 seconds ago      215.5 MB
+```

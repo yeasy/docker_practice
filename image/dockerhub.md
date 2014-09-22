@@ -17,7 +17,6 @@ subwiz/sinatra                                                                  
 bmorearty/sinatra                                                                      0
 ```
 
-
 可以看到返回了很多包含sinatra的镜像。其中包括镜像名字、描述、星级（表示该镜像的受欢迎程度）、是否官方创建、是否自动创建。
 官方的镜像是由stackbrew项目组创建和维护的，automated 资源允许用户验证镜像的来源和内容。
 
