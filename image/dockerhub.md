@@ -39,13 +39,16 @@ b7de3133ff98: Pulling dependent layers
 ef52fb1fe610: Download complete
 ```
 下载过程中，会输出获取镜像的每一层信息。
+*注：有时候官方镜像下载较慢，可以试试`203.195.193.251:5000`镜像，如
+```
+$ sudo docker pull 203.195.193.251:5000/centos
+```
 
-下载完成后，即可随时创建一个容器了。
+完成后，即可随时创建一个容器了。
 ```
 $ sudo docker run -t -i centos /bin/bash
 bash-4.1#
 ```
-*注：有时候官方镜像下载较慢，可以试试
 
 ###上传镜像
 用户也可以通过`docker push`命令，把自己创建的镜像上传到Docker Hub中来共享。
