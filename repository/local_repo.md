@@ -4,16 +4,16 @@
 
 本节介绍如何使用本地仓库。
 
-docker-registry是官方提供的工具，可以用于构建私有的镜像仓库。
-###安装docker-registry
-#### 系统自带
-在安装了Docker后，系统中就自带了`docker-registry`工具，可以运行
+`docker-registry`是官方提供的工具，可以用于构建私有的镜像仓库。
+###安装运行docker-registry
+#### 容器运行
+在安装了Docker后，可以通过获取官方registry镜像来运行。
 ```
-docker run -p 5000:5000 registry
+$ sudo docker run -p 5000:5000 registry
 ```
 这将使用官方的registry镜像来启动本地的私有仓库。可以通过指定参数来配置私有仓库位置，例如配置镜像存储到Amazon的S3服务。
 ```
-docker run \
+$ sudo docker run \
          -e SETTINGS_FLAVOR=s3 \
          -e AWS_BUCKET=acme-docker \
          -e STORAGE_PATH=/registry \
@@ -23,18 +23,42 @@ docker run \
          -p 5000:5000 \
          registry
 ````
+此外，还可以指定本地路径（如`/home/user/registry-conf`）下的配置文件。
+```
+$ sudo docker run -p 5000:5000 -v /home/user/registry-conf:/registry-conf -e DOCKER_REGISTRY_CONFIG=/registry-conf/config.yml registry
+```
 
-#### 源码安装
-从[docker-registry](https://github.com/docker/docker-registry)项目下载源码安装。
+#### 本地安装
+对于Ubuntu或CentOS等发型包，可以直接通过源安装。
+* Ubuntu
+```
+$ sudo apt-get install -y build-essential python-dev libevent-dev python-pip liblzma-dev
+$ sudo pip install docker-registry
+```
+* CentOS
+```
+$ sudo yum install -y python-devel libevent-devel python-pip gcc xz-devel
+$ sudo python-pip install docker-registry
+```
+
+也可以从[docker-registry](https://github.com/docker/docker-registry)项目下载源码进行安装。
 ```
 $ sudo apt-get install build-essential python-dev libevent-dev python-pip libssl-dev liblzma-dev libffi-dev
+$ git clone https://github.com/docker/docker-registry.git
+$ cd git-registry
 $ sudo pip install .
 ```
-然后修改配置文件，主要修改`storage_path`到本地的存储仓库的路径，之后启动Web服务。
+然后修改配置文件，主要修改dev模板段的`storage_path`到本地的存储仓库的路径。
 ```
 $ cp config/config_sample.yml config/config.yml
-$ #do some change to config.yml
-$ sudo /usr/bin/gunicorn --debug -k gevent -b 0.0.0.0:5000 -w 8 docker_registry.wsgi:application
+```
+之后启动Web服务。
+```
+$ sudo gunicorn -c contrib/gunicorn.py docker_registry.wsgi:application
+```
+或者
+```
+$ sudo gunicorn --access-logfile - --error-logfile - -k gevent -b 0.0.0.0:5000 -w 4 --max-requests 100 docker_registry.wsgi:application
 ```
 此时使用访问本地的5000端口，看到输出docker-registry的版本信息说明运行成功。
 

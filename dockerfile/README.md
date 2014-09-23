@@ -1,5 +1,5 @@
-#Dockerfile
+#Dockerfile配置
 
 TODO
 
-ref: https://github.com/yeasy/docker_practice
+https://docs.docker.com/introduction/working-with-docker/#working-with-the-dockerfile

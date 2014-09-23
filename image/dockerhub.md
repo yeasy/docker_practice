@@ -45,6 +45,7 @@ ef52fb1fe610: Download complete
 $ sudo docker run -t -i centos /bin/bash
 bash-4.1#
 ```
+*注：有时候官方镜像下载较慢，可以试试
 
 ###上传镜像
 用户也可以通过`docker push`命令，把自己创建的镜像上传到Docker Hub中来共享。
