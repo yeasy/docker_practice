@@ -11,7 +11,8 @@
 ```
 $ sudo docker run -p 5000:5000 registry
 ```
-这将使用官方的registry镜像来启动本地的私有仓库。可以通过指定参数来配置私有仓库位置，例如配置镜像存储到Amazon的S3服务。
+这将使用官方的registry镜像来启动本地的私有仓库。
+用户可以通过指定参数来配置私有仓库位置，例如配置镜像存储到Amazon的S3服务
 ```
 $ sudo docker run \
          -e SETTINGS_FLAVOR=s3 \
@@ -25,7 +26,12 @@ $ sudo docker run \
 ````
 此外，还可以指定本地路径（如`/home/user/registry-conf`）下的配置文件。
 ```
-$ sudo docker run -p 5000:5000 -v /home/user/registry-conf:/registry-conf -e DOCKER_REGISTRY_CONFIG=/registry-conf/config.yml registry
+$ sudo docker run -d -p 5000:5000 -v /home/user/registry-conf:/registry-conf -e DOCKER_REGISTRY_CONFIG=/registry-conf/config.yml registry
+```
+默认情况下，仓库会被创建在容器的`/tmp/registry`下。可以通过`-v`参数来将镜像文件存放在本地的指定路径。
+例如下面的例子将上传的镜像放到`/opt/data/registry`目录。
+```
+$ sudo docker run -d -p 5000:5000 -v /opt/data/registry:/tmp/registry registry
 ```
 
 #### 本地安装
