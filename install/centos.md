@@ -13,8 +13,8 @@ CentOS7系统CentOS-Extras库中已带Docker，可以直接安装：
 $ sudo yum install docker
 ```
 
-安装之后启动Docker服务，并让它随系统启动自动启动。
+安装之后启动Docker服务，并让它随系统启动自动加载。
 ```
-$ service docker start
-$ chkconfig docker on
+$ sudo service docker start
+$ sudo chkconfig docker on
 ```
