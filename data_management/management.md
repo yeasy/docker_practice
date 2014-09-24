@@ -2,7 +2,7 @@
 可以利用数据卷对其中的数据进行进行备份、恢复和迁移。
 
 ###备份
-首先使用`--volume--from`标记来创建一个加载dbdata容器卷的容器，并从本地主机挂载当前到容器的/backup目录。命令如下：
+首先使用`--volumes-from`标记来创建一个加载dbdata容器卷的容器，并从本地主机挂载当前到容器的/backup目录。命令如下：
 ```
 $ sudo docker run --volumes-from dbdata -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /dbdata
 ```
