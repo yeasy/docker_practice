@@ -108,7 +108,7 @@ Successfully built 324104cde6ad
 ```
 # put my local web site in myApp folder to /var/www
 ADD myApp /var/www
-# expose mysqld port
+# expose httpd port
 EXPOSE 80
 # the command to run
 CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
