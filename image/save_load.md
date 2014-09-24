@@ -8,7 +8,7 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 ubuntu              latest              826544226fdc        2 weeks ago         194.2 MB
 ouruser/sinatra     v2                  51619aaca804        2 weeks ago         373.3 MB
 ubuntu              14.04               c4ff7513909d        5 weeks ago         225.4 MB
-$sudo docker export ubuntu:14.04 > ubuntu_14.04.tar
+$sudo docker save -o ubuntu_14.04.tar ubuntu:14.04
 ```
 
 
