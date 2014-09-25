@@ -9,7 +9,7 @@
 #### 容器运行
 在安装了Docker后，可以通过获取官方registry镜像来运行。
 ```
-$ sudo docker run -p 5000:5000 registry
+$ sudo docker run -d -p 5000:5000 registry
 ```
 这将使用官方的registry镜像来启动本地的私有仓库。
 用户可以通过指定参数来配置私有仓库位置，例如配置镜像存储到Amazon的S3服务
