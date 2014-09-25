@@ -18,7 +18,7 @@ Docker的基础是Linux的容器（LXC）等技术。
 ![Docker](../_images/docker.png)
 
 
-##为什么要使用docker？
+##为什么要使用Docker？
 作为一种新兴的虚拟化方式，Docker跟传统的虚拟化方式相比具有众多的优势。
 
 首先，Docker容器的启动可以在秒级实现，这相比传统的虚拟机方式要快得多。
