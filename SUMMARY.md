@@ -2,10 +2,8 @@
 
 * [前言](README.md)
 * [Docker简介](introduction/README.md)
-   * [快速交付应用程序](introduction/fast_deployment.md)
-   * [更容易部署和扩展](introduction/easy_deployment.md)
-   * [效率更高](introduction/high_efficiency.md)
-   * [更简单的管理](introduction/easy_management.md)
+   * [什么是Docker](introduction/what.md)
+   * [为什么要用Docker](introduction/why.md)
 * [基本概念](basic_concept/README.md)
    * [镜像](basic_concept/internal.md)
    * [容器](basic_concept/container.md)
