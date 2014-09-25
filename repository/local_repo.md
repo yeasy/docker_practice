@@ -126,8 +126,9 @@ REPOSITORY                         TAG                 IMAGE ID            CREAT
 192.168.7.26:5000/test             latest              ba5877dc9bec        6 weeks ago         192.7 MB
 ```
 
-可以使用[这个脚本](https://github.com/yeasy/docker_practice/blob/master/_local/push_images.sh)批量上传本地的镜像到注册服务器中，默认是本地注册服务器`127.0.0.1:5000`。例如：
+可以使用[这个脚本](https://github.com/yeasy/docker_practice/raw/master/_local/push_images.sh)批量上传本地的镜像到注册服务器中，默认是本地注册服务器`127.0.0.1:5000`。例如：
 ```
+$ wget https://github.com/yeasy/docker_practice/raw/master/_local/push_images.sh; sudo chmod a+x push_images.sh
 $ ./push_images.sh ubuntu:latest centos:centos7
 The registry server is 127.0.0.1
 Uploading ubuntu:latest...
