@@ -1,7 +1,7 @@
 Docker —— 从入门到实践
 ===============
 
-v0.2.4
+v0.2.5
 
 [Docker](docker.com)是个伟大的项目，它彻底释放了虚拟化的威力，让应用的分发、部署和管理都变得前所未有的高效和轻松！
 
@@ -12,8 +12,7 @@ v0.2.4
 
 在线阅读：[https://www.gitbook.io/book/yeasy/docker_practice](https://www.gitbook.io/book/yeasy/docker_practice)。
 
-维护本书的Github项目： [https://github.com/yeasy/docker_practice](https://github.com/yeasy/docker_practice)。
-欢迎参与。
+维护本书的Github项目： [https://github.com/yeasy/docker_practice](https://github.com/yeasy/docker_practice)，欢迎参与。[贡献者名单](https://github.com/yeasy/docker_practice/graphs/contributors)。
 
 另外，欢迎加入Docker QQ群（341410255）一起交流学习，共同提高。
 
