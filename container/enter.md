@@ -7,7 +7,7 @@
 推建大家使用下面的方法：
 ###nsenter
 从util-linux版本2.23开始，nsenter工具就包含在其中。它用来访问另一个进程的名字空间。nsenter要正常工作需要有root权限。
-很不幸，Ubuntu 14.4仍然使用的是util-linux版本2.20。安装最新版本的util-linux（2.24)版，请按照以下步骤：
+很不幸，Ubuntu 14.4仍然使用的是util-linux版本2.20。安装最新版本的util-linux（2.24）版，请按照以下步骤：
 ```
 #curl https://www.kernel.org/pub/linux/utils/util-linux/v2.24/util-linux-2.24.tar.gz | tar -zxf-
 #cd util-linux-2.24
