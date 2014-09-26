@@ -3,6 +3,7 @@
 # Created:2014-09-25
 
 alias docker-pid="sudo docker inspect --format '{{.State.Pid}}'"
+alias docker-ip="sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 
 #the implementation refs from https://github.com/jpetazzo/nsenter/blob/master/docker-enter
 function docker-enter() {
