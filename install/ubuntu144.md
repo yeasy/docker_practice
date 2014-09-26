@@ -29,3 +29,8 @@ $ sudo apt-get install linux-image-generic-lts-raring linux-headers-generic-lts-
 $ sudo reboot
 ```
 然后重复上面的步骤即可。
+
+安装之后启动Docker服务。
+```
+$ sudo service docker start
+```
