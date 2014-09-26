@@ -145,3 +145,12 @@ docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 ubuntu              14.04               05ac7c0b9383        17 seconds ago      215.5 MB
 ```
+
+###上传镜像
+用户可以通过`docker push`命令，把自己创建的镜像上传到仓库中来共享。例如，用户在Docker Hub上完成注册后，可以推送自己的镜像到仓库中。
+```
+$ sudo docker push ouruser/sinatra
+The push refers to a repository [ouruser/sinatra] (len: 1)
+Sending image list
+Pushing repository ouruser/sinatra (3 tags)
+```
