@@ -1,4 +1,4 @@
-##移除本地镜像
+## 移除本地镜像
 如果要移除本地的镜像，可以使用`docker rmi`命令。注意`docker rm`命令是移除容器。
 ```
 $ sudo docker rmi training/sinatra
