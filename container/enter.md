@@ -57,7 +57,7 @@ root@243c32535da7:/#
 [.bashrc_docker](https://github.com/yeasy/docker_practice/raw/master/_local/.bashrc_docker)，并将内容放到.bashrc中。
 ```
 $ wget -P ~ https://github.com/yeasy/docker_practice/raw/master/_local/.bashrc_docker;
-$ echo "[ -f ~/.bashrc_docker ] && . .bashrc_docker" >> ~/.bashrc; source ~/.bashrc
+$ echo "[ -f ~/.bashrc_docker ] && . ~/.bashrc_docker" >> ~/.bashrc; source ~/.bashrc
 ```
 这个文件中定义了很多方便使用Docker的命令，例如`docker-pid`可以获取某个容器的PID；而`docker-enter`可以进入容器或直接在容器内执行命令。
 ```
