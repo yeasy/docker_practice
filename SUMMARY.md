@@ -66,6 +66,6 @@
    * [Union文件系统](underly/ufs.md)
    * [容器格式](underly/container_format.md)
    * [网络](underly/network.md)
-* [附录一：命令查询](command/README.md)
-* [附录二：资源链接](resources/README.md)
+* [附录一：命令查询](appendix_command/README.md)
+* [附录二：资源链接](appendix_resources/README.md)
 
