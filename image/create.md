@@ -14,7 +14,7 @@ root@0b2616b0e5a8:/#
 ```
 root@0b2616b0e5a8:/# gem install json
 ```
-当结束后，我们使用exit来退出，现在我们的容器已经被我们改变了，使用docker commint命令来提交更新后的副本。
+当结束后，我们使用exit来退出，现在我们的容器已经被我们改变了，使用docker commit命令来提交更新后的副本。
 ```
 $ sudo docker commit -m "Added json gem" -a "Docker Newbee" 0b2616b0e5a8 ouruser/sinatra:v2
 4f177bd27a9ff0f6dc2a830403925b5360bfe0b93d476f7fc3231110e7f71b1c
