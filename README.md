@@ -10,13 +10,15 @@ v0.2.7
 本书源于[WaitFish](github.com/qcpm1983)的《[Docker学习手册v1.0](https://github.com/yeasy/docker_practice/raw/master/_local/docker_manual_waitfish.pdf)》内容。后来，[yeasy](github.com/yeasy)
 根据最新Docker版本对内容进行了修订和重写，并增加了部分内容；与WaitFish协商，将所有内容开源，采用互联网合作的方式进行创作和维护。
 
-在线阅读：[https://www.gitbook.io/book/yeasy/docker_practice](https://www.gitbook.io/book/yeasy/docker_practice)。
+最新内容在线阅读：[GitBook](https://www.gitbook.io/book/yeasy/docker_practice)或[DockerPool](http://www.dockerpool.com/static/books/docker_practice/index.html)。
 
-维护本书的Github项目： [https://github.com/yeasy/docker_practice](https://github.com/yeasy/docker_practice)，欢迎参与。[贡献者名单](https://github.com/yeasy/docker_practice/graphs/contributors)。
-
-另外，欢迎加入Docker QQ群（341410255）一起交流学习，共同提高。
+另外，欢迎加入DockerPool QQ群（341410255），分享Docker资源，交流Docker技术。
 
 本书发布时，Docker的最新版本为1.20。
+
+维护本书的Github项目： [https://github.com/yeasy/docker_practice](https://github.com/yeasy/docker_practice)，欢迎参与。
+
+[贡献者名单](https://github.com/yeasy/docker_practice/graphs/contributors)。
 
 ## 主要版本历史
 * 0.3: 2014-09-TODO
