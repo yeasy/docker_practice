@@ -33,7 +33,7 @@
    * [数据卷](data_management/volume.md)
    * [数据卷容器](data_management/container.md)
    * [备份、恢复、迁移数据卷](data_management/management.md)
-* [基本网络功能](network/README.md)
+* [使用网络](network/README.md)
    * [外部访问容器](network/port_mapping.md)
    * [容器互联](network/linking.md)
 * [高级网络配置](advanced_network/README.md)
