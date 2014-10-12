@@ -20,8 +20,8 @@ d047ae21eeaf: Download complete
 有时候官方仓库注册服务器下载较慢，可以从其他仓库下载。
 从其它仓库下载时需要指定完整的仓库注册服务器地址。例如
 ```
-$ sudo docker pull www.dockerpool.com:5000/ubuntu:12.04
-Pulling www.dockerpool.com:5000/ubuntu
+$ sudo docker pull dl.dockerpool.com:5000/ubuntu:12.04
+Pulling dl.dockerpool.com:5000/ubuntu
 ab8e2728644c: Pulling dependent layers
 511136ea3c5a: Download complete
 5f0ffaa9455e: Download complete

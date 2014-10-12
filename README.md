@@ -12,7 +12,7 @@ v0.2.8
 
 前六章为基础内容，供用户理解Docker的基本概念和操作；7~9章介绍一些高级操作；第10章给出典型的应用场景和实践案例；11~13章介绍关于Docker实现的相关技术。
 
-最新版本在线阅读：[GitBook](https://www.gitbook.io/book/yeasy/docker_practice)或[DockerPool](http://www.dockerpool.com/static/books/docker_practice/index.html)。
+最新版本在线阅读：[GitBook](https://www.gitbook.io/book/yeasy/docker_practice)或[DockerPool](http://dockerpool.com/static/books/docker_practice/index.html)。
 
 另外，欢迎加入DockerPool QQ群（341410255），分享Docker资源，交流Docker技术。
 
