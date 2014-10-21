@@ -5,7 +5,7 @@ Docker 是一个开源项目，诞生于 2013 年初，最初是 dotCloud 公司
 Docker 自开源后受到广泛的关注和讨论，以至于 dotCloud 公司后来都改名为 Docker Inc。Redhat 已经在其 RHEL6.5 中集中支持 Docker；Google 也在其 PaaS 产品中广泛应用。
 
 Docker 项目的目标是实现轻量级的操作系统虚拟化解决方案。
-Docker 的基础是Linux的容器（LXC）等技术。
+Docker 的基础是 Linux 容器（LXC）等技术。
 
 在 LXC 的基础上 Docker 进行了进一步的封装，让用户不需要去关心容器的管理，使得操作更为简便。用户操作 Docker 的容器就像操作一个快速轻量级的虚拟机一样简单。
 
