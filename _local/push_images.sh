@@ -1,8 +1,10 @@
 #!/bin/sh
 
-# This script will upload the local images to a registry server ($registry is the default value).
+# This script will upload the given local images to a registry server ($registry is the default value).
+# See: https://github.com/yeasy/docker_practice/blob/master/_local/push_images.sh
+# Usage:  push_images image1 [image2...]
 # Author: yeasy@github
-# Created:2014-09-23
+# Create: 2014-09-23
 
 #The registry server address where you want push the images into
 registry=127.0.0.1:5000
