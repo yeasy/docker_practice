@@ -51,10 +51,10 @@ $ sudo python-pip install docker-registry
 ```
 $ sudo apt-get install build-essential python-dev libevent-dev python-pip libssl-dev liblzma-dev libffi-dev
 $ git clone https://github.com/docker/docker-registry.git
-$ cd git-registry
-$ sudo pip install .
+$ cd docker-registry
+$ sudo python setup.py install
 ```
-然后修改配置文件，主要修改dev模板段的 `storage_path` 到本地的存储仓库的路径。
+然后修改配置文件，主要修改 dev 模板段的 `storage_path` 到本地的存储仓库的路径。
 ```
 $ cp config/config_sample.yml config/config.yml
 ```

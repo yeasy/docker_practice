@@ -3,3 +3,4 @@
 *.tmp
 .idea/
 _book/
+*.swp
