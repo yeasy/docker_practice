@@ -37,7 +37,7 @@ root@78e82f680994:/#
 ```
 
 ###利用 Dockerfile 来创建镜像
-使用 `docker commit` 来扩展一个镜像比较简单，但它不容易在一个团队中分享它。我们可以使用 `docker build` 来创建一个新的镜像。为此，首先需要创建一个 Dockerfile，包含一些如何创建镜像的指令。
+使用 `docker commit` 来扩展一个镜像比较简单，但是不方便在一个团队中分享。我们可以使用 `docker build` 来创建一个新的镜像。为此，首先需要创建一个 Dockerfile，包含一些如何创建镜像的指令。
 
 新建一个目录和一个 Dockerfile
 ```

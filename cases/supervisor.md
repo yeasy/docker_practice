@@ -13,7 +13,7 @@ RUN apt-get update
 RUN apt-get upgrade -y
 ```
 
-安装 supervisor
+### 安装 supervisor
 安装 ssh、apache 和 supervisor。
 ```
 RUN apt-get install -y openssh-server apache2 supervisor
@@ -62,4 +62,4 @@ $ sudo docker run -p 22 -p 80 -t -i test/supervisords
 ```
 使用 `docker run` 来启动我们创建的容器。使用多个 `-p` 来映射多个端口，这样我们就能同时访问 ssh 和 apache 服务了。
 
-可以使用这个方法创建一个只有 ssh 服务的基础镜像，之后创建镜像可以以这个镜像为基础来创建
+可以使用这个方法创建一个只有 ssh 服务的基础镜像，之后创建镜像可以使用这个镜像为基础来创建
