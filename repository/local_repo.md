@@ -35,7 +35,7 @@ $ sudo docker run -d -p 5000:5000 -v /opt/data/registry:/tmp/registry registry
 ```
 
 #### 本地安装
-对于 Ubuntu 或 CentOS 等发型包，可以直接通过源安装。
+对于 Ubuntu 或 CentOS 等发行版，可以直接通过源安装。
 * Ubuntu
 ```
 $ sudo apt-get install -y build-essential python-dev libevent-dev python-pip liblzma-dev

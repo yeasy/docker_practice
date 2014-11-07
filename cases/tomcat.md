@@ -1,10 +1,10 @@
 ## 创建 tomcat/weblogic 集群
 ### 安装 tomcat 镜像
-准备好需要的 jdk、tomcat 等软件放到 home 目录下面，启动一个虚拟机
+准备好需要的 jdk、tomcat 等软件放到 home 目录下面，启动一个容器
 ```
 docker run -t -i -v /home:/opt/data  --name mk_tomcat ubuntu /bin/bash
 ```
-这条命令挂载本地 home 目录到虚拟机的 /opt/data 目录，虚拟机内目录若不存在，则会自动创建。接下来就是 tomcat 的基本配置，jdk 环境变量设置好之后，将 tomcat 程序放到 /opt/apache-tomcat 下面
+这条命令挂载本地 home 目录到容器的 /opt/data 目录，容器内目录若不存在，则会自动创建。接下来就是 tomcat 的基本配置，jdk 环境变量设置好之后，将 tomcat 程序放到 /opt/apache-tomcat 下面
 编辑 /etc/supervisor/conf.d/supervisor.conf 文件，添加 tomcat 项
 ```
 [supervisord]
@@ -54,7 +54,7 @@ CMD ["/usr/bin/supervisord"]
 
     -v, --volume=[]            Bind mount a volume (e.g. from the host: -v /host:/container, from docker: -v /container)
 
-将本地磁盘映射到虚拟机内部，它在主机和虚拟机容器之间是实时变化的，所以我们更新程序、上传代码只需要更新物理主机的目录就可以了
+将本地磁盘映射到容器内部，它在主机和容器之间是实时变化的，所以我们更新程序、上传代码只需要更新物理主机的目录就可以了
 
 #### tomcat 和 weblogic 集群的实现
 tomcat 只要开启多个容器即可
