@@ -1,28 +1,28 @@
-##创建镜像
+##創建鏡像
 
-创建镜像有很多方法，用户可以从 Docker Hub 获取已有镜像并更新，也可以利用本地文件系统创建一个。
+創建鏡像有很多方法，用戶可以從 Docker Hub 獲取已有鏡像並更新，也可以利用本地文件系統創建一個。
 
-### 修改已有镜像
-先使用下载的镜像启动容器。
+### 修改已有鏡像
+先使用下載的鏡像啟動容器。
 ```
 $ sudo docker run -t -i training/sinatra /bin/bash
 root@0b2616b0e5a8:/#
 ```
-注意：记住容器的 ID，稍后还会用到。
+註意：記住容器的 ID，稍後還會用到。
 
-在容器中添加 json 和 gem 两个应用。
+在容器中添加 json 和 gem 兩個應用。
 ```
 root@0b2616b0e5a8:/# gem install json
 ```
-当结束后，我们使用 exit 来退出，现在我们的容器已经被我们改变了，使用 `docker commit` 命令来提交更新后的副本。
+當結束後，我們使用 exit 來退出，現在我們的容器已經被我們改變了，使用 `docker commit` 命令來提交更新後的副本。
 ```
 $ sudo docker commit -m "Added json gem" -a "Docker Newbee" 0b2616b0e5a8 ouruser/sinatra:v2
 4f177bd27a9ff0f6dc2a830403925b5360bfe0b93d476f7fc3231110e7f71b1c
 ```
-其中，`-m` 来指定提交的说明信息，跟我们使用的版本控制工具一样；`-a` 可以指定更新的用户信息；之后是用来创建镜像的容器的 ID；最后指定目标镜像的仓库名和 tag 信息。创建成功后会返回这个镜像的 ID 信息。
+其中，`-m` 來指定提交的說明信息，跟我們使用的版本控制工具一樣；`-a` 可以指定更新的用戶信息；之後是用來創建鏡像的容器的 ID；最後指定目標鏡像的倉庫名和 tag 信息。創建成功後會返回這個鏡像的 ID 信息。
 
 
-使用 `docker images` 来查看新创建的镜像。
+使用 `docker images` 來查看新創建的鏡像。
 ```
 $ sudo docker images
 REPOSITORY          TAG     IMAGE ID       CREATED       VIRTUAL SIZE
@@ -30,22 +30,22 @@ training/sinatra    latest  5bc342fa0b91   10 hours ago  446.7 MB
 ouruser/sinatra     v2      3c59e02ddd1a   10 hours ago  446.7 MB
 ouruser/sinatra     latest  5db5f8471261   10 hours ago  446.7 MB
 ```
-之后，可以使用新的镜像来启动容器
+之後，可以使用新的鏡像來啟動容器
 ```
 $ sudo docker run -t -i ouruser/sinatra:v2 /bin/bash
 root@78e82f680994:/#
 ```
 
-###利用 Dockerfile 来创建镜像
-使用 `docker commit` 来扩展一个镜像比较简单，但是不方便在一个团队中分享。我们可以使用 `docker build` 来创建一个新的镜像。为此，首先需要创建一个 Dockerfile，包含一些如何创建镜像的指令。
+###利用 Dockerfile 來創建鏡像
+使用 `docker commit` 來擴展一個鏡像比較簡單，但是不方便在一個團隊中分享。我們可以使用 `docker build` 來創建一個新的鏡像。為此，首先需要創建一個 Dockerfile，包含一些如何創建鏡像的指令。
 
-新建一个目录和一个 Dockerfile
+新建一個目錄和一個 Dockerfile
 ```
 $ mkdir sinatra
 $ cd sinatra
 $ touch Dockerfile
 ```
-Dockerfile 中每一条指令都创建镜像的一层，例如：
+Dockerfile 中每一條指令都創建鏡像的一層，例如：
 ```
 # This is a comment
 FROM ubuntu:14.04
@@ -54,13 +54,13 @@ RUN apt-get -qq update
 RUN apt-get -qqy install ruby ruby-dev
 RUN gem install sinatra
 ```
-Dockerfile 基本的语法是
-* 使用`#`来注释
-* `FROM` 指令告诉 Docker 使用哪个镜像作为基础
-* 接着是维护者的信息
-* `RUN`开头的指令会在创建中运行，比如安装一个软件包，在这里使用 apt-get 来安装了一些软件
+Dockerfile 基本的語法是
+* 使用`#`來註釋
+* `FROM` 指令告訴 Docker 使用哪個鏡像作為基礎
+* 接著是維護者的信息
+* `RUN`開頭的指令會在創建中運行，比如安裝一個軟件包，在這裏使用 apt-get 來安裝了一些軟件
 
-编写完成 Dockerfile 后可以使用 `docker build` 来生成镜像。
+編寫完成 Dockerfile 後可以使用 `docker build` 來生成鏡像。
 
 ```
 $ sudo docker build -t="ouruser/sinatra:v2" .
@@ -96,15 +96,15 @@ Successfully installed sinatra-1.4.5
 Removing intermediate container 5e9d0065c1f7
 Successfully built 324104cde6ad
 ```
-其中 `-t` 标记来添加 tag，指定新的镜像的用户信息。
-“.” 是 Dockerfile 所在的路径（当前目录），也可以替换为一个具体的 Dockerfile 的路径。
+其中 `-t` 標記來添加 tag，指定新的鏡像的用戶信息。
+“.” 是 Dockerfile 所在的路徑（當前目錄），也可以替換為一個具體的 Dockerfile 的路徑。
 
-可以看到 build 进程在执行操作。它要做的第一件事情就是上传这个 Dockerfile 内容，因为所有的操作都要依据 Dockerfile 来进行。
-然后，Dockfile 中的指令被一条一条的执行。每一步都创建了一个新的容器，在容器中执行指令并提交修改（就跟之前介绍过的 `docker commit` 一样）。当所有的指令都执行完毕之后，返回了最终的镜像 id。所有的中间步骤所产生的容器都被删除和清理了。
+可以看到 build 進程在執行操作。它要做的第一件事情就是上傳這個 Dockerfile 內容，因為所有的操作都要依據 Dockerfile 來進行。
+然後，Dockfile 中的指令被一條一條的執行。每一步都創建了一個新的容器，在容器中執行指令並提交修改（就跟之前介紹過的 `docker commit` 一樣）。當所有的指令都執行完畢之後，返回了最終的鏡像 id。所有的中間步驟所產生的容器都被刪除和清理了。
 
-*注意一个镜像不能超过 127 层
+*註意一個鏡像不能超過 127 層
 
-此外，还可以利用 `ADD` 命令复制本地文件到镜像；用 `EXPOSE` 命令来向外部开放端口；用 `CMD` 命令来描述容器启动后运行的程序等。例如
+此外，還可以利用 `ADD` 命令復制本地文件到鏡像；用 `EXPOSE` 命令來向外部開放端口；用 `CMD` 命令來描述容器啟動後運行的程序等。例如
 ```
 # put my local web site in myApp folder to /var/www
 ADD myApp /var/www
@@ -114,12 +114,12 @@ EXPOSE 80
 CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
 ```
 
-现在可以利用新创建的镜像来启动一个容器。
+現在可以利用新創建的鏡像來啟動一個容器。
 ```
 $ sudo docker run -t -i ouruser/sinatra:v2 /bin/bash
 root@8196968dac35:/#
 ```
-还可以用 `docker tag` 命令来修改镜像的标签。
+還可以用 `docker tag` 命令來修改鏡像的標簽。
 ```
 $ sudo docker tag 5db5f8471261 ouruser/sinatra:devel
 $ sudo docker images ouruser/sinatra
@@ -129,25 +129,25 @@ ouruser/sinatra     devel   5db5f8471261  11 hours ago   446.7 MB
 ouruser/sinatra     v2      5db5f8471261  11 hours ago   446.7 MB
 ```
 
-*注：更多用法，请参考 [Dockerfile](../dockerfile/README.md) 章节。
+*註：更多用法，請參考 [Dockerfile](../dockerfile/README.md) 章節。
 
-### 从本地文件系统导入
-要从本地文件系统导入一个镜像，可以使用 openvz（容器虚拟化的先锋技术）的模板来创建：
-openvz 的模板下载地址为 http://openvz.org/Download/templates/precreated。
+### 從本地文件系統導入
+要從本地文件系統導入一個鏡像，可以使用 openvz（容器虛擬化的先鋒技術）的模板來創建：
+openvz 的模板下載地址為 http://openvz.org/Download/templates/precreated。
 
-比如，先下载了一个 ubuntu-14.04 的镜像，之后使用以下命令导入：
+比如，先下載了一個 ubuntu-14.04 的鏡像，之後使用以下命令導入：
 ```
 sudo cat ubuntu-14.04-x86_64-minimal.tar.gz  |docker import - ubuntu:14.04
 ```
-然后查看新导入的镜像。
+然後查看新導入的鏡像。
 ```
 docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 ubuntu              14.04               05ac7c0b9383        17 seconds ago      215.5 MB
 ```
 
-###上传镜像
-用户可以通过 `docker push` 命令，把自己创建的镜像上传到仓库中来共享。例如，用户在 Docker Hub 上完成注册后，可以推送自己的镜像到仓库中。
+###上傳鏡像
+用戶可以通過 `docker push` 命令，把自己創建的鏡像上傳到倉庫中來共享。例如，用戶在 Docker Hub 上完成註冊後，可以推送自己的鏡像到倉庫中。
 ```
 $ sudo docker push ouruser/sinatra
 The push refers to a repository [ouruser/sinatra] (len: 1)
