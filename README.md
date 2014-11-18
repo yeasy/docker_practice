@@ -87,7 +87,7 @@ $ git push
 * 在 GitHub 網站上提交 pull request。
 * 定期使用專案倉庫內容更新自己倉庫內容。
 ```
-$ git remote add upstream https://github.com/yeasy/docker_practice
+$ git remote add upstream https://github.com/philipz/docker_practice
 $ git fetch upstream
 $ git checkout master
 $ git rebase upstream/master
