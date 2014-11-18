@@ -1,168 +1,168 @@
-# Docker命令查询
+# Docker命令查詢
 
-##基本语法
+##基本語法
     docker [OPTIONS] COMMAND [arg...]
-一般来说，Docker 命令可以用来管理 daemon，或者通过 CLI 命令管理镜像和容器。可以通过 `man docker` 来查看这些命令。
+一般來說，Docker 命令可以用來管理 daemon，或者通過 CLI 命令管理鏡像和容器。可以通過 `man docker` 來查看這些命令。
 
 
-##选项
+##選項
     -D=true|false
-        使用 debug 模式。默认为 false。
+        使用 debug 模式。默認為 false。
 
-    -H, --host=[unix:///var/run/docker.sock]: tcp://[host:port]来绑定或者 unix://[/path/to/socket] 来使用。
-        在 daemon 模式下绑定的 socket，通过一个或多个 tcp://host:port, unix:///path/to/socket, fd://* or fd://socketfd 来指定。
+    -H, --host=[unix:///var/run/docker.sock]: tcp://[host:port]來綁定或者 unix://[/path/to/socket] 來使用。
+        在 daemon 模式下綁定的 socket，通過一個或多個 tcp://host:port, unix:///path/to/socket, fd://* or fd://socketfd 來指定。
 
     --api-enable-cors=true|false
-        在远端 API 中启用 CORS 头。缺省为 false。
+        在遠端 API 中啟用 CORS 頭。缺省為 false。
 
     -b=""
-        将容器挂载到一个已存在的网桥上。指定为 'none' 时则禁用容器的网络。
+        將容器掛載到一個已存在的網橋上。指定為 'none' 時則禁用容器的網絡。
 
     --bip=""
-        让动态创建的 docker0 采用给定的 CIDR 地址; 与 -b 选项互斥。
+        讓動態創建的 docker0 采用給定的 CIDR 地址; 與 -b 選項互斥。
 
     -d=true|false
-        使用 daemon 模式。缺省为 false。
+        使用 daemon 模式。缺省為 false。
 
     --dns=""
-        让 Docker 使用给定的 DNS 服务器。
+        讓 Docker 使用給定的 DNS 服務器。
 
     -g=""
-        指定 Docker 运行时的 root 路径。缺省为 /var/lib/docker。
+        指定 Docker 運行時的 root 路徑。缺省為 /var/lib/docker。
 
     --icc=true|false
-        启用容器间通信。默认为 true。
+        啟用容器間通信。默認為 true。
 
     --ip=""
-        绑定端口时候的默认 IP 地址。缺省为 0.0.0.0。
+        綁定端口時候的默認 IP 地址。缺省為 0.0.0.0。
 
     --iptables=true|false
-        禁止 Docker 添加 iptables 规则。缺省为 true。
+        禁止 Docker 添加 iptables 規則。缺省為 true。
 
     --mtu=VALUE
-        指定容器网络的 mtu。缺省为 1500。
+        指定容器網絡的 mtu。缺省為 1500。
 
     -p=""
-        指定 daemon 的 PID 文件路径。缺省为 /var/run/docker.pid。
+        指定 daemon 的 PID 文件路徑。缺省為 /var/run/docker.pid。
 
     -s=""
-        强制 Docker 运行时使用给定的存储驱动。
+        強制 Docker 運行時使用給定的存儲驅動。
 
     -v=true|false
-        输出版本信息并退出。缺省值为 false。
+        輸出版本信息並退出。缺省值為 false。
 
     --selinux-enabled=true|false
-        启用 SELinux 支持。缺省值为 false。SELinux 目前不支持 BTRFS 存储驱动。
+        啟用 SELinux 支持。缺省值為 false。SELinux 目前不支持 BTRFS 存儲驅動。
 
 
 ##命令
-Docker 的命令可以采用 `docker-CMD` 或者 `docker CMD` 的方式执行。两者一致。
+Docker 的命令可以采用 `docker-CMD` 或者 `docker CMD` 的方式執行。兩者一致。
 
     docker-attach(1)
-        依附到一个正在运行的容器中。
+        依附到一個正在運行的容器中。
 
     docker-build(1)
-        从一个 Dockerfile 创建一个镜像
+        從一個 Dockerfile 創建一個鏡像
 
     docker-commit(1)
-        从一个容器的修改中创建一个新的镜像
+        從一個容器的修改中創建一個新的鏡像
 
     docker-cp(1)
-        从容器中复制文件到宿主系统中
+        從容器中復制文件到宿主系統中
 
     docker-diff(1)
-        检查一个容器文件系统的修改
+        檢查一個容器文件系統的修改
 
     docker-events(1)
-        从服务端获取实时的事件
+        從服務端獲取實時的事件
 
     docker-export(1)
-        导出容器内容为一个 tar 包
+        導出容器內容為一個 tar 包
 
     docker-history(1)
-        显示一个镜像的历史
+        顯示一個鏡像的歷史
 
     docker-images(1)
-        列出存在的镜像
+        列出存在的鏡像
 
     docker-import(1)
-        导入一个文件（典型为 tar 包）路径或目录来创建一个镜像
+        導入一個文件（典型為 tar 包）路徑或目錄來創建一個鏡像
 
     docker-info(1)
-        显示一些相关的系统信息
+        顯示一些相關的系統信息
 
     docker-inspect(1)
-        显示一个容器的底层具体信息。
+        顯示一個容器的底層具體信息。
 
     docker-kill(1)
-        关闭一个运行中的容器 (包括进程和所有资源)
+        關閉一個運行中的容器 (包括進程和所有資源)
 
     docker-load(1)
-        从一个 tar 包中加载一个镜像
+        從一個 tar 包中加載一個鏡像
 
     docker-login(1)
-        注册或登录到一个 Docker 的仓库服务器
+        註冊或登錄到一個 Docker 的倉庫服務器
 
     docker-logout(1)
-        从 Docker 的仓库服务器登出
+        從 Docker 的倉庫服務器登出
 
     docker-logs(1)
-        获取容器的 log 信息
+        獲取容器的 log 信息
 
     docker-pause(1)
-        暂停一个容器中的所有进程
+        暫停一個容器中的所有進程
 
     docker-port(1)
-        查找一个 nat 到一个私有网口的公共口
+        查找一個 nat 到一個私有網口的公共口
 
     docker-ps(1)
         列出容器
 
     docker-pull(1)
-        从一个Docker的仓库服务器下拉一个镜像或仓库
+        從一個Docker的倉庫服務器下拉一個鏡像或倉庫
 
     docker-push(1)
-        将一个镜像或者仓库推送到一个 Docker 的注册服务器
+        將一個鏡像或者倉庫推送到一個 Docker 的註冊服務器
 
     docker-restart(1)
-        重启一个运行中的容器
+        重啟一個運行中的容器
 
     docker-rm(1)
-        删除给定的若干个容器
+        刪除給定的若幹個容器
 
     docker-rmi(1)
-        删除给定的若干个镜像
+        刪除給定的若幹個鏡像
 
     docker-run(1)
-        创建一个新容器，并在其中运行给定命令
+        創建一個新容器，並在其中運行給定命令
 
     docker-save(1)
-        保存一个镜像为 tar 包文件
+        保存一個鏡像為 tar 包文件
 
     docker-search(1)
-        在 Docker index 中搜索一个镜像
+        在 Docker index 中搜索一個鏡像
 
     docker-start(1)
-        启动一个容器
+        啟動一個容器
 
     docker-stop(1)
-        终止一个运行中的容器
+        終止一個運行中的容器
 
     docker-tag(1)
-        为一个镜像打标签
+        為一個鏡像打標簽
 
     docker-top(1)
-        查看一个容器中的正在运行的进程信息
+        查看一個容器中的正在運行的進程信息
 
     docker-unpause(1)
-        将一个容器内所有的进程从暂停状态中恢复
+        將一個容器內所有的進程從暫停狀態中恢復
 
     docker-version(1)
-        输出 Docker 的版本信息
+        輸出 Docker 的版本信息
 
     docker-wait(1)
-        阻塞直到一个容器终止，然后输出它的退出符
+        阻塞直到一個容器終止，然後輸出它的退出符
 
-##一张图总结 Docker 的命令
+##一張圖總結 Docker 的命令
 
 ![命令周期](../_images/cmd_logic.png)
