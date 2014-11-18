@@ -1,3 +1,3 @@
 # Dockerfile
-使用 Dockerfile 可以允许用户创建自定义的镜像。
+使用 Dockerfile 可以允許用戶創建自定義的鏡像。
 
