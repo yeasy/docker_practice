@@ -1,60 +1,60 @@
-Docker —— 从入门到实践
+Docker —— 從入門到實踐
 ===============
 
 v0.2.9
 
-[Docker](docker.com) 是个伟大的项目，它彻底释放了虚拟化的威力，让应用的分发、部署和管理都变得前所未有的高效和轻松！
+[Docker](docker.com) 是個偉大的項目，它徹底釋放了虛擬化的，讓應用的分發、部署和管理都變得前所未有的高效和輕鬆！
 
-本书既适用于具备基础 Linux 知识的 Docker 初学者，也可供希望理解原理和实现的高级用户参考。同时，书中给出的实践案例，可供在进行实际部署时借鉴。
+本書既適用於具備基礎 Linux 知識的 Docker 初學者，也可供希望理解原理和實現的高級用戶參考。同時，書中給出的實踐案例，可供在進行實際部署時借鑒。
 
-本书源于 [WaitFish](github.com/qcpm1983) 的《[Docker 学习手册 v1.0](https://github.com/yeasy/docker_practice/raw/master/_local/docker_manual_waitfish.pdf)》内容。后来，[yeasy](github.com/yeasy)
-根据最新 Docker 版本对内容进行了修订和重写，并增加内容；经协商将所有内容开源，采用互联网合作的方式进行维护。
+本書源於 [WaitFish](github.com/qcpm1983) 的《[Docker 學習手冊 v1.0](https://github.com/yeasy/docker_practice/raw/master/_local/docker_manual_waitfish.pdf)》內容。後來，[yeasy](github.com/yeasy)
+根據最新 Docker 版本對內容進行了修訂和重寫，並增加內容；經協商將所有內容開源，採用互聯網合作的方式進行維護。
 
-前六章为基础内容，供用户理解 Docker 的基本概念和操作；7 ~ 9 章介绍一些高级操作；第 10 章给出典型的应用场景和实践案例；11 ~ 13 章介绍关于 Docker 实现的相关技术。
+前六章為基礎內容，供使用者理解 Docker 的基本概念和操作；7 ~ 9 章介紹一些高級操作；第 10 章給出典型的應用場景和實踐案例；11 ~ 13 章介紹關於 Docker 實現的相關技術。
 
-最新版本在线阅读：[GitBook](https://www.gitbook.io/book/yeasy/docker_practice) 或 [DockerPool](http://dockerpool.com/static/books/docker_practice/index.html)。
+最新版本線上閱讀：[GitBook](https://www.gitbook.io/book/yeasy/docker_practice) 或 [DockerPool](http://dockerpool.com/static/books/docker_practice/index.html)。
 
-另外，欢迎加入 DockerPool QQ 群（341410255），分享 Docker 资源，交流 Docker 技术。
+另外，歡迎加入 DockerPool QQ 群（341410255），分享 Docker 資源，交流 Docker 技術。
 
 
-本书源码在 Github 上维护，欢迎参与： [https://github.com/yeasy/docker_practice](https://github.com/yeasy/docker_practice)。
+本書源碼在 Github 上維護，歡迎參與： [https://github.com/yeasy/docker_practice](https://github.com/yeasy/docker_practice)。
 
-感谢所有的 [贡献者](https://github.com/yeasy/docker_practice/graphs/contributors)。
+感謝所有的 [貢獻者](https://github.com/yeasy/docker_practice/graphs/contributors)。
 
-## 主要版本历史
+## 主要版本歷史
 * 0.3: 2014-10-TODO
-    * 完成仓库章节；
-    * 重写安全章节；
-    * 修正底层实现章节的架构、名字空间、控制组、文件系统、容器格式等内容；
-    * 添加对常见仓库和镜像的介绍；
-    * 添加 Dockerfile 的介绍；
-    * 重新校订中英文混排格式。
+    * 完成倉庫章節；
+    * 重寫安全章節；
+    * 修正底層實現章節的架構、名字空間、控制組、檔案系統、容器格式等內容；
+    * 添加對常見倉庫和鏡像的介紹；
+    * 添加 Dockerfile 的介紹；
+    * 重新校訂中英文混排格式。
 * 0.2: 2014-09-18
-    * 对照官方文档重写介绍、基本概念、安装、镜像、容器、仓库、数据管理、网络等章节；
-    * 添加底层实现章节；
-    * 添加命令查询和资源链接章节；
+    * 對照官方文檔重寫介紹、基本概念、安裝、鏡像、容器、倉庫、資料管理、網路等章節；
+    * 添加底層實現章節；
+    * 添加命令查詢和資源連結章節；
     * 其它修正。
 * 0.1: 2014-09-05
-    * 添加基本内容;
-    * 修正错别字和表达不通顺的地方。
+    * 添加基本內容;
+    * 修正錯別字和表達不通順的地方。
 
 
-## 参加步骤
-* 在 GitHub 上 `fork` 到自己的仓库，如 `docker_user/docker_practice`，然后 `clone` 到本地，并设置用户信息。
+## 參加步驟
+* 在 GitHub 上 `fork` 到自己的倉庫，如 `docker_user/docker_practice`，然後 `clone` 到本地，並設置使用者資訊。
 ```
 $ git clone git@github.com:docker_user/docker_practice.git
 $ cd docker_practice
 $ git config user.name "Docker User"
 $ git config user.email docker_user@dockcer.com
 ```
-* 修改代码后提交，并推送到自己的仓库。
+* 修改代碼後提交，並推送到自己的倉庫。
 ```
 $ #do some change on the content
 $ git commit -am "Fix issue #1: change helo to hello"
 $ git push
 ```
-* 在 GitHub 网站上提交 pull request。
-* 定期使用项目仓库内容更新自己仓库内容。
+* 在 GitHub 網站上提交 pull request。
+* 定期使用專案倉庫內容更新自己倉庫內容。
 ```
 $ git remote add upstream https://github.com/yeasy/docker_practice
 $ git fetch upstream
@@ -62,5 +62,6 @@ $ git checkout master
 $ git rebase upstream/master
 $ git push -f origin master
 ```
+
 
 
