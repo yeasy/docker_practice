@@ -1,9 +1,9 @@
-## 创建镜像
-编写完成 Dockerfile 之后，可以通过 `docker build` 命令来创建镜像。
+## 創建鏡像
+編寫完成 Dockerfile 之後，可以通過 `docker build` 命令來創建鏡像。
 
-基本的格式为 `docker build [选项] 路径`，该命令将读取指定路径下（包括子目录）的 Dockerfile，并将该路径下所有内容发送给 Docker 服务端，由服务端来创建镜像。因此一般建议放置 Dockerfile 的目录为空目录。也可以通过 `.dockerignore` 文件（每一行添加一条匹配模式）来让 Docker 忽略路径下的目录和文件。
+基本的格式為 `docker build [選項] 路徑`，該命令將讀取指定路徑下（包括子目錄）的 Dockerfile，並將該路徑下所有內容發送給 Docker 服務端，由服務端來創建鏡像。因此一般建議放置 Dockerfile 的目錄為空目錄。也可以通過 `.dockerignore` 文件（每一行添加一條匹配模式）來讓 Docker 忽略路徑下的目錄和文件。
 
-要指定镜像的标签信息，可以通过 `-t` 选项，例如
+要指定鏡像的標簽信息，可以通過 `-t` 選項，例如
 ```
 $ sudo docker build -t myrepo/myapp /tmp/test1/
 ```
