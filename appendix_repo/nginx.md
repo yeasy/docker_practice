@@ -1,34 +1,34 @@
 ## [Nginx](https://registry.hub.docker.com/_/nginx/)
 
 ### 基本信息
-[Nginx](https://en.wikipedia.org/wiki/Nginx) 是开源的高效的 Web 服务器实现，支持 HTTP、HTTPS、SMTP、POP3、IMAP 等协议。
-该仓库提供了 Nginx 1.0 ~ 1.7 各个版本的镜像。
+[Nginx](https://en.wikipedia.org/wiki/Nginx) 是開源的高效的 Web 服務器實現，支持 HTTP、HTTPS、SMTP、POP3、IMAP 等協議。
+該倉庫提供了 Nginx 1.0 ~ 1.7 各個版本的鏡像。
 
 ### 使用方法
-下面的命令将作为一个静态页面服务器启动。
+下面的命令將作為一個靜態頁面服務器啟動。
 ```
 $ sudo docker run --name some-nginx -v /some/content:/usr/share/nginx/html:ro -d nginx
 ```
-用户也可以不使用这种映射方式，通过利用 Dockerfile 来直接将静态页面内容放到镜像中，内容为
+用戶也可以不使用這種映射方式，通過利用 Dockerfile 來直接將靜態頁面內容放到鏡像中，內容為
 ```
 FROM nginx
 COPY static-html-directory /usr/share/nginx/html
 ```
-之后生成新的镜像，并启动一个容器。
+之後生成新的鏡像，並啟動一個容器。
 ```
 $ sudo docker build -t some-content-nginx .
 $ sudo docker run --name some-nginx -d some-content-nginx
 ```
-开放端口，并映射到本地的 `8080` 端口。
+開放端口，並映射到本地的 `8080` 端口。
 ```
 sudo docker run --name some-nginx -d -p 8080:80 some-content-nginx
 ```
 
-Nginx的默认配置文件路径为 `/etc/nginx/nginx.conf`，可以通过映射它来使用本地的配置文件，例如
+Nginx的默認配置文件路徑為 `/etc/nginx/nginx.conf`，可以通過映射它來使用本地的配置文件，例如
 ```
 docker run --name some-nginx -v /some/nginx.conf:/etc/nginx/nginx.conf:ro -d nginx
 ```
-使用配置文件时，为了在容器中正常运行，需要保持 `daemon off;`。
+使用配置文件時，為了在容器中正常運行，需要保持 `daemon off;`。
 
 ### Dockerfile
 * [1 ~ 1.7 版本](https://github.com/nginxinc/docker-nginx/blob/3713a0157083eb4776e71f5a5aef4b2a5bc03ab1/Dockerfile)
