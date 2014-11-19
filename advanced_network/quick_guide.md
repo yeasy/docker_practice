@@ -1,6 +1,6 @@
 ## 快速配置指南
 
-下面是一個跟 Docker 網絡相關的命令列表。
+下面是一個跟 Docker 網路相關的命令列表。
 
 其中有些命令選項只有在 Docker 服務啟動的時候才能配置，而且不能馬上生效。
 * `-b BRIDGE or --bridge=BRIDGE` --指定容器掛載的網橋
@@ -9,7 +9,7 @@
 * `--icc=true|false` --是否支持容器之間進行通信
 * `--ip-forward=true|false` --請看下文容器之間的通信
 * `--iptables=true|false` --禁止 Docker 添加 iptables 規則
-* `--mtu=BYTES` --容器網絡中的 MTU
+* `--mtu=BYTES` --容器網路中的 MTU
 
 下面2個命令選項既可以在啟動服務時指定，也可以 Docker 容器啟動（`docker run`）時候指定。在 Docker 服務啟動的時候指定則會成為默認值，後面執行 `docker run` 時可以覆蓋設置的默認值。
 * `--dns=IP_ADDRESS...` --使用指定的DNS服務器

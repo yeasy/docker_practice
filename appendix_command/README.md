@@ -16,7 +16,7 @@
         在遠端 API 中啟用 CORS 頭。缺省為 false。
 
     -b=""
-        將容器掛載到一個已存在的網橋上。指定為 'none' 時則禁用容器的網絡。
+        將容器掛載到一個已存在的網橋上。指定為 'none' 時則禁用容器的網路。
 
     --bip=""
         讓動態創建的 docker0 采用給定的 CIDR 地址; 與 -b 選項互斥。
@@ -40,7 +40,7 @@
         禁止 Docker 添加 iptables 規則。缺省為 true。
 
     --mtu=VALUE
-        指定容器網絡的 mtu。缺省為 1500。
+        指定容器網路的 mtu。缺省為 1500。
 
     -p=""
         指定 daemon 的 PID 文件路徑。缺省為 /var/run/docker.pid。
