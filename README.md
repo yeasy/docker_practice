@@ -5,19 +5,19 @@ v0.2.9
 
 [Docker](docker.com) 是個偉大的項目，它徹底釋放了虛擬化的，讓應用程式的分派、部署和管理都變得前所未有的高效和輕鬆！
 
-本書既適用於具備基礎 Linux 知識的 Docker 初學者，也可供希望理解原理和實現的高級用戶參考。同時，書中給出的實踐案例，可供在進行實際部署時借鑒。
+本書既適用於具備基礎 Linux 知識的 Docker 初學者，也可供希望理解原理和實現的進階用戶參考。同時，書中給出的實踐案例，可供在進行實際部署時借鑒。
 
 本書源於 [WaitFish](github.com/qcpm1983) 的《[Docker 學習手冊 v1.0](https://github.com/yeasy/docker_practice/raw/master/_local/docker_manual_waitfish.pdf)》內容。後來，[yeasy](github.com/yeasy)
 根據最新 Docker 版本對內容進行了修訂和重寫，並增加內容；經協商將所有內容開源，採用互聯網合作的方式進行維護。
 
 前六章為基礎內容，供使用者理解 Docker 的基本概念和操作；7 ~ 9 章介紹一些高級操作；第 10 章給出典型的應用場景和實踐案例；11 ~ 13 章介紹關於 Docker 實現的相關技術。
 
-最新版本線上閱讀：[GitBook](https://www.gitbook.io/book/yeasy/docker_practice) 或 [DockerPool](http://dockerpool.com/static/books/docker_practice/index.html)。
+最新版本線上閱讀：[繁體版](https://www.gitbook.io/book/philipzheng/docker_practice)、[簡體版](https://www.gitbook.io/book/yeasy/docker_practice) 或 [DockerPool](http://dockerpool.com/static/books/docker_practice/index.html)。
 
 另外，歡迎加入 [Docker.Taipei](https://www.facebook.com/groups/docker.taipei/) 和 [Meetup](http://www.meetup.com/Docker-Taipei/) ，分享 Docker 資源，交流 Docker 技術。
 
 
-本書源碼在 Github 上維護，歡迎參與： [https://github.com/yeasy/docker_practice](https://github.com/yeasy/docker_practice)。
+本書源碼在 Github 上維護，歡迎參與： [https://github.com/philipz/docker_practice](https://github.com/philipz/docker_practice)。
 
 感謝所有的 [貢獻者](https://github.com/philipz/docker_practice/graphs/contributors)。
 
@@ -79,7 +79,7 @@ v0.2.9
 2. 把 fork 過去的項目也就是你的項目 clone 到你的本地
 3. 在命令行運行 `git branch develop` 來創建一個新分支
 4. 運行 `git checkout develop` 來切換到新分支
-5. 運行 `git remote add upstream https://github.com/tommy60703/the-swift-programming-language-in-traditional-chinese` 把我的庫添加為遠端庫
+5. 運行 `git remote add upstream https://github.com/philipz/docker_practice` 把我的庫添加為遠端庫
 6. 運行 `git remote update`更新
 7. 運行 `git fetch upstream master` 拉取我的庫的更新到本地
 8. 運行 `git rebase upstream/master` 將我的更新合並到你的分支
