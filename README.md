@@ -19,7 +19,7 @@ v0.2.9
 
 本書源碼在 Github 上維護，歡迎參與： [https://github.com/yeasy/docker_practice](https://github.com/yeasy/docker_practice)。
 
-感謝所有的 [貢獻者](https://github.com/yeasy/docker_practice/graphs/contributors)。
+感謝所有的 [貢獻者](https://github.com/philipz/docker_practice/graphs/contributors)。
 
 ## 主要版本歷史
 * 0.3: 2014-10-TODO
