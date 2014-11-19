@@ -17,7 +17,7 @@ $ sudo docker build -t my-nodejs-app
 $ sudo docker run -it --rm --name my-running-app my-nodejs-app
 ```
 
-也可以直接運行一個簡單容器。
+也可以直接執行一個簡單容器。
 ```
 $ sudo docker run -it --rm --name my-running-script -v "$(pwd)":/usr/src/myapp -w /usr/src/myapp node:0.10 node your-daemon-or-script.js
 ```

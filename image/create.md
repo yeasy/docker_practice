@@ -58,7 +58,7 @@ Dockerfile 基本的語法是
 * 使用`#`來註釋
 * `FROM` 指令告訴 Docker 使用哪個鏡像作為基礎
 * 接著是維護者的信息
-* `RUN`開頭的指令會在創建中運行，比如安裝一個軟件包，在這裏使用 apt-get 來安裝了一些軟件
+* `RUN`開頭的指令會在創建中執行，比如安裝一個軟件包，在這裏使用 apt-get 來安裝了一些軟件
 
 編寫完成 Dockerfile 後可以使用 `docker build` 來生成鏡像。
 
@@ -104,7 +104,7 @@ Successfully built 324104cde6ad
 
 *註意一個鏡像不能超過 127 層
 
-此外，還可以利用 `ADD` 命令復制本地文件到鏡像；用 `EXPOSE` 命令來向外部開放端口；用 `CMD` 命令來描述容器啟動後運行的程序等。例如
+此外，還可以利用 `ADD` 命令復制本地文件到鏡像；用 `EXPOSE` 命令來向外部開放端口；用 `CMD` 命令來描述容器啟動後執行的程序等。例如
 ```
 # put my local web site in myApp folder to /var/www
 ADD myApp /var/www

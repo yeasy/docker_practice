@@ -5,9 +5,9 @@
 本節介紹如何使用本地倉庫。
 
 `docker-registry` 是官方提供的工具，可以用於構建私有的鏡像倉庫。
-### 安裝運行 docker-registry
-#### 容器運行
-在安裝了 Docker 後，可以通過獲取官方 registry 鏡像來運行。
+### 安裝執行 docker-registry
+#### 容器執行
+在安裝了 Docker 後，可以通過獲取官方 registry 鏡像來執行。
 ```
 $ sudo docker run -d -p 5000:5000 registry
 ```
@@ -66,7 +66,7 @@ $ sudo gunicorn -c contrib/gunicorn.py docker_registry.wsgi:application
 ```
 $ sudo gunicorn --access-logfile - --error-logfile - -k gevent -b 0.0.0.0:5000 -w 4 --max-requests 100 docker_registry.wsgi:application
 ```
-此時使用訪問本地的 5000 端口，看到輸出 docker-registry 的版本信息說明運行成功。
+此時使用訪問本地的 5000 端口，看到輸出 docker-registry 的版本信息說明執行成功。
 
 *註：`config/config_sample.yml` 文件是示例配置文件。
 

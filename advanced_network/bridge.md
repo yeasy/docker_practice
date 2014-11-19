@@ -3,7 +3,7 @@
 
 在啟動 Docker 服務的時候，使用 `-b BRIDGE`或`--bridge=BRIDGE` 來指定使用的網橋。
 
-如果服務已經運行，那需要先停止服務，並刪除舊的網橋。
+如果服務已經執行，那需要先停止服務，並刪除舊的網橋。
 ```
 $ sudo service docker stop
 $ sudo ip link set dev docker0 down

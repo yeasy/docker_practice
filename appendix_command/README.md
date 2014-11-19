@@ -28,7 +28,7 @@
         讓 Docker 使用給定的 DNS 服務器。
 
     -g=""
-        指定 Docker 運行時的 root 路徑。缺省為 /var/lib/docker。
+        指定 Docker 執行時的 root 路徑。缺省為 /var/lib/docker。
 
     --icc=true|false
         啟用容器間通信。默認為 true。
@@ -46,7 +46,7 @@
         指定 daemon 的 PID 文件路徑。缺省為 /var/run/docker.pid。
 
     -s=""
-        強制 Docker 運行時使用給定的存儲驅動。
+        強制 Docker 執行時使用給定的存儲驅動。
 
     -v=true|false
         輸出版本信息並退出。缺省值為 false。
@@ -59,7 +59,7 @@
 Docker 的命令可以采用 `docker-CMD` 或者 `docker CMD` 的方式執行。兩者一致。
 
     docker-attach(1)
-        依附到一個正在運行的容器中。
+        依附到一個正在執行的容器中。
 
     docker-build(1)
         從一個 Dockerfile 創建一個鏡像
@@ -95,7 +95,7 @@ Docker 的命令可以采用 `docker-CMD` 或者 `docker CMD` 的方式執行。
         顯示一個容器的底層具體信息。
 
     docker-kill(1)
-        關閉一個運行中的容器 (包括進程和所有資源)
+        關閉一個執行中的容器 (包括進程和所有資源)
 
     docker-load(1)
         從一個 tar 包中加載一個鏡像
@@ -125,7 +125,7 @@ Docker 的命令可以采用 `docker-CMD` 或者 `docker CMD` 的方式執行。
         將一個鏡像或者倉庫推送到一個 Docker 的註冊服務器
 
     docker-restart(1)
-        重啟一個運行中的容器
+        重啟一個執行中的容器
 
     docker-rm(1)
         刪除給定的若幹個容器
@@ -134,7 +134,7 @@ Docker 的命令可以采用 `docker-CMD` 或者 `docker CMD` 的方式執行。
         刪除給定的若幹個鏡像
 
     docker-run(1)
-        創建一個新容器，並在其中運行給定命令
+        創建一個新容器，並在其中執行給定命令
 
     docker-save(1)
         保存一個鏡像為 tar 包文件
@@ -146,13 +146,13 @@ Docker 的命令可以采用 `docker-CMD` 或者 `docker CMD` 的方式執行。
         啟動一個容器
 
     docker-stop(1)
-        終止一個運行中的容器
+        終止一個執行中的容器
 
     docker-tag(1)
         為一個鏡像打標簽
 
     docker-top(1)
-        查看一個容器中的正在運行的進程信息
+        查看一個容器中的正在執行的進程信息
 
     docker-unpause(1)
         將一個容器內所有的進程從暫停狀態中恢復

@@ -12,7 +12,7 @@
 ### RUN
 格式為 `RUN <command>` 或 `RUN ["executable", "param1", "param2"]`。
 
-前者將在 shell 終端中運行命令，即 `/bin/sh -c`；後者則使用 `exec` 執行。指定使用其它終端可以通過第二種方式實現，例如 `RUN ["/bin/bash", "-c", "echo hello"]`。
+前者將在 shell 終端中執行命令，即 `/bin/sh -c`；後者則使用 `exec` 執行。指定使用其它終端可以通過第二種方式實現，例如 `RUN ["/bin/bash", "-c", "echo hello"]`。
 
 每條 `RUN` 指令將在當前鏡像基礎上執行指定命令，並提交為新的鏡像。當命令較長時可以使用 `\` 來換行。
 
@@ -25,7 +25,7 @@
 
 指定啟動容器時執行的命令，每個 Dockerfile 只能有一條 `CMD` 命令。如果指定了多條命令，只有最後一條會被執行。
 
-如果用戶啟動容器時候指定了運行的命令，則會覆蓋掉 `CMD` 指定的命令。
+如果用戶啟動容器時候指定了執行的命令，則會覆蓋掉 `CMD` 指定的命令。
 
 ### EXPOSE
 格式為 `EXPOSE <port> [<port>...]`。
@@ -34,7 +34,7 @@
 
 ### ENV
 格式為 `ENV <key> <value>`。
-指定一個環境變量，會被後續 `RUN` 指令使用，並在容器運行時保持。
+指定一個環境變量，會被後續 `RUN` 指令使用，並在容器執行時保持。
 
 例如
 ```
@@ -74,9 +74,9 @@ ENV PATH /usr/local/postgres-$PG_MAJOR/bin:$PATH
 ### USER
 格式為 `USER daemon`。
 
-指定運行容器時的用戶名或 UID，後續的 `RUN` 也會使用指定用戶。
+指定執行容器時的用戶名或 UID，後續的 `RUN` 也會使用指定用戶。
 
-當服務不需要管理員權限時，可以通過該命令指定運行用戶。並且可以在之前創建所需要的用戶，例如：`RUN groupadd -r postgres && useradd -r -g postgres postgres`。要臨時獲取管理員權限可以使用 `gosu`，而不推薦 `sudo`。
+當服務不需要管理員權限時，可以通過該命令指定執行用戶。並且可以在之前創建所需要的用戶，例如：`RUN groupadd -r postgres && useradd -r -g postgres postgres`。要臨時獲取管理員權限可以使用 `gosu`，而不推薦 `sudo`。
 
 ### WORKDIR
 格式為 `WORKDIR /path/to/workdir`。
