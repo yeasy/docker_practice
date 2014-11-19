@@ -13,7 +13,7 @@ $ sudo docker run -i -t --rm --net=none base /bin/bash
 root@12e343489d2f:/#
 ```
 
-找到進程號，然後創建網絡名字空間的跟蹤文件。
+找到程序號，然後創建網絡名字空間的跟蹤文件。
 ```
 $ sudo docker inspect -f '{{.State.Pid}}' 1f1f4c1f931a
 2989

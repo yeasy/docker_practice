@@ -47,7 +47,7 @@
    * [編輯網路配置文件](advanced_network/config_file.md)
    * [實例：創造一個點對點連接](advanced_network/ptp.md)
 * [實戰案例](cases/README.md)
-   * [使用 Supervisor 來管理進程](cases/supervisor.md)
+   * [使用 Supervisor 來管理程序](cases/supervisor.md)
    * [創建 tomcat/weblogic 集群](cases/tomcat.md)
    * [多台實體主機之間的容器互連](cases/container_connect.md)
    * [標準化開發測試和生產環境](cases/environment.md)

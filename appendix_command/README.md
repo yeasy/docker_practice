@@ -95,7 +95,7 @@ Docker 的命令可以采用 `docker-CMD` 或者 `docker CMD` 的方式執行。
         顯示一個容器的底層具體信息。
 
     docker-kill(1)
-        關閉一個執行中的容器 (包括進程和所有資源)
+        關閉一個執行中的容器 (包括程序和所有資源)
 
     docker-load(1)
         從一個 tar 包中加載一個鏡像
@@ -110,7 +110,7 @@ Docker 的命令可以采用 `docker-CMD` 或者 `docker CMD` 的方式執行。
         獲取容器的 log 信息
 
     docker-pause(1)
-        暫停一個容器中的所有進程
+        暫停一個容器中的所有程序
 
     docker-port(1)
         查找一個 nat 到一個私有網口的公共口
@@ -152,10 +152,10 @@ Docker 的命令可以采用 `docker-CMD` 或者 `docker CMD` 的方式執行。
         為一個鏡像打標簽
 
     docker-top(1)
-        查看一個容器中的正在執行的進程信息
+        查看一個容器中的正在執行的程序信息
 
     docker-unpause(1)
-        將一個容器內所有的進程從暫停狀態中恢復
+        將一個容器內所有的程序從暫停狀態中恢復
 
     docker-version(1)
         輸出 Docker 的版本信息

@@ -25,7 +25,7 @@ $ make nsenter && sudo cp nsenter /usr/local/bin
 ```
 
 #### 使用
-`nsenter` 可以訪問另一個進程的名字空間。nsenter 要正常工作需要有 root 權限。
+`nsenter` 可以訪問另一個程序的名字空間。nsenter 要正常工作需要有 root 權限。
 很不幸，Ubuntu 14.4 仍然使用的是 util-linux 2.20。安裝最新版本的 util-linux（2.24）版，請按照以下步驟：
 ```
 $ wget https://www.kernel.org/pub/linux/utils/util-linux/v2.24/util-linux-2.24.tar.gz; tar xzvf util-linux-2.24.tar.gz
@@ -33,7 +33,7 @@ $ cd util-linux-2.24
 $ ./configure --without-ncurses && make nsenter
 $ sudo cp nsenter /usr/local/bin
 ```
-為了連接到容器，你還需要找到容器的第一個進程的 PID，可以通過下面的命令獲取。
+為了連接到容器，你還需要找到容器的第一個程序的 PID，可以通過下面的命令獲取。
 ```
 PID=$(docker inspect --format "{{ .State.Pid }}" <container>)
 ```

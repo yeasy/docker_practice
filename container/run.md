@@ -41,7 +41,7 @@ bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr
 ###啟動已終止容器
 可以利用 `docker start` 命令，直接將一個已經終止的容器啟動執行。
 
-容器的核心為所執行的應用程序，所需要的資源都是應用程序執行所必需的。除此之外，並沒有其它的資源。可以在偽終端中利用 `ps` 或 `top` 來查看進程信息。
+容器的核心為所執行的應用程序，所需要的資源都是應用程序執行所必需的。除此之外，並沒有其它的資源。可以在偽終端中利用 `ps` 或 `top` 來查看程序信息。
 ```
 root@ba267838cc1b:/# ps
   PID TTY          TIME CMD
