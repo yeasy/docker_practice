@@ -14,7 +14,7 @@ v0.2.9
 
 最新版本線上閱讀：[GitBook](https://www.gitbook.io/book/yeasy/docker_practice) 或 [DockerPool](http://dockerpool.com/static/books/docker_practice/index.html)。
 
-另外，歡迎加入 DockerPool QQ 群（341410255），分享 Docker 資源，交流 Docker 技術。
+另外，歡迎加入 [Docker.Taipei](https://www.facebook.com/groups/docker.taipei/) 和 [Meetup](http://www.meetup.com/Docker-Taipei/) ，分享 Docker 資源，交流 Docker 技術。
 
 
 本書源碼在 Github 上維護，歡迎參與： [https://github.com/yeasy/docker_practice](https://github.com/yeasy/docker_practice)。
@@ -71,28 +71,25 @@ v0.2.9
 對翻譯有任何意見都歡迎發 issue，我看到了會盡快回覆
 
 ## 參加步驟
-* 在 GitHub 上 `fork` 到自己的倉庫，如 `docker_user/docker_practice`，然後 `clone` 到本地，並設置使用者資訊。
-```
-$ git clone git@github.com:docker_user/docker_practice.git
-$ cd docker_practice
-$ git config user.name "Docker User"
-$ git config user.email docker_user@dockcer.com
-```
-* 修改代碼後提交，並推送到自己的倉庫。
-```
-$ #do some change on the content
-$ git commit -am "Fix issue #1: change helo to hello"
-$ git push
-```
-* 在 GitHub 網站上提交 pull request。
-* 定期使用專案倉庫內容更新自己倉庫內容。
-```
-$ git remote add upstream https://github.com/philipz/docker_practice
-$ git fetch upstream
-$ git checkout master
-$ git rebase upstream/master
-$ git push -f origin master
-```
+
+參考 [Swift 說明](https://github.com/tommy60703/the-swift-programming-language-in-traditional-chinese/)，欲翻譯章節就直接在 github 上發 Issue 中註明或直接發Pull Request 修改。m(_ _)m
+有些朋友可能不太清楚如何幫忙翻譯，我這裡寫一個簡單的流程，大家可以參考一下：
+
+1. 首先 fork 我的項目
+2. 把 fork 過去的項目也就是你的項目 clone 到你的本地
+3. 在命令行運行 `git branch develop` 來創建一個新分支
+4. 運行 `git checkout develop` 來切換到新分支
+5. 運行 `git remote add upstream https://github.com/tommy60703/the-swift-programming-language-in-traditional-chinese` 把我的庫添加為遠端庫
+6. 運行 `git remote update`更新
+7. 運行 `git fetch upstream master` 拉取我的庫的更新到本地
+8. 運行 `git rebase upstream/master` 將我的更新合並到你的分支
+
+這是一個初始化流程，只需要做一遍就行，之後請一直在 develop 分支進行修改。
+
+如果修改過程中我的庫有了更新，請重復 6、7、8 步。
+
+修改之後，首先 push 到你的庫，然後登錄 GitHub，在你的 repo 的首頁可以看到一個 `pull request` 按鈕，點擊它，填寫一些說明資訊，然後提交即可。
+
 ## 原出處及參考資料
 1. [Docker —— 从入门到实践](https://github.com/yeasy/docker_practice/)
 2. [《The Swift Programming Language­》正體中文版](https://github.com/tommy60703/the-swift-programming-language-in-traditional-chinese/)
