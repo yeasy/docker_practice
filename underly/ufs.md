@@ -5,6 +5,6 @@ Union 文件系統是 Docker 鏡像的基礎。鏡像可以通過分層來進行
 
 另外，不同 Docker 容器就可以共享一些基礎的文件系統層，同時再加上自己獨有的改動層，大大提高了存儲的效率。
 
-Docker 中使用的 AUFS（AnotherUnionFS）就是一種 Union FS。 AUFS 支持為每一個成員目錄（類似 Git 的分支）設定只讀（readonly）、讀寫（readwrite）和寫出（whiteout-able）權限, 同時 AUFS 裏有一個類似分層的概念, 對只讀權限的分支可以邏輯上進行增量地修改(不影響只讀部分的)。
+Docker 中使用的 AUFS（AnotherUnionFS）就是一種 Union FS。 AUFS 支持為每一個成員目錄（類似 Git 的分支）設定唯讀（readonly）、讀寫（readwrite）和寫出（whiteout-able）權限, 同時 AUFS 裏有一個類似分層的概念, 對唯讀權限的分支可以邏輯上進行增量地修改(不影響唯讀部分的)。
 
 Docker 目前支持的 Union 文件系統種類包括 AUFS, btrfs, vfs 和 DeviceMapper。

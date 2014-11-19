@@ -27,12 +27,12 @@ $ sudo docker run -d -P --name web -v /src/webapp:/opt/webapp training/webapp py
 
 *註意：Dockerfile 中不支持這種用法，這是因為 Dockerfile 是為了移植和分享用的。然而，不同作業系統的路徑格式不一樣，所以目前還不能支持。
 
-Docker 掛載數據卷的默認權限是讀寫，用戶也可以通過 `:ro` 指定為只讀。
+Docker 掛載數據卷的默認權限是讀寫，用戶也可以通過 `:ro` 指定為唯讀。
 ```
 $ sudo docker run -d -P --name web -v /src/webapp:/opt/webapp:ro
 training/webapp python app.py
 ```
-加了 `:ro` 之後，就掛載為只讀了。
+加了 `:ro` 之後，就掛載為唯讀了。
 
 ### 掛載一個本地主機文件作為數據卷
 `-v` 標記也可以從主機掛載單個文件到容器中
