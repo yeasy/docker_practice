@@ -9,7 +9,7 @@ $ sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
 $ sudo sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
 ```
 
-如果使用操作系統自帶包安裝 Docker，目前安裝的版本是比較舊的 0.9.1。 要安裝更新的版本，可以通過使用 Docker 源的方式。
+如果使用作業系統自帶包安裝 Docker，目前安裝的版本是比較舊的 0.9.1。 要安裝更新的版本，可以通過使用 Docker 源的方式。
 
 ### 通過Docker源安裝最新版本
 要安裝最新的 Docker 版本，首先需要安裝 apt-transport-https 支持，之後通過添加源來安裝。

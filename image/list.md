@@ -26,4 +26,4 @@ ubuntu           trusty   99ec81b80c55  4 weeks ago  266 MB
 $ sudo docker run -t -i ubuntu:14.04 /bin/bash
 ```
 
-如果不指定具體的標記，則預設使用 `latest` 標記信息。
+如果不指定具體的標記，則預設使用 `latest` 

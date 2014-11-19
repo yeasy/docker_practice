@@ -1,35 +1,35 @@
-## 容器访问控制
-容器的访问控制，主要通过 Linux 上的 `iptables` 防火墙来进行管理和实现。`iptables` 是 Linux 上默认的防火墙软件，在大部分发行版中都自带。
+## 容器訪問控制
+容器的訪問控制，主要通過 Linux 上的 `iptables` 防火墻來進行管理和實現。`iptables` 是 Linux 上默認的防火墻軟件，在大部分發行版中都自帶。
 
-### 容器访问外部网络
-容器要想访问外部网络，需要本地系统的转发支持。在Linux 系统中，检查转发是否打开。
+### 容器訪問外部網絡
+容器要想訪問外部網絡，需要本地系統的轉發支持。在Linux 系統中，檢查轉發是否打開。
 
 ```
 $sysctl net.ipv4.ip_forward
 net.ipv4.ip_forward = 1
 ```
-如果为 0，说明没有开启转发，则需要手动打开。
+如果為 0，說明沒有開啟轉發，則需要手動打開。
 ```
 $sysctl -w net.ipv4.ip_forward=1
 ```
-如果在启动 Docker 服务的时候设定 `--ip-forward=true`, Docker 就会自动设定系统的 `ip_forward` 参数为 1。
+如果在啟動 Docker 服務的時候設定 `--ip-forward=true`, Docker 就會自動設定系統的 `ip_forward` 參數為 1。
 
-### 容器之间访问
-容器之间相互访问，需要两方面的支持。
-* 容器的网络拓扑是否已经互联。默认情况下，所有容器都会被连接到 `docker0` 网桥上。
-* 本地系统的防火墙软件 -- `iptables` 是否允许通过。
+### 容器之間訪問
+容器之間相互訪問，需要兩方面的支持。
+* 容器的網絡拓撲是否已經互聯。默認情況下，所有容器都會被連接到 `docker0` 網橋上。
+* 本地系統的防火墻軟件 -- `iptables` 是否允許通過。
 
-#### 访问所有端口
-当启动 Docker 服务时候，默认会添加一条转发策略到 iptables 的 FORWARD 链上。策略为通过（`ACCEPT`）还是禁止（`DROP`）取决于配置`--icc=true`（缺省值）还是 `--icc=false`。当然，如果手动指定 `--iptables=false` 则不会添加 `iptables` 规则。
+#### 訪問所有端口
+當啟動 Docker 服務時候，默認會添加一條轉發策略到 iptables 的 FORWARD 鏈上。策略為通過（`ACCEPT`）還是禁止（`DROP`）取決於配置`--icc=true`（缺省值）還是 `--icc=false`。當然，如果手動指定 `--iptables=false` 則不會添加 `iptables` 規則。
 
-可见，默认情况下，不同容器之间是允许网络互通的。如果为了安全考虑，可以在 `/etc/default/docker` 文件中配置 `DOCKER_OPTS=--icc=false` 来禁止它。
+可見，默認情況下，不同容器之間是允許網絡互通的。如果為了安全考慮，可以在 `/etc/default/docker` 文件中配置 `DOCKER_OPTS=--icc=false` 來禁止它。
 
-#### 访问指定端口
-在通过 `-icc=false` 关闭网络访问后，还可以通过 `--link=CONTAINER_NAME:ALIAS` 选项来访问容器的开放端口。
+#### 訪問指定端口
+在通過 `-icc=false` 關閉網絡訪問後，還可以通過 `--link=CONTAINER_NAME:ALIAS` 選項來訪問容器的開放端口。
 
-例如，在启动 Docker 服务时，可以同时使用 `icc=false --iptables=true` 参数来关闭允许相互的网络访问，并让 Docker 可以修改系统中的 `iptables` 规则。
+例如，在啟動 Docker 服務時，可以同時使用 `icc=false --iptables=true` 參數來關閉允許相互的網絡訪問，並讓 Docker 可以修改系統中的 `iptables` 規則。
 
-此时，系统中的 `iptables` 规则可能是类似
+此時，系統中的 `iptables` 規則可能是類似
 ```
 $ sudo iptables -nL
 ...
@@ -39,9 +39,9 @@ DROP       all  --  0.0.0.0/0            0.0.0.0/0
 ...
 ```
 
-之后，启动容器（`docker run`）时使用 `--link=CONTAINER_NAME:ALIAS` 选项。Docker 会在 `iptable` 中为 两个容器分别添加一条 `ACCEPT` 规则，允许相互访问开放的端口（取决于 Dockerfile 中的 EXPOSE 行）。
+之後，啟動容器（`docker run`）時使用 `--link=CONTAINER_NAME:ALIAS` 選項。Docker 會在 `iptable` 中為 兩個容器分別添加一條 `ACCEPT` 規則，允許相互訪問開放的端口（取決於 Dockerfile 中的 EXPOSE 行）。
 
-当添加了 `--link=CONTAINER_NAME:ALIAS` 选项后，添加了 `iptables` 规则。
+當添加了 `--link=CONTAINER_NAME:ALIAS` 選項後，添加了 `iptables` 規則。
 ```
 $ sudo iptables -nL
 ...
@@ -52,4 +52,4 @@ ACCEPT     tcp  --  172.17.0.3           172.17.0.2           tcp dpt:80
 DROP       all  --  0.0.0.0/0            0.0.0.0/0
 ```
 
-注意：`--link=CONTAINER_NAME:ALIAS` 中的 `CONTAINER_NAME` 目前必须是 Docker 分配的名字，或使用 `--name` 参数指定的名字。主机名则不会被识别。
+註意：`--link=CONTAINER_NAME:ALIAS` 中的 `CONTAINER_NAME` 目前必須是 Docker 分配的名字，或使用 `--name` 參數指定的名字。主機名則不會被識別。

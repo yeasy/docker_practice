@@ -2,7 +2,7 @@
 
 可以使用 `docker pull` 命令來從倉庫獲取所需要的鏡像。
 
-下面的例子將從 Docker Hub 倉庫下載一個 Ubuntu 12.04 操作系統的鏡像。
+下面的例子將從 Docker Hub 倉庫下載一個 Ubuntu 12.04 作業系統的鏡像。
 ```
 $ sudo docker pull ubuntu:12.04
 Pulling repository ubuntu
