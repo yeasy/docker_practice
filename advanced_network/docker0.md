@@ -1,22 +1,22 @@
-## 配置 docker0 网桥
-Docker 服务默认会创建一个 `docker0` 网桥（其上有一个 `docker0` 内部接口），它在内核层连通了其他的物理或虚拟网卡，这就将所有容器和本地主机都放到同一个物理网络。
+## 配置 docker0 網橋
+Docker 服務默認會創建一個 `docker0` 網橋（其上有一個 `docker0` 內部接口），它在內核層連通了其他的物理或虛擬網卡，這就將所有容器和本地主機都放到同一個物理網路。
 
-Docker 默认指定了 `docker0` 接口 的 IP 地址和子网掩码，让主机和容器之间可以通过网桥相互通信，它还给出了 MTU（接口允许接收的最大传输单元），通常是 1500 Bytes，或宿主主机网络路由上支持的默认值。这些值都可以在服务启动的时候进行配置。
-* `--bip=CIDR` -- IP 地址加掩码格式，例如 192.168.1.5/24
-* `--mtu=BYTES` -- 覆盖默认的 Docker mtu 配置
+Docker 默認指定了 `docker0` 接口 的 IP 地址和子網掩碼，讓主機和容器之間可以通過網橋相互通信，它還給出了 MTU（接口允許接收的最大傳輸單元），通常是 1500 Bytes，或宿主主機網路路由上支持的默認值。這些值都可以在服務啟動的時候進行配置。
+* `--bip=CIDR` -- IP 地址加掩碼格式，例如 192.168.1.5/24
+* `--mtu=BYTES` -- 覆蓋默認的 Docker mtu 配置
 
-也可以在配置文件中配置 DOCKER_OPTS，然后重启服务。
-由于目前 Docker 网桥是 Linux 网桥，用户可以使用 `brctl show` 来查看网桥和端口连接信息。
+也可以在配置文件中配置 DOCKER_OPTS，然後重啟服務。
+由於目前 Docker 網橋是 Linux 網橋，用戶可以使用 `brctl show` 來查看網橋和端口連接信息。
 ```
 $ sudo brctl show
 bridge name     bridge id               STP enabled     interfaces
 docker0         8000.3a1d7362b4ee       no              veth65f9
                                              vethdda6
 ```
-*注：`brctl` 命令在 Debian、Ubuntu 中可以使用 `sudo apt-get install bridge-utils` 来安装。
+*註：`brctl` 命令在 Debian、Ubuntu 中可以使用 `sudo apt-get install bridge-utils` 來安裝。
 
 
-每次创建一个新容器的时候，Docker 从可用的地址段中选择一个空闲的 IP 地址分配给容器的 eth0 端口。使用本地主机上 `docker0` 接口的 IP 作为所有容器的默认网关。
+每次創建一個新容器的時候，Docker 從可用的地址段中選擇一個空閑的 IP 地址分配給容器的 eth0 端口。使用本地主機上 `docker0` 接口的 IP 作為所有容器的默認網關。
 ```
 $ sudo docker run -i -t --rm base /bin/bash
 $ ip addr show eth0

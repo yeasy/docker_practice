@@ -1,5 +1,5 @@
-## 多台物理主机之间的容器互联（暴露容器到真实网络中）
-Docker 默认的桥接网卡是 docker0。它只会在本机桥接所有的容器网卡，举例来说容器的虚拟网卡在主机上看一般叫做 veth***  而 Docker 只是把所有这些网卡桥接在一起，如下：
+## 多臺物理主機之間的容器互聯（暴露容器到真實網路中）
+Docker 默認的橋接網卡是 docker0。它只會在本機橋接所有的容器網卡，舉例來說容器的虛擬網卡在主機上看一般叫做 veth***  而 Docker 只是把所有這些網卡橋接在一起，如下：
 ```
 [root@opnvz ~]# brctl show
 bridge name     bridge id               STP enabled     interfaces
@@ -7,7 +7,7 @@ docker0         8000.56847afe9799       no              veth0889
                                              veth3c7b
                                              veth4061
 ```
-在容器中看到的地址一般是像下面这样的地址：
+在容器中看到的地址一般是像下面這樣的地址：
 ```
 root@ac6474aeb31d:~# ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN group default
@@ -23,17 +23,17 @@ root@ac6474aeb31d:~# ip a
     inet6 fe80::487d:68ff:feda:9cf/64 scope link
        valid_lft forever preferred_lft forever
 ```
-这样就可以把这个网络看成是一个私有的网络，通过 nat 连接外网，如果要让外网连接到容器中，就需要做端口映射，即 -p 参数。
+這樣就可以把這個網路看成是一個私有的網路，通過 nat 連接外網，如果要讓外網連接到容器中，就需要做端口映射，即 -p 參數。
 
-如果在企业内部应用，或者做多个物理主机的集群，可能需要将多个物理主机的容器组到一个物理网络中来，那么就需要将这个网桥桥接到我们指定的网卡上。
+如果在企業內部應用，或者做多個物理主機的集群，可能需要將多個物理主機的容器組到一個物理網路中來，那麽就需要將這個網橋橋接到我們指定的網卡上。
 
-### 拓扑图
-主机 A 和主机 B 的网卡一都连着物理交换机的同一个 vlan 101,这样网桥一和网桥三就相当于在同一个物理网络中了，而容器一、容器三、容器四也在同一物理网络中了，他们之间可以相互通信，而且可以跟同一 vlan 中的其他物理机器互联。
-![物理拓扑图](../_images/container_connect_topology.png)
+### 拓撲圖
+主機 A 和主機 B 的網卡一都連著物理交換機的同一個 vlan 101,這樣網橋一和網橋三就相當於在同一個物理網路中了，而容器一、容器三、容器四也在同一物理網路中了，他們之間可以相互通信，而且可以跟同一 vlan 中的其他物理機器互聯。
+![物理拓撲圖](../_images/container_connect_topology.png)
 
 ### ubuntu 示例
-下面以 ubuntu 为例创建多个主机的容器联网:
-创建自己的网桥,编辑 /etc/network/interface 文件
+下面以 ubuntu 為例創建多個主機的容器聯網:
+創建自己的網橋,編輯 /etc/network/interface 文件
 ```
 auto br0
 iface br0 inet static
@@ -44,9 +44,9 @@ bridge_ports em1
 bridge_stp off
 dns-nameservers 8.8.8.8 192.168.6.1
 ```
-将 Docker 的默认网桥绑定到这个新建的 br0 上面，这样就将这台机器上容器绑定到 em1 这个网卡所对应的物理网络上了。
+將 Docker 的默認網橋綁定到這個新建的 br0 上面，這樣就將這臺機器上容器綁定到 em1 這個網卡所對應的物理網路上了。
 
-ubuntu 修改 /etc/default/docker 文件，添加最后一行内容
+ubuntu 修改 /etc/default/docker 文件，添加最後一行內容
 
 ```
 # Docker Upstart and SysVinit configuration file
@@ -64,7 +64,7 @@ ubuntu 修改 /etc/default/docker 文件，添加最后一行内容
 DOCKER_OPTS="-b=br0"
 ```
 
-在启动 Docker 的时候 使用 -b 参数 将容器绑定到物理网络上。重启 Docker 服务后，再进入容器可以看到它已经绑定到你的物理网络上了。
+在啟動 Docker 的時候 使用 -b 參數 將容器綁定到物理網路上。重啟 Docker 服務後，再進入容器可以看到它已經綁定到你的物理網路上了。
 
 ```
 root@ubuntudocker:~# docker ps
@@ -75,4 +75,4 @@ bridge name     bridge id               STP enabled     interfaces
 br0             8000.7e6e617c8d53       no              em1
                                             vethe6e5
 ```
-这样就直接把容器暴露到物理网络上了，多台物理主机的容器也可以相互联网了。需要注意的是，这样就需要自己来保证容器的网络安全了。
+這樣就直接把容器暴露到物理網路上了，多臺物理主機的容器也可以相互聯網了。需要註意的是，這樣就需要自己來保證容器的網路安全了。
