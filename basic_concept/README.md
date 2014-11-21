@@ -1,6 +1,6 @@
 # 基本概念
 Docker 包括三個基本概念
-* 鏡像（Image）
+* 映像檔（Image）
 * 容器（Container）
 * 倉庫（Repository）
 
