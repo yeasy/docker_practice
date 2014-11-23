@@ -17,7 +17,7 @@ Docker 的 Registry 利用配置文件提供了一些倉庫的模組（flavor）
 
 用戶也可以添加自定義的模版段。
 
-默認情況下使用的模組是 `dev`，要使用某個模組作為默認值，可以添加 `SETTINGS_FLAVOR` 到環境變數中，例如
+預設情況下使用的模組是 `dev`，要使用某個模組作為預設值，可以添加 `SETTINGS_FLAVOR` 到環境變數中，例如
 ```
 export SETTINGS_FLAVOR=dev
 ```
