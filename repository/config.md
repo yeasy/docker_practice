@@ -1,5 +1,5 @@
 ## 倉庫配置文件
-Docker 的 Registry 利用配置文件提供了一些倉庫的模組（flavor），用戶可以直接使用它們來進行開發或生產部署。
+Docker 的 Registry 利用配置文件提供了一些倉庫的模組（flavor），使用者可以直接使用它們來進行開發或生產部署。
 
 ### 模組
 在 `config_sample.yml` 文件中，可以看到一些現成的模組段：
@@ -15,9 +15,9 @@ Docker 的 Registry 利用配置文件提供了一些倉庫的模組（flavor）
 * `glance-swift`：儲存數據到 OpenStack Glance 服務，Swift 為後備
 * `elliptics`：儲存數據到 Elliptics key/value 存儲
 
-用戶也可以添加自定義的模版段。
+使用者也可以新增自定義的模版段。
 
-預設情況下使用的模組是 `dev`，要使用某個模組作為預設值，可以添加 `SETTINGS_FLAVOR` 到環境變數中，例如
+預設情況下使用的模組是 `dev`，要使用某個模組作為預設值，可以新增 `SETTINGS_FLAVOR` 到環境變數中，例如
 ```
 export SETTINGS_FLAVOR=dev
 ```

@@ -33,11 +33,11 @@ $ cd util-linux-2.24
 $ ./configure --without-ncurses && make nsenter
 $ sudo cp nsenter /usr/local/bin
 ```
-為了連接到容器，你還需要找到容器的第一個程序的 PID，可以通過下面的命令獲取。
+為了連接到容器，你還需要找到容器的第一個程序的 PID，可以透過下面的命令獲取。
 ```
 PID=$(docker inspect --format "{{ .State.Pid }}" <container>)
 ```
-通過這個 PID，就可以連接到這個容器：
+透過這個 PID，就可以連接到這個容器：
 ```
 $ nsenter --target $PID --mount --uts --ipc --net --pid
 ```

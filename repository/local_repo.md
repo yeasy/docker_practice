@@ -1,18 +1,18 @@
 ## 私有倉庫
 
-有時候使用 Docker Hub 這樣的公共倉庫可能不方便，用戶可以創建一個本地倉庫供私人使用。
+有時候使用 Docker Hub 這樣的公共倉庫可能不方便，使用者可以建立一個本地倉庫供私人使用。
 
 本節介紹如何使用本地倉庫。
 
 `docker-registry` 是官方提供的工具，可以用於構建私有的映像檔倉庫。
 ### 安裝執行 docker-registry
 #### 容器執行
-在安裝了 Docker 後，可以通過獲取官方 registry 映像檔來執行。
+在安裝了 Docker 後，可以透過獲取官方 registry 映像檔來執行。
 ```
 $ sudo docker run -d -p 5000:5000 registry
 ```
 這將使用官方的 registry 映像檔來啟動本地的私有倉庫。
-用戶可以通過指定參數來配置私有倉庫位置，例如配置映像檔存儲到 Amazon S3 服務。
+使用者可以透過指定參數來配置私有倉庫位置，例如配置映像檔存儲到 Amazon S3 服務。
 ```
 $ sudo docker run \
          -e SETTINGS_FLAVOR=s3 \
@@ -28,14 +28,14 @@ $ sudo docker run \
 ```
 $ sudo docker run -d -p 5000:5000 -v /home/user/registry-conf:/registry-conf -e DOCKER_REGISTRY_CONFIG=/registry-conf/config.yml registry
 ```
-預設情況下，倉庫會被創建在容器的 `/tmp/registry` 下。可以通過 `-v` 參數來將映像檔文件存放在本地的指定路徑。
+預設情況下，倉庫會被建立在容器的 `/tmp/registry` 下。可以透過 `-v` 參數來將映像檔文件存放在本地的指定路徑。
 例如下面的例子將上傳的映像檔放到 `/opt/data/registry` 目錄。
 ```
 $ sudo docker run -d -p 5000:5000 -v /opt/data/registry:/tmp/registry registry
 ```
 
 #### 本地安裝
-對於 Ubuntu 或 CentOS 等發行版，可以直接通過套件庫安裝。
+對於 Ubuntu 或 CentOS 等發行版，可以直接透過套件庫安裝。
 * Ubuntu
 ```
 $ sudo apt-get install -y build-essential python-dev libevent-dev python-pip liblzma-dev
@@ -71,7 +71,7 @@ $ sudo gunicorn --access-logfile - --error-logfile - -k gevent -b 0.0.0.0:5000 -
 *註：`config/config_sample.yml` 文件是範例配置文件。
 
 ###在私有倉庫上傳、下載、搜索映像檔
-創建好私有倉庫之後，就可以使用 `docker tag` 來標記一個映像檔，然後推送它到倉庫，別的機器上就可以下載下來了。例如私有倉庫地址為 `192.168.7.26:5000`。
+建立好私有倉庫之後，就可以使用 `docker tag` 來標記一個映像檔，然後推送它到倉庫，別的機器上就可以下載下來了。例如私有倉庫地址為 `192.168.7.26:5000`。
 
 先在本機查看已有的映像檔。
 ```

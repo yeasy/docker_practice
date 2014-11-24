@@ -32,7 +32,7 @@ ffdaafd1ca50: Download complete
 d047ae21eeaf: Download complete
 ```
 
-完成後，即可隨時使用該映像檔了，例如創建一個容器，讓其中執行 bash 應用。
+完成後，即可隨時使用該映像檔了，例如建立一個容器，讓其中執行 bash 應用。
 ```
 $ sudo docker run -t -i ubuntu:12.04 /bin/bash
 root@fe7fc4bd8fc9:/#

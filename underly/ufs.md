@@ -1,7 +1,7 @@
 ## Union 文件系統
 Union文件系統（[UnionFS](http://en.wikipedia.org/wiki/UnionFS)）是一種分層、輕量級並且高性能的文件系統，它支持對文件系統的修改作為一次提交來一層層的疊加，同時可以將不同目錄掛載到同一個虛擬文件系統下(unite several directories into a single virtual filesystem)。
 
-Union 文件系統是 Docker 鏡像的基礎。鏡像可以通過分層來進行繼承，基於基礎鏡像（沒有父鏡像），可以制作各種具體的應用鏡像。
+Union 文件系統是 Docker 鏡像的基礎。鏡像可以透過分層來進行繼承，基於基礎鏡像（沒有父鏡像），可以制作各種具體的應用鏡像。
 
 另外，不同 Docker 容器就可以共享一些基礎的文件系統層，同時再加上自己獨有的改動層，大大提高了存儲的效率。
 

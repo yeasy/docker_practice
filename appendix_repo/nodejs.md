@@ -5,13 +5,13 @@
 該倉庫提供了 Node.js 0.8 ~ 0.11 各個版本的鏡像。
 
 ### 使用方法
-在項目中創建一個 Dockerfile。
+在項目中建立一個 Dockerfile。
 ```
 FROM node:0.10-onbuild
 # replace this with your application's default port
 EXPOSE 8888
 ```
-然後創建鏡像，並啟動容器
+然後建立鏡像，並啟動容器
 ```
 $ sudo docker build -t my-nodejs-app
 $ sudo docker run -it --rm --name my-running-app my-nodejs-app

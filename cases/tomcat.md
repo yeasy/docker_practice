@@ -1,11 +1,11 @@
-## 創建 tomcat/weblogic 集群
+## 建立 tomcat/weblogic 集群
 ### 安裝 tomcat 鏡像
 準備好需要的 jdk、tomcat 等軟件放到 home 目錄下面，啟動一個容器
 ```
 docker run -t -i -v /home:/opt/data  --name mk_tomcat ubuntu /bin/bash
 ```
-這條命令掛載本地 home 目錄到容器的 /opt/data 目錄，容器內目錄若不存在，則會自動創建。接下來就是 tomcat 的基本配置，jdk 環境變量設置好之後，將 tomcat 程序放到 /opt/apache-tomcat 下面
-編輯 /etc/supervisor/conf.d/supervisor.conf 文件，添加 tomcat 項
+這條命令掛載本地 home 目錄到容器的 /opt/data 目錄，容器內目錄若不存在，則會自動建立。接下來就是 tomcat 的基本配置，jdk 環境變量設置好之後，將 tomcat 程序放到 /opt/apache-tomcat 下面
+編輯 /etc/supervisor/conf.d/supervisor.conf 文件，新增 tomcat 項
 ```
 [supervisord]
 nodaemon=true
@@ -24,7 +24,7 @@ FROM mk_tomcat
 EXPOSE  22 8080
 CMD ["/usr/bin/supervisord"]
 ```
-根據 Dockerfile 創建鏡像。
+根據 Dockerfile 建立鏡像。
 ```
 docker build tomcat tomcat
 ```
@@ -56,7 +56,7 @@ CMD ["/usr/bin/supervisord"]
 
 將本地磁盤映射到容器內部，它在主機和容器之間是實時變化的，所以我們更新程序、上傳代碼只需要更新物理主機的目錄就可以了
 
-#### tomcat 和 weblogic 集群的實現
+#### tomcat 和 weblogic 集群的實做
 tomcat 只要開啟多個容器即可
 ```
 docker run -d -v -p 204:22 -p 7003:8080 -v /home/data:/opt/data --name tm1 tomcat /usr/bin/supervisord
@@ -70,7 +70,7 @@ docker run -d -v -p 206:22 -p 7005:8080 -v /home/data:/opt/data --name tm3 tomca
 
 缺點是：
 * Docker 配置復雜了
-* 沒辦法自動擴展集群的計算容量，如需添加節點，需要在 administrator 上先創建節點，然後再配置新的容器 supervisor 啟動腳本，然後再啟動容器
+* 沒辦法自動擴展集群的計算容量，如需新增節點，需要在 administrator 上先建立節點，然後再配置新的容器 supervisor 啟動腳本，然後再啟動容器
 另外種方法是將所有的程序都安裝在 adminiserver 上面，需要擴展的時候，啟動多個節點即可，它的優點和缺點和上一種方法恰恰相反。（建議使用這種方式來部署開發和測試環境）
 ```
 docker run -d -v -p 204:22 -p 7001:7001 -v /home/data:/opt/data --name node1 weblogic /usr/bin/supervisord

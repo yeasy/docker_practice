@@ -5,5 +5,5 @@
 $sudo docker rm  trusting_newton
 trusting_newton
 ```
-如果要刪除一個執行中的容器，可以添加 `-f` 參數。Docker 會發送 `SIGKILL` 信號給容器。
+如果要刪除一個執行中的容器，可以新增 `-f` 參數。Docker 會發送 `SIGKILL` 信號給容器。
 

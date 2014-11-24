@@ -8,14 +8,14 @@
 *數據卷的使用，類似於 Linux 下對目錄或文件進行 mount。
 
 
-### 創建一個數據卷
-在用 `docker run` 命令的時候，使用 `-v` 標記來創建一個數據卷並掛載到容器裏。在一次 run 中多次使用可以掛載多個數據卷。
+### 建立一個數據卷
+在用 `docker run` 命令的時候，使用 `-v` 標記來建立一個數據卷並掛載到容器裏。在一次 run 中多次使用可以掛載多個數據卷。
 
-下面創建一個 web 容器，並加載一個數據卷到容器的 `/webapp` 目錄。
+下面建立一個 web 容器，並加載一個數據卷到容器的 `/webapp` 目錄。
 ```
 $ sudo docker run -d -P --name web -v /webapp training/webapp python app.py
 ```
-*註意：也可以在 Dockerfile 中使用 `VOLUME` 來添加一個或者多個新的卷到由該鏡像創建的任意容器。
+*註意：也可以在 Dockerfile 中使用 `VOLUME` 來新增一個或者多個新的卷到由該鏡像建立的任意容器。
 
 ### 掛載一個主機目錄作為數據卷
 使用 `-v` 標記也可以指定掛載一個本地主機的目錄到容器中去。
@@ -23,11 +23,11 @@ $ sudo docker run -d -P --name web -v /webapp training/webapp python app.py
 $ sudo docker run -d -P --name web -v /src/webapp:/opt/webapp training/webapp python app.py
 ```
 上面的命令加載主機的 `/src/webapp` 目錄到容器的 `/opt/webapp`
-目錄。這個功能在進行測試的時候十分方便，比如用戶可以放置一些程序到本地目錄中，來查看容器是否正常工作。本地目錄的路徑必須是絕對路徑，如果目錄不存在 Docker 會自動為你創建它。
+目錄。這個功能在進行測試的時候十分方便，比如使用者可以放置一些程序到本地目錄中，來查看容器是否正常工作。本地目錄的路徑必須是絕對路徑，如果目錄不存在 Docker 會自動為你建立它。
 
 *註意：Dockerfile 中不支持這種用法，這是因為 Dockerfile 是為了移植和分享用的。然而，不同作業系統的路徑格式不一樣，所以目前還不能支持。
 
-Docker 掛載數據卷的默認權限是讀寫，用戶也可以通過 `:ro` 指定為唯讀。
+Docker 掛載數據卷的默認權限是讀寫，使用者也可以透過 `:ro` 指定為唯讀。
 ```
 $ sudo docker run -d -P --name web -v /src/webapp:/opt/webapp:ro
 training/webapp python app.py

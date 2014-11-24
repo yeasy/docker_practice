@@ -12,7 +12,7 @@
 ### RUN
 格式為 `RUN <command>` 或 `RUN ["executable", "param1", "param2"]`。
 
-前者將在 shell 終端中運行命令，即 `/bin/sh -c`；後者則使用 `exec` 執行。指定使用其它終端可以通過第二種方式實現，例如 `RUN ["/bin/bash", "-c", "echo hello"]`。
+前者將在 shell 終端中運行命令，即 `/bin/sh -c`；後者則使用 `exec` 執行。指定使用其它終端可以透過第二種方式實做，例如 `RUN ["/bin/bash", "-c", "echo hello"]`。
 
 每條 `RUN` 指令將在當前映像檔基底上執行指定命令，並產生新的映像檔。當命令較長時可以使用 `\` 來換行。
 
@@ -30,7 +30,7 @@
 ### EXPOSE
 格式為 `EXPOSE <port> [<port>...]`。
 
-設定 Docker 伺服器容器對外的埠號，供外界使用。在啟動容器時需要通過 -P，Docker 會自動分配一個埠號轉發到指定的埠號。
+設定 Docker 伺服器容器對外的埠號，供外界使用。在啟動容器時需要透過 -P，Docker 會自動分配一個埠號轉發到指定的埠號。
 
 ### ENV
 格式為 `ENV <key> <value>`。
@@ -76,7 +76,7 @@ ENV PATH /usr/local/postgres-$PG_MAJOR/bin:$PATH
 
 指定運行容器時的使用者名稱或 UID，後續的 `RUN` 也會使用指定使用者。
 
-當服務不需要管理員權限時，可以通過該命令指定運行使用者。並且可以在之前建立所需要的使用者，例如：`RUN groupadd -r postgres && useradd -r -g postgres postgres`。要臨時獲取管理員權限可以使用 `gosu`，而不推薦 `sudo`。
+當服務不需要管理員權限時，可以透過該命令指定運行使用者。並且可以在之前建立所需要的使用者，例如：`RUN groupadd -r postgres && useradd -r -g postgres postgres`。要臨時獲取管理員權限可以使用 `gosu`，而不推薦 `sudo`。
 
 ### WORKDIR
 格式為 `WORKDIR /path/to/workdir`。
@@ -105,7 +105,7 @@ ONBUILD RUN /usr/local/bin/python-build --dir /app/src
 [...]
 ```
 
-如果基於 image-A 建立新的映像檔時，新的 Dockerfile 中使用 `FROM image-A`指定基底映像檔時，會自動執行 `ONBUILD` 指令內容，等於在後面添加了兩條指令。
+如果基於 image-A 建立新的映像檔時，新的 Dockerfile 中使用 `FROM image-A`指定基底映像檔時，會自動執行 `ONBUILD` 指令內容，等於在後面新增了兩條指令。
 ```
 FROM image-A
 

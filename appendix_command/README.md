@@ -2,7 +2,7 @@
 
 ##基本語法
     docker [OPTIONS] COMMAND [arg...]
-一般來說，Docker 命令可以用來管理 daemon，或者通過 CLI 命令管理映像檔和容器。可以通過 `man docker` 來查看這些命令。
+一般來說，Docker 命令可以用來管理 daemon，或者透過 CLI 命令管理映像檔和容器。可以透過 `man docker` 來查看這些命令。
 
 
 ##選項
@@ -10,7 +10,7 @@
         使用 debug 模式。預設為 false。
 
     -H, --host=[unix:///var/run/docker.sock]: tcp://[host:port]來綁定或者 unix://[/path/to/socket] 來使用。
-        在 daemon 模式下綁定的 socket，通過一個或多個 tcp://host:port, unix:///path/to/socket, fd://* or fd://socketfd 來指定。
+        在 daemon 模式下綁定的 socket，透過一個或多個 tcp://host:port, unix:///path/to/socket, fd://* or fd://socketfd 來指定。
 
     --api-enable-cors=true|false
         在遠端 API 中啟用 CORS 頭。預設為 false。
@@ -19,7 +19,7 @@
         將容器掛載到一個已存在的網橋上。指定為 'none' 時則禁用容器的網路。
 
     --bip=""
-        讓動態創建的 docker0 采用指定的 CIDR 地址; 與 -b 選項互斥。
+        讓動態建立的 docker0 采用指定的 CIDR 地址; 與 -b 選項互斥。
 
     -d=true|false
         使用 daemon 模式。預設為 false。
@@ -37,7 +37,7 @@
         綁定端口時候的預設 IP 地址。預設為 0.0.0.0。
 
     --iptables=true|false
-        禁止 Docker 添加 iptables 規則。預設為 true。
+        禁止 Docker 新增 iptables 規則。預設為 true。
 
     --mtu=VALUE
         指定容器網路的 mtu。預設為 1500。
@@ -62,10 +62,10 @@ Docker 的命令可以采用 `docker-CMD` 或者 `docker CMD` 的方式執行。
         依附到一個正在執行的容器中。
 
     docker-build(1)
-        從一個 Dockerfile 創建一個映像檔
+        從一個 Dockerfile 建立一個映像檔
 
     docker-commit(1)
-        從一個容器的修改中創建一個新的映像檔
+        從一個容器的修改中建立一個新的映像檔
 
     docker-cp(1)
         從容器中複製文件到宿主系統中
@@ -86,7 +86,7 @@ Docker 的命令可以采用 `docker-CMD` 或者 `docker CMD` 的方式執行。
         列出存在的映像檔
 
     docker-import(1)
-        匯入一個文件（典型為 tar 包）路徑或目錄來創建一個映像檔
+        匯入一個文件（典型為 tar 包）路徑或目錄來建立一個映像檔
 
     docker-info(1)
         顯示一些相關的系統資訊
@@ -134,7 +134,7 @@ Docker 的命令可以采用 `docker-CMD` 或者 `docker CMD` 的方式執行。
         刪除指定的數個映像檔
 
     docker-run(1)
-        創建一個新容器，並在其中執行指定命令
+        建立一個新容器，並在其中執行指定命令
 
     docker-save(1)
         保存一個映像檔為 tar 包文件

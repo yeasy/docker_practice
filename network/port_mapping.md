@@ -1,5 +1,5 @@
 ## 外部訪問容器
-容器中可以執行一些網路應用，要讓外部也可以訪問這些應用，可以通過 `-P` 或 `-p` 參數來指定端口映射。
+容器中可以執行一些網路應用，要讓外部也可以訪問這些應用，可以透過 `-P` 或 `-p` 參數來指定端口映射。
 
 當使用 -P 標記時，Docker 會隨機映射一個 `49000~49900` 的端口到內部容器開放的網路端口。
 
@@ -10,7 +10,7 @@ $ sudo docker ps -l
 CONTAINER ID  IMAGE                   COMMAND       CREATED        STATUS        PORTS                    NAMES
 bc533791f3f5  training/webapp:latest  python app.py 5 seconds ago  Up 2 seconds  0.0.0.0:49155->5000/tcp  nostalgic_morse
 ```
-同樣的，可以通過 `docker logs` 命令來查看應用的信息。
+同樣的，可以透過 `docker logs` 命令來查看應用的信息。
 ```
 $ sudo docker logs -f nostalgic_morse
 * Running on http://0.0.0.0:5000/

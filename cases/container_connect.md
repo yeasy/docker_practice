@@ -23,7 +23,7 @@ root@ac6474aeb31d:~# ip a
     inet6 fe80::487d:68ff:feda:9cf/64 scope link
        valid_lft forever preferred_lft forever
 ```
-這樣就可以把這個網路看成是一個私有的網路，通過 nat 連接外網，如果要讓外網連接到容器中，就需要做端口映射，即 -p 參數。
+這樣就可以把這個網路看成是一個私有的網路，透過 nat 連接外網，如果要讓外網連接到容器中，就需要做端口映射，即 -p 參數。
 
 如果在企業內部應用，或者做多個物理主機的集群，可能需要將多個物理主機的容器組到一個物理網路中來，那麽就需要將這個網橋橋接到我們指定的網卡上。
 
@@ -32,8 +32,8 @@ root@ac6474aeb31d:~# ip a
 ![物理拓撲圖](../_images/container_connect_topology.png)
 
 ### ubuntu 示例
-下面以 ubuntu 為例創建多個主機的容器聯網:
-創建自己的網橋,編輯 /etc/network/interface 文件
+下面以 ubuntu 為例建立多個主機的容器聯網:
+建立自己的網橋,編輯 /etc/network/interface 文件
 ```
 auto br0
 iface br0 inet static
@@ -46,7 +46,7 @@ dns-nameservers 8.8.8.8 192.168.6.1
 ```
 將 Docker 的默認網橋綁定到這個新建的 br0 上面，這樣就將這臺機器上容器綁定到 em1 這個網卡所對應的物理網路上了。
 
-ubuntu 修改 /etc/default/docker 文件，添加最後一行內容
+ubuntu 修改 /etc/default/docker 文件，新增最後一行內容
 
 ```
 # Docker Upstart and SysVinit configuration file
@@ -75,4 +75,4 @@ bridge name     bridge id               STP enabled     interfaces
 br0             8000.7e6e617c8d53       no              em1
                                             vethe6e5
 ```
-這樣就直接把容器暴露到物理網路上了，多臺物理主機的容器也可以相互聯網了。需要註意的是，這樣就需要自己來保證容器的網路安全了。
+這樣就直接把容器暴露到物理網路上了，多臺物理主機的容器也可以相網路了。需要註意的是，這樣就需要自己來保證容器的網路安全了。
