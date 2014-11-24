@@ -23,7 +23,7 @@ $ ip addr show bridge0
     inet 192.168.5.1/24 scope global bridge0
        valid_lft forever preferred_lft forever
 ```
-配置 Docker 服務，默認橋接到建立的網橋上。
+設定 Docker 服務，默認橋接到建立的網橋上。
 ```
 $ echo 'DOCKER_OPTS="-b=bridge0"' >> /etc/default/docker
 $ sudo service docker start
@@ -31,4 +31,4 @@ $ sudo service docker start
 啟動 Docker 服務。
 新建一個容器，可以看到它已經橋接到了 `bridge0` 上。
 
-可以繼續用 `brctl show` 命令查看橋接的信息。另外，在容器中可以使用 `ip addr` 和 `ip route` 命令來查看 IP 地址配置和路由信息。
+可以繼續用 `brctl show` 命令查看橋接的訊息。另外，在容器中可以使用 `ip addr` 和 `ip route` 命令來查看 IP 地址設定和路由訊息。

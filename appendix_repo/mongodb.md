@@ -1,6 +1,6 @@
 ## [MongoDB](https://registry.hub.docker.com/_/mongo/)
 
-### 基本信息
+### 基本訊息
 [MongoDB](https://en.wikipedia.org/wiki/MongoDB) 是開源的 NoSQL 數據庫實做。
 該倉庫提供了 MongoDB 2.2 ~ 2.7 各個版本的鏡像。
 

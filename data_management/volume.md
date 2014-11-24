@@ -9,9 +9,9 @@
 
 
 ### 建立一個數據卷
-在用 `docker run` 命令的時候，使用 `-v` 標記來建立一個數據卷並掛載到容器裏。在一次 run 中多次使用可以掛載多個數據卷。
+在用 `docker run` 命令的時候，使用 `-v` 標記來建立一個數據卷並掛載到容器裡。在一次 run 中多次使用可以掛載多個數據卷。
 
-下面建立一個 web 容器，並加載一個數據卷到容器的 `/webapp` 目錄。
+下面建立一個 web 容器，並載入一個數據卷到容器的 `/webapp` 目錄。
 ```
 $ sudo docker run -d -P --name web -v /webapp training/webapp python app.py
 ```
@@ -22,8 +22,8 @@ $ sudo docker run -d -P --name web -v /webapp training/webapp python app.py
 ```
 $ sudo docker run -d -P --name web -v /src/webapp:/opt/webapp training/webapp python app.py
 ```
-上面的命令加載主機的 `/src/webapp` 目錄到容器的 `/opt/webapp`
-目錄。這個功能在進行測試的時候十分方便，比如使用者可以放置一些程序到本地目錄中，來查看容器是否正常工作。本地目錄的路徑必須是絕對路徑，如果目錄不存在 Docker 會自動為你建立它。
+上面的命令載入主機的 `/src/webapp` 目錄到容器的 `/opt/webapp`
+目錄。這個功能在進行測試的時候十分方便，比如使用者可以放置一些程式到本地目錄中，來查看容器是否正常工作。本地目錄的路徑必須是絕對路徑，如果目錄不存在 Docker 會自動為你建立它。
 
 *註意：Dockerfile 中不支持這種用法，這是因為 Dockerfile 是為了移植和分享用的。然而，不同作業系統的路徑格式不一樣，所以目前還不能支持。
 
@@ -42,4 +42,4 @@ $ sudo docker run --rm -it -v ~/.bash_history:/.bash_history ubuntu /bin/bash
 這樣就可以記錄在容器輸入過的命令了。
 
 *註意：如果直接掛載一個文件，很多文件編輯工具，包括 `vi` 或者 `sed --in-place`，可能會造成文件 inode 的改變，從 Docker 1.1
-.0起，這會導致報錯誤信息。所以最簡單的辦法就直接掛載文件的父目錄。
+.0起，這會導致報錯誤訊息。所以最簡單的辦法就直接掛載文件的父目錄。

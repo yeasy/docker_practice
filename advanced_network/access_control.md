@@ -20,9 +20,9 @@ $sysctl -w net.ipv4.ip_forward=1
 * 本地系統的防火墻軟件 -- `iptables` 是否允許透過。
 
 #### 訪問所有端口
-當啟動 Docker 服務時候，默認會新增一條轉發策略到 iptables 的 FORWARD 鏈上。策略為透過（`ACCEPT`）還是禁止（`DROP`）取決於配置`--icc=true`（缺省值）還是 `--icc=false`。當然，如果手動指定 `--iptables=false` 則不會新增 `iptables` 規則。
+當啟動 Docker 服務時候，默認會新增一條轉發策略到 iptables 的 FORWARD 鏈上。策略為透過（`ACCEPT`）還是禁止（`DROP`）取決於設定`--icc=true`（缺省值）還是 `--icc=false`。當然，如果手動指定 `--iptables=false` 則不會新增 `iptables` 規則。
 
-可見，默認情況下，不同容器之間是允許網路互通的。如果為了安全考慮，可以在 `/etc/default/docker` 文件中配置 `DOCKER_OPTS=--icc=false` 來禁止它。
+可見，默認情況下，不同容器之間是允許網路互通的。如果為了安全考慮，可以在 `/etc/default/docker` 文件中設定 `DOCKER_OPTS=--icc=false` 來禁止它。
 
 #### 訪問指定端口
 在透過 `-icc=false` 關閉網路訪問後，還可以透過 `--link=CONTAINER_NAME:ALIAS` 選項來訪問容器的開放端口。

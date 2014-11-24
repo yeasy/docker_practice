@@ -1,6 +1,6 @@
 ##建立鏡像
 
-建立鏡像有很多方法，使用者可以從 Docker Hub 獲取已有鏡像並更新，也可以利用本地文件系統建立一個。
+建立鏡像有很多方法，使用者可以從 Docker Hub 取得已有鏡像並更新，也可以利用本地文件系統建立一個。
 
 ### 修改已有鏡像
 先使用下載的鏡像啟動容器。
@@ -19,7 +19,7 @@ root@0b2616b0e5a8:/# gem install json
 $ sudo docker commit -m "Added json gem" -a "Docker Newbee" 0b2616b0e5a8 ouruser/sinatra:v2
 4f177bd27a9ff0f6dc2a830403925b5360bfe0b93d476f7fc3231110e7f71b1c
 ```
-其中，`-m` 來指定提交的說明信息，跟我們使用的版本控制工具一樣；`-a` 可以指定更新的使用者信息；之後是用來建立鏡像的容器的 ID；最後指定目標鏡像的倉庫名和 tag 信息。建立成功後會返回這個鏡像的 ID 信息。
+其中，`-m` 來指定提交的說明訊息，跟我們使用的版本控制工具一樣；`-a` 可以指定更新的使用者訊息；之後是用來建立鏡像的容器的 ID；最後指定目標鏡像的倉庫名和 tag 訊息。建立成功後會返回這個鏡像的 ID 訊息。
 
 
 使用 `docker images` 來查看新建立的鏡像。
@@ -55,10 +55,10 @@ RUN apt-get -qqy install ruby ruby-dev
 RUN gem install sinatra
 ```
 Dockerfile 基本的語法是
-* 使用`#`來註釋
+* 使用`#`來註解
 * `FROM` 指令告訴 Docker 使用哪個鏡像作為基礎
-* 接著是維護者的信息
-* `RUN`開頭的指令會在建立中執行，比如安裝一個軟件包，在這裏使用 apt-get 來安裝了一些軟件
+* 接著是維護者的訊息
+* `RUN`開頭的指令會在建立中執行，比如安裝一個軟件包，在這裡使用 apt-get 來安裝了一些軟件
 
 編寫完成 Dockerfile 後可以使用 `docker build` 來生成鏡像。
 
@@ -96,15 +96,15 @@ Successfully installed sinatra-1.4.5
 Removing intermediate container 5e9d0065c1f7
 Successfully built 324104cde6ad
 ```
-其中 `-t` 標記來新增 tag，指定新的鏡像的使用者信息。
+其中 `-t` 標記來新增 tag，指定新的鏡像的使用者訊息。
 “.” 是 Dockerfile 所在的路徑（當前目錄），也可以替換為一個具體的 Dockerfile 的路徑。
 
-可以看到 build 程序在執行操作。它要做的第一件事情就是上傳這個 Dockerfile 內容，因為所有的操作都要依據 Dockerfile 來進行。
+可以看到 build 程式在執行操作。它要做的第一件事情就是上傳這個 Dockerfile 內容，因為所有的操作都要依據 Dockerfile 來進行。
 然後，Dockfile 中的指令被一條一條的執行。每一步都建立了一個新的容器，在容器中執行指令並提交修改（就跟之前介紹過的 `docker commit` 一樣）。當所有的指令都執行完畢之後，返回了最終的鏡像 id。所有的中間步驟所產生的容器都被刪除和清理了。
 
 *註意一個鏡像不能超過 127 層
 
-此外，還可以利用 `ADD` 命令復制本地文件到鏡像；用 `EXPOSE` 命令來向外部開放端口；用 `CMD` 命令來描述容器啟動後執行的程序等。例如
+此外，還可以利用 `ADD` 命令復制本地文件到鏡像；用 `EXPOSE` 命令來向外部開放端口；用 `CMD` 命令來描述容器啟動後執行的程式等。例如
 ```
 # put my local web site in myApp folder to /var/www
 ADD myApp /var/www

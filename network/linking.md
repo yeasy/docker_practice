@@ -1,7 +1,7 @@
 ## 容器互聯
 容器的連接（linking）系統是除了端口映射外，另一種跟容器中應用交互的方式。
 
-該系統會在源和接收容器之間建立一個隧道，接收容器可以看到源容器指定的信息。
+該系統會在源和接收容器之間建立一個隧道，接收容器可以看到源容器指定的訊息。
 
 ### 自定義容器命名
 連接系統依據容器的名稱來執行。因此，首先需要自定義一個好記的容器命名。
@@ -56,11 +56,11 @@ CONTAINER ID  IMAGE                     COMMAND               CREATED           
 349169744e49  training/postgres:latest  su postgres -c '/usr  About a minute ago  Up About a minute  5432/tcp                 db, web/db
 aed84ee21bde  training/webapp:latest    python app.py         16 hours ago        Up 2 minutes       0.0.0.0:49154->5000/tcp  web
 ```
-可以看到自定義命名的容器，db 和 web，db 容器的 names 列有 db 也有 web/db。這表示 web 容器鏈接到 db 容器，web 容器將被允許訪問 db 容器的信息。
+可以看到自定義命名的容器，db 和 web，db 容器的 names 列有 db 也有 web/db。這表示 web 容器鏈接到 db 容器，web 容器將被允許訪問 db 容器的訊息。
 
 Docker 在兩個互聯的容器之間建立了一個安全隧道，而且不用映射它們的端口到宿主主機上。在啟動 db 容器的時候並沒有使用 `-p` 和 `-P` 標記，從而避免了暴露數據庫端口到外部網路上。
 
-Docker 透過 2 種方式為容器公開連接信息：
+Docker 透過 2 種方式為容器公開連接訊息：
 * 環境變量
 * 更新 `/etc/hosts` 文件
 
@@ -78,7 +78,7 @@ DB_PORT_5000_TCP_ADDR=172.17.0.5
 ```
 其中 DB_ 開頭的環境變量是供 web 容器連接 db 容器使用，前綴采用大寫的連接別名。
 
-除了環境變量，Docker 還新增 host 信息到父容器的 `/etc/hosts` 的文件。下面是父容器 web 的 hosts 文件
+除了環境變量，Docker 還新增 host 訊息到父容器的 `/etc/hosts` 的文件。下面是父容器 web 的 hosts 文件
 ```
 $ sudo docker run -t -i --rm --link db:db training/webapp /bin/bash
 root@aed84ee21bde:/opt/webapp# cat /etc/hosts
@@ -86,7 +86,7 @@ root@aed84ee21bde:/opt/webapp# cat /etc/hosts
 . . .
 172.17.0.5  db
 ```
-這裏有 2 個 hosts，第一個是 web 容器，web 容器用 id 作為他的主機名，第二個是 db 容器的 ip 和主機名。
+這裡有 2 個 hosts，第一個是 web 容器，web 容器用 id 作為他的主機名，第二個是 db 容器的 ip 和主機名。
 可以在 web 容器中安裝 ping 命令來測試跟db容器的連通。
 ```
 root@aed84ee21bde:/opt/webapp# apt-get install -yqq inetutils-ping

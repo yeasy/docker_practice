@@ -3,7 +3,7 @@
 
 使用者有時候需要兩個容器之間可以直連通信，而不用透過主機網橋進行橋接。
 
-解決辦法很簡單：建立一對 `peer` 接口，分別放到兩個容器中，配置成點到點鏈路類型即可。
+解決辦法很簡單：建立一對 `peer` 接口，分別放到兩個容器中，設定成點到點鏈路類型即可。
 
 首先啟動 2 個容器：
 ```
@@ -13,7 +13,7 @@ $ sudo docker run -i -t --rm --net=none base /bin/bash
 root@12e343489d2f:/#
 ```
 
-找到程序號，然後建立網路名字空間的跟蹤文件。
+找到程式號，然後建立網路名字空間的跟蹤文件。
 ```
 $ sudo docker inspect -f '{{.State.Pid}}' 1f1f4c1f931a
 2989
@@ -24,7 +24,7 @@ $ sudo ln -s /proc/2989/ns/net /var/run/netns/2989
 $ sudo ln -s /proc/3004/ns/net /var/run/netns/3004
 ```
 
-建立一對 `peer` 接口，然後配置路由
+建立一對 `peer` 接口，然後設定路由
 ```
 $ sudo ip link add A type veth peer name B
 

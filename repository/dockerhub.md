@@ -40,15 +40,15 @@ Pulling repository centos
 使用者也可以在登錄後透過 `docker push` 命令來將映像檔推送到 Docker Hub。
 
 ### 自動建立
-自動建立（Automated Builds）功能對於需要經常升級映像檔內程序來說，十分方便。
+自動建立（Automated Builds）功能對於需要經常升級映像檔內程式來說，十分方便。
 有時候，使用者建立了映像檔，安裝了某個軟體，如果軟體發布新版本則需要手動更新映像檔。。
 
 而自動建立允許使用者透過 Docker Hub 指定跟蹤一個目標網站（目前支持 [GitHub](github.org) 或 [BitBucket](bitbucket.org)）上的項目，一旦項目發生新的提交，則自動執行建立。
 
-要配置自動建立，包括如下的步驟：
+要設定自動建立，包括以下的步驟：
 * 建立並登陸 Docker Hub，以及目標網站；
 * 在目標網站中連接帳戶到 Docker Hub；
-* 在 Docker Hub 中 [配置一個自動建立](https://registry.hub.docker.com/builds/add/)；
+* 在 Docker Hub 中 [設定一個自動建立](https://registry.hub.docker.com/builds/add/)；
 * 選取一個目標網站中的項目（需要含 Dockerfile）和分支；
 * 指定 Dockerfile 的位置，並提交建立。
 

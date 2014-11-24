@@ -7,7 +7,7 @@
 第一條指令必須為 `FROM` 指令。並且，如果在同一個Dockerfile中建立多個映像檔時，可以使用多個 `FROM` 指令（每個映像檔一次）。
 
 ### MAINTAINER
-格式為 `MAINTAINER <name>`，指定維護者信息。
+格式為 `MAINTAINER <name>`，指定維護者訊息。
 
 ### RUN
 格式為 `RUN <command>` 或 `RUN ["executable", "param1", "param2"]`。
@@ -76,7 +76,7 @@ ENV PATH /usr/local/postgres-$PG_MAJOR/bin:$PATH
 
 指定運行容器時的使用者名稱或 UID，後續的 `RUN` 也會使用指定使用者。
 
-當服務不需要管理員權限時，可以透過該命令指定運行使用者。並且可以在之前建立所需要的使用者，例如：`RUN groupadd -r postgres && useradd -r -g postgres postgres`。要臨時獲取管理員權限可以使用 `gosu`，而不推薦 `sudo`。
+當服務不需要管理員權限時，可以透過該命令指定運行使用者。並且可以在之前建立所需要的使用者，例如：`RUN groupadd -r postgres && useradd -r -g postgres postgres`。要臨時取得管理員權限可以使用 `gosu`，而不推薦 `sudo`。
 
 ### WORKDIR
 格式為 `WORKDIR /path/to/workdir`。
@@ -97,7 +97,7 @@ RUN pwd
 
 指定當建立的映像檔作為其它新建立映像檔的基底映像檔時，所執行的操作指令。
 
-例如，Dockerfile 使用如下的內容建立了映像檔 `image-A`。
+例如，Dockerfile 使用以下的內容建立了映像檔 `image-A`。
 ```
 [...]
 ONBUILD ADD . /app/src

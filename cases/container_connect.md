@@ -1,5 +1,5 @@
 ## 多臺物理主機之間的容器互聯（暴露容器到真實網路中）
-Docker 默認的橋接網卡是 docker0。它只會在本機橋接所有的容器網卡，舉例來說容器的虛擬網卡在主機上看一般叫做 veth***  而 Docker 只是把所有這些網卡橋接在一起，如下：
+Docker 默認的橋接網卡是 docker0。它只會在本機橋接所有的容器網卡，舉例來說容器的虛擬網卡在主機上看一般叫做 veth***  而 Docker 只是把所有這些網卡橋接在一起，以下：
 ```
 [root@opnvz ~]# brctl show
 bridge name     bridge id               STP enabled     interfaces

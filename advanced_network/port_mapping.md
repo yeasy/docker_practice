@@ -13,7 +13,7 @@ target     prot opt source               destination
 MASQUERADE  all  --  172.17.0.0/16       !172.17.0.0/16
 ...
 ```
-其中，上述規則將所有源地址在 `172.17.0.0/16` 網段，目標地址為其他網段（外部網路）的流量動態偽裝為從系統網卡發出。MASQUERADE 跟傳統 SNAT 的好處是它能動態從網卡獲取地址。
+其中，上述規則將所有源地址在 `172.17.0.0/16` 網段，目標地址為其他網段（外部網路）的流量動態偽裝為從系統網卡發出。MASQUERADE 跟傳統 SNAT 的好處是它能動態從網卡取得地址。
 
 ### 外部訪問容器實做
 
@@ -38,6 +38,6 @@ target     prot opt source               destination
 DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:80 to:172.17.0.2:80
 ```
 註意：
-* 這裏的規則映射了 0.0.0.0，意味著將接受主機來自所有接口的流量。使用者可以透過 `-p IP:host_port:container_port` 或 `-p
+* 這裡的規則映射了 0.0.0.0，意味著將接受主機來自所有接口的流量。使用者可以透過 `-p IP:host_port:container_port` 或 `-p
 IP::port` 來指定允許訪問容器的主機上的 IP、接口等，以制定更嚴格的規則。
-* 如果希望永久綁定到某個固定的 IP 地址，可以在 Docker 配置文件 `/etc/default/docker` 中指定 `DOCKER_OPTS="--ip=IP_ADDRESS"`，之後重啟 Docker 服務即可生效。
+* 如果希望永久綁定到某個固定的 IP 地址，可以在 Docker 設定文件 `/etc/default/docker` 中指定 `DOCKER_OPTS="--ip=IP_ADDRESS"`，之後重啟 Docker 服務即可生效。

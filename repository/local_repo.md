@@ -4,15 +4,15 @@
 
 本節介紹如何使用本地倉庫。
 
-`docker-registry` 是官方提供的工具，可以用於構建私有的映像檔倉庫。
+`docker-registry` 是官方提供的工具，可以用於建立私有的映像檔倉庫。
 ### 安裝執行 docker-registry
 #### 容器執行
-在安裝了 Docker 後，可以透過獲取官方 registry 映像檔來執行。
+在安裝了 Docker 後，可以透過取得官方 registry 映像檔來執行。
 ```
 $ sudo docker run -d -p 5000:5000 registry
 ```
 這將使用官方的 registry 映像檔來啟動本地的私有倉庫。
-使用者可以透過指定參數來配置私有倉庫位置，例如配置映像檔存儲到 Amazon S3 服務。
+使用者可以透過指定參數來設定私有倉庫位置，例如設定映像檔存儲到 Amazon S3 服務。
 ```
 $ sudo docker run \
          -e SETTINGS_FLAVOR=s3 \
@@ -24,12 +24,12 @@ $ sudo docker run \
          -p 5000:5000 \
          registry
 ````
-此外，還可以指定本地路徑（如 `/home/user/registry-conf` ）下的配置文件。
+此外，還可以指定本地路徑（如 `/home/user/registry-conf` ）下的設定文件。
 ```
 $ sudo docker run -d -p 5000:5000 -v /home/user/registry-conf:/registry-conf -e DOCKER_REGISTRY_CONFIG=/registry-conf/config.yml registry
 ```
 預設情況下，倉庫會被建立在容器的 `/tmp/registry` 下。可以透過 `-v` 參數來將映像檔文件存放在本地的指定路徑。
-例如下面的例子將上傳的映像檔放到 `/opt/data/registry` 目錄。
+例以下面的例子將上傳的映像檔放到 `/opt/data/registry` 目錄。
 ```
 $ sudo docker run -d -p 5000:5000 -v /opt/data/registry:/tmp/registry registry
 ```
@@ -54,7 +54,7 @@ $ git clone https://github.com/docker/docker-registry.git
 $ cd docker-registry
 $ sudo python setup.py install
 ```
-然後修改配置文件，主要修改 dev 模板段的 `storage_path` 到本地的儲存倉庫的路徑。
+然後修改設定文件，主要修改 dev 模板段的 `storage_path` 到本地的儲存倉庫的路徑。
 ```
 $ cp config/config_sample.yml config/config.yml
 ```
@@ -68,7 +68,7 @@ $ sudo gunicorn --access-logfile - --error-logfile - -k gevent -b 0.0.0.0:5000 -
 ```
 此時使用連結本地的 5000 端口，看到輸出 docker-registry 的版本訊息說明執行成功。
 
-*註：`config/config_sample.yml` 文件是範例配置文件。
+*註：`config/config_sample.yml` 文件是範例設定文件。
 
 ###在私有倉庫上傳、下載、搜索映像檔
 建立好私有倉庫之後，就可以使用 `docker tag` 來標記一個映像檔，然後推送它到倉庫，別的機器上就可以下載下來了。例如私有倉庫地址為 `192.168.7.26:5000`。
@@ -109,7 +109,7 @@ Pushing tag for rev [ba5877dc9bec] on {http://192.168.7.26:5000/v1/repositories/
 $ curl http://192.168.7.26:5000/v1/search
 {"num_results": 7, "query": "", "results": [{"description": "", "name": "library/miaxis_j2ee"}, {"description": "", "name": "library/tomcat"}, {"description": "", "name": "library/ubuntu"}, {"description": "", "name": "library/ubuntu_office"}, {"description": "", "name": "library/desktop_ubu"}, {"description": "", "name": "dockerfile/ubuntu"}, {"description": "", "name": "library/test"}]}
 ```
-這裏可以看到 `{"description": "", "name": "library/test"}`，表明映像檔已經被成功上傳了。
+這裡可以看到 `{"description": "", "name": "library/test"}`，表明映像檔已經被成功上傳了。
 
 現在可以到另外一臺機器去下載這個映像檔。
 ```
