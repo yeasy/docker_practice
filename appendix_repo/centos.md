@@ -1,11 +1,11 @@
 ## [CentOS](https://registry.hub.docker.com/_/centos/)
 
-### 基本信息
-[CentOS](https://en.wikipedia.org/wiki/CentOS) 是流行的 Linux 发行版，其软件包大多跟 RedHat 系列保持一致。
-该仓库提供了 CentOS 从 5 ~ 7 各个版本的镜像。
+### 基本訊息
+[CentOS](https://en.wikipedia.org/wiki/CentOS) 是流行的 Linux 發行版，其軟件包大多跟 RedHat 系列保持一致。
+該倉庫提供了 CentOS 從 5 ~ 7 各個版本的鏡像。
 
 ### 使用方法
-默认会启动一个最小化的 CentOS 环境。
+默認會啟動一個最小化的 CentOS 環境。
 ```
 $ sudo docker run --name some-centos -i -t centos bash
 bash-4.2#

@@ -1,7 +1,7 @@
-## 基本结构
-Dockerfile 由一行行命令语句组成，并且支持以 `#` 开头的注释行。
+## 基本結構
+Dockerfile 由一行行命令語句組成，並且支援以 `#` 開頭的註解行。
 
-一般的，Dockerfile 分为四部分：基础镜像信息、维护者信息、镜像操作指令和容器启动时执行指令。
+一般而言，Dockerfile 分為四部分：基底映像檔資訊、維護者資訊、映像檔操作指令和容器啟動時執行指令。
 
 例如
 ```
@@ -10,28 +10,28 @@ Dockerfile 由一行行命令语句组成，并且支持以 `#` 开头的注释�
 # Author: docker_user
 # Command format: Instruction [arguments / command] ..
 
-# Base image to use, this must be set as the first line
+# 基本映像檔，必須是第一個指令
 FROM ubuntu
 
-# Maintainer: docker_user <docker_user at email.com> (@docker_user)
+# 維護者： docker_user <docker_user at email.com> (@docker_user)
 MAINTAINER docker_user docker_user@email.com
 
-# Commands to update the image
+# 更新映像檔的指令
 RUN echo "deb http://archive.ubuntu.com/ubuntu/ raring main universe" >> /etc/apt/sources.list
 RUN apt-get update && apt-get install -y nginx
 RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
 
-# Commands when creating a new container
+# 建立新容器時要執行的指令
 CMD /usr/sbin/nginx
 ```
 
-其中，一开始必须指明所基于的镜像名称，接下来推荐说明维护者信息。
+其中，一開始必須指明作為基底的映像檔名稱，接下來說明維護者資訊（建議）。
 
-后面则是镜像操作指令，例如 `RUN` 指令，`RUN` 指令将对镜像执行跟随的命令。每运行一条 `RUN` 指令，镜像添加新的一层，并提交。
+接著則是映像檔操作指令，例如 `RUN` 指令，`RUN` 指令將對映像檔執行相對應的命令。每運行一條 `RUN` 指令，映像檔就會新增一層。
 
-最后是 `CMD` 指令，来指定运行容器时的操作命令。
+最後是 `CMD` 指令，指定執行容器時的操作命令。
 
-下面是一个更复杂的例子
+下面來看一個更複雜的例子
 ```
 # Nginx
 #
