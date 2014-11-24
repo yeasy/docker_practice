@@ -1,5 +1,5 @@
 ## 外部訪問容器
-容器中可以執行一些網路應用，要讓外部也可以訪問這些應用，可以通過 `-P` 或 `-p` 參數來指定端口映射。
+容器中可以執行一些網路應用，要讓外部也可以訪問這些應用，可以透過 `-P` 或 `-p` 參數來指定端口映射。
 
 當使用 -P 標記時，Docker 會隨機映射一個 `49000~49900` 的端口到內部容器開放的網路端口。
 
@@ -10,7 +10,7 @@ $ sudo docker ps -l
 CONTAINER ID  IMAGE                   COMMAND       CREATED        STATUS        PORTS                    NAMES
 bc533791f3f5  training/webapp:latest  python app.py 5 seconds ago  Up 2 seconds  0.0.0.0:49155->5000/tcp  nostalgic_morse
 ```
-同樣的，可以通過 `docker logs` 命令來查看應用的信息。
+同樣的，可以透過 `docker logs` 命令來查看應用的訊息。
 ```
 $ sudo docker logs -f nostalgic_morse
 * Running on http://0.0.0.0:5000/
@@ -41,14 +41,14 @@ $ sudo docker run -d -p 127.0.0.1::5000 training/webapp python app.py
 ```
 $ sudo docker run -d -p 127.0.0.1:5000:5000/udp training/webapp python app.py
 ```
-### 查看映射端口配置
-使用 `docker port` 來查看當前映射的端口配置，也可以查看到綁定的地址
+### 查看映射端口設定
+使用 `docker port` 來查看當前映射的端口設定，也可以查看到綁定的地址
 ```
 $ docker port nostalgic_morse 5000
 127.0.0.1:49155.
 ```
 註意：
-* 容器有自己的內部網路和 ip 地址（使用 `docker inspect` 可以獲取所有的變量，Docker 還可以有一個可變的網路配置。）
+* 容器有自己的內部網路和 ip 地址（使用 `docker inspect` 可以取得所有的變量，Docker 還可以有一個可變的網路設定。）
 * -p 標記可以多次使用來綁定多個端口
 
 例如

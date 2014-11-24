@@ -1,7 +1,7 @@
 ## [MySQL](https://registry.hub.docker.com/_/mysql/)
 
-### 基本信息
-[MySQL](https://en.wikipedia.org/wiki/MySQL) 是開源的關系數據庫實現。
+### 基本訊息
+[MySQL](https://en.wikipedia.org/wiki/MySQL) 是開源的關系數據庫實做。
 該倉庫提供了 MySQL 各個版本的鏡像，包括 5.6 系列、5.7 系列等。
 
 ### 使用方法
@@ -13,7 +13,7 @@ $ sudo docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=mysecretpassword -d m
 ```
 $ sudo docker run --name some-app --link some-mysql:mysql -d application-that-uses-mysql
 ```
-或者通過 `mysql`。
+或者透過 `mysql`。
 ```
 $ sudo docker run -it --link some-mysql:mysql --rm mysql sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD"'
 ```

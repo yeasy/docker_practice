@@ -1,7 +1,7 @@
 ## [MongoDB](https://registry.hub.docker.com/_/mongo/)
 
-### 基本信息
-[MongoDB](https://en.wikipedia.org/wiki/MongoDB) 是開源的 NoSQL 數據庫實現。
+### 基本訊息
+[MongoDB](https://en.wikipedia.org/wiki/MongoDB) 是開源的 NoSQL 數據庫實做。
 該倉庫提供了 MongoDB 2.2 ~ 2.7 各個版本的鏡像。
 
 ### 使用方法
@@ -14,7 +14,7 @@ $ sudo docker run --name some-mongo -d mongo
 ```
 $ sudo docker run --name some-app --link some-mongo:mongo -d application-that-uses-mongo
 ```
-或者通過 `mongo`
+或者透過 `mongo`
 ```
 $ sudo docker run -it --link some-mongo:mongo --rm mongo sh -c 'exec mongo "$MONGO_PORT_27017_TCP_ADDR:$MONGO_PORT_27017_TCP_PORT/test"'
 ```

@@ -19,4 +19,4 @@ $ sudo docker load --input ubuntu_14.04.tar
 ```
 $ sudo docker load < ubuntu_14.04.tar
 ```
-這將導入鏡像以及其相關的元數據信息（包括標簽等）。
+這將導入鏡像以及其相關的元數據訊息（包括標簽等）。

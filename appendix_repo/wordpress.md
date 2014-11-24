@@ -1,6 +1,6 @@
 ## [WordPress](https://registry.hub.docker.com/_/wordpress/)
 
-### 基本信息
+### 基本訊息
 [WordPress](https://en.wikipedia.org/wiki/WordPress) 是開源的 Blog 和內容管理系統框架，它基於 PhP 和 MySQL。
 該倉庫提供了 WordPress 4.0 版本的鏡像。
 

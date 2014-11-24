@@ -1,7 +1,7 @@
 ## [Redis](https://registry.hub.docker.com/_/redis/)
 
-### 基本信息
-[Redis](https://en.wikipedia.org/wiki/Redis) 是開源的內存 Key-Value 數據庫實現。
+### 基本訊息
+[Redis](https://en.wikipedia.org/wiki/Redis) 是開源的內存 Key-Value 數據庫實做。
 該倉庫提供了 Redis 2.6 ~ 2.8.9 各個版本的鏡像。
 
 ### 使用方法
@@ -19,7 +19,7 @@ $ sudo docker run --name some-redis -d redis redis-server --appendonly yes
 ```
 $ sudo docker run --name some-app --link some-redis:redis -d application-that-uses-redis
 ```
-或者通過 `redis-cli`
+或者透過 `redis-cli`
 ```
 $ sudo docker run -it --link some-redis:redis --rm redis sh -c 'exec redis-cli -h "$REDIS_PORT_6379_TCP_ADDR" -p "$REDIS_PORT_6379_TCP_PORT"'
 ```
