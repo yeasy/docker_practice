@@ -7,4 +7,4 @@ Docker daemon 作為服務端接受來自客戶的請求，並處理這些請求
 
 
 Docker daemon 一般在宿主主機後臺執行，等待接收來自客戶端的消息。
-Docker 客戶端則為使用者提供一系列可執行命令，使用者用這些命令實做跟 Docker daemon 交互。
+Docker 客戶端則為使用者提供一系列可執行命令，使用者用這些命令實作跟 Docker daemon 交互。

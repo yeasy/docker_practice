@@ -5,12 +5,12 @@ v0.2.9
 
 [Docker](docker.com) 是個偉大的項目，它徹底釋放了虛擬化的，讓應用程式的分派、部署和管理都變得前所未有的有效率和輕鬆！
 
-本書既適用於具備基礎 Linux 知識的 Docker 初學者，也可供希望理解原理和實做的進階使用者參考。同時，書中給出的實踐案例，可供在進行實際部署時借鑒。
+本書既適用於具備基礎 Linux 知識的 Docker 初學者，也可供希望理解原理和實作的進階使用者參考。同時，書中給出的實踐案例，可供在進行實際部署時借鑒。
 
 本書源於 [WaitFish](github.com/qcpm1983) 的《[Docker 學習手冊 v1.0](https://github.com/yeasy/docker_practice/raw/master/_local/docker_manual_waitfish.pdf)》內容。後來，[yeasy](github.com/yeasy)
 根據最新 Docker 版本對內容進行了修訂和重寫，並增加內容；經協商將所有內容開源，採用網路合作的方式進行維護。
 
-前六章為基礎內容，供使用者理解 Docker 的基本概念和操作；7 ~ 9 章介紹一些進階操作；第 10 章給出典型的應用場景和實踐案例；11 ~ 13 章介紹關於 Docker 實做的相關技術。
+前六章為基礎內容，供使用者理解 Docker 的基本概念和操作；7 ~ 9 章介紹一些進階操作；第 10 章給出典型的應用場景和實踐案例；11 ~ 13 章介紹關於 Docker 實作的相關技術。
 
 最新版本線上閱讀：[正體版](https://www.gitbook.io/book/philipzheng/docker_practice)、[簡體版](https://www.gitbook.io/book/yeasy/docker_practice) 或 [DockerPool](http://dockerpool.com/static/books/docker_practice/index.html)。
 
@@ -25,13 +25,13 @@ v0.2.9
 * 0.3: 2014-10-TODO
     * 完成倉庫章節；
     * 重寫安全章節；
-    * 修正底層實做章節的架構、名字空間、控制組、檔案系統、容器格式等內容；
+    * 修正底層實作章節的架構、名字空間、控制組、檔案系統、容器格式等內容；
     * 新增對常見倉庫和鏡像的介紹；
     * 新增 Dockerfile 的介紹；
     * 重新校訂中英文混排格式。
 * 0.2: 2014-09-18
     * 對照官方文檔重寫介紹、基本概念、安裝、鏡像、容器、倉庫、資料管理、網路等章節；
-    * 新增底層實做章節；
+    * 新增底層實作章節；
     * 新增命令查詢和資源連結章節；
     * 其它修正。
 * 0.1: 2014-09-05
