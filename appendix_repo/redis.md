@@ -1,7 +1,7 @@
 ## [Redis](https://registry.hub.docker.com/_/redis/)
 
 ### 基本訊息
-[Redis](https://en.wikipedia.org/wiki/Redis) 是開源的內存 Key-Value 數據庫實做。
+[Redis](https://en.wikipedia.org/wiki/Redis) 是開源的內存 Key-Value 數據庫實作。
 該倉庫提供了 Redis 2.6 ~ 2.8.9 各個版本的鏡像。
 
 ### 使用方法

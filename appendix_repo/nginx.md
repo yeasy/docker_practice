@@ -1,7 +1,7 @@
 ## [Nginx](https://registry.hub.docker.com/_/nginx/)
 
 ### 基本訊息
-[Nginx](https://en.wikipedia.org/wiki/Nginx) 是開源的有效率的 Web 伺服器實做，支持 HTTP、HTTPS、SMTP、POP3、IMAP 等協議。
+[Nginx](https://en.wikipedia.org/wiki/Nginx) 是開源的有效率的 Web 伺服器實作，支持 HTTP、HTTPS、SMTP、POP3、IMAP 等協議。
 該倉庫提供了 Nginx 1.0 ~ 1.7 各個版本的鏡像。
 
 ### 使用方法
