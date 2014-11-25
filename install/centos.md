@@ -1,21 +1,21 @@
-## CentOS 系列安装 Docker
+## CentOS 系列安裝 Docker
 
-Docker 支持 CentOS6 及以后的版本。
+Docker 支持 CentOS6 及以後的版本。
 
 ### CentOS6
-对于 CentOS6，可以使用 [EPEL](https://fedoraproject.org/wiki/EPEL) 库安装 Docker，命令如下
+對於 CentOS6，可以使用 [EPEL](https://fedoraproject.org/wiki/EPEL) 套件庫安裝 Docker，命令以下
 ```
 $ sudo yum install http://mirrors.yun-idc.com/epel/6/i386/epel-release-6-8.noarch.rpm
 $ sudo yum install docker-io
 ```
 
 ### CentOS7
-CentOS7 系统 `CentOS-Extras` 库中已带 Docker，可以直接安装：
+CentOS7 系統 `CentOS-Extras` 庫中已內建 Docker，可以直接安裝：
 ```
 $ sudo yum install docker
 ```
 
-安装之后启动 Docker 服务，并让它随系统启动自动加载。
+安裝之後啟動 Docker 服務，並讓它隨系統啟動自動載入。
 ```
 $ sudo service docker start
 $ sudo chkconfig docker on

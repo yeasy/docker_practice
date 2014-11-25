@@ -1,8 +1,8 @@
-## 获取镜像
+## 取得映像檔
 
-可以使用 `docker pull` 命令来从仓库获取所需要的镜像。
+可以使用 `docker pull` 命令來從倉庫取得所需要的映像檔。
 
-下面的例子将从 Docker Hub 仓库下载一个 Ubuntu 12.04 操作系统的镜像。
+下面的例子將從 Docker Hub 倉庫下載一個 Ubuntu 12.04 作業系統的映像檔。
 ```
 $ sudo docker pull ubuntu:12.04
 Pulling repository ubuntu
@@ -14,12 +14,12 @@ a300658979be: Download complete
 ffdaafd1ca50: Download complete
 d047ae21eeaf: Download complete
 ```
-下载过程中，会输出获取镜像的每一层信息。
+下載過程中，會輸出取得鏡像的每一層訊息。
 
-该命令实际上相当于 `$ sudo docker pull registry.hub.docker.com/ubuntu:12.04` 命令，即从注册服务器 `registry.hub.docker.com` 中的 `ubuntu` 仓库来下载标记为 `12.04` 的镜像。
+該命令實際上相當於 `$ sudo docker pull registry.hub.docker.com/ubuntu:12.04` 命令，即從註冊伺服器 `registry.hub.docker.com` 中的 `ubuntu` 倉庫來下載標記為 `12.04` 的映像檔。
 
-有时候官方仓库注册服务器下载较慢，可以从其他仓库下载。
-从其它仓库下载时需要指定完整的仓库注册服务器地址。例如
+有時候官方倉庫註冊伺服器下載較慢，可以從其他倉庫下載。
+從其它倉庫下載時需要指定完整的倉庫註冊伺服器地址。例如
 ```
 $ sudo docker pull dl.dockerpool.com:5000/ubuntu:12.04
 Pulling dl.dockerpool.com:5000/ubuntu
@@ -32,7 +32,7 @@ ffdaafd1ca50: Download complete
 d047ae21eeaf: Download complete
 ```
 
-完成后，即可随时使用该镜像了，例如创建一个容器，让其中运行 bash 应用。
+完成後，即可隨時使用該映像檔了，例如建立一個容器，讓其中執行 bash 應用。
 ```
 $ sudo docker run -t -i ubuntu:12.04 /bin/bash
 root@fe7fc4bd8fc9:/#

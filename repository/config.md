@@ -1,30 +1,30 @@
-## 仓库配置文件
-Docker 的 Registry 利用配置文件提供了一些仓库的模板（flavor），用户可以直接使用它们来进行开发或生产部署。
+## 倉庫設定文件
+Docker 的 Registry 利用設定文件提供了一些倉庫的模組（flavor），使用者可以直接使用它們來進行開發或生產部署。
 
-### 模板
-在 `config_sample.yml` 文件中，可以看到一些现成的模板段：
-* `common`：基础配置
-* `local`：存储数据到本地文件系统
-* `s3`：存储数据到 AWS S3 中
-* `dev`：使用 `local` 模板的基本配置
-* `test`：单元测试使用
-* `prod`：生产环境配置（基本上跟s3配置类似）
-* `gcs`：存储数据到 Google 的云存储
-* `swift`：存储数据到 OpenStack Swift 服务
-* `glance`：存储数据到 OpenStack Glance 服务，本地文件系统为后备
-* `glance-swift`：存储数据到 OpenStack Glance 服务，Swift 为后备
-* `elliptics`：存储数据到 Elliptics key/value 存储
+### 模組
+在 `config_sample.yml` 文件中，可以看到一些現成的模組段：
+* `common`：基礎設定
+* `local`：儲存數據到本地文件系統
+* `s3`：儲存數據到 AWS S3 中
+* `dev`：使用 `local` 模組的基本設定
+* `test`：單元測試使用
+* `prod`：生產環境設定（基本上跟s3設定類似）
+* `gcs`：儲存數據到 Google 的雲端
+* `swift`：儲存數據到 OpenStack Swift 服務
+* `glance`：儲存數據到 OpenStack Glance 服務，本地文件系統為後備
+* `glance-swift`：儲存數據到 OpenStack Glance 服務，Swift 為後備
+* `elliptics`：儲存數據到 Elliptics key/value 存儲
 
-用户也可以添加自定义的模版段。
+使用者也可以新增自定義的模版段。
 
-默认情况下使用的模板是 `dev`，要使用某个模板作为默认值，可以添加 `SETTINGS_FLAVOR` 到环境变量中，例如
+預設情況下使用的模組是 `dev`，要使用某個模組作為預設值，可以新增 `SETTINGS_FLAVOR` 到環境變數中，例如
 ```
 export SETTINGS_FLAVOR=dev
 ```
 
-另外，配置文件中支持从环境变量中加载值，语法格式为 `_env:VARIABLENAME[:DEFAULT]`。
+另外，設定文件中支持從環境變數中載入值，語法格式為 `_env:VARIABLENAME[:DEFAULT]`。
 
-### 示例配置
+### 範例設定
 ```
 common:
     loglevel: info
@@ -54,4 +54,4 @@ test:
     storage_path: /tmp/tmpdockertmp
 ```
 
-### 选项
+### 選項
