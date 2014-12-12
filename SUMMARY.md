@@ -79,5 +79,5 @@
    * [Nginx](appendix_repo/nginx.md)
    * [WordPress](appendix_repo/wordpress.md)
    * [Node.js](appendix_repo/nodejs.md)
-* [附录三：资源链接](appendix_resources/README.md)
+* [附录三：有用的资源](appendix_resources/README.md)
 
