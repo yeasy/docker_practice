@@ -68,7 +68,7 @@ Uploading context  2.56 kB
 Uploading context
 Step 0 : FROM ubuntu:14.04
  ---> 99ec81b80c55
-Step 1 : MAINTAINER Kate Smith <ksmith@example.com>
+Step 1 : MAINTAINER Newbee <newbee@docker.com>
  ---> Running in 7c5664a8a0c1
  ---> 2fa8ca4e2a13
 Removing intermediate container 7c5664a8a0c1
