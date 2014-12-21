@@ -5,3 +5,4 @@
 _book/
 *.swp
 *.edx
+.DS_Store
