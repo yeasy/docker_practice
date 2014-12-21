@@ -7,18 +7,15 @@ v0.3.0
 
 本书既适用于具备基础 Linux 知识的 Docker 初学者，也可供希望理解原理和实现的高级用户参考。同时，书中给出的实践案例，可供在进行实际部署时借鉴。
 
-本书源于 [WaitFish](github.com/qcpm1983) 的《[Docker 学习手册 v1.0](https://github.com/yeasy/docker_practice/raw/master/_local/docker_manual_waitfish.pdf)》内容。后来，[yeasy](github.com/yeasy)
-根据最新 Docker 版本对内容进行了修订和重写，并增加内容；经协商将所有内容开源，采用互联网合作的方式进行维护。
+本书前六章为基础内容，供用户理解 Docker 的基本概念和操作；7 ~ 9 章介绍一些高级操作；第 10 章给出典型的应用场景和实践案例；11 ~ 13 章介绍关于 Docker 实现的相关技术。
 
-前六章为基础内容，供用户理解 Docker 的基本概念和操作；7 ~ 9 章介绍一些高级操作；第 10 章给出典型的应用场景和实践案例；11 ~ 13 章介绍关于 Docker 实现的相关技术。
+最新版本在线阅读：[GitBook](https://www.gitbook.io/book/yeasy/docker_practice) 或 [DockerPool](http://dockerpool.com/static/books/docker_practice/index.html)。欢迎加入 DockerPool QQ 群（341410255），分享 Docker 资源，交流 Docker 技术。
 
-最新版本在线阅读：[GitBook](https://www.gitbook.io/book/yeasy/docker_practice) 或 [DockerPool](http://dockerpool.com/static/books/docker_practice/index.html)。
+![Docker 技术入门与实战](docker_primer.png)
 
-另外，欢迎加入 DockerPool QQ 群（341410255），分享 Docker 资源，交流 Docker 技术。
+《[Docker 技术入门与实战](http://item.jd.com/11598400.html)》一书已经正式出版，包含大量第一手实战案例，欢迎大家阅读使用。
 
-本书源码在 Github 上维护，欢迎参与： [https://github.com/yeasy/docker_practice](https://github.com/yeasy/docker_practice)。
-
-感谢所有的 [贡献者](https://github.com/yeasy/docker_practice/graphs/contributors)。
+[京东图书](http://item.jd.com/11598400.html)  [当当图书](http://product.dangdang.com/23620853.html)
 
 ## 主要版本历史
 * 0.3: 2014-11-25
@@ -39,6 +36,10 @@ v0.3.0
     * 添加基本内容;
     * 修正错别字和表达不通顺的地方。
 
+
+本书源码在 Github 上维护，欢迎参与：[https://github.com/yeasy/docker_practice](https://github.com/yeasy/docker_practice)。
+
+感谢所有的 [贡献者](https://github.com/yeasy/docker_practice/graphs/contributors)。
 
 ## 参加步骤
 * 在 GitHub 上 `fork` 到自己的仓库，如 `docker_user/docker_practice`，然后 `clone` 到本地，并设置用户信息。

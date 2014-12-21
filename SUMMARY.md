@@ -66,7 +66,7 @@
    * [基本架构](underly/arch.md)
    * [名字空间](underly/namespace.md)
    * [控制组](underly/cgroups.md)
-   * [Union 文件系统](underly/ufs.md)
+   * [联合文件系统](underly/ufs.md)
    * [容器格式](underly/container_format.md)
    * [网络](underly/network.md)
 * [附录一：命令查询](appendix_command/README.md)
