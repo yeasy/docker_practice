@@ -15,7 +15,7 @@ v0.3.0
 
 《[Docker 技术入门与实战](http://item.jd.com/11598400.html)》一书已经正式出版，包含大量第一手实战案例，欢迎大家阅读使用。
 
-[京东图书](http://item.jd.com/11598400.html)  [当当图书](http://product.dangdang.com/23620853.html)
+[京东图书](http://item.jd.com/11598400.html)  [当当图书](http://product.dangdang.com/23620853.html) [China-Pub](http://product.china-pub.com/3770833)
 
 ## 主要版本历史
 * 0.3: 2014-11-25
