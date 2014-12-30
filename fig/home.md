@@ -33,10 +33,10 @@ Fig 可用的命令有:
 * 启动、停止，和重建服务
 * 查看服务的运行状态
 * 查看运行中的服务的输入日志
-* 在服务器运行一次性命令
+* 对服务发送命令
 
 ##快速上手
-我们试着让一个基本的 Python web 应用运行在 Fig 上。这个实验假设你已经知道一些 Python 知识，如果你不熟悉，但清楚概念上的东西也是可以的。
+我们试着让一个基本的 Python web 应用运行在 Fig 上。这个实验假设你已经知道一些 Python 知识，如果你不熟悉，但清楚概念上的东西也是没有问题的。
 
 首先，[安装 Docker 和 Fig](install.md)  
 
@@ -69,7 +69,7 @@ if __name__ == "__main__":
 flask
 redis
 ```
-下一步我们要创建一个包含应用所有依赖的 Doker 镜像，这里将阐述怎么通过 `Dockerfile` 文件来创建。
+下一步我们要创建一个包含应用所有依赖的 Docker 镜像，这里将阐述怎么通过 `Dockerfile` 文件来创建。
 
 ```
 FROM python:2.7
@@ -94,10 +94,11 @@ web:
 redis:
   image: redis
   ```
-它指定了两个服务：  
+这里指定了两个服务：  
 
-* web 服务，通过当前目录的 `Dockerfile` 创建。并且说明了在容器里面执行`python app.py ` 命令 ，转发在容器里开发的 5000 端口到本地主机的 5000 端口，连接 Redis 服务，并且挂载当前目录到容器里面，这样我们就可以不重建镜像也能直接使用代码。
-* redis 服务，我们使用公用镜像 [redis](https://registry.hub.docker.com/_/redis/)。
+* web 服务，通过当前目录的 `Dockerfile` 创建。并且说明了在容器里面执行`python app.py ` 命令 ，转发在容器里开放的 5000 端口到本地主机的 5000 端口，连接 Redis 服务，并且挂载当前目录到容器里面，这样我们就可以不用重建镜像也能直接使用代码。
+* redis 服务，我们使用公用镜像 [redis](https://registry.hub.docker.com/_/redis/)。  
+* 
 现在如果执行 `fig up` 命令 ，它就会拉取 redis 镜像，启动所有的服务。
 
 ```
@@ -111,7 +112,7 @@ web_1   |  * Running on http://0.0.0.0:5000/
 ```
 这个 web 应用已经开始在你的 docker 守护进程里面监听着 5000 端口了（如果你有使用 boot2docker ，执行 `boot2docker ip` ，就会看到它的地址）。
 
-如果你想要在后台运行你的服务，可以在执行 `fig up` 命令的时候添加 `-d` 参数，并且使用 `fig ps` 查看有什么在运行。
+如果你想要在后台运行你的服务，可以在执行 `fig up` 命令的时候添加 `-d` 参数，然后使用 `fig ps` 查看有什么进程在运行。
 
 ```
 $ fig up -d
@@ -124,7 +125,7 @@ figtest_redis_1   /usr/local/bin/run         Up
 figtest_web_1     /bin/sh -c python app.py   Up      5000->5000/tcp
 ```
 
-`fig run` 指令允许你 为你的服务执行一次性命令。例如：查看 web 服务可以获取到的环境变量:
+`fig run` 指令可以帮为你的服务发送命令。例如：查看 web 服务可以获取到的环境变量:
 
 ```
 $ fig run web env
@@ -136,5 +137,5 @@ $ fig run web env
 ```
 $ fig stop
 ```
-以上内容或或少得讲述了如何 Fig 。通过查看下面的引用章节可以了解到关于命令、配置和环境变量的更多细节。如果你任何想法或建议，[可以在 GitHub 上提出](https://github.com/docker/fig)。
+以上内容或多或少得讲述了如何 Fig 。通过查看下面的引用章节可以了解到关于命令、配置和环境变量的更多细节。如果你任何想法或建议，[可以在 GitHub 上提出](https://github.com/docker/fig)。
 
