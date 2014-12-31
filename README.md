@@ -7,7 +7,7 @@ v0.3.0
 
 本书既适用于具备基础 Linux 知识的 Docker 初学者，也希望可供理解原理和实现的高级用户参考。同时，书中给出的实践案例，可供在进行实际部署时借鉴。
 
-本书前六章为基础内容，供用户理解 Docker 的基本概念和操作；7 ~ 9 章介绍一些高级操作；第 10 章给出典型的应用场景和实践案例；11 ~ 13 章介绍关于 Docker 实现的相关技术。
+本书前六章为基础内容，供用户理解 Docker 的基本概念和操作；7 ~ 9 章介绍一些高级操作；第 10 章给出典型的应用场景和实践案例；11 ~ 13 章介绍关于 Docker 实现的相关技术。14 ~ 章介绍相关的一些开源项目。
 
 最新版本在线阅读：[GitBook](https://www.gitbook.io/book/yeasy/docker_practice) 或 [DockerPool](http://dockerpool.com/static/books/docker_practice/index.html)。欢迎关注 DockerPool 社区微博 [@dockerpool](http://weibo.com/u/5345404432)，或加入 DockerPool QQ 群（341410255），分享 Docker 资源，交流 Docker 技术。
 
@@ -22,7 +22,7 @@ v0.3.0
 
 ## 主要版本历史
 * 0.4: 2015-01-TBD
-    * 进行中……
+    * 添加 Etcd 项目
 * 0.3: 2014-11-25
     * 完成仓库章节；
     * 重写安全章节；
