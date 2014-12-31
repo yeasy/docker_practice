@@ -28,7 +28,7 @@ etcd  etcdctl  etcd-migrate  README-etcdctl.md  README.md
 $ sudo cp etcd* /usr/local/bin/
 ```
 
-运行 etcd，数据库服务将默认监听在 2379 和 4001 端口，对其它 etcd 实例的监听将在 2380 和 7001 端口。显示类似如下的信息：
+运行 etcd，将默认组件一个两个节点的集群。数据库服务端默认监听在 2379 和 4001 端口，etcd 实例监听在 2380 和 7001 端口。显示类似如下的信息：
 ```
 $ ./etcd
 2014/12/31 14:52:09 no data-dir provided, using default data-dir ./default.etcd
