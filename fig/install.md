@@ -17,9 +17,9 @@ $(boot2docker shellinit)
 ```
 curl -L https://github.com/docker/fig/releases/download/1.0.1/fig-`uname -s`-`uname -m` > /usr/local/bin/fig; chmod +x /usr/local/bin/fig
 ```
-**如果你的 Docker 是管理员身份安装，以上命令可能也需要相同的身分。*  
+**如果你的 Docker 是管理员身份安装，以上命令可能也需要相同的身份。*  
 
-目前的发行版本只有 OSX 和 64 位的 Linux 系统。但因为 Fig 是用 Python 语言写的，所以对于其它的平台上的用户，可以通过 Python 安装包来完成安装（支持的系统同样适用）。
+目前 Fig 的发行版本只支持 OSX 和 64 位的 Linux 系统。但因为它是用 Python 语言写的，所以对于其它平台上的用户，可以通过 Python 安装包来完成安装（支持的系统同样适用）。
 
 ```
 $ sudo pip install -U fig
