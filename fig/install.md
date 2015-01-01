@@ -24,5 +24,5 @@ curl -L https://github.com/docker/fig/releases/download/1.0.1/fig-`uname -s`-`un
 ```
 $ sudo pip install -U fig
 ```
-到这里就已经完成了。 使用 `fig --version` 确认安装正常，还有版本号。
+到这里就已经完成了。 执行 `fig --version` ，确认能够正常运行。
 
