@@ -137,5 +137,5 @@ $ fig run web env
 ```
 $ fig stop
 ```
-以上内容或多或少得讲述了如何 Fig 。通过查看下面的引用章节可以了解到关于命令、配置和环境变量的更多细节。如果你任何想法或建议，[可以在 GitHub 上提出](https://github.com/docker/fig)。
+以上内容或多或少的讲述了如何使用Fig 。通过查看下面的引用章节可以了解到关于命令、配置和环境变量的更多细节。如果你有任何想法或建议，[可以在 GitHub 上提出](https://github.com/docker/fig)。
 
