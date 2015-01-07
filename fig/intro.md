@@ -125,7 +125,7 @@ figtest_redis_1   /usr/local/bin/run         Up
 figtest_web_1     /bin/sh -c python app.py   Up      5000->5000/tcp
 ```
 
-`fig run` 指令可以帮为你的服务发送命令。例如：查看 web 服务可以获取到的环境变量:
+`fig run` 指令可以帮你向服务发送命令。例如：查看 web 服务可以获取到的环境变量:
 
 ```
 $ fig run web env
