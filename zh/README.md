@@ -7,7 +7,7 @@ v0.3.2
 
 本书既适用于具备基础 Linux 知识的 Docker 初学者，也希望可供理解原理和实现的高级用户参考。同时，书中给出的实践案例，可供在进行实际部署时借鉴。前六章为基础内容，供用户理解 Docker 的基本概念和操作；7 ~ 9 章介绍一些高级操作；第 10 章给出典型的应用场景和实践案例；11 ~ 13 章介绍关于 Docker 实现的相关技术。14 ~ 章介绍相关的一些开源项目。
 
-在线阅读：[GitBook](https://www.gitbook.io/book/yeasy/docker_practice) 或 [DockerPool](http://dockerpool.com/static/books/docker_practice/index.html)。
+在线阅读：[GitBook](https://www.gitbook.io/book/yeasy/docker_practice/zh) 或 [DockerPool](http://dockerpool.com/static/books/docker_practice/zh/index.html)。
 
 欢迎关注 DockerPool 社区微博 [@dockerpool](http://weibo.com/u/5345404432)，或加入 DockerPool QQ 群（341410255），分享 Docker 资源，交流 Docker 技术。
 
@@ -45,12 +45,6 @@ v0.3.2
 
 本书源码在 Github 上维护，欢迎参与：[https://github.com/yeasy/docker_practice](https://github.com/yeasy/docker_practice)。贡献者 [名单](https://github.com/yeasy/docker_practice/graphs/contributors)。
 
-## Languages
-
-* [English](en/)
-* [French](fr/)
-* [中文](zh/)
-
 ## 参加步骤
 * 在 GitHub 上 `fork` 到自己的仓库，如 `docker_user/docker_practice`，然后 `clone` 到本地，并设置用户信息。
 ```
@@ -74,3 +68,5 @@ $ git checkout master
 $ git rebase upstream/master
 $ git push -f origin master
 ```
+
+[Summary](SUMMARY.md)
