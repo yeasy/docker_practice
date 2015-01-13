@@ -76,6 +76,7 @@
 * [Fig 项目](fig/README.md)
    * [简介](fig/intro.md)
    * [安装](fig/install.md)
+   * [命令参考](fig/cli_ref.md)
 * [附录一：命令查询](appendix_command/README.md)
 * [附录二：常见仓库介绍](appendix_repo/README.md)
    * [Ubuntu](appendix_repo/ubuntu.md)
