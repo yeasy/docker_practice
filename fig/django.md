@@ -1,8 +1,9 @@
-##Fig 和 Django 入门
+##使用 Django 入门 Fig
 
-我们现在将使用 Fig 配置并运行一个 Django/PostgreSQL 应用。在开始之前，先确保 Fig 已经 [安装](install.md)。
+我们现在将使用 Fig 配置并运行一个 Django/PostgreSQL 应用。在开始之前，先确保已经 [安装](install.md) Fig 。
 
-设置好三个必要的文件。首先，应用将要运行在一个安装好所有依赖环境的 Docker 容器里面，那么我们可以通过指定 `Dockerfile` 文件来指定 Docker 容器安装什么内容。内容如下： 
+在一切工作开始前，需要先设置好三个必要的文件。  
+首先，因为应用将要运行在一个满足所有环境依赖的 Docker 容器里面，那么我们可以通过编辑 `Dockerfile` 文件来指定 Docker 容器要安装内容。内容如下： 
 
 ```
 FROM python:2.7
@@ -13,16 +14,16 @@ ADD requirements.txt /code/
 RUN pip install -r requirements.txt
 ADD . /code/
 ```
-以上内容指定了的应用使用一个 Python 镜像，并安装必要的 Python 依赖包。关于 Dockerfile 的更多信息可以查看 [镜像创建](../image/create.md#利用 Dockerfile 来创建镜像) 和 [Dockerfile 使用](../dockerfile/README.md)
+以上内容指定了的应用使用一个 Python 镜像，并安装必要的 Python 依赖包。更多关于如何编写 Dockerfile 文件的信息可以查看 [镜像创建](../image/create.md#利用 Dockerfile 来创建镜像) 和 [Dockerfile 使用](../dockerfile/README.md)
 
-第二，在 `requirements.txt` 文件里面写明需要安装的具体依赖包名 。
+接着，在 `requirements.txt` 文件里面写明需要安装的具体依赖包名 。
 
 ```
 Django
 psycopg2
 ```
 
-最后，通过 `fig.yml` 文件把所有的东西联系起来。它描述了应用的构成（一个 web 服务和一个 数据库）、使用的具体 Docker 镜像、它们之间的连接、挂载的卷，以及和开放的端口。 
+就是这么简单。最后，`fig.yml` 文件将把所有的东西关联起来。它描述了应用的构成（一个 web 服务和一个 数据库）、使用的 Docker 镜像、镜像之间的通讯、挂载的卷，以及服务开放的端口。 
 
 ```
 db:
@@ -37,14 +38,14 @@ web:
   links:
     - db
 ```
-查看 [`fig.yml` 章节]() 了解更多详细的工作机制。
+查看 [`fig.yml` 章节](yml_ref.md) 了解更多详细的工作机制。
 
-使用 `fig run` 命令开始着手一个 Django 应用。
+我们现在可以使用 `fig run` 命令启动一个 Django 应用了。
 
 ```
 $ fig run web django-admin.py startproject figexample .
 ```
-首先 Fig 会使用 `Dockerfile` 为 web 服务创建一个容器。然后它就会在容器里运行 `django-admin.py startproject figexample .` 。
+首先 Fig 会使用 `Dockerfile` 为 web 服务创建一个容器。然后它就会在容器里运行 `django-admin.py startproject figexample . ` 指令。
 
 这将在当前目录生成一个 Django 应用。
 
@@ -65,7 +66,7 @@ DATABASES = {
     }
 }
 ```
-这些信息是在 [postgres](https://registry.hub.docker.com/_/postgres/) Docker 镜像预先定义好的。
+这些信息是在 [postgres](https://registry.hub.docker.com/_/postgres/) Docker 镜像预先定义好的。  
 然后，运行 `fig up` ：
 	
 ```
@@ -86,3 +87,9 @@ myapp_web_1 | Quit the server with CONTROL-C.
 
 ```
 这个 web 应用已经开始在你的 docker 守护进程里面监听着 5000 端口了（如果你有使用 boot2docker ，执行 `boot2docker ip` ，就会看到它的地址）。
+
+你还可以在 Docker 上运行其它的管理命令，例如对于管理数据库这种事，在另外一个终端运行 `fig up` 命令即可：
+
+```
+$ fig run web python manage.py syncdb
+```
