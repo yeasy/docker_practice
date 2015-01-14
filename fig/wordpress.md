@@ -1,17 +1,17 @@
 ##使用 Wordpress 入门 Fig
-Fig 让 Wordpress 运行在一个独立的环境中很很简易。
+Fig 让 Wordpress 运行在一个独立的环境中很简易。
 [安装](install.md) Fig ，然后下载 Wordpress 到当前目录：
 
 ```
 wordpress.org/latest.tar.gz | tar -xvzf -
 ```
-这将会创建一个叫做 wordpress 目录，你也可以重命名成你想要的名字。在目录里面，创建一个 `Dockerfile` 文件，定义应用的运行环境。
+这将会创建一个叫 wordpress 目录，你也可以重命名成你想要的名字。在目录里面，创建一个 `Dockerfile` 文件，定义应用的运行环境：
 
 ```
 FROM orchardup/php5
 ADD . /code
 ```
-这个内容告诉 Docker 创建一个包含 PHP 和 Wordpress 的镜像。更多关于如何编写 Dockerfile 文件的信息可以查看 [镜像创建](../image/create.md#利用 Dockerfile 来创建镜像) 和 [Dockerfile 使用](../dockerfile/README.md)。
+以上内容告诉 Docker 创建一个包含 PHP 和 Wordpress 的镜像。更多关于如何编写 Dockerfile 文件的信息可以查看 [镜像创建](../image/create.md#利用 Dockerfile 来创建镜像) 和 [Dockerfile 使用](../dockerfile/README.md)。
 
 
 下一步，`fig.yml` 文件将开启一个 web 服务和一个独立的 MySQL 实例：
@@ -81,6 +81,6 @@ if(file_exists($root.$path))
     }
 }else include_once 'index.php';
 ```
-With those four files in place, run fig up inside your Wordpress directory and it'll pull and build the images we need, and then start the web and database containers. You'll then be able to visit Wordpress at port 8000 on your docker daemon (if you're using boot2docker, boot2docker ip will tell you its address).
 
+这些配置文件就绪后，在你的 Wordpress 目录里面执行 `fig up` 指令，Fig 就会拉取镜像再创建我们所需要的镜像，然后启动 web 和数据库容器。 接着访问 docker 守护进程监听的 8000 端口就能看你的 Wordpress 网站了。（如果你有使用 boot2docker ，执行 `boot2docker ip` ，就会看到它的地址）。
 

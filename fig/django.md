@@ -86,7 +86,7 @@ myapp_web_1 | Django version 1.6.1, using settings 'figexample.settings'
 myapp_web_1 | Starting development server at http://0.0.0.0:8000/
 myapp_web_1 | Quit the server with CONTROL-C.
 ```
-这个 web 应用已经开始在你的 docker 守护进程里面监听着 5000 端口了（如果你有使用 boot2docker ，执行 `boot2docker ip` ，就会看到它的地址）。
+这个 web 应用已经开始在你的 docker 守护进程里监听着 5000 端口了（如果你有使用 boot2docker ，执行 `boot2docker ip` ，就会看到它的地址）。
 
 你还可以在 Docker 上运行其它的管理命令，例如对于同步数据库结构这种事，在运行完 `fig up` 后，在另外一个终端运行以下命令即可：
 

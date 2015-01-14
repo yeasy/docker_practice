@@ -16,7 +16,7 @@ RUN bundle install
 ADD . /myapp
 ```
 以上内容指定应用将使用安装了 Ruby、Bundler 以及其依赖件的镜像。更多关于如何编写 Dockerfile 文件的信息可以查看 [镜像创建](../image/create.md#利用 Dockerfile 来创建镜像) 和 [Dockerfile 使用](../dockerfile/README.md)。
-下一步，我们需要一个引导加载 Rails 的文件 `Gemfile` 。 等一会儿它将会被 `rails new` 命令覆盖重写。
+下一步，我们需要一个引导加载 Rails 的文件 `Gemfile` 。 等一会儿它还会被 `rails new` 命令覆盖重写。
 
 ```
 source 'https://rubygems.org'
@@ -44,7 +44,7 @@ web:
 ```
 $ fig run web rails new . --force --database=postgresql --skip-bundle
 ```
-Fig 会先使用 `Dockerfile` 为 web 服务创建一个镜像，接着使用这个镜像在容器里运行 `rails new `和它之后的命令。一旦这个命令运行完后，应该就可以看一个崭新的应用已经生成了。
+Fig 会先使用 `Dockerfile` 为 web 服务创建一个镜像，接着使用这个镜像在容器里运行 `rails new ` 和它之后的命令。一旦这个命令运行完后，应该就可以看一个崭新的应用已经生成了。
 
 ```
 $ ls
@@ -54,17 +54,17 @@ Gemfile.lock config       log
 README.rdoc  config.ru    public
 Rakefile     db           test
 ```
-在新的 `Gemfile` 文件去掉加载 `therubyracer` 的行的注释，这样我们便可以 Javascript 运行环境：
+在新的 `Gemfile` 文件去掉加载 `therubyracer` 的行的注释，这样我们便可以使用 Javascript 运行环境：
 
 ```
 gem 'therubyracer', platforms: :ruby
 ```
-现在我们已经有一个新的 `Gemfile` 文件，需要重新创建镜像。（这个会步骤会改变 Dockerfile 文件本身，仅仅需要重建一次）。
+现在我们已经有一个新的 `Gemfile` 文件，需要再重新创建镜像。（这个会步骤会改变 Dockerfile 文件本身，仅仅需要重建一次）。
 
 ```
 $ fig build
 ```
-应用现在就可以启动了，但是还不能这样中止。Rails 默认设置数据库信息是读取 `localhost` 的，我们需要手动指定容器的 `db` 。同样的，还需要把用户名修改成和 postgres 镜像一致。
+应用现在就可以启动了，但配置还未完成。Rails 默认读取的数据库目标是 `localhost` ，我们需要手动指定容器的 `db` 。同样的，还需要把用户名修改成和 postgres 镜像预定的一致。
 打开最新生成的 `database.yml` 文件。用以下内容替换：
 
 ```
