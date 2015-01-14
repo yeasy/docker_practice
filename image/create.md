@@ -133,7 +133,7 @@ ouruser/sinatra     v2      5db5f8471261  11 hours ago   446.7 MB
 
 ### 从本地文件系统导入
 要从本地文件系统导入一个镜像，可以使用 openvz（容器虚拟化的先锋技术）的模板来创建：
-openvz 的模板下载地址为 http://openvz.org/Download/templates/precreated。
+openvz 的模板下载地址为 http://openvz.org/Download/templates/precreated 。
 
 比如，先下载了一个 ubuntu-14.04 的镜像，之后使用以下命令导入：
 ```
