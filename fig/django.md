@@ -24,7 +24,7 @@ psycopg2
 ```
 
 就是这么简单。  
-第三步，`fig.yml` 文件将把所有的东西关联起来。它描述了应用的构成（一个 web 服务和一个数据库）、使用的 Docker 镜像、镜像之间的关系、挂载到容器的卷，以及服务开放的端口。 
+第三步，`fig.yml` 文件将把所有的东西关联起来。它描述了应用的构成（一个 web 服务和一个数据库）、使用的 Docker 镜像、镜像之间的连接、挂载到容器的卷，以及服务开放的端口。 
 
 ```
 db:
@@ -41,12 +41,12 @@ web:
 ```
 查看 [`fig.yml` 章节](yml_ref.md) 了解更多详细的工作机制。
 
-我们现在就可以使用 `fig run` 命令启动一个 Django 应用了。
+现在我们就可以使用 `fig run` 命令启动一个 Django 应用了。
 
 ```
 $ fig run web django-admin.py startproject figexample .
 ```
-Fig 会先使用 `Dockerfile` 为 web 服务创建一个镜像。接着使用这个镜像在容器里运行 `django-admin.py startproject figexample . ` 指令。
+Fig 会先使用 `Dockerfile` 为 web 服务创建一个镜像，接着使用这个镜像在容器里运行 `django-admin.py startproject figexample . ` 指令。
 
 这将在当前目录生成一个 Django 应用。
 
@@ -85,7 +85,6 @@ myapp_web_1 | January 27, 2014 - 12:12:40
 myapp_web_1 | Django version 1.6.1, using settings 'figexample.settings'
 myapp_web_1 | Starting development server at http://0.0.0.0:8000/
 myapp_web_1 | Quit the server with CONTROL-C.
-
 ```
 这个 web 应用已经开始在你的 docker 守护进程里面监听着 5000 端口了（如果你有使用 boot2docker ，执行 `boot2docker ip` ，就会看到它的地址）。
 
