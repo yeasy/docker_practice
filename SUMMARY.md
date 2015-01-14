@@ -77,6 +77,9 @@
    * [简介](fig/intro.md)
    * [安装](fig/install.md)
    * [命令参考](fig/cli_ref.md)
+   * [实战 Django](fig/django.md)
+   * [实战 Rails](fig/rails.md)
+   * [实战 wordpress](fig/wordpress.md)
 * [附录一：命令查询](appendix_command/README.md)
 * [附录二：常见仓库介绍](appendix_repo/README.md)
    * [Ubuntu](appendix_repo/ubuntu.md)
@@ -88,4 +91,3 @@
    * [WordPress](appendix_repo/wordpress.md)
    * [Node.js](appendix_repo/nodejs.md)
 * [附录三：有用的资源](appendix_resources/README.md)
-
