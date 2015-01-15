@@ -78,6 +78,7 @@
    * [安装](fig/install.md)
    * [命令参考](fig/cli_ref.md)
    * [fig.yml参考](fig/yml_ref.md)
+   * [环境变量参考](fig/env_ref.md)
    * [实战 Django](fig/django.md)
    * [实战 Rails](fig/rails.md)
    * [实战 wordpress](fig/wordpress.md)
