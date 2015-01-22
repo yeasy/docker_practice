@@ -22,7 +22,7 @@ web:
 db:
   image: postgres
 ```
-*注意不需要再额外安装 Postgres 了！*
+**注意不需要再额外安装 Postgres 了！*
 
 接着执行命令 `fig up` ，然后 Fig 就会启动并运行你的应用了。
 
