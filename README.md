@@ -21,6 +21,8 @@ v0.3.3
 * [亚马逊图书](http://www.amazon.cn/%E5%9B%BE%E4%B9%A6/dp/B00R5MYI7C/ref=lh_ni_t?ie=UTF8&psc=1&smid=A1AJ19PSB66TGU)
 
 ## 主要版本历史
+* 0.5: 2015-01-31
+    * 添加 CoreOS 项目
 * 0.4: 2015-01-TBD
     * 添加 Etcd 项目
     * 添加 Fig 项目
