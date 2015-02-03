@@ -1,7 +1,7 @@
 Docker —— 从入门到实践
 ===============
 
-v0.3.3
+v0.3.4
 
 [Docker](docker.com) 是个伟大的项目，它彻底释放了虚拟化的威力，极大降低了云计算资源供应的成本，同时让应用的分发、测试、部署和分发都变得前所未有的高效和轻松！
 
@@ -21,9 +21,10 @@ v0.3.3
 * [亚马逊图书](http://www.amazon.cn/%E5%9B%BE%E4%B9%A6/dp/B00R5MYI7C/ref=lh_ni_t?ie=UTF8&psc=1&smid=A1AJ19PSB66TGU)
 
 ## 主要版本历史
-* 0.4: 2015-01-TBD
+* 0.4: 2015-02-TBD
     * 添加 Etcd 项目
     * 添加 Fig 项目
+    * 添加 CoreOS 项目
 * 0.3: 2014-11-25
     * 完成仓库章节；
     * 重写安全章节；
@@ -68,5 +69,3 @@ $ git checkout master
 $ git rebase upstream/master
 $ git push -f origin master
 ```
-
-
