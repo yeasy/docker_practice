@@ -14,6 +14,6 @@ etcd 目前在 [github.com/coreos/etcd](https://github.com/coreos/etcd) 进行�
 
 *注：Apache ZooKeeper 是一套知名的分布式系统中进行同步和一致性管理的工具。*
 *注：doozer 则是一个一致性分布式数据库。*
-*注：Raft 是一套通过选举主节点来实现分布式系统一致性的算法，相比于大名鼎鼎的 Paxos 算法，它的过程更容易被人理解，由 Stanford 大学的 Diego Ongaro 和 John Ousterhout 提出。更多细节可以参考 (raftconsensus.github.io)[http://raftconsensus.github.io]。*
+*注：Raft 是一套通过选举主节点来实现分布式系统一致性的算法，相比于大名鼎鼎的 Paxos 算法，它的过程更容易被人理解，由 Stanford 大学的 Diego Ongaro 和 John Ousterhout 提出。更多细节可以参考 [raftconsensus.github.io](http://raftconsensus.github.io)。*
 
 一般情况下，用户使用 etcd 可以在多个节点上启动多个实例，并添加它们为一个集群。同一个集群中的 etcd 实例将会保持彼此信息的一致性。
