@@ -46,7 +46,7 @@ Pulling repository centos
 而自动创建允许用户通过 Docker Hub 指定跟踪一个目标网站（目前支持 [GitHub](github.org) 或 [BitBucket](bitbucket.org)）上的项目，一旦项目发生新的提交，则自动执行创建。
 
 要配置自动创建，包括如下的步骤：
-* 创建并登陆 Docker Hub，以及目标网站；
+* 创建并登录 Docker Hub，以及目标网站；
 * 在目标网站中连接帐户到 Docker Hub；
 * 在 Docker Hub 中 [配置一个自动创建](https://registry.hub.docker.com/builds/add/)；
 * 选取一个目标网站中的项目（需要含 Dockerfile）和分支；
