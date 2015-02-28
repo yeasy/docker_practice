@@ -9,7 +9,7 @@ v0.3.4
 
 在线阅读：[GitBook](https://www.gitbook.io/book/yeasy/docker_practice) 或 [DockerPool](http://dockerpool.com/static/books/docker_practice/index.html)。
 
-欢迎关注 DockerPool 社区微博 [@dockerpool](http://weibo.com/u/5345404432)，或加入 DockerPool QQ 群（341410255），分享 Docker 资源，交流 Docker 技术。
+欢迎关注 DockerPool 社区微博 [@dockerpool](http://weibo.com/u/5345404432)，或加入 DockerPool QQ 群（419042067），分享 Docker 资源，交流 Docker 技术。
 
 ![Docker 技术入门与实战](docker_primer.png)
 
