@@ -13,8 +13,7 @@ RUN apt-get update
 RUN apt-get upgrade -y
 ```
 
-### 安装 supervisor
-安装 ssh、apache 和 supervisor。
+### 安装 ssh、apache 和 supervisor
 ```
 RUN apt-get install -y openssh-server apache2 supervisor
 RUN mkdir -p /var/run/sshd
