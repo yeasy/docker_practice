@@ -15,6 +15,9 @@ command=/opt/apache-tomcat/bin/startup.sh
 
 [program:sshd]
 command=/usr/sbin/sshd -D
+```
+
+```
 docker commit  ac6474aeb31d  tomcat
 ```
 
@@ -71,6 +74,7 @@ docker run -d -v -p 206:22 -p 7005:8080 -v /home/data:/opt/data --name tm3 tomca
 缺点是：
 * Docker 配置复杂了
 * 没办法自动扩展集群的计算容量，如需添加节点，需要在 administrator 上先创建节点，然后再配置新的容器 supervisor 启动脚本，然后再启动容器
+
 另外种方法是将所有的程序都安装在 adminiserver 上面，需要扩展的时候，启动多个节点即可，它的优点和缺点和上一种方法恰恰相反。（建议使用这种方式来部署开发和测试环境）
 ```
 docker run -d -v -p 204:22 -p 7001:7001 -v /home/data:/opt/data --name node1 weblogic /usr/bin/supervisord
