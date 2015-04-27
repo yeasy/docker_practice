@@ -21,7 +21,7 @@ $ cd docker_practice
 $ git config user.name "yourname"
 $ git config user.email "your email"
 ```
-* 修改代码后提交，并推送到自己的仓库。
+* 修改代码后提交，并推送到自己的仓库。测试一下git.
 ```
 $ #do some change on the content
 $ git commit -am "Fix issue #1: change helo to hello"
