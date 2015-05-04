@@ -13,7 +13,7 @@ $ sudo docker export 7691a814370e > ubuntu.tar
 ###导入容器快照
 可以使用 `docker import` 从容器快照文件中再导入为镜像，例如
 ```
-$ cat ubuntu.tar | sudo docker import - test/buntu:v1.0
+$ cat ubuntu.tar | sudo docker import - test/ubuntu:v1.0
 $ sudo docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
 test/ubuntu         v1.0                9d37a6082e97        About a minute ago   171.3 MB
