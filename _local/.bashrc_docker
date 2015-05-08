@@ -7,11 +7,15 @@ alias docker-ip="sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}'
 
 #the implementation refs from https://github.com/jpetazzo/nsenter/blob/master/docker-enter
 function docker-enter() {
-    if [ -e $(dirname "$0")/nsenter ]; then
+    #if [ -e $(dirname "$0")/nsenter ]; then
+    #Change for centos bash running
+    if [ -e $(dirname '$0')/nsenter ]; then
         # with boot2docker, nsenter is not in the PATH but it is in the same folder
         NSENTER=$(dirname "$0")/nsenter
     else
-        NSENTER=nsenter
+        # if nsenter has already been installed with path notified, here will be clarified
+        NSENTER=$(which nsenter)
+        #NSENTER=nsenter
     fi
     [ -z "$NSENTER" ] && echo "WARN Cannot find nsenter" && return
 
