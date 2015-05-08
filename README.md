@@ -21,6 +21,10 @@ v0.4
 * [亚马逊图书](http://www.amazon.cn/%E5%9B%BE%E4%B9%A6/dp/B00R5MYI7C/ref=lh_ni_t?ie=UTF8&psc=1&smid=A1AJ19PSB66TGU)
 
 ## 主要版本历史
+* 0.5: 2015-?
+    * 添加 Compose 项目
+    * 添加 Machine 项目
+    * 添加 Swarm 项目
 * 0.4: 2015-05-08
     * 添加 Etcd 项目
     * 添加 Fig 项目

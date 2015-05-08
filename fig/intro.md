@@ -11,7 +11,7 @@ RUN pip install -r requirements.txt
 
 在 `fig.yml` 文件中指定应用使用的不同服务，让它们能够在一个独立的环境中一起运行：
 
-```  
+```
 web:
   build: .
   command: python app.py
@@ -28,7 +28,7 @@ db:
 
 ![Docker](../_images/fig-example-large.gif)
 
-Fig 可用的命令有:   
+Fig 可用的命令有:
 
 * 启动、停止，和重建服务
 * 查看服务的运行状态
@@ -38,7 +38,7 @@ Fig 可用的命令有:
 ##快速上手
 我们试着让一个基本的 Python web 应用运行在 Fig 上。这个实验假设你已经知道一些 Python 知识，如果你不熟悉，但清楚概念上的东西也是没有问题的。
 
-首先，[安装 Docker 和 Fig](install.md)  
+首先，[安装 Docker 和 Fig](install.md)
 
 为你的项目创建一个目录
 
@@ -46,7 +46,7 @@ Fig 可用的命令有:
 $ mkdir figtest
 $ cd figtest
 ```
-进入目录，创建 `app.py`，这是一个能够让 Redis 上的一个值自增的简单 web 应用，基于 Flask 框架。  
+进入目录，创建 `app.py`，这是一个能够让 Redis 上的一个值自增的简单 web 应用，基于 Flask 框架。
 
 ```
 from flask import Flask
@@ -63,9 +63,9 @@ def hello():
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
 ```
-在 `requirements.txt` 文件中指定应用的 Python 依赖包。   
+在 `requirements.txt` 文件中指定应用的 Python 依赖包。
 
-```  
+```
 flask
 redis
 ```
@@ -94,11 +94,11 @@ web:
 redis:
   image: redis
   ```
-这里指定了两个服务：  
+这里指定了两个服务：
 
 * web 服务，通过当前目录的 `Dockerfile` 创建。并且说明了在容器里面执行`python app.py ` 命令 ，转发在容器里开放的 5000 端口到本地主机的 5000 端口，连接 Redis 服务，并且挂载当前目录到容器里面，这样我们就可以不用重建镜像也能直接使用代码。
-* redis 服务，我们使用公用镜像 [redis](https://registry.hub.docker.com/_/redis/)。  
-* 
+* redis 服务，我们使用公用镜像 [redis](https://registry.hub.docker.com/_/redis/)。
+*
 现在如果执行 `fig up` 命令 ，它就会拉取 redis 镜像，启动所有的服务。
 
 ```
