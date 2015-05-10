@@ -188,29 +188,60 @@ db:
 
 设置网络模式。使用和 `docker client` 的 `--net` 参数一样的值。
 
-```
+```sh
 net: "bridge"
 net: "none"
 net: "container:[name or id]"
 net: "host"
 ```
 
+### `pid`
+跟主机系统共享进程命名空间。打开该选项的容器可以相互通过进程 ID 来访问和操作。
+
+```sh
+pid: "host"
+```
+
 ### `dns`
 
-配置DNS服务器。它可以是一个值，也可以是一个列表。
+配置 DNS 服务器。可以是一个值，也可以是一个列表。
 
-```
+```sh
 dns: 8.8.8.8
 dns:
   - 8.8.8.8
   - 9.9.9.9
 ```
 
-`working_dir, entrypoint, user, hostname, domainname, mem_limit, privileged`
+### `cap_add, cap_drop`
+添加或放弃容器的 Linux 能力（Capabiliity）。
+```sh
+cap_add:
+  - ALL
 
-这些都是和 `docker run` 对应的一个值。
+cap_drop:
+  - NET_ADMIN
+  - SYS_ADMIN
+```
+
+### `dns_search`
+
+配置 DNS 搜索域。可以是一个值，也可以是一个列表。
+
+```sh
+dns_search: example.com
+dns_search:
+  - domain1.example.com
+  - domain2.example.com
+```
+
+### `working_dir, entrypoint, user, hostname, domainname, mem_limit, privileged, restart, stdin_open, tty, cpu_shares`
+
+这些都是和 `docker run` 支持的选项类似。
 
 ```
+cpu_shares: 73
+
 working_dir: /code
 entrypoint: /code/entrypoint.sh
 user: postgresql
@@ -220,4 +251,9 @@ domainname: foo.com
 
 mem_limit: 1000000000
 privileged: true
+
+restart: always
+
+stdin_open: true
+tty: true
 ```
