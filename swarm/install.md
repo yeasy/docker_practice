@@ -6,4 +6,4 @@
  > $ sudo docker run --rm swarm -v
  
  输出下面的形式则表示成功安装(具体输出根据swarm的版本变化)
-> $ swarm version 0.2.0 (48fd993)
+> swarm version 0.2.0 (48fd993)
