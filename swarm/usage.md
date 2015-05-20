@@ -191,6 +191,7 @@ CONTAINER ID        IMAGE                            COMMAND                CREA
 2553799f1372        redis:latest                     /entrypoint.sh redis   33 minutes ago           Up 8 minutes        192.168.1.84:32770->6379/tcp    084/node-1
 </code></pre>
 可以看到三个container都是分布在不同的节点上面的。
+
 现在来看看binpack策略下的情况。在083上面执行命令：
 <pre><code>
 rio@083:~$ sudo docker run -d -p 2376:2375 -v $(pwd)/cluster:/tmp/cluster swarm manage --strategy=binpack  file:///tmp/cluster
