@@ -83,6 +83,8 @@
    * [简介](swarm/intro.md)
    * [安装](swarm/install.md)
    * [使用](swarm/usage.md)
+   * [调度器](swarm/scheduling.md)
+   * [过滤器](swarm/filter.md)
 * [Etcd 项目](etcd/README.md)
    * [简介](etcd/intro.md)
    * [安装](etcd/install.md)
