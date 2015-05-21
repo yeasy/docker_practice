@@ -1,5 +1,5 @@
 ## 使用
-在使用swarm管理集群前，需要把集群中所有的节点的docker daemon的监听方式更改为0.0.0.0:2375,可以有两种方式，第一种是在启动docker daemon的时候指定
+在使用swarm管理集群前，需要把集群中所有的节点的docker daemon的监听方式更改为0.0.0.0:2375,可以有两种方式达到这个目的，第一种是在启动docker daemon的时候指定
 > sudo docker -H 0.0.0.0:2375&
 
 第二种方式是直接修改docker的配置文件(以下方式是在ubuntu上面，其他版本的linux上略有不同)
@@ -9,7 +9,7 @@
 > DOCKER_OPTS="-H 0.0.0.0:2375 -H unix:///var/run/docker.sock"
 
 需要注意的是，一定要在**所有的**节点上进行的。
-修改之后呀重启docker
+修改之后要重启docker
 > sudo service docker restart
 
 Docker的集群管理需要使用服务发现(Discovery service backend)功能，Swarm支持以下的几种方式：DockerHub上内置的服务发现功能，本地的文件，etcd，counsel，zookeeper和IP列表，本文会详细讲解前两种方式，其他的用法都是大同小异的。
@@ -36,8 +36,8 @@ sudo docker run --rm swarm join addr=ip_address:2375 token://token_id
 其中的ip_address换成执行这条命令的机器的IP，token_id换成上一步执行swarm create返回的token。
 在83这台机器上面的执行结果如下：
 <pre><code>
-rio@084:~$ sudo docker run --rm swarm join --addr=192.168.1.84:2375 token://b7625e5a7a2dc7f8c4faacf2b510078e
-time="2015-05-19T11:48:03Z" level=info msg="Registering on the discovery service  every 25 seconds..." addr="192.168.1.84:2375" discovery="token://b7625e5a7a2dc7 f8c4faacf2b510078e"
+rio@083:~$ sudo docker run --rm swarm join --addr=192.168.1.83:2375 token://b7625e5a7a2dc7f8c4faacf2b510078e
+time="2015-05-19T11:48:03Z" level=info msg="Registering on the discovery service  every 25 seconds..." addr="192.168.1.83:2375" discovery="token://b7625e5a7a2dc7 f8c4faacf2b510078e"
 </code></pre>
 这条命令不会自动返回，要我们自己执行Ctrl+C返回。
 
@@ -92,6 +92,7 @@ Nodes: 2
 </code></pre>
 结果输出显示这个集群中只有两个节点，IP地址分别是192.168.1.83和192.168.1.84，结果不对呀，我们明明把三台机器加入了这个集群，还有124这一台机器呢？
 经过排查，发现是忘了修改124这台机器上面改docker daemon的监听方式，只要按照上面的步骤修改写docker daemon的监听方式就可以了。
+
 在使用这个方法的时候，使用swarm create可能会因为网络的原因会出现类似于下面的这个问题：
 <pre><code>
 rio@227:~$ sudo docker run --rm swarm create
@@ -229,32 +230,74 @@ DOCKER_OPTS="-H 0.0.0.0:2375 -H unix:///var/run/docker.sock  --label label_name=
 </code></pre>
 在使用docker run命令启动container的时候使用 -e constarint:key=value的形式，可以指定container运行的节点,比如我们想在84上面启动一个redis container，
 <pre><code>
-rio085:~$ sudo docker -H 192.168.1.83:2376 run --name redis_1 -d -e constraint:label_name==084 redis
+rio@085:~$ sudo docker -H 192.168.1.83:2376 run --name redis_1 -d -e constraint:label_name==084 redis
 fee1b7b9dde13d64690344c1f1a4c3f5556835be46b41b969e4090a083a6382d
 </code></pre>
 主要，是**两个**等号，不是一个等号，这一点会经常被忽略。
 接下来再在084这台机器上启动一个redis container
 <pre><code>
-rio085:~$ sudo docker -H 192.168.1.83:2376 run --name redis_2 -d -e constraint:label_name==084 redis         4968d617d9cd122fc2e17b3bad2f2c3b5812c0f6f51898024a96c4839fa000e1
+rio@085:~$ sudo docker -H 192.168.1.83:2376 run --name redis_2 -d -e constraint:label_name==084 redis         4968d617d9cd122fc2e17b3bad2f2c3b5812c0f6f51898024a96c4839fa000e1
 </code></pre>
 然后再在083这台机器上启动另外一个redis container
 <pre><code>
-rio085:~$ sudo docker -H 192.168.1.83:2376 run --name redis_3 -d -e constraint:label_name==083 redis         7786300b8d2232c2335ac6161c715de23f9179d30eb5c7e9c4f920a4f1d39570
+rio@085:~$ sudo docker -H 192.168.1.83:2376 run --name redis_3 -d -e constraint:label_name==083 redis         7786300b8d2232c2335ac6161c715de23f9179d30eb5c7e9c4f920a4f1d39570
 </code></pre>
 现在来看下执行情况：
 <pre><code>
-rio085:~$ sudo docker -H 192.168.1.83:2376 ps
+rio@085:~$ sudo docker -H 192.168.1.83:2376 ps
 CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS              PORTS               NAMES
 7786300b8d22        redis:latest        "/entrypoint.sh redi   15 minutes ago      Up 53 seconds       6379/tcp            083/redis_3
 4968d617d9cd        redis:latest        "/entrypoint.sh redi   16 minutes ago      Up 2 minutes        6379/tcp            084/redis_2
 fee1b7b9dde1        redis:latest        "/entrypoint.sh redi   19 minutes ago      Up 5 minutes        6379/tcp            084/redis_1
 </code></pre>
 可以看到，执行结果跟预期的一样。
-那么问题来了，如果指定一个不存在的标签的几点来运行container会出现什么情况呢？
+但是如果指定一个不存在的标签的话来运行container会报错。
 <pre><code>
-rio085:~$ sudo docker -H 192.168.1.83:2376 run --name redis_0 -d -e constraint:label_name==0 redis
+rio@085:~$ sudo docker -H 192.168.1.83:2376 run --name redis_0 -d -e constraint:label_name==0 redis
 FATA[0000] Error response from daemon: unable to find a node that satisfies label_name==0
 </code></pre>
+
+###Affinity Filter
+通过使用Affinity Filter，可以让一个container紧挨着另一个container启动，也就是说让两个container在同一个节点上面启动。
+现在其中一台机器上面启动一个redis
+<pre><code>
+rio@085:~$ sudo docker -H 192.168.1.83:2376 run -d --name redis redis
+ea13eddf667992c5d8296557d3c282dd8484bd262c81e2b5af061cdd6c82158d
+rio@085:~$ sudo docker -H 192.168.1.83:2376  ps
+CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS                  PORTS               NAMES
+ea13eddf6679        redis:latest        /entrypoint.sh redis   24 minutes ago      Up Less than a second   6379/tcp            083/redis
+</code></pre>
+然后再次启动两台redis
+<pre><code>
+rio@085:~$ sudo docker -H 192.168.1.83:2376  run -d --name redis_1 -e affinity:container==redis redis
+bac50c2e955211047a745008fd1086eaa16d7ae4f33c192f50412e8dcd0a14cd
+rio@085:~$ sudo docker -H 192.168.1.83:2376  run -d --name redis_1 -e affinity:container==redis redis
+bac50c2e955211047a745008fd1086eaa16d7ae4f33c192f50412e8dcd0a14cd
+</code></pre>
+现在来查看下运行结果,可以看到三个container都是在一台机器上运行
+<pre><code>
+rio@085:~$ sudo docker -H 192.168.1.83:2376  ps
+CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS                  PORTS               NAMES
+449ed25ad239        redis:latest        /entrypoint.sh redis   24 minutes ago      Up Less than a second   6379/tcp            083/redis_2
+bac50c2e9552        redis:latest        /entrypoint.sh redis   25 minutes ago      Up 10 seconds           6379/tcp            083/redis_1
+ea13eddf6679        redis:latest        /entrypoint.sh redis   28 minutes ago      Up 3 minutes            6379/tcp            083/redis
+</code></pre>
+通过-e affinity:image=image_name命令可以指定只有已经下载了image_name的机器才运行容器
+<pre><code>
+sudo docker –H 192.168.1.83:2376 run –name redis1 –d –e affinity:image==redis redis 
+</code></pre>
+redis1这个container只会在已经下载了redis镜像的节点上运行。
+<pre><code>
+sudo docker -H 192.168.1.83:2376 run -d --name redis -e affinity:image==~redis redis
+</code></pre>
+这条命令达到的效果是：在有redis镜像的节点上面启动一个名字叫做redis的容器，如果每个节点上面都没有redis容器，就按照默认的策略启动redis容器。
+###Port Filter
+Port也会被认为是一个唯一的资源
+<pre><code>
+sudo docker -H 192.168.1.83:2376 run -d -p 80:80 nginx
+</code></pre>
+执行完这条命令，之后任何使用80端口的容器都是启动失败。
+
 
 
 
