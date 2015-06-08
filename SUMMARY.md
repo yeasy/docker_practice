@@ -103,6 +103,7 @@
    * [简介](kubernetes/intro.md)
    * [快速上手](kubernetes/quickstart.md)
    * [架构设计](kubernetes/design.md)
+   * [kubectl 使用](kubernetes/kubectl.md)
 * [附录一：命令查询](appendix_command/README.md)
 * [附录二：常见仓库介绍](appendix_repo/README.md)
    * [Ubuntu](appendix_repo/ubuntu.md)
