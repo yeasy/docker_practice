@@ -5,8 +5,8 @@
 ## 架构设计
 ![](../_images/kubernetes_design.jpg)
 
-* [节点](#nodes)：一个节点是一个运行Kubernetes中的主机。
-* [容器组](#pods)：一个Pod对应于由若干容器组成的一个容器组，同个组内的容器共享一个存储卷(volume)。
+* [节点](#nodes)：一个节点是一个运行 Kubernetes 中的主机。
+* [容器组](#pods)：一个 Pod 对应于由若干容器组成的一个容器组，同个组内的容器共享一个存储卷(volume)。
 * [容器组生命周期](#pos-states)：包含所有容器状态集合，包括容器组状态类型，容器组生命周期，事件，重启策略，以及replication controllers。
 * [Replication Controllers](#replication-controllers)：主要负责指定数量的pod在同一时间一起运行。
 * [服务](#services)：一个Kubernetes服务是容器组逻辑的高级抽象，同时也对外提供访问容器组的策略。
