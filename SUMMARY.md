@@ -110,6 +110,7 @@
    * [安装与使用](mesos/installation.md)
    * [原理与架构](mesos/architecture.md)
    * [配置项解析](mesos/configuration.md)
+   * [常见框架](mesos/framework.md)
 * [附录一：命令查询](appendix_command/README.md)
 * [附录二：常见仓库介绍](appendix_repo/README.md)
    * [Ubuntu](appendix_repo/ubuntu.md)
