@@ -3,7 +3,7 @@
 
 数据卷容器，其实就是一个正常的容器，专门用来提供数据卷供其它容器挂载的。
 
-首先，创建一个命名的数据卷容器 dbdata：
+首先，创建一个名为 dbdata 的数据卷容器：
 ```
 $ sudo docker run -d -v /dbdata --name dbdata training/postgres echo Data-only container for postgres
 ```
@@ -12,8 +12,8 @@ $ sudo docker run -d -v /dbdata --name dbdata training/postgres echo Data-only c
 $ sudo docker run -d --volumes-from dbdata --name db1 training/postgres
 $ sudo docker run -d --volumes-from dbdata --name db2 training/postgres
 ```
-还可以使用多个 `--volumes-from` 参数来从多个容器挂载多个数据卷。
-也可以从其他已经挂载了数据卷的容器来挂载数据卷。
+可以使用超过一个的 `--volumes-from` 参数来指定从多个容器挂载不同的数据卷。
+也可以从其他已经挂载了数据卷的容器来级联挂载数据卷。
 ```
 $ sudo docker run -d --name db3 --volumes-from db1 training/postgres
 ```
