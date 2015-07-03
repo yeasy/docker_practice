@@ -19,3 +19,7 @@ $ sudo docker run -v /dbdata --name dbdata2 ubuntu /bin/bash
 $ sudo docker run --volumes-from dbdata2 -v $(pwd):/backup busybox tar xvf
 /backup/backup.tar
 ```
+为了查看/验证恢复的数据，可以再启动一个容器挂载同样的容器卷来查看
+```
+$ sudo docker run --volumes-from dbdata2 busybox /bin/ls /dbdata
+```
