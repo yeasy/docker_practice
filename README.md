@@ -1,7 +1,7 @@
 Docker —— 从入门到实践
 ===============
 
-v0.5.0
+v0.5.1
 
 [Docker](docker.com) 是个伟大的项目，它彻底释放了虚拟化的威力，极大降低了云计算资源供应的成本，同时让应用的部署、测试和分发都变得前所未有的高效和轻松！
 
@@ -21,6 +21,8 @@ v0.5.0
 * [亚马逊图书](http://www.amazon.cn/%E5%9B%BE%E4%B9%A6/dp/B00R5MYI7C/ref=lh_ni_t?ie=UTF8&psc=1&smid=A1AJ19PSB66TGU)
 
 ## 主要版本历史
+* 0.6: 2015-07-?
+    * 补充 Machine 项目
 * 0.5: 2015-06-29
     * 添加 Compose 项目
     * 添加 Machine 项目
