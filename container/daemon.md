@@ -16,7 +16,7 @@ hello world
 
 如果使用了 `-d` 参数运行容器。
 ```
-$ sudo docker run ubuntu:14.04 /bin/sh -c "while true; do echo hello world; sleep 1; done"
+$ sudo docker run -d ubuntu:14.04 /bin/sh -c "while true; do echo hello world; sleep 1; done"
 77b2dc01fe0f3f1265df143181e7b9af5e05279a884f4776ee75350ea9d8017a
 ```
 此时容器会在后台运行并不会把输出的结果(STDOUT)打印到宿主机上面(输出结果可以用docker logs 查看)。
