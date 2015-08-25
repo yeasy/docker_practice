@@ -3,7 +3,7 @@ Docker Swarm 是 Docker公司官方在 2014 年 12月初发布的一套管理 Do
 
 Swarm 使用标准的 Docker API 接口作为其前端访问入口，换言之，各种形式的 Docker 工具比如 Dokku，Compose，Krane，Deis，docker-py，Docker 本身等都可以很容易的与 Swarm 进行集成。
 
-![Swarm 结构图](../images/swarm.png)
+![Swarm 结构图](../_images/swarm.png)
 
 在使用 Swarm 管理docker 集群时，会有一个 swarm manager 以及若干的 swarm node，swarm manager上运行 swarm daemon，用户只需要跟 swarm manager 通信，然后 swarm manager 再根据discovery service的信息选择一个swarm node 来运行container。
 
