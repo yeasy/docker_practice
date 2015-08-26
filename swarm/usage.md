@@ -50,10 +50,10 @@ sudo docker run --rm swarm join --addr=ip_address:2375 token://token_id
 
 在83这台机器上面的执行结果如下：
 ```sh
-rio@083:~$ sudo docker run --rm swarm join --addr=192.168.1.83:2375 token://b7625e5a7a2dc7f8c4faacf2b510078e
-time="2015-05-19T11:48:03Z" level=info msg="Registering on the discovery service  every 25 seconds..." addr="192.168.1.83:2375" discovery="token://b7625e5a7a2dc7 f8c4faacf2b510078e"
+rio@083:~$ sudo docker run -d swarm join --addr=192.168.1.83:2375 token://b7625e5a7a2dc7f8c4faacf2b510078e
+3b3d9da603d7c121588f796eab723458af5938606282787fcbb03b6f1ac2000b
 ```
-这条命令不会自动返回，要我们自己执行 `Ctrl+C` 返回。
+这条命令通过 `-d` 参数启动了一个容器，使得83这台机器加入到集群。如果这个容器被停止或者被删除，83这台机器就会从集群中消失。
 
 #### 启动swarm manager
 因为我们要使用 83 这台机器充当 swarm 管理节点，所以需要在83这台机器上面执行 `swarm manage` 命令：
