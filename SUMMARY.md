@@ -99,6 +99,7 @@
    * [实战 Rails](fig/rails.md)
    * [实战 wordpress](fig/wordpress.md)
 * [CoreOS 项目](coreos/README.md)
+   * [简介](coreos/intro.md)
 * [Kubernetes 项目](kubernetes/README.md)
    * [简介](kubernetes/intro.md)
    * [快速上手](kubernetes/quickstart.md)
