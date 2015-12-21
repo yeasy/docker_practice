@@ -10,7 +10,7 @@ root@0b2616b0e5a8:/#
 ```
 注意：记住容器的 ID，稍后还会用到。
 
-在容器中添加 json 和 gem 两个应用。
+在容器中添加 json package(一个 ruby gem)。
 ```
 root@0b2616b0e5a8:/# gem install json
 ```
