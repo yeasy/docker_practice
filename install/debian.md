@@ -26,10 +26,62 @@ Docker的APT仓库包含了1.7.1及以上版本的Docker，安装前需要更新
  $ apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 ```
 4. 添加APT源
-  - 编辑文件 ```/etc/apt/sources.list.d/docker.list```,清理已存在的信息
+编辑文件 ```/etc/apt/sources.list.d/docker.list```,清理已存在的信息，写入APT源地址内容。以下以Debian Jessie为例，非Jessie版本的系统注意修改为自己对应的代号。
+```sh
+$ sudo cat <<EOF > /etc/apt/sources.list.d/docker.list
+deb https://apt.dockerproject.org/repo debian-jessie main
+EOF
+```
+
+其他两个版本内容：
+```
+deb https://apt.dockerproject.org/repo debian-wheezy main
+```
+```deb https://apt.dockerproject.org/repo debian-stretch main
+```
 5. 校验安装结果
+```
+ $ apt-cache policy docker-engine
+docker-engine:
+  Installed: 1.11.0-0~jessie
+  Candidate: 1.11.0-0~jessie
+  Version table:
+ *** 1.11.0-0~jessie 0
+        500 https://apt.dockerproject.org/repo/ debian-jessie/main amd64 Packages
+        100 /var/lib/dpkg/status
+  .....
+```
+以后，当执行```apt-get upgrade```等命令时，将使用新设置的的APT源。
+
 ##安装Docker
+```
+$ sudo apt-get install docker-engine
+```
 ##为非root用户授权
+```
+# 如果没有就建立一个Docker组.
+$ sudo groupadd docker
+
+# 增加一个用户（用真实的名字替换下面的${USER}）到docker组,需重登陆来生效。
+$ sudo gpasswd -a ${USER} docker
+
+# 重启docker服务
+$ sudo service docker restart
+```
 ##更新Docker
+```
+$ apt-get upgrade docker-engine
+```
 ##卸载Docker
+```sh
+# 卸载软件包
+$ sudo apt-get purge docker-engine
+
+#卸载依赖包
+$ sudo apt-get autoremove --purge docker-engine
+
+#如有必要，执行以下命令，删除全部镜像、容器、数据卷和其他docker相关用户信息:
+$ rm -rf /var/lib/docker
+
+```
 
