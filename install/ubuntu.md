@@ -103,3 +103,6 @@ $ sudo apt-get install -y docker-engine
 ```
 
 如果系统中存在旧版本的 Docker （lxc-docker），会提示是否先删除，选择是即可。
+
+### 其他可选配置
+参见 [docker官方配置文档。](https://docs.docker.com/engine/installation/linux/ubuntulinux/)
