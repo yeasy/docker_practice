@@ -11,6 +11,7 @@
 * [安装](install/README.md)
    * [Ubuntu](install/ubuntu.md)
    * [CentOS](install/centos.md)
+   * Debian
 * [镜像](image/README.md)
    * [获取镜像](image/pull.md)
    * [列出](image/list.md)
