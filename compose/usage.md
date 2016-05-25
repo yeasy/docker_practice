@@ -9,7 +9,7 @@
 可见，一个项目可以由多个服务（容器）关联而成，Compose 面向项目进行管理。
 
 ### 场景
-下面，我们创建一个经典的 Web 项目：一个 [Haproxy](www.haproxy.org)，挂载三个 Web 容器。
+下面，我们创建一个经典的 Web 项目：一个 [Haproxy](http://www.haproxy.org/)，挂载三个 Web 容器。
 
 创建一个 `compose-haproxy-web` 目录，作为项目工作目录，并在其中分别创建两个子目录：`haproxy` 和 `web`。
 
