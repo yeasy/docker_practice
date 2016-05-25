@@ -1,6 +1,6 @@
 # 项目简介
 
-![](../_images/kubernetes_logo.svg)
+![](../_images/kubernetes_logo.png)
 
 Kubernetes 是 Google 团队发起的开源项目，它的目标是管理跨多个主机的容器，提供基本的部署，维护以及运用伸缩，主要实现语言为Go语言。Kubernetes是：
 * 易学：轻量级，简单，容易理解
