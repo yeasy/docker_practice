@@ -11,7 +11,7 @@ $ uname -r
 ```
 ###更新APT仓库
 Docker的APT仓库包含了1.7.1及以上版本的Docker，安装前需要更新APT设置，来使用新的仓库：
-1. 清理旧的仓库信息
+1. 清理旧的仓库信息(如果不是首次安装的话)
 ```sh
  $ apt-get purge lxc-docker*
  $ apt-get purge docker.io*
@@ -26,6 +26,7 @@ Docker的APT仓库包含了1.7.1及以上版本的Docker，安装前需要更新
  $ apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 ```
 4. 添加APT源
+
 编辑文件 ```/etc/apt/sources.list.d/docker.list```,清理已存在的信息，写入APT源地址内容。以下以Debian Jessie为例，非Jessie版本的系统注意修改为自己对应的代号。
 ```sh
 $ sudo cat <<EOF > /etc/apt/sources.list.d/docker.list
@@ -33,11 +34,14 @@ deb https://apt.dockerproject.org/repo debian-jessie main
 EOF
 ```
 
-其他两个版本内容：
+其他两个版本(wheezy,stretch)内容：
+ 
 ```
 deb https://apt.dockerproject.org/repo debian-wheezy main
 ```
-```deb https://apt.dockerproject.org/repo debian-stretch main
+
+```
+deb https://apt.dockerproject.org/repo debian-stretch main
 ```
 5. 校验安装结果
 ```
