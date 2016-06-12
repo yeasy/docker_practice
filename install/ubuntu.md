@@ -3,10 +3,11 @@
 ### 系统要求
 
 Docker 支持以下版本的Ubuntu操作系统：
--    Ubuntu Xenial 16.04 (LTS)
--    Ubuntu Wily 15.10
--    Ubuntu Trusty 14.04 (LTS)
--    Ubuntu Precise 12.04 (LTS)
+
+* Ubuntu Xenial 16.04 (LTS)
+* Ubuntu Wily 15.10
+* Ubuntu Trusty 14.04 (LTS)
+* Ubuntu Precise 12.04 (LTS)
 
 ### 预安装
 Docker 目前只能安装在 64 位平台上，并且要求内核版本不低于 3.10，实际上内核越新越好，过低的内核版本容易造成功能的不稳定。

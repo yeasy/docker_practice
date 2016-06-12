@@ -5,7 +5,8 @@
 仓库分为公开仓库（Public）和私有仓库（Private）两种形式。
 
 最大的公开仓库是 [Docker Hub](https://hub.docker.com)，存放了数量庞大的镜像供用户下载。
-国内的公开仓库包括 [Docker Pool](http://www.dockerpool.com) 、[灵雀云](http://hub.alauda.cn/)等，可以提供大陆用户更稳定快速的访问。
+
+国内的公开仓库包括 [时速云](https://hub.tenxcloud.com/) 、[网易云](https://c.163.com/hub) 等，可以提供大陆用户更稳定快速的访问。
 
 当然，用户也可以在本地网络内创建一个私有仓库（参考本文“私有仓库”部分）。
 
