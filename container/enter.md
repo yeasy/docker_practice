@@ -25,7 +25,7 @@ $ make nsenter && sudo cp nsenter /usr/local/bin
 ```
 
 #### 使用
-`nsenter` 可以访问另一个进程的名字空间。nsenter 要正常工作需要有 root 权限。
+`nsenter` 可以访问另一个进程的命名空间。nsenter 要正常工作需要有 root 权限。
 很不幸，Ubuntu 14.04 仍然使用的是 util-linux 2.20。安装最新版本的 util-linux（2.24）版，请按照以下步骤：
 ```
 $ wget https://www.kernel.org/pub/linux/utils/util-linux/v2.24/util-linux-2.24.tar.gz; tar xzvf util-linux-2.24.tar.gz
