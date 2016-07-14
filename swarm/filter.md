@@ -11,7 +11,7 @@ sudo docker -d --label label_name=label01
 
 也可以写在docker的配置文件里面（在ubuntu上面是 `/etc/default/docker`）。
 
-在本次试验中，给083添加标签--label label_name=083,084添加标签--label label_name=084,124添加标签--label label_name=084,
+在本次试验中，给083添加标签--label label_name=083,084添加标签--label label_name=084,124添加标签--label label_name=124,
 
 以083为例，打开/etc/default/docker文件，修改DOCKER_OPTS：
 ```sh
