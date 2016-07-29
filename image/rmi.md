@@ -20,7 +20,7 @@ Deleted: 5c58979d73ae448df5af1d8142436d81116187a7633082650549c52c3a2418f0
 $ sudo docker rmi $(docker images -q -f "dangling=true")
 ```
 
-其中 `-q` 和 `-f` 是缩写, 完整的命令其实可以写着下面这样，是不是更容易理解一点？
+其中 `-q` 和 `-f` 是缩写, 完整的命令其实可以写成下面这样，是不是更容易理解一点？
 
 ```
 $ sudo docker rmi $(docker images --quiet --filter "dangling=true")
