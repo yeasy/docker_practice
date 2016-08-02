@@ -22,8 +22,8 @@ Docker 的 APT 仓库包含了 1.7.1 及以上版本的 Docker，安装前需要
 #### 1. 清理旧的仓库信息
 
 ```sh
- $ apt-get purge lxc-docker*
- $ apt-get purge docker.io*
+ $ apt-get purge "lxc-docker*"
+ $ apt-get purge "docker.io*"
 ```
 
 #### 2. 更新和安装软件包
