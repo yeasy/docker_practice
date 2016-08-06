@@ -2,7 +2,7 @@
     "title": "Docker -- 从入门到实践",
     "author": "yeasy",
     "plugins": [
-        "autocover",
+        "-autocover",
         "image-captions",
         "github-buttons",
         "latex-codecogs",
