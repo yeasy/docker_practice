@@ -1,1 +1,39 @@
-{}
+{
+    "title": "Docker -- 从入门到实践",
+    "author": "yeasy",
+    "plugins": [
+        "autocover",
+        "image-captions",
+        "github-buttons",
+        "latex-codecogs",
+        "prism", 
+        "-highlight"
+    ],
+    "pluginsConfig": {
+        "autocover": {
+            "font": {
+                "size": null,
+                "family": "Impact",
+                "color": "#000"
+            },
+            "size": {
+                "w": 1800,
+                "h": 2360
+            },
+            "background": {
+                "color": "#FFF"
+            }
+        },
+        "image-captions": {
+            "attributes": { "width": "600" },
+            "caption": "图 _PAGE_LEVEL_._PAGE_IMAGE_NUMBER_ - _CAPTION_"
+        },
+        "github-buttons": {
+            "repo": "yeasy/docker_practice",
+            "types": [
+                "star",
+                "watch"
+            ]
+        }
+    }
+}
