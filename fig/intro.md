@@ -26,7 +26,7 @@ db:
 
 接着执行命令 `fig up` ，然后 Fig 就会启动并运行你的应用了。
 
-![Docker](../_images/fig-example-large.gif)
+![Docker](../_images/fig-example-large.png)
 
 Fig 可用的命令有:
 

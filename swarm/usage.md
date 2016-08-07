@@ -44,7 +44,7 @@ b7625e5a7a2dc7f8c4faacf2b510078e
 
 在所有要加入集群的节点上面执行 `swarm join` 命令，表示要把这台机器加入这个集群当中。在本次试验中，就是要在 83、84 和 124 这三台机器上执行下面的这条命令：
 ```sh
-sudo docker run --rm swarm join --addr=ip_address:2375 token://token_id
+sudo docker run -d swarm join --addr=ip_address:2375 token://token_id
 ```
 其中的 ip_address 换成执行这条命令的机器的 IP，token_id 换成上一步执行 `swarm create` 返回的 token。
 
