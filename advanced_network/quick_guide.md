@@ -8,7 +8,7 @@
 * `-H SOCKET... or --host=SOCKET...` --Docker 服务端接收命令的通道
 * `--icc=true|false` --是否支持容器之间进行通信
 * `--ip-forward=true|false` --请看下文容器之间的通信
-* `--iptables=true|false` --禁止 Docker 添加 iptables 规则
+* `--iptables=true|false` --是否允许 Docker 添加 iptables 规则
 * `--mtu=BYTES` --容器网络中的 MTU
 
 下面2个命令选项既可以在启动服务时指定，也可以 Docker 容器启动（`docker run`）时候指定。在 Docker 服务启动的时候指定则会成为默认值，后面执行 `docker run` 时可以覆盖设置的默认值。
