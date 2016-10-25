@@ -123,7 +123,8 @@ defaults
   timeout client 50000ms
   timeout server 50000ms
 
-listen stats :70
+listen stats
+    bind 0.0.0.0:70
     stats enable
     stats uri /
 
