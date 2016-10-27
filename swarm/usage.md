@@ -19,7 +19,7 @@ DOCKER_OPTS="-H 0.0.0.0:2375 -H unix:///var/run/docker.sock"
 sudo service docker restart
 ```
 
-Docker 集群管理需要使用服务发现(Discovery service backend)功能，Swarm支持以下的几种方式：DockerHub 提供的服务发现功能，本地的文件，etcd，counsel，zookeeper 和 IP 列表，本文会详细讲解前两种方式，其他的用法都是大同小异的。
+Docker 集群管理需要使用服务发现(Discovery service backend)功能，Swarm支持以下的几种方式：DockerHub 提供的服务发现功能，本地的文件，etcd，consul，zookeeper 和 IP 列表，本文会详细讲解前两种方式，其他的用法都是大同小异的。
 
 先说一下本次试验的环境，本次试验包括三台机器，IP地址分别为192.168.1.84,192.168.1.83和192.168.1.124.利用这三台机器组成一个docker集群，其中83这台机器同时充当swarm manager节点。
 
