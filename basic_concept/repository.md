@@ -2,17 +2,17 @@
 
 镜像构建完成后，可以很容易的在当前宿主上运行，但是，如果需要在其它服务器上使用这个镜像，我们就需要一个集中的存储、分发镜像的服务，[Docker Registry](https://docs.docker.com/registry/) 就是这样的服务。
 
-一个 **Docker Registry 服务器** 中，可以包含多个**镜像仓库**（Repository），每个镜像仓库可以包含多个**标签**（Tag）；每个标签对应一个镜像。
+一个 **Docker Registry** 中可以包含多个**仓库**（Repository）；每个仓库可以包含多个**标签**（Tag）；每个标签对应一个镜像。
 
-一般而言，一个镜像仓库包含的是同一个软件的不同版本的镜像，而标签则用于对应于软件的的不同版本。我们可以通过 `<镜像仓库名>:<标签>` 的格式来指定我们具体所需的是哪个版本的镜像。如果不给出标签，将以 `latest` 作为默认标签。
+一般而言，一个仓库包含的是同一个软件的不同版本的镜像，而标签则用于对应于软件的的不同版本。我们可以通过 `<仓库名>:<标签>` 的格式来指定具体是哪个版本的镜像。如果不给出标签，将以 `latest` 作为默认标签。
 
-以 [Ubuntu 镜像](https://hub.docker.com/_/ubuntu/) 为例，`ubuntu` 是镜像仓库的名字，其内包含有不同的版本标签，如，`14.04`, `16.04`。我们可以通过 `ubuntu:14.04`，或者 `ubuntu:16.04` 来具体指定所需哪个版本的镜像。如果忽略了标签，比如 `ubuntu`，那将视为 `ubuntu:latest`。
+以 [Ubuntu 镜像](https://hub.docker.com/_/ubuntu/) 为例，`ubuntu` 是仓库的名字，其内包含有不同的版本标签，如，`14.04`, `16.04`。我们可以通过 `ubuntu:14.04`，或者 `ubuntu:16.04` 来具体指定所需哪个版本的镜像。如果忽略了标签，比如 `ubuntu`，那将视为 `ubuntu:latest`。
 
-镜像仓库名经常以 *两段式路径* 形式出现，比如 `jwilder/nginx-proxy`，前者往往意味着多用户 Docker Registry 环境下的用户名，后者是镜像对应的软件名。但这并非绝对，取决于所使用的具体 Docker Registry 的软件或服务。
+仓库名经常以 *两段式路径* 形式出现，比如 `jwilder/nginx-proxy`，前者往往意味着 Docker Registry 多用户环境下的用户名，后者则往往是对应的软件名。但这并非绝对，取决于所使用的具体 Docker Registry 的软件或服务。
 
 ### Docker Registry 公开服务
 
-Docker Registry 公开服务是开放给用户使用、允许用户管理镜像的 Registry 服务。一般这类公开服务允许用户免费上传、下载公开的镜像，同时提供收费服务供用户管理私有镜像。
+Docker Registry 公开服务是开放给用户使用、允许用户管理镜像的 Registry 服务。一般这类公开服务允许用户免费上传、下载公开的镜像，并可能提供收费服务供用户管理私有镜像。
 
 最常使用的 Registry 公开服务是官方的 [Docker Hub](https://hub.docker.com/)，这也是默认的 Registry，并拥有大量的高质量的官方镜像。除此以外，还有 [CoreOS](https://coreos.com/) 的 [Quay.io](https://quay.io/repository/)，CoreOS 相关的镜像存储在这里；Google 的 [Google Container Registry](https://cloud.google.com/container-registry/)，[Kubernetes](http://kubernetes.io/) 的镜像使用的就是这个服务。
 
@@ -22,8 +22,8 @@ Docker Registry 公开服务是开放给用户使用、允许用户管理镜像�
 
 ### 私有 Docker Registry
 
-除了使用公开服务外，用户还可以在本地搭建私有 Docker Registry。Docker 官方提供了 [Docker Registry 镜像](https://hub.docker.com/_/registry/)，可以直接使用做为私有 Registry 服务。在后续的相关章节中，会有进一步的搭建私有镜像的讲解。
+除了使用公开服务外，用户还可以在本地搭建私有 Docker Registry。Docker 官方提供了 [Docker Registry 镜像](https://hub.docker.com/_/registry/)，可以直接使用做为私有 Registry 服务。在后续的相关章节中，会有进一步的搭建私有 Registry 服务的讲解。
 
-开源的 Docker Registry 镜像只提供了 [Docker Registry API](https://docs.docker.com/registry/spec/api/) 的服务端实现，虽然足以支持 `docker` 命令，不影响使用，但是不包含图形界面，以及镜像维护、用户管理、访问控制等高级功能。官方收费的 [Docker Trusted Registry](https://docs.docker.com/datacenter/dtr/2.0/) 提供了这些高级功能。
+开源的 Docker Registry 镜像只提供了 [Docker Registry API](https://docs.docker.com/registry/spec/api/) 的服务端实现，足以支持 `docker` 命令，不影响使用。但不包含图形界面，以及镜像维护、用户管理、访问控制等高级功能。在官方的商业化版本 [Docker Trusted Registry](https://docs.docker.com/datacenter/dtr/2.0/) 中，提供了这些高级功能。
 
-除了官方的 Docker Registry 外，还有第三方软件实现了 Docker Registry API，并提供了用户界面以及一些高级功能。比如，[VMWare Harbor](http://vmware.github.io/harbor/index_cn.html) 和 [Sonatype Nexus](https://www.sonatype.com/docker)。
+除了官方的 Docker Registry 外，还有第三方软件实现了 Docker Registry API，甚至提供了用户界面以及一些高级功能。比如，[VMWare Harbor](http://vmware.github.io/harbor/index_cn.html) 和 [Sonatype Nexus](https://www.sonatype.com/docker)。
