@@ -1,15 +1,29 @@
-## Docker 仓库
+## Docker Registry
 
-仓库（Repository）是集中存放镜像文件的场所。有时候会把仓库和仓库注册服务器（Registry）混为一谈，并不严格区分。实际上，仓库注册服务器上往往存放着多个仓库，每个仓库中又包含了多个镜像，每个镜像有不同的标签（tag）。
+镜像构建完成后，可以很容易的在当前宿主上运行，但是，如果需要在其它服务器上使用这个镜像，我们就需要一个集中的存储、分发镜像的服务，[Docker Registry](https://docs.docker.com/registry/) 就是这样的服务。
 
-仓库分为公开仓库（Public）和私有仓库（Private）两种形式。
+一个 **Docker Registry 服务器** 中，可以包含多个**镜像仓库**（Repository），每个镜像仓库可以包含多个**标签**（Tag）；每个标签对应一个镜像。
 
-最大的公开仓库是 [Docker Hub](https://hub.docker.com)，存放了数量庞大的镜像供用户下载。
+一般而言，一个镜像仓库包含的是同一个软件的不同版本的镜像，而标签则用于对应于软件的的不同版本。我们可以通过 `<镜像仓库名>:<标签>` 的格式来指定我们具体所需的是哪个版本的镜像。如果不给出标签，将以 `latest` 作为默认标签。
 
-国内的公开仓库包括 [时速云](https://hub.tenxcloud.com/) 、[网易云](https://c.163.com/hub) 等，可以提供大陆用户更稳定快速的访问。
+以 [Ubuntu 镜像](https://hub.docker.com/_/ubuntu/) 为例，`ubuntu` 是镜像仓库的名字，其内包含有不同的版本标签，如，`14.04`, `16.04`。我们可以通过 `ubuntu:14.04`，或者 `ubuntu:16.04` 来具体指定所需哪个版本的镜像。如果忽略了标签，比如 `ubuntu`，那将视为 `ubuntu:latest`。
 
-当然，用户也可以在本地网络内创建一个私有仓库（参考本文“私有仓库”部分）。
+镜像仓库名经常以 *两段式路径* 形式出现，比如 `jwilder/nginx-proxy`，前者往往意味着多用户 Docker Registry 环境下的用户名，后者是镜像对应的软件名。但这并非绝对，取决于所使用的具体 Docker Registry 的软件或服务。
 
-当用户创建了自己的镜像之后就可以使用 `push` 命令将它上传到公有或者私有仓库，这样下次在另外一台机器上使用这个镜像时候，只需要从仓库上 `pull` 下来就可以了。
+### Docker Registry 公开服务
 
-*注：Docker 仓库的概念跟 [Git](http://git-scm.com) 类似，注册服务器可以理解为 GitHub 这样的托管服务。
+Docker Registry 公开服务是开放给用户使用、允许用户管理镜像的 Registry 服务。一般这类公开服务允许用户免费上传、下载公开的镜像，同时提供收费服务供用户管理私有镜像。
+
+最常使用的 Registry 公开服务是官方的 [Docker Hub](https://hub.docker.com/)，这也是默认的 Registry，并拥有大量的高质量的官方镜像。除此以外，还有 [CoreOS](https://coreos.com/) 的 [Quay.io](https://quay.io/repository/)，CoreOS 相关的镜像存储在这里；Google 的 [Google Container Registry](https://cloud.google.com/container-registry/)，[Kubernetes](http://kubernetes.io/) 的镜像使用的就是这个服务。
+
+由于伟大的墙的原因，在国内访问这些 Docker Registry 公开服务会比较困难。国内的一些云服务商提供了针对 Docker Hub 的镜像服务（Registry Mirror），这些镜像服务被称为**加速器**。常见的有 [阿里云加速器](https://cr.console.aliyun.com/#/accelerator)、[DaoCloud 加速器](https://www.daocloud.io/mirror#accelerator-doc)、[灵雀云加速器](http://docs.alauda.cn/feature/accelerator.html)等。使用加速器会直接从国内的地址下载 Docker Hub 的镜像，比直接从官方网站下载速度会提高很多。
+
+国内也有一些云服务商提供类似于 Docker Hub 的公开服务。比如 [时速云镜像仓库](https://hub.tenxcloud.com/)、[网易云镜像服务](https://c.163.com/hub#/m/library/)、[DaoCloud 镜像市场](https://hub.daocloud.io/)、[阿里云镜像库](https://cr.console.aliyun.com)等。
+
+### 私有 Docker Registry
+
+除了使用公开服务外，用户还可以在本地搭建私有 Docker Registry。Docker 官方提供了 [Docker Registry 镜像](https://hub.docker.com/_/registry/)，可以直接使用做为私有 Registry 服务。在后续的相关章节中，会有进一步的搭建私有镜像的讲解。
+
+开源的 Docker Registry 镜像只提供了 [Docker Registry API](https://docs.docker.com/registry/spec/api/) 的服务端实现，虽然足以支持 `docker` 命令，不影响使用，但是不包含图形界面，以及镜像维护、用户管理、访问控制等高级功能。官方收费的 [Docker Trusted Registry](https://docs.docker.com/datacenter/dtr/2.0/) 提供了这些高级功能。
+
+除了官方的 Docker Registry 外，还有第三方软件实现了 Docker Registry API，并提供了用户界面以及一些高级功能。比如，[VMWare Harbor](http://vmware.github.io/harbor/index_cn.html) 和 [Sonatype Nexus](https://www.sonatype.com/docker)。
