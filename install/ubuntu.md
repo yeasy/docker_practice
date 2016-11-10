@@ -50,6 +50,24 @@ sudo apt-get install -y --install-recommends linux-generic-lts-xenial
 sudo reboot
 ```
 
+##### 配置 GRUB 引导参数
+
+在 Docker 使用期间，或者在 `docker info` 信息中，可能会看到下面的警告信息：
+
+```sh
+WARNING: Your kernel does not support cgroup swap limit. WARNING: Your
+kernel does not support swap limit capabilities. Limitation discarded.
+```
+
+如果需要这些功能，就需要修改 GRUB 的配置文件 ` /etc/default/grub`，在 `GRUB_CMDLINE_LINUX` 中添加内核引导参数 `cgroup_enable=memory swapaccount=1`。
+
+然后不要忘记了更新 GRUB：
+
+```sh
+$ sudo update-grub
+$ sudo reboot
+```
+
 ### 使用脚本自动安装
 
 Docker 官方为了简化安装流程，提供了一套安装脚本，Ubuntu 系统上可以使用这套脚本安装：
@@ -100,7 +118,7 @@ $ sudo apt-get install xserver-xorg-lts-trusty libgl1-mesa-glx-lts-trusty
 
 虽然 Ubuntu 系统软件源中有 Docker，名为 `docker.io`，但是不应该使用系统源中的这个版本，它的版本太旧。我们需要使用 Docker 官方提供的软件源，因此，我们需要添加 APT 软件源。
 
-首先，我们需要确保 APT 使用 HTTPS，以及 CA 证书更新到最新。官方源使用的是 HTTPS，从而确保软件下载过程中不被篡改。
+由于官方源使用 HTTPS 以确保软件下载过程中不被篡改。因此，我们首先需要添加使用 HTTPS 传输的软件包以及 CA 证书。
 
 *国内的一些软件源镜像（比如[阿里云](http://mirrors.aliyun.com/docker-engine/)）不是太在意系统安全上的细节，可能依旧使用不安全的 HTTP，对于这些源可以不执行这一步。*
 
@@ -143,7 +161,7 @@ $ sudo apt-get update
 $ sudo apt-get install docker-engine
 ```
 
-如果系统中存在旧版本的 Docker （`lxc-docker`），会提示是否先删除，选择是即可。
+如果系统中存在旧版本的 Docker （`lxc-docker`, `docker.io`），会提示是否先删除，选择是即可。
 
 #### 启动 Docker 引擎
 
@@ -176,27 +194,6 @@ $ sudo groupadd docker
 $ sudo usermod -aG docker $USER
 ```
 
-#### 配置 GRUB 引导参数
-
-在 Docker 使用期间，或者在 `docker info` 信息中，可能会看到下面的警告信息：
-
-```sh
-WARNING: Your kernel does not support cgroup swap limit. WARNING: Your
-kernel does not support swap limit capabilities. Limitation discarded.
-```
-
-如警告信息所说，这些内核功能没有启用，因此如果需要使用这些功能，需要启用这些功能。因此需要修改 GRUB 的配置文件 ` /etc/default/grub`，添加下面这个配置：
-
-```sh
-GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"
-```
-
-然后不要忘记了更新 GRUB
-
-```sh
-$ sudo update-grub
-```
-
 ### 参考文档
 
-参见 [Docker官方配置文档](https://docs.docker.com/engine/installation/linux/ubuntulinux/)。
+参见 [Docker 官方 Ubuntu 安装文档](https://docs.docker.com/engine/installation/linux/ubuntulinux/)。
