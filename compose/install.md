@@ -6,12 +6,12 @@
 这种方式最为推荐。
 
 执行命令。
-```sh
+```bash
 $ sudo pip install -U docker-compose
 ```
 
 安装成功后，可以查看 `docker-compose` 命令的用法。
-```sh
+```bash
 $ docker-compose -h
 Fast, isolated development environments using Docker.
 
@@ -43,7 +43,7 @@ Commands:
 ```
 
 之后，可以添加 bash 补全命令。
-```sh
+```bash
 $ curl -L https://raw.githubusercontent.com/docker/compose/1.2.0/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
 
 ```

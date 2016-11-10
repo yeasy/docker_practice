@@ -2,20 +2,20 @@
 在使用 swarm 管理集群前，需要把集群中所有的节点的 docker daemon 的监听方式更改为 `0.0.0.0:2375`。
 
 可以有两种方式达到这个目的，第一种是在启动docker daemon的时候指定
-```sh
+```bash
 sudo docker -H 0.0.0.0:2375&
 ```
 
 第二种方式是直接修改 Docker 的配置文件(Ubuntu 上是 `/etc/default/docker`，其他版本的 Linux 上略有不同)
 
 在文件的最后添加下面这句代码：
-```sh
+```bash
 DOCKER_OPTS="-H 0.0.0.0:2375 -H unix:///var/run/docker.sock"
 ```
 
 
 需要注意的是，一定要在所有希望被 Swarm 管理的节点上进行的。修改之后要重启 Docker
-```sh
+```bash
 sudo service docker restart
 ```
 
@@ -28,12 +28,12 @@ Docker 集群管理需要使用服务发现(Discovery service backend)功能，S
 #### 创建集群 token
 
 在上面三台机器中的任何一台机器上面执行 `swarm create` 命令来获取一个集群标志。这条命令执行完毕后，Swarm 会前往 DockerHub 上内置的发现服务中获取一个全球唯一的 token，用来标识要管理的集群。
-```sh
+```bash
 sudo docker run --rm swarm create
 ```
 
 我们在84这台机器上执行这条命令，输出如下：
-```sh
+```bash
 rio@084:~$ sudo docker run --rm swarm create
 b7625e5a7a2dc7f8c4faacf2b510078e
 ```
@@ -43,13 +43,13 @@ b7625e5a7a2dc7f8c4faacf2b510078e
 #### 加入集群
 
 在所有要加入集群的节点上面执行 `swarm join` 命令，表示要把这台机器加入这个集群当中。在本次试验中，就是要在 83、84 和 124 这三台机器上执行下面的这条命令：
-```sh
+```bash
 sudo docker run -d swarm join --addr=ip_address:2375 token://token_id
 ```
 其中的 ip_address 换成执行这条命令的机器的 IP，token_id 换成上一步执行 `swarm create` 返回的 token。
 
 在83这台机器上面的执行结果如下：
-```sh
+```bash
 rio@083:~$ sudo docker run -d swarm join --addr=192.168.1.83:2375 token://b7625e5a7a2dc7f8c4faacf2b510078e
 3b3d9da603d7c121588f796eab723458af5938606282787fcbb03b6f1ac2000b
 ```
@@ -57,18 +57,18 @@ rio@083:~$ sudo docker run -d swarm join --addr=192.168.1.83:2375 token://b7625e
 
 #### 启动swarm manager
 因为我们要使用 83 这台机器充当 swarm 管理节点，所以需要在83这台机器上面执行 `swarm manage` 命令：
-```sh
+```bash
 sudo docker run -d -p 2376:2375 swarm manage token://b7625e5a7a2dc7f8c4faacf2b510078e
 ```
 执行结果如下：
-```sh
+```bash
 rio@083:~$ sudo docker run -d -p 2376:2375 swarm manage token://b7625e5a7a2dc7f8c4faacf2b510078e
 83de3e9149b7a0ef49916d1dbe073e44e8c31c2fcbe98d962a4f85380ef25f76
 ```
 这条命令如果执行成功会返回已经启动的 Swarm 的容器的 ID，此时整个集群已经启动起来了。
 
 现在通过 `docker ps` 命令来看下有没有启动成功。
-```sh
+```bash
 rio@083:~$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS              PORTS                    NAMES
 83de3e9149b7        swarm:latest        "/swarm manage token   4 minutes ago       Up 4 minutes        0.0.0.0:2376->2375/tcp   stupefied_stallman
@@ -81,7 +81,7 @@ CONTAINER ID        IMAGE               COMMAND                CREATED          
 * 映射的端口可以使任意的除了 2375 以外的并且是未被占用的端口，但一定不能是 2375 这个端口，因为 2375 已经被 Docker 本身给占用了。
 
 集群启动成功以后，现在我们可以在任何一台节点上使用 `swarm list` 命令查看集群中的节点了，本实验在 124 这台机器上执行 `swarm list` 命令：
-```sh
+```bash
 rio@124:~$ sudo docker run --rm swarm list token://b7625e5a7a2dc7f8c4faacf2b510078e
 192.168.1.84:2375
 192.168.1.124:2375
@@ -93,7 +93,7 @@ rio@124:~$ sudo docker run --rm swarm list token://b7625e5a7a2dc7f8c4faacf2b5100
 本次试验，我们在 192.168.1.85 这台机器上使用 `docker info` 命令来查看集群中的节点的信息。
 
 其中 info 也可以换成其他的 Docker 支持的命令。
-```sh
+```bash
 rio@085:~$ sudo docker -H 192.168.1.83:2376 info
 Containers: 8
 Strategy: spread
@@ -112,7 +112,7 @@ Nodes: 2
 经过排查，发现是忘了修改 124 这台机器上面改 docker daemon 的监听方式，只要按照上面的步骤修改写 docker daemon 的监听方式就可以了。
 
 在使用这个方法的时候，使用swarm create可能会因为网络的原因会出现类似于下面的这个问题：
-```sh
+```bash
 rio@227:~$ sudo docker run --rm swarm create
 [sudo] password for rio:
 time="2015-05-19T12:59:26Z" level=fatal msg="Post https://discovery-stage.hub.docker.com/v1/clusters: dial tcp: i/o timeout"
@@ -123,7 +123,7 @@ time="2015-05-19T12:59:26Z" level=fatal msg="Post https://discovery-stage.hub.do
 第二种方法相对于第一种方法要简单得多，也不会出现类似于上面的问题。
 
 第一步：在 swarm 管理节点上新建一个文件，把要加入集群的机器 IP 地址和端口号写入文件中，本次试验就是要在83这台机器上面操作：
-```sh
+```bash
 rio@083:~$ echo 192.168.1.83:2375 >> cluster
 rio@083:~$ echo 192.168.1.84:2375 >> cluster
 rio@083:~$ echo 192.168.1.124:2375 >> cluster
@@ -134,12 +134,12 @@ rio@083:~$ cat cluster
 ```
 
 第二步：在083这台机器上面执行 `swarm manage` 这条命令：
-```sh
+```bash
 rio@083:~$ sudo docker run -d -p 2376:2375 -v $(pwd)/cluster:/tmp/cluster swarm manage file:///tmp/cluster
 364af1f25b776f99927b8ae26ca8db5a6fe8ab8cc1e4629a5a68b48951f598ad
 ```
 使用`docker ps`来查看有没有启动成功：
-```sh
+```bash
 rio@083:~$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND                CREATED              STATUS              PORTS                    NAMES
 364af1f25b77        swarm:latest        "/swarm manage file:   About a minute ago   Up About a minute   0.0.0.0:2376->2375/tcp   happy_euclid
@@ -149,7 +149,7 @@ CONTAINER ID        IMAGE               COMMAND                CREATED          
 在使用这条命令的时候需要注意的是注意：这里一定要使用-v命令，因为cluster文件是在本机上面，启动的容器默认是访问不到的，所以要通过-v命令共享。
 
 接下来的就可以在任何一台安装了docker的机器上面通过命令使用集群，同样的，在85这台机器上执行docker info命令查看集群的节点信息：
-```sh
+```bash
 rio@s085:~$ sudo docker -H 192.168.1.83:2376 info
 Containers: 9
 Strategy: spread

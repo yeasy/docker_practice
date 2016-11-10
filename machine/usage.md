@@ -6,12 +6,12 @@ Docker Machine 支持多种后端驱动，包括虚拟机、本地主机和云�
 首先确保本地主机可以通过 user 账号的 key 直接 ssh 到目标主机。
 
 使用 generic 类型的驱动，创建一台 Docker 主机，命名为 test。
-```sh
+```bash
 $ docker-machine create -d generic --generic-ip-address=10.0.100.101 --generic-ssh-user=user test
 ```
 
 创建主机成功后，可以通过 env 命令来让后续操作对象都是目标主机。
-```sh
+```bash
 $ docker-machine env test
 ```
 
@@ -53,7 +53,7 @@ $ docker-machine env test
 * `help, h`               输出帮助信息
 
 每个命令，又带有不同的参数，可以通过
-```sh
+```bash
 docker-machine <COMMAND> -h
 ```
 来查看具体的用法。

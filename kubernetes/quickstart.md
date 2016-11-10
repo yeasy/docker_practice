@@ -9,24 +9,24 @@
 Kubernetes 依赖 Etcd 服务来维护所有主节点的状态。
 
 ## 启动 Etcd 服务。
-```sh
+```bash
 docker run --net=host -d gcr.io/google_containers/etcd:2.0.9 /usr/local/bin/etcd --addr=127.0.0.1:4001 --bind-addr=0.0.0.0:4001 --data-dir=/var/etcd/data
 ```
 
 ## 启动主节点
 启动 kubelet。
-```sh
+```bash
 docker run --net=host -d -v /var/run/docker.sock:/var/run/docker.sock  gcr.io/google_containers/hyperkube:v0.17.0 /hyperkube kubelet --api_servers=http://localhost:8080 --v=2 --address=0.0.0.0 --enable_server --hostname_override=127.0.0.1 --config=/etc/kubernetes/manifests
 ```
 
 ## 启动服务代理
-```sh
+```bash
 docker run -d --net=host --privileged gcr.io/google_containers/hyperkube:v0.17.0 /hyperkube proxy --master=http://127.0.0.1:8080 --v=2
 ```
 
 ## 测试状态
 在本地访问 8080 端口，应该获取到类似如下的结果：
-```sh
+```bash
 $ curl 127.0.0.1:8080
 {
   "paths": [
@@ -49,7 +49,7 @@ $ curl 127.0.0.1:8080
 
 ## 查看服务
 所有服务启动后过一会，查看本地实际运行的 Docker 容器，应该有如下几个。
-```sh
+```bash
 CONTAINER ID        IMAGE                                        COMMAND                CREATED             STATUS              PORTS               NAMES
 ee054db2516c        gcr.io/google_containers/hyperkube:v0.17.0   "/hyperkube schedule   2 days ago          Up 1 days                               k8s_scheduler.509f29c9_k8s-master-127.0.0.1_default_9941e5170b4365bd4aa91f122ba0c061_e97037f5
 3b0f28de07a2        gcr.io/google_containers/hyperkube:v0.17.0   "/hyperkube apiserve   2 days ago          Up 1 days                               k8s_apiserver.245e44fa_k8s-master-127.0.0.1_default_9941e5170b4365bd4aa91f122ba0c061_6ab5c23d

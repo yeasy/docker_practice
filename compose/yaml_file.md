@@ -11,7 +11,7 @@
 指定为镜像名称或镜像 ID。如果镜像在本地不存在，`Compose` 将会尝试拉去这个镜像。
 
 例如：
-```sh
+```bash
 image: ubuntu
 image: orchardup/postgresql
 image: a4bc65fd
@@ -29,7 +29,7 @@ build: /path/to/build/dir
 
 覆盖容器启动后默认执行的命令。
 
-```sh
+```bash
 command: bundle exec thin -p 3000
 ```
 
@@ -37,7 +37,7 @@ command: bundle exec thin -p 3000
 
 链接到其它服务中的容器。使用服务名称（同时作为别名）或服务名称：服务别名 `（SERVICE:ALIAS）` 格式都可以。
 
-```sh
+```bash
 links:
  - db
  - db:database
@@ -46,7 +46,7 @@ links:
 
 使用的别名将会自动在服务容器中的 `/etc/hosts` 里创建。例如：
 
-```sh
+```bash
 172.17.2.186  db
 172.17.2.186  database
 172.17.2.187  redis
@@ -88,7 +88,7 @@ ports:
 
 仅可以指定内部端口为参数
 
-```sh
+```bash
 expose:
  - "3000"
  - "8000"
@@ -98,7 +98,7 @@ expose:
 
 卷挂载路径设置。可以设置宿主机路径 （`HOST:CONTAINER`） 或加上访问模式 （`HOST:CONTAINER:ro`）。
 
-```sh
+```bash
 volumes:
  - /var/lib/mysql
  - cache/:/tmp/cache
@@ -109,7 +109,7 @@ volumes:
 
 从另一个服务或容器挂载它的所有卷。
 
-```sh
+```bash
 volumes_from:
  - service_name
  - container_name
@@ -138,7 +138,7 @@ environment:
 
 如果有变量名称与 `environment` 指令冲突，则以后者为准。
 
-```sh
+```bash
 env_file: .env
 
 env_file:
@@ -149,14 +149,14 @@ env_file:
 
 环境变量文件中每一行必须符合格式，支持 `#` 开头的注释行。
 
-```sh
+```bash
 # common.env: Set Rails/Rack environment
 RACK_ENV=development
 ```
 
 ### `extends`
 基于已有的服务进行扩展。例如我们已经有了一个 webapp 服务，模板文件为 `common.yml`。
-```sh
+```bash
 # common.yml
 webapp:
   build: ./webapp
@@ -166,7 +166,7 @@ webapp:
 ```
 
 编写一个新的 `development.yml` 文件，使用 `common.yml` 中的 webapp 服务进行扩展。
-```sh
+```bash
 # development.yml
 web:
   extends:
@@ -188,7 +188,7 @@ db:
 
 设置网络模式。使用和 `docker client` 的 `--net` 参数一样的值。
 
-```sh
+```bash
 net: "bridge"
 net: "none"
 net: "container:[name or id]"
@@ -198,7 +198,7 @@ net: "host"
 ### `pid`
 跟主机系统共享进程命名空间。打开该选项的容器可以相互通过进程 ID 来访问和操作。
 
-```sh
+```bash
 pid: "host"
 ```
 
@@ -206,7 +206,7 @@ pid: "host"
 
 配置 DNS 服务器。可以是一个值，也可以是一个列表。
 
-```sh
+```bash
 dns: 8.8.8.8
 dns:
   - 8.8.8.8
@@ -215,7 +215,7 @@ dns:
 
 ### `cap_add, cap_drop`
 添加或放弃容器的 Linux 能力（Capabiliity）。
-```sh
+```bash
 cap_add:
   - ALL
 
@@ -228,7 +228,7 @@ cap_drop:
 
 配置 DNS 搜索域。可以是一个值，也可以是一个列表。
 
-```sh
+```bash
 dns_search: example.com
 dns_search:
   - domain1.example.com

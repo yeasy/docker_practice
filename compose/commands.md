@@ -5,7 +5,7 @@
 执行 `docker-compose [COMMAND] --help` 查看具体某个命令的使用说明。
 
 基本的使用格式是
-```sh
+```bash
 docker-compose [options] [COMMAND] [ARGS...]
 ```
 
@@ -33,7 +33,7 @@ docker-compose [options] [COMMAND] [ARGS...]
 ### `kill`
 
 通过发送 `SIGKILL` 信号来强制停止服务容器。支持通过参数来指定发送的信号，例如
-```sh
+```bash
 $ docker-compose kill -s SIGINT
 ```
 
