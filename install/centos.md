@@ -10,7 +10,7 @@ Docker 需要安装在 64 位的平台，并且内核版本不低于 3.10。 Cen
 
 Docker 官方为了简化安装流程，提供了一套安装脚本，CentOS 系统上可以使用这套脚本安装：
 
-```sh
+```bash
 curl -sSL https://get.docker.com/ | sh
 ```
 
@@ -20,13 +20,13 @@ curl -sSL https://get.docker.com/ | sh
 
 #### 阿里云的安装脚本
 
-```sh
+```bash
 curl -sSL http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh -
 ```
 
 #### DaoCloud 的安装脚本
 
-```sh
+```bash
 curl -sSL https://get.daocloud.io/docker | sh
 ```
 
@@ -36,14 +36,14 @@ curl -sSL https://get.daocloud.io/docker | sh
 
 默认配置下，在 CentOS 使用 Docker 可能会碰到下面的这些警告信息：
 
-```sh
+```bash
 WARNING: bridge-nf-call-iptables is disabled
 WARNING: bridge-nf-call-ip6tables is disabled
 ```
 
 添加内核配置参数以启用这些功能。
 
-```sh
+```bash
 $ sudo tee -a /etc/sysctl.conf <<-EOF
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
@@ -52,7 +52,7 @@ EOF
 
 然后重新加载 `sysctl.conf` 即可
 
-```sh
+```bash
 $ sudo sysctl -p
 ```
 
@@ -62,7 +62,7 @@ $ sudo sysctl -p
 
 执行下面的命令添加 `yum` 软件源。
 
-```sh
+```bash
 $ sudo tee /etc/yum.repos.d/docker.repo <<-'EOF'
 [dockerrepo]
 name=Docker Repository
@@ -77,14 +77,14 @@ EOF
 
 更新 `yum` 软件源缓存，并安装 `docker-engine`。
 
-```sh
+```bash
 $ sudo yum update
 $ sudo yum install docker-engine
 ```
 
 #### 启动 Docker 引擎
 
-```sh
+```bash
 $ sudo systemctl enable docker
 $ sudo systemctl start docker
 ```
@@ -95,13 +95,13 @@ $ sudo systemctl start docker
 
 建立 `docker` 组：
 
-```sh
+```bash
 $ sudo groupadd docker
 ```
 
 将当前用户加入 `docker` 组：
 
-```sh
+```bash
 $ sudo usermod -aG docker $USER
 ```
 

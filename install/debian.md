@@ -12,7 +12,7 @@ Docker 需要安装在 64 位的 x86 平台或 ARM 平台上（如[树莓派](ht
 
 用户可以通过如下命令检查自己的内核版本详细信息：
 
-```sh
+```bash
 $ uname -a
 Linux debian-512mb-nyc3-01 3.16.0-0.bpo.4-amd64 #1 SMP Debian 3.16.36-1+deb8u2~bpo70+1 (2016-10-19) x86_64 GNU/Linux
 ```
@@ -25,13 +25,13 @@ Debian 7 的内核默认为 3.2，为了满足 Docker 的需求，应该安装 `
 
 执行下面的命令添加 `backports` 源：
 
-```sh
+```bash
 $ echo "deb http://http.debian.net/debian wheezy-backports main" | sudo tee /etc/apt/sources.list.d/backports.list
 ```
 
 升级到 `backports` 内核：
 
-```sh
+```bash
 $ sudo apt-get update
 $ sudo apt-get -t wheezy-backports install linux-image-amd64
 ```
@@ -42,13 +42,13 @@ Debian 8 的内核默认为 3.16，满足基本的 Docker 运行条件。但是�
 
 执行下面的命令添加 `backports` 源：
 
-```sh
+```bash
 $ echo "deb http://http.debian.net/debian jessie-backports main" | sudo tee /etc/apt/sources.list.d/backports.list
 ```
 
 升级到 `backports` 内核：
 
-```sh
+```bash
 $ sudo apt-get update
 $ sudo apt-get -t jessie-backports install linux-image-amd64
 ```
@@ -59,7 +59,7 @@ $ sudo apt-get -t jessie-backports install linux-image-amd64
 
 在 Docker 使用期间，或者在 `docker info` 信息中，可能会看到下面的警告信息：
 
-```sh
+```bash
 WARNING: No memory limit support
 WARNING: No swap limit support
 WARNING: No oom kill disable support
@@ -69,7 +69,7 @@ WARNING: No oom kill disable support
 
 然后不要忘记了更新 GRUB，并重启：
 
-```sh
+```bash
 $ sudo update-grub
 $ sudo reboot
 ```
@@ -78,7 +78,7 @@ $ sudo reboot
 
 Docker 官方为了简化安装流程，提供了一套安装脚本，Debian 系统上可以使用这套脚本安装：
 
-```sh
+```bash
 curl -sSL https://get.docker.com/ | sh
 ```
 
@@ -88,13 +88,13 @@ curl -sSL https://get.docker.com/ | sh
 
 #### 阿里云的安装脚本
 
-```sh
+```bash
 curl -sSL http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh -
 ```
 
 #### DaoCloud 的安装脚本
 
-```sh
+```bash
 curl -sSL https://get.daocloud.io/docker | sh
 ```
 
@@ -106,14 +106,14 @@ curl -sSL https://get.daocloud.io/docker | sh
 
 *国内的一些软件源镜像（比如[阿里云](http://mirrors.aliyun.com/docker-engine/)）不是太在意系统安全上的细节，可能依旧使用不安全的 HTTP，对于这些源可以不执行这一步。*
 
-```sh
+```bash
 $ sudo apt-get update
 $ sudo apt-get install apt-transport-https ca-certificates
 ```
 
 为了确认所下载软件包的合法性，需要添加 Docker 官方软件源的 GPG 密钥。
 
-```sh
+```bash
 $ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 ```
 
@@ -127,13 +127,13 @@ $ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 
 
 用下面的命令将 APT 源添加到 `source.list`（将其中的 `<REPO>` 替换为上表的值）：
 
-```sh
+```bash
 $ echo "<REPO>" | sudo tee /etc/apt/sources.list.d/docker.list
 ```
 
 添加成功后，更新 apt 软件包缓存。
 
-```sh
+```bash
 $ sudo apt-get update
 ```
 
@@ -141,7 +141,7 @@ $ sudo apt-get update
 
 在一切准备就绪后，就可以安装最新版本的 Docker 了，软件包名称为 `docker-engine`。
 
-```sh
+```bash
 $ sudo apt-get install docker-engine
 ```
 
@@ -151,13 +151,13 @@ $ sudo apt-get install docker-engine
 
 ##### Debian 7 Wheezy
 
-```sh
+```bash
 $ sudo service docker start
 ```
 
 ##### Debian 8 Jessie/Stretch
 
-```sh
+```bash
 $ sudo systemctl enable docker
 $ sudo systemctl start docker
 ```
@@ -168,13 +168,13 @@ $ sudo systemctl start docker
 
 建立 `docker` 组：
 
-```sh
+```bash
 $ sudo groupadd docker
 ```
 
 将当前用户加入 `docker` 组：
 
-```sh
+```bash
 $ sudo usermod -aG docker $USER
 ```
 

@@ -2,7 +2,7 @@
 [kubectl](https://github.com/GoogleCloudPlatform/kubernetes) 是 Kubernetes 自带的客户端，可以用它来直接操作 Kubernetes。
 
 使用格式有两种：
-```sh
+```bash
 kubectl [flags]
 kubectl [command]
 ```
