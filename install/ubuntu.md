@@ -1,14 +1,17 @@
-## Ubuntu 系列安装 Docker
+## Ubuntu、Debian 系列安装 Docker
 
 ### 系统要求
 
-Docker 支持以下版本的 Ubuntu 操作系统：
+Docker 支持以下版本的 [Ubuntu](https://www.ubuntu.com/server) 和 [Debian](https://www.debian.org/intro/about) 操作系统：
 
 * Ubuntu Xenial 16.04 (LTS)
 * Ubuntu Trusty 14.04 (LTS)
 * Ubuntu Precise 12.04 (LTS)
+* Debian testing stretch (64-bit)
+* Debian 8 Jessie (64-bit)
+* Debian 7 Wheezy (64-bit)（*必须启用 backports*)
 
-*注：Ubuntu 发行版中，LTS（Long-Term-Support）长期支持版本，会获得 5 年的升级维护支持，这样的版本会更稳定，因此在生产环境中推荐使用 LTS 版本。*
+Ubuntu 发行版中，LTS（Long-Term-Support）长期支持版本，会获得 5 年的升级维护支持，这样的版本会更稳定，因此在生产环境中推荐使用 LTS 版本。
 
 Docker 目前支持的 Ubuntu 版本最低为 12.04 LTS，但从稳定性上考虑，推荐使用 14.04 LTS 或更高的版本。
 
@@ -19,13 +22,6 @@ Docker 需要安装在 64 位的 x86 平台或 ARM 平台上（如[树莓派](ht
 ```bash
 $ uname -a
 Linux device 4.4.0-45-generic #66~14.04.1-Ubuntu SMP Wed Oct 19 15:05:38 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
-```
-
-或者
-
-```bash
-$ cat /proc/version
-Linux version 4.4.0-45-generic (buildd@lcy01-08) (gcc version 4.8.4 (Ubuntu 4.8.4-2ubuntu1~14.04.3) ) #66~14.04.1-Ubuntu SMP Wed Oct 19 15:05:38 UTC 2016
 ```
 
 #### 升级内核
@@ -44,11 +40,41 @@ sudo apt-get install -y --install-recommends linux-generic-lts-trusty
 sudo apt-get install -y --install-recommends linux-generic-lts-xenial
 ```
 
-升级完内核后不要忘记了重启以生效。
+##### Debian 7 Wheezy
+
+Debian 7 的内核默认为 3.2，为了满足 Docker 的需求，应该安装 `backports` 的内核。
+
+执行下面的命令添加 `backports` 源：
 
 ```bash
-sudo reboot
+$ echo "deb http://http.debian.net/debian wheezy-backports main" | sudo tee /etc/apt/sources.list.d/backports.list
 ```
+
+升级到 `backports` 内核：
+
+```bash
+$ sudo apt-get update
+$ sudo apt-get -t wheezy-backports install linux-image-amd64
+```
+
+##### Debian 8 Jessie
+
+Debian 8 的内核默认为 3.16，满足基本的 Docker 运行条件。但是如果打算使用 `overlay2` 存储层驱动，或某些功能不够稳定希望升级到较新版本的内核，可以添加 `backports` 源，升级到新版本的内核。
+
+执行下面的命令添加 `backports` 源：
+
+```bash
+$ echo "deb http://http.debian.net/debian jessie-backports main" | sudo tee /etc/apt/sources.list.d/backports.list
+```
+
+升级到 `backports` 内核：
+
+```bash
+$ sudo apt-get update
+$ sudo apt-get -t jessie-backports install linux-image-amd64
+```
+
+需要注意的是，升级到 `backports` 的内核之后，会因为 `AUFS` 内核模块不可用，而使用默认的 `devicemapper` 驱动，并且配置为 `loop-lvm`，这是不推荐的。因此，不要忘记安装 Docker 后，配置 `overlay2` 存储层驱动。
 
 ##### 配置 GRUB 引导参数
 
@@ -57,6 +83,14 @@ sudo reboot
 ```bash
 WARNING: Your kernel does not support cgroup swap limit. WARNING: Your
 kernel does not support swap limit capabilities. Limitation discarded.
+```
+
+或者
+
+```bash
+WARNING: No memory limit support
+WARNING: No swap limit support
+WARNING: No oom kill disable support
 ```
 
 如果需要这些功能，就需要修改 GRUB 的配置文件 ` /etc/default/grub`，在 `GRUB_CMDLINE_LINUX` 中添加内核引导参数 `cgroup_enable=memory swapaccount=1`。
@@ -70,7 +104,7 @@ $ sudo reboot
 
 ### 使用脚本自动安装
 
-Docker 官方为了简化安装流程，提供了一套安装脚本，Ubuntu 系统上可以使用这套脚本安装：
+Docker 官方为了简化安装流程，提供了一套安装脚本，Ubuntu 和 Debian 系统可以使用这套脚本安装：
 
 ```bash
 curl -sSL https://get.docker.com/ | sh
@@ -133,13 +167,16 @@ $ sudo apt-get install apt-transport-https ca-certificates
 $ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 ```
 
-然后，我们需要向 `source.list` 中添加 Docker 软件源，下表列出了不同的 Ubuntu 版本对应的 APT 源。
+然后，我们需要向 `source.list` 中添加 Docker 软件源，下表列出了不同的 Ubuntu 和 Debian 版本对应的 APT 源。
 
-|     Ubuntu 版本      |                            REPO                              |
+|     操作系统版本      |                            REPO                              |
 |---------------------|--------------------------------------------------------------|
 | Precise 12.04 (LTS) | `deb https://apt.dockerproject.org/repo ubuntu-precise main` |
 | Trusty 14.04 (LTS)  | `deb https://apt.dockerproject.org/repo ubuntu-trusty main`  |
 | Xenial 16.04 (LTS)  | `deb https://apt.dockerproject.org/repo ubuntu-xenial main`  |
+|   Debian 7 Wheezy   | `deb https://apt.dockerproject.org/repo debian-wheezy main`  |
+|   Debian 8 Jessie   | `deb https://apt.dockerproject.org/repo debian-jessie main`  |
+| Debian Stretch/Sid  | `deb https://apt.dockerproject.org/repo debian-stretch main` |
 
 用下面的命令将 APT 源添加到 `source.list`（将其中的 `<REPO>` 替换为上表的值）：
 
@@ -165,13 +202,13 @@ $ sudo apt-get install docker-engine
 
 #### 启动 Docker 引擎
 
-##### Ubuntu 12.04/14.04
+##### Ubuntu 12.04/14.04、Debian 7 Wheezy
 
 ```bash
 $ sudo service docker start
 ```
 
-##### Ubuntu 16.04
+##### Ubuntu 16.04、Debian 8 Jessie/Stretch
 
 ```bash
 $ sudo systemctl enable docker
@@ -196,4 +233,5 @@ $ sudo usermod -aG docker $USER
 
 ### 参考文档
 
-参见 [Docker 官方 Ubuntu 安装文档](https://docs.docker.com/engine/installation/linux/ubuntulinux/)。
+* [Docker 官方 Ubuntu 安装文档](https://docs.docker.com/engine/installation/linux/ubuntulinux/)
+* 参见 [Docker 官方 Debian 安装文档](https://docs.docker.com/engine/installation/linux/debian/)
