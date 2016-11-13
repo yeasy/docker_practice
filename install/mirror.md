@@ -1,6 +1,6 @@
 ## 配置加速器
 
-由于伟大的墙，在国内访问 Docker Hub 时可能会遇到困难，因此在国内使用 Docker 的时候一般需要配置加速器。国内一些云服务商提供了加速器服务：
+国内访问 Docker Hub 有时会遇到困难，此时可以配置镜像加速器。国内很多云服务商都提供了加速器服务，例如：
 
 * [阿里云加速器](https://cr.console.aliyun.com/#/accelerator)
 * [DaoCloud 加速器](https://www.daocloud.io/mirror#accelerator-doc)
