@@ -234,4 +234,4 @@ $ sudo usermod -aG docker $USER
 ### 参考文档
 
 * [Docker 官方 Ubuntu 安装文档](https://docs.docker.com/engine/installation/linux/ubuntulinux/)
-* 参见 [Docker 官方 Debian 安装文档](https://docs.docker.com/engine/installation/linux/debian/)
+* [Docker 官方 Debian 安装文档](https://docs.docker.com/engine/installation/linux/debian/)
