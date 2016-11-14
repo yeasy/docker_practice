@@ -13,7 +13,7 @@ $ sudo docker run -i -t --rm --net=none base /bin/bash
 root@12e343489d2f:/#
 ```
 
-找到进程号，然后创建网络名字空间的跟踪文件。
+找到进程号，然后创建网络命名空间的跟踪文件。
 ```
 $ sudo docker inspect -f '{{.State.Pid}}' 1f1f4c1f931a
 2989
