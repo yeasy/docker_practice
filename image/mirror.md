@@ -39,6 +39,20 @@ $ sudo systemctl daemon-reload
 $ sudo systemctl restart docker
 ```
 
+### Windows 10
+对于使用 WINDOWS 10 的系统，在系统右下角托盘图标内右键菜单选择 `Settings`，打开配置窗口后左侧导航菜单选择 `Docker Daemon`。编辑窗口内的JSON串，填写如阿里云、DaoCloud之类的加速器地址，如：
+
+```bash
+{
+  "registry-mirrors": [
+    "https://sr5arhkn.mirror.aliyuncs.com",
+    "http://14d216f4.m.daocloud.io"
+  ],
+  "insecure-registries": []
+}
+```
+编辑完成，点击Apply保存后Docker服务会重新启动。
+
 ### 检查加速器是否生效
 
 配置完加速器需要检查是否生效，在命令行执行 `ps -ef | grep dockerd`，如果从结果中看到了配置的 `--registry-mirror` 参数说明配置成功。
