@@ -1,6 +1,6 @@
-##使用 Rail 入门 Fig
+## 使用 Rail
 
-我们现在将使用 Fig 配置并运行一个 Rails/PostgreSQL 应用。在开始之前，先确保 Fig 已经 [安装](install.md)。
+我们现在将使用 Compose 配置并运行一个 Rails/PostgreSQL 应用。在开始之前，先确保 Compose 已经 [安装](install.md)。
 
 
 在一切工作开始前，需要先设置好三个必要的文件。  
@@ -22,7 +22,7 @@ ADD . /myapp
 source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 ```
-最后，`fig.yml` 文件才是最神奇的地方。 `fig.yml` 文件将把所有的东西关联起来。它描述了应用的构成（一个 web 服务和一个数据库）、每个镜像的来源（数据库运行在使用预定义的 PostgreSQL 镜像，web 应用侧将从本地目录创建）、镜像之间的连接，以及服务开放的端口。
+最后，`docker-compose.yml` 文件才是最神奇的地方。 `docker-compose.yml` 文件将把所有的东西关联起来。它描述了应用的构成（一个 web 服务和一个数据库）、每个镜像的来源（数据库运行在使用预定义的 PostgreSQL 镜像，web 应用侧将从本地目录创建）、镜像之间的连接，以及服务开放的端口。
 
 ```
 db:
@@ -39,19 +39,19 @@ web:
   links:
     - db
 ```
-所有文件就绪后，我们就可以通过使用 `fig run` 命令生成应用的骨架了。 
+所有文件就绪后，我们就可以通过使用 `docker-compose run` 命令生成应用的骨架了。 
  
 ```
-$ fig run web rails new . --force --database=postgresql --skip-bundle
+$ docker-compose run web rails new . --force --database=postgresql --skip-bundle
 ```
-Fig 会先使用 `Dockerfile` 为 web 服务创建一个镜像，接着使用这个镜像在容器里运行 `rails new ` 和它之后的命令。一旦这个命令运行完后，应该就可以看一个崭新的应用已经生成了。
+Compose 会先使用 `Dockerfile` 为 web 服务创建一个镜像，接着使用这个镜像在容器里运行 `rails new ` 和它之后的命令。一旦这个命令运行完后，应该就可以看一个崭新的应用已经生成了。
 
 ```
 $ ls
-Dockerfile   app          fig.yml      tmp
+Dockerfile   app          docker-compose.yml      tmp
 Gemfile      bin          lib          vendor
-Gemfile.lock config       log
-README.rdoc  config.ru    public
+Gemfile.lock condocker-compose       log
+README.rdoc  condocker-compose.ru    public
 Rakefile     db           test
 ```
 在新的 `Gemfile` 文件去掉加载 `therubyracer` 的行的注释，这样我们便可以使用 Javascript 运行环境：
@@ -62,7 +62,7 @@ gem 'therubyracer', platforms: :ruby
 现在我们已经有一个新的 `Gemfile` 文件，需要再重新创建镜像。（这个会步骤会改变 Dockerfile 文件本身，仅仅需要重建一次）。
 
 ```
-$ fig build
+$ docker-compose build
 ```
 应用现在就可以启动了，但配置还未完成。Rails 默认读取的数据库目标是 `localhost` ，我们需要手动指定容器的 `db` 。同样的，还需要把用户名修改成和 postgres 镜像预定的一致。
 打开最新生成的 `database.yml` 文件。用以下内容替换：
@@ -84,7 +84,7 @@ test:
 现在就可以启动应用了。
 
 ```
-$ fig up
+$ docker-compose up
 ```
 如果一切正常，你应该可以看到 PostgreSQL 的输出，几秒后可以看到这样的重复信息：
 
@@ -96,8 +96,8 @@ myapp_web_1 | [2014-01-17 17:16:29] INFO  WEBrick::HTTPServer#start: pid=1 port=
 最后， 我们需要做的是创建数据库，打开另一个终端，运行：
 
 ```
-$ fig run web rake db:create
+$ docker-compose run web rake db:create
 ```
 这个 web 应用已经开始在你的 docker 守护进程里面监听着 3000 端口了（如果你有使用 boot2docker ，执行 `boot2docker ip` ，就会看到它的地址）。
 
-![](../_images/fig-rails-screenshot.png)
+![](../_images/docker-compose-rails-screenshot.png)

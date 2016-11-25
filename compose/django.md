@@ -1,6 +1,6 @@
-##使用 Django 入门 Fig
+## 使用 Django
 
-我们现在将使用 Fig 配置并运行一个 Django/PostgreSQL 应用。在此之前，先确保 Fig 已经 [安装](install.md)。
+我们现在将使用 Compose 配置并运行一个 Django/PostgreSQL 应用。在此之前，先确保 Compose 已经 [安装](install.md)。
 
 在一切工作开始前，需要先设置好三个必要的文件。  
 第一步，因为应用将要运行在一个满足所有环境依赖的 Docker 容器里面，那么我们可以通过编辑 `Dockerfile` 文件来指定 Docker 容器要安装内容。内容如下： 
@@ -24,7 +24,7 @@ psycopg2
 ```
 
 就是这么简单。  
-第三步，`fig.yml` 文件将把所有的东西关联起来。它描述了应用的构成（一个 web 服务和一个数据库）、使用的 Docker 镜像、镜像之间的连接、挂载到容器的卷，以及服务开放的端口。 
+第三步，`docker-compose.yml` 文件将把所有的东西关联起来。它描述了应用的构成（一个 web 服务和一个数据库）、使用的 Docker 镜像、镜像之间的连接、挂载到容器的卷，以及服务开放的端口。 
 
 ```
 db:
@@ -39,22 +39,22 @@ web:
   links:
     - db
 ```
-查看 [`fig.yml` 章节](yml_ref.md) 了解更多详细的工作机制。
+查看 [`docker-compose.yml` 章节](yml_ref.md) 了解更多详细的工作机制。
 
-现在我们就可以使用 `fig run` 命令启动一个 Django 应用了。
+现在我们就可以使用 `docker-compose run` 命令启动一个 Django 应用了。
 
 ```
-$ fig run web django-admin.py startproject figexample .
+$ docker-compose run web django-admin.py startproject docker-composeexample .
 ```
-Fig 会先使用 `Dockerfile` 为 web 服务创建一个镜像，接着使用这个镜像在容器里运行 `django-admin.py startproject figexample . ` 指令。
+Compose 会先使用 `Dockerfile` 为 web 服务创建一个镜像，接着使用这个镜像在容器里运行 `django-admin.py startproject docker-composeexample . ` 指令。
 
 这将在当前目录生成一个 Django 应用。
 
 ```
 $ ls
-Dockerfile       fig.yml          figexample       manage.py       requirements.txt
+Dockerfile       docker-compose.yml          docker-composeexample       manage.py       requirements.txt
 ```
-首先，我们要为应用设置好数据库的连接信息。用以下内容替换 `figexample/settings.py` 文件中 `DATABASES = ...` 定义的节点内容。
+首先，我们要为应用设置好数据库的连接信息。用以下内容替换 `docker-composeexample/settings.py` 文件中 `DATABASES = ...` 定义的节点内容。
 
 ```
 DATABASES = {
@@ -68,7 +68,7 @@ DATABASES = {
 }
 ```
 这些信息是在 [postgres](https://registry.hub.docker.com/_/postgres/) Docker 镜像固定设置好的。  
-然后，运行 `fig up` ：
+然后，运行 `docker-compose up` ：
 	
 ```
 Recreating myapp_db_1...
@@ -82,14 +82,14 @@ myapp_web_1 | Validating models...
 myapp_web_1 |
 myapp_web_1 | 0 errors found
 myapp_web_1 | January 27, 2014 - 12:12:40
-myapp_web_1 | Django version 1.6.1, using settings 'figexample.settings'
+myapp_web_1 | Django version 1.6.1, using settings 'docker-composeexample.settings'
 myapp_web_1 | Starting development server at http://0.0.0.0:8000/
 myapp_web_1 | Quit the server with CONTROL-C.
 ```
 这个 web 应用已经开始在你的 docker 守护进程里监听着 5000 端口了（如果你有使用 boot2docker ，执行 `boot2docker ip` ，就会看到它的地址）。
 
-你还可以在 Docker 上运行其它的管理命令，例如对于同步数据库结构这种事，在运行完 `fig up` 后，在另外一个终端运行以下命令即可：
+你还可以在 Docker 上运行其它的管理命令，例如对于同步数据库结构这种事，在运行完 `docker-compose up` 后，在另外一个终端运行以下命令即可：
 
 ```
-$ fig run web python manage.py syncdb
+$ docker-compose run web python manage.py syncdb
 ```
