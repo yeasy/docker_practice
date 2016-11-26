@@ -1,0 +1,12 @@
+{% extends template.self %}
+
+{% block head %}
+    {{ super() }}
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .btn[aria-label="github"] {
+            display: none;
+        }
+    }
+    </style>
+{% endblock %}
