@@ -32,7 +32,7 @@
         * [ONBUILD 为他人作嫁衣裳](image/dockerfile/onbuild.md)
         * [参考文档](image/dockerfile/references.md)
     * [其它制作镜像的方式](image/other.md)
-    * [移除](image/rmi.md)
+    * [删除本地镜像](image/rmi.md)
     * [镜像加速器](image/mirror.md)
     * [实现原理](image/internal.md)
 * [容器](container/README.md)
