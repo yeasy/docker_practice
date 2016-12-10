@@ -1,0 +1,51 @@
+//dot -Tpng container_status.dot -o container_status.png
+digraph G {
+    rankdir=TB;
+    rankdir=LR;
+    nodesep=1;
+//ranksep=1
+    fontname = "Microsoft YaHei";
+    fontsize = 28;
+    penwidth = 4;
+    compound=true;
+    style = "bold";
+    color = blue;
+
+    node [shape = record];
+    edge [fontname = "Arial", fontsize = 20, color="darkgreen" ];
+    image[label="Image",color=blue];
+    image->create[label="create"];
+    image->run[label="run"];
+
+    edge [fontname = "Arial", fontsize = 20, color="skyblue" ];
+    //node [style=filled];
+    create[label="Created",shape=circle, style=filled, fillcolor=lightblue];
+    run[label="Running",shape=circle, style=filled, fillcolor=green];
+    pause[label="Paused",shape=circle, style=filled, fillcolor=blue];
+    stop[label="Stopped",shape=circle, style=filled, fillcolor=red];
+    exit[label="Exited",shape=circle, style=filled, fillcolor=gray];
+
+    create->run[label=<<i>start</i>>];
+    run->pause[label="pause"];
+    pause->run[label="unpause"];
+    run->run[label="restart"];
+    run->stop[label="stop"];
+    run->exit[label="kill"];
+    stop->run[label="start"];
+
+
+    //heat[label="heat commands",color=blue];
+    //heatshell[label="heatclient.shell.HeatShell",color=blue];
+    //shell[label="{heatclient.v1.shell|+do_stack_create\l+do_stack_show\l+do_stack_update\l...\l+do_event_list\l...\l+do_resource_list\l...\l+do_resource_type_show\l...\l+do_template_show\l...\l}",color=blue];
+    //heatclient[label="heatclient.client.Client",color=blue];
+    //client[label="heatclient.v1.client.Client",color=blue];
+    //httpclient[label="heatclient.common.http.HTTPClient",color=blue];
+
+
+
+    //openstackservices[label="{OpenStack Services|+Nova\l+Neutron\l+Keystone\l...}",color=blue];
+
+    //{rank=same; image registry dockerfile tar}
+    //{rank=same; container}
+    //{rank=same; user}
+}

@@ -1,0 +1,93 @@
+//dot -Tpng cmd_logic.dot -o cmd_logic.png
+digraph G {
+    rankdir=TB;
+    rankdir=LR;
+    nodesep=1;
+//ranksep=1
+    fontname = "Microsoft YaHei";
+    fontsize = 28;
+    penwidth = 4;
+    compound=true;
+
+    node [shape = record];
+    edge [fontname = "Arial", fontsize = 20, color="darkgreen" ];
+
+    user[label="User",color=blue,shape=ellipse, style=filled, fillcolor=green];
+    dockerfile[label="Dockerfile",color=blue];
+    daemon[label="Daemon",color=blue];
+    image[label="Image",color=blue];
+    registry[label="Registry",color=blue];
+    tar[label="Tar files",color=blue];
+    network[label="Network",color=blue]
+    service[label="Service",color=blue]
+    swarm[label="Swarm",color=blue]
+    volume[label="Volume",color=blue]
+
+    subgraph cluster_container {
+		label = "Container";
+        labelloc = "c";
+        nodesep=.5;
+        style = "bold";
+        color = blue;
+        edge [fontname = "Arial", fontsize = 20, color="skyblue" ];
+		//node [style=filled];
+        create[label="Created",shape=circle, style=filled, fillcolor=lightblue];
+        run[label="Running",shape=circle, style=filled, fillcolor=green];
+        pause[label="Paused",shape=circle, style=filled, fillcolor=blue];
+        stop[label="Stopped",shape=circle, style=filled, fillcolor=red];
+        exit[label="Exited",shape=circle, style=filled, fillcolor=gray];
+
+        create->run[label=<<i>start</i>>];
+        run->pause[label="pause"];
+        pause->run[label="unpause"];
+        run->run[label="restart"];
+        run->stop[label="stop"];
+        run->exit[label="kill"];
+        stop->run[label="start"];
+	}
+
+    //dockerfile
+    dockerfile->image[label="build"];
+
+    //container
+    run->image[headlabel="commit", labeldistance=7.5, ltail=cluster_container];
+    run->tar[label="export",ltail=cluster_container];
+    run->network[label="connect | disconnect",ltail=cluster_container];
+
+    //image
+    image->create[label="create"];
+    image->run[label="run"];
+    image->tar[label="save"];
+    image->registry[label="push"];
+
+    //tar
+    tar->image[label="import | load"];
+    image->registry[label="push"];
+
+    //registry
+    registry->image[label="pull"];
+
+    //network
+    network->network[label="create | rm | ls | inspect"]
+
+    //user
+    user->run[label="attach | cp | diff | exec | inspect | logs | ps | rename | rm | stats | top | update | wait",lhead=cluster_container]
+    user->image[label="history | images | rmi | tag"]
+    user->daemon[label="event | info | version"]
+    user->registry[label="login | logout | search"]
+
+    //heat[label="heat commands",color=blue];
+    //heatshell[label="heatclient.shell.HeatShell",color=blue];
+    //shell[label="{heatclient.v1.shell|+do_stack_create\l+do_stack_show\l+do_stack_update\l...\l+do_event_list\l...\l+do_resource_list\l...\l+do_resource_type_show\l...\l+do_template_show\l...\l}",color=blue];
+    //heatclient[label="heatclient.client.Client",color=blue];
+    //client[label="heatclient.v1.client.Client",color=blue];
+    //httpclient[label="heatclient.common.http.HTTPClient",color=blue];
+
+
+
+    //openstackservices[label="{OpenStack Services|+Nova\l+Neutron\l+Keystone\l...}",color=blue];
+
+    //{rank=same; image registry dockerfile tar}
+    //{rank=same; container}
+    //{rank=same; user}
+}
