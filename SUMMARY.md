@@ -84,7 +84,7 @@
     * [网络](underly/network.md)
 * [Docker Compose 项目](compose/README.md)
     * [简介](compose/intro.md)
-    * [安装](compose/install.md)
+    * [安装与卸载](compose/install.md)
     * [使用](compose/usage.md)
     * [命令说明](compose/commands.md)
     * [YAML 模板文件](compose/yaml_file.md)
@@ -134,3 +134,4 @@
         * [Node.js](appendix/repo/nodejs.md)
     * [附录三：Docker 命令查询](appendix/command/README.md)
     * [附录四：资源链接](appendix/resources/README.md)
+
