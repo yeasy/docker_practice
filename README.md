@@ -1,12 +1,12 @@
 # Docker — 从入门到实践
 
-0.7.6
+0.7.7
 
-[Docker](http://www.docker.com) 是个划时代的开源项目，它彻底释放了虚拟化的威力，极大提高了应用的运行效率，降低了云计算资源供应的成本，同时让应用的部署、测试和分发都变得前所未有的高效和轻松！
+[Docker](http://www.docker.com) 是个划时代的开源项目，它彻底释放了计算虚拟化的威力，极大提高了应用的运行效率，降低了云计算资源供应的成本！ 使用 Docker，可以让应用的部署、测试和分发都变得前所未有的高效和轻松！
 
-无论是应用开发者，运维人员，还是云计算从业人员，都有必要认识和掌握 Docker，以在有限的时间内做更多有意义的事。
+无论是应用开发者、运维人员、还是其他信息技术从业人员，都有必要认识和掌握 Docker，以在有限的时间内做更多有意义的事。
 
-本书既适用于具备基础 Linux 知识的 Docker 初学者，也希望可供理解原理和实现的高级用户参考。同时，书中给出的实践案例，可供在进行实际部署时借鉴。前六章为基础内容，供用户理解 Docker 的基本概念和操作；7 ~ 9 章介绍一些高级操作；第 10 章给出典型的应用场景和实践案例；11 ~ 13 章介绍关于 Docker 实现的相关细节技术。后续章节则分别介绍一些相关的热门开源项目。
+本书既适用于具备基础 Linux 知识的 Docker 初学者，也希望可供理解原理和实现的高级用户参考。同时，书中给出的实践案例，可供在进行实际部署时借鉴。前六章为基础内容，供用户理解 Docker 的基本概念和操作；7 ~ 9 章介绍一些高级操作；第 10 章给出典型的应用场景和实践案例；11、12 章介绍关于 Docker 安全和实现技术等高级话题。后续章节则分别介绍一些相关的热门开源项目。
 
 在线阅读：[GitBook](https://www.gitbook.io/book/yeasy/docker_practice) 或 [Github](https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md)。
 
@@ -91,13 +91,13 @@
   * 添加基本内容;
   * 修正错别字和表达不通顺的地方。
 
-Docker 自身仍在快速发展中，生态环境也在蓬勃成长。源码开源托管在 Github 上，欢迎参与维护：[https:\/\/github.com\/yeasy\/docker\_practice](https://github.com/yeasy/docker_practice)。贡献者 [名单](https://github.com/yeasy/docker_practice/graphs/contributors)。
+Docker 自身仍在快速发展中，生态环境也在蓬勃成长。源码开源托管在 Github 上，欢迎参与维护：[https://github.com/yeasy/docker_practice](https://github.com/yeasy/docker_practice)。贡献者 [名单](https://github.com/yeasy/docker_practice/graphs/contributors)。
 
 ## 参加步骤
 
 * 在 GitHub 上 `fork` 到自己的仓库，如 `docker_user/docker_practice`，然后 `clone` 到本地，并设置用户信息。
 
-  ```
+  ```sh
   $ git clone git@github.com:docker_user/docker_practice.git
   $ cd docker_practice
   $ git config user.name "yourname"
@@ -106,7 +106,7 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。源码开�
 
 * 修改代码后提交，并推送到自己的仓库。
 
-  ```
+  ```sh
   $ #do some change on the content
   $ git commit -am "Fix issue #1: change helo to hello"
   $ git push
@@ -115,13 +115,10 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。源码开�
 * 在 GitHub 网站上提交 pull request。
 
 * 定期使用项目仓库内容更新自己仓库内容。
-  ```
+  ```sh
   $ git remote add upstream https://github.com/yeasy/docker_practice
   $ git fetch upstream
   $ git checkout master
   $ git rebase upstream/master
   $ git push -f origin master
   ```
-
-
-
