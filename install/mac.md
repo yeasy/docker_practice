@@ -4,13 +4,21 @@
 
 [Docker for Mac](https://docs.docker.com/docker-for-mac/) 要求系统最低为 macOS 10.10.3 Yosemite，或者 2010 年以后的 Mac 机型，准确说是带 [Intel MMU 虚拟化](https://en.wikipedia.org/wiki/X86_virtualization#Intel-VT-d)的，最低 4GB 内存。如果系统不满足需求，可以考虑安装 [Docker Toolbox](https://docs.docker.com/toolbox/overview/)。如果机器安装了 [VirtualBox](https://www.virtualbox.org/) 的话，VirtualBox 的版本不要低于 4.3.30。
 
-### 下载
-
-通过这个链接下载：<https://download.docker.com/mac/stable/Docker.dmg>
-
 ### 安装
 
-如同 macOS 其它软件一样，安装非常简单，双击下载的文件，然后将那只叫 [Moby](https://blog.docker.com/2013/10/call-me-moby-dock/) 的鲸鱼图标拖拽到 `Application` 文件夹即可（其间可能会询问系统密码）。
+#### 使用 Homebrew 安装
+
+[Homebrew](http://brew.sh/) 的 [Cask](https://caskroom.github.io/) 已经支持 Docker for Mac，因此可以很方便的使用 Homebrew Cask 来进行安装：
+
+```bash
+brew cask install docker
+```
+
+#### 手动下载安装
+
+如果需要手动下载，可以通过这个链接下载：<https://download.docker.com/mac/stable/Docker.dmg>
+
+如同 macOS 其它软件一样，安装也非常简单，双击下载的 `.dmg` 文件，然后将那只叫 [Moby](https://blog.docker.com/2013/10/call-me-moby-dock/) 的鲸鱼图标拖拽到 `Application` 文件夹即可（其间可能会询问系统密码）。
 
 <img src="../_images/install-mac-dmg.png" width="80%" >
 
@@ -34,7 +42,7 @@
 
 *在国内使用 Docker 的话，需要配置加速器，在菜单中点击 `Preferences...`，然后查看 `Advanced` 标签，在其中的 `Registry mirrors` 部分里可以点击加号来添加加速器地址。*
 
-<img src="../_images/install-mac-preference-advanced.png" width="40%">
+<img src="../_images/install-mac-preference-advanced.png" width="60%">
 
 启动终端后，通过命令可以检查安装后的 Docker 版本。
 
