@@ -26,7 +26,7 @@
 * QQ 群 IX  （已满）：571502246
 * QQ 群 X   （可加）：366203473
 
-![Docker 技术入门与实战](docker_primer.png)
+![Docker 技术入门与实战](_images/docker_primer.png)
 
 《[Docker 技术入门与实战](http://item.jd.com/11598400.html)》一书已经正式出版，包含大量第一手实战案例和更为深入的技术剖析，欢迎大家阅读使用并反馈建议。
 
