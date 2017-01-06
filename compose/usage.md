@@ -13,7 +13,7 @@
 
 创建一个 `compose-haproxy-web` 目录，作为项目工作目录，并在其中分别创建两个子目录：`haproxy` 和 `web`。
 
-### Web 子目录
+### web 子目录
 
 这里用 Python 程序来提供一个简单的 HTTP 服务，打印出访问者的 IP 和 实际的本地 IP。
 
