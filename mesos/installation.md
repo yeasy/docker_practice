@@ -5,7 +5,7 @@ Marathon 是可以跟 Mesos 一起协作的一个 framework，用来运行持久
 ### 安装
 一共需要安装四种组件，mesos-master、marathon、zookeeper 需要安装到所有的主节点，mseos-slave 需要安装到从节点。
 
-mesos 利用 zookper 来进行主节点的同步，以及从节点发现主节点的过程。
+mesos 利用 zookeeper 来进行主节点的同步，以及从节点发现主节点的过程。
 
 #### 源码编译
 
