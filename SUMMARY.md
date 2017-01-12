@@ -123,6 +123,12 @@
     * [原理与架构](mesos/architecture.md)
     * [配置项解析](mesos/configuration.md)
     * [常见框架](mesos/framework.md)
+* [容器与云计算](cloud/README.md)
+    * [简介](cloud/intro.md)
+    * [亚马逊云](cloud/aws.md)
+    * [腾讯云](cloud/qcloud.md)
+    * [阿里云](cloud/alicloud.md)
+    * [小结](cloud/summary.md)
 * [附录](appendix/README.md)
     * [附录一：常见问题总结](appendix/faq/README.md)
     * [附录二：热门镜像介绍](appendix/repo/README.md)
@@ -136,4 +142,3 @@
         * [Node.js](appendix/repo/nodejs.md)
     * [附录三：Docker 命令查询](appendix/command/README.md)
     * [附录四：资源链接](appendix/resources/README.md)
-
