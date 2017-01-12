@@ -1,6 +1,8 @@
 # Summary
 
 * [前言](README.md)
+* [修订记录](revision.md)
+* [如何贡献](contribute.md)
 * [Docker 简介](introduction/README.md)
     * [什么是 Docker](introduction/what.md)
     * [为什么要用 Docker](introduction/why.md)
