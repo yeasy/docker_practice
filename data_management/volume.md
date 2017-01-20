@@ -46,14 +46,19 @@ $ docker inspect web
 ...
 ```
 
-在输出的内容中找到其中和数据卷相关的部分，可以看到所有的数据卷都是创建在主机的`/var/lib/docker/volumes/`下面的
+在输出的内容中找到其中和数据卷相关的部分，可以看到所有的数据卷都是创建在主机的`/mnt/sda1/var/lib/docker/volumes/....`下面了。
 ```
-"Volumes": {
-    "/webapp": "/var/lib/docker/volumes/fac362...80535"
-},
-"VolumesRW": {
-    "/webapp": true
-}
+"Mounts": [
+            {
+                "Name": "b53ebd40054dae599faf7c9666acfe205c3e922fc3e8bc3f2fd178ed788f1c29",
+                "Source": "/mnt/sda1/var/lib/docker/volumes/b53ebd40054dae599faf7c9666acfe205c3e922fc3e8bc3f2fd178ed788f1c29/_data",
+                "Destination": "/webapp",
+                "Driver": "local",
+                "Mode": "",
+                "RW": true,
+                "Propagation": ""
+            }
+        ]
 ...
 ```
 
