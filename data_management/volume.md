@@ -46,7 +46,17 @@ $ docker inspect web
 ...
 ```
 
-在输出的内容中找到其中和数据卷相关的部分，可以看到所有的数据卷都是创建在主机的`/mnt/sda1/var/lib/docker/volumes/....`下面了。
+在输出的内容中找到其中和数据卷相关的部分，可以看到所有的数据卷都是创建在主机的`/var/lib/docker/volumes/`下面的
+```
+"Volumes": {
+    "/webapp": "/var/lib/docker/volumes/fac362...80535"
+},
+"VolumesRW": {
+    "/webapp": true
+}
+...
+```
+注：从Docker 1.13.0起，数据卷配置在"Mounts"Key下面，可以看到所有的数据卷都是创建在主机的`/mnt/sda1/var/lib/docker/volumes/....`下面了。
 ```
 "Mounts": [
             {
