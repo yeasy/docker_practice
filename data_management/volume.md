@@ -56,6 +56,21 @@ $ docker inspect web
 }
 ...
 ```
+注：从Docker 1.13.0起，数据卷配置在"Mounts"Key下面，可以看到所有的数据卷都是创建在主机的`/mnt/sda1/var/lib/docker/volumes/....`下面了。
+```
+"Mounts": [
+            {
+                "Name": "b53ebd40054dae599faf7c9666acfe205c3e922fc3e8bc3f2fd178ed788f1c29",
+                "Source": "/mnt/sda1/var/lib/docker/volumes/b53ebd40054dae599faf7c9666acfe205c3e922fc3e8bc3f2fd178ed788f1c29/_data",
+                "Destination": "/webapp",
+                "Driver": "local",
+                "Mode": "",
+                "RW": true,
+                "Propagation": ""
+            }
+        ]
+...
+```
 
 ### 挂载一个本地主机文件作为数据卷
 `-v` 标记也可以从主机挂载单个文件到容器中
