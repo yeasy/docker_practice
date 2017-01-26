@@ -56,7 +56,7 @@ $ docker inspect web
 }
 ...
 ```
-注：从Docker 1.13.0起，数据卷配置在"Mounts"Key下面，可以看到所有的数据卷都是创建在主机的`/mnt/sda1/var/lib/docker/volumes/....`下面了。
+注：从Docker 1.8.0起，数据卷配置在"Mounts"Key下面，可以看到所有的数据卷都是创建在主机的`/mnt/sda1/var/lib/docker/volumes/....`下面了。
 ```
 "Mounts": [
             {
