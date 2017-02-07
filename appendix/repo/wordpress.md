@@ -3,7 +3,7 @@
 ### 基本信息
 [WordPress](https://en.wikipedia.org/wiki/WordPress) 是开源的 Blog 和内容管理系统框架，它基于 PhP 和 MySQL。
 
-该仓库位于 https://hub.docker.com/_/wordpress/，提供了 WordPress 4.x 版本的镜像。
+该仓库位于 https://hub.docker.com/_/wordpress/ ，提供了 WordPress 4.x 版本的镜像。
 
 ### 使用方法
 启动容器需要 MySQL 的支持，默认端口为 `80`。
@@ -115,3 +115,4 @@ COPY docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["apache2-foreground"]
 ```
+

@@ -3,7 +3,7 @@
 ### 基本信息
 [MySQL](https://en.wikipedia.org/wiki/MySQL) 是开源的关系数据库实现。
 
-该仓库位于 https://hub.docker.com/_/mysql/，提供了 MySQL 各个版本的镜像，包括 5.6 系列、5.7 系列等。
+该仓库位于 https://hub.docker.com/_/mysql/ ，提供了 MySQL 各个版本的镜像，包括 5.6 系列、5.7 系列等。
 
 ### 使用方法
 默认会在 `3306` 端口启动数据库。
@@ -122,3 +122,5 @@ ENTRYPOINT ["/entrypoint.sh"]
 EXPOSE 3306
 CMD ["mysqld", "--datadir=/var/lib/mysql", "--user=mysql"]
 ```
+
+
