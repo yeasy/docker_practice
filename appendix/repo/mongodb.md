@@ -3,7 +3,7 @@
 ### 基本信息
 [MongoDB](https://en.wikipedia.org/wiki/MongoDB) 是开源的 NoSQL 数据库实现。
 
-该仓库位于 https://hub.docker.com/_/mongo/，提供了 MongoDB 2.x ~ 3.x 各个版本的镜像。
+该仓库位于 https://hub.docker.com/_/mongo/ ，提供了 MongoDB 2.x ~ 3.x 各个版本的镜像。
 
 ### 使用方法
 默认会在 `27017` 端口启动数据库。
@@ -261,3 +261,4 @@ ENTRYPOINT ["/entrypoint.sh"]
 EXPOSE 27017
 CMD ["mongod"]
 ```
+
