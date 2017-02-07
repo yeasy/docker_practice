@@ -3,7 +3,7 @@
 ### 基本信息
 [Redis](https://en.wikipedia.org/wiki/Redis) 是开源的内存 Key-Value 数据库实现。
 
-该仓库位于 https://hub.docker.com/_/redis/，提供了 Redis 3.x 各个版本的镜像。
+该仓库位于 https://hub.docker.com/_/redis/ ，提供了 Redis 3.x 各个版本的镜像。
 
 ### 使用方法
 默认会在 `6379` 端口启动数据库。
@@ -139,3 +139,5 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 EXPOSE 6379
 CMD [ "redis-server" ]
 ```
+
+
