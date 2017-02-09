@@ -13,15 +13,17 @@
 
 新版的 Docker 使用 [/etc/docker/daemon.json](https://docs.docker.com/engine/reference/commandline/dockerd/#/daemon-configuration-file) 来配置 Daemon。
 
-请在该配置文件中加入（没有该文件的话，请先建一个）：
+使用如下命令配置：
 
 ```bash
+sudo tee /etc/docker/daemon.json << EOD
 {
   "registry-mirrors": [
     "https://docker.mirrors.ustc.edu.cn",
     "https://jxus37ad.mirror.aliyuncs.com"
   ]
 }
+EOD
 ```
 Ubuntu 14.04、Debian 7 Wheezy
 
@@ -34,6 +36,18 @@ Ubuntu 16.04、Debian 8 Jessie、CentOS 7
 ```bash
 $ sudo systemctl daemon-reload
 $ sudo systemctl restart docker
+```
+
+### 检查加速器是否生效
+
+Linux系统下配置完加速器需要检查是否生效，在命令行执行`docker info` 如果从结果中看到了配置的 `Registry Mirrors`参数说明配置成功。
+
+```bash
+...
+Registry Mirrors:
+ https://docker.mirrors.ustc.edu.cn
+ https://jxus37ad.mirror.aliyuncs.com
+...
 ```
 
 
