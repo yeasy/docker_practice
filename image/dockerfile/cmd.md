@@ -45,5 +45,5 @@ CMD service nginx start
 正确的做法是直接执行 `nginx` 可执行文件，并且要求以前台形式运行。比如：
 
 ```Dockerfile
-CMD ["nginx" "-g" "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]
 ```
