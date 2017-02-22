@@ -38,7 +38,7 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。欢迎参�
 《[Docker 技术入门与实战](http://item.jd.com/11598400.html)》第二版已经正式出版，针对第一版进行内容升级，欢迎大家阅读使用并反馈建议。
 
 * [京东图书](https://item.jd.com/12121728.html)
-* [China-Pub](http://product.china-pub.com/3770833)
+* [China-Pub](http://product.china-pub.com/5089907)
 * [当当图书](http://product.dangdang.com/23620853.html)
 * [亚马逊图书](http://www.amazon.cn/%E5%9B%BE%E4%B9%A6/dp/B00R5MYI7C/ref=lh_ni_t?ie=UTF8&psc=1&smid=A1AJ19PSB66TGU)
 
