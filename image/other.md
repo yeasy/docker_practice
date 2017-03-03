@@ -20,7 +20,7 @@ sha256:f477a6e18e989839d25223f301ef738b69621c4877600ae6467c4e5289822a79B/78.42 M
 
 这条命令自动下载了 `ubuntu-14.04-x86_64-minimal.tar.gz` 文件，并且作为根文件系统展开导入，并保存为镜像 `openvz/ubuntu:14.04`。
 
-导入成功后，我们可以用 `docker ps` 看到这个导入的镜像：
+导入成功后，我们可以用 `docker images` 看到这个导入的镜像：
 
 ```bash
 $ docker images openvz/ubuntu
