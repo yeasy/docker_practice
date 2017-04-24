@@ -48,7 +48,7 @@ COPY . /app/
 
 ```Dockerfile
 FROM node:slim
-RUN mkdir /app
+RUN "mkdir /app"
 WORKDIR /app
 ONBUILD COPY ./package.json /app
 ONBUILD RUN [ "npm", "install" ]
