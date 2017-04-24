@@ -3,7 +3,8 @@
   "author": "yeasy",
   "plugins": [
     "image-captions",
-    "github-buttons"
+    "github-buttons",
+    "page-treeview"
   ],
   "pluginsConfig": {
     "image-captions": {
@@ -19,6 +20,11 @@
         "watch"
       ],
       "size": "small"
-    }
+    },
+    "page-treeview": {
+      "copyright": "Copyright &#169; yeasy",
+      "minHeaderCount": "2",
+      "minHeaderDeep": "2"
+		}
   }
 }
