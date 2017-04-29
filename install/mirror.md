@@ -53,6 +53,21 @@ $ sudo systemctl restart docker
 ```
 编辑完成，点击Apply保存后Docker服务会重新启动。
 
+### macOS
+
+对于macOS的用户，如果你使用的是**Docker for Mac**，那配置起来很简单。在任务栏点击应用图标 -> Perferences... -> Daemon -> Registry mirrors。在列表中添加云服务商提供的加速器地址即可。修改完成之后，点击`Apply & Restart`按钮，Docker就会重启并应用配置的镜像地址了。
+
+如果你使用的是**Docker Toolbox**。先看看你的系统版本，如果是macOS 10.1以上的，那么请改用Docker for Mac，这个在性能上超过Docker Toolbox一大截，具体可以看看官网的这篇文章：[Docker for Mac vs. Docker Toolbox](https://docs.docker.com/docker-for-mac/docker-toolbox/)。如果系统版本没达到，或者因为历史原因必须使用Docker Toolbox的话。
+
+```bash
+docker-machine ssh default
+sudo sed -i "s|EXTRA_ARGS='|EXTRA_ARGS='--registry-mirror=加速地址 |g" /var/lib/boot2docker/profile
+exit
+docker-machine restart default 
+```
+
+关于Docker Toolbox配置的内容参考自DaoCloud的文档:[Docker 加速器](http://guide.daocloud.io/dcs/daocloud-9153151.html#docker-toolbox)
+
 ### 检查加速器是否生效
 
 Linux系统下配置完加速器需要检查是否生效，在命令行执行 `ps -ef | grep dockerd`，如果从结果中看到了配置的 `--registry-mirror` 参数说明配置成功。
