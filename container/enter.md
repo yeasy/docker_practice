@@ -41,6 +41,11 @@ PID=$(docker inspect --format "{{ .State.Pid }}" <container>)
 ```
 $ nsenter --target $PID --mount --uts --ipc --net --pid
 ```
+如果无法通过以上命令连接到这个容器，有可能是因为宿主的默认shell在容器中并不存在，比如zsh，可以使用如下命令显式地使用bash。
+```
+$ nsenter --target $pid --mount --uts --ipc --net --pid  -- /usr/bin/env \ 
+--ignore-environment HOME=/root /bin/bash --login
+```
 下面给出一个完整的例子。
 ```
 $ sudo docker run -idt ubuntu
