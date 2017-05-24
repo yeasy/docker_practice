@@ -20,29 +20,29 @@ brew cask install docker
 
 如同 macOS 其它软件一样，安装也非常简单，双击下载的 `.dmg` 文件，然后将那只叫 [Moby](https://blog.docker.com/2013/10/call-me-moby-dock/) 的鲸鱼图标拖拽到 `Application` 文件夹即可（其间可能会询问系统密码）。
 
-<img src="../_images/install-mac-dmg.png" width="80%" >
+<img src="_images/install-mac-dmg.png" width="80%" >
 
 ### 运行
 
 从应用中找到 Docker 图标并点击运行。
 
-<img src="../_images/install-mac-apps.png" width="80%" >
+<img src="_images/install-mac-apps.png" width="80%" >
 
 运行之后，会在右上角菜单栏看到多了一个鲸鱼图标，这个图标表明了 Docker 的运行状态。
 
-<img src="../_images/install-mac-menubar.png" width="60%">
+<img src="_images/install-mac-menubar.png" width="60%">
 
 第一次点击图标，可能会看到这个安装成功的界面，点击 "Got it!" 可以关闭这个窗口。
 
-<img src="../_images/install-mac-success.png" width="40%">
+<img src="_images/install-mac-success.png" width="40%">
 
 以后每次点击鲸鱼图标会弹出操作菜单。
 
-<img src="../_images/install-mac-menu.png" width="40%">
+<img src="_images/install-mac-menu.png" width="40%">
 
 *在国内使用 Docker 的话，需要配置加速器，在菜单中点击 `Preferences...`，然后查看 `Advanced` 标签，在其中的 `Registry mirrors` 部分里可以点击加号来添加加速器地址。*
 
-<img src="../_images/install-mac-preference-advanced.png" width="60%">
+<img src="_images/install-mac-preference-advanced.png" width="60%">
 
 启动终端后，通过命令可以检查安装后的 Docker 版本。
 
@@ -63,7 +63,7 @@ $ docker run -d -p 80:80 --name webserver nginx
 
 服务运行后，可以访问 <http://localhost>，如果看到了 "Welcome to nginx!"，就说明 Docker for Mac 安装成功了。
 
-<img src="../_images/install-mac-example-nginx.png" width="80%">
+<img src="_images/install-mac-example-nginx.png" width="80%">
 
 要停止 Nginx 服务器并删除执行下面的命令：
 

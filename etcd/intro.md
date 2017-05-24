@@ -1,6 +1,6 @@
 ## 什么是 etcd
 
-![](../_images/etcd_logo.png)
+![](_images/etcd_logo.png)
 
 etcd 是 CoreOS 团队于 2013 年 6 月发起的开源项目，它的目标是构建一个高可用的分布式键值（key-value）数据库，基于 Go 语言实现。我们知道，在分布式系统中，各种服务的配置信息的管理分享，服务的发现是一个很基本同时也是很重要的问题。CoreOS 项目就希望基于 etcd 来解决这一问题。
 

@@ -4,7 +4,7 @@
 
 下图展示了在单节点使用 Docker 快速部署一套 Kubernetes 的拓扑。
 
-![在 Docker 中启动 Kubernetes](../_images/k8s-singlenode-docker.png)
+![在 Docker 中启动 Kubernetes](_images/k8s-singlenode-docker.png)
 
 Kubernetes 依赖 Etcd 服务来维护所有主节点的状态。
 
