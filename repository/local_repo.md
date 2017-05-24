@@ -28,10 +28,10 @@ $ sudo docker run \
 ```
 $ sudo docker run -d -p 5000:5000 -v /home/user/registry-conf:/registry-conf -e DOCKER_REGISTRY_CONFIG=/registry-conf/config.yml registry
 ```
-默认情况下，仓库会被创建在容器的 `/tmp/registry` 下。可以通过 `-v` 参数来将镜像文件存放在本地的指定路径。
+默认情况下，仓库会被创建在容器的 `/var/lib/registry `（v1 中是`/tmp/registry`）下。可以通过 `-v` 参数来将镜像文件存放在本地的指定路径。
 例如下面的例子将上传的镜像放到 `/opt/data/registry` 目录。
 ```
-$ sudo docker run -d -p 5000:5000 -v /opt/data/registry:/tmp/registry registry
+$ sudo docker run -d -p 5000:5000 -v /opt/data/registry:/var/lib/registry registry
 ```
 
 #### 本地安装
