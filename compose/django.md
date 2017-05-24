@@ -44,17 +44,17 @@ web:
 现在我们就可以使用 `docker-compose run` 命令启动一个 Django 应用了。
 
 ```
-$ docker-compose run web django-admin.py startproject docker-composeexample .
+$ docker-compose run web django-admin.py startproject django_example .
 ```
-Compose 会先使用 `Dockerfile` 为 web 服务创建一个镜像，接着使用这个镜像在容器里运行 `django-admin.py startproject docker-composeexample . ` 指令。
+Compose 会先使用 `Dockerfile` 为 web 服务创建一个镜像，接着使用这个镜像在容器里运行 `django-admin.py startproject django_example . ` 指令。
 
 这将在当前目录生成一个 Django 应用。
 
 ```
 $ ls
-Dockerfile       docker-compose.yml          docker-composeexample       manage.py       requirements.txt
+Dockerfile       docker-compose.yml          django_example       manage.py       requirements.txt
 ```
-首先，我们要为应用设置好数据库的连接信息。用以下内容替换 `docker-composeexample/settings.py` 文件中 `DATABASES = ...` 定义的节点内容。
+首先，我们要为应用设置好数据库的连接信息。用以下内容替换 `django_example/settings.py` 文件中 `DATABASES = ...` 定义的节点内容。
 
 ```
 DATABASES = {
@@ -82,7 +82,7 @@ myapp_web_1 | Validating models...
 myapp_web_1 |
 myapp_web_1 | 0 errors found
 myapp_web_1 | January 27, 2014 - 12:12:40
-myapp_web_1 | Django version 1.6.1, using settings 'docker-composeexample.settings'
+myapp_web_1 | Django version 1.6.1, using settings 'django_example.settings'
 myapp_web_1 | Starting development server at http://0.0.0.0:8000/
 myapp_web_1 | Quit the server with CONTROL-C.
 ```
