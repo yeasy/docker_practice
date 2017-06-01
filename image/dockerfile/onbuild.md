@@ -10,7 +10,7 @@
 
 ```Dockerfile
 FROM node:slim
-RUN "mkdir /app"
+RUN mkdir /app
 WORKDIR /app
 COPY ./package.json /app
 RUN [ "npm", "install" ]
@@ -26,7 +26,7 @@ CMD [ "npm", "start" ]
 
 ```Dockerfile
 FROM node:slim
-RUN "mkdir /app"
+RUN mkdir /app
 WORKDIR /app
 CMD [ "npm", "start" ]
 ```
@@ -48,7 +48,7 @@ COPY . /app/
 
 ```Dockerfile
 FROM node:slim
-RUN "mkdir /app"
+RUN mkdir /app
 WORKDIR /app
 ONBUILD COPY ./package.json /app
 ONBUILD RUN [ "npm", "install" ]
