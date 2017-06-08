@@ -1,8 +1,26 @@
 ## macOS 操作系统安装 Docker
 
 ### 系统要求
+macOS 有两个Docker版本可用
+#### [Docker for Mac](https://docs.docker.com/docker-for-mac/) (推荐）
 
-[Docker for Mac](https://docs.docker.com/docker-for-mac/) 要求系统最低为 macOS 10.10.3 Yosemite，或者 2010 年以后的 Mac 机型，准确说是带 [Intel MMU 虚拟化](https://en.wikipedia.org/wiki/X86_virtualization#Intel-VT-d)的，最低 4GB 内存。如果系统不满足需求，可以考虑安装 [Docker Toolbox](https://docs.docker.com/toolbox/overview/)。如果机器安装了 [VirtualBox](https://www.virtualbox.org/) 的话，VirtualBox 的版本不要低于 4.3.30。
+原生运行于macOS平台的Docker Engine实现。
+
+- 2010 年以后的 Mac 机型， 支持[Intel MMU 虚拟化](https://en.wikipedia.org/wiki/X86_virtualization#Intel-VT-d)
+- 推荐使用 OS X El Capitan 10.11 或更新的操作系统。 至少需要 OS X Yosemite 10.10.3， 对于更早的10.10.x系统，不保证稳定性。
+- 从 Docker for Mac stable release 1.13 开始，**不再维护**OS X Yosemite 10.10系列系统上出现的问题。
+- 4GB以上内存
+- 与VirtualBox 4.3.30之前的版本不兼容，**不能共存**.
+
+由于Docker for Mac依赖了Yosemite 10.10开始出现的[Hypervisor 组件](https://developer.apple.com/reference/hypervisor)，固更早的系统无法运行Docker for Mac。只能使用Docker Toolbox。
+
+#### [Docker Toolbox](https://docs.docker.com/toolbox/overview/)
+
+简单粗暴的解决方案：
+
+在VirtualBox中运行Linux虚拟机，在虚拟机中运行Linux版Docker Engine。宿主机上的Docker Client与虚拟机中的Docker Engine通信。
+
+Windows版的Docker也曾采用这一思路。
 
 ### 安装
 
