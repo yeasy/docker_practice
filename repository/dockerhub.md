@@ -26,7 +26,7 @@ tutum/centos-6.4                                DEPRECATED. Use tutum/centos:6.4
 一种是类似 centos 这样的基础镜像，被称为基础或根镜像。这些基础镜像是由 Docker 公司创建、验证、支持、提供。这样的镜像往往使用单个单词作为名字。
 还有一种类型，比如 `tianon/centos` 镜像，它是由 Docker 的用户创建并维护的，往往带有用户名称前缀。可以通过前缀 `user_name/` 来指定使用某个用户提供的镜像，比如 tianon 用户。
 
-另外，在查找的时候通过 `-s N` 参数可以指定仅显示评价为 `N` 星以上的镜像。
+另外，在查找的时候通过 `-s N` 参数可以指定仅显示评价为 `N` 星以上的镜像（新版本Docker推荐使用`--filter=stars=N`参数）。
 
 下载官方 centos 镜像到本地。
 ```
@@ -43,7 +43,7 @@ Pulling repository centos
 自动创建（Automated Builds）功能对于需要经常升级镜像内程序来说，十分方便。
 有时候，用户创建了镜像，安装了某个软件，如果软件发布新版本则需要手动更新镜像。。
 
-而自动创建允许用户通过 Docker Hub 指定跟踪一个目标网站（目前支持 [GitHub](https://github.org) 或 [BitBucket](https://bitbucket.org)）上的项目，一旦项目发生新的提交，则自动执行创建。
+而自动创建允许用户通过 Docker Hub 指定跟踪一个目标网站（目前支持 [GitHub](https://github.com) 或 [BitBucket](https://bitbucket.org)）上的项目，一旦项目发生新的提交，则自动执行创建。
 
 要配置自动创建，包括如下的步骤：
 * 创建并登录 Docker Hub，以及目标网站；
