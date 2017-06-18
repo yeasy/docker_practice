@@ -43,7 +43,7 @@ Pulling repository centos
 自动创建（Automated Builds）功能对于需要经常升级镜像内程序来说，十分方便。
 有时候，用户创建了镜像，安装了某个软件，如果软件发布新版本则需要手动更新镜像。。
 
-而自动创建允许用户通过 Docker Hub 指定跟踪一个目标网站（目前支持 [GitHub](https://github.org) 或 [BitBucket](https://bitbucket.org)）上的项目，一旦项目发生新的提交，则自动执行创建。
+而自动创建允许用户通过 Docker Hub 指定跟踪一个目标网站（目前支持 [GitHub](https://github.com) 或 [BitBucket](https://bitbucket.org)）上的项目，一旦项目发生新的提交，则自动执行创建。
 
 要配置自动创建，包括如下的步骤：
 * 创建并登录 Docker Hub，以及目标网站；
