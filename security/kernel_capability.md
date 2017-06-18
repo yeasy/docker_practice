@@ -22,5 +22,5 @@ Linux 内核自 2.2 版本起就支持能力机制，它将权限划分为更加
 
 这样，就算攻击者在容器中取得了 root 权限，也不能获得本地主机的较高权限，能进行的破坏也有限。
 
-默认情况下，Docker采用 [白名单](https://github.com/docker/docker/blob/master/daemon/execdriver/native/template/default_template.go) 机制，禁用 [必需功能](https://github.com/docker/docker/blob/master/daemon/execdriver/native/template/default_template.go) 之外的其它权限。
+默认情况下，Docker采用白名单机制，禁用必需功能之外的其它权限。
 当然，用户也可以根据自身需求来为 Docker 容器启用额外的权限。
