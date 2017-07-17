@@ -16,7 +16,7 @@ docker run --name webserver -d -p 80:80 nginx
 
 直接用浏览器访问的话，我们会看到默认的 Nginx 欢迎页面。
 
-<img src="_images/install-mac-example-nginx.png" width="80%" >
+<img src="_images/images-mac-example-nginx.png" width="80%" >
 
 现在，假设我们非常不喜欢这个欢迎页面，我们希望改成欢迎 Docker 的文字，我们可以使用 `docker exec` 命令进入容器，修改其内容。
 
