@@ -50,25 +50,14 @@ $ sudo python-pip install docker-registry
 也可以从 [docker-registry](https://github.com/docker/docker-registry) 项目下载源码进行安装。
 ```
 $ sudo apt-get install build-essential python-dev libevent-dev python-pip libssl-dev liblzma-dev libffi-dev
-$ git clone https://github.com/docker/docker-registry.git
-$ cd docker-registry
-$ sudo python setup.py install
+$ git clone https://github.com/docker/distribution
+$ cd distribution
+$ sudo docker build .
 ```
-然后修改配置文件，主要修改 dev 模板段的 `storage_path` 到本地的存储仓库的路径。
+启动运行registry的容器
 ```
-$ cp config/config_sample.yml config/config.yml
+$ sudo docker run -d -p 5000:5000 --restart=always --name registry ${IMAGE_ID}
 ```
-之后启动 Web 服务。
-```
-$ sudo gunicorn -c contrib/gunicorn.py docker_registry.wsgi:application
-```
-或者
-```
-$ sudo gunicorn --access-logfile - --error-logfile - -k gevent -b 0.0.0.0:5000 -w 4 --max-requests 100 docker_registry.wsgi:application
-```
-此时使用 curl 访问本地的 5000 端口，看到输出 docker-registry 的版本信息说明运行成功。
-
-*注：`config/config_sample.yml` 文件是示例配置文件。
 
 ###在私有仓库上传、下载、搜索镜像
 创建好私有仓库之后，就可以使用 `docker tag` 来标记一个镜像，然后推送它到仓库，别的机器上就可以下载下来了。例如私有仓库地址为 `192.168.7.26:5000`。
