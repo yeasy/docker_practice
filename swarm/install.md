@@ -46,7 +46,7 @@ Docker 集群管理需要使用服务发现（Service Discover）功能，Swarm 
 本地配置集群推荐使用 consul 作为服务发现后端。利用社区提供的 Docker 镜像，整个过程只需要三步即可完成。
 
 #### 启动 Consul 服务后端
-启动 consuconsull 服务容器，映射到主机的 8500 端口。
+启动 consul 服务容器，映射到主机的 8500 端口。
 
 ```sh
 $ docker run -d -p 8500:8500 --name=consul progrium/consul -server -bootstrap
