@@ -1,5 +1,5 @@
 ## 使用 Swarm
-前面演示了基于 consel 服务发现后端来配置一个本地 Swarm 集群。其中，consel 也可以被替换为 etcd、zookeeper 等。
+前面演示了基于 consul 服务发现后端来配置一个本地 Swarm 集群。其中，consul 也可以被替换为 etcd、zookeeper 等。
 
 另外一个更方便的方式是直接使用 DockerHub 提供的免费服务发现后端。
 
