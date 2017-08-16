@@ -39,14 +39,14 @@ DOCKER_OPTS="$DOCKER_OPTS -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock"
 ```
 
 ### 启动集群
-Docker 集群管理需要使用服务发现（Service Discover）功能，Swarm 支持以下的几种方式：DockerHub、本地文件、etcd、consel、zookeeper 和手动指定节点 IP 地址信息等。
+Docker 集群管理需要使用服务发现（Service Discover）功能，Swarm 支持以下的几种方式：DockerHub、本地文件、etcd、consul、zookeeper 和手动指定节点 IP 地址信息等。
 
 除了手动指定外，这些方法原理上都是通过维护一套数据库机制，来管理集群中注册节点的 Docker daemon 的访问信息。
 
-本地配置集群推荐使用 consel 作为服务发现后端。利用社区提供的 Docker 镜像，整个过程只需要三步即可完成。
+本地配置集群推荐使用 consul 作为服务发现后端。利用社区提供的 Docker 镜像，整个过程只需要三步即可完成。
 
-#### 启动 Consel 服务后端
-启动 consel 服务容器，映射到主机的 8500 端口。
+#### 启动 Consul 服务后端
+启动 consul 服务容器，映射到主机的 8500 端口。
 
 ```sh
 $ docker run -d -p 8500:8500 --name=consul progrium/consul -server -bootstrap
@@ -70,7 +70,7 @@ $ docker run -d swarm manage -H :4000 --replication --advertise <manager1_ip>:40
 #### 启动工作节点
 需要在每个工作节点上启动 agent 服务。
 
-获取节点的主机地址为 `<node_ip>`，并指定前面获取到的 consel 服务地址。
+获取节点的主机地址为 `<node_ip>`，并指定前面获取到的 consul 服务地址。
 
 ```sh
 $ docker run -d swarm join --advertise=<node_ip>:2375 consul://<consul_ip>:8500
