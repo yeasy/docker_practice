@@ -1,7 +1,8 @@
 ##  镜像加速器
 
-国内访问 Docker Hub 有时会遇到困难，此时可以配置镜像加速器。国内很多云服务商都提供了加速器服务，例如：
+国内访问 Docker Hub 有时会遇到困难，此时可以配置镜像加速器。Docker官方和国内很多云服务商都提供了加速器服务，例如：
 
+* [Docker 官方提供的中国registry mirror](https://docs.docker.com/registry/recipes/mirror/#use-case-the-china-registry-mirror)
 * [阿里云加速器](https://cr.console.aliyun.com/#/accelerator)
 * [DaoCloud 加速器](https://www.daocloud.io/mirror#accelerator-doc)
 * [灵雀云加速器](http://docs.alauda.cn/feature/accelerator.html)
@@ -76,4 +77,10 @@ Linux系统下配置完加速器需要检查是否生效，在命令行执行 `p
 $ sudo ps -ef | grep dockerd
 root      5346     1  0 19:03 ?        00:00:00 /usr/bin/dockerd --registry-mirror=https://jxus37ad.mirror.aliyuncs.com
 $
+```
+如果`Docker`版本大于1.13或17.05.0-ce，也可以
+```bash
+$ sudo docker info|grep "Registry Mirrors" -A 1
+Registry Mirrors:
+ https://registry.docker-cn.com/
 ```
