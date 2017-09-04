@@ -6,8 +6,51 @@
 * [阿里云加速器](https://cr.console.aliyun.com/#/accelerator)
 * [DaoCloud 加速器](https://www.daocloud.io/mirror#accelerator-doc)
 * [灵雀云加速器](http://docs.alauda.cn/feature/accelerator.html)
+* [科大 LUG](https://lug.ustc.edu.cn/wiki/mirrors/help/docker)
 
 注册用户并且申请加速器，会获得如 `https://jxus37ad.mirror.aliyuncs.com` 这样的地址。我们需要将其配置给 Docker 引擎。
+
+### 使用说明
+
+新版的 Docker 使用 [/etc/docker/daemon.json](https://docs.docker.com/engine/reference/commandline/dockerd/#/daemon-configuration-file) 来配置 Daemon。
+
+使用如下命令配置：
+
+```bash
+sudo tee /etc/docker/daemon.json << EOD
+{
+  "registry-mirrors": [
+    "https://docker.mirrors.ustc.edu.cn",
+    "https://jxus37ad.mirror.aliyuncs.com"
+  ]
+}
+EOD
+```
+Ubuntu 14.04、Debian 7 Wheezy
+
+```bash
+$ sudo service docker restart
+```
+
+Ubuntu 16.04、Debian 8 Jessie、CentOS 7
+
+```bash
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart docker
+```
+
+### 检查加速器是否生效
+
+Linux系统下配置完加速器需要检查是否生效，在命令行执行`docker info` 如果从结果中看到了配置的 `Registry Mirrors`参数说明配置成功。
+
+```bash
+...
+Registry Mirrors:
+ https://docker.mirrors.ustc.edu.cn
+ https://jxus37ad.mirror.aliyuncs.com
+...
+```
+
 
 ### Ubuntu 14.04、Debian 7 Wheezy
 
