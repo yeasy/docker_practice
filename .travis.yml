@@ -17,7 +17,7 @@ install:
 #- npm install gitbook-cli
 script:
 #- node_modules/gitbook-cli/bin/gitbook.js install
-#- node_modules/gitbook-cli/bin/gitbook.js build
+- node_modules/gitbook-cli/bin/gitbook.js build
 after_success:
  - sh .travis/deploy.sh
 branches:
