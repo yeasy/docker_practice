@@ -2,7 +2,9 @@
 
 ### 系统要求
 
-[Docker for Mac](https://docs.docker.com/docker-for-mac/) 要求系统最低为 macOS 10.10.3 Yosemite，或者 2010 年以后的 Mac 机型，准确说是带 [Intel MMU 虚拟化](https://en.wikipedia.org/wiki/X86_virtualization#Intel-VT-d)的，最低 4GB 内存。如果系统不满足需求，可以考虑安装 [Docker Toolbox](https://docs.docker.com/toolbox/overview/)。如果机器安装了 [VirtualBox](https://www.virtualbox.org/) 的话，VirtualBox 的版本不要低于 4.3.30。
+[Docker for Mac](https://docs.docker.com/docker-for-mac/) 要求系统最低为 macOS 10.10.3 Yosemite，或者 2010 年以后的 Mac 机型，准确说是带 [Intel MMU 虚拟化](https://en.wikipedia.org/wiki/X86_virtualization#Intel-VT-d)的，最低 4GB 内存。
+
+如果系统不满足需求，可以安装 [Docker Toolbox](https://docs.docker.com/toolbox/overview/)。
 
 ### 安装
 
@@ -71,3 +73,7 @@ $ docker run -d -p 80:80 --name webserver nginx
 $ docker stop webserver
 $ docker rm webserver
 ```
+
+### 参考文档
+
+* [Docker 官方 macOS 安装文档](https://docs.docker.com/docker-for-mac/install/)
