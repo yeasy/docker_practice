@@ -11,9 +11,11 @@
     * [容器](basic_concept/container.md)
     * [仓库](basic_concept/repository.md)
 * [安装 Docker](install/README.md)
-    * [Ubuntu、Debian](install/ubuntu.md)
+    * [Ubuntu](install/ubuntu.md)
+    * [Debian](install/debian.md)
     * [CentOS](install/centos.md)
     * [macOS](install/mac.md)
+    * [Windows PC](install/windows.md)
     * [镜像加速器](install/mirror.md)
 * [使用镜像](image/README.md)
     * [获取镜像](image/pull.md)
@@ -148,4 +150,3 @@
         * [Node.js](appendix/repo/nodejs.md)
     * [附录三：Docker 命令查询](appendix/command/README.md)
     * [附录四：资源链接](appendix/resources/README.md)
-
