@@ -1,6 +1,6 @@
 #!/bin/bash
+pwd
 git clone -b gh-pages "$REPO" .deploy_git
-- git ls-files | while read file; do touch -d $(git log -1 --format="@%ct" "$file") "$file"; done
 if [ ! $? = 0 ];then
   #不存在
   echo -e "\033[31mINFO\033[0m  BRANCH <gh-pages> NOT exist"
@@ -12,6 +12,7 @@ if [ ! $? = 0 ];then
   cd ..
 else
   #存在
+  git ls-files | while read file; do touch -d $(git log -1 --format="@%ct" "$file") "$file"; done
   echo -e "\033[32mINFO\033[0m  BRANCH exist"
   rm -rf .deploy_git/*
 fi
