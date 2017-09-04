@@ -1,10 +1,12 @@
-## CentOS 操作系统安装 Docker CE
+## CentOS 安装 Docker CE
 
-### 系统要求
+### 准备工作
+
+#### 系统要求
 
 Docker CE 支持 64 位版本 CentOS 7，并且要求内核版本不低于 3.10。 CentOS 7 满足最低内核的要求，但由于内核版本比较低，部分功能（如 `overlay2` 存储层驱动）无法使用，并且部分功能可能不太稳定。
 
-### 卸载旧版本
+#### 卸载旧版本
 
 旧版本的 Docker 称为 `docker` 或者 `docker-engine`，使用以下命令卸载旧版本：
 
@@ -14,33 +16,8 @@ $ sudo yum remove docker \
                   docker-selinux \
                   docker-engine
 ```
-### 使用 yum 源安装
 
-#### 添加内核参数
-
-默认配置下，在 CentOS 使用 Docker CE 可能会看到下面的这些警告信息：
-
-```bash
-WARNING: bridge-nf-call-iptables is disabled
-WARNING: bridge-nf-call-ip6tables is disabled
-```
-
-添加内核配置参数以启用这些功能。
-
-```bash
-$ sudo tee -a /etc/sysctl.conf <<-EOF
-net.bridge.bridge-nf-call-ip6tables = 1
-net.bridge.bridge-nf-call-iptables = 1
-EOF
-```
-
-然后重新加载 `sysctl.conf` 即可
-
-```bash
-$ sudo sysctl -p
-```
-
-#### 添加 yum 源
+### 使用 yum 源 安装
 
 执行以下命令安装依赖包：
 
@@ -48,7 +25,9 @@ $ sudo sysctl -p
 $ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 ```
 
-##### 国内源
+鉴于国内网络问题，强烈建议使用国内源，下面先介绍国内源的使用。
+
+#### 国内源
 
 执行下面的命令添加 `yum` 软件源：
 
@@ -58,15 +37,15 @@ $ sudo yum-config-manager \
     https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 ```
 
-##### 官方源
+>以上命令会添加稳定版本的 Docker CE yum 源。从 Docker 17.06 开始，edge test 版本的 yum 源也会包含稳定版本的 Docker CE。
+
+#### 官方源
 
 ```bash
 $ sudo yum-config-manager \
     --add-repo \
     https://download.docker.com/linux/centos/docker-ce.repo
 ```
-
->以上命令会添加 稳定 版本的 Docker CE APT 镜像源 。从 Docker 17.06 开始，edge test 版本的 APT 镜像源也会包含稳定版本的 Docker CE
 
 如果需要最新版本的 Docker CE 请使用以下命令：
 
@@ -124,6 +103,30 @@ $ sudo usermod -aG docker $USER
 ### 镜像加速
 
 鉴于国内网络问题，后续拉取 Docker 镜像十分缓慢，强烈建议安装 Docker 之后配置 [国内镜像加速](/install/mirror.html)。
+
+### 添加内核参数
+
+默认配置下，如果在 CentOS 使用 Docker CE 看到下面的这些警告信息：
+
+```bash
+WARNING: bridge-nf-call-iptables is disabled
+WARNING: bridge-nf-call-ip6tables is disabled
+```
+
+请添加内核配置参数以启用这些功能。
+
+```bash
+$ sudo tee -a /etc/sysctl.conf <<-EOF
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+```
+
+然后重新加载 `sysctl.conf` 即可
+
+```bash
+$ sudo sysctl -p
+```
 
 ### 参考文档
 

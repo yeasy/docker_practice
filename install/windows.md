@@ -2,7 +2,7 @@
 
 ### 系统要求
 
-Docker CE 支持 64 位版本的 Windows 10 Pro ，且必须开启 Hyper-V。
+Docker CE 支持 64 位版本的 Windows 10 Pro，且必须开启 Hyper-V。
 
 ### 安装
 

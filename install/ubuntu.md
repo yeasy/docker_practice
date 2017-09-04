@@ -7,8 +7,8 @@
 Docker CE 支持以下版本的 [Ubuntu](https://www.ubuntu.com/server) 操作系统：
 
 * Zesty 17.04
-* Ubuntu Xenial 16.04 (LTS)
-* Ubuntu Trusty 14.04 (LTS)
+* Xenial 16.04 (LTS)
+* Trusty 14.04 (LTS)
 
 
 Docker CE 可以安装在 64 位的 x86 平台或 ARM 平台上。Ubuntu 发行版中，LTS（Long-Term-Support）长期支持版本，会获得 5 年的升级维护支持，这样的版本会更稳定，因此在生产环境中推荐使用 LTS 版本。
@@ -23,7 +23,7 @@ $ sudo apt-get remove docker docker-engine docker.io
 
 #### Ubuntu 14.04 可选内核模块
 
-从 Ubuntu 14.04 开始，一部分内核模块移到了可选内核模块包(`linux-image-extra-*`)，以减少内核软件包的体积。正常安装的系统应该会包含可选内核模块包，而一些裁剪后的系统可能会将其精简掉。`AUFS` 内核驱动属于可选内核模块的一部分，作为推荐的 Docker 存储层驱动，一般建议安装可选内核模块包以使用 `AUFS`。
+从 Ubuntu 14.04 开始，一部分内核模块移到了可选内核模块包 (`linux-image-extra-*`) ，以减少内核软件包的体积。正常安装的系统应该会包含可选内核模块包，而一些裁剪后的系统可能会将其精简掉。`AUFS` 内核驱动属于可选内核模块的一部分，作为推荐的 Docker 存储层驱动，一般建议安装可选内核模块包以使用 `AUFS`。
 
 如果系统没有安装可选内核模块的话，可以执行下面的命令来安装可选内核模块包：
 
@@ -68,7 +68,7 @@ $ sudo add-apt-repository \
     stable"
 ```
 
->以上命令会添加 稳定 版本的 Docker CE APT 镜像源，如果需要最新版本的 Docker CE 请将 stable 改为 edge 或者 test 。从 Docker 17.06 开始，edge test 版本的 APT 镜像源也会包含稳定版本的 Docker
+>以上命令会添加稳定版本的 Docker CE APT 镜像源，如果需要最新版本的 Docker CE 请将 stable 改为 edge 或者 test。从 Docker 17.06 开始，edge test 版本的 APT 镜像源也会包含稳定版本的 Docker。
 
 #### 官方源
 
