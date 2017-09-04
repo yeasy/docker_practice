@@ -1,7 +1,5 @@
 # Docker — 从入门到实践
 
-[![Build Status](https://travis-ci.org/khs1994-gitbook/docker_practice.svg?branch=master)](https://travis-ci.org/khs1994-gitbook/docker_practice)
-
 0.8.3
 
 [Docker](http://www.docker.com) 是个划时代的开源项目，它彻底释放了计算虚拟化的威力，极大提高了应用的运行效率，降低了云计算资源供应的成本！ 使用 Docker，可以让应用的部署、测试和分发都变得前所未有的高效和轻松！
