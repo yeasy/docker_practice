@@ -13,11 +13,11 @@ before_install:
 - . ~/.profile
 install:
 - git ls-files | while read file; do touch -d $(git log -1 --format="@%ct" "$file") "$file"; done
-- npm install gitbook -g
-- npm install -g gitbook-cli
+#- npm install gitbook -g
+- npm install gitbook-cli
 script:
-- gitbook install
-- gitbook build
+- node_modules/gitbook-cli/bin/gitbook.js install
+- node_modules/gitbook-cli/bin/gitbook.js build
 after_success:
  - sh .travis/deploy.sh
 branches:
