@@ -1,4 +1,4 @@
-##  镜像加速器
+## 镜像加速器
 
 国内访问 Docker Hub 有时会遇到困难，此时可以配置镜像加速器。Docker官方和国内很多云服务商都提供了加速器服务，例如：
 
@@ -64,7 +64,7 @@ $ sudo systemctl restart docker
 docker-machine ssh default
 sudo sed -i "s|EXTRA_ARGS='|EXTRA_ARGS='--registry-mirror=加速地址 |g" /var/lib/boot2docker/profile
 exit
-docker-machine restart default 
+docker-machine restart default
 ```
 
 关于Docker Toolbox配置的内容参考自DaoCloud的文档:[Docker 加速器](http://guide.daocloud.io/dcs/daocloud-9153151.html#docker-toolbox)
