@@ -1,11 +1,10 @@
-##  镜像加速器
+## 镜像加速器
 
 国内访问 Docker Hub 有时会遇到困难，此时可以配置镜像加速器。Docker官方和国内很多云服务商都提供了加速器服务，例如：
 
 * [Docker 官方提供的中国registry mirror](https://docs.docker.com/registry/recipes/mirror/#use-case-the-china-registry-mirror)
 * [阿里云加速器](https://cr.console.aliyun.com/#/accelerator)
 * [DaoCloud 加速器](https://www.daocloud.io/mirror#accelerator-doc)
-* [灵雀云加速器](http://docs.alauda.cn/feature/accelerator.html)
 
 注册用户并且申请加速器，会获得如 `https://jxus37ad.mirror.aliyuncs.com` 这样的地址。我们需要将其配置给 Docker 引擎。
 
@@ -57,17 +56,6 @@ $ sudo systemctl restart docker
 ### macOS
 
 对于macOS的用户，如果你使用的是**Docker for Mac**，那配置起来很简单。在任务栏点击应用图标 -> Perferences... -> Daemon -> Registry mirrors。在列表中添加云服务商提供的加速器地址即可。修改完成之后，点击`Apply & Restart`按钮，Docker就会重启并应用配置的镜像地址了。
-
-如果你使用的是**Docker Toolbox**。先看看你的系统版本，如果是macOS 10.1以上的，那么请改用Docker for Mac，这个在性能上超过Docker Toolbox一大截，具体可以看看官网的这篇文章：[Docker for Mac vs. Docker Toolbox](https://docs.docker.com/docker-for-mac/docker-toolbox/)。如果系统版本没达到，或者因为历史原因必须使用Docker Toolbox的话。
-
-```bash
-docker-machine ssh default
-sudo sed -i "s|EXTRA_ARGS='|EXTRA_ARGS='--registry-mirror=加速地址 |g" /var/lib/boot2docker/profile
-exit
-docker-machine restart default 
-```
-
-关于Docker Toolbox配置的内容参考自DaoCloud的文档:[Docker 加速器](http://guide.daocloud.io/dcs/daocloud-9153151.html#docker-toolbox)
 
 ### 检查加速器是否生效
 

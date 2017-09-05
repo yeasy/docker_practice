@@ -28,3 +28,6 @@
   $ git push -f origin master
   ```
 
+## 排版规范
+
+本开源书籍遵循 [中文排版指南](https://github.com/mzlogin/chinese-copywriting-guidelines) 规范。

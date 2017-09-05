@@ -1,4 +1,4 @@
-## macOS 操作系统安装 Docker
+## macOS 安装 Docker
 
 ### 系统要求
 
