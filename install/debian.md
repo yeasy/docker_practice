@@ -6,9 +6,9 @@
 
 Docker CE 支持以下版本的 [Debian](https://www.debian.org/intro/about) 操作系统：
 
-* Debian 9 Stretch
-* Debian 8 Jessie
-* Debian 7 Wheezy
+* Stretch 9
+* Jessie 8 (LTS)
+* Wheezy 7.7 (LTS)
 
 Docker CE 可以安装在 64 位的 x86 平台或 ARM 平台上（如[树莓派](https://www.raspberrypi.org/)）。
 
@@ -25,7 +25,7 @@ $ sudo apt-get remove docker docker-engine docker.io
 
 Debian 7 的内核默认为 3.2，为了满足 Docker CE 的需求，应该安装 [`backports`](https://backports.debian.org/Instructions/) 的内核。
 
-### 使用 APT 源安装
+### 使用 APT 镜像源 安装
 
 由于官方源使用 HTTPS 以确保软件下载过程中不被篡改。因此，我们首先需要添加使用 HTTPS 传输的软件包以及 CA 证书。
 
@@ -76,7 +76,7 @@ $ sudo add-apt-repository \
    stable"
 ```
 
->以上命令会添加 稳定 版本的 Docker CE APT 镜像源，如果需要最新版本的 Docker CE 请将 stable 改为 edge 或者 test 。从 Docker 17.06 开始，edge test 版本的 APT 镜像源也会包含稳定版本的 Docker CE
+>以上命令会添加稳定版本的 Docker CE APT 镜像源，如果需要最新版本的 Docker CE 请将 stable 改为 edge 或者 test。从 Docker 17.06 开始，edge test 版本的 APT 镜像源也会包含稳定版本的 Docker CE。
 
 #### 官方源
 
