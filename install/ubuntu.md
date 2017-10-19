@@ -18,7 +18,9 @@ Docker CE 可以安装在 64 位的 x86 平台或 ARM 平台上。Ubuntu 发行�
 旧版本的 Docker 称为 `docker` 或者 `docker-engine`，使用以下命令卸载旧版本：
 
 ```bash
-$ sudo apt-get remove docker docker-engine docker.io
+$ sudo apt-get remove docker \
+               docker-engine \
+               docker.io
 ```
 
 #### Ubuntu 14.04 可选内核模块
@@ -56,14 +58,14 @@ $ sudo apt-get install \
 为了确认所下载软件包的合法性，需要添加软件源的 GPG 密钥。
 
 ```bash
-$ curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+$ curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
 ```
 
 然后，我们需要向 `source.list` 中添加 Docker 软件源
 
 ```bash
 $ sudo add-apt-repository \
-    "deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu \
+    "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu \
     $(lsb_release -cs) \
     stable"
 ```
