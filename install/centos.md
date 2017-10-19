@@ -36,7 +36,7 @@ $ sudo yum install -y yum-utils \
 ```bash
 $ sudo yum-config-manager \
     --add-repo \
-    https://http://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo
+    https://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo
 ```
 
 >以上命令会添加稳定版本的 Docker CE yum 源。从 Docker 17.06 开始，edge test 版本的 yum 源也会包含稳定版本的 Docker CE。
