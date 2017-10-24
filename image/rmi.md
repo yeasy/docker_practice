@@ -103,3 +103,11 @@ $ docker rmi $(docker images -q -f before=mongo:3.2)
 所以对于 CentOS/RHEL 的用户来说，在没有办法使用 `UnionFS` 的情况下，一定要配置 `direct-lvm` 给 `devicemapper`，无论是为了性能、稳定性还是空间利用率。
 
 *或许有人注意到了 CentOS 7 中存在被 backports 回来的 `overlay` 驱动，不过 CentOS 里的这个驱动达不到生产环境使用的稳定程度，所以不推荐使用。*
+
+## Docker 1.13+
+
+在 Docker 1.13+ 版本中推荐使用 docker image 来管理镜像。
+
+```bash
+$ docker image rm
+```
