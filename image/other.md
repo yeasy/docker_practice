@@ -70,3 +70,13 @@ Loaded image: alpine:latest
 ```bash
 docker save <镜像名> | bzip2 | pv | ssh <用户名>@<主机名> 'cat | docker load'
 ```
+
+## Docker 1.13+
+
+在 Docker 1.13+ 版本中推荐使用 docker image 来管理镜像。
+
+```bash
+$ docker image import
+$ docker image load
+$ docker image save
+```

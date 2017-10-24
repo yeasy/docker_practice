@@ -69,3 +69,15 @@ $
 进入容器后，我们可以在 Shell 下操作，执行任何所需的命令。这里，我们执行了 `cat /etc/os-release`，这是 Linux 常用的查看当前系统版本的命令，从返回的结果可以看到容器内是 `Ubuntu 14.04.5 LTS` 系统。
 
 最后我们通过 `exit` 退出了这个容器。
+
+## Docker 1.13+
+
+在 Docker 1.13+ 版本中推荐使用 docker image 来管理镜像。
+
+```bash
+$ docker image pull ubunut:17.10
+
+$ docker container run -it --rm \
+    ubuntu:17.10 \
+    bash
+```
