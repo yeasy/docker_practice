@@ -82,7 +82,7 @@
     * [容器格式](underly/container_format.md)
     * [网络](underly/network.md)
 * [Docker 三剑客之 Compose 项目](compose/README.md)
-    * [简介](compose/intro.md)
+    * [简介](compose/introduction.md)
     * [安装与卸载](compose/install.md)
     * [使用](compose/usage.md)
     * [命令说明](compose/commands.md)

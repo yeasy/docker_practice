@@ -3,8 +3,8 @@
 ### 术语
 首先介绍几个术语。
 
-* 服务（service）：一个应用容器，实际上可以运行多个相同镜像的实例。
-* 项目(project)：由一组关联的应用容器组成的一个完整业务单元。
+* 服务 (service)：一个应用容器，实际上可以运行多个相同镜像的实例。
+* 项目 (project)：由一组关联的应用容器组成的一个完整业务单元。
 
 可见，一个项目可以由多个服务（容器）关联而成，Compose 面向项目进行管理。
 
@@ -98,7 +98,7 @@ $ touch index.html
 ```
 
 #### Dockerfile
-生成一个 Dockerfile，内容为
+编写 `Dockerfile` 文件，内容为
 ```bash
 FROM python:2.7
 WORKDIR /code
@@ -108,7 +108,7 @@ CMD python index.py
 ```
 
 ### haproxy 目录
-在其中生成一个 `haproxy.cfg` 文件，内容为
+编写 `haproxy.cfg` 文件，内容为
 ```bash
 global
   log 127.0.0.1 local0
@@ -146,23 +146,25 @@ backend web_backends
 ### docker-compose.yml
 编写 docker-compose.yml 文件，这个是 Compose 使用的主模板文件。内容十分简单，指定 3 个 web 容器，以及 1 个 haproxy 容器。
 
-```bash
-weba:
+```yaml
+version: "3"
+services:
+  weba:
     build: ./web
     expose:
         - 80
 
-webb:
+  webb:
     build: ./web
     expose:
         - 80
 
-webc:
+  webc:
     build: ./web
     expose:
         - 80
 
-haproxy:
+  haproxy:
     image: haproxy:latest
     volumes:
         - ./haproxy:/haproxy-override
@@ -180,7 +182,7 @@ haproxy:
 ```
 
 ### 运行 compose 项目
-现在 compose-haproxy-web 目录长成下面的样子。
+现在 compose-haproxy-web 目录结构如下：
 ```bash
 compose-haproxy-web
 ├── docker-compose.yml
