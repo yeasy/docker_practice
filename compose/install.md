@@ -1,10 +1,8 @@
 ## 安装与卸载
 
-Compose 目前支持 Linux 和 Mac OS 平台，两者的安装过程大同小异。
+Compose 目前支持 Linux、macOS、Windows 10 三大平台。
 
-安装 Compose 之前，要先安装 Docker（需要 Docker Engine 1.7.1+），请参考第一部分中章节，在此不再赘述。
-
-Compose 可以通过 Python 的 pip 工具进行安装，可以直接下载编译好的二进制文件使用，甚至直接运行在 Docker 容器中。
+Compose 可以通过 Python 的包管理工具 pip 进行安装，也可以直接下载编译好的二进制文件使用，甚至直接运行在 Docker 容器中。
 
 前两种方式是传统方式，适合本地环境下安装使用；最后一种方式则不破坏系统环境，更适合云计算场景。
 
@@ -76,7 +74,7 @@ $ curl -L https://raw.githubusercontent.com/docker/compose/1.8.0/contrib/complet
 
 这些二进制文件，下载后直接放到执行路径下，并添加执行权限即可。
 
-例如，在 Linux 平台上。
+例如，在 Linux 和 macOS 平台上。
 
 ```
 $ sudo curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
