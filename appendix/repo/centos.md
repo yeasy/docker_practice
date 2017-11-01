@@ -15,46 +15,4 @@ bash-4.2#
 
 ### Dockerfile
 
-#### CentOS 5 版本
-```
-FROM scratch
-MAINTAINER The CentOS Project <cloud-ops@centos.org>
-ADD c5-docker.tar.xz /
-LABEL name="CentOS Base Image" \
-    vendor="CentOS" \
-    license="GPLv2" \
-    build-date="2016-03-31"
-
-# Default command
-CMD ["/bin/bash"]
-```
-
-#### CentOS 6 版本
-```
-FROM scratch
-MAINTAINER https://github.com/CentOS/sig-cloud-instance-images
-ADD centos-6-docker.tar.xz /
-
-LABEL name="CentOS Base Image" \
-    vendor="CentOS" \
-    license="GPLv2" \
-    build-date="20160729"
-
-CMD ["/bin/bash"]
-```
-
-#### CentOS 7 版本
-```
-FROM scratch
-MAINTAINER https://github.com/CentOS/sig-cloud-instance-images
-ADD centos-7-docker.tar.xz /
-
-LABEL name="CentOS Base Image" \
-    vendor="CentOS" \
-    license="GPLv2" \
-    build-date="20160729"
-
-CMD ["/bin/bash"]
-```
-
-
+请到 https://github.com/docker-library/docs/tree/master/centos 查看。

@@ -12,9 +12,9 @@ Docker CE 支持 64 位版本 CentOS 7，并且要求内核版本不低于 3.10�
 
 ```bash
 $ sudo yum remove docker \
-                  docker-common \
-                  docker-selinux \
-                  docker-engine
+           docker-common \
+           docker-selinux \
+           docker-engine
 ```
 
 ### 使用 yum 源 安装
@@ -22,7 +22,9 @@ $ sudo yum remove docker \
 执行以下命令安装依赖包：
 
 ```bash
-$ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+$ sudo yum install -y yum-utils \
+           device-mapper-persistent-data \
+           lvm2
 ```
 
 鉴于国内网络问题，强烈建议使用国内源，下面先介绍国内源的使用。
@@ -34,7 +36,7 @@ $ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 ```bash
 $ sudo yum-config-manager \
     --add-repo \
-    https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+    https://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo
 ```
 
 >以上命令会添加稳定版本的 Docker CE yum 源。从 Docker 17.06 开始，edge test 版本的 yum 源也会包含稳定版本的 Docker CE。

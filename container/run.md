@@ -8,14 +8,14 @@
 
 例如，下面的命令输出一个 “Hello World”，之后终止容器。
 ```
-$ sudo docker run ubuntu:14.04 /bin/echo 'Hello world'
+$ docker run ubuntu:14.04 /bin/echo 'Hello world'
 Hello world
 ```
 这跟在本地直接执行 `/bin/echo 'hello world'` 几乎感觉不出任何区别。
 
 下面的命令则启动一个 bash 终端，允许用户进行交互。
 ```
-$ sudo docker run -t -i ubuntu:14.04 /bin/bash
+$ docker run -t -i ubuntu:14.04 /bin/bash
 root@af8bae53bdd3:/#
 ```
 其中，`-t` 选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， `-i` 则让容器的标准输入保持打开。
@@ -49,3 +49,13 @@ root@ba267838cc1b:/# ps
    11 ?        00:00:00 ps
 ```
 可见，容器中仅运行了指定的 bash 应用。这种特点使得 Docker 对资源的利用率极高，是货真价实的轻量级虚拟化。
+
+## Docker 1.13+
+
+在 Docker 1.13+ 版本中推荐使用 docker container 来管理容器。
+
+```bash
+$ docker container run ubuntu:17.10 /bin/echo 'Hello world'
+
+$ docker container start
+```

@@ -31,7 +31,7 @@ Status: Downloaded newer image for ubuntu:14.04
 
 从下载过程中可以看到我们之前提及的分层存储的概念，镜像是由多层存储所构成。下载也是一层层的去下载，并非单一文件。下载过程中给出了每一层的 ID 的前 12 位。并且下载结束后，给出该镜像完整的 `sha256` 的摘要，以确保下载一致性。
 
-在实验上面命令的时候，你可能会发现，你所看到的层 ID 以及 `sha256` 的摘要和这里的不一样。这是因为官方镜像是一直在维护的，有任何新的 bug，或者版本更新，都会进行修复再以原来的标签发布，这样可以确保任何使用这个标签的用户可以获得更安全、更稳定的镜像。
+在使用上面命令的时候，你可能会发现，你所看到的层 ID 以及 `sha256` 的摘要和这里的不一样。这是因为官方镜像是一直在维护的，有任何新的 bug，或者版本更新，都会进行修复再以原来的标签发布，这样可以确保任何使用这个标签的用户可以获得更安全、更稳定的镜像。
 
 *如果从 Docker Hub 下载镜像非常缓慢，可以参照 [镜像加速器](/install/mirror.md) 一节配置加速器。*
 
@@ -40,7 +40,10 @@ Status: Downloaded newer image for ubuntu:14.04
 有了镜像后，我们就可以以这个镜像为基础启动一个容器来运行。以上面的 `ubuntu:14.04` 为例，如果我们打算启动里面的 `bash` 并且进行交互式操作的话，可以执行下面的命令。
 
 ```bash
-$ docker run -it --rm ubuntu:14.04 bash
+$ docker run -it --rm \
+    ubuntu:14.04 \
+    bash
+
 root@e7009c6ce357:/# cat /etc/os-release
 NAME="Ubuntu"
 VERSION="14.04.5 LTS, Trusty Tahr"
@@ -66,3 +69,15 @@ $
 进入容器后，我们可以在 Shell 下操作，执行任何所需的命令。这里，我们执行了 `cat /etc/os-release`，这是 Linux 常用的查看当前系统版本的命令，从返回的结果可以看到容器内是 `Ubuntu 14.04.5 LTS` 系统。
 
 最后我们通过 `exit` 退出了这个容器。
+
+## Docker 1.13+
+
+在 Docker 1.13+ 版本中推荐使用 docker image 来管理镜像。
+
+```bash
+$ docker image pull ubunut:17.10
+
+$ docker container run -it --rm \
+    ubuntu:17.10 \
+    bash
+```
