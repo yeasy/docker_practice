@@ -1,12 +1,13 @@
 ## Docker Hub
 目前 Docker 官方维护了一个公共仓库 [Docker Hub](https://hub.docker.com/)，其中已经包括了超过 15,000 的镜像。大部分需求，都可以通过在 Docker Hub 中直接下载镜像来实现。
-
+### 注册
+你可以在 https://hub.docker.com 免费注册一个 Docker 账号。
 ### 登录
-可以通过执行 `docker login` 命令来输入用户名、密码和邮箱来完成注册和登录。
-注册成功后，本地用户目录的 `.dockercfg` 中将保存用户的认证信息。
+可以通过执行 `docker login` 命令交互式的输入用户名及密码来完成在命令行界面的登录。
+登录成功后，本地用户目录的 `.dockercfg` 中将保存用户的认证信息。
 
 ### 基本操作
-用户无需登录即可通过 `docker search` 命令来查找官方仓库中的镜像，并利用 `docker pull` 命令来将它下载到本地。
+你可以通过 `docker search` 命令来查找官方仓库中的镜像，并利用 `docker pull` 命令来将它下载到本地。
 
 例如以 centos 为关键词进行搜索：
 ```

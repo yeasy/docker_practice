@@ -46,6 +46,12 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 $ docker rmi $(docker images -q -f dangling=true)
 ```
 
+注意：如果你使用的是 Docker 1.13+ 版本，你可以便捷的使用以下命令来删除虚悬镜像。
+
+```bash
+$ docker image prune
+```
+
 ### 中间层镜像
 
 为了加速镜像构建、重复利用资源，Docker 会利用 **中间层镜像**。所以在使用一段时间后，可能会看到一些依赖的中间层镜像。默认的 `docker images` 列表中只会显示顶层镜像，如果希望显示包括中间层镜像在内的所有镜像的话，需要加 `-a` 参数。
@@ -140,4 +146,12 @@ fe9198c04d62        mongo               3.2
 f753707788c5        ubuntu              16.04
 f753707788c5        ubuntu              latest
 1e0c3dd64ccd        ubuntu              14.04
+```
+
+## Docker 1.13+
+
+在 Docker 1.13+ 版本中推荐使用 docker image 来管理镜像。
+
+```bash
+$ docker image ls
 ```
