@@ -2,7 +2,7 @@
 
 0.8.3
 
-[Docker](http://www.docker.com) 是个划时代的开源项目，它彻底释放了计算虚拟化的威力，极大提高了应用的运行效率，降低了云计算资源供应的成本！ 使用 Docker，可以让应用的部署、测试和分发都变得前所未有的高效和轻松！
+[Docker](http://www.docker.com) 是个划时代的开源项目，它彻底释放了计算虚拟化的威力，极大提高了应用的运行效率，降低了云计算资源供应的成本！使用 Docker，可以让应用的部署、测试和分发都变得前所未有的高效和轻松！
 
 无论是应用开发者、运维人员、还是其他信息技术从业人员，都有必要认识和掌握 Docker，以在有限的时间内做更多有意义的事。
 
@@ -13,7 +13,7 @@
 * pdf 版本 [下载](https://www.gitbook.com/download/pdf/book/yeasy/docker_practice)
 * epub 版本 [下载](https://www.gitbook.com/download/epub/book/yeasy/docker_practice)
 
-Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初学者使用 Linux 上最新版的 Docker （v17.10.0）进行学习实践。欢迎参与维护项目：[如何贡献](contribute.md)。
+Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初学者使用 Linux 上最新版的 Docker (v17.10.0) 进行学习实践。欢迎参与维护项目：[如何贡献](contribute.md)。
 
 * [修订记录](revision.md)
 * [贡献者名单](https://github.com/yeasy/docker_practice/graphs/contributors)
