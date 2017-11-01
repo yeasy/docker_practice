@@ -1,6 +1,6 @@
 ## 镜像加速器
 
-国内访问 Docker Hub 有时会遇到困难，此时可以配置镜像加速器。Docker官方和国内很多云服务商都提供了加速器服务，例如：
+国内访问 Docker Hub 有时会遇到困难，此时可以配置镜像加速器。Docker 官方和国内很多云服务商都提供了加速器服务，例如：
 
 * [Docker 官方提供的中国registry mirror](https://docs.docker.com/registry/recipes/mirror/#use-case-the-china-registry-mirror)
 * [阿里云加速器](https://cr.console.aliyun.com/#/accelerator)
@@ -10,10 +10,10 @@
 
 ### Ubuntu 14.04、Debian 7 Wheezy
 
-对于使用 [upstart](http://upstart.ubuntu.com/) 的系统而言，编辑 `/etc/default/docker` 文件，在其中的 `DOCKER_OPTS` 中添加获得的加速器配置 `--registry-mirror=<加速器地址>`，如：
+对于使用 [upstart](http://upstart.ubuntu.com/) 的系统而言，编辑 `/etc/default/docker` 文件，在其中的 `DOCKER_OPTS` 中添加获得的加速器配置：
 
 ```bash
-DOCKER_OPTS="--registry-mirror=https://jxus37ad.mirror.aliyuncs.com"
+DOCKER_OPTS="--registry-mirror=https://registry.docker-cn.com"
 ```
 
 重新启动服务。
@@ -29,7 +29,7 @@ $ sudo service docker restart
 ```json
 {
   "registry-mirrors": [
-    "https://sr5arhkn.mirror.aliyuncs.com",
+    "https://registry.docker-cn.com",
   ]
 }
 ```
@@ -41,16 +41,15 @@ $ sudo systemctl daemon-reload
 $ sudo systemctl restart docker
 ```
 
-注意：如果您之前查看旧教程，修改了 `docker.service` 文件内容，请去掉您添加的内容（`--registry-mirror=https://jxus37ad.mirror.aliyuncs.com`），这里不再赘述。
+注意：如果您之前查看旧教程，修改了 `docker.service` 文件内容，请去掉您添加的内容（`--registry-mirror=https://registry.docker-cn.com`），这里不再赘述。
 
 ### Windows 10
-对于使用 Windows 10 的系统，在系统右下角托盘图标内右键菜单选择 `Settings`，打开配置窗口后左侧导航菜单选择 `Docker Daemon`。编辑窗口内的JSON串，填写加速器地址，如：
+对于使用 Windows 10 的系统，在系统右下角托盘图标内右键菜单选择 `Settings`，打开配置窗口后左侧导航菜单选择 `Docker Daemon`。编辑窗口内的 JSON 串，填写加速器地址，如：
 
 ```json
 {
   "registry-mirrors": [
-    "https://sr5arhkn.mirror.aliyuncs.com",
-    "http://14d216f4.m.daocloud.io"
+    "https://registry.docker-cn.com"
   ]
 }
 ```
@@ -59,7 +58,7 @@ $ sudo systemctl restart docker
 
 ### macOS
 
-对于使用 macOS 的用户，在任务栏点击 Docker for mac 应用图标 -> Perferences... -> Daemon -> Registry mirrors。在列表中添加云服务商提供的加速器地址即可。修改完成之后，点击 `Apply & Restart` 按钮，Docker 就会重启并应用配置的镜像地址了。
+对于使用 macOS 的用户，在任务栏点击 Docker for mac 应用图标 -> Perferences... -> Daemon -> Registry mirrors。在列表中填写加速器地址即可。修改完成之后，点击 `Apply & Restart` 按钮，Docker 就会重启并应用配置的镜像地址了。
 
 ### 检查加速器是否生效
 

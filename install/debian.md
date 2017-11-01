@@ -126,7 +126,7 @@ $ sudo sh get-docker.sh --mirror Aliyun
 
 ```bash
 $ sudo add-apt-repository \
-    "deb [arch=armhf] https://mirrors.ustc.edu.cn/docker-ce/linux/debian \
+    "deb [arch=armhf] https://mirrors.ustc.edu.cn/docker-ce/linux/raspbian \
     $(lsb_release -cs) \
     stable"
 ```
