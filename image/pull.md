@@ -75,7 +75,7 @@ $
 在 Docker 1.13+ 版本中推荐使用 docker image 来管理镜像。
 
 ```bash
-$ docker image pull ubunut:17.10
+$ docker image pull ubuntu:17.10
 
 $ docker container run -it --rm \
     ubuntu:17.10 \
