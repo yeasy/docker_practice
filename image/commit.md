@@ -9,7 +9,7 @@
 现在让我们以定制一个 Web 服务器为例子，来讲解镜像是如何构建的。
 
 ```bash
-docker run --name webserver -d -p 80:80 nginx
+$ docker run --name webserver -d -p 80:80 nginx
 ```
 
 这条命令会用 `nginx` 镜像启动一个容器，命名为 `webserver`，并且映射了 80 端口，这样我们可以用浏览器去访问这个 `nginx` 服务器。
