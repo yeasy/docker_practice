@@ -20,7 +20,7 @@
 #### index.py
 
 编写一个 `index.py` 作为服务器文件，代码为
-```bash
+```python
 #!/usr/bin/python
 #authors: yeasy.github.com
 #date: 2013-07-05
@@ -99,7 +99,7 @@ $ touch index.html
 
 #### Dockerfile
 编写 `Dockerfile` 文件，内容为
-```bash
+```docker
 FROM python:2.7
 WORKDIR /code
 ADD . /code
@@ -194,8 +194,8 @@ compose-haproxy-web
     └── index.py
 ```
 在该目录下执行 `docker-compose up` 命令，会整合输出所有容器的输出。
-```
-$sudo docker-compose up
+```bash
+$ docker-compose up
 Recreating composehaproxyweb_webb_1...
 Recreating composehaproxyweb_webc_1...
 Recreating composehaproxyweb_weba_1...
