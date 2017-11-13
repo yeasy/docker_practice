@@ -6,13 +6,13 @@ Swarm 安装有几种方式，可以基于 Docker Machine 来进行安装，也�
 ### 下载镜像
 Docker 官方已经提供了 Swarm 镜像使用，需要在所有被 Swarm 管理的 Docker 主机上下载该镜像。
 
-```sh
+```bash
 $ docker pull swarm
 ```
 
 可以使用下面的命令来查看 Swarm 版本，验证是否成功下载 Swarm 镜像。
 
-```sh
+```bash
 $ docker run --rm swarm -v
 swarm version 1.2.2 (34e3da3)
 ```
@@ -22,8 +22,8 @@ Docker 主机在加入 Swarm 集群前，需要进行一些简单配置，添加
 
 例如，在启动 Docker daemon 的时候通过 `-H` 参数：
 
-```sh
-$ sudo docker daemon -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
+```bash
+$ docker daemon -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
 ```
 
 *注：Docker 1.8.0 版本之前不支持 daemon 命令，可以用 -d 代替。*
@@ -34,7 +34,7 @@ $ sudo docker daemon -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
 
 在文件的最后添加：
 
-```sh
+```bash
 DOCKER_OPTS="$DOCKER_OPTS -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock"
 ```
 
@@ -48,7 +48,7 @@ Docker 集群管理需要使用服务发现（Service Discover）功能，Swarm 
 #### 启动 Consul 服务后端
 启动 consul 服务容器，映射到主机的 8500 端口。
 
-```sh
+```bash
 $ docker run -d -p 8500:8500 --name=consul progrium/consul -server -bootstrap
 ```
 
@@ -57,13 +57,13 @@ $ docker run -d -p 8500:8500 --name=consul progrium/consul -server -bootstrap
 #### 启动管理节点
 首先，启动一个主管理节点，映射到主机的 4000 端口，并获取所在主机地址为 `<manager0_ip>`。其中 4000 端口是 Swarm 管理器的默认监听端口，用户也可以指定映射为其它端口。
 
-```sh
+```bash
 $ docker run -d -p 4000:4000 swarm manage -H :4000 --replication --advertise <manager0_ip>:4000 consul://<consul_ip>:8500
 ```
 
 为了提高高可用性，用户也可以启动从管理节点。假定获取所在主机地址为 `<manager1_ip>`。
 
-```sh
+```bash
 $ docker run -d swarm manage -H :4000 --replication --advertise <manager1_ip>:4000 consul://<consul_ip>:8500
 ```
 
@@ -72,7 +72,7 @@ $ docker run -d swarm manage -H :4000 --replication --advertise <manager1_ip>:40
 
 获取节点的主机地址为 `<node_ip>`，并指定前面获取到的 consul 服务地址。
 
-```sh
+```bash
 $ docker run -d swarm join --advertise=<node_ip>:2375 consul://<consul_ip>:8500
 ```
 

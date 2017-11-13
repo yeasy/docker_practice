@@ -10,8 +10,8 @@
 你可以通过 `docker search` 命令来查找官方仓库中的镜像，并利用 `docker pull` 命令来将它下载到本地。
 
 例如以 centos 为关键词进行搜索：
-```
-$ sudo docker search centos
+```bash
+$ docker search centos
 NAME                                            DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
 centos                                          The official build of CentOS.                   465       [OK]
 tianon/centos                                   CentOS 5 and 6, created using rinse instea...   28
@@ -30,8 +30,8 @@ tutum/centos-6.4                                DEPRECATED. Use tutum/centos:6.4
 另外，在查找的时候通过 `-s N` 参数可以指定仅显示评价为 `N` 星以上的镜像（新版本Docker推荐使用`--filter=stars=N`参数）。
 
 下载官方 centos 镜像到本地。
-```
-$ sudo docker pull centos
+```bash
+$ docker pull centos
 Pulling repository centos
 0b443ba03958: Download complete
 539c0211cd76: Download complete

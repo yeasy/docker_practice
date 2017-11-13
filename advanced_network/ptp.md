@@ -6,18 +6,18 @@
 解决办法很简单：创建一对 `peer` 接口，分别放到两个容器中，配置成点到点链路类型即可。
 
 首先启动 2 个容器：
-```
-$ sudo docker run -i -t --rm --net=none base /bin/bash
+```bash
+$ docker run -i -t --rm --net=none base /bin/bash
 root@1f1f4c1f931a:/#
-$ sudo docker run -i -t --rm --net=none base /bin/bash
+$ docker run -i -t --rm --net=none base /bin/bash
 root@12e343489d2f:/#
 ```
 
 找到进程号，然后创建网络命名空间的跟踪文件。
-```
-$ sudo docker inspect -f '{{.State.Pid}}' 1f1f4c1f931a
+```bash
+$ docker inspect -f '{{.State.Pid}}' 1f1f4c1f931a
 2989
-$ sudo docker inspect -f '{{.State.Pid}}' 12e343489d2f
+$ docker inspect -f '{{.State.Pid}}' 12e343489d2f
 3004
 $ sudo mkdir -p /var/run/netns
 $ sudo ln -s /proc/2989/ns/net /var/run/netns/2989
@@ -25,7 +25,7 @@ $ sudo ln -s /proc/3004/ns/net /var/run/netns/3004
 ```
 
 创建一对 `peer` 接口，然后配置路由
-```
+```bash
 $ sudo ip link add A type veth peer name B
 
 $ sudo ip link set A netns 2989
