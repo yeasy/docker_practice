@@ -8,14 +8,14 @@ etcd 基于 Go 语言实现，因此，用户可以从 [项目主页](https://gi
 
 例如，下面的命令使用 curl 工具下载压缩包，并解压。
 
-```
+```bash
 curl -L  https://github.com/coreos/etcd/releases/download/v2.0.0-rc.1/etcd-v2.0.0-rc.1-linux-amd64.tar.gz -o etcd-v2.0.0-rc.1-linux-amd64.tar.gz
 tar xzvf etcd-v2.0.0-rc.1-linux-amd64.tar.gz
 cd etcd-v2.0.0-rc.1-linux-amd64
 ```
 
 解压后，可以看到文件包括
-```
+```bash
 $ ls
 etcd  etcdctl  etcd-migrate  README-etcdctl.md  README.md
 ```
@@ -24,12 +24,12 @@ etcd  etcdctl  etcd-migrate  README-etcdctl.md  README.md
 
 推荐通过下面的命令将三个文件都放到系统可执行目录 `/usr/local/bin/` 或 `/usr/bin/`。
 
-```
+```bash
 $ sudo cp etcd* /usr/local/bin/
 ```
 
 运行 etcd，将默认组建一个两个节点的集群。数据库服务端默认监听在 2379 和 4001 端口，etcd 实例监听在 2380 和 7001 端口。显示类似如下的信息：
-```
+```bash
 $ ./etcd
 2014/12/31 14:52:09 no data-dir provided, using default data-dir ./default.etcd
 2014/12/31 14:52:09 etcd: listening for peers on http://localhost:2380
@@ -56,7 +56,7 @@ $ ./etcd
 ```
 
 此时，可以使用 etcdctl 命令进行测试，设置和获取键值 `testkey: "hello world"`，检查 etcd 服务是否启动成功：
-```
+```bash
 $ ./etcdctl set testkey "hello world"
 hello world
 $ ./etcdctl get testkey
@@ -65,7 +65,7 @@ hello world
 说明 etcd 服务已经成功启动了。
 
 当然，也可以通过 HTTP 访问本地 2379 或 4001 端口的方式来进行操作，例如查看 `testkey` 的值：
-```
+```bash
 $ curl -L http://localhost:4001/v2/keys/testkey
 {"action":"get","node":{"key":"/testkey","value":"hello world","modifiedIndex":3,"createdIndex":3}}
 ```
@@ -73,6 +73,6 @@ $ curl -L http://localhost:4001/v2/keys/testkey
 ### Docker 镜像方式下载
 
 镜像名称为 quay.io/coreos/etcd:v2.0.0_rc.1，可以通过下面的命令启动 etcd 服务监听到 4001 端口。
-```
-$ sudo docker run -p 4001:4001 -v /etc/ssl/certs/:/etc/ssl/certs/ quay.io/coreos/etcd:v2.0.0_rc.1
+```bash
+$ docker run -p 4001:4001 -v /etc/ssl/certs/:/etc/ssl/certs/ quay.io/coreos/etcd:v2.0.0_rc.1
 ```

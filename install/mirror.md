@@ -1,12 +1,12 @@
 ## 镜像加速器
 
-国内访问 Docker Hub 有时会遇到困难，此时可以配置镜像加速器。Docker 官方和国内很多云服务商都提供了加速器服务，例如：
+国内从 Docker Hub 拉取镜像有时会遇到困难，此时可以配置镜像加速器。Docker 官方和国内很多云服务商都提供了国内加速器服务，例如：
 
 * [Docker 官方提供的中国registry mirror](https://docs.docker.com/registry/recipes/mirror/#use-case-the-china-registry-mirror)
 * [阿里云加速器](https://cr.console.aliyun.com/#/accelerator)
 * [DaoCloud 加速器](https://www.daocloud.io/mirror#accelerator-doc)
 
-注册用户并且申请加速器，会获得如 `https://jxus37ad.mirror.aliyuncs.com` 这样的地址。我们需要将其配置给 Docker 引擎。
+我们以 Docker 官方加速器为例进行介绍。
 
 ### Ubuntu 14.04、Debian 7 Wheezy
 

@@ -5,12 +5,12 @@
 `docker attach` 是 Docker 自带的命令。下面示例如何使用该命令。
 
 ```bash
-$ sudo docker run -idt ubuntu
+$ docker run -idt ubuntu
 243c32535da7d142fb0e6df616a3c3ada0b8ab417937c853a9e1c251f499f550
-$ sudo docker ps
+$ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 243c32535da7        ubuntu:latest       "/bin/bash"         18 seconds ago      Up 17 seconds                           nostalgic_hypatia
-$sudo docker attach nostalgic_hypatia
+$ docker attach nostalgic_hypatia
 root@243c32535da7:/#
 ```
 
@@ -20,7 +20,7 @@ root@243c32535da7:/#
 #### 安装
 `nsenter` 工具在 util-linux 包2.23版本后包含。
 如果系统中 util-linux 包没有该命令，可以按照下面的方法从源码安装。
-```
+```bash
 $ cd /tmp; curl https://www.kernel.org/pub/linux/utils/util-linux/v2.24/util-linux-2.24.tar.gz | tar -zxf-; cd util-linux-2.24;
 $ ./configure --without-ncurses
 $ make nsenter && sudo cp nsenter /usr/local/bin
@@ -59,9 +59,9 @@ $ nsenter --target $pid --mount --uts --ipc --net --pid  -- /usr/bin/env \
 下面给出一个完整的例子。
 
 ```bash
-$ sudo docker run -idt ubuntu
+$ docker run -idt ubuntu
 243c32535da7d142fb0e6df616a3c3ada0b8ab417937c853a9e1c251f499f550
-$ sudo docker ps
+$ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 243c32535da7        ubuntu:latest       "/bin/bash"         18 seconds ago      Up 17 seconds                           nostalgic_hypatia
 $ PID=$(docker-pid 243c32535da7)

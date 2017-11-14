@@ -9,13 +9,13 @@ Constraint 过滤器是绑定到节点的键值对，相当于给节点添加标
 
 可在启动 Docker 服务的时候指定，例如指定某个节点颜色为 `red`。
 
-```sh
-$ sudo docker daemon --label color=red -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
+```bash
+$ docker daemon --label color=red -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
 ```
 
 同样的，可以写在 Docker 服务的配置文件里面（以 Ubuntu 14.04 为例，是 `/etc/default/docker`）。
 
-```sh
+```bash
 DOCKER_OPTS="--label color=red -H 0.0.0.0:2375 -H unix:///var/run/docker.sock"
 ```
 
@@ -25,7 +25,7 @@ DOCKER_OPTS="--label color=red -H 0.0.0.0:2375 -H unix:///var/run/docker.sock"
 
 然后，分别启动两个容器，指定使用过滤器分别为红色和绿色。
 
-```sh
+```bash
 $ docker -H 192.168.0.2:12375 run -d -e constraint:color==red ubuntu:14.04 ping 127.0.0.1
 252ffb48e64e9858c72241f5eedf6a3e4571b1ad926faf091db3e26672370f64
 $ docker -H 192.168.0.2:12375 run -d -e constraint:color==green ubuntu:14.04 ping 127.0.0.1
@@ -36,7 +36,7 @@ $ docker -H 192.168.0.2:12375 run -d -e constraint:color==green ubuntu:14.04 pin
 
 查看它们将被分配到指定节点上。
 
-```sh
+```bash
 $ docker -H 192.168.0.2:12375 ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                         NAMES
 252ffb48e64e        ubuntu:14.04        "ping 127.0.0.1"         1 minutes ago       Up 1 minutes                            Host-2/sick_galileo
@@ -47,7 +47,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 例如，目前集群中各个节点的信息为：
 
-```sh
+```bash
 $ docker -H 192.168.0.2:12375 info
 Containers: 5
 Images: 39
@@ -72,26 +72,26 @@ Name: 946d65606f7c
 
 ### Affinity 过滤器
 Affinity 过滤器允许用户在启动一个容器的时候，让它分配到某个已有容器的节点上。
- 
+
 例如，下面我们将启动一个 nginx 容器，让它分配到已经运行某个 ubuntu 容器的节点上。
- 
+
 在 Constraint 过滤器的示例中，我们分别启动了两个 ubuntu 容器 `sick_galileo` 和 `compassionate_ritchie`，分别在 Host-2 和 Host-3 上。
 
 现在启动一个 nginx 容器，让它跟容器 `sick_galileo` 放在一起，都放到 Host-2 节点上。可以通过 `-e affinity:container==<name or id>` 参数来实现。
 
-```sh
+```bash
 $ docker -H 192.168.0.2:12375 run -d -e affinity:container==sick_galileo nginx
 ```
 
 然后启动一个 redis 容器，让它跟容器 `compassionate_ritchie` 放在一起，都放到 Host-3 节点上。
 
-```sh
+```bash
 $ docker -H 192.168.0.2:12375 run -d -e affinity:container==compassionate_ritchie redis
 ```
 
 查看所有容器运行情况。
 
-```sh
+```bash
 $ docker -H 192.168.0.2:12375 ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                         NAMES
 0a32f15aa8ee        redis               "/entrypoint.sh redis"   2 seconds ago       Up 1 seconds        6379/tcp                  Host-3/awesome_darwin
