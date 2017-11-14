@@ -2,24 +2,24 @@
 
 ###导出容器
 如果要导出本地某个容器，可以使用 `docker export` 命令。
-```
+```bash
 $ docker ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                    PORTS               NAMES
 7691a814370e        ubuntu:14.04        "/bin/bash"         36 hours ago        Exited (0) 21 hours ago                       test
-$ sudo docker export 7691a814370e > ubuntu.tar
+$ docker export 7691a814370e > ubuntu.tar
 ```
 这样将导出容器快照到本地文件。
 
 ###导入容器快照
 可以使用 `docker import` 从容器快照文件中再导入为镜像，例如
-```
-$ cat ubuntu.tar | sudo docker import - test/ubuntu:v1.0
+```bash
+$ cat ubuntu.tar | docker import - test/ubuntu:v1.0
 $ docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
 test/ubuntu         v1.0                9d37a6082e97        About a minute ago   171.3 MB
 ```
 此外，也可以通过指定 URL 或者某个目录来导入，例如
-```
+```bash
 $ docker import http://example.com/exampleimage.tgz example/imagerepo
 ```
 
