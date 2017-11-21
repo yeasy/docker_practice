@@ -33,7 +33,7 @@
 <!--如果你的 Docker 版本低于 17.09 请尽可能升级到该版本-->
 <!--if Docker version under 17.09, please upgrade Docker to 17.09-->
 
-* [x] 17.10 edge
+* [x] 17.11 edge
 
 * [ ] 17.09 stable
 

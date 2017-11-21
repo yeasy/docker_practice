@@ -1,0 +1,5 @@
+sut:
+  build: .
+  volumes:
+    - ../:/srv/gitbook-src
+  command: build
