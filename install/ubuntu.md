@@ -6,7 +6,8 @@
 
 Docker CE 支持以下版本的 [Ubuntu](https://www.ubuntu.com/server) 操作系统：
 
-* Zesty 17.04
+* Artful 17.10 (Docker CE 17.11 Edge)
+* Zesty  17.04
 * Xenial 16.04 (LTS)
 * Trusty 14.04 (LTS)
 
