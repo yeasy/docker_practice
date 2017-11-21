@@ -20,10 +20,7 @@ $ git clone --depth=1 https://github.com/yeasy/docker_practice.git
 
 $ cd docker_practice
 
-$ docker run -it --rm \
-    -v $PWD:/srv/gitbook-src \
-    -p 4000:4000 \
-    yeasy/docker_practice
+$ docker-compose up
 ```
 
 Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初学者使用 Linux 上最新版的 Docker (v17.11) 进行学习实践。欢迎参与维护项目：[如何贡献](.github/CONTRIBUTING.md)。

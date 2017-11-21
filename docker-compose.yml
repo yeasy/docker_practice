@@ -1,0 +1,11 @@
+version: "3"
+services:
+
+  docker_practice:
+    build: ./.travis
+    image: yeasy/docker_practice:latest
+    ports:
+      - 4000:4000
+    volumes:
+      - ./:/srv/gitbook-src
+    command: server
