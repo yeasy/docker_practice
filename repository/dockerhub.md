@@ -1,7 +1,7 @@
 ## Docker Hub
 目前 Docker 官方维护了一个公共仓库 [Docker Hub](https://hub.docker.com/)，其中已经包括了超过 15,000 的镜像。大部分需求，都可以通过在 Docker Hub 中直接下载镜像来实现。
 ### 注册
-你可以在 https://hub.docker.com 免费注册一个 Docker 账号。
+你可以在 https://cloud.docker.com 免费注册一个 Docker 账号。
 ### 登录
 可以通过执行 `docker login` 命令交互式的输入用户名及密码来完成在命令行界面的登录。
 登录成功后，本地用户目录的 `.dockercfg` 中将保存用户的认证信息。

@@ -28,6 +28,12 @@ ubuntu               14.04               1e0c3dd64ccd        4 weeks ago        
 
 ```bash
 $ docker system df
+
+TYPE                TOTAL               ACTIVE              SIZE                RECLAIMABLE
+Images              24                  0                   1.992GB             1.992GB (100%)
+Containers          1                   0                   62.82MB             62.82MB (100%)
+Local Volumes       9                   0                   652.2MB             652.2MB (100%)
+Build Cache                                                 0B                  0B
 ```
 
 ### 虚悬镜像

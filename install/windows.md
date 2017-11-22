@@ -6,13 +6,13 @@ Docker CE 支持 64 位版本的 Windows 10 Pro，且必须开启 Hyper-V。
 
 ### 安装
 
-点击以下链接下载 [stable](https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe) 或 [edge](https://download.docker.com/win/edge/Docker%20for%20Windows%20Installer.exe) 版本的 Docker CE。
+点击以下链接下载 [Stable](https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe) 或 [Edge](https://download.docker.com/win/edge/Docker%20for%20Windows%20Installer.exe) 版本的 Docker CE。
 
 下载好之后双击 Docker for Windows Installer.exe 开始安装。
 
 ### 运行
 
-在 Windows 搜索栏 输入 Docker 点击 Docker for Windows 开始运行。
+在 Windows 搜索栏输入 Docker 点击 Docker for Windows 开始运行。
 
 ![](_images/install-win-docker-app-search.png)
 

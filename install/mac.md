@@ -13,14 +13,14 @@
 [Homebrew](http://brew.sh/) 的 [Cask](https://caskroom.github.io/) 已经支持 Docker for Mac，因此可以很方便的使用 Homebrew Cask 来进行安装：
 
 ```bash
-brew cask install docker
+$ brew cask install docker
 ```
 
 #### 手动下载安装
 
 如果需要手动下载，可以通过这个链接下载：<https://download.docker.com/mac/stable/Docker.dmg>
 
-如同 macOS 其它软件一样，安装也非常简单，双击下载的 `.dmg` 文件，然后将那只叫 [Moby](https://blog.docker.com/2013/10/call-me-moby-dock/) 的鲸鱼图标拖拽到 `Application` 文件夹即可（其间可能会询问系统密码）。
+如同 macOS 其它软件一样，安装也非常简单，双击下载的 `.dmg` 文件，然后将那只叫 [Moby](https://blog.docker.com/2013/10/call-me-moby-dock/) 的鲸鱼图标拖拽到 `Application` 文件夹即可（其间需要输入用户密码）。
 
 <img src="_images/install-mac-dmg.png" width="80%" >
 
