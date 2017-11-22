@@ -1,6 +1,8 @@
 # Docker — 从入门到实践
 
-0.8.3
+0.9-rc1(2017-11-30)
+
+0.9 版本修订说明：2017年底本书内容将基于 Docker v17.09 进行重新修订，发布 0.9 版本。如果您由于特殊原因不能使用 Docker CE v17.09 以上版本，请阅读 [bump-0.8](https://github.com/yeasy/docker_practice/tree/bump-0.8) 分支的内容。
 
 [Docker](http://www.docker.com) 是个划时代的开源项目，它彻底释放了计算虚拟化的威力，极大提高了应用的运行效率，降低了云计算资源供应的成本！使用 Docker，可以让应用的部署、测试和分发都变得前所未有的高效和轻松！
 
@@ -18,9 +20,11 @@
 ```bash
 $ git clone --depth=1 https://github.com/yeasy/docker_practice.git
 
+# 如果您使用的 Docker 版本低于 1.13.0 请执行 $ git clone -b bump-0.8 --depth=1 https://github.com/yeasy/docker_practice.git
+
 $ cd docker_practice
 
-$ docker-compose pull  # 如果您位于国外，这一步请改为 docker-compose build
+$ docker-compose pull  # 如果您位于国外，这一步请改为 $ docker-compose build
 
 $ docker-compose up
 ```
