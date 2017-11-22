@@ -15,8 +15,8 @@ $ docker-machine create -d virtualbox test
 ```bash
 $ docker-machine ls
 
-NAME      ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER   ERRORS
-test      *        virtualbox   Running   tcp://192.168.99.187:2376           v17.10
+NAME      ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER       ERRORS
+test      -        virtualbox   Running   tcp://192.168.99.187:2376           v17.10.0-ce
 ```
 
 创建主机成功后，可以通过 `env` 命令来让后续操作对象都是目标主机。
