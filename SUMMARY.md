@@ -48,7 +48,7 @@
     * [删除](container/rm.md)
 * [访问仓库](repository/README.md)
     * [Docker Hub](repository/dockerhub.md)
-    * [私有仓库](repository/local_repo.md)
+    * [私有仓库](repository/registry.md)
     * [配置文件](repository/config.md)
 * [数据管理](data_management/README.md)
     * [数据卷](data_management/volume.md)
