@@ -15,6 +15,18 @@
 * pdf 版本 [下载](https://www.gitbook.com/download/pdf/book/yeasy/docker_practice)
 * epub 版本 [下载](https://www.gitbook.com/download/epub/book/yeasy/docker_practice)
 
+离线阅读：
+
+```bash
+$ git clone -b bump-0.8 --depth=1 https://github.com/yeasy/docker_practice.git
+
+$ cd docker_practice
+
+$ docker-compose pull  # 如果您位于国外，这一步请改为 $ docker-compose build
+
+$ docker-compose up
+```
+
 Docker 自身仍在快速发展中，生态环境也在蓬勃成长。欢迎参与维护项目：[如何贡献](contribute.md)。
 
 * [修订记录](revision.md)
