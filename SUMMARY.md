@@ -89,7 +89,6 @@
     * [实战 Rails](compose/rails.md)
     * [实战 wordpress](compose/wordpress.md)
 * [Docker 三剑客之  Machine 项目](machine/README.md)
-    * [简介](machine/intro.md)
     * [安装](machine/install.md)
     * [使用](machine/usage.md)
 * [Docker 三剑客之 Docker Swarm](swarm/README.md)
