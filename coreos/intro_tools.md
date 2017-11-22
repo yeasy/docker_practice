@@ -1,12 +1,12 @@
 # CoreOS工具介绍
 
-CoreOS提供了三大工具，它们分别是：服务发现，容器管理和进程管理。
+CoreOS 提供了三大工具，它们分别是：服务发现，容器管理和进程管理。
 
 ## 使用etcd服务发现
 
-CoreOS的第一个重要组件就是使用etcd来实现的服务发现。
+CoreOS 的第一个重要组件就是使用 etcd 来实现的服务发现。
 
-如果你使用默认的样例cloud-config文件，那么etcd会在启动时自动运行。
+如果你使用默认的样例 cloud-config 文件，那么 etcd 会在启动时自动运行。
 
 例如：
 
@@ -33,23 +33,23 @@ coreos:
 
 https://discovery.etcd.io/new
 
-你将会获取一个包含你得teoken得URL。
+你将会获取一个包含你得 teoken 的 URL。
 
 ## 通过Docker进行容器管理
 
-第二个组件就是docker，它用来运行你的代码和应用。
+第二个组件就是 docker，它用来运行你的代码和应用。
 
-每一个CoreOS的机器上都安装了它，具体使用请参考本书其他章节。
+每一个 CoreOS 的机器上都安装了它，具体使用请参考本书其他章节。
 
 ## 使用fleet进行进程管理
 
-第三个CoreOS组件是fleet。
+第三个 CoreOS 组件是 fleet。
 
-它是集群的分布式初始化系统。你应该使用fleet来管理你的docker容器的生命周期。
+它是集群的分布式初始化系统。你应该使用 fleet 来管理你的 docker 容器的生命周期。
 
 Fleet通过接受systemd单元文件来工作，同时在你集群的机器上通过单元文件中编写的偏好来对它们进行调度。
 
-首先，让我们构建一个简单的可以运行docker容器的systemd单元。把这个文件保存在home目录并命名为hello.service：
+首先，让我们构建一个简单的可以运行 docker 容器的 systemd 单元。把这个文件保存在 home 目录并命名为 hello.service：
 
 ```yml
 hello.service
