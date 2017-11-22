@@ -1,22 +1,22 @@
-# 快速搭建CoreOS集群
+# 快速搭建 CoreOS 集群
 
 在这里我们要搭建一个集群环境，毕竟单机环境没有什么挑战不是？
 
-然后为了在你的电脑运行一个集群环境，我们使用Vagrant。
+然后为了在你的电脑运行一个集群环境，我们使用 Vagrant。
 
-*Vagrant的使用这里不再阐述，请自行学习*
+*Vagrant 的使用这里不再阐述，请自行学习*
 
-如果你第一次接触CoreOS这样的分布式平台，运行一个集群看起来好像一个很复杂的任务，这里我们给你展示在本地快速搭建一个CoreOS集群环境是多么的容易。
+如果你第一次接触 CoreOS 这样的分布式平台，运行一个集群看起来好像一个很复杂的任务，这里我们给你展示在本地快速搭建一个 CoreOS 集群环境是多么的容易。
 
 ## 准备工作
 
-首先要确认在你本地的机器上已经安装了最新版本的Virtualbox, Vagrant 和 git。
+首先要确认在你本地的机器上已经安装了最新版本的 Virtualbox, Vagrant 和 git。
 
 这是我们可以在本地模拟集群环境的前提条件，如果你已经拥有，请继续，否则自行搜索学习。
 
 ## 配置工作
 
-从CoreOS官方代码库获取基本配置，并进行修改
+从 CoreOS 官方代码库获取基本配置，并进行修改
 
 首先，获取模板配置文件
 
@@ -26,13 +26,13 @@ $ cd coreos-vagrant
 $ cp user-data.sample user-data
 ```
 
-获取新的token
+获取新的 token
 
 ```bash
 $ curl https://discovery.etcd.io/new
 ```
 
-把获取的token放到user-data文件中，示例如下：
+把获取的 token 放到 user-data 文件中，示例如下：
 
 ```yml
 #cloud-config
@@ -46,7 +46,7 @@ coreos:
 
 默认情况下，CoreOS Vagrantfile 将会启动单机。
 
-我们需要复制并修改config.rb.sample文件.
+我们需要复制并修改 config.rb.sample 文件.
 
 复制文件
 
@@ -54,7 +54,7 @@ coreos:
 cp config.rb.sample config.rb
 ```
 
-修改集群配置参数num_instances为3。
+修改集群配置参数 num_instances为3。
 
 启动集群
 
@@ -72,7 +72,7 @@ Bringing machine 'core-03' up with 'virtualbox' provider...
     core-01: Progress: 46% (Rate: 6105k/s, Estimated time remaining: 0:00:16)
 ```
 
-添加ssh的公匙
+添加 ssh 的公匙
 
 ```bash
 ssh-add ~/.vagrant.d/insecure_private_key
@@ -86,7 +86,7 @@ vagrant ssh core-01 -- -A
 
 ## 测试集群
 
-使用fleet来查看机器运行状况
+使用 fleet 来查看机器运行状况
 
 ```bash
 fleetctl list-machines
@@ -99,4 +99,4 @@ cb35b356... 172.17.8.103  -
 
 如果你也看到了如上类似的信息，恭喜，本地基于三台机器的集群已经成功启动，是不是很简单。
 
-那么之后你就可以基于CoreOS的三大工具做任务分发，分布式存储等很多功能了。
+那么之后你就可以基于 CoreOS 的三大工具做任务分发，分布式存储等很多功能了。
