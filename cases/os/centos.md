@@ -12,7 +12,7 @@ CentOS（Community Enterprise Operating System，中文意思是：社区企业�
 
 首先使用 `docker search` 命令来搜索标星至少为 25 的 CentOS 相关镜像。
 
-```sh
+```bash
 $ docker search -f stars=25 centos
 NAME      DESCRIPTION      STARS     OFFICIAL   AUTOMATED
 centos    The official...  2543      [OK]
@@ -21,7 +21,7 @@ jdeathe/centos-ssh         27                   [OK]
 
 使用 docker run 直接运行最新的 CentOS 镜像，并登录 bash。
 
-```sh
+```bash
 $ docker run -it centos bash
 Unable to find image 'centos:latest' locally
 latest: Pulling from library/centos
@@ -42,7 +42,7 @@ Fedora 由 Fedora Project 社区开发，红帽公司赞助的 Linux 发行版�
 
 首先使用 `docker search` 命令来搜索标星至少为 2 的 Fedora 相关镜像，结果如下。
 
-```sh
+```bash
 $ docker search -f stars=2 fedora
 NAME                     DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
 fedora                   Official Docker builds of Fedora                433       [OK]
@@ -53,7 +53,7 @@ startx/fedora            Simple container used for all startx based...   2      
 
 使用 docker run 命令直接运行 Fedora 官方镜像，并登录 bash。
 
-```sh
+```bash
 $ docker run -it fedora bash
 Unable to find image 'fedora:latest' locally
 latest: Pulling from library/fedora

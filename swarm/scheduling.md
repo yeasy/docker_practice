@@ -14,14 +14,14 @@
 
 在 `192.168.0.2` 节点启动管理服务，管理 token://946d65606f7c2f49766e4dddac5b4365 的集群。
 
-```sh
+```bash
 $ docker run -d -p 12375:2375 swarm manage  --strategy "spread" token://946d65606f7c2f49766e4dddac5b4365
 c6f25e6e6abbe45c8bcf75ac674f2b64d5f31a5c6070d64ba954a0309b197930
 ```
 
 列出集群中节点。
 
-```sh
+```bash
 $ docker run --rm swarm list token://946d65606f7c2f49766e4dddac5b4365
 192.168.0.3:2375
 192.168.0.2:2375
@@ -31,7 +31,7 @@ $ docker run --rm swarm list token://946d65606f7c2f49766e4dddac5b4365
 
 启动一个 ubuntu 容器。
 
-```sh
+```bash
 $ docker -H 192.168.0.2:12375 run -d ubuntu:14.04 ping 127.0.0.1
 bac3dfda5306181140fc959969d738549d607bc598390f57bdd432d86f16f069
 ```
@@ -40,14 +40,14 @@ bac3dfda5306181140fc959969d738549d607bc598390f57bdd432d86f16f069
 
 再次启动一个 ubuntu 容器。
 
-```sh
+```bash
 $ docker -H 192.168.0.2:12375 run -d ubuntu:14.04 ping 127.0.0.1
 8247067ba3a31e0cb692a8373405f95920a10389ce3c2a07091408281695281c
 ```
 
 查看它的位置，发现被调度到了另外一个节点：`192.168.0.2` 节点。
 
-```sh
+```bash
 $ docker -H 192.168.0.2:12375 ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                         NAMES
 8247067ba3a3        ubuntu:14.04        "ping 127.0.0.1"         1 minutes ago       Up 1 minutes                            Host-2/sick_galileo
@@ -61,7 +61,7 @@ bac3dfda5306        ubuntu:14.04        "ping 127.0.0.1"         2 minutes ago  
 
 直接启动若干 ubuntu 容器，并查看它们的位置。
 
-```sh
+```bash
 $ docker -H 192.168.0.2:12375 run -d ubuntu:14.04 ping 127.0.0.1
 $ docker -H 192.168.0.2:12375 ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                         NAMES

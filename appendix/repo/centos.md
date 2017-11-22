@@ -8,7 +8,7 @@
 ### 使用方法
 默认会启动一个最小化的 CentOS 环境。
 
-```sh
+```bash
 $ docker run --name some-centos -i -t centos bash
 bash-4.2#
 ```

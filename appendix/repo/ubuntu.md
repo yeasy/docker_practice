@@ -8,7 +8,7 @@
 ### 使用方法
 默认会启动一个最小化的 Ubuntu 环境。
 
-```
+```bash
 $ docker run --name some-ubuntu -i -t ubuntu
 root@523c70904d54:/#
 ```

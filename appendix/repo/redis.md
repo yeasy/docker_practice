@@ -8,12 +8,12 @@
 ### 使用方法
 默认会在 `6379` 端口启动数据库。
 
-```
+```bash
 $ docker run --name some-redis -d redis
 ```
 另外还可以启用 [持久存储](http://redis.io/topics/persistence)。
 
-```
+```bash
 $ docker run --name some-redis -d redis redis-server --appendonly yes
 ```
 
@@ -21,12 +21,12 @@ $ docker run --name some-redis -d redis redis-server --appendonly yes
 
 使用其他应用连接到容器，可以用
 
-```
+```bash
 $ docker run --name some-app --link some-redis:redis -d application-that-uses-redis
 ```
 或者通过 `redis-cli`
 
-```
+```bash
 $ docker run -it --link some-redis:redis --rm redis sh -c 'exec redis-cli -h "$REDIS_PORT_6379_TCP_ADDR" -p "$REDIS_PORT_6379_TCP_PORT"'
 ```
 

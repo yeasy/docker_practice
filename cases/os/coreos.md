@@ -67,7 +67,7 @@ CoreOS 团队还推出了很多有益的工具，包括 etcd, fleet, flannel 等
 
 如果连接成功，则读者可以看到命令行页面，读者在命令行中查看 Docker 的版本信息：
 
-```sh
+```bash
 $ docker version
 ```
 
@@ -83,7 +83,7 @@ $ docker version
 
 如下所示：
 
-```sh
+```bash
 $ ssh -i ~/insecure_ssh_key core@192.168.6.153
 CoreOS (alpha)
 core@localhost ~ $ ls
@@ -113,4 +113,3 @@ core@localhost ~ $
 
 * `CoreOS` 官网：`https://coreos.com/`
 * `CoreOS` 官方仓库：`https://github.com/coreos/`
-

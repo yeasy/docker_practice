@@ -11,12 +11,12 @@ Compose 可以通过 Python 的包管理工具 pip 进行安装，也可以直�
 
 执行安装命令：
 
-```sh
+```bash
 $ sudo pip install -U docker-compose
 ```
 
 可以看到类似如下输出，说明安装成功。
-```sh
+```bash
 Collecting docker-compose
   Downloading docker-compose-1.8.0.tar.gz (149kB): 149kB downloaded
 ...
@@ -24,7 +24,7 @@ Successfully installed docker-compose cached-property requests texttable websock
 ```
 
 安装成功后，可以查看 `docker-compose` 命令的用法。
-```sh
+```bash
 $ docker-compose -h
 Define and run multi-container applications with Docker.
 
@@ -65,7 +65,7 @@ Commands:
 
 之后，可以添加 bash 补全命令。
 
-```sh
+```bash
 $ curl -L https://raw.githubusercontent.com/docker/compose/1.8.0/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
 ```
 
@@ -76,14 +76,14 @@ $ curl -L https://raw.githubusercontent.com/docker/compose/1.8.0/contrib/complet
 
 例如，在 Linux 和 macOS 平台上。
 
-```
+```bash
 $ sudo curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 $ sudo chmod a+x /usr/local/bin/docker-compose
 ```
 
 可以使用 `docker-compose version` 命令来查看版本信息，以测试是否安装成功。
 
-```sh
+```bash
 $ docker-compose version
 docker-compose version 1.8.0, build 94f7016
 docker-py version: 1.9.0
@@ -95,14 +95,14 @@ OpenSSL version: OpenSSL 1.0.1f 6 Jan 2014
 
 Compose 既然是一个 Python 应用，自然也可以直接用容器来执行它。
 
-```sh
+```bash
 $ curl -L https://github.com/docker/compose/releases/download/1.8.0/run.sh > /usr/local/bin/docker-compose
 $ chmod +x /usr/local/bin/docker-compose
 ```
 
 实际上，查看下载的 `run.sh` 脚本内容，如下
 
-```sh
+```bash
 set -e
 
 VERSION="1.8.0"
@@ -151,12 +151,12 @@ exec docker run --rm $DOCKER_RUN_OPTIONS $DOCKER_ADDR $COMPOSE_OPTIONS $VOLUMES 
 ### 卸载
 如果是二进制包方式安装的，删除二进制文件即可。
 
-```sh
+```bash
 $ sudo rm /usr/local/bin/docker-compose
 ```
 
 如果是通过 python pip 工具安装的，则可以执行如下命令删除。
 
-```sh
+```bash
 $ sudo pip uninstall docker-compose
 ```
