@@ -4,12 +4,12 @@
 ### 容器访问外部网络
 容器要想访问外部网络，需要本地系统的转发支持。在Linux 系统中，检查转发是否打开。
 
-```
+```bash
 $sysctl net.ipv4.ip_forward
 net.ipv4.ip_forward = 1
 ```
 如果为 0，说明没有开启转发，则需要手动打开。
-```
+```bash
 $sysctl -w net.ipv4.ip_forward=1
 ```
 如果在启动 Docker 服务的时候设定 `--ip-forward=true`, Docker 就会自动设定系统的 `ip_forward` 参数为 1。
@@ -30,7 +30,7 @@ $sysctl -w net.ipv4.ip_forward=1
 例如，在启动 Docker 服务时，可以同时使用 `icc=false --iptables=true` 参数来关闭允许相互的网络访问，并让 Docker 可以修改系统中的 `iptables` 规则。
 
 此时，系统中的 `iptables` 规则可能是类似
-```
+```bash
 $ sudo iptables -nL
 ...
 Chain FORWARD (policy ACCEPT)
@@ -42,7 +42,7 @@ DROP       all  --  0.0.0.0/0            0.0.0.0/0
 之后，启动容器（`docker run`）时使用 `--link=CONTAINER_NAME:ALIAS` 选项。Docker 会在 `iptable` 中为 两个容器分别添加一条 `ACCEPT` 规则，允许相互访问开放的端口（取决于 Dockerfile 中的 EXPOSE 行）。
 
 当添加了 `--link=CONTAINER_NAME:ALIAS` 选项后，添加了 `iptables` 规则。
-```
+```bash
 $ sudo iptables -nL
 ...
 Chain FORWARD (policy ACCEPT)

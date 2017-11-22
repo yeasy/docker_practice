@@ -7,7 +7,7 @@ Docker 默认指定了 `docker0` 接口 的 IP 地址和子网掩码，让主机
 
 也可以在配置文件中配置 DOCKER_OPTS，然后重启服务。
 由于目前 Docker 网桥是 Linux 网桥，用户可以使用 `brctl show` 来查看网桥和端口连接信息。
-```
+```bash
 $ sudo brctl show
 bridge name     bridge id               STP enabled     interfaces
 docker0         8000.3a1d7362b4ee       no              veth65f9
@@ -17,7 +17,7 @@ docker0         8000.3a1d7362b4ee       no              veth65f9
 
 
 每次创建一个新容器的时候，Docker 从可用的地址段中选择一个空闲的 IP 地址分配给容器的 eth0 端口。使用本地主机上 `docker0` 接口的 IP 作为所有容器的默认网关。
-```
+```bash
 $ sudo docker run -i -t --rm base /bin/bash
 $ ip addr show eth0
 24: eth0: <BROADCAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000

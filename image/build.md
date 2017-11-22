@@ -16,7 +16,7 @@ $ touch Dockerfile
 
 其内容为：
 
-```Dockerfile
+```dockerfile
 FROM nginx
 RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
 ```
@@ -35,7 +35,7 @@ RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
 
 除了选择现有镜像为基础镜像外，Docker 还存在一个特殊的镜像，名为 `scratch`。这个镜像是虚拟的概念，并不实际存在，它表示一个空白的镜像。
 
-```Dockerfile
+```dockerfile
 FROM scratch
 ...
 ```
@@ -58,7 +58,7 @@ RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
 
 既然 `RUN` 就像 Shell 脚本一样可以执行命令，那么我们是否就可以像 Shell 脚本一样把每个命令对应一个 RUN 呢？比如这样：
 
-```Dockerfile
+```dockerfile
 FROM debian:jessie
 
 RUN apt-get update
@@ -79,7 +79,7 @@ RUN make -C /usr/src/redis install
 
 上面的 `Dockerfile` 正确的写法应该是这样：
 
-```Dockerfile
+```dockerfile
 FROM debian:jessie
 
 RUN buildDeps='gcc libc6-dev make' \

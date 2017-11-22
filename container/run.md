@@ -7,21 +7,21 @@
 所需要的命令主要为 `docker run`。
 
 例如，下面的命令输出一个 “Hello World”，之后终止容器。
-```
+```bash
 $ docker run ubuntu:14.04 /bin/echo 'Hello world'
 Hello world
 ```
 这跟在本地直接执行 `/bin/echo 'hello world'` 几乎感觉不出任何区别。
 
 下面的命令则启动一个 bash 终端，允许用户进行交互。
-```
+```bash
 $ docker run -t -i ubuntu:14.04 /bin/bash
 root@af8bae53bdd3:/#
 ```
 其中，`-t` 选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， `-i` 则让容器的标准输入保持打开。
 
 在交互模式下，用户可以通过所创建的终端来输入命令，例如
-```
+```bash
 root@af8bae53bdd3:/# pwd
 /
 root@af8bae53bdd3:/# ls
@@ -42,7 +42,7 @@ bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr
 可以利用 `docker start` 命令，直接将一个已经终止的容器启动运行。
 
 容器的核心为所执行的应用程序，所需要的资源都是应用程序运行所必需的。除此之外，并没有其它的资源。可以在伪终端中利用 `ps` 或 `top` 来查看进程信息。
-```
+```bash
 root@ba267838cc1b:/# ps
   PID TTY          TIME CMD
     1 ?        00:00:00 bash

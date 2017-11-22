@@ -8,19 +8,19 @@
 ### 使用方法
 默认会在 `27017` 端口启动数据库。
 
-```sh
+```bash
 $ docker run --name some-mongo -d mongo
 ```
 
 使用其他应用连接到容器，可以用
 
-```sh
+```bash
 $ docker run --name some-app --link some-mongo:mongo -d application-that-uses-mongo
 ```
 
 或者通过 `mongo`
 
-```sh
+```bash
 $ docker run -it --link some-mongo:mongo --rm mongo sh -c 'exec mongo "$MONGO_PORT_27017_TCP_ADDR:$MONGO_PORT_27017_TCP_PORT/test"'
 ```
 

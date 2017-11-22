@@ -66,7 +66,7 @@ cap_drop:
 
 覆盖容器启动后默认执行的命令。
 
-```sh
+```bash
 command: echo "hello world"
 ```
 
@@ -102,7 +102,7 @@ devices:
 
 自定义 DNS 服务器。可以是一个值，也可以是一个列表。
 
-```sh
+```bash
 dns: 8.8.8.8
 dns:
   - 8.8.8.8
@@ -113,7 +113,7 @@ dns:
 
 配置 DNS 搜索域。可以是一个值，也可以是一个列表。
 
-```sh
+```bash
 dns_search: example.com
 dns_search:
   - domain1.example.com
@@ -137,7 +137,7 @@ dockerfile: Dockerfile-alternate
 
 如果有变量名称与 `environment` 指令冲突，则按照惯例，以后者为准。
 
-```sh
+```bash
 env_file: .env
 
 env_file:
@@ -148,7 +148,7 @@ env_file:
 
 环境变量文件中每一行必须符合格式，支持 `#` 开头的注释行。
 
-```sh
+```bash
 # common.env: Set development environment
 PROG_ENV=development
 ```
@@ -178,7 +178,7 @@ environment:
 
 `http://yaml.org/type/bool.html` 中给出了这些特定词汇，包括
 
-```sh
+```bash
  y|Y|yes|Yes|YES|n|N|no|No|NO
 |true|True|TRUE|false|False|FALSE
 |on|On|ON|off|Off|OFF
@@ -190,7 +190,7 @@ environment:
 
 仅可以指定内部端口为参数
 
-```sh
+```bash
 expose:
  - "3000"
  - "8000"
@@ -200,7 +200,7 @@ expose:
 基于其它模板文件进行扩展。
 
 例如我们已经有了一个 webapp 服务，定义一个基础模板文件为 `common.yml`。
-```sh
+```bash
 # common.yml
 webapp:
   build: ./webapp
@@ -210,7 +210,7 @@ webapp:
 ```
 
 再编写一个新的 `development.yml` 文件，使用 `common.yml` 中的 webapp 服务进行扩展。
-```sh
+```bash
 # development.yml
 web:
   extends:
@@ -255,7 +255,7 @@ extra_hosts:
 ```
 
 会在启动后的服务容器中 `/etc/hosts` 文件中添加如下两条条目。
-```sh
+```bash
 8.8.8.8 googledns
 52.1.157.61 dockerhub
 ```
@@ -265,7 +265,7 @@ extra_hosts:
 指定为镜像名称或镜像 ID。如果镜像在本地不存在，`Compose` 将会尝试拉去这个镜像。
 
 例如：
-```sh
+```bash
 image: ubuntu
 image: orchardup/postgresql
 image: a4bc65fd
@@ -284,7 +284,7 @@ labels:
 
 链接到其它服务中的容器。使用服务名称（同时作为别名）或服务名称：服务别名 `（SERVICE:ALIAS）` 格式都可以。
 
-```sh
+```bash
 links:
  - db
  - db:database
@@ -293,7 +293,7 @@ links:
 
 使用的别名将会自动在服务容器中的 `/etc/hosts` 里创建。例如：
 
-```sh
+```bash
 172.17.2.186  db
 172.17.2.186  database
 172.17.2.187  redis
@@ -326,7 +326,7 @@ log_opt:
 
 设置网络模式。使用和 `docker client` 的 `--net` 参数一样的值。
 
-```sh
+```bash
 net: "bridge"
 net: "none"
 net: "container:[name or id]"
@@ -336,7 +336,7 @@ net: "host"
 ### `pid`
 跟主机系统共享进程命名空间。打开该选项的容器之间，以及容器和宿主机系统之间可以通过进程 ID 来相互访问和操作。
 
-```sh
+```bash
 pid: "host"
 ```
 
@@ -409,7 +409,7 @@ volume_driver: mydriver
 
 从另一个服务或容器挂载它的数据卷。
 
-```sh
+```bash
 volumes_from:
  - service_name
  - container_name

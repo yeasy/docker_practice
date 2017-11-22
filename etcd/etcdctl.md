@@ -6,7 +6,7 @@ etcd 项目二进制发行包中已经包含了 etcdctl 工具，没有的话，
 
 etcdctl 支持如下的命令，大体上分为数据库操作和非数据库操作两类，后面将分别进行解释。
 
-```
+```bash
 $ etcdctl -h
 NAME:
    etcdctl - A simple command line client for etcd.
@@ -55,12 +55,12 @@ etcd 在键的组织上采用了层次化的空间结构（类似于文件系统
 
 #### set
 指定某个键的值。例如
-```
+```bash
 $ etcdctl set /testdir/testkey "Hello world"
 Hello world
 ```
 支持的选项包括：
-```
+```bash
 --ttl '0'			该键值的超时时间（单位为秒），不配置（默认为 0）则永不超时
 --swap-with-value value 若该键现在的值是 value，则进行设置操作
 --swap-with-index '0'	若该键现在的索引值是指定索引，则进行设置操作
@@ -68,7 +68,7 @@ Hello world
 
 #### get
 获取指定键的值。例如
-```
+```bash
 $ etcdctl set testkey hello
 hello
 $ etcdctl update testkey world
@@ -76,20 +76,20 @@ world
 ```
 
 当键不存在时，则会报错。例如
-```
+```bash
 $ etcdctl get testkey2
 Error:  100: Key not found (/testkey2) [1]
 ```
 
 支持的选项为
-```
+```bash
 --sort	对结果进行排序
 --consistent 将请求发给主节点，保证获取内容的一致性
 ```
 
 #### update
 当键存在时，更新值内容。例如
-```
+```bash
 $ etcdctl set testkey hello
 hello
 $ etcdctl update testkey world
@@ -97,46 +97,44 @@ world
 ```
 
 当键不存在时，则会报错。例如
-```
+```bash
 $ etcdctl update testkey2 world
 Error:  100: Key not found (/testkey2) [1]
 ```
 
 支持的选项为
-```
+```bash
 --ttl '0'	超时时间（单位为秒），不配置（默认为 0）则永不超时
 ```
 
 #### rm
 删除某个键值。例如
-```
+```bash
 $ etcdctl rm testkey
-
 ```
 
 当键不存在时，则会报错。例如
-```
+```bash
 $ etcdctl rm testkey2
 Error:  100: Key not found (/testkey2) [8]
 ```
 
 支持的选项为
-```
+```bash
 --dir		如果键是个空目录或者键值对则删除
 --recursive		删除目录和所有子键
 --with-value 	检查现有的值是否匹配
 --with-index '0'	检查现有的 index 是否匹配
-
 ```
 
 #### mk
 如果给定的键不存在，则创建一个新的键值。例如
-```
+```bash
 $ etcdctl mk /testdir/testkey "Hello world"
 Hello world
 ```
 当键存在的时候，执行该命令会报错，例如
-```
+```bash
 $ etcdctl set testkey "Hello world"
 Hello world
 $ ./etcdctl mk testkey "Hello world"
@@ -144,24 +142,23 @@ Error:  105: Key already exists (/testkey) [2]
 ```
 
 支持的选项为
-```
+```bash
 --ttl '0'	超时时间（单位为秒），不配置（默认为 0）则永不超时
 ```
 
-
 #### mkdir
 如果给定的键目录不存在，则创建一个新的键目录。例如
-```
+```bash
 $ etcdctl mkdir testdir
 ```
 当键目录存在的时候，执行该命令会报错，例如
-```
+```bash
 $ etcdctl mkdir testdir
 $ etcdctl mkdir testdir
 Error:  105: Key already exists (/testdir) [7]
 ```
 支持的选项为
-```
+```bash
 --ttl '0'	超时时间（单位为秒），不配置（默认为 0）则永不超时
 ```
 
@@ -170,14 +167,14 @@ Error:  105: Key already exists (/testdir) [7]
 创建一个键目录，无论存在与否。
 
 支持的选项为
-```
+```bash
 --ttl '0'	超时时间（单位为秒），不配置（默认为 0）则永不超时
 ```
 
 #### updatedir
 更新一个已经存在的目录。
 支持的选项为
-```
+```bash
 --ttl '0'	超时时间（单位为秒），不配置（默认为 0）则永不超时
 ```
 
@@ -185,7 +182,7 @@ Error:  105: Key already exists (/testdir) [7]
 删除一个空目录，或者键值对。
 
 若目录不空，会报错
-```
+```bash
 $ etcdctl set /dir/testkey hi
 hi
 $ etcdctl rmdir /dir
@@ -196,7 +193,7 @@ Error:  108: Directory not empty (/dir) [13]
 列出目录（默认为根目录）下的键或者子目录，默认不显示子目录中内容。
 
 例如
-```
+```bash
 $ ./etcdctl set testkey 'hi'
 hi
 $ ./etcdctl set dir/test 'hello'
@@ -209,7 +206,7 @@ $ ./etcdctl ls dir
 ```
 
 支持的选项包括
-```
+```bash
 --sort	将输出结果排序
 --recursive	如果目录下有子目录，则递归输出其中的内容
 -p		对于输出为目录，在最后添加 `/` 进行区分
@@ -221,7 +218,7 @@ $ ./etcdctl ls dir
 备份 etcd 的数据。
 
 支持的选项包括
-```
+```bash
 --data-dir 		etcd 的数据目录
 --backup-dir 	备份到指定路径
 ```
@@ -229,13 +226,13 @@ $ ./etcdctl ls dir
 监测一个键值的变化，一旦键值发生更新，就会输出最新的值并退出。
 
 例如，用户更新 testkey 键值为 Hello world。
-```
+```bash
 $ etcdctl watch testkey
 Hello world
 ```
 
 支持的选项包括
-```
+```bash
 --forever		一直监测，直到用户按 `CTRL+C` 退出
 --after-index '0'	在指定 index 之前一直监测
 --recursive		返回所有的键值和子键值
@@ -244,7 +241,7 @@ Hello world
 监测一个键值的变化，一旦键值发生更新，就执行给定命令。
 
 例如，用户更新 testkey 键值。
-```
+```bash
 $etcdctl exec-watch testkey -- sh -c 'ls'
 default.etcd
 Documentation
@@ -256,7 +253,7 @@ README.md
 ```
 
 支持的选项包括
-```
+```bash
 --after-index '0'	在指定 index 之前一直监测
 --recursive		返回所有的键值和子键值
 ```
@@ -265,7 +262,7 @@ README.md
 通过 list、add、remove 命令列出、添加、删除 etcd 实例到 etcd 集群中。
 
 例如本地启动一个 etcd 服务实例后，可以用如下命令进行查看。
-```
+```bash
 $ etcdctl member list
 ce2a822cea30bfca: name=default peerURLs=http://localhost:2380,http://localhost:7001 clientURLs=http://localhost:2379,http://localhost:4001
 
