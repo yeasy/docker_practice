@@ -10,7 +10,7 @@ CoreOS的第一个重要组件就是使用etcd来实现的服务发现。
 
 例如：
 
-```
+```yml
 #cloud-config
 
 hostname: coreos0
@@ -51,7 +51,7 @@ Fleet通过接受systemd单元文件来工作，同时在你集群的机器上�
 
 首先，让我们构建一个简单的可以运行docker容器的systemd单元。把这个文件保存在home目录并命名为hello.service：
 
-```
+```yml
 hello.service
 
 [Unit]
@@ -69,7 +69,7 @@ ExecStop=/usr/bin/docker stop hello
 
 然后，读取并启动这个单元：
 
-```
+```yml
 $ fleetctl load hello.service
 => Unit hello.service loaded on 8145ebb7.../172.17.8.105
 $ fleetctl start hello.service
@@ -80,7 +80,7 @@ $ fleetctl start hello.service
 
 下面我们查看下它的状态：
 
-```
+```yml
 $ fleetctl status hello.service
 ● hello.service - My Service
    Loaded: loaded (/run/fleet/units/hello.service; linked-runtime)
@@ -97,7 +97,7 @@ Jun 04 19:05:06 core-01 bash[27503]: Hello World
 
 我们可以停止容器：
 
-```
+```yml
 fleetctl destroy hello.service
 ```
 

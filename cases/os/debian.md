@@ -11,11 +11,11 @@ Debian 作为一个大的系统组织框架，其下有多种不同操作系统�
 
 众多的 Linux 发行版，例如 Ubuntu、Knoppix 和 Linspire 及 Xandros 等，都基于 Debian GNU/Linux。
 
-#### 使用 Debian 官方镜像 
+#### 使用 Debian 官方镜像
 
 读者可以使用 docker search 搜索 Docker Hub，查找 Debian 镜像：
 
-```sh
+```bash
 $ docker search debian
 NAME         DESCRIPTION    STARS     OFFICIAL   AUTOMATED
 debian       Debian is...   1565      [OK]
@@ -28,7 +28,7 @@ armbuild/debian port of debian 8                 [OK]
 
 可以使用 docker run 直接运行 Debian 镜像。
 
-```sh
+```bash
 $ docker run -it debian bash
 root@668e178d8d69:/# cat /etc/issue
 Debian GNU/Linux 8
@@ -46,7 +46,7 @@ Ubuntu 是一个以桌面应用为主的GNU/Linux操作系统，其名称来自�
 
 Ubuntu 相关的镜像有很多，这里使用 `-s 10` 参数，只搜索那些被收藏 10 次以上的镜像。
 
-```sh
+```bash
 $ docker search -s 10 ubuntu
 
 NAME                                 DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
@@ -69,7 +69,7 @@ tutum/ubuntu                         Ubuntu image with SSH access. For the root.
 
 首先使用 `-ti` 参数启动容器，登录 bash，查看 ubuntu 的发行版本号。
 
-```sh
+```bash
 $ docker run -ti ubuntu:14.04 /bin/bash
 root@7d93de07bf76:/# lsb_release -a
 No LSB modules are available.
@@ -81,7 +81,7 @@ Codename:       trusty
 
 当试图直接使用 `apt-get` 安装一个软件的时候，会提示 `E: Unable to locate package`。
 
-```sh
+```bash
 root@7d93de07bf76:/# apt-get install curl
 Reading package lists... Done
 Building dependency tree
@@ -91,7 +91,7 @@ E: Unable to locate package curl
 
 这并非系统不支持 `apt-get` 命令。Docker 镜像在制作时为了精简清除了 apt 仓库信息，因此需要先执行 `apt-get update` 命令来更新仓库信息。更新信息后即可成功通过 apt-get 命令来安装软件。
 
-```sh
+```bash
 root@7d93de07bf76:/# apt-get update
 Ign http://archive.ubuntu.com trusty InRelease
 Ign http://archive.ubuntu.com trusty-updates InRelease
@@ -103,7 +103,7 @@ Get:1 http://archive.ubuntu.com trusty Release.gpg [933 B]
 
 首先，安装 curl 工具。
 
-```sh
+```bash
 root@7d93de07bf76:/# apt-get install curl
 Reading package lists... Done
 Building dependency tree
@@ -122,7 +122,7 @@ curl: try 'curl --help' or 'curl --manual' for more information
 
 接下来，再安装 apache 服务。
 
-```sh
+```bash
 root@7d93de07bf76:/# apt-get install -y apache2
 Reading package lists... Done
 Building dependency tree
@@ -135,7 +135,7 @@ The following extra packages will be installed:
 
 启动这个 apache 服务，然后使用 curl 来测试本地访问。
 
-```
+```bash
 root@7d93de07bf76:/# service apache2 start
  * Starting web server apache2                                                                                                                               AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
  *
@@ -159,7 +159,7 @@ root@7d93de07bf76:/# curl 127.0.0.1
 
 ### 相关资源
 
-* `Debian` 官网：`https://www.debian.org/` 
+* `Debian` 官网：`https://www.debian.org/`
 * `Neuro Debian` 官网：`http://neuro.debian.net/`
 * `Debian` 官方仓库：`https://github.com/Debian`
 * `Debian` 官方镜像：`https://hub.docker.com/_/debian/`

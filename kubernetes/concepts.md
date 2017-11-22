@@ -37,7 +37,7 @@
 
 节点并非Kubernetes创建，而是由云平台创建，或者就是物理机器、虚拟机。在Kubernetes中，节点仅仅是一条记录，节点创建之后，Kubernetes会检查其是否可用。在Kubernetes中，节点用如下结构保存：
 
-```
+```json
 {
   "id": "10.1.2.3",
   "kind": "Minion",

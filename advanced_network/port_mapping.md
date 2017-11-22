@@ -5,7 +5,7 @@
 容器所有到外部网络的连接，源地址都会被NAT成本地系统的IP地址。这是使用 `iptables` 的源地址伪装操作实现的。
 
 查看主机的 NAT 规则。
-```
+```bash
 $ sudo iptables -t nat -nL
 ...
 Chain POSTROUTING (policy ACCEPT)
@@ -22,7 +22,7 @@ MASQUERADE  all  --  172.17.0.0/16       !172.17.0.0/16
 不管用那种办法，其实也是在本地的 `iptable` 的 nat 表中添加相应的规则。
 
 使用 `-P` 时：
-```
+```bash
 $ iptables -t nat -nL
 ...
 Chain DOCKER (2 references)
@@ -31,7 +31,7 @@ DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:49153 to:1
 ```
 
 使用 `-p 80:80` 时：
-```
+```bash
 $ iptables -t nat -nL
 Chain DOCKER (2 references)
 target     prot opt source               destination

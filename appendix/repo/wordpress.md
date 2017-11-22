@@ -8,7 +8,7 @@
 ### 使用方法
 启动容器需要 MySQL 的支持，默认端口为 `80`。
 
-```
+```bash
 $ docker run --name some-wordpress --link some-mysql:mysql -d wordpress
 ```
 启动 WordPress 容器时可以指定的一些环境参数包括：
