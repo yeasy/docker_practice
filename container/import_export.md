@@ -1,6 +1,6 @@
-##导出和导入容器
+## 导出和导入容器
 
-###导出容器
+### 导出容器
 如果要导出本地某个容器，可以使用 `docker export` 命令。
 ```bash
 $ docker ps -a
@@ -10,7 +10,7 @@ $ docker export 7691a814370e > ubuntu.tar
 ```
 这样将导出容器快照到本地文件。
 
-###导入容器快照
+### 导入容器快照
 可以使用 `docker import` 从容器快照文件中再导入为镜像，例如
 ```bash
 $ cat ubuntu.tar | docker import - test/ubuntu:v1.0
