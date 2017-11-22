@@ -16,7 +16,7 @@ $ docker-machine create -d virtualbox test
 $ docker-machine ls
 
 NAME      ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER   ERRORS
-default   *        virtualbox   Running   tcp://192.168.99.187:2376           v17.10
+test      *        virtualbox   Running   tcp://192.168.99.187:2376           v17.10
 ```
 
 创建主机成功后，可以通过 `env` 命令来让后续操作对象都是目标主机。
@@ -83,6 +83,6 @@ Docker version 17.10.0-ce, build f4ffd25
 每个命令，又带有不同的参数，可以通过
 
 ```bash
-$ docker-machine <COMMAND> --help
+$ docker-machine COMMAND --help
 ```
 来查看具体的用法。
