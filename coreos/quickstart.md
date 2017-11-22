@@ -1,4 +1,4 @@
-#快速搭建CoreOS集群
+# 快速搭建CoreOS集群
 
 在这里我们要搭建一个集群环境，毕竟单机环境没有什么挑战不是？
 
@@ -8,13 +8,13 @@
 
 如果你第一次接触CoreOS这样的分布式平台，运行一个集群看起来好像一个很复杂的任务，这里我们给你展示在本地快速搭建一个CoreOS集群环境是多么的容易。
 
-##准备工作
+## 准备工作
 
 首先要确认在你本地的机器上已经安装了最新版本的Virtualbox, Vagrant 和 git。
 
 这是我们可以在本地模拟集群环境的前提条件，如果你已经拥有，请继续，否则自行搜索学习。
 
-##配置工作
+## 配置工作
 
 从CoreOS官方代码库获取基本配置，并进行修改
 
@@ -42,7 +42,7 @@ coreos:
     discovery: https://discovery.etcd.io/<token>
 ```
 
-##启动集群
+## 启动集群
 
 默认情况下，CoreOS Vagrantfile 将会启动单机。
 
@@ -84,7 +84,7 @@ ssh-add ~/.vagrant.d/insecure_private_key
 vagrant ssh core-01 -- -A
 ```
 
-##测试集群
+## 测试集群
 
 使用fleet来查看机器运行状况
 

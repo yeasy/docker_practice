@@ -1,8 +1,8 @@
-#CoreOS工具介绍
+# CoreOS工具介绍
 
 CoreOS提供了三大工具，它们分别是：服务发现，容器管理和进程管理。
 
-##使用etcd服务发现
+## 使用etcd服务发现
 
 CoreOS的第一个重要组件就是使用etcd来实现的服务发现。
 
@@ -35,13 +35,13 @@ https://discovery.etcd.io/new
 
 你将会获取一个包含你得teoken得URL。
 
-##通过Docker进行容器管理
+## 通过Docker进行容器管理
 
 第二个组件就是docker，它用来运行你的代码和应用。
 
 每一个CoreOS的机器上都安装了它，具体使用请参考本书其他章节。
 
-##使用fleet进行进程管理
+## 使用fleet进行进程管理
 
 第三个CoreOS组件是fleet。
 
