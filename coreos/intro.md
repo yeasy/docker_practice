@@ -1,6 +1,6 @@
 # CoreOS介绍
 
-提起 Docker，我们不得不提的就是[CoreOS](https://coreos.com/).
+提起 Docker，我们不得不提的就是 [CoreOS](https://coreos.com/).
 
 CoreOS 对 Docker 甚至容器技术的发展都带来了巨大的推动作用。
 
@@ -10,7 +10,7 @@ CoreOS 使得在基于最小化的现代操作系统上构建规模化的计算�
 
 CoreOS 是一个新的 Linux 发行版。通过重构，CoreOS 提供了运行现代基础设施的特性。
 
-CoreOS 的这些策略和架构允许其它公司像 Google，Facebook 和Twitter 那样高弹性的运行自己得服务。
+CoreOS 的这些策略和架构允许其它公司像 Google，Facebook 和 Twitter 那样高弹性的运行自己得服务。
 
 CoreOS 遵循 Apache 2.0 协议并且可以运行在现有的硬件或云提供商之上。
 

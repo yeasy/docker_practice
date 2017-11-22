@@ -27,7 +27,7 @@ coreos:
     discovery: https://discovery.etcd.io/<token>
 ```
 
-配置文件里有一个token，获取它可以通过如下方式：
+配置文件里有一个 token，获取它可以通过如下方式：
 
 访问地址
 
@@ -47,7 +47,7 @@ https://discovery.etcd.io/new
 
 它是集群的分布式初始化系统。你应该使用 fleet 来管理你的 docker 容器的生命周期。
 
-Fleet通过接受systemd单元文件来工作，同时在你集群的机器上通过单元文件中编写的偏好来对它们进行调度。
+Fleet 通过接受 systemd 单元文件来工作，同时在你集群的机器上通过单元文件中编写的偏好来对它们进行调度。
 
 首先，让我们构建一个简单的可以运行 docker 容器的 systemd 单元。把这个文件保存在 home 目录并命名为 hello.service：
 
@@ -101,4 +101,4 @@ Jun 04 19:05:06 core-01 bash[27503]: Hello World
 fleetctl destroy hello.service
 ```
 
-至此，就是CoreOS提供的三大工具。
+至此，就是 CoreOS 提供的三大工具。
