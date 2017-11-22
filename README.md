@@ -20,7 +20,7 @@ $ git clone --depth=1 https://github.com/yeasy/docker_practice.git
 
 $ cd docker_practice
 
-$ docker-compose pull
+$ docker-compose pull  # 如果您位于国外，这一步请改为 docker-compose build
 
 $ docker-compose up
 ```
