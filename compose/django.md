@@ -5,7 +5,7 @@
 在一切工作开始前，需要先设置好三个必要的文件。  
 第一步，因为应用将要运行在一个满足所有环境依赖的 Docker 容器里面，那么我们可以通过编辑 `Dockerfile` 文件来指定 Docker 容器要安装内容。内容如下：
 
-```
+```docker
 FROM python:2.7
 ENV PYTHONUNBUFFERED 1
 RUN mkdir /code
@@ -18,7 +18,7 @@ ADD . /code/
 
 第二步，在 `requirements.txt` 文件里面写明需要安装的具体依赖包名 。
 
-```
+```bash
 Django
 psycopg2
 ```
@@ -46,20 +46,20 @@ services:
 
 现在我们就可以使用 `docker-compose run` 命令启动一个 Django 应用了。
 
-```
+```bash
 $ docker-compose run web django-admin.py startproject django_example .
 ```
 Compose 会先使用 `Dockerfile` 为 web 服务创建一个镜像，接着使用这个镜像在容器里运行 `django-admin.py startproject django_example . ` 指令。
 
 这将在当前目录生成一个 Django 应用。
 
-```
+```bash
 $ ls
 Dockerfile       docker-compose.yml          django_example       manage.py       requirements.txt
 ```
 首先，我们要为应用设置好数据库的连接信息。用以下内容替换 `django_example/settings.py` 文件中 `DATABASES = ...` 定义的节点内容。
 
-```
+```bash
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -73,7 +73,7 @@ DATABASES = {
 这些信息是在 [postgres](https://registry.hub.docker.com/_/postgres/) Docker 镜像固定设置好的。  
 然后，运行 `docker-compose up` ：
 
-```
+```bash
 Recreating myapp_db_1...
 Recreating myapp_web_1...
 Attaching to myapp_db_1, myapp_web_1
@@ -93,6 +93,6 @@ myapp_web_1 | Quit the server with CONTROL-C.
 
 你还可以在 Docker 上运行其它的管理命令，例如对于同步数据库结构这种事，在运行完 `docker-compose up` 后，在另外一个终端运行以下命令即可：
 
-```
+```bash
 $ docker-compose run web python manage.py syncdb
 ```

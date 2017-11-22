@@ -18,7 +18,7 @@
 
 Swarm 会通过服务发现后端（此处为 DockerHub 提供）来获取一个唯一的由数字和字母组成的 token，用来标识要管理的集群。
 
-```sh
+```bash
 $ docker run --rm swarm create
 946d65606f7c2f49766e4dddac5b4365
 ```
@@ -31,7 +31,7 @@ $ docker run --rm swarm create
 
 例如某台机器 IP 地址为 `192.168.0.2`，将其加入我们刚创建的 `946d65606f7c2f49766e4dddac5b4365` 集群，则可以通过：
 
-```sh
+```bash
 $ docker run --rm swarm join --addr=192.168.0.2:2375 token://946d65606f7c2f49766e4dddac5b4365
 time="2015-12-09T08:59:43Z" level=info msg="Registering on the discovery service every 20s..." addr="192.168.0.2:2375" discovery="token://946d65606f7c2f49766e4dddac5b4365"
 ...
@@ -53,14 +53,14 @@ time="2015-12-09T08:59:43Z" level=info msg="Registering on the discovery service
 
 仍然在节点 `192.168.0.2` 进行操作。由于我们是采用 Docker 容器形式启动 manager 服务，本地的 `2375` 端口已经被 Docker Daemon 占用。我们将 manager 服务监听端口映射到本地一个空闲的 `12375` 端口。
 
-```sh
+```bash
 $ docker run -d -p 12375:2375 swarm manage token://946d65606f7c2f49766e4dddac5b4365
 1e1ca8c4117b6b7271efc693f9685b4e907d8dc95324350392b21e94b3cffd18
 ```
 
 可以通过 `docker ps` 命令来查看启动的 swarm manager 服务容器。
 
-```sh
+```bash
 $ docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                     NAMES
 1e1ca8c4117b        swarm               "/swarm manage token:"   11 seconds ago      Up 10 seconds       0.0.0.0:12375->2375/tcp   jovial_rosalind
@@ -72,14 +72,14 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 集群启动成功以后，用户可以在任何一台节点上使用 `swarm list` 命令查看集群中的节点列表。例如
 
-```sh
+```bash
 $ docker run --rm swarm list token://946d65606f7c2f49766e4dddac5b4365
 192.168.0.2:2375
 ```
 显示正是之前用 `swarm join` 命令加入集群的节点的地址。
 
 我们在另外一台节点 `192.168.0.3` 上同样使用 `swarm join` 命令新加入一个节点：
-```sh
+```bash
 $docker run --rm swarm join --addr=192.168.0.3:2375 token://946d65606f7c2f49766e4dddac5b4365
 time="2015-12-10T02:05:34Z" level=info msg="Registering on the discovery service every 20s..." addr="192.168.0.3:2375" discovery="token://946d65606f7c2f49766e4dddac5b4365"
 ...
@@ -87,7 +87,7 @@ time="2015-12-10T02:05:34Z" level=info msg="Registering on the discovery service
 
 再次使用 `swarm list` 命令查看集群中的节点列表信息，可以看到新加入的节点：
 
-```sh
+```bash
 $ docker run --rm swarm list token://946d65606f7c2f49766e4dddac5b4365
 192.168.0.3:2375
 192.168.0.2:2375
@@ -102,14 +102,14 @@ $ docker run --rm swarm list token://946d65606f7c2f49766e4dddac5b4365
 
 在任意节点上使用 `docker run` 来启动若干容器，例如
 
-```sh
+```bash
 $docker -H 192.168.0.2:12375:12375 run -d ubuntu ping 127.0.0.1
 4c9bccbf86fb6e2243da58c1b15e9378fac362783a663426bbe7058eea84de46
 ```
 
 使用 `ps` 命令查看集群中正在运行的容器。
 
-```sh
+```bash
 $ docker -H 192.168.0.2:12375 ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                         NAMES
 4c9bccbf86fb        ubuntu              "ping 127.0.0.1"         About a minute ago   Up About a minute                       clever_wright
@@ -121,7 +121,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 使用 info 查看所有节点的信息。
 
-```sh
+```bash
 $ docker -H 192.168.0.2:12375 info
 Containers: 18
 Images: 36
@@ -158,7 +158,7 @@ Swarm 为了支持跨主机的网络，默认采用了 `overlay` 网络类型，
 
 以 consul 服务为例，可能类似：
 
-```sh
+```bash
 --cluster-store=consul://<consul 服务地址>:8500 --cluster-advertise=192.168.0.3:2375
 ```
 
@@ -166,13 +166,13 @@ Swarm 为了支持跨主机的网络，默认采用了 `overlay` 网络类型，
 
 首先，创建一个网络。
 
-```sh
+```bash
 $ docker -H 192.168.0.2:12375 network create swarm_network
 ```
 
 查看网络，将看到一个 overlay 类型的网络。
 
-```sh
+```bash
 $ docker -H 192.168.0.2:12375 network ls
 NETWORK ID          NAME                DRIVER
 6edf2d16ec97        swarm_network       overlay

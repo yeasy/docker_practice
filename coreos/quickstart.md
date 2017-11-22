@@ -20,21 +20,21 @@
 
 首先，获取模板配置文件
 
-```
-git clone https://github.com/coreos/coreos-vagrant
-cd coreos-vagrant
-cp user-data.sample user-data
+```bash
+$ git clone https://github.com/coreos/coreos-vagrant
+$ cd coreos-vagrant
+$ cp user-data.sample user-data
 ```
 
 获取新的token
 
-```
-curl https://discovery.etcd.io/new
+```bash
+$ curl https://discovery.etcd.io/new
 ```
 
 把获取的token放到user-data文件中，示例如下：
 
-```
+```yml
 #cloud-config
 
 coreos:
@@ -50,7 +50,7 @@ coreos:
 
 复制文件
 
-```
+```bash
 cp config.rb.sample config.rb
 ```
 
@@ -58,7 +58,7 @@ cp config.rb.sample config.rb
 
 启动集群
 
-```
+```bash
 vagrant up
 =>
 Bringing machine 'core-01' up with 'virtualbox' provider...
@@ -74,13 +74,13 @@ Bringing machine 'core-03' up with 'virtualbox' provider...
 
 添加ssh的公匙
 
-```
+```bash
 ssh-add ~/.vagrant.d/insecure_private_key
 ```
 
 连接集群中的第一台机器
 
-```
+```bash
 vagrant ssh core-01 -- -A
 ```
 
@@ -88,7 +88,7 @@ vagrant ssh core-01 -- -A
 
 使用fleet来查看机器运行状况
 
-```
+```bash
 fleetctl list-machines
 =>
 MACHINE   IP            METADATA

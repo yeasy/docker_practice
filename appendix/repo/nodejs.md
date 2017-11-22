@@ -8,21 +8,21 @@
 ### 使用方法
 在项目中创建一个 Dockerfile。
 
-```
+```bash
 FROM node:0.10-onbuild
 # replace this with your application's default port
 EXPOSE 8888
 ```
 然后创建镜像，并启动容器。
 
-```
+```bash
 $ docker build -t my-nodejs-app
 $ docker run -it --rm --name my-running-app my-nodejs-app
 ```
 
 也可以直接运行一个简单容器。
 
-```
+```bash
 $ docker run -it --rm --name my-running-script -v "$(pwd)":/usr/src/myapp -w /usr/src/myapp node:0.10 node your-daemon-or-script.js
 ```
 

@@ -17,7 +17,7 @@ Swarm 目前可以支持多种服务发现后端，这些后端功能上都是�
 
 首先，在 Swarm 管理节点（`192.168.0.2`）上新建一个文件，把要加入集群的机器的 Docker daemon 信息写入文件：
 
-```sh
+```bash
 $ tee /tmp/cluster_info <<-'EOF'
 192.168.0.2:2375
 192.168.0.3:2375
@@ -26,13 +26,13 @@ EOF
 
 然后，本地执行 `swarm manage` 命令，并指定服务发现机制为本地文件，注意因为是容器方式运行 manager，需要将本地文件挂载到容器内。
 
-```sh
+```bash
 $ docker run -d -p 12375:2375 -v /tmp/cluster_info:/tmp/cluster_info swarm manage file:///tmp/cluster_info
 ```
 
 接下来就可以通过使用 Swarm 服务来进行管理了，例如使用 info 查看所有节点的信息。
 
-```sh
+```bash
 $ docker -H 192.168.0.2:12375 info
 Containers: 18
 Images: 36
@@ -62,30 +62,30 @@ Name: e71eb5f1d48b
 
 快速部署一个 consul 服务的命令为：
 
-```sh
+```bash
 $ docker run -d -p 8500:8500 --name=consul progrium/consul -server -bootstrap
 ```
 
 之后创建 Swarm 的管理服务，指定使用 consul 服务，管理端口监听在本地的 4000 端口。
 
-```sh
+```bash
 $ docker run -d -p 4000:4000 swarm manage -H :4000 --replication --advertise <manager_ip>:4000 consul://<consul_ip>:8500
 ```
 
 Swarm 节点注册时候命令格式类似于：
 
-```sh
+```bash
 $ swarm join --advertise=<node_ip:2375> consul://<consul_addr>/<optional path prefix>
 ```
 
 对于 etcd 服务后端来说，节点注册时候命令格式类似于：
 
-```sh
+```bash
 $ swarm join --addr=<node_addr:2375> etcd://<etcd_addr1>,<etcd_addr2>/<optional path prefix>
 ```
 启动管理服务时候，格式类似于：
 
-```sh
+```bash
 $ swarm manage -H tcp://<manager_ip>:4000 etcd://<etcd_addr1>,<etcd_addr2>/<optional path prefix>
 ```
 

@@ -3,7 +3,7 @@ Docker 没有为每个容器专门定制镜像，那么怎么自定义配置容�
 秘诀就是它利用虚拟文件来挂载到来容器的 3 个相关配置文件。
 
 在容器中使用 mount 命令可以看到挂载信息：
-```
+```bash
 $ mount
 ...
 /dev/disk/by-uuid/1fec...ebdf on /etc/hostname type ext4 ...
