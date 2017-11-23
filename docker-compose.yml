@@ -3,7 +3,7 @@ services:
 
   docker_practice:
     build: ./.travis
-    image: ccr.ccs.tencentyun.com/docker_practice/docker_practice:latest
+    image: yeasy/docker_practice:latest
     ports:
       - 4000:4000
     volumes:
