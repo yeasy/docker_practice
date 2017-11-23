@@ -1,7 +1,8 @@
 ## 使用 Rail
 
-我们现在将使用 Compose 配置并运行一个 Rails/PostgreSQL 应用。
+本小节内容适合 Ruby 开发人员阅读。
 
+我们现在将使用 Compose 配置并运行一个 Rails/PostgreSQL 应用。
 
 在一切工作开始前，需要先设置好三个必要的文件。  
 首先，因为应用将要运行在一个满足所有环境依赖的 Docker 容器里面，那么我们可以通过编辑 `Dockerfile` 文件来指定 Docker 容器要安装内容。内容如下：
@@ -32,6 +33,7 @@ services:
     image: postgres
     ports:
       - "5432"
+      
   web:
     build: .
     command: bundle exec rackup -p 3000

@@ -4,6 +4,7 @@
 首先介绍几个术语。
 
 * 服务 (service)：一个应用容器，实际上可以运行多个相同镜像的实例。
+
 * 项目 (project)：由一组关联的应用容器组成的一个完整业务单元。
 
 可见，一个项目可以由多个服务（容器）关联而成，Compose 面向项目进行管理。
@@ -144,11 +145,12 @@ backend web_backends
     http-check expect status 200
 ```
 ### docker-compose.yml
-编写 docker-compose.yml 文件，这个是 Compose 使用的主模板文件。内容十分简单，指定 3 个 web 容器，以及 1 个 haproxy 容器。
+编写 `docker-compose.yml` 文件，这个是 Compose 使用的主模板文件。内容十分简单，指定 3 个 web 容器，以及 1 个 haproxy 容器。
 
 ```yaml
 version: "3"
 services:
+
   weba:
     build: ./web
     expose:
@@ -169,10 +171,6 @@ services:
     volumes:
         - ./haproxy:/haproxy-override
         - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
-    links:
-        - weba
-        - webb
-        - webc
     ports:
         - "80:80"
         - "70:70"
@@ -182,7 +180,7 @@ services:
 ```
 
 ### 运行 compose 项目
-现在 compose-haproxy-web 目录结构如下：
+现在 `compose-haproxy-web` 目录结构如下：
 ```bash
 compose-haproxy-web
 ├── docker-compose.yml
@@ -206,5 +204,3 @@ Attaching to composehaproxyweb_webb_1, composehaproxyweb_webc_1, composehaproxyw
 此时访问本地的 80 端口，会经过 haproxy 自动转发到后端的某个 web 容器上，刷新页面，可以观察到访问的容器地址的变化。
 
 访问本地 70 端口，可以查看到 haproxy 的统计信息。
-
-当然，还可以使用 consul、etcd 等实现服务发现，这样就可以避免手动指定后端的 web 容器了，更为灵活。

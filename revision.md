@@ -16,7 +16,7 @@
   * 增加 Dockerfile `multistage builds` 多阶段构建 `Dcoker 17.05` 新增特性
   * 更新 `Docker 网络` 一节
   * 更新 `Docker Machine` 基于 0.13.0 版本
-  * 更新 `Docker Compose` 基于 3.4 文件格式
+  * 更新 `Docker Compose` 基于 3 文件格式
   * 删除 Docker Swarm 相关内容，替换为 `Swarm mode` `Docker 1.12.0` 新增特性
   * 精简 `Docker Registry` 一节
   * 删除 `docker run` `--link` 参数
