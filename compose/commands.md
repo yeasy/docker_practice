@@ -119,7 +119,7 @@ $ docker-compose kill -s SIGINT
 
 #### `push`
 
-推送服务依赖的镜像到 Dcoker 仓库。
+推送服务依赖的镜像到 Docker 镜像仓库。
 
 #### `restart`
 格式为 `docker-compose restart [options] [SERVICE...]`。
