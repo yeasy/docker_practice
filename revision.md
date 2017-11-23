@@ -13,7 +13,7 @@
 * 0.9-rc1: 2017-11-30
 
   * 根据最新版本（v17.09）修订内容
-  * 增加 Dockerfile `multistage builds` 多阶段构建 `Dcoker 17.05` 新增特性
+  * 增加 Dockerfile `multistage builds` 多阶段构建 `Docker 17.05` 新增特性
   * 增加 `docker exec` 子命令介绍
   * 更新 `Docker 网络` 一节
   * 更新 `Docker Machine` 基于 0.13.0 版本
