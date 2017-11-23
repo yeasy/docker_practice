@@ -6,13 +6,21 @@
 
 * 0.9-rc2: 2017-12-10
 
+  * 更新 `CoreOS` 章节
+  * 增加 `Docker Cloud` 介绍
+  * 增加 `Docker Store` 介绍
+
 * 0.9-rc1: 2017-11-30
 
   * 根据最新版本（v17.09）修订内容
-  * 完善 Compose 项目
-  * 更新 Swarm 项目
-  * 更新 Mesos 项目
-  * 添加操作系统实战案例
+  * 增加 Dockerfile `multistage builds` 多阶段构建 `Dcoker 17.05` 新增特性
+  * 更新 `Docker 网络` 一节
+  * 更新 `Docker Machine` 基于 0.13.0 版本
+  * 更新 `Docker Compose` 基于 3.4 文件格式
+  * 删除 Docker Swarm 相关内容，替换为 `Swarm mode` `Docker 1.12.0` 新增特性
+  * 精简 `Docker Registry` 一节
+  * 删除 `docker run` `--link` 参数
+  * 替换 `docker run` `-v` 参数为 `--mount`
 
 * 0.8.0: 2017-01-08
 
