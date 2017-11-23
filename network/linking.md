@@ -61,3 +61,7 @@ PING busybox1 (172.19.0.2): 56 data bytes
 ```
 
 这样，`busybox1` 容器和 `busybox2` 容器建立了互联关系。
+
+### Docker Compose
+
+如果你有多个容器之间需要互相连接，推荐使用 [Docker Compose](../compose)。
