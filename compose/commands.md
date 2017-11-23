@@ -28,6 +28,7 @@ docker-compose [-f=<arg>...] [options] [COMMAND] [ARGS...]
 ### 命令使用说明
 
 #### `build`
+
 格式为 `docker-compose build [options] [SERVICE...]`。
 
 构建（重新构建）项目中的服务容器。
@@ -44,9 +45,25 @@ docker-compose [-f=<arg>...] [options] [COMMAND] [ARGS...]
 
 * `--pull` 始终尝试通过 pull 来获取更新版本的镜像。
 
+#### `config`
+
+验证 Compose 文件格式是否正确，若正确则显示配置，若格式错误显示错误原因。
+
+#### `down`
+
+此命令将会停止 `up` 命令所启动的容器，并移除网络
+
+#### `exec`
+
+进入指定的容器。
+
 #### `help`
 
 获得一个命令的帮助。
+
+#### `images`
+
+列出 Compose 文件中包含的镜像。
 
 #### `kill`
 格式为 `docker-compose kill [options] [SERVICE...]`。
@@ -99,6 +116,10 @@ $ docker-compose kill -s SIGINT
 选项：
 
 * `--ignore-pull-failures` 忽略拉取镜像过程中的错误。
+
+#### `push`
+
+推送服务依赖的镜像到 Dcoker 仓库。
 
 #### `restart`
 格式为 `docker-compose restart [options] [SERVICE...]`。
@@ -206,6 +227,10 @@ $ docker-compose scale web=3 db=2
 
 * `-t, --timeout TIMEOUT` 停止容器时候的超时（默认为 10 秒）。
 
+#### `top`
+
+查看各个服务容器内运行的进程。
+
 #### `unpause`
 格式为 `docker-compose unpause [SERVICE...]`。
 
@@ -243,15 +268,6 @@ $ docker-compose scale web=3 db=2
 * `--no-build` 不自动构建缺失的服务镜像。
 
 * `-t, --timeout TIMEOUT` 停止容器时候的超时（默认为 10 秒）。
-
-#### `migrate-to-labels`
-格式为 `docker-compose  migrate-to-labels`。
-
-重新创建容器，并添加 label。
-
-主要用于升级 1.2 及更早版本中创建的容器，添加缺失的容器标签。
-
-实际上，最彻底的办法当然是删除项目，然后重新创建。
 
 #### `version`
 格式为 `docker-compose version`。
