@@ -20,11 +20,9 @@
 ```bash
 $ git clone --depth=1 https://github.com/yeasy/docker_practice.git
 
-# 如果您使用的 Docker 版本低于 1.13.0 请执行 $ git clone -b bump-0.8 --depth=1 https://github.com/yeasy/docker_practice.git
-
 $ cd docker_practice
 
-$ docker-compose pull  # 如果您位于国外，这一步请改为 $ docker-compose build
+$ docker-compose pull
 
 $ docker-compose up
 ```
