@@ -6,7 +6,31 @@ Compose 可以通过 Python 的包管理工具 pip 进行安装，也可以直�
 
 前两种方式是传统方式，适合本地环境下安装使用；最后一种方式则不破坏系统环境，更适合云计算场景。
 
+Docker for macOS 、Docker for Windows 自带 `docker-compose` 二进制文件，安装 Docker 之后可以直接使用。
+
+```bash
+$ docker-compose --version
+
+docker-compose version 1.17.1, build 6d101fb
+```
+
+Linux 系统请使用以下介绍的方法安装。
+
+### 二进制包
+
+官方定义编译好二进制包，供大家使用。这些发布的二进制包可以在 [https://github.com/docker/compose/releases](https://github.com/docker/compose/releases) 页面下载。
+
+这些二进制文件，下载后直接放到执行路径下，并添加执行权限即可。
+
+```bash
+$ sudo curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+$ sudo chmod a+x /usr/local/bin/docker-compose
+```
+
 ### PIP 安装
+
+*注：* `x86_64` 架构的 Linux 建议按照上边的方法下载二进制包进行安装，如果您的架构是 `ARM` (例如，树莓派)，再使用 pip 安装。
+
 这种方式是将 Compose 当作一个 Python 应用来从 pip 源中安装。
 
 执行安装命令：
@@ -16,79 +40,18 @@ $ sudo pip install -U docker-compose
 ```
 
 可以看到类似如下输出，说明安装成功。
+
 ```bash
 Collecting docker-compose
-  Downloading docker-compose-1.8.0.tar.gz (149kB): 149kB downloaded
+  Downloading docker-compose-1.17.1.tar.gz (149kB): 149kB downloaded
 ...
 Successfully installed docker-compose cached-property requests texttable websocket-client docker-py dockerpty six enum34 backports.ssl-match-hostname ipaddress
 ```
 
-安装成功后，可以查看 `docker-compose` 命令的用法。
-```bash
-$ docker-compose -h
-Define and run multi-container applications with Docker.
-
-Usage:
-  docker-compose [-f=<arg>...] [options] [COMMAND] [ARGS...]
-  docker-compose -h|--help
-
-Options:
-  -f, --file FILE           Specify an alternate compose file (default: docker-compose.yml)
-  -p, --project-name NAME   Specify an alternate project name (default: directory name)
-  --x-networking            (EXPERIMENTAL) Use new Docker networking functionality.
-                            Requires Docker 1.9 or later.
-  --x-network-driver DRIVER (EXPERIMENTAL) Specify a network driver (default: "bridge").
-                            Requires Docker 1.9 or later.
-  --verbose                 Show more output
-  -v, --version             Print version and exit
-
-Commands:
-  build              Build or rebuild services
-  help               Get help on a command
-  kill               Kill containers
-  logs               View output from containers
-  pause              Pause services
-  port               Print the public port for a port binding
-  ps                 List containers
-  pull               Pulls service images
-  restart            Restart services
-  rm                 Remove stopped containers
-  run                Run a one-off command
-  scale              Set number of containers for a service
-  start              Start services
-  stop               Stop services
-  unpause            Unpause services
-  up                 Create and start containers
-  migrate-to-labels  Recreate containers to add labels
-  version            Show the Docker-Compose version information
-```
-
-之后，可以添加 bash 补全命令。
+### bash 补全命令
 
 ```bash
 $ curl -L https://raw.githubusercontent.com/docker/compose/1.8.0/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
-```
-
-### 二进制包
-官方定义编译好二进制包，供大家使用。这些发布的二进制包可以在 [https://github.com/docker/compose/releases](https://github.com/docker/compose/releases) 页面找到。
-
-这些二进制文件，下载后直接放到执行路径下，并添加执行权限即可。
-
-例如，在 Linux 和 macOS 平台上。
-
-```bash
-$ sudo curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-$ sudo chmod a+x /usr/local/bin/docker-compose
-```
-
-可以使用 `docker-compose version` 命令来查看版本信息，以测试是否安装成功。
-
-```bash
-$ docker-compose version
-docker-compose version 1.8.0, build 94f7016
-docker-py version: 1.9.0
-CPython version: 2.7.6
-OpenSSL version: OpenSSL 1.0.1f 6 Jan 2014
 ```
 
 ### 容器中执行
@@ -149,13 +112,14 @@ exec docker run --rm $DOCKER_RUN_OPTIONS $DOCKER_ADDR $COMPOSE_OPTIONS $VOLUMES 
 可以看到，它其实是下载了 `docker/compose` 镜像并运行。
 
 ### 卸载
+
 如果是二进制包方式安装的，删除二进制文件即可。
 
 ```bash
 $ sudo rm /usr/local/bin/docker-compose
 ```
 
-如果是通过 python pip 工具安装的，则可以执行如下命令删除。
+如果是通过 python pip 安装的，则执行如下命令即可删除。
 
 ```bash
 $ sudo pip uninstall docker-compose
