@@ -1,0 +1,29 @@
+version: "3"
+services:
+
+  weba:
+    build: ./web
+    expose:
+        - 80
+
+  webb:
+    build: ./web
+    expose:
+        - 80
+
+  webc:
+    build: ./web
+    expose:
+        - 80
+
+  haproxy:
+    image: haproxy:latest
+    volumes:
+        - ./haproxy:/haproxy-override
+        - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    ports:
+        - "80:80"
+        - "70:70"
+    expose:
+        - "80"
+        - "70"

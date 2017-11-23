@@ -7,17 +7,22 @@
 
 Compose 命令的基本的使用格式是
 
-```sh
+```bash
 docker-compose [-f=<arg>...] [options] [COMMAND] [ARGS...]
 ```
 
 ### 命令选项
 
 * `-f, --file FILE` 指定使用的 Compose 模板文件，默认为 `docker-compose.yml`，可以多次指定。
+
 * `-p, --project-name NAME` 指定项目名称，默认将使用所在目录名称作为项目名。
-* `--x-networking` 使用 Docker 的可拔插网络后端特性（需要 Docker 1.9 及以后版本）。
-* `--x-network-driver DRIVER` 指定网络后端的驱动，默认为 `bridge`（需要 Docker 1.9 及以后版本）。
+
+* `--x-networking` 使用 Docker 的可拔插网络后端特性
+
+* `--x-network-driver DRIVER` 指定网络后端的驱动，默认为 `bridge`
+
 * `--verbose` 输出更多调试信息。
+
 * `-v, --version` 打印版本并退出。
 
 ### 命令使用说明
@@ -34,7 +39,9 @@ docker-compose [-f=<arg>...] [options] [COMMAND] [ARGS...]
 选项包括：
 
 * `--force-rm` 删除构建过程中的临时容器。
+
 * `--no-cache` 构建镜像过程中不使用 cache（这将加长构建过程）。
+
 * `--pull` 始终尝试通过 pull 来获取更新版本的镜像。
 
 #### `help`
@@ -48,7 +55,7 @@ docker-compose [-f=<arg>...] [options] [COMMAND] [ARGS...]
 
 支持通过 `-s` 参数来指定发送的信号，例如通过如下指令发送 `SIGINT` 信号。
 
-```sh
+```bash
 $ docker-compose kill -s SIGINT
 ```
 
@@ -72,6 +79,7 @@ $ docker-compose kill -s SIGINT
 选项：
 
 * `--protocol=proto` 指定端口协议，tcp（默认值）或者 udp。
+
 * `--index=index` 如果同一服务存在多个容器，指定命令对象容器的序号（默认为 1）。
 
 #### `ps`
@@ -81,7 +89,7 @@ $ docker-compose kill -s SIGINT
 
 选项：
 
-* `-q` 只打印容器的 ID 信息。 
+* `-q` 只打印容器的 ID 信息。
 
 #### `pull`
 格式为 `docker-compose pull [options] [SERVICE...]`。
@@ -109,6 +117,7 @@ $ docker-compose kill -s SIGINT
 选项：
 
 * `-f, --force` 强制直接删除，包括非停止状态的容器。一般尽量不要使用该选项。
+
 * `-v` 删除容器所挂载的数据卷。
 
 #### `run`
@@ -118,7 +127,7 @@ $ docker-compose kill -s SIGINT
 
 例如：
 
-```sh
+```bash
 $ docker-compose run ubuntu ping docker.com
 ```
 
@@ -131,11 +140,12 @@ $ docker-compose run ubuntu ping docker.com
 两个不同点：
 
 * 给定命令将会覆盖原有的自动运行命令；
+
 * 不会自动创建端口，以避免冲突。
 
 如果不希望自动启动关联的容器，可以使用 `--no-deps` 选项，例如
 
-```sh
+```bash
 $ docker-compose run --no-deps web python manage.py shell
 ```
 
@@ -144,14 +154,23 @@ $ docker-compose run --no-deps web python manage.py shell
 选项：
 
 * `-d` 后台运行容器。
+
 * `--name NAME` 为容器指定一个名字。
+
 * `--entrypoint CMD` 覆盖默认的容器启动指令。
+
 * `-e KEY=VAL` 设置环境变量值，可多次使用选项来设置多个环境变量。
+
 * `-u, --user=""` 指定运行容器的用户名或者 uid。
+
 * `--no-deps` 不自动启动关联的服务容器。
+
 * `--rm` 运行命令后自动删除容器，`d` 模式下将忽略。
+
 * `-p, --publish=[]` 映射容器端口到本地主机。
+
 * `--service-ports` 配置服务端口并映射到本地主机。
+
 * `-T` 不分配伪 tty，意味着依赖 tty 的指令将无法运行。
 
 #### `scale`
@@ -161,7 +180,7 @@ $ docker-compose run --no-deps web python manage.py shell
 
 通过 `service=num` 的参数来设置数量。例如：
 
-```sh
+```bash
 $ docker-compose scale web=3 db=2
 ```
 
@@ -212,11 +231,17 @@ $ docker-compose scale web=3 db=2
 选项：
 
 * `-d` 在后台运行服务容器。
+
 * `--no-color` 不使用颜色来区分不同的服务的控制台输出。
+
 * `--no-deps` 不启动服务所链接的容器。
+
 * `--force-recreate` 强制重新创建容器，不能与 `--no-recreate` 同时使用。
+
 * `--no-recreate` 如果容器已经存在了，则不重新创建，不能与 `--force-recreate` 同时使用。
+
 * `--no-build` 不自动构建缺失的服务镜像。
+
 * `-t, --timeout TIMEOUT` 停止容器时候的超时（默认为 10 秒）。
 
 #### `migrate-to-labels`
