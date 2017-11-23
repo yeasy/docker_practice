@@ -1,11 +1,20 @@
-<!--Thanks for your contribution. See [CONTRIBUTING](CONTRIBUTING.md)
-    for this project's contribution guidelines. Remove these comments
-    as you go. -->
+<!--
+    Thanks for your contribution. 
+    See [CONTRIBUTING](CONTRIBUTING.md) for contribution guidelines.
+-->
 
-### Proposed changes (optional)
+### Proposed changes (Mandatory)
 
-<!--Tell us what you did and why-->
+<!--
+    Tell us what you did and why: 
 
-### Fix issues (optional)
+    One line short description
+    
+    And details in other paragraphs.
+-->
 
-<!--Tell us what issues you fixed-->
+### Fix issues (Optional)
+
+<!--
+    Tell us what issues you fixed, e.g., fix #123 
+-->
