@@ -31,6 +31,7 @@ build: /path/to/build/dir
 ```
 
 ### `cap_add, cap_drop`
+
 指定容器的内核能力（capacity）分配。
 
 例如，让容器拥有所有能力可以指定为：
@@ -55,7 +56,12 @@ cap_drop:
 command: echo "hello world"
 ```
 
+### `configs`
+
+仅用于 `Swarm mode`，详细内容请查看 [`Swarm mode`](../swarm_mode/) 一节。
+
 ### `cgroup_parent`
+
 指定父 `cgroup` 组，意味着将继承该组的资源限制。
 
 例如，创建了一个 cgroup 组名称为 `cgroups_1`。
@@ -65,6 +71,7 @@ cgroup_parent: cgroups_1
 ```
 
 ### `container_name`
+
 指定容器名称。默认将会使用 `项目名称_服务名称_序号` 这样的格式。
 
 ```yaml
@@ -73,7 +80,12 @@ container_name: docker-web-container
 
 需要注意，指定容器名称后，该服务将无法进行扩展（scale），因为 Docker 不允许多个容器具有相同的名称。
 
+### `deploy`
+
+仅用于 `Swarm mode`，详细内容请查看 [`Swarm mode`](../swarm_mode/) 一节
+
 ### `devices`
+
 指定设备映射关系。
 
 ```yaml
@@ -83,15 +95,32 @@ devices:
 
 ### `depends_on`
 
+解决容器的依赖、启动先后的问题。以下例子中会先启动 `redis` `db` 再启动 `web`
+
+```yaml
+version: '3'
+
+services:
+  web:
+    build: .
+    depends_on:
+      - db
+      - redis
+
+  redis:
+    image: redis
+
+  db:
+    image: postgres
+```
+
 ### `dns`
 
 自定义 `DNS` 服务器。可以是一个值，也可以是一个列表。
 
 ```yaml
 dns: 8.8.8.8
-```
 
-```yaml
 dns:
   - 8.8.8.8
   - 114.114.114.114
@@ -103,15 +132,25 @@ dns:
 
 ```yaml
 dns_search: example.com
-```
 
-```yaml
 dns_search:
   - domain1.example.com
   - domain2.example.com
 ```
 
+### `tmpfs`
+
+挂载一个 tmpfs 文件系统到容器。
+
+```yaml
+tmpfs: /run
+tmpfs:
+  - /run
+  - /tmp
+```
+
 ### `env_file`
+
 从文件中获取环境变量，可以为单独的文件路径或列表。
 
 如果通过 `docker-compose -f FILE` 方式来指定 Compose 模板文件，则 `env_file` 中变量的路径会基于模板文件路径。
@@ -144,9 +183,7 @@ PROG_ENV=development
 environment:
   RACK_ENV: development
   SESSION_SECRET:
-```
 
-```yaml
 environment:
   - RACK_ENV=development
   - SESSION_SECRET
@@ -173,7 +210,8 @@ expose:
 ```
 
 ### `external_links`
-链接到 docker-compose.yml 外部的容器，甚至 并非 `Compose` 管理的外部容器。参数格式跟 `links` 类似。
+
+链接到 docker-compose.yml 外部的容器，甚至并非 `Compose` 管理的外部容器。参数格式跟 `links` 类似。
 
 ```yaml
 external_links:
@@ -183,6 +221,7 @@ external_links:
 ```
 
 ### `extra_hosts`
+
 类似 Docker 中的 `--add-host` 参数，指定额外的 host 名称映射信息。
 
 ```yaml
@@ -200,11 +239,20 @@ extra_hosts:
 
 ### `healthcheck`
 
+通过命令检查容器是否健康运行。
+
+```yaml
+healthcheck:
+  test: ["CMD", "curl", "-f", "http://localhost"]
+  interval: 1m30s
+  timeout: 10s
+  retries: 3
+```
+
 ### `image`
 
 指定为镜像名称或镜像 ID。如果镜像在本地不存在，`Compose` 将会尝试拉去这个镜像。
 
-例如：
 ```yaml
 image: ubuntu
 image: orchardup/postgresql
@@ -212,7 +260,9 @@ image: a4bc65fd
 ```
 
 ### `labels`
+
 为容器添加 Docker 元数据（metadata）信息。例如可以为容器添加辅助说明信息。
+
 ```yaml
 labels:
   com.startupteam.description: "webapp for a startup team"
@@ -242,43 +292,69 @@ links:
 被链接容器中相应的环境变量也将被创建。
 
 ### `logging`
-类似 Docker 中的 `--log-driver` 参数，指定日志驱动类型。
+
+配置日志选项。
+
+```yaml
+logging:
+  driver: syslog
+  options:
+    syslog-address: "tcp://192.168.0.42:123"
+```
 
 目前支持三种日志驱动类型。
 
 ```yaml
-log_driver: "json-file"
-log_driver: "syslog"
-log_driver: "none"
+driver: "json-file"
+driver: "syslog"
+driver: "none"
 ```
 
-### `log_opt`
-日志驱动的相关参数。
+`options` 配置日志驱动的相关参数。
 
 ```yaml
-log_driver: "syslog"
-log_opt:
-  syslog-address: "tcp://192.168.0.42:123"
+options:
+  max-size: "200k"
+  max-file: "10"
 ```
 
-### `networks`
+### `network_mode`
 
 设置网络模式。使用和 `docker run` 的 `--net` 参数一样的值。
 
 ```yaml
-net: "bridge"
-net: "none"
-net: "container:[name or id]"
-net: "host"
+network_mode: "bridge"
+network_mode: "host"
+network_mode: "none"
+network_mode: "service:[service name]"
+network_mode: "container:[container name/id]"
+```
+
+### `networks`
+
+配置容器连接的网络。
+
+```yaml
+version: "3"
+services:
+
+  some-service:
+    networks:
+     - some-network
+     - other-network
+
+networks:
+  some-network:
+  other-network:
 ```
 
 ### `pid`
+
 跟主机系统共享进程命名空间。打开该选项的容器之间，以及容器和宿主机系统之间可以通过进程 ID 来相互访问和操作。
 
 ```yaml
 pid: "host"
 ```
-
 
 ### `ports`
 
@@ -296,18 +372,44 @@ ports:
 
 *注意：当使用 `HOST:CONTAINER` 格式来映射端口时，如果你使用的容器端口小于 60 并且没放到引号里，可能会得到错误结果，因为 `YAML` 会自动解析 `xx:yy` 这种数字格式为 60 进制。为避免出现这种问题，建议数字串都采用引号包括起来的字符串格式。*
 
+### `secrets`
+
+仅用于 `Swarm mode`，详细内容请查看 [`Swarm mode`](../swarm_mode/) 一节。
+
 ### `security_opt`
 
-指定容器模板标签（label）机制的默认属性（用户、角色、类型、级别等）。
+指定容器模板标签（label）机制的默认属性（用户、角色、类型、级别等）。例如配置标签的用户名和角色名。
 
-例如配置标签的用户名和角色名。
 ```yaml
 security_opt:
     - label:user:USER
     - label:role:ROLE
 ```
 
+### `stop_signal`
+
+设置另一个信号来停止容器。在默认情况下使用的是 SIGTERM 停止容器。
+
+```yaml
+stop_signal: SIGUSR1
+```
+
+### `sysctls`
+
+配置容器内核参数。
+
+```yaml
+sysctls:
+  net.core.somaxconn: 1024
+  net.ipv4.tcp_syncookies: 0
+
+sysctls:
+  - net.core.somaxconn=1024
+  - net.ipv4.tcp_syncookies=0
+```
+
 ### `ulimits`
+
 指定容器的 ulimits 限制值。
 
 例如，指定最大进程数为 65535，指定文件句柄数为 20000（软限制，应用可以随时修改，不能超过硬限制） 和 40000（系统硬限制，只能 root 用户提高）。
@@ -338,21 +440,25 @@ volumes:
 此外，还有包括 `domainname, entrypoint, hostname, ipc, mac_address, privileged, read_only, shm_size, restart, stdin_open, tty, user, working_dir` 等指令，基本跟 `docker run` 中对应参数的功能一致。
 
 指定服务容器启动后执行的入口文件。
+
 ```yaml
 entrypoint: /code/entrypoint.sh
 ```
 
 指定容器中运行应用的用户名。
+
 ```yaml
 user: nginx
 ```
 
 指定容器中工作目录。
+
 ```yaml
 working_dir: /code
 ```
 
 指定容器中搜索域名、主机名、mac 地址等。
+
 ```yaml
 domainname: your_website.com
 hostname: test
@@ -360,31 +466,37 @@ mac_address: 08-00-27-00-0C-0A
 ```
 
 指定容器中
+
 ```yaml
 ipc: host
 ```
 
 允许容器中运行一些特权命令。
+
 ```yaml
 privileged: true
 ```
 
 指定容器退出后的重启策略为始终重启。该命令对保持服务始终运行十分有效，在生产环境中推荐配置为 `always` 或者 `unless-stopped`。
+
 ```yaml
 restart: always
 ```
 
 以只读模式挂载容器的 root 文件系统，意味着不能对容器内容进行修改。
+
 ```yaml
 read_only: true
 ```
 
 打开标准输入，可以接受外部输入。
+
 ```yaml
 stdin_open: true
 ```
 
 模拟一个假的远程控制台。
+
 ```yaml
 tty: true
 ```

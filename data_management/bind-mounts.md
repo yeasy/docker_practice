@@ -2,7 +2,7 @@
 
 ### 选择 -v 还是 -–mount 参数
 
-Docker 新用户应该选择 `--mount` 参数，经验丰富的 Dcoker 使用者对 `-v` 或者 `--volume` 已经很熟悉了，但是推荐使用 `--volume` 参数。
+Docker 新用户应该选择 `--mount` 参数，经验丰富的 Docker 使用者对 `-v` 或者 `--volume` 已经很熟悉了，但是推荐使用 `--mount` 参数。
 
 ### 挂载一个主机目录作为数据卷
 
