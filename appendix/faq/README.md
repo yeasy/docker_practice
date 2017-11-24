@@ -180,7 +180,7 @@ lrwxrwxrwx. 1 root root 15 11月 17 13:43 docker -> /storage/docker
 
 ### Docker 能在非 Linux 平台（比如 Windows 或 macOS ）上运行么？
 
-答：完全可以。
+答：完全可以。安装方法请查看 [安装 Docker](../../install/) 一节
 
 ### 如何将一台宿主主机的 Docker 环境迁移到另外一台宿主主机？
 
