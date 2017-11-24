@@ -52,7 +52,7 @@ root@ba267838cc1b:/# ps
 
 ## Docker 1.13+
 
-在 Docker 1.13+ 版本中推荐使用 docker container 来管理容器。
+在 Docker 1.13+ 版本中推荐使用 `docker container` 来管理容器。
 
 ```bash
 $ docker container run ubuntu:17.10 /bin/echo 'Hello world'
