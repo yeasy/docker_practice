@@ -106,7 +106,7 @@ $ docker rmi $(docker images -q -f before=mongo:3.2)
 
 ## Docker 1.13+
 
-在 Docker 1.13+ 版本中推荐使用 docker image 来管理镜像。
+在 Docker 1.13+ 版本中推荐使用 `docker image` 来管理镜像。
 
 ```bash
 $ docker image rm

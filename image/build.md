@@ -221,7 +221,7 @@ $ docker build - < context.tar.gz
 
 # Docker 1.13+
 
-在 Docker 1.13+ 版本中推荐使用 docker image 来管理镜像。
+在 Docker 1.13+ 版本中推荐使用 `docker image` 来管理镜像。
 
 ```bash
 $ docker image build
