@@ -14,6 +14,7 @@
     * [Ubuntu](install/ubuntu.md)
     * [Debian](install/debian.md)
     * [CentOS](install/centos.md)
+    * [Raspberry Pi](install/raspberry-pi.md)
     * [macOS](install/mac.md)
     * [Windows PC](install/windows.md)
     * [镜像加速器](install/mirror.md)
