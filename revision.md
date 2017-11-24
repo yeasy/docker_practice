@@ -13,15 +13,27 @@
 * 0.9-rc1: 2017-11-30
 
   * 根据最新版本（v17.09）修订内容
-  * 增加 Dockerfile `multistage builds` 多阶段构建 `Docker 17.05` 新增特性
+
+  * 增加 `Dockerfile` 多阶段构建( `multistage builds` ) `Docker 17.05` 新增特性
   * 增加 `docker exec` 子命令介绍
+  * 增加 `docker` 管理子命令 `container` `image` `network` `volume` 介绍
+  * 增加 `树莓派单片电脑` 安装 Docker
+
+  * 更新 `Docker CE` `v17.x` 安装说明
   * 更新 `Docker 网络` 一节
   * 更新 `Docker Machine` 基于 0.13.0 版本
   * 更新 `Docker Compose` 基于 3 文件格式
-  * 删除 Docker Swarm 相关内容，替换为 `Swarm mode` `Docker 1.12.0` 新增特性
-  * 精简 `Docker Registry` 一节
+
+  * 删除 `Docker Swarm` 相关内容，替换为 `Swarm mode` `Docker 1.12.0` 新增特性
   * 删除 `docker run` `--link` 参数
+
+  * 精简 `Docker Registry` 一节
+
   * 替换 `docker run` `-v` 参数为 `--mount`
+  * 替换 `404` 链接
+
+  * 优化文字排版
+  * 增加离线阅读功能
 
 * 0.8.0: 2017-01-08
 
