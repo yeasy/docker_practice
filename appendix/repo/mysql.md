@@ -1,21 +1,25 @@
-## [MySQL](https://hub.docker.com/_/mysql/)
+## [MySQL](https://store.docker.com/images/mysql/)
 
 ### 基本信息
+
 [MySQL](https://en.wikipedia.org/wiki/MySQL) 是开源的关系数据库实现。
 
-该仓库位于 https://hub.docker.com/_/mysql/ ，提供了 MySQL 各个版本的镜像，包括 5.6 系列、5.7 系列等。
+该仓库位于 https://store.docker.com/images/mysql/ ，提供了 MySQL 5.5 ~ 8.x 各个版本的镜像。
 
 ### 使用方法
+
 默认会在 `3306` 端口启动数据库。
 
 ```bash
 $ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=mysecretpassword -d mysql
 ```
+
 之后就可以使用其它应用来连接到该容器。
 
 ```bash
 $ docker run --name some-app --link some-mysql:mysql -d application-that-uses-mysql
 ```
+
 或者通过 `mysql`。
 
 ```bash
