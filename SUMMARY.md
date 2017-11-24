@@ -37,6 +37,7 @@
         * [HEALTHCHECK 健康检查](image/dockerfile/healthcheck.md)
         * [ONBUILD 为他人作嫁衣裳](image/dockerfile/onbuild.md)
         * [参考文档](image/dockerfile/references.md)
+    * [Dockerfile 多阶段构建](image/multistage-builds.md) 
     * [其它制作镜像的方式](image/other.md)
     * [删除本地镜像](image/rmi.md)
     * [实现原理](image/internal.md)
