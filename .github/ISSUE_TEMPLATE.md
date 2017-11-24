@@ -19,12 +19,11 @@
 <!--如果你的 Docker 版本低于 17.0 请尽可能升级到该版本-->
 <!--if Docker version under 17.0, please upgrade Docker to 17.09-->
 
-* [x] 17.11 edge
-* [ ] 17.09 stable
+* [x] 17.11 Edge
+* [ ] 17.09 Stable
 * [ ] 1.13.0
 * [ ] Before 1.13.0
 
 ### Problem Description
 <!--描述你的问题，请贴出操作步骤，终端报错日志-->
 <!--describe problem with detailed steps and logs-->
-

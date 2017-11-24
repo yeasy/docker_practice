@@ -27,7 +27,7 @@ $ docker import http://example.com/exampleimage.tgz example/imagerepo
 
 ## Docker 1.13+
 
-在 Docker 1.13+ 版本中推荐使用 docker container 来管理容器。
+在 Docker 1.13+ 版本中推荐使用 `docker container` 来管理容器。
 
 ```bash
 $ docker container export

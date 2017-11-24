@@ -19,7 +19,7 @@ $ docker run -d -P \
 
 上面的命令加载主机的 `/src/webapp` 目录到容器的 `/opt/webapp`目录。这个功能在进行测试的时候十分方便，比如用户可以放置一些程序到本地目录中，来查看容器是否正常工作。本地目录的路径必须是绝对路径，如果目录不存在 Docker 会自动为你创建它。
 
-Docker 挂载主机目录的默认权限是读写，用户也可以通过增加 `readonly` 指定为只读。
+Docker 挂载主机目录的默认权限是 `读写`，用户也可以通过增加 `readonly` 指定为 `只读`。
 
 ```bash
 $ docker run -d -P \
@@ -30,7 +30,7 @@ $ docker run -d -P \
     python app.py
 ```
 
-加了 `readonly` 之后，就挂载为只读了。如果你在容器内 `/src/webapp` 目录新建文件，会显示如下错误
+加了 `readonly` 之后，就挂载为 `只读` 了。如果你在容器内 `/src/webapp` 目录新建文件，会显示如下错误
 
 ```bash
 /src/webapp # touch new.txt
@@ -66,9 +66,14 @@ $ docker inspect web
 
 ```bash
 $ docker run --rm -it \
-   --mount type=bind,source=~/.bash_history,target=/root/.bash_history \
+   # -v $HOME/.bash_history:/root/.bash_history \
+   --mount type=bind,source=$HOME/.bash_history,target=/root/.bash_history \
    ubuntu:17.10 \
-   bash   
+   bash
+
+root@2affd44b4667:/# history
+1  ls
+2  diskutil list   
 ```
 
 这样就可以记录在容器输入过的命令了。
