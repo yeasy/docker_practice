@@ -1,6 +1,6 @@
 ## 如何贡献项目
 
-* 在 GitHub 上 `fork` 到自己的仓库，如 `docker_user/docker_practice`，然后 `clone` 到本地，并设置用户信息。
+* 在 [GitHub](https://github.com/yeasy/docker_practice/fork) 上 `fork` 到自己的仓库，如 `docker_user/docker_practice`，然后 `clone` 到本地，并设置用户信息。
 
   ```bash
   $ git clone git@github.com:docker_user/docker_practice.git
@@ -17,9 +17,10 @@
   $ git push
   ```
 
-* 在 GitHub 网站上提交 pull request。
+* 在 [GitHub](https://github.com/yeasy/docker_practice/pulls) 上提交 Pull request。
 
 * 定期使用项目仓库内容更新自己仓库内容。
+
   ```bash
   $ git remote add upstream https://github.com/yeasy/docker_practice
   $ git fetch upstream
