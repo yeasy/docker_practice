@@ -29,6 +29,8 @@ $ docker-compose pull
 $ docker-compose up
 ```
 
+关于离线阅读的详细说明请阅读 [Wiki](https://github.com/yeasy/docker_practice/wiki/%E7%A6%BB%E7%BA%BF%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3)。
+
 Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初学者使用 Linux 上最新版的 Docker (v17.11) 进行学习实践。欢迎参与维护项目：[如何贡献](.github/CONTRIBUTING.md)。
 
 * [修订记录](revision.md)
