@@ -12,7 +12,7 @@ trusting_newton
 
 ## Docker 1.13+
 
-在 Docker 1.13+ 版本中推荐使用 docker container 来管理容器。
+在 Docker 1.13+ 版本中推荐使用 `docker container` 来管理容器。
 
 ```bash
 $ docker container rm trusting_newton

@@ -54,3 +54,13 @@ root@69d137adef7a:/#
 如果从这个 stdin 中 exit，不会导致容器的停止。这就是为什么推荐大家使用 `docker exec` 的原因。
 
 更多参数说明请使用 `docker exec --help` 查看。
+
+## Docker 1.13+
+
+在 Docker 1.13+ 版本中推荐使用 `docker container` 来管理容器。
+
+```bash
+$ docker container attach
+
+$ docker container exec
+```
