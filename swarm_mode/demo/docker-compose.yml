@@ -1,0 +1,47 @@
+version: "3"
+
+services:
+  wordpress:
+    image: wordpress
+    ports:
+      - 80:80
+    networks:
+      - overlay
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+    deploy:
+      mode: replicated
+      replicas: 3
+
+  db:
+    image: mysql
+    networks:
+       - overlay
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8080:8080"
+    stop_grace_period: 1m30s
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+
+volumes:
+  db-data:
+networks:
+  overlay:
