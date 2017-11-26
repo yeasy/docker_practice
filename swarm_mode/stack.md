@@ -1,6 +1,6 @@
-## 在 Swarm 集群中使用 docker-compose.yml
+## 在 Swarm 集群中使用 compose 文件
 
-正如之前使用 `docker-compose.yml` 来一次启动、管理多个容器，在 `Swarm` 集群中也可以使用 `docker-compose.yml` 来配置多个服务。
+正如之前使用 `docker-compose.yml` 来一次配置、启动多个容器，在 `Swarm` 集群中也可以使用 `compose` 文件 （`docker-compose.yml`） 来配置、启动多个服务。
 
 上一节中，我们使用 `docker service create` 一次只能部署一个服务，使用 `docker-compose.yml` 我们可以一次启动多个关联的服务。
 
@@ -62,7 +62,7 @@ networks:
 
 ### 部署服务
 
-部署服务使用 `docker stack deploy`，其中 `-c` 参数指定 Compose 文件名。
+部署服务使用 `docker stack deploy`，其中 `-c` 参数指定 compose 文件名。
 
 ```bash
 $ docker stack deploy -c docker-compose.yml wordpress
