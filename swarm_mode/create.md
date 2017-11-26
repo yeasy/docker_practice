@@ -51,6 +51,8 @@ docker@worker1:~$ docker swarm join \
 This node joined a swarm as a worker.    
 ```
 
+*注意：* 一些细心的读者可能通过 `docker-machine create --help` 查看到 `--swarm*` 等一系列参数。该参数是用于旧的 `Docker Swarm`,与本章所讲的 `Swarm mode` 没有关系。
+
 ### 查看集群
 
 经过上边的两步，我们已经拥有了一个最小的 `Swarm` 集群，包含一个管理节点和两个工作节点。
