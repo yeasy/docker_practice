@@ -1,6 +1,6 @@
 ## 使用 Django
 
-本小节内容适合 Python 开发人员阅读。
+本小节内容适合 `Python` 开发人员阅读。
 
 我们现在将使用 `Docker Compose` 配置并运行一个 `Django/PostgreSQL` 应用。
 
@@ -57,7 +57,7 @@ $ docker-compose run web django-admin.py startproject django_example .
 
 Compose 会先使用 `Dockerfile` 为 web 服务创建一个镜像，接着使用这个镜像在容器里运行 `django-admin.py startproject composeexample` 指令。
 
-这将在当前目录生成一个 Django 应用。
+这将在当前目录生成一个 `Django` 应用。
 
 ```bash
 $ ls
@@ -110,7 +110,7 @@ web_1  | Starting development server at http://0.0.0.0:8000/
 web_1  | Quit the server with CONTROL-C.
 ```
 
-这个 `Django` 应用已经开始在你的 Docker 守护进程里监听着 `8000` 端口了。打开 `127.0.0.1:8000` 即可看到 Django 欢迎页面。
+这个 `Django` 应用已经开始在你的 Docker 守护进程里监听着 `8000` 端口了。打开 `127.0.0.1:8000` 即可看到 `Django` 欢迎页面。
 
 你还可以在 Docker 上运行其它的管理命令，例如对于同步数据库结构这种事，在运行完 `docker-compose up` 后，在另外一个终端进入文件夹运行以下命令即可：
 

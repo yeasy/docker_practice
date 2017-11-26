@@ -1,12 +1,12 @@
 ## 安装与卸载
 
-Compose 目前支持 Linux、macOS、Windows 10 三大平台。
+`Compose` 目前支持 Linux、macOS、Windows 10 三大平台。
 
-Compose 可以通过 Python 的包管理工具 pip 进行安装，也可以直接下载编译好的二进制文件使用，甚至直接运行在 Docker 容器中。
+`Compose` 可以通过 Python 的包管理工具 pip 进行安装，也可以直接下载编译好的二进制文件使用，甚至直接运行在 Docker 容器中。
 
 前两种方式是传统方式，适合本地环境下安装使用；最后一种方式则不破坏系统环境，更适合云计算场景。
 
-Docker for macOS 、Docker for Windows 自带 `docker-compose` 二进制文件，安装 Docker 之后可以直接使用。
+`Docker for macOS` 、`Docker for Windows` 自带 `docker-compose` 二进制文件，安装 Docker 之后可以直接使用。
 
 ```bash
 $ docker-compose --version
@@ -119,7 +119,7 @@ exec docker run --rm $DOCKER_RUN_OPTIONS $DOCKER_ADDR $COMPOSE_OPTIONS $VOLUMES 
 $ sudo rm /usr/local/bin/docker-compose
 ```
 
-如果是通过 python pip 安装的，则执行如下命令即可删除。
+如果是通过 `pip` 安装的，则执行如下命令即可删除。
 
 ```bash
 $ sudo pip uninstall docker-compose

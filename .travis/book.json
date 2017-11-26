@@ -1,6 +1,12 @@
 {
   "title": "Docker -- 从入门到实践",
   "author": "yeasy",
+  "language": "zh-hans",
+  "links": {
+    "sidebar": {
+      "GitHub": "https://github.com/yeasy/docker_practice"
+    }
+  },
   "plugins": [
     "image-captions",
     "github-buttons",
