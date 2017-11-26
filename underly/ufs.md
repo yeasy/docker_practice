@@ -9,3 +9,14 @@
 Docker 中使用的 AUFS（AnotherUnionFS）就是一种联合文件系统。 `AUFS` 支持为每一个成员目录（类似 Git 的分支）设定只读（readonly）、读写（readwrite）和写出（whiteout-able）权限, 同时 `AUFS` 里有一个类似分层的概念, 对只读权限的分支可以逻辑上进行增量地修改(不影响只读部分的)。
 
 Docker 目前支持的联合文件系统包括 `OverlayFS`, `AUFS`, `Btrfs`, `VFS`, `ZFS` 和 `Device Mapper`。
+
+各 Linux 发行版 Docker 推荐使用的存储驱动如下表。
+
+|Linux 发行版 |	Docker 推荐使用的存储驱动 |
+| :--        | :--                     |
+|Docker CE on Ubuntu |	`aufs`, `devicemapper`, `overlay2` (Ubuntu 14.04.4 +, 16.04 +), `overlay`, `zfs`, `vfs` |
+|Docker CE on Debian |	`aufs`, `devicemapper`, `overlay2` (Debian Stretch), `overlay`, `vfs` |
+|Docker CE on CentOS |	`devicemapper`, `vfs` |
+|Docker CE on Fedora |	`devicemapper`, `overlay2` (Fedora 26 +), `overlay` (实验性支持), `vfs` |
+
+在可能的情况下，推荐使用 `overlay2` 存储驱动，`overlay2` 是目前 Docker 默认的存储驱动，以前则是 `aufs`。你可以通过配置来使用以上提到的其他类型的存储驱动。
