@@ -5,7 +5,7 @@
 
 执行 `docker-compose [COMMAND] --help` 或者 `docker-compose help [COMMAND]` 可以查看具体某个命令的使用格式。
 
-Compose 命令的基本的使用格式是
+`docker-compose` 命令的基本的使用格式是
 
 ```bash
 docker-compose [-f=<arg>...] [options] [COMMAND] [ARGS...]
