@@ -1,10 +1,11 @@
 ## 使用 Rail
 
-本小节内容适合 Ruby 开发人员阅读。
+本小节内容适合 `Ruby` 开发人员阅读。
 
-我们现在将使用 Compose 配置并运行一个 Rails/PostgreSQL 应用。
+我们现在将使用 `Compose` 配置并运行一个 `Rails/PostgreSQL` 应用。
 
-在一切工作开始前，需要先设置好三个必要的文件。  
+在一切工作开始前，需要先设置好三个必要的文件。
+
 首先，因为应用将要运行在一个满足所有环境依赖的 Docker 容器里面，那么我们可以通过编辑 `Dockerfile` 文件来指定 Docker 容器要安装内容。内容如下：
 
 ```docker
@@ -33,7 +34,7 @@ services:
     image: postgres
     ports:
       - "5432"
-      
+
   web:
     build: .
     command: bundle exec rackup -p 3000
@@ -49,7 +50,7 @@ services:
 ```bash
 $ docker-compose run web rails new . --force --database=postgresql --skip-bundle
 ```
-Compose 会先使用 `Dockerfile` 为 web 服务创建一个镜像，接着使用这个镜像在容器里运行 `rails new ` 和它之后的命令。一旦这个命令运行完后，应该就可以看一个崭新的应用已经生成了。
+`Compose` 会先使用 `Dockerfile` 为 web 服务创建一个镜像，接着使用这个镜像在容器里运行 `rails new ` 和它之后的命令。一旦这个命令运行完后，应该就可以看一个崭新的应用已经生成了。
 
 ```bash
 $ ls
