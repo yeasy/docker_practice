@@ -1,6 +1,6 @@
 ## 基本概念
 
-`Swarm` 是使用 [`Swarmkit`](https://github.com/docker/swarmkit/) 构建的 Docker 引擎内置（原生）的集群管理和编排工具。
+`Swarm` 是使用 [`SwarmKit`](https://github.com/docker/swarmkit/) 构建的 Docker 引擎内置（原生）的集群管理和编排工具。
 
  使用 `Swarm` 集群之前需要了解以下几个概念。
 
