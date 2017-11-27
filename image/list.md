@@ -24,7 +24,7 @@ ubuntu               14.04               1e0c3dd64ccd        4 weeks ago        
 
 另外一个需要注意的问题是，`docker images` 列表中的镜像体积总和并非是所有镜像实际硬盘消耗。由于 Docker 镜像是多层存储结构，并且可以继承、复用，因此不同镜像可能会因为使用相同的基础镜像，从而拥有共同的层。由于 Docker 使用 Union FS，相同的层只需要保存一份即可，因此实际镜像硬盘占用空间很可能要比这个列表镜像大小的总和要小的多。
 
-在 Docker 1.13+ 版本中可以你可以通过以下命令来便捷的查看镜像、容器、数据卷所占用的空间。
+你可以通过以下命令来便捷的查看镜像、容器、数据卷所占用的空间。
 
 ```bash
 $ docker system df
@@ -53,12 +53,6 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 ```
 
 一般来说，虚悬镜像已经失去了存在的价值，是可以随意删除的，可以用下面的命令删除。
-
-```bash
-$ docker rmi $(docker images -q -f dangling=true)
-```
-
-在 Docker 1.13+ 版本中你可以便捷的使用以下命令来删除虚悬镜像。
 
 ```bash
 $ docker image prune
