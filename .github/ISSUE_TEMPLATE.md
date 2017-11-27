@@ -11,7 +11,7 @@
    * [ ] CoreOS
    * [ ] Debian 8
    * [ ] Debian 9
-* [ ] MacOS
+* [ ] macOS
 * [ ] Windows 10
 * [ ] Others (Pls describe below)
 
