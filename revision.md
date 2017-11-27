@@ -7,7 +7,7 @@
 * 0.9-rc2: 2017-12-10
 
   * 更新 `CoreOS` 章节
-  
+
 * 0.9-rc1: 2017-11-30
 
   * 根据最新版本（v17.09）修订内容
@@ -16,6 +16,7 @@
   * 增加 `docker exec` 子命令介绍
   * 增加 `docker` 管理子命令 `container` `image` `network` `volume` 介绍
   * 增加 `树莓派单片电脑` 安装 Docker
+  * 增加 Docker 存储驱动 `OverlayFS` 相关内容
 
   * 更新 `Docker CE` `v17.x` 安装说明
   * 更新 `Docker 网络` 一节
