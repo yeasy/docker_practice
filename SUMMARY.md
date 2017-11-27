@@ -98,7 +98,7 @@
     * [基本概念](swarm_mode/overview.md)
     * [创建 Swarm 集群](swarm_mode/create.md)
     * [在 Swarm 集群部署服务](swarm_mode/deploy.md)
-    * [在 Swarm 集群中使用 docker-compose.yml](swarm_mode/stack.md)
+    * [在 Swarm 集群中使用 compose 文件](swarm_mode/stack.md)
 * [Etcd 项目](etcd/README.md)
     * [简介](etcd/intro.md)
     * [安装](etcd/install.md)
