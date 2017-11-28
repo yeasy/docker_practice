@@ -19,7 +19,7 @@ after_success:
 - git remote add origin "$REPO"
 - git add .
 - COMMIT=`date "+%F %T"`
-- git commit -m "Travis CI Site updated: $COMMIT"
+- git commit -m "Travis CI Site updated $COMMIT"
 - git push -f origin master:"$DEPLOY_BRANCH"
 env:
   global:
