@@ -1,0 +1,36 @@
+language: bash
+sudo: required
+services:
+- docker
+before_install:
+- openssl aes-256-cbc -K $encrypted_6cc8cff04075_key -iv $encrypted_6cc8cff04075_iv
+  -in .travis/id_rsa.enc -out ~/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
+- export TZ='Asia/Shanghai'
+- date
+- git config --global user.name "khs1994"
+- git config --global user.email "khs1994@khs1994.com"
+script:
+- docker run -it --rm -v $PWD:/srv/gitbook-src yeasy/docker_practice build
+after_success:
+- sudo chmod -R 777 _book
+- cd _book
+- git init
+- git remote add origin "$REPO"
+- git add .
+- COMMIT=`date "+%F %T"`
+- git commit -m "Travis CI Site updated $COMMIT"
+- git push -f origin master:"$DEPLOY_BRANCH"
+env:
+  global:
+  - DEPLOY_BRANCH: pages
+  # - DEPLOY_BRANCH: legacy-pages
+  - REPO: git@github.com:yeasy/docker_practice.git
+addons:
+  ssh_known_hosts:
+  - github.com
+branches:
+  only:
+  - master
+  - dev
+  # - docker-legacy

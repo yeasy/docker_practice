@@ -1,8 +1,8 @@
 version: "3"
 services:
 
-  docker_practice:
-    build: ./.travis
+  server:
+    # build: ./.travis
     image: yeasy/docker_practice:latest
     ports:
       - 4000:4000
@@ -17,3 +17,18 @@ services:
       - .travis/conf.d/default.conf:/etc/nginx/conf.d/default.conf
     ports:
       - 4000:4000
+
+  build:
+    image: yeasy/docker_practice:latest
+    volumes:
+      - ./:/srv/gitbook-src
+    command: build
+
+  development:
+    build: ./.travis
+    image: yeasy/docker_practice:development
+    ports:
+      - 4000:4000
+    volumes:
+      - ./:/srv/gitbook-src
+    command: server
