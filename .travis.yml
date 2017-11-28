@@ -11,7 +11,7 @@ before_install:
 - git config --global user.name "khs1994"
 - git config --global user.email "khs1994@khs1994.com"
 script:
-- docker run -it --rm -v $PWD:/srv/gitbook-src khs1994/gitbook
+- docker run -it --rm -v $PWD:/srv/gitbook-src yeasy/docker_practice
 after_success:
 - sudo chmod -R 777 _book
 - cd _book
