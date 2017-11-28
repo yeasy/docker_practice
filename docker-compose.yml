@@ -12,7 +12,7 @@ services:
 
   windows:
     image: nginx:alpine
-    volume:
+    volumes:
       - ./:/srv/www
       - .travis/conf.d/default.conf:/etc/nginx/conf.d/default.conf
     ports:
