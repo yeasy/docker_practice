@@ -9,3 +9,11 @@ services:
     volumes:
       - ./:/srv/gitbook-src
     command: server
+
+  windows:
+    image: nginx:alpine
+    volume:
+      - ./:/srv/www
+      - .travis/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 4000:4000
