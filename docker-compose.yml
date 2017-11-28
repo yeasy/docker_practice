@@ -14,7 +14,7 @@ services:
     image: nginx:alpine
     volumes:
       - ./:/srv/www
-      - .travis/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+      - .travis/conf.d:/etc/nginx/conf.d
     ports:
       - 4000:4000
 
