@@ -31,3 +31,4 @@ addons:
 branches:
   only:
   - master
+  - dev
