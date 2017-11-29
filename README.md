@@ -1,5 +1,7 @@
 # Docker — 从入门到实践
 
+[![Join the chat at https://gitter.im/docker_practice/Lobby](https://badges.gitter.im/docker_practice/Lobby.svg)](https://gitter.im/docker_practice/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) [![](https://img.shields.io/docker/pulls/yeasy/docker_practice.svg)](https://store.docker.com/community/images/yeasy/docker_practice) [![](https://travis-ci.org/yeasy/docker_practice.svg?branch=master)](https://travis-ci.org/yeasy/docker_practice) [![](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases)
 
 0.9-rc1(2017-11-29)
