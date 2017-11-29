@@ -83,20 +83,3 @@ ssh-add ~/.vagrant.d/insecure_private_key
 ```bash
 vagrant ssh core-01 -- -A
 ```
-
-## 测试集群
-
-使用 fleet 来查看机器运行状况
-
-```bash
-fleetctl list-machines
-=>
-MACHINE   IP            METADATA
-517d1c7d... 172.17.8.101  -
-cb35b356... 172.17.8.103  -
-17040743... 172.17.8.102  -
-```
-
-如果你也看到了如上类似的信息，恭喜，本地基于三台机器的集群已经成功启动，是不是很简单。
-
-那么之后你就可以基于 CoreOS 的三大工具做任务分发，分布式存储等很多功能了。
