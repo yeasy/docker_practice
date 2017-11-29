@@ -1,6 +1,6 @@
 # Docker — 从入门到实践
 
-[![](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) [![](https://img.shields.io/docker/pulls/yeasy/docker_practice.svg)](https://store.docker.com/community/images/yeasy/docker_practice) [![](https://travis-ci.org/yeasy/docker_practice.svg?branch=master)](https://travis-ci.org/yeasy/docker_practice) [![](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases) 
+[![](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) [![](https://img.shields.io/docker/pulls/yeasy/docker_practice.svg)](https://store.docker.com/community/images/yeasy/docker_practice) [![](https://travis-ci.org/yeasy/docker_practice.svg?branch=master)](https://travis-ci.org/yeasy/docker_practice) [![](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases)
 
 0.9-rc1(2017-11-30)
 
@@ -36,7 +36,7 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初�
 * QQ 群 IX  （可加）：571502246
 
 ## 进阶学习
-![Docker 技术入门与实战](_images/docker_primer2.png)
+![](https://github.com/yeasy/docker_practice/raw/master/_images/docker_primer2.png)
 
 《[Docker 技术入门与实战](http://item.jd.com/12121728.html)》第二版已经正式出版，针对初版进行内容升级，欢迎大家阅读使用并反馈建议。
 
@@ -47,4 +47,4 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初�
 
 欢迎鼓励项目一杯 coffee~
 
-![coffee](_images/donate.jpeg)
+![](https://github.com/yeasy/docker_practice/raw/master/_images/donate.jpeg)
