@@ -17,7 +17,7 @@ services:
       - .travis/conf.d:/etc/nginx/conf.d
     ports:
       - 4000:4000
-    command: ["nginx", "-c", "/etc/nginx/conf.d/nginx.conf", "-g", "daemon off;"]       
+    command: ["nginx", "-c", "/etc/nginx/conf.d/nginx.conf", "-g", "daemon off;"]
 
   build:
     image: yeasy/docker_practice:latest
@@ -33,3 +33,4 @@ services:
     volumes:
       - ./:/srv/gitbook-src
     command: server
+    # command: build
