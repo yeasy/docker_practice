@@ -2,7 +2,7 @@
 
 [![](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) [![](https://img.shields.io/docker/pulls/yeasy/docker_practice.svg)](https://store.docker.com/community/images/yeasy/docker_practice) [![](https://travis-ci.org/yeasy/docker_practice.svg?branch=master)](https://travis-ci.org/yeasy/docker_practice) [![](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases)
 
-0.9-rc1(2017-11-30)
+0.9-rc1(2017-11-29)
 
 *修订说明：本书内容将基于 Docker CE v17.x 进行重新修订，计划 2017 年底发布 0.9.0 版本。旧版本（Docker 1.13-）内容，请阅读 [docker-legacy](https://github.com/yeasy/docker_practice/tree/docker-legacy) 分支的内容。*
 
