@@ -14,6 +14,10 @@
 
 工作节点是任务执行节点，管理节点将服务 (`service`) 下发至工作节点执行。管理节点默认也作为工作节点。你也可以通过配置让服务只运行在管理节点。
 
+来自 Docker 官网的这张图片形象的展示了集群中管理节点与工作节点的关系。
+
+![](https://docs.docker.com/engine/swarm/images/swarm-diagram.png)
+
 ### 服务和任务
 
 任务 （`Task`）是 `Swarm` 中的最小的调度单位，目前来说就是一个单一的容器。
@@ -25,3 +29,7 @@
 * `global services` 每个工作节点上运行一个任务
 
 两种模式通过 `docker service create` 的 `--mode` 参数指定。
+
+来自 Docker 官网的这张图片形象的展示了容器、任务、服务的关系。
+
+![](https://docs.docker.com/engine/swarm/images/services-diagram.png)
