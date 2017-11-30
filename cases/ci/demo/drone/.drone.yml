@@ -10,7 +10,8 @@ pipeline:
        - KEY=VALUE
      secrets: [key1, key2]
      commands:
-       - echo $$KEY
+       # - echo $$KEY
        - pwd
        - ls
        - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
+       - ./app
