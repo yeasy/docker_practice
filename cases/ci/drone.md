@@ -24,7 +24,7 @@
 
 ![](../.image/drone-github.png)
 
-接下来点击这个应用详情，记录 `Client ID` 和 `Client Secret`，之后配置 Drone 会用到。
+接下来查看这个应用的详情，记录 `Client ID` 和 `Client Secret`，之后配置 Drone 会用到。
 
 ### 配置 Drone
 
@@ -72,13 +72,13 @@ volumes:
 
 替换 `${SSL_PATH}` 为你网站的 SSL 证书路径。
 
-替换 `${GITHUB_SERNAME}` 为你部署 GitHub 的用户名，该用户将成为 Drone 的管理员。
+替换 `${GITHUB_SERNAME}` 为你 GitHub 的用户名，该用户将成为 Drone 的管理员。
 
 替换 `${DRONE_HOST}` 为你部署 Drone 的域名。
 
-替换 `${DRONE_GITHUB_CLIENT}` 为你 GitHub 应用的 `CLIENT`
+替换 `${DRONE_GITHUB_CLIENT}` 为你 GitHub 应用的 `Client ID`
 
-替换 `${DRONE_GITHUB_SECRET}` 为你 GitHub 应用的 `SECRET`
+替换 `${DRONE_GITHUB_SECRET}` 为你 GitHub 应用的 `Client Secret`
 
 *注意：* 如果你的服务器占用了 `443` 端口，请配置 Nginx 代理，这里不再赘述。
 
@@ -92,7 +92,7 @@ $ docker-compose up -d
 
 在 Github 新建一个名为 `drone-demo` 的仓库。
 
-打开我们已经部署好的 Drone 网站，使用 GitHub 登录，在界面中关联刚刚新建的 `drone-demo` 仓库。
+打开我们已经部署好的 Drone 网站，使用 GitHub 账号登录，在界面中关联刚刚新建的 `drone-demo` 仓库。
 
 ### 编写项目源代码
 
