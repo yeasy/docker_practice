@@ -133,6 +133,8 @@
     * [Debian Ubuntu](cases/os/debian.md)
     * [CentOS Fedora](cases/os/centos.md)
     * [本章小结](cases/os/summary.md)
+* [实战案例-CI/CD](cases/ci/README.md)
+    * [Drone](cases/ci/drone.md)
 * [附录](appendix/README.md)
     * [附录一：常见问题总结](appendix/faq/README.md)
     * [附录二：热门镜像介绍](appendix/repo/README.md)
@@ -146,3 +148,4 @@
         * [Node.js](appendix/repo/nodejs.md)
     * [附录三：Docker 命令查询](appendix/command/README.md)
     * [附录四：资源链接](appendix/resources/README.md)
+    * [附录五：Docker 中文资源](appendix/resources/cn.md)

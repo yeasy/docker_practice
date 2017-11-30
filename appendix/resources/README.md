@@ -15,7 +15,7 @@
 
 ## 实践参考
 
-* Dockerfile 参考：https://docs.docker.com/reference/builder/
+* Dockerfile 参考：https://docs.docker.com/engine/reference/builder/
 * Dockerfile 最佳实践：https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/
 
 ## 技术交流
