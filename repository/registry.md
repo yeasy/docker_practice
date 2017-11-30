@@ -4,7 +4,7 @@
 
 本节介绍如何使用本地仓库。
 
-`docker-registry` 是官方提供的工具，可以用于构建私有的镜像仓库。本文内容基于 `docker-registry` v2。
+[`docker-registry`](https://docs.docker.com/registry/) 是官方提供的工具，可以用于构建私有的镜像仓库。本文内容基于 [`docker-registry`](https://github.com/docker/distribution) v2.x 版本。
 
 ### 安装运行 docker-registry
 
@@ -16,7 +16,7 @@
 $ docker run -d -p 5000:5000 --restart=always --name registry registry
 ```
 
-这将使用官方的 registry 镜像来启动本地的私有仓库。默认情况下，仓库会被创建在容器的 `/var/lib/registry ` 下。可以通过 `-v` 参数来将镜像文件存放在本地的指定路径。例如下面的例子将上传的镜像放到本地的 `/opt/data/registry` 目录。
+这将使用官方的 `registry` 镜像来启动私有仓库。默认情况下，仓库会被创建在容器的 `/var/lib/registry` 目录下。你可以通过 `-v` 参数来将镜像文件存放在本地的指定路径。例如下面的例子将上传的镜像放到本地的 `/opt/data/registry` 目录。
 
 ```bash
 $ docker run -d \
@@ -70,7 +70,7 @@ $ curl 127.0.0.1:5000/v2/_catalog
 
 这里可以看到 `{"repositories":["ubuntu"]}`，表明镜像已经被成功上传了。
 
-先删除已有镜像，再尝试去下载这个镜像。
+先删除已有镜像，再尝试从私有仓库中下载这个镜像。
 
 ```bash
 $ docker rmi 127.0.0.1:5000/ubuntu:latest
@@ -88,3 +88,33 @@ $ docker images
 REPOSITORY                         TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 127.0.0.1:5000/ubuntu:latest       latest              ba5877dc9bec        6 weeks ago         192.7 MB
 ```
+
+### 注意事项
+
+如果你不想使用 `127.0.0.1:5000` 作为仓库地址，比如想让本网段的其他主机也能把镜像推送到私有仓库。你就得把例如 `192.168.199.100:5000` 这样的内网地址作为私有仓库地址，这时你会发现无法成功推送镜像。
+
+这是因为 Docker 默认不允许非 `HTTPS` 方式推送镜像。我们可以通过 Docker 配置来取消这个限制，或者配置能够通过 `HTTPS` 访问的私有仓库。
+
+#### Ubuntu 14.04, Debian 7 Wheezy
+
+对于使用 `upstart` 的系统而言，编辑 `/etc/default/docker` 文件，在其中的 `DOCKER_OPTS` 中增加如下内容：
+
+```bash
+DOCKER_OPTS="--insecure-registries=http://192.168.199.100:5000"
+```
+
+#### Ubuntu 16.04+, Debian 8+, centos 7
+
+对于使用 `systemd` 的系统，请在 `/etc/docker/daemon.json` 中写入如下内容（如果文件不存在请新建该文件）
+
+```json
+{
+  "insecure-registries": [
+    "192.168.199.100:5000"
+  ]
+}
+```
+
+### 其他
+
+对于 Docker for Windows 、 Docker for Mac 在设置中编辑 `daemon.json` 增加和上边一样的字符串即可。
