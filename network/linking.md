@@ -2,11 +2,7 @@
 
 如果你之前有 `Docker` 使用经验，你可能已经习惯了使用 `--link` 参数来使容器互联。
 
-随着 Docker 网络的完善，强烈建议大家将容器加入自定义的 Docker 网络来连接多个容器。
-
-容器的连接（linking）系统是除了端口映射外，另一种跟容器中应用交互的方式。
-
-该系统会在源和接收容器之间创建一个隧道，接收容器可以看到源容器指定的信息。
+随着 Docker 网络的完善，强烈建议大家将容器加入自定义的 Docker 网络来连接多个容器，而不是使用 `--link` 参数。
 
 ### 新建网络
 
@@ -16,15 +12,17 @@
 $ docker network create -d bridge my-net
 ```
 
+`-d` 参数指定 Docker 网络类型，有 `bridge` `overlay`。其中 `overlay` 网络类型用于 [Swarm mode](../swarm_mode/)，在本小节中你可以忽略它。
+
 ### 连接容器
 
-创建一个容器并连接到新建的 `my-net` 网络
+运行一个容器并连接到新建的 `my-net` 网络
 
 ```bash
 $ docker run -it --rm --name busybox1 --net my-net busybox sh
 ```
 
-打开新的终端，再新建一个容器，加入 `my-net` 网络
+打开新的终端，再运行一个容器并加入到 `my-net` 网络
 
 ```bash
 $ docker run -it --rm --name busybox2 --net my-net busybox sh
@@ -49,7 +47,7 @@ PING busybox2 (172.19.0.3): 56 data bytes
 64 bytes from 172.19.0.3: seq=1 ttl=64 time=0.118 ms
 ```
 
-用 ping 来测试连接 `busybox2` 容器，它会解析成 172.19.0.3。
+用 ping 来测试连接 `busybox2` 容器，它会解析成 `172.19.0.3`。
 
 同理在 `busybox2` 容器执行 `ping busybox1`，也会成功连接到。
 
