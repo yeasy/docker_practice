@@ -44,7 +44,7 @@ $ sudo systemctl restart docker
 注意：如果您之前查看旧教程，修改了 `docker.service` 文件内容，请去掉您添加的内容（`--registry-mirror=https://registry.docker-cn.com`），这里不再赘述。
 
 ### Windows 10
-对于使用 Windows 10 的系统，在系统右下角托盘图标内右键菜单选择 `Settings`，打开配置窗口后左侧导航菜单选择 `Docker Daemon`。编辑窗口内的 JSON 串，填写加速器地址，如：
+对于使用 Windows 10 的系统，在系统右下角托盘 Docker 图标内右键菜单选择 `Settings`，打开配置窗口后左侧导航菜单选择 `Docker Daemon`。编辑窗口内的 JSON 串，填写加速器地址，如：
 
 ```json
 {
@@ -59,6 +59,8 @@ $ sudo systemctl restart docker
 ### macOS
 
 对于使用 macOS 的用户，在任务栏点击 Docker for mac 应用图标 -> Perferences... -> Daemon -> Registry mirrors。在列表中填写加速器地址即可。修改完成之后，点击 `Apply & Restart` 按钮，Docker 就会重启并应用配置的镜像地址了。
+
+![](_images/install-mac-preference-advanced.png)
 
 ### 检查加速器是否生效
 

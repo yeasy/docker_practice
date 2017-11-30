@@ -2,11 +2,11 @@
 
 ### 系统要求
 
-Docker CE 支持 64 位版本的 Windows 10 Pro，且必须开启 Hyper-V。
+[Docker for Windows](https://docs.docker.com/docker-for-windows/install/) 支持 64 位版本的 Windows 10 Pro，且必须开启 Hyper-V。
 
 ### 安装
 
-点击以下链接下载 [Stable](https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe) 或 [Edge](https://download.docker.com/win/edge/Docker%20for%20Windows%20Installer.exe) 版本的 Docker CE。
+点击以下链接下载 [Stable](https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe) 或 [Edge](https://download.docker.com/win/edge/Docker%20for%20Windows%20Installer.exe) 版本的 Docker for Windows。
 
 下载好之后双击 Docker for Windows Installer.exe 开始安装。
 
@@ -27,7 +27,3 @@ Docker CE 启动之后会在 Windows 任务栏出现鲸鱼图标。
 ### 镜像加速
 
 鉴于国内网络问题，后续拉取 Docker 镜像十分缓慢，强烈建议安装 Docker 之后配置 [国内镜像加速](mirror.md)。
-
-### 参考文档
-
-* [Docker 官方 Windows PC 安装文档](https://docs.docker.com/docker-for-windows/install/)
