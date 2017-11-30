@@ -22,7 +22,7 @@ Docker Registry 公开服务是开放给用户使用、允许用户管理镜像�
 
 ### 私有 Docker Registry
 
-除了使用公开服务外，用户还可以在本地搭建私有 Docker Registry。Docker 官方提供了 [Docker Registry 镜像](https://store.docker.com/images/registry/)，可以直接使用做为私有 Registry 服务。在 [私有仓库](../repository/registry.md) 一节中，会有进一步的搭建私有 Registry 服务的讲解。
+除了使用公开服务外，用户还可以在本地搭建私有 Docker Registry。Docker 官方提供了 [Docker Registry](https://store.docker.com/images/registry/) 镜像，可以直接使用做为私有 Registry 服务。在 [私有仓库](../repository/registry.md) 一节中，会有进一步的搭建私有 Registry 服务的讲解。
 
 开源的 Docker Registry 镜像只提供了 [Docker Registry API](https://docs.docker.com/registry/spec/api/) 的服务端实现，足以支持 `docker` 命令，不影响使用。但不包含图形界面，以及镜像维护、用户管理、访问控制等高级功能。在官方的商业化版本 [Docker Trusted Registry](https://docs.docker.com/datacenter/dtr/2.0/) 中，提供了这些高级功能。
 
