@@ -17,7 +17,7 @@
   $ git push
   ```
 
-* 在 [GitHub](https://github.com/yeasy/docker_practice/pulls) 上提交 Pull request。
+* 在 [GitHub](https://github.com/yeasy/docker_practice/pulls) 上提交 Pull request，添加标签，并邀请维护者进行 Review。
 
 * 定期使用项目仓库内容更新自己仓库内容。
 
