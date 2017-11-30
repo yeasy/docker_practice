@@ -24,7 +24,7 @@
 
 ![](../.image/drone-github.png)
 
-接下来点击这个应用详情，记录 `Client ID` 和 `Client Secret`，接下来会用到。
+接下来点击这个应用详情，记录 `Client ID` 和 `Client Secret`，之后配置 Drone 会用到。
 
 ### 配置 Drone
 
@@ -141,6 +141,7 @@ pipeline:
        - pwd
        - ls
        - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
+       - ./app
 ```
 
 `workspace` 指明 git 源代码克隆的目标路径，本例中 git 源代码将被克隆到 golang 容器中的 `/srv/drone-demo` 目录中。
@@ -169,9 +170,9 @@ $ git push origin master
 
 打开我们部署好的 `Drone` 网站，即可看到构建结果。
 
-![]()
+![](../.image/drone-build.png)
 
-当然我们也可以把构建结果上传到 GitHub，Docker Registry，或者云服务商提供的对象存储中。
+当然我们也可以把构建结果上传到 GitHub，Docker Registry，云服务商提供的对象存储，或者生产环境中。
 
 本书 GitBook 也使用 Drone 进行 CI/CD，具体配置信息请查看本书根目录 [`.drone.yml`](https://github.com/yeasy/docker_practice/blob/master/.drone.yml) 文件。
 
