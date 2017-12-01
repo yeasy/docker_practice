@@ -9,23 +9,29 @@
 Kubernetes 依赖 Etcd 服务来维护所有主节点的状态。
 
 ## 启动 Etcd 服务。
+
 ```bash
 docker run --net=host -d gcr.io/google_containers/etcd:2.0.9 /usr/local/bin/etcd --addr=127.0.0.1:4001 --bind-addr=0.0.0.0:4001 --data-dir=/var/etcd/data
 ```
 
 ## 启动主节点
+
 启动 kubelet。
+
 ```bash
 docker run --net=host -d -v /var/run/docker.sock:/var/run/docker.sock  gcr.io/google_containers/hyperkube:v0.17.0 /hyperkube kubelet --api_servers=http://localhost:8080 --v=2 --address=0.0.0.0 --enable_server --hostname_override=127.0.0.1 --config=/etc/kubernetes/manifests
 ```
 
 ## 启动服务代理
+
 ```bash
 docker run -d --net=host --privileged gcr.io/google_containers/hyperkube:v0.17.0 /hyperkube proxy --master=http://127.0.0.1:8080 --v=2
 ```
 
 ## 测试状态
-在本地访问 8080 端口，应该获取到类似如下的结果：
+
+在本地访问 `8080` 端口，可以获取到如下的结果：
+
 ```bash
 $ curl 127.0.0.1:8080
 {
@@ -48,7 +54,9 @@ $ curl 127.0.0.1:8080
 ```
 
 ## 查看服务
-所有服务启动后过一会，查看本地实际运行的 Docker 容器，应该有如下几个。
+
+所有服务启动后，查看本地实际运行的 Docker 容器，有如下几个。
+
 ```bash
 CONTAINER ID        IMAGE                                        COMMAND                CREATED             STATUS              PORTS               NAMES
 ee054db2516c        gcr.io/google_containers/hyperkube:v0.17.0   "/hyperkube schedule   2 days ago          Up 1 days                               k8s_scheduler.509f29c9_k8s-master-127.0.0.1_default_9941e5170b4365bd4aa91f122ba0c061_e97037f5
@@ -63,14 +71,21 @@ cc3cd263c581        gcr.io/google_containers/etcd:2.0.9          "/usr/local/bin
 这些服务大概分为三类：主节点服务、工作节点服务和其它服务。
 
 ### 主节点服务
-* apiserver 是整个系统的对外接口，提供 RESTful 方式供客户端和其它组件调用；
-* scheduler 负责对资源进行调度，分配某个 pod 到某个节点上；
-* controller-manager 负责管理控制器，包括 endpoint-controller（刷新服务和 pod 的关联信息）和 replication-controller（维护某个 pod 的复制为配置的数值）。
+
+* `apiserver` 是整个系统的对外接口，提供 RESTful 方式供客户端和其它组件调用；
+
+* `scheduler` 负责对资源进行调度，分配某个 pod 到某个节点上；
+
+* `controller-manager` 负责管理控制器，包括 endpoint-controller（刷新服务和 pod 的关联信息）和 replication-controller（维护某个 pod 的复制为配置的数值）。
 
 ### 工作节点服务
-* kubelet 是工作节点执行操作的 agent，负责具体的容器生命周期管理，根据从数据库中获取的信息来管理容器，并上报 pod 运行状态等；
-* proxy 为 pod 上的服务提供访问的代理。
+
+* `kubelet` 是工作节点执行操作的 agent，负责具体的容器生命周期管理，根据从数据库中获取的信息来管理容器，并上报 pod 运行状态等；
+
+* `proxy` 为 pod 上的服务提供访问的代理。
 
 ### 其它服务
-* etcd 是所有状态的存储数据库；
+
+* Etcd 是所有状态的存储数据库；
+
 * `gcr.io/google_containers/pause:0.8.0` 是 Kubernetes 启动后自动 pull 下来的测试镜像。

@@ -19,14 +19,16 @@
 
 显然，复杂的工作肯定都交给控制节点去做了，工作节点负责提供稳定的操作接口和能力抽象即可。
 
-从这张图上，我们没有能发现 Kubernetes 中对于控制平面的分布式实现，但是由于数据后端自身就是一套分布式的数据库（Etcd），因此可以很容易扩展到分布式实现。
+从这张图上，我们没有能发现 Kubernetes 中对于控制平面的分布式实现，但是由于数据后端自身就是一套分布式的数据库 Etcd，因此可以很容易扩展到分布式实现。
 
 ## 控制平面
 ### 主节点服务
+
 主节点上需要提供如下的管理服务：
-* apiserver 是整个系统的对外接口，提供一套 RESTful 的 [Kubernetes API](https://github.com/GoogleCloudPlatform/kubernetes/blob/master/docs/api.md)，供客户端和其它组件调用；
-* scheduler 负责对资源进行调度，分配某个 pod 到某个节点上。是 pluggable的，意味着很容易选择其它实现方式；
-* controller-manager 负责管理控制器，包括 endpoint-controller（刷新服务和 pod 的关联信息）和 replication-controller（维护某个 pod 的复制为配置的数值）。
+
+* `apiserver` 是整个系统的对外接口，提供一套 RESTful 的 [Kubernetes API](https://github.com/GoogleCloudPlatform/kubernetes/blob/master/docs/api.md)，供客户端和其它组件调用；
+* `scheduler` 负责对资源进行调度，分配某个 pod 到某个节点上。是 pluggable 的，意味着很容易选择其它实现方式；
+* `controller-manager` 负责管理控制器，包括 endpoint-controller（刷新服务和 pod 的关联信息）和 replication-controller（维护某个 pod 的复制为配置的数值）。
 
 ### Etcd
 这里 Etcd 即作为数据后端，又作为消息中间件。
