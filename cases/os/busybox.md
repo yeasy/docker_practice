@@ -107,8 +107,7 @@ busybox 镜像虽然小巧，但包括了大量常见的 Linux 命令，读者�
 
 ### 相关资源
 
-* `Busybox` 官网：`https://busybox.net/`
-* `Busybox` 官方仓库：`https://git.busybox.net/busybox/`
-* `Busybox` 官方镜像：`https://hub.docker.com/_/busybox/`
-* `Busybox` 官方仓库：`https://github.com/docker-library/busybox`
-
+* `Busybox` 官网：https://busybox.net/
+* `Busybox` 官方仓库：https://git.busybox.net/busybox/
+* `Busybox` 官方镜像：https://hub.docker.com/_/busybox/
+* `Busybox` 官方仓库：https://github.com/docker-library/busybox

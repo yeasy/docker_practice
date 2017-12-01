@@ -66,8 +66,7 @@ $ apk --update add --no-cache <package>
 
 ### 相关资源
 
-* `Apline` 官网：`http://alpinelinux.org/`
-* `Apline` 官方仓库：`https://github.com/alpinelinux`
-* `Apline` 官方镜像：`https://hub.docker.com/_/alpine/`
-* `Apline` 官方镜像仓库：`https://github.com/gliderlabs/docker-alpine`
-
+* `Apline` 官网：http://alpinelinux.org/
+* `Apline` 官方仓库：https://github.com/alpinelinux
+* `Apline` 官方镜像：https://hub.docker.com/_/alpine/
+* `Apline` 官方镜像仓库：https://github.com/gliderlabs/docker-alpine

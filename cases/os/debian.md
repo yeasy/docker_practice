@@ -159,12 +159,12 @@ root@7d93de07bf76:/# curl 127.0.0.1
 
 ### 相关资源
 
-* `Debian` 官网：`https://www.debian.org/`
-* `Neuro Debian` 官网：`http://neuro.debian.net/`
-* `Debian` 官方仓库：`https://github.com/Debian`
-* `Debian` 官方镜像：`https://hub.docker.com/_/debian/`
-* `Debian` 官方镜像仓库：`https://github.com/tianon/docker-brew-debian/`
-* `Ubuntu` 官网：`http://www.ubuntu.org.cn/global`
-* `Ubuntu` 官方仓库：`https://github.com/ubuntu`
-* `Ubuntu` 官方镜像：`https://hub.docker.com/_/ubuntu/`
-* `Ubuntu` 官方镜像仓库：`https://github.com/tianon/docker-brew-ubuntu-core`
+* `Debian` 官网：https://www.debian.org/
+* `Neuro Debian` 官网：http://neuro.debian.net/
+* `Debian` 官方仓库：https://github.com/Debian
+* `Debian` 官方镜像：https://hub.docker.com/_/debian/
+* `Debian` 官方镜像仓库：https://github.com/tianon/docker-brew-debian/
+* `Ubuntu` 官网：http://www.ubuntu.org.cn/global
+* `Ubuntu` 官方仓库：https://github.com/ubuntu
+* `Ubuntu` 官方镜像：https://hub.docker.com/_/ubuntu/
+* `Ubuntu` 官方镜像仓库：https://github.com/tianon/docker-brew-ubuntu-core
