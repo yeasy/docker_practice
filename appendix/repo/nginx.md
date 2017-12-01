@@ -31,16 +31,17 @@ $ docker run --name some-nginx -d some-content-nginx
 开放端口，并映射到本地的 `8080` 端口。
 
 ```bash
-docker run --name some-nginx -d -p 8080:80 some-content-nginx
+$ docker run --name some-nginx -d -p 8080:80 some-content-nginx
 ```
 
 Nginx的默认配置文件路径为 `/etc/nginx/nginx.conf`，可以通过映射它来使用本地的配置文件，例如
 
 ```bash
-docker run --name some-nginx -v /some/nginx.conf:/etc/nginx/nginx.conf:ro -d nginx
+$ docker run -d \
+    --name some-nginx \
+    -v /some/nginx.conf:/etc/nginx/nginx.conf:ro \
+    nginx
 ```
-
-使用配置文件时，为了在容器中正常运行，需要保持 `daemon off;`。
 
 ### Dockerfile
 
