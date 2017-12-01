@@ -12,7 +12,7 @@ BusyBox 可运行于多款 POSIX 环境的操作系统中，如 Linux（包括 A
 
 在 Docker Hub 中搜索 busybox 相关的镜像。
 
-```sh
+```bash
 $ docker search busybox
 NAME                            DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
 busybox                         Busybox base image.                             755       [OK]
@@ -26,7 +26,7 @@ azukiapp/busybox                This image is meant to be used as the base...   
 
 读者可以看到最受欢迎的镜像同时带有 OFFICIAL 标记，说明它是官方镜像。用户使用 docker pull 指令下载镜像 `busybox:latest`：
 
-```sh
+```bash
 $ docker pull busybox:latest
 busybox:latest: The image you are pulling has been verified
 e433a6c5b276: Pull complete
@@ -38,7 +38,7 @@ Status: Downloaded newer image for busybox:latest
 
 下载后，可以看到 busybox 镜像只有2.433 MB：
 
-```sh
+```bash
 $ docker images
 REPOSITORY                   TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 busybox                   latest              e72ac664f4f0        6 weeks ago         2.433 MB
@@ -48,7 +48,7 @@ busybox                   latest              e72ac664f4f0        6 weeks ago   
 
 启动一个 busybox 容器，并在容器中执行 grep 命令。
 
-```sh
+```bash
 $ docker run -it busybox
 / # grep
 BusyBox v1.22.1 (2014-05-22 23:22:11 UTC) multi-call binary.
@@ -83,7 +83,7 @@ Search for PATTERN in FILEs (or stdin)
 
 查看容器内的挂载信息。
 
-```sh
+```bash
 / # mount
 rootfs on / type rootfs (rw)
 none on / type aufs (rw,relatime,si=b455817946f8505c)
