@@ -100,7 +100,13 @@ REPOSITORY                         TAG                 IMAGE ID            CREAT
 对于使用 `upstart` 的系统而言，编辑 `/etc/default/docker` 文件，在其中的 `DOCKER_OPTS` 中增加如下内容：
 
 ```bash
-DOCKER_OPTS="--insecure-registries=http://192.168.199.100:5000"
+DOCKER_OPTS="--registry-mirror=https://registry.docker-cn.com --insecure-registries=192.168.199.100:5000"
+```
+
+重新启动服务。
+
+```bash
+$ sudo service docker restart
 ```
 
 #### Ubuntu 16.04+, Debian 8+, centos 7
@@ -109,6 +115,9 @@ DOCKER_OPTS="--insecure-registries=http://192.168.199.100:5000"
 
 ```json
 {
+  "registry-mirror": [
+    "https://registry.docker-cn.com"
+  ],
   "insecure-registries": [
     "192.168.199.100:5000"
   ]
