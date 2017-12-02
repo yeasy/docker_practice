@@ -26,7 +26,13 @@ $ docker run -it --rm --name my-running-app my-nodejs-app
 也可以直接运行一个简单容器。
 
 ```bash
-$ docker run -it --rm --name my-running-script -v "$(pwd)":/usr/src/myapp -w /usr/src/myapp node:0.10 node your-daemon-or-script.js
+$ docker run -it --rm \
+    --name my-running-script \
+    # -v "$(pwd)":/usr/src/myapp \
+    --mount type=bind,src=`$(pwd)`,target=/usr/src/myapp \
+    -w /usr/src/myapp \
+    node:9-alpine \
+    node your-daemon-or-script.js
 ```
 
 ### Dockerfile

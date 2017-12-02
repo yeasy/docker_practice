@@ -31,7 +31,10 @@ $ docker run --name some-app --link some-redis:redis -d application-that-uses-re
 或者通过 `redis-cli`
 
 ```bash
-$ docker run -it --link some-redis:redis --rm redis sh -c 'exec redis-cli -h "$REDIS_PORT_6379_TCP_ADDR" -p "$REDIS_PORT_6379_TCP_PORT"'
+$ docker run -it --rm \
+    --link some-redis:redis \
+    redis \
+    sh -c 'exec redis-cli -h "$REDIS_PORT_6379_TCP_ADDR" -p "$REDIS_PORT_6379_TCP_PORT"'
 ```
 
 ### Dockerfile

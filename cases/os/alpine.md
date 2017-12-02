@@ -14,7 +14,7 @@
 
 下表是官方镜像的大小比较：
 
-```sh
+```bash
 REPOSITORY          TAG           IMAGE ID          VIRTUAL SIZE
 alpine              latest        4e38e38c8ce0      4.799 MB
 debian              latest        4d6ce913b130      84.98 MB
@@ -26,19 +26,9 @@ centos              latest        8efe422e6104      210 MB
 
 由于镜像很小，下载时间往往很短，读者可以直接使用 `docker run` 指令直接运行一个 `Alpine` 容器，并指定运行的 Linux 指令，例如：
 
-```sh
+```bash
 $ docker run alpine echo '123'
 123
-```
-
-笔者使用 time 工具来测试下在本地没有提前 pull 镜像情况下，执行 echo 命令的时间，仅需要 3 秒左右。
-
-```sh
-$ time docker run alpine echo '123'Unable to find image 'alpine:latest' locallylatest: Pulling from library/alpine
-
-e110a4a17941: Pull completeDigest: sha256:3dcdb92d7432d56604d4545cbd324b14e647b313626d99b889d0626de158f73aStatus: Downloaded newer image for alpine:latest123
-
-real 0m3.367s user 0m0.040s sys 0m0.007s
 ```
 
 ### 迁移至 `Alpine` 基础镜像
@@ -53,21 +43,20 @@ real 0m3.367s user 0m0.040s sys 0m0.007s
 
 另外，如果使用 `Alpine` 镜像替换 `Ubuntu` 基础镜像，安装软件包时需要用 apk 包管理器替换 apt 工具，如
 
-```sh
+```bash
 $ apk add --no-cache <package>
 ```
 
 `Alpine` 中软件安装包的名字可能会与其他发行版有所不同，可以在 `https://pkgs.alpinelinux.org/packages` 网站搜索并确定安装包名称。如果需要的安装包不在主索引内，但是在测试或社区索引中。那么可以按照以下方法使用这些安装包。
 
-```sh
+```bash
 $ echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 $ apk --update add --no-cache <package>
 ```
 
 ### 相关资源
 
-* `Apline` 官网：`http://alpinelinux.org/`
-* `Apline` 官方仓库：`https://github.com/alpinelinux`
-* `Apline` 官方镜像：`https://hub.docker.com/_/alpine/`
-* `Apline` 官方镜像仓库：`https://github.com/gliderlabs/docker-alpine`
-
+* `Alpine` 官网：http://alpinelinux.org/
+* `Alpine` 官方仓库：https://github.com/alpinelinux
+* `Alpine` 官方镜像：https://hub.docker.com/_/alpine/
+* `Alpine` 官方镜像仓库：https://github.com/gliderlabs/docker-alpine

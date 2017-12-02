@@ -23,7 +23,10 @@ $ docker run --name some-app --link some-mongo:mongo -d application-that-uses-mo
 或者通过 `mongo`
 
 ```bash
-$ docker run -it --link some-mongo:mongo --rm mongo sh -c 'exec mongo "$MONGO_PORT_27017_TCP_ADDR:$MONGO_PORT_27017_TCP_PORT/test"'
+$ docker run -it --rm \
+    --link some-mongo:mongo \
+    mongo \
+    sh -c 'exec mongo "$MONGO_PORT_27017_TCP_ADDR:$MONGO_PORT_27017_TCP_PORT/test"'
 ```
 
 ### Dockerfile
