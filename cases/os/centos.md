@@ -66,11 +66,11 @@ Fedora release 24 (Twenty Four)
 
 ### 相关资源
 
-* `Fedora` 官网：`https://getfedora.org/`
-* `Fedora` 官方仓库：`https://github.com/fedora-infra`
-* `Fedora` 官方镜像：`https://hub.docker.com/_/fedora/`
-* `Fedora` 官方镜像仓库：`https://github.com/fedora-cloud/docker-brew-fedora`
-* `CentOS` 官网：`https://getfedora.org/`
-* `CentOS` 官方仓库：`https://github.com/CentOS`
-* `CentOS` 官方镜像：`https://hub.docker.com/_/centos/`
-* `CentOS` 官方镜像仓库：`https://github.com/CentOS/CentOS-Dockerfiles`
+* `Fedora` 官网：https://getfedora.org/
+* `Fedora` 官方仓库：https://github.com/fedora-infra
+* `Fedora` 官方镜像：https://hub.docker.com/_/fedora/
+* `Fedora` 官方镜像仓库：https://github.com/fedora-cloud/docker-brew-fedora
+* `CentOS` 官网：https://getfedora.org/
+* `CentOS` 官方仓库：https://github.com/CentOS
+* `CentOS` 官方镜像：https://hub.docker.com/_/centos/
+* `CentOS` 官方镜像仓库：https://github.com/CentOS/CentOS-Dockerfiles

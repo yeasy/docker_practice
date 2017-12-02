@@ -23,7 +23,10 @@ $ docker run --name some-app --link some-mysql:mysql -d application-that-uses-my
 或者通过 `mysql`。
 
 ```bash
-$ docker run -it --link some-mysql:mysql --rm mysql sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD"'
+$ docker run -it --rm \
+    --link some-mysql:mysql \
+    mysql \
+    sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD"'
 ```
 
 ### Dockerfile
