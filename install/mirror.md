@@ -34,6 +34,8 @@ $ sudo service docker restart
 }
 ```
 
+> 注意，一定要保证该文件符合 json 规范，否则 Docker 将不能启动。
+
 之后重新启动服务。
 
 ```bash
@@ -41,7 +43,7 @@ $ sudo systemctl daemon-reload
 $ sudo systemctl restart docker
 ```
 
-注意：如果您之前查看旧教程，修改了 `docker.service` 文件内容，请去掉您添加的内容（`--registry-mirror=https://registry.docker-cn.com`），这里不再赘述。
+>注意：如果您之前查看旧教程，修改了 `docker.service` 文件内容，请去掉您添加的内容（`--registry-mirror=https://registry.docker-cn.com`），这里不再赘述。
 
 ### Windows 10
 对于使用 Windows 10 的系统，在系统右下角托盘 Docker 图标内右键菜单选择 `Settings`，打开配置窗口后左侧导航菜单选择 `Docker Daemon`。编辑窗口内的 JSON 串，填写加速器地址，如：
