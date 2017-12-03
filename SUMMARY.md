@@ -102,6 +102,7 @@
 * [Etcd 项目](etcd/README.md)
     * [简介](etcd/intro.md)
     * [安装](etcd/install.md)
+    * [集群](etcd/cluster.md)
     * [使用 etcdctl](etcd/etcdctl.md)
 * [CoreOS 项目](coreos/README.md)
     * [简介](coreos/intro.md)

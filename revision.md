@@ -8,9 +8,13 @@
 
   * 更新 `CoreOS` 章节
 
+  * 更新 `etcd` 章节，基于 3.x 版本
+
   * 增加 Docker 中文资源链接
 
   * 增加介绍基于 Docker 的 CI/CD 工具 Drone
+
+  * 替换 `docker daemon` 命令为 `dockerd`
 
 * 0.9-rc1: 2017-11-29
 
