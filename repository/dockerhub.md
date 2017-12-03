@@ -80,7 +80,7 @@ username/ubuntu
 
 有时候，用户创建了镜像，安装了某个软件，如果软件发布新版本则需要手动更新镜像。
 
-而自动创建允许用户通过 Docker Hub 指定跟踪一个目标网站（目前支持 [GitHub](https://github.com) 或 [BitBucket](https://bitbucket.org)）上的项目，一旦项目发生新的提交或者创建新的标签（tag），则自动执行创建。
+而自动创建允许用户通过 Docker Hub 指定跟踪一个目标网站（目前支持 [GitHub](https://github.com) 或 [BitBucket](https://bitbucket.org)）上的项目，一旦项目发生新的提交或者创建新的标签（tag），Docker Hub 会自动构建镜像并推送到 Docker Hub 中。
 
 要配置自动创建，包括如下的步骤：
 
