@@ -120,9 +120,9 @@ $ ./build.sh
 ```bash
 $ docker images
 
-REPOSITORY                                               TAG                    IMAGE ID            CREATED              SIZE
-go/helloworld                                            2                      f7cf3465432c        22 seconds ago       6.47MB
-go/helloworld                                            1                      f55d3e16affc        2 minutes ago        295MB
+REPOSITORY      TAG    IMAGE ID        CREATED         SIZE
+go/helloworld   2      f7cf3465432c    22 seconds ago  6.47MB
+go/helloworld   1      f55d3e16affc    2 minutes ago   295MB
 ```
 
 ### 使用多阶段构建
@@ -168,10 +168,10 @@ $ docker build -t go/helloworld:3 .
 ```bash
 $ docker images
 
-REPOSITORY                                               TAG                    IMAGE ID            CREATED              SIZE
-go/helloworld                                            3                      d6911ed9c846        7 seconds ago        6.47MB
-go/helloworld                                            2                      f7cf3465432c        22 seconds ago       6.47MB
-go/helloworld                                            1                      f55d3e16affc        2 minutes ago        295MB
+REPOSITORY        TAG   IMAGE ID         CREATED            SIZE
+go/helloworld     3     d6911ed9c846     7 seconds ago      6.47MB
+go/helloworld     2     f7cf3465432c     22 seconds ago     6.47MB
+go/helloworld     1     f55d3e16affc     2 minutes ago      295MB
 ```
 
 很明显使用多阶段构建的镜像体积小，同时也完美解决了上边提到的问题。
