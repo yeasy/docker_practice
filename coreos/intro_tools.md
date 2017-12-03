@@ -4,28 +4,16 @@
 
 ## 服务发现
 
-`CoreOS` 的第一个重要组件就是使用 `etcd` 来实现的服务发现。
+`CoreOS` 的第一个重要组件就是使用 `etcd` 来实现的服务发现。在 `CoreOS` 中 `etcd` 默认以 `rkt` 容器方式运行。
 
-如果你使用默认的样例 `cloud-config` 文件，那么 `etcd` 会在启动时自动运行。
+```bash
+$ rkt list
 
-```yml
-#cloud-config
-
-hostname: coreos0
-ssh_authorized_keys:
-  - ssh-rsa AAAA...
-coreos:
-  units:
-    - name: etcd.service
-      command: start
-    - name: fleet.service
-      command: start
-  etcd:
-    name: coreos0
-    discovery: https://discovery.etcd.io/<token>
+UUID		  APP	  IMAGE NAME			            STATE	  CREATED		    STARTED		   NETWORKS
+57581644	etcd	quay.io/coreos/etcd:v3.2.10	running	1 minute ago	1 minute ago
 ```
 
-配置文件里有一个 `token`，你可以通过访问 https://discovery.etcd.io/new 来获取一个包含你 `teoken` 的 URL。
+`etcd` 使用方法请查看 [etcd 章节](../etcd/)。 
 
 ## 容器管理
 
