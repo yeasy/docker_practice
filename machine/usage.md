@@ -1,10 +1,10 @@
 ## 使用
 
-Docker Machine 支持多种后端驱动，包括虚拟机、本地主机和云平台等。本小节介绍 Linux、macOS 上 Docker Machine 的使用方法。
+Docker Machine 支持多种后端驱动，包括虚拟机、本地主机和云平台等。
 
-### 本地主机实例
+### 创建本地主机实例
 
-#### 使用 Virtualbox 驱动
+#### Virtualbox 驱动
 
 使用 `virtualbox` 类型的驱动，创建一台 Docker 主机，命名为 test。
 
@@ -48,7 +48,7 @@ $ docker-machine create \
 
 更多参数请使用 `docker-machine create --driver xhyve --help` 命令查看。
 
-## Windows 10
+#### Windows 10
 
 Windows 10 安装 Docker for Windows 之后不能再安装 VirtualBox，也就不能使用 `virtualbox` 驱动来创建 Docker Machine，我们可以选择使用 `hyperv` 驱动。
 
@@ -58,7 +58,7 @@ $ docker-machine create --driver hyperv vm
 
 更多参数请使用 `docker-machine create --driver hyperv --help` 命令查看。
 
-#### 使用介绍
+### 使用介绍
 
 创建好主机之后，查看主机
 
