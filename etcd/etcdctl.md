@@ -127,22 +127,16 @@ $ etcdctl del testkey
 
 #### watch
 
-监测一个键值的变化，一旦键值发生更新，就会输出最新的值并退出。
+监测一个键值的变化，一旦键值发生更新，就会输出最新的值。
 
 例如，用户更新 testkey 键值为 Hello world。
 
 ```bash
 $ etcdctl watch testkey
-Hello world
+PUT
+testkey
+2
 ```
-
-支持的选项包括
-
---forever		一直监测，直到用户按 `CTRL+C` 退出
-
---after-index '0'	在指定 index 之前一直监测
-
---recursive		返回所有的键值和子键值
 
 #### member
 
