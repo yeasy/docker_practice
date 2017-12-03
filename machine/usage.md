@@ -1,8 +1,10 @@
 ## 使用
 
-Docker Machine 支持多种后端驱动，包括虚拟机、本地主机和云平台等。
+Docker Machine 支持多种后端驱动，包括虚拟机、本地主机和云平台等。本小节介绍 Linux、macOS 上 Docker Machine 的使用方法。
 
 ### 本地主机实例
+
+#### 使用 Virtualbox 驱动
 
 使用 `virtualbox` 类型的驱动，创建一台 Docker 主机，命名为 test。
 
@@ -10,7 +12,55 @@ Docker Machine 支持多种后端驱动，包括虚拟机、本地主机和云�
 $ docker-machine create -d virtualbox test
 ```
 
-查看主机
+你也可以在创建时加上如下参数，来配置主机或者主机上的 Docker。
+
+`--engine-opt dns=114.114.114.114` 配置 Docker 的默认 DNS
+
+`--engine-registry-mirror https://registry.docker-cn.com` 配置 Docker 的仓库镜像
+
+`--virtualbox-memory 2048` 配置主机内存
+
+`--virtualbox-cpu-count 2` 配置主机 CPU
+
+更多参数请使用 `docker-machine create --driver virtualbox --help` 命令查看。
+
+#### macOS xhyve 驱动
+
+`xhyve` 驱动 GitHub: https://github.com/zchee/docker-machine-driver-xhyve
+
+[`xhyve`](https://github.com/mist64/xhyve) 是 macOS 上轻量化的虚拟引擎，使用其创建的 Docker Machine 较 `VirtualBox` 驱动创建的运行效率要高。
+
+```bash
+$ brew install docker-machine-driver-xhyve
+
+$ docker-machine create \
+      -d xhyve \
+      # --xhyve-boot2docker-url ~/.docker/machine/cache/boot2docker.iso \
+      --engine-opt dns=114.114.114.114 \
+      --engine-registry-mirror https://registry.docker-cn.com \
+      --xhyve-memory-size 2048 \
+      --xhyve-rawdisk \
+      --xhyve-cpu-count 2 \
+      xhyve
+```
+
+>注意：非首次创建时建议加上 `--xhyve-boot2docker-url ~/.docker/machine/cache/boot2docker.iso` 参数，避免每次创建时都从 GitHub 下载 ISO 镜像。
+
+更多参数请使用 `docker-machine create --driver xhyve --help` 命令查看。
+
+## Windows 10
+
+Windows 10 安装 Docker for Windows 之后不能再安装 VirtualBox，也就不能使用 `virtualbox` 驱动来创建 Docker Machine，我们可以选择使用 `hyperv` 驱动。
+
+```bash
+$ docker-machine create --driver hyperv vm
+```
+
+更多参数请使用 `docker-machine create --driver hyperv --help` 命令查看。
+
+#### 使用介绍
+
+创建好主机之后，查看主机
 
 ```bash
 $ docker-machine ls
@@ -36,6 +86,8 @@ docker@test:~$ docker --version
 Docker version 17.10.0-ce, build f4ffd25
 ```
 
+连接到主机之后你就可以在其上使用 Docker 了。
+
 ### 官方支持驱动
 
 通过 `-d` 选项可以选择支持的驱动类型。
@@ -46,12 +98,14 @@ Docker version 17.10.0-ce, build f4ffd25
 * exoscale
 * generic
 * google
+* hyperv
 * none
 * openstack
 * rackspace
 * softlayer
 * virtualbox
 * vmwarevcloudair
+* vmwarefusion
 * vmwarevsphere
 
 ### 第三方驱动
@@ -89,4 +143,5 @@ Docker version 17.10.0-ce, build f4ffd25
 ```bash
 $ docker-machine COMMAND --help
 ```
+
 来查看具体的用法。
