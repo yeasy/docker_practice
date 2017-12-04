@@ -25,7 +25,7 @@ To add a manager to this swarm, run 'docker swarm join-token manager' and follow
 
 ### 增加工作节点
 
-上一步中我们在本机初始化了一个 `Swarm` 集群，拥有了一个管理节点，下面我们使用 [`Docker Machine`](../machine) 创建两个 Docker 主机，并加入到集群中。
+上一步我们在本机初始化了一个 `Swarm` 集群，拥有了一个管理节点，在 [`Docker Machine`](../machine) 一节中我们了解到 `Docker Machine` 可以在数秒内创建一个虚拟的 Docker 主机，下面我们使用它来创建两个 Docker 主机，并加入到集群中。
 
 ```bash
 $ docker-machine create -d virtualbox worker1
@@ -51,7 +51,7 @@ docker@worker1:~$ docker swarm join \
 This node joined a swarm as a worker.    
 ```
 
-*注意：* 一些细心的读者可能通过 `docker-machine create --help` 查看到 `--swarm*` 等一系列参数。该参数是用于旧的 `Docker Swarm`,与本章所讲的 `Swarm mode` 没有关系。
+>注意：一些细心的读者可能通过 `docker-machine create --help` 查看到 `--swarm*` 等一系列参数。该参数是用于旧的 `Docker Swarm`,与本章所讲的 `Swarm mode` 没有关系。
 
 ### 查看集群
 
