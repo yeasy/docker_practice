@@ -13,11 +13,12 @@
    * [ ] Debian 9
 * [ ] macOS
 * [ ] Windows 10
+* [ ] Raspberry Pi (ARM)
 * [ ] Others (Pls describe below)
 
 ### Docker Version
-<!--如果你的 Docker 版本低于 17.0 请尽可能升级到该版本-->
-<!--if Docker version under 17.0, please upgrade Docker to 17.09-->
+<!--如果你的 Docker 版本低于 17.09 请尽可能升级到该版本-->
+<!--if Docker version under 17.09, please upgrade Docker to 17.09-->
 
 * [x] 17.11 Edge
 * [ ] 17.09 Stable

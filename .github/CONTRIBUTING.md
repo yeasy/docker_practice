@@ -1,5 +1,6 @@
 ## 如何贡献项目
-* 领取或创建新的 [Issue](https://github.com/yeasy/docker_practice/issues)，如 [issue 235](https://github.com/yeasy/docker_practice/issues/235)，添加自己为 Assignee。
+
+* 领取或创建新的 [Issue](https://github.com/yeasy/docker_practice/issues)，如 [issue 235](https://github.com/yeasy/docker_practice/issues/235)，添加自己为 `Assignee`。
 
 * 在 [GitHub](https://github.com/yeasy/docker_practice/fork) 上 `fork` 到自己的仓库，如 `docker_user/docker_practice`，然后 `clone` 到本地，并设置用户信息。
 
@@ -19,7 +20,7 @@
   $ git push
   ```
 
-* 在 [GitHub](https://github.com/yeasy/docker_practice/pulls) 上提交 Pull Request，添加标签，并邀请维护者进行 Review。
+* 在 [GitHub](https://github.com/yeasy/docker_practice/pulls) 上提交 `Pull Request`，添加标签，并邀请维护者进行 `Review`。
 
 * 定期使用项目仓库内容更新自己仓库内容。
 
