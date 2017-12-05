@@ -5,7 +5,7 @@
 从 Docker 镜像仓库获取镜像的命令是 `docker pull`。其命令格式为：
 
 ```bash
-docker pull [选项] [Docker Registry地址]<仓库名>:<标签>
+docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]
 ```
 
 具体的选项可以通过 `docker pull --help` 命令看到，这里我们说一下镜像名称的格式。
@@ -66,15 +66,3 @@ BUG_REPORT_URL="http://bugs.launchpad.net/ubuntu/"
 进入容器后，我们可以在 Shell 下操作，执行任何所需的命令。这里，我们执行了 `cat /etc/os-release`，这是 Linux 常用的查看当前系统版本的命令，从返回的结果可以看到容器内是 `Ubuntu 16.04.4 LTS` 系统。
 
 最后我们通过 `exit` 退出了这个容器。
-
-## Docker 1.13+
-
-在 Docker 1.13+ 版本中推荐使用 `docker image` 来管理镜像。
-
-```bash
-$ docker image pull ubunut:17.10
-
-$ docker container run -it --rm \
-    ubuntu:17.10 \
-    bash
-```
