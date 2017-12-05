@@ -118,7 +118,7 @@ $ ./build.sh
 对比两种方式生成的镜像大小
 
 ```bash
-$ docker images
+$ docker image ls
 
 REPOSITORY      TAG    IMAGE ID        CREATED         SIZE
 go/helloworld   2      f7cf3465432c    22 seconds ago  6.47MB
@@ -166,7 +166,7 @@ $ docker build -t go/helloworld:3 .
 对比三个镜像大小
 
 ```bash
-$ docker images
+$ docker image ls
 
 REPOSITORY        TAG   IMAGE ID         CREATED            SIZE
 go/helloworld     3     d6911ed9c846     7 seconds ago      6.47MB
