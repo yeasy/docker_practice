@@ -18,7 +18,7 @@ $ docker export 7691a814370e > ubuntu.tar
 
 ```bash
 $ cat ubuntu.tar | docker import - test/ubuntu:v1.0
-$ docker images
+$ docker image ls
 REPOSITORY          TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
 test/ubuntu         v1.0                9d37a6082e97        About a minute ago   171.3 MB
 ```

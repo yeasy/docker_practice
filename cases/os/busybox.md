@@ -39,7 +39,7 @@ Status: Downloaded newer image for busybox:latest
 下载后，可以看到 busybox 镜像只有2.433 MB：
 
 ```bash
-$ docker images
+$ docker image ls
 REPOSITORY                   TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 busybox                   latest              e72ac664f4f0        6 weeks ago         2.433 MB
 ```
