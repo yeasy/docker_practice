@@ -6,15 +6,23 @@
 
 * 0.9-rc2: 2017-12-10
 
-  * 更新 `CoreOS` 章节
+  * 增加 Docker 中文资源链接
+  * 增加介绍基于 Docker 的 CI/CD 工具 `Drone`
+  * 增加 `docker secret` 相关内容
 
+  * 更新 `CoreOS` 章节
   * 更新 `etcd` 章节，基于 3.x 版本
 
-  * 增加 Docker 中文资源链接
-
-  * 增加介绍基于 Docker 的 CI/CD 工具 Drone
+  * 删除 `Docker Compose` 中的 `links`指令
 
   * 替换 `docker daemon` 命令为 `dockerd`
+  * 替换 `docker ps` 命令为 `docker container ls`
+  * 替换 `docker images` 命令为 `docker image ls`
+
+  * 优化文字排版
+  * 调整目录结构
+  * 修复内容逻辑错误
+  * 修复`404` 链接
 
 * 0.9-rc1: 2017-11-29
 
@@ -37,8 +45,8 @@
   * 精简 `Docker Registry` 一节
 
   * 替换 `docker run` `-v` 参数为 `--mount`
-  * 替换 `404` 链接
 
+  * 修复 `404` 链接
   * 优化文字排版
   * 增加离线阅读功能
 
