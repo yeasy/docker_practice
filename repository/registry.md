@@ -32,16 +32,18 @@ $ docker run -d \
 先在本机查看已有的镜像。
 
 ```bash
-$ docker images
+$ docker image ls
 REPOSITORY                        TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 ubuntu                            latest              ba5877dc9bec        6 weeks ago         192.7 MB
 ```
 
-使用 `docker tag` 将 `ubuntu:latest` 这个镜像标记为 `127.0.0.1:5000/ubuntu:latest`（格式为 `docker tag IMAGE[:TAG] [REGISTRYHOST/][USERNAME/]NAME[:TAG]`）。
+使用 `docker tag` 将 `ubuntu:latest` 这个镜像标记为 `127.0.0.1:5000/ubuntu:latest`。
+
+格式为 `docker tag IMAGE[:TAG] [REGISTRY_HOST[:REGISTRY_PORT]/]REPOSITORY[:TAG]`。
 
 ```bash
 $ docker tag ubuntu:latest 127.0.0.1:5000/ubuntu:latest
-$ docker images
+$ docker image ls
 REPOSITORY                        TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 ubuntu                            latest              ba5877dc9bec        6 weeks ago         192.7 MB
 127.0.0.1:5000/ubuntu:latest      latest              ba5877dc9bec        6 weeks ago         192.7 MB
@@ -73,7 +75,7 @@ $ curl 127.0.0.1:5000/v2/_catalog
 先删除已有镜像，再尝试从私有仓库中下载这个镜像。
 
 ```bash
-$ docker rmi 127.0.0.1:5000/ubuntu:latest
+$ docker image rm 127.0.0.1:5000/ubuntu:latest
 
 $ docker pull 127.0.0.1:5000/ubuntu:latest
 Pulling repository 127.0.0.1:5000/ubuntu:latest
@@ -84,7 +86,7 @@ ba5877dc9bec: Download complete
 ebc34468f71d: Download complete
 2318d26665ef: Download complete
 
-$ docker images
+$ docker image ls
 REPOSITORY                         TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 127.0.0.1:5000/ubuntu:latest       latest              ba5877dc9bec        6 weeks ago         192.7 MB
 ```
