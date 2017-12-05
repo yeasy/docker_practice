@@ -27,30 +27,20 @@ $ docker run -d ubuntu:17.10 /bin/sh -c "while true; do echo hello world; sleep 
 
 **注：** 容器是否会长久运行，是和 `docker run` 指定的命令有关，和 `-d` 参数无关。
 
-使用 `-d` 参数启动后会返回一个唯一的 id，也可以通过 `docker ps` 命令来查看容器信息。
+使用 `-d` 参数启动后会返回一个唯一的 id，也可以通过 `docker container ls` 命令来查看容器信息。
 
-```bash
-$ docker ps
+```
+$ docker container ls
 CONTAINER ID  IMAGE         COMMAND               CREATED        STATUS       PORTS NAMES
 77b2dc01fe0f  ubuntu:17.10  /bin/sh -c 'while tr  2 minutes ago  Up 1 minute        agitated_wright
 ```
 
-要获取容器的输出信息，可以通过 `docker logs` 命令。
+要获取容器的输出信息，可以通过 `docker container logs` 命令。
 
 ```bash
-$ docker logs [container ID or NAMES]
+$ docker container logs [container ID or NAMES]
 hello world
 hello world
 hello world
 . . .
-```
-
-# Docker 1.13+
-
-在 Docker 1.13+ 版本中推荐使用 `docker container` 来管理镜像。
-
-```bash
-$ docker container run -d
-$ docker container ls
-$ docker container logs
 ```
