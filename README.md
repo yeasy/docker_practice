@@ -17,9 +17,9 @@
 * pdf 版本 [下载](https://www.gitbook.com/download/pdf/book/yeasy/docker_practice)
 * epub 版本 [下载](https://www.gitbook.com/download/epub/book/yeasy/docker_practice)
 
-Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初学者使用最新版的 Docker (v17.x) 进行学习实践。欢迎 [参与维护项目](.github/CONTRIBUTING.md)。
+Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初学者使用最新版的 Docker (v17.x) 进行学习实践。欢迎 [参与维护项目](CONTRIBUTING.md)。
 
-* [修订记录](revision.md)
+* [修订记录](CHANGELOG.md)
 * [贡献者名单](https://github.com/yeasy/docker_practice/graphs/contributors)
 
 ## 技术交流
