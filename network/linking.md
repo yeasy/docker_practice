@@ -19,18 +19,20 @@ $ docker network create -d bridge my-net
 运行一个容器并连接到新建的 `my-net` 网络
 
 ```bash
-$ docker run -it --rm --name busybox1 --net my-net busybox sh
+$ docker run -it --rm --name busybox1 --network my-net busybox sh
 ```
 
 打开新的终端，再运行一个容器并加入到 `my-net` 网络
 
 ```bash
-$ docker run -it --rm --name busybox2 --net my-net busybox sh
+$ docker run -it --rm --name busybox2 --network my-net busybox sh
 ```
 
 再打开一个新的终端查看容器信息
 
 ```bash
+$ docker container ls
+
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 b47060aca56b        busybox             "sh"                11 minutes ago      Up 11 minutes                           busybox2
 8720575823ec        busybox             "sh"                16 minutes ago      Up 16 minutes                           busybox1
