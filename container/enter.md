@@ -12,7 +12,7 @@
 $ docker run -dit ubuntu
 243c32535da7d142fb0e6df616a3c3ada0b8ab417937c853a9e1c251f499f550
 
-$ docker ps
+$ docker container ls
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 243c32535da7        ubuntu:latest       "/bin/bash"         18 seconds ago      Up 17 seconds                           nostalgic_hypatia
 
@@ -36,7 +36,7 @@ root@243c32535da7:/#
 $ docker run -dit ubuntu
 69d137adef7a8a689cbcb059e94da5489d3cddd240ff675c640c8d96e84fe1f6
 
-$ docker ps
+$ docker container ls
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 69d137adef7a        ubuntu:latest       "/bin/bash"         18 seconds ago      Up 17 seconds                           zealous_swirles
 
@@ -54,13 +54,3 @@ root@69d137adef7a:/#
 如果从这个 stdin 中 exit，不会导致容器的停止。这就是为什么推荐大家使用 `docker exec` 的原因。
 
 更多参数说明请使用 `docker exec --help` 查看。
-
-## Docker 1.13+
-
-在 Docker 1.13+ 版本中推荐使用 `docker container` 来管理容器。
-
-```bash
-$ docker container attach
-
-$ docker container exec
-```
