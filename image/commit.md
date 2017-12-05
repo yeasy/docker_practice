@@ -82,10 +82,10 @@ sha256:07e33465974800ce65751acc279adc6ed2dc5ed4e0838f8b86f0c87aa1795214
 
 其中 `--author` 是指定修改的作者，而 `--message` 则是记录本次修改的内容。这点和 `git` 版本控制相似，不过这里这些信息可以省略留空。
 
-我们可以在 `docker images` 中看到这个新定制的镜像：
+我们可以在 `docker image ls` 中看到这个新定制的镜像：
 
 ```bash
-$ docker images nginx
+$ docker image ls nginx
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 nginx               v2                  07e334659748        9 seconds ago       181.5 MB
 nginx               1.11                05a60462f8ba        12 days ago         181.5 MB
