@@ -9,6 +9,8 @@
   * 增加 Docker 中文资源链接
   * 增加介绍基于 Docker 的 CI/CD 工具 `Drone`
   * 增加 `docker secret` 相关内容
+  * 增加 `docker config` 相关内容
+  * 增加 `LinuxKit` 相关内容
 
   * 更新 `CoreOS` 章节
   * 更新 `etcd` 章节，基于 3.x 版本
