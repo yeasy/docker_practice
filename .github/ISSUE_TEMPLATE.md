@@ -11,7 +11,7 @@
    * [ ] Debian 9
    * [ ] Debian 8
    * [ ] CoreOS
-* [ ] MacOS
+* [ ] macOS
 * [ ] Windows 10
 * [ ] Raspberry Pi (ARM)
 * [ ] Others (Pls describe below)
