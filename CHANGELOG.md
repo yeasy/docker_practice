@@ -21,6 +21,8 @@
   * 替换 `docker ps` 命令为 `docker container ls`
   * 替换 `docker images` 命令为 `docker image ls`
 
+  * 修改 `安装 Docker` 一节中部分文字表述
+
   * 移除历史遗留文件和错误的文件
   * 优化文字排版
   * 调整目录结构
