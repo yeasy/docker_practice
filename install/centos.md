@@ -27,9 +27,7 @@ $ sudo yum install -y yum-utils \
            lvm2
 ```
 
-鉴于国内网络问题，强烈建议使用国内源，下面先介绍国内源的使用。
-
-#### 国内源
+鉴于国内网络问题，强烈建议使用国内源，官方源请在注释中查看。
 
 执行下面的命令添加 `yum` 软件源：
 
@@ -37,16 +35,12 @@ $ sudo yum install -y yum-utils \
 $ sudo yum-config-manager \
     --add-repo \
     https://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo
-```
 
->以上命令会添加稳定版本的 Docker CE yum 源。从 Docker 17.06 开始，edge test 版本的 yum 源也会包含稳定版本的 Docker CE。
 
-#### 官方源
-
-```bash
-$ sudo yum-config-manager \
-    --add-repo \
-    https://download.docker.com/linux/centos/docker-ce.repo
+# 官方源
+# $ sudo yum-config-manager \
+#     --add-repo \
+#     https://download.docker.com/linux/centos/docker-ce.repo    
 ```
 
 如果需要最新版本的 Docker CE 请使用以下命令：
@@ -54,6 +48,8 @@ $ sudo yum-config-manager \
 ```bash
 $ sudo yum-config-manager --enable docker-ce-edge
 ```
+
+如果需要测试版本的 Docker CE 请使用以下命令：
 
 ```bash
 $ sudo yum-config-manager --enable docker-ce-test

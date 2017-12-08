@@ -52,14 +52,16 @@ $ sudo apt-get install \
     software-properties-common
 ```
 
-鉴于国内网络问题，强烈建议使用国内源，下面先介绍国内源的使用。
-
-#### 国内源
+鉴于国内网络问题，强烈建议使用国内源，官方源请在注释中查看。
 
 为了确认所下载软件包的合法性，需要添加软件源的 GPG 密钥。
 
 ```bash
 $ curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+
+
+# 官方源
+# $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```
 
 然后，我们需要向 `source.list` 中添加 Docker 软件源
@@ -69,20 +71,16 @@ $ sudo add-apt-repository \
     "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu \
     $(lsb_release -cs) \
     stable"
+
+
+# 官方源
+# $ sudo add-apt-repository \
+#    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+#    $(lsb_release -cs) \
+#    stable"    
 ```
 
->以上命令会添加稳定版本的 Docker CE APT 镜像源，如果需要最新版本的 Docker CE 请将 stable 改为 edge 或者 test。从 Docker 17.06 开始，edge test 版本的 APT 镜像源也会包含稳定版本的 Docker。
-
-#### 官方源
-
-```bash
-$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
-$ sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-```
+>以上命令会添加稳定版本的 Docker CE APT 镜像源，如果需要最新或者测试版本的 Docker CE 请将 stable 改为 edge 或者 test。从 Docker 17.06 开始，edge test 版本的 APT 镜像源也会包含稳定版本的 Docker。
 
 #### 安装 Docker CE
 
