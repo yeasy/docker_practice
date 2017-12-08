@@ -16,7 +16,7 @@ ADD ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /
 
 但在某些情况下，如果我们真的是希望复制个压缩文件进去，而不解压缩，这时就不可以使用 `ADD` 命令了。
 
-在 Docker 官方的 [最佳实践文档](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/) 中要求，尽可能的使用 `COPY`，因为 `COPY` 的语义很明确，就是复制文件而已，而 `ADD` 则包含了更复杂的功能，其行为也不一定很清晰。最适合使用 `ADD` 的场合，就是所提及的需要自动解压缩的场合。
+在 Docker 官方的 [Dockerfile 最佳实践文档](../../appendix/best_practices.md) 中要求，尽可能的使用 `COPY`，因为 `COPY` 的语义很明确，就是复制文件而已，而 `ADD` 则包含了更复杂的功能，其行为也不一定很清晰。最适合使用 `ADD` 的场合，就是所提及的需要自动解压缩的场合。
 
 另外需要注意的是，`ADD` 指令会令镜像构建缓存失效，从而可能会令镜像构建变得比较缓慢。
 
