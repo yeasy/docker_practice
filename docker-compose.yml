@@ -2,7 +2,6 @@ version: "3"
 services:
 
   server:
-    # build: ./.travis
     image: yeasy/docker_practice:latest
     ports:
       - 4000:4000
@@ -27,7 +26,7 @@ services:
 
   development:
     build: ./.travis
-    image: yeasy/docker_practice:development
+    image: yeasy/docker_practice:latest
     ports:
       - 4000:4000
     volumes:

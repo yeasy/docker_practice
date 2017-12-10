@@ -102,6 +102,8 @@ $ sudo groupadd docker
 $ sudo usermod -aG docker $USER
 ```
 
+退出当前终端并重新登录，进行如下测试。
+
 ### 测试 Docker 是否安装正确
 
 ```bash

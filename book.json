@@ -10,8 +10,9 @@
   "plugins": [
     "-livereload",
     "image-captions",
-    "github-buttons",
-    "page-treeview"
+    "github",
+    "page-treeview",
+    "editlink"
   ],
   "pluginsConfig": {
     "image-captions": {
@@ -20,13 +21,12 @@
       },
       "caption": "图 _PAGE_LEVEL_._PAGE_IMAGE_NUMBER_ - _CAPTION_"
     },
-    "github-buttons": {
-      "buttons": [{
-        "user": "yeasy",
-        "repo": "docker_practice",
-        "type": "star",
-        "size": "small"
-      }]
+    "github": {
+      "url": "https://github.com/yeasy/docker_practice"
+    },
+    "editlink": {
+      "base": "https://github.com/yeasy/docker_practice/blob/master/",
+      "label": "编辑本页"
     },
     "page-treeview": {
       "copyright": "Copyright &#169; yeasy",
