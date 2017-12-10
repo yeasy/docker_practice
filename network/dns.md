@@ -33,7 +33,7 @@ nameserver 114.114.114.114
 nameserver 8.8.8.8
 ```
 
-如果用户想要手动指定容器的配置，可以利用下面的选项。
+如果用户想要手动指定容器的配置，可以在使用 `docker run` 命令启动容器时加入如下参数：
 
 `-h HOSTNAME` 或者 `--hostname=HOSTNAME` 设定容器的主机名，它会被写到容器内的 `/etc/hostname` 和 `/etc/hosts`。但它在容器外部看不到，既不会在 `docker ps` 中显示，也不会在其他的容器的 `/etc/hosts` 看到。
 
@@ -41,4 +41,4 @@ nameserver 8.8.8.8
 
 `--dns-search=DOMAIN` 设定容器的搜索域，当设定搜索域为 `.example.com` 时，在搜索一个名为 host 的主机时，DNS 不仅搜索 host，还会搜索 `host.example.com`。
 
-*注意：* 如果没有上述最后 2 个选项，Docker 会默认用主机上的 `/etc/resolv.conf` 来配置容器。
+>注意：如果在容器启动时没有指定最后两个参数，Docker 会默认用主机上的 `/etc/resolv.conf` 来配置容器。

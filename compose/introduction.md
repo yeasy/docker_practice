@@ -1,7 +1,5 @@
 ## Compose 简介
 
-![Docker Compose 项目](_images/docker_compose.jpg)
-
 `Compose` 项目是 Docker 官方的开源项目，负责实现对 Docker 容器集群的快速编排。从功能上看，跟 `OpenStack` 中的 `Heat` 十分类似。
 
 其代码目前在 [https://github.com/docker/compose](https://github.com/docker/compose) 上开源。
