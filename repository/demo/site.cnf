@@ -1,0 +1,7 @@
+[server]
+authorityKeyIdentifier=keyid,issuer
+basicConstraints = critical,CA:FALSE
+extendedKeyUsage=serverAuth
+keyUsage = critical, digitalSignature, keyEncipherment
+subjectAltName = DNS:docker.domain.com, IP:127.0.0.1
+subjectKeyIdentifier=hash

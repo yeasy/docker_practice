@@ -1,0 +1,35 @@
+version: 0.1
+log:
+  accesslog:
+    disabled: true
+  level: debug
+  formatter: text
+  fields:
+    service: registry
+    environment: staging
+storage:
+  delete:
+    enabled: true
+  cache:
+    blobdescriptor: inmemory
+  filesystem:
+    rootdirectory: /var/lib/registry
+auth:
+  htpasswd:
+    realm: basic-realm
+    path: /etc/docker/registry/auth/nginx.htpasswd
+http:
+  addr: :5000
+  host: https://docker.domain.com
+  headers:
+    X-Content-Type-Options: [nosniff]
+  http2:
+    disabled: false
+  tls:
+    certificate: /etc/docker/registry/ssl/docker.domain.com.crt
+    key: /etc/docker/registry/ssl/docker.domain.com.key
+health:
+  storagedriver:
+    enabled: true
+    interval: 10s
+threshold: 3
