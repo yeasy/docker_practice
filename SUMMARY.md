@@ -51,6 +51,7 @@
 * [访问仓库](repository/README.md)
     * [Docker Hub](repository/dockerhub.md)
     * [私有仓库](repository/registry.md)
+    * [私有仓库高级配置](repository/registry_auth.md)
 * [数据管理](data_management/README.md)
     * [数据卷](data_management/volume.md)
     * [监听主机目录](data_management/bind-mounts.md)
