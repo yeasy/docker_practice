@@ -26,9 +26,11 @@ $ docker config create redis.conf redis.conf
 
 ### 查看 config
 
-使用 `docker config ls` 命令来查看 `secret`
+使用 `docker config ls` 命令来查看 `config`
 
 ```bash
+$ docker config ls
+
 ID                          NAME                CREATED             UPDATED
 yod8fx8iiqtoo84jgwadp86yk   redis.conf          4 seconds ago       4 seconds ago
 ```
