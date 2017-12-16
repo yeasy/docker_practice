@@ -8,9 +8,9 @@
    * [x] CentOS 7
    * [ ] Ubuntu 16.04
    * [ ] Ubuntu 17.10
-   * [ ] CoreOS
-   * [ ] Debian 8
    * [ ] Debian 9
+   * [ ] Debian 8
+   * [ ] CoreOS
 * [ ] macOS
 * [ ] Windows 10
 * [ ] Raspberry Pi (ARM)
@@ -22,8 +22,7 @@
 
 * [x] 17.11 Edge
 * [ ] 17.09 Stable
-* [ ] 1.13.0
-* [ ] Before 1.13.0
+* [ ] 1.13.0 or Before
 
 ### Problem Description
 <!--描述你的问题，请贴出操作步骤，终端报错日志-->
