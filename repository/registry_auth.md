@@ -80,7 +80,7 @@ $ openssl x509 -req -days 750 -in "site.csr" -sha256 \
 
 这样已经拥有了 `docker.domain.com` 的网站 SSL 私钥 `docker.domain.com.key` 和 SSL 证书 `docker.domain.com.crt`。
 
-新建 `ssl` 文件夹并将 `docker.domain.com.key` `docker.domain.com.cer` 这两个文件移入，删除其他文件。
+新建 `ssl` 文件夹并将 `docker.domain.com.key` `docker.domain.com.crt` 这两个文件移入，删除其他文件。
 
 ### 配置私有仓库
 
