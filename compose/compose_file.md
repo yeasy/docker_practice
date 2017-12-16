@@ -27,7 +27,39 @@ services:
 指定 `Dockerfile` 所在文件夹的路径（可以是绝对路径，或者相对 docker-compose.yml 文件的路径）。 `Compose` 将会利用它自动构建这个镜像，然后使用这个镜像。
 
 ```yaml
-build: /path/to/build/dir
+version: '3'
+services:
+
+  webapp:
+    build: ./dir
+```
+
+你也可以使用 `context` 指令指定 `Dockerfile` 所在文件夹的路径。
+
+使用 `dockerfile` 指令指定 `Dockerfile` 文件名。
+
+使用 `arg` 指令指定构建镜像时的变量。
+
+```yaml
+version: '3'
+services:
+
+  webapp:
+    build:
+      context: ./dir
+      dockerfile: Dockerfile-alternate
+      args:
+        buildno: 1
+```
+
+使用 `cache_from` 指定构建镜像的缓存
+
+```yaml
+build:
+  context: .
+  cache_from:
+    - alpine:latest
+    - corp/web_app:3.14
 ```
 
 ### `cap_add, cap_drop`
@@ -78,7 +110,7 @@ cgroup_parent: cgroups_1
 container_name: docker-web-container
 ```
 
-需要注意，指定容器名称后，该服务将无法进行扩展（scale），因为 Docker 不允许多个容器具有相同的名称。
+>注意: 指定容器名称后，该服务将无法进行扩展（scale），因为 Docker 不允许多个容器具有相同的名称。
 
 ### `deploy`
 
@@ -113,6 +145,8 @@ services:
   db:
     image: postgres
 ```
+
+>注意：`web` 服务不会等待 `redis` `db` 「完全启动」之后才启动。
 
 ### `dns`
 
@@ -189,9 +223,7 @@ environment:
   - SESSION_SECRET
 ```
 
-注意，如果变量名称或者值中用到 `true|false，yes|no` 等表达布尔含义的词汇，最好放到引号里，避免 YAML 自动解析某些内容为对应的布尔语义。
-
-`http://yaml.org/type/bool.html` 中给出了这些特定词汇，包括
+如果变量名称或者值中用到 `true|false，yes|no` 等表达 [布尔](http://yaml.org/type/bool.html) 含义的词汇，最好放到引号里，避免 YAML 自动解析某些内容为对应的布尔语义。这些特定词汇，包括
 
 ```bash
 y|Y|yes|Yes|YES|n|N|no|No|NO|true|True|TRUE|false|False|FALSE|on|On|ON|off|Off|OFF
@@ -211,7 +243,9 @@ expose:
 
 ### `external_links`
 
-链接到 docker-compose.yml 外部的容器，甚至并非 `Compose` 管理的外部容器。参数格式跟 `links` 类似。
+>注意：不建议使用该指令。
+
+链接到 `docker-compose.yml` 外部的容器，甚至并非 `Compose` 管理的外部容器。
 
 ```yaml
 external_links:
@@ -272,7 +306,7 @@ labels:
 
 ### `links`
 
-不推荐使用该指令。
+>注意：不推荐使用该指令。
 
 ### `logging`
 
@@ -303,7 +337,7 @@ options:
 
 ### `network_mode`
 
-设置网络模式。使用和 `docker run` 的 `--net` 参数一样的值。
+设置网络模式。使用和 `docker run` 的 `--network` 参数一样的值。
 
 ```yaml
 network_mode: "bridge"
@@ -343,7 +377,7 @@ pid: "host"
 
 暴露端口信息。
 
-使用宿主：容器 `（HOST:CONTAINER）`格式，或者仅仅指定容器的端口（宿主将会随机选择端口）都可以。
+使用宿主端口：容器端口 `(HOST:CONTAINER)` 格式，或者仅仅指定容器的端口（宿主将会随机选择端口）都可以。
 
 ```yaml
 ports:
@@ -357,7 +391,26 @@ ports:
 
 ### `secrets`
 
-仅用于 `Swarm mode`，详细内容请查看 [`Swarm mode`](../swarm_mode/) 一节。
+存储敏感数据，例如 `mysql` 服务密码。
+
+```bash
+version: "3"
+services:
+
+mysql:
+  image: mysql
+  environment:
+    MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+  secrets:
+    - db_root_password
+    - my_other_secret
+
+secrets:
+  my_secret:
+    file: ./my_secret.txt
+  my_other_secret:
+    external: true
+```
 
 ### `security_opt`
 
@@ -448,12 +501,6 @@ hostname: test
 mac_address: 08-00-27-00-0C-0A
 ```
 
-指定容器中
-
-```yaml
-ipc: host
-```
-
 允许容器中运行一些特权命令。
 
 ```yaml
@@ -478,21 +525,35 @@ read_only: true
 stdin_open: true
 ```
 
-模拟一个假的远程控制台。
+模拟一个伪终端。
 
 ```yaml
 tty: true
 ```
 
-### 读取环境变量
+### 读取变量
 
-Compose 模板文件支持动态读取主机的系统环境变量。
+Compose 模板文件支持动态读取主机的系统环境变量和当前目录下的 `.env` 文件中的变量。
 
-例如，下面的 Compose 文件将从运行它的环境中读取变量 ${MONGO_VERSION} 的值，并写入执行的指令中。
+例如，下面的 Compose 文件将从运行它的环境中读取变量 `${MONGO_VERSION}` 的值，并写入执行的指令中。
 
 ```yaml
+version: "3"
+services:
+
 db:
   image: "mongo:${MONGO_VERSION}"
 ```
 
 如果执行 `MONGO_VERSION=3.2 docker-compose up` 则会启动一个 `mongo:3.2` 镜像的容器；如果执行 `MONGO_VERSION=2.8 docker-compose up` 则会启动一个 `mongo:2.8` 镜像的容器。
+
+若当前目录存在 `.env` 文件，执行 `docker-compose` 命令时将从该文件中读取变量。
+
+在当前目录新建 `.env` 文件并写入以下内容。
+
+```bash
+# 支持 # 号注释
+MONGO_VERSION=3.6
+```
+
+执行 `docker-compose up` 则会启动一个 `mongo:3.6` 镜像的容器。
