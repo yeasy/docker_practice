@@ -45,7 +45,7 @@
     * [启动](container/run.md)
     * [守护态运行](container/daemon.md)
     * [终止](container/stop.md)
-    * [进入容器](container/enter.md)
+    * [进入容器](container/attach_exec.md)
     * [导出和导入](container/import_export.md)
     * [删除](container/rm.md)
 * [访问仓库](repository/README.md)
