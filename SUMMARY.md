@@ -73,7 +73,7 @@
     * [安装与卸载](compose/install.md)
     * [使用](compose/usage.md)
     * [命令说明](compose/commands.md)
-    * [YAML 模板文件](compose/yaml_file.md)
+    * [Compose 模板文件](compose/compose_file.md)
     * [实战 Django](compose/django.md)
     * [实战 Rails](compose/rails.md)
     * [实战 WordPress](compose/wordpress.md)
