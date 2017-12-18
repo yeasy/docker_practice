@@ -7,5 +7,3 @@
 * 数据卷（Volumes）
 
 * 挂载主机目录 (Bind mounts)
-
-Docker 在 1.13 版本引进了新的管理命令（management commands），在 Docker 1.13+ 推荐使用 `docker volume` 子命令来管理 Docker 数据卷。
