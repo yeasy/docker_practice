@@ -70,7 +70,7 @@ Spark 的 Python 实现。
 Cron 的分布式实现，负责任务调度，支持容错。
 
 #### [Jenkins](https://github.com/jenkinsci/mesos-plugin)
-项目维护地址在 https://github.com/jenkinsci/mesos-plugin 。
+项目维护地址在 https://github.com/jenkinsci/mesos-plugin
 
 大名鼎鼎的 CI 引擎。使用 mesos-jenkins 插件，可以将 jenkins 的任务被 Mesos 集群来动态调度执行。
 
