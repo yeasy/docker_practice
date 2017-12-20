@@ -12,9 +12,9 @@ Docker CE 支持以下版本的 [Raspbian](https://www.raspberrypi.org/downloads
 
 *注：* `Raspbian` 是树莓派基金会为树莓派卡片电脑设计的 Linux 发行版，其基于 Debian。
 
-### 使用 APT 镜像源 安装
+### 使用 APT 安装
 
-由于官方源使用 HTTPS 以确保软件下载过程中不被篡改。因此，我们首先需要添加使用 HTTPS 传输的软件包以及 CA 证书。
+由于 apt 源使用 HTTPS 以确保软件下载过程中不被篡改。因此，我们首先需要添加使用 HTTPS 传输的软件包以及 CA 证书。
 
 ```bash
 $ sudo apt-get update
