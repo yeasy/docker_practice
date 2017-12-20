@@ -4,6 +4,8 @@
 
 Docker 目前已经提供了 `secrets` 管理功能，用户可以在 Swarm 集群中安全地管理密码、密钥证书等敏感数据，并允许在多个 Docker 容器实例之间共享访问指定的敏感数据。
 
+>注意： `secret` 也可以在 `Docker Compose` 中使用。
+
 我们可以用 `docker secret` 命令来管理敏感信息。接下来我们在上面章节中创建好的 Swarm 集群中介绍该命令的使用。
 
 这里我们以在 Swarm 集群中部署 `mysql` 和 `wordpress` 服务为例。
