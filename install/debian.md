@@ -24,9 +24,9 @@ $ sudo apt-get remove docker \
 
 Debian 7 的内核默认为 3.2，为了满足 Docker CE 的需求，应该安装 [`backports`](https://backports.debian.org/Instructions/) 的内核。
 
-### 使用 APT 镜像源 安装
+### 使用 APT 安装
 
-由于官方源使用 HTTPS 以确保软件下载过程中不被篡改。因此，我们首先需要添加使用 HTTPS 传输的软件包以及 CA 证书。
+由于 apt 源使用 HTTPS 以确保软件下载过程中不被篡改。因此，我们首先需要添加使用 HTTPS 传输的软件包以及 CA 证书。
 
 Debian 8 Jessie 或者 Debian 9 Stretch 使用以下命令:
 

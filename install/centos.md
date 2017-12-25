@@ -17,7 +17,7 @@ $ sudo yum remove docker \
            docker-engine
 ```
 
-### 使用 yum 源 安装
+### 使用 yum 安装
 
 执行以下命令安装依赖包：
 

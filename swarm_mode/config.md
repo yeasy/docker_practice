@@ -4,7 +4,7 @@
 
 在 Docker 17.06 以上版本中，Docker 新增了 `docker config` 子命令来管理集群中的配置信息，以后你无需将配置文件放入镜像或挂载到容器中就可实现对服务的配置。
 
->注意：`docker config` 仅能在 Swarm 集群中使用。
+>注意：`config` 仅能在 Swarm 集群中使用。
 
 这里我们以在 Swarm 集群中部署 `redis` 服务为例。
 
