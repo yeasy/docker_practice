@@ -7,6 +7,9 @@
 我们使用 `docker swarm init` 在本机初始化一个 `Swarm` 集群。
 
 ```bash
+#先登录到要设置为管理节点的Docker主机中去。
+$ docker-machine ssh manager
+
 $ docker swarm init --advertise-addr 192.168.99.100
 Swarm initialized: current node (dxn1zf6l61qsb1josjja83ngz) is now a manager.
 
