@@ -30,10 +30,10 @@ $ docker run -d -P \
     python app.py
 ```
 
-加了 `readonly` 之后，就挂载为 `只读` 了。如果你在容器内 `/src/webapp` 目录新建文件，会显示如下错误
+加了 `readonly` 之后，就挂载为 `只读` 了。如果你在容器内 `/opt/webapp` 目录新建文件，会显示如下错误
 
 ```bash
-/src/webapp # touch new.txt
+/opt/webapp # touch new.txt
 touch: new.txt: Read-only file system
 ```
 
