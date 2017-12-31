@@ -6,17 +6,19 @@
 
 ```bash
 $ git clone git@github.com:docker_user/docker_practice.git
+
 $ cd docker_practice
-$ git config user.name "yourname"
-$ git config user.email "your email"
 ```
 
 修改代码后提交，并推送到自己的仓库，注意修改提交消息为对应 Issue 号和描述。
 
 ```bash
 # Update the content
+
 $ git commit -a -s
+
 # In commit msg dialog, add content like "Fix issue #235: describe ur change"
+
 $ git push
 ```
 
@@ -26,9 +28,11 @@ $ git push
 
 ```bash
 $ git remote add upstream https://github.com/yeasy/docker_practice
+
 $ git fetch upstream
-$ git checkout master
+
 $ git rebase upstream/master
+
 $ git push -f origin master
 ```
 
