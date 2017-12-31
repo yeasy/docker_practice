@@ -2,9 +2,9 @@
 
 [![](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) [![](https://img.shields.io/docker/pulls/yeasy/docker_practice.svg)](https://store.docker.com/community/images/yeasy/docker_practice) [![](https://travis-ci.org/yeasy/docker_practice.svg?branch=master)](https://travis-ci.org/yeasy/docker_practice) [![](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases) [![](https://badges.gitter.im/docker_practice/Lobby.svg)](https://gitter.im/docker_practice/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-0.9-rc2(2017-12-09)
+0.9.0(2017-12-31)
 
-*修订说明：本书内容将基于 Docker CE v17.MM 进行重新修订，计划 2017 年底发布 0.9.0 版本。旧版本（Docker 1.13-）内容，请阅读 [docker-legacy](https://github.com/yeasy/docker_practice/tree/docker-legacy) 分支的内容。*
+*修订说明：本书内容已基于 Docker CE v17.MM 进行了重新修订，2017 年底发布了 0.9.0 版本。旧版本（Docker 1.13-）内容，请阅读 [docker-legacy](https://github.com/yeasy/docker_practice/tree/docker-legacy) 分支的内容。*
 
 [Docker](http://www.docker.com) 是个划时代的开源项目，它彻底释放了计算虚拟化的威力，极大提高了应用的运行效率，降低了云计算资源供应的成本！使用 Docker，可以让应用的部署、测试和分发都变得前所未有的高效和轻松！
 

@@ -96,17 +96,6 @@ $ docker run --network=my-net --ip=172.25.3.3 -itd --name=my-container busybox
 
 注册服务器是存放实际的镜像文件的地方。注册索引则负责维护用户的账号、权限、搜索、标签等的管理。因此，注册服务器利用注册索引来实现认证等管理。
 
-### 从非官方仓库（例如 non-official-repo.com）下载镜像时候，有时候会提示“Error: Invalid registry endpoint https://non-official-repo.com/v1/……”？
-
-答：Docker 自 1.3.0 版本往后，加强了对镜像安全性的验证，需要添加私有仓库证书，或者手动添加对非官方仓库的信任。
-
-编辑 Docker 配置文件，在其中添加：
-
-```sh
-DOCKER_OPTS="--insecure-registry non-official-repo"
-```
-之后，重启 Docker 服务即可。
-
 ## 配置相关
 
 ### Docker 的配置文件放在哪里，如何修改配置？

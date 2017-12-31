@@ -12,7 +12,7 @@ cd ../gitbook
 
 main(){
   if [ "$1" = build ];then gitbook build; cp -a _book ../gitbook-src; echo $START; date "+%F %T"; exit 0; fi
-  gitbook serve
+  exec gitbook serve
   exit 0
 }
 
