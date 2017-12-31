@@ -64,7 +64,7 @@ RUN apt-get update && apt-get install -y \
 
 ### FROM
 
-尽可能使用当前官方仓库作为你构建镜像的基础。推荐使用 [Debian](https://hub.docker.com/_/debian/) 镜像，因为它被严格控制并保持最小尺寸（目前小于 150 mb），但它仍然是一个完整的发行版。
+尽可能使用当前官方仓库作为你构建镜像的基础。推荐使用 [Alpine](https://hub.docker.com/_/alpine/) 镜像，因为它被严格控制并保持最小尺寸（目前小于 5 MB），但它仍然是一个完整的发行版。
 
 ### LABEL
 
