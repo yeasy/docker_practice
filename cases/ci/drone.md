@@ -105,7 +105,7 @@ $ cd drone-demo
 
 $ git init
 
-$ git remote add origin git@github.com/username/drone-demo.git
+$ git remote add origin git@github.com:username/drone-demo.git
 ```
 
 这里以一个简单的 `Go` 程序为例，该程序输出 `Hello World!`
