@@ -18,3 +18,5 @@ if [ "$1" = update ];then
 fi
 
 docker-compose up server
+
+docker-compose down
