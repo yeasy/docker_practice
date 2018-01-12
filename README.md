@@ -33,7 +33,9 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初�
 * QQ 群 VII （已满）：252403484
 * QQ 群 VIII（已满）：544818750
 * QQ 群 IX  （已满）：571502246
-* QQ 群 X   （可加）：145983035
+* QQ 群 X   （已满）：145983035
+
+>如果你有关于 Docker 的问题，请通过 [Issues](https://github.com/yeasy/docker_practice/issues/new) 来提出你的问题。
 
 ## 进阶学习
 ![](https://github.com/yeasy/docker_practice/raw/master/_images/docker_primer2.png)
