@@ -381,7 +381,7 @@ Marathon 的更多 REST API 可以参考本地自带的文档：`http://marathon
 任务执行后，也可以在对应 slave 节点上通过 Docker 命令查看容器运行情况，容器将以 `mesos-SLAVE_ID` 开头。
 
 ```sh
-$ docker ps
+$ docker container ls
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                     NAMES
 1226b4ec8d7d        python:3            "/bin/sh -c 'python3 "   3 days ago          Up 3 days           0.0.0.0:10000->8080/tcp   mesos-06db0fba-49dc-4d28-ad87-6c2d5a020866-S10.b581149e-2c43-46a2-b652-1a0bc10204b3
 ```

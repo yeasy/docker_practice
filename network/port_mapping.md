@@ -9,7 +9,7 @@
 ```bash
 $ docker run -d -P training/webapp python app.py
 
-$ docker ps -l
+$ docker container ls -l
 CONTAINER ID  IMAGE                   COMMAND       CREATED        STATUS        PORTS                    NAMES
 bc533791f3f5  training/webapp:latest  python app.py 5 seconds ago  Up 2 seconds  0.0.0.0:49155->5000/tcp  nostalgic_morse
 ```
