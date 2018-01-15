@@ -7,8 +7,6 @@ Docker 在 1.13 版本之后，从 2017 年的 3 月 1 日开始，版本命名�
 |版本格式           | YY.MM         |
 |Stable 版本       | 每个季度发行    |
 |Edge 版本         | 每个月发行      |
-|当前 Docker CE Stable 版本 | 17.09 |
-|当前 Docker CE Edge 版本   | 17.11 |
 
 同时 Docker 划分为 CE 和 EE。CE 即社区版（免费，支持周期三个月），EE 即企业版，强调安全，付费使用。
 
