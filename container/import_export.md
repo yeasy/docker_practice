@@ -4,7 +4,7 @@
 
 如果要导出本地某个容器，可以使用 `docker export` 命令。
 ```bash
-$ docker ps -a
+$ docker container ls -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                    PORTS               NAMES
 7691a814370e        ubuntu:14.04        "/bin/bash"         36 hours ago        Exited (0) 21 hours ago                       test
 $ docker export 7691a814370e > ubuntu.tar
