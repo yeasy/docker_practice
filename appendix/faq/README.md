@@ -38,13 +38,13 @@
 
 ## 容器相关
 
-### 容器退出后，通过 docker ps 命令查看不到，数据会丢失么？
+### 容器退出后，通过 docker container ls 命令查看不到，数据会丢失么？
 
-答：容器退出后会处于终止（exited）状态，此时可以通过 `docker ps -a` 查看。其中的数据也不会丢失，还可以通过 `docker start` 命令来启动它。只有删除掉容器才会清除所有数据。
+答：容器退出后会处于终止（exited）状态，此时可以通过 `docker container ls -a` 查看。其中的数据也不会丢失，还可以通过 `docker start` 命令来启动它。只有删除掉容器才会清除所有数据。
 
 ### 如何停止所有正在运行的容器？
 
-答：可以使用 `docker kill $(docker ps -q)` 命令。
+答：可以使用 `docker kill $(docker container ls -q)` 命令。
 
 ### 如何批量清理已经停止的容器？
 
