@@ -14,6 +14,14 @@ script:
 - docker run -it --rm -v $PWD:/srv/gitbook-src yeasy/docker_practice build
 after_success:
 - sudo chmod -R 777 _book
+- echo "FROM nginx:alpine" >> Dockerfile
+- echo "COPY _book /usr/share/nginx/html" >> Dockerfile
+- docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+- docker build -t dockerpracticecn/docker_practice .
+- docker run -dit --rm -p 4000:80 dockerpracticecn/docker_practice
+- sleep 5
+- curl 127.0.0.1:4000
+- docker push dockerpracticecn/docker_practice
 - cd _book
 - git init
 - git remote add origin "$REPO"
