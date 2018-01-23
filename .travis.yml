@@ -14,6 +14,11 @@ script:
 - docker run -it --rm -v $PWD:/srv/gitbook-src yeasy/docker_practice build
 after_success:
 - sudo chmod -R 777 _book
+- echo "FROM nginx:alpine" >> Dockerfile
+- echo "COPY _book /usr/share/nginx/html" >> Dockerfile
+- docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+- docker build -t dockerpracticecn/docker_practice .
+- docker push dockerpracticecn/docker_practice
 - cd _book
 - git init
 - git remote add origin "$REPO"
@@ -21,12 +26,6 @@ after_success:
 - COMMIT=`date "+%F %T"`
 - git commit -m "Travis CI Site updated $COMMIT"
 - git push -f origin master:"$DEPLOY_BRANCH"
-- cd ..
-- echo "FROM nginx:alpine" >> Dockerfile
-- echo "COPY _book /usr/share/nginx/html" >> Dockerfile
-- docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-- docker build -t dockerpracticecn/docker_practice .
-- docker push dockerpracticecn/docker_practice
 env:
   global:
   - DEPLOY_BRANCH: pages
