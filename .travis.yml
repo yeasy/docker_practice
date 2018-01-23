@@ -22,6 +22,8 @@ after_success:
 - git commit -m "Travis CI Site updated $COMMIT"
 - git push -f origin master:"$DEPLOY_BRANCH"
 - cd ..
+- echo "FROM nginx:alpine" >> Dockerfile
+- echo "COPY _book /usr/share/nginx/html" >> Dockerfile
 - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
 - docker build -t dockerpracticecn/docker_practice .
 - docker push dockerpracticecn/docker_practice

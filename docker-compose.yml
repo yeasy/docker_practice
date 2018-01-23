@@ -1,6 +1,8 @@
 version: "3"
 services:
 
+  # docker-compose up server => up a server，Only Support Linux or macOS
+
   server:
     image: yeasy/docker_practice:latest
     ports:
@@ -9,7 +11,7 @@ services:
       - ./:/srv/gitbook-src
     command: server
 
-  # $ docker-compose up build ,then build gitbook
+  # $ docker-compose up build => build gitbook
 
   build:
     image: yeasy/docker_practice:latest
@@ -17,15 +19,16 @@ services:
       - ./:/srv/gitbook-src
     command: build
 
-  # docker-compose build offline
+  # docker-compose build offline => build a nginx server with html
 
   # docker run -it --rm -p 4000:80 dockerpracticecn/docker_practice
 
   offline:
-    build: .
     image: dockerpracticecn/docker_practice
     ports:
       - 4000:80
+
+  # developer test docker image
 
   development:
     build: ./.travis
