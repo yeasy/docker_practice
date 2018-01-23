@@ -9,20 +9,23 @@ services:
       - ./:/srv/gitbook-src
     command: server
 
-  windows:
-    image: nginx:alpine
-    volumes:
-      - ./:/srv/www
-      - .travis/conf.d:/etc/nginx/conf.d
-    ports:
-      - 4000:4000
-    command: ["nginx", "-c", "/etc/nginx/conf.d/nginx.conf", "-g", "daemon off;"]
+  # $ docker-compose up build ,then build gitbook
 
   build:
     image: yeasy/docker_practice:latest
     volumes:
       - ./:/srv/gitbook-src
     command: build
+
+  # docker-compose build offline
+
+  # docker run -it --rm -p 4000:80 dockerpracticecn/docker_practice
+
+  offline:
+    build: .
+    image: dockerpracticecn/docker_practice
+    ports:
+      - 4000:80
 
   development:
     build: ./.travis
