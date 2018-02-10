@@ -62,7 +62,7 @@ $ sudo systemctl restart docker
 
 对于使用 macOS 的用户，在任务栏点击 Docker for mac 应用图标 -> Perferences... -> Daemon -> Registry mirrors。在列表中填写加速器地址即可。修改完成之后，点击 `Apply & Restart` 按钮，Docker 就会重启并应用配置的镜像地址了。
 
-![](_images/install-mac-preference-advanced.png)
+![](_images/install-mac-preference-daemon.png)
 
 ### 检查加速器是否生效
 
