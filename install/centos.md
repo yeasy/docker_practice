@@ -12,9 +12,15 @@ Docker CE 支持 64 位版本 CentOS 7，并且要求内核版本不低于 3.10�
 
 ```bash
 $ sudo yum remove docker \
-           docker-common \
-           docker-selinux \
-           docker-engine
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-selinux \
+                  docker-engine-selinux \
+                  docker-engine
 ```
 
 ### 使用 yum 安装
