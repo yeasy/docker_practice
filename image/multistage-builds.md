@@ -134,7 +134,7 @@ go/helloworld   1      f55d3e16affc    2 minutes ago   295MB
 编写 `Dockerfile` 文件
 
 ```docker
-FROM golang:1.9-alpine
+FROM golang:1.9-alpine as builder
 
 RUN apk --no-cache add git
 
@@ -146,7 +146,7 @@ COPY app.go .
 
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
 
-FROM alpine:latest
+FROM alpine:latest as prod
 
 RUN apk --no-cache add ca-certificates
 
@@ -175,3 +175,25 @@ go/helloworld     1     f55d3e16affc     2 minutes ago      295MB
 ```
 
 很明显使用多阶段构建的镜像体积小，同时也完美解决了上边提到的问题。
+
+#### 只构建某一阶段的镜像
+
+我们可以使用 `as` 来为某一阶段命名，例如
+
+```dockerfile
+FROM golang:1.9-alpine as builder
+```
+
+例如当我们只想构建 `builder` 阶段的镜像时，我们可以在使用 `docker build` 命令时加上 `--target` 参数即可
+
+```bash
+$ docker build --target builder -t username/imagename:tag .
+```
+
+#### 构建时从其他镜像复制文件
+
+上面例子中我们使用 `COPY --from=0 /go/src/github.com/go/helloworld/app .` 从上一阶段的镜像中复制文件，我们也可以复制任意镜像中的文件。
+
+```dockerfile
+$ COPY --from=nginx:latest /etc/nginx/nginx.conf /nginx.conf
+```
