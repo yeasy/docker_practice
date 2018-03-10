@@ -1,4 +1,4 @@
-FROM golang:1.9-alpine
+FROM golang:1.9-alpine as builder
 
 RUN apk --no-cache add git
 
@@ -10,7 +10,7 @@ COPY app.go .
 
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
 
-FROM alpine:latest
+FROM alpine:latest as prod
 
 RUN apk --no-cache add ca-certificates
 
