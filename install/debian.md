@@ -1,5 +1,7 @@
 ## Debian 安装 Docker CE
 
+>警告：切勿在没有配置 Docker APT 源的情况下直接使用 apt 命令安装 Docker.
+
 ### 准备工作
 
 #### 系统要求
@@ -73,19 +75,18 @@ $ curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/debian/gpg | sudo apt-k
 
 ```bash
 $ sudo add-apt-repository \
-   "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/$(. /etc/os-release; echo "$ID") \
+   "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/debian \
    $(lsb_release -cs) \
    stable"
-
 
 # 官方源
 # $ sudo add-apt-repository \
 #    "deb [arch=amd64] https://download.docker.com/linux/debian \
 #    $(lsb_release -cs) \
-#    stable"   
+#    stable"  
 ```
 
->以上命令会添加稳定版本的 Docker CE APT 镜像源，如果需要最新或者测试版本的 Docker CE 请将 stable 改为 edge 或者 test。从 Docker 17.06 开始，edge test 版本的 APT 镜像源也会包含稳定版本的 Docker CE。
+>以上命令会添加稳定版本的 Docker CE APT 源，如果需要最新或者测试版本的 Docker CE 请将 stable 改为 edge 或者 test。从 Docker 17.06 开始，edge test 版本的 APT 源也会包含稳定版本的 Docker CE。
 
 Debian 7 需要进行额外的操作：
 

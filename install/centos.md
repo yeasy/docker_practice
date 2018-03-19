@@ -1,5 +1,7 @@
 ## CentOS 安装 Docker CE
 
+>警告：切勿在没有配置 Docker YUM 源的情况下直接使用 yum 命令安装 Docker.
+
 ### 准备工作
 
 #### 系统要求
