@@ -1,5 +1,7 @@
 ## 树莓派卡片电脑安装 Docker CE
 
+>警告：切勿在没有配置 Docker APT 源的情况下直接使用 apt 命令安装 Docker.
+
 ### 系统要求
 
 Docker CE 不仅支持 `x86_64` 架构的计算机，同时也支持 `ARM` 架构的计算机，本小节内容以树莓派单片电脑为例讲解 `ARM` 架构安装 Docker CE。
