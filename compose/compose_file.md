@@ -285,7 +285,7 @@ healthcheck:
 
 ### `image`
 
-指定为镜像名称或镜像 ID。如果镜像在本地不存在，`Compose` 将会尝试拉去这个镜像。
+指定为镜像名称或镜像 ID。如果镜像在本地不存在，`Compose` 将会尝试拉取这个镜像。
 
 ```yaml
 image: ubuntu
