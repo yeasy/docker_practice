@@ -65,7 +65,7 @@ Rakefile     db           test
 ```bash
 gem 'therubyracer', platforms: :ruby
 ```
-现在我们已经有一个新的 `Gemfile` 文件，需要再重新创建镜像。（这个会步骤会改变 Dockerfile 文件本身，仅仅需要重建一次）。
+现在我们已经有一个新的 `Gemfile` 文件，需要再重新创建镜像。（这个会步骤会改变 Dockerfile 文件本身，所以需要重建一次）。
 
 ```bash
 $ docker-compose build
