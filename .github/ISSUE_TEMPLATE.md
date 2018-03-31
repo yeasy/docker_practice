@@ -17,11 +17,11 @@
 * [x] Others (Pls describe below)
 
 ### Docker Version
-<!--如果你的 Docker 版本低于 17.12 请尽可能升级到该版本，保留你的 Docker 版本，其他选项删除-->
-<!--if Docker version under 17.12, please upgrade Docker to 17.12-->
+<!--如果你的 Docker 版本低于 18.03 请尽可能升级到该版本，保留你的 Docker 版本，其他选项删除-->
+<!--if Docker version under 18.03, please upgrade Docker to 18.03-->
 
-* [x] Edge (v18.01)
-* [x] Stable (v17.12)
+* [x] Edge (v18.04)
+* [x] Stable (v18.03)
 * [x] 1.13.0 or Before
 
 ### Problem Description
