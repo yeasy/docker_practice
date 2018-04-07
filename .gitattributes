@@ -1,0 +1,5 @@
+*           text=auto
+
+*.sh        text eol=lf
+
+secrets/*   text eol=lf
