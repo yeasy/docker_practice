@@ -44,10 +44,10 @@ Ubuntu 是一个以桌面应用为主的GNU/Linux操作系统，其名称来自�
 
 #### 使用 Ubuntu 官方镜像
 
-Ubuntu 相关的镜像有很多，这里使用 `-s 10` 参数，只搜索那些被收藏 10 次以上的镜像。
+Ubuntu 相关的镜像有很多，这里使用 `--filter=stars=10` 参数，只搜索那些被收藏 10 次以上的镜像。
 
 ```bash
-$ docker search -s 10 ubuntu
+$ docker search --filter=stars=10 ubuntu
 
 NAME                                 DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
 ubuntu                               Official Ubuntu base image                      840       [OK]
@@ -61,7 +61,6 @@ clue/ttrss                           The Tiny Tiny RSS feed reader allows you t.
 dockerfile/ubuntu-desktop            Trusted automated Ubuntu Desktop (LXDE) (h...   14                   [OK]
 tutum/ubuntu                         Ubuntu image with SSH access. For the root...   12                   [OK]
 ```
-*注意，Docker 1.12 版本中已经不支持 --stars 参数，则可以使用 -f stars=N 参数。*
 
 根据搜索出来的结果，读者可以自行选择下载镜像并使用。
 
