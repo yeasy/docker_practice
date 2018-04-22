@@ -393,8 +393,8 @@ ports:
 
 存储敏感数据，例如 `mysql` 服务密码。
 
-```bash
-version: "3"
+```yaml
+version: "3.1"
 services:
 
 mysql:
