@@ -12,7 +12,7 @@
 
 本书既适用于具备基础 Linux 知识的 Docker 初学者，也希望可供理解原理和实现的高级用户参考。同时，书中给出的实践案例，可供在进行实际部署时借鉴。前六章为基础内容，供用户理解 Docker 的基本概念和操作；7 ~ 9 章介绍包括数据管理、网络等高级操作；第 10 ~ 13 章介绍了容器生态中的几个核心项目；14、15 章讨论了关于 Docker 安全和实现技术等高级话题。后续章节则分别介绍包括 Etcd、CoreOS、Kubernetes、Mesos、容器云等相关热门开源项目。最后，还展示了使用容器技术的典型的应用场景和实践案例。
 
-* 在线阅读：[GitBook](https://www.gitbook.io/book/yeasy/docker_practice)，[Github](https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md)，[国内镜像](https://github.com/yeasy/docker_practice/wiki/%E9%A1%B9%E7%9B%AE%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F)
+* 在线阅读：[GitBook](https://legacy.gitbook.com/read/book/yeasy/docker_practice)，[Github](https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md)，[国内镜像](https://github.com/yeasy/docker_practice/wiki/%E9%A1%B9%E7%9B%AE%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F)
 * 下载：[pdf](https://github.com/yeasy/docker_practice/wiki/%E4%B8%8B%E8%BD%BD), [epub](https://github.com/yeasy/docker_practice/wiki/%E4%B8%8B%E8%BD%BD)
 * [离线阅读](https://github.com/yeasy/docker_practice/wiki/%E7%A6%BB%E7%BA%BF%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3)
 
