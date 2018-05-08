@@ -16,8 +16,12 @@
 DOCKER_OPTS="--registry-mirror=https://registry.docker-cn.com"
 ```
 
-重新启动服务。
+然后修改`sudo vim /lib/systemd/system/docker.service`文件中修改`ExecStart`变量值：
+```
+ExecStart=/usr/bin/dockerd -H fd:// --registry-mirror=https://registry.docker-cn.com`
+```
 
+然后终端执行`sudo systemctl daemon-reload`, 并重启docker服务：
 ```bash
 $ sudo service docker restart
 ```
