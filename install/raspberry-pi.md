@@ -12,7 +12,7 @@ Docker CE 支持以下版本的 [Raspbian](https://www.raspberrypi.org/downloads
 
 * Raspbian Jessie
 
-*注：* `Raspbian` 是树莓派基金会为树莓派卡片电脑设计的 Linux 发行版，其基于 Debian。
+*注：* `Raspbian` 是树莓派的开发与维护机构 [树莓派基金会](http://www.raspberrypi.org/) 推荐用于树莓派的首选系统，其基于 `Debian`。
 
 ### 使用 APT 安装
 
