@@ -88,6 +88,7 @@
     * [使用 compose 文件](swarm_mode/stack.md)
     * [管理敏感数据](swarm_mode/secret.md)
     * [管理配置信息](swarm_mode/config.md)
+    * [滚动升级](swarm_mode/rolling_update.md)
 * [安全](security/README.md)
     * [内核命名空间](security/kernel_ns.md)
     * [控制组](security/control_group.md)
