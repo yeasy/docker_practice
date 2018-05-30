@@ -2,42 +2,13 @@
 
 使用 Docker 官方的 Registry 创建的仓库面临一些维护问题。比如某些镜像删除以后空间默认是不会回收的，需要一些命令去回收空间然后重启 Registry 程序。在企业中把内部的一些工具包放入 Nexus 中是比较常见的做法，最新版本 `Nexus3.x` 全面支持 Docker 的私有镜像。所以使用 [`Nexus3.x`](https://www.sonatype.com/download-oss-sonatype/) 一个软件来管理 `Docker` , `Maven` , `Yum` , `PyPI` 等是一个明智的选择。
 
-## 安装 JDK
-
-由于 Nexus 是 Java 开发的，所以需要安装 1.8 以上版本的 JDK。本例假设安装的目录在 `/opt/jdk1.8.0_172/` 中
-
-## 安装 Nexus 程序
-
-下载并解压软件包
+## 启动运行 Nexus 容器 
 
 ```bash
-$ mkdir /opt/nexus
-$ cd /opt/nexus
-$ wget https://sonatype-download.global.ssl.fastly.net/repository/repositoryManager/3/nexus-3.12.0-01-unix.tar.gz
-$ tar -zxf nexus-3.12.0-01-unix.tar.gz
+$ TODO
 ```
 
-编辑 Nexus 的启动文件指定 Java 版本，如果您的主机只安装了一个 JDK 的版本那么您可以使用如下命令进行设置
-
-```bash
-$ echo 'export JAVA_HOME="/opt/jdk1.8.0_172/"' | sudo tee -a /etc/profile
-$ echo 'export PATH="$PATH:$JAVA_HOME/bin"' | sudo tee -a /etc/profile
-$ source /etc/profile
-```
-
-如果您的主机有多个 JDK 版本请在 `/opt/nexus/nexus-3.12.0-01/bin/nexus` 文件中将 `INSTALL4J_JAVA_HOME_OVERRIDE` 的值修改为 JDK 的路径。
-
-```bash
-$ cd /opt/nexus/nexus-3.12.0-01/
-$ ./bin/nexus start
-```
-
-其它启动参数，可以直接运行 `/bin/nexus` 命令查看。
-在 `/opt/nexus/` 目录中还有一个文件夹 `sonatype-work` 这是保存 Nexus 设置和上传的仓库数据。这个文件中的内容不丢，数据就不会丢失。后期对 Nexus 升级时这个文件不动，只需要把程序停止后覆盖掉低版本的目录就行。
-
-> 注意： Nexus2.x 版本不能直接升级到 Nexus3.x。如果您的情况是这样，请自行网上搜索升级方法。
-
-如果执行上面的启动命令没有出现问题，那么你可以打开浏览器访问 Nexus 了。 `http://YourIP:8080` 端口的定义请自行修改程序目录下的 `etc/nexus-default.properties` 文件。
+如果执行上面的启动命令没有出现问题，那么你可以打开浏览器访问 Nexus 了。 `http://YourIP:8080`。
 
 第一次启动 Nexus 的默认帐号是 `admin` 密码是 `admin123` 登录以后点击页面上方的齿轮按钮进行设置。
 
