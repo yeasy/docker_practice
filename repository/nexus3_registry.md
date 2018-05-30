@@ -1,15 +1,14 @@
 # Nexus3.x 的私有仓库
 
-使用 Docker 官网自带的 Registry 创建的仓库面临一些维护问题。比如某些不用的镜像删除以后空间默认是不会回收的，需要一些命令去回收空间然后重启 Registry 程序。在企业中把内部的一些工具包放入 Nexus 中是比较常见的做法，最新版本 `Nexus3.x` 全面支持 Docker 的私有镜像。所以使用 [`Nexus3.x`](https://www.sonatype.com/download-oss-sonatype/) 一个软件来管理 `Docker` , `Maven` , `Yum` , `PyPI` 等是一个明智的选择。
+使用 Docker 官方的 Registry 创建的仓库面临一些维护问题。比如某些镜像删除以后空间默认是不会回收的，需要一些命令去回收空间然后重启 Registry 程序。在企业中把内部的一些工具包放入 Nexus 中是比较常见的做法，最新版本 `Nexus3.x` 全面支持 Docker 的私有镜像。所以使用 [`Nexus3.x`](https://www.sonatype.com/download-oss-sonatype/) 一个软件来管理 `Docker` , `Maven` , `Yum` , `PyPI` 等是一个明智的选择。
 
 ## 安装 JDK
 
-由于 Nexus 是 Java 开发的，所以需要安装 JRE 或 JDK 支持的版本在 1.8 以上。 具体安装方法请去网上搜索。
-本例假设安装的目录在 `/opt/jdk1.8.0_172/` 中
+由于 Nexus 是 Java 开发的，所以需要安装 1.8 以上版本的 JDK。本例假设安装的目录在 `/opt/jdk1.8.0_172/` 中
 
 ## 安装 Nexus 程序
 
-下载好软件包以后放在某个目录中
+下载并解压软件包
 
 ```bash
 $ mkdir /opt/nexus
@@ -26,7 +25,7 @@ $ echo 'export PATH="$PATH:$JAVA_HOME/bin"' | sudo tee -a /etc/profile
 $ source /etc/profile
 ```
 
-如果您的主机有多个 JDK 版本请在 `/opt/nexus/nexus-3.12.0-01/bin/nexus` 文件中进行修改 `INSTALL4J_JAVA_HOME_OVERRIDE="/opt/jdk1.8.0_172/"`
+如果您的主机有多个 JDK 版本请在 `/opt/nexus/nexus-3.12.0-01/bin/nexus` 文件中将 `INSTALL4J_JAVA_HOME_OVERRIDE` 的值修改为 JDK 的路径。
 
 ```bash
 $ cd /opt/nexus/nexus-3.12.0-01/
