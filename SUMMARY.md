@@ -52,6 +52,7 @@
     * [Docker Hub](repository/dockerhub.md)
     * [私有仓库](repository/registry.md)
     * [私有仓库高级配置](repository/registry_auth.md)
+    * [Nexus 3](repository/nexus3_registry.md)
 * [数据管理](data_management/README.md)
     * [数据卷](data_management/volume.md)
     * [监听主机目录](data_management/bind-mounts.md)
