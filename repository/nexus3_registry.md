@@ -5,8 +5,9 @@
 ## 启动运行 Nexus 容器 
 
 ```bash
-$ TODO
+docker run -d --name nexus3 --restart=always -p 8081:8081 -v /opt/test:/opt/sonatype/sonatype-work  sonatype/nexus3
 ```
+挂载目录权限需要设置大一点比如chown 777 /opt/test，否则可能出现无法启动。
 
 如果执行上面的启动命令没有出现问题，那么你可以打开浏览器访问 Nexus 了。 `http://YourIP:8080`。
 
