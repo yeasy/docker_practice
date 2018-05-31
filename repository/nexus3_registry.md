@@ -96,9 +96,9 @@ server {
 使用 SSL 加密以后程序需要访问就不能采用修改配置的访问了。具体方法如下：
 
 ```bash
-openssl s_client -showcerts -connect YourDomainName OR HostIP:443 </dev/null 2>/dev/null|openssl x509 -outform PEM >ca.crt
-cat ca.crt | sudo tee -a /etc/ssl/certs/ca-certificates.crt
-systemctl restart docker
+$ openssl s_client -showcerts -connect YourDomainName OR HostIP:443 </dev/null 2>/dev/null|openssl x509 -outform PEM >ca.crt
+$ cat ca.crt | sudo tee -a /etc/ssl/certs/ca-certificates.crt
+$ systemctl restart docker
 ```
 
 使用 `docker login YourDomainName OR HostIP` 进行测试，用户名密码填写上面 Nexus 中生成的。
