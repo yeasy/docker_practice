@@ -1,30 +1,29 @@
-# Nexus3.x 的私有仓库
+## Nexus3.x 的私有仓库
 
 使用 Docker 官方的 Registry 创建的仓库面临一些维护问题。比如某些镜像删除以后空间默认是不会回收的，需要一些命令去回收空间然后重启 Registry 程序。在企业中把内部的一些工具包放入 Nexus 中是比较常见的做法，最新版本 `Nexus3.x` 全面支持 Docker 的私有镜像。所以使用 [`Nexus3.x`](https://www.sonatype.com/download-oss-sonatype/) 一个软件来管理 `Docker` , `Maven` , `Yum` , `PyPI` 等是一个明智的选择。
 
-## 启动运行 Nexus 容器 
+### 启动 Nexus 容器 
 
 ```bash
-docker run -d --name nexus3 --restart=always -p 8081:8081 -v /opt/test:/opt/sonatype/sonatype-work  sonatype/nexus3
+$ docker run -d --name nexus3 --restart=always -p 8081:8081 --mount src=nexus-data,target=/nexus-data sonatype/nexus3
 ```
-挂载目录权限需要设置大一点比如chown 777 /opt/test，否则可能出现无法启动。
 
-如果执行上面的启动命令没有出现问题，那么你可以打开浏览器访问 Nexus 了。 `http://YourIP:8080`。
+等待 3-5 分钟，如果 `nexus3` 容器没有异常退出，那么你可以使用浏览器打开 `http://YourIP:8080` 访问 Nexus 了。
 
 第一次启动 Nexus 的默认帐号是 `admin` 密码是 `admin123` 登录以后点击页面上方的齿轮按钮进行设置。
 
-## 创建仓库
+### 创建仓库
 
-创建一个私有仓库的方法： `Repository->Repositories` 点击右边菜单 `Create repository` 选择 docker (hosted)
+创建一个私有仓库的方法： `Repository->Repositories` 点击右边菜单 `Create repository` 选择 `docker (hosted)`
 
 * Name: 仓库的名称
 * HTTP: 仓库单独的访问端口
-* Enable Docker V1 API: 如果需要同时支持 V1 版本请勾选此项。
-* Hosted Deployment pollcy: 请选择 Allow redeploy 否则无法上传。
+* Enable Docker V1 API: 如果需要同时支持 V1 版本请勾选此项（不建议勾选）。
+* Hosted -> Deployment pollcy: 请选择 Allow redeploy 否则无法上传 Docker 镜像。
 
 其它的仓库创建方法请各位自己摸索，还可以创建一个 docker (proxy) 类型的仓库链接到 DockerHub 上。再创建一个 docker (group) 类型的仓库把刚才的 hosted 与 proxy 添加在一起。主机在访问的时候默认下载私有仓库中的镜像，如果没有将链接到 DockerHub 中下载并缓存到 Nexus 中。
 
-## 添加访问权限
+### 添加访问权限
 
 菜单 `Security->Realms` 把 Docker Bearer Token Realm 移到右边的框中保存。
 
@@ -32,15 +31,11 @@ docker run -d --name nexus3 --restart=always -p 8081:8081 -v /opt/test:/opt/sona
 
 添加用户：菜单 `Security->Users`->`Create local user` 在 `Roles` 选项中选中刚才创建的规则移动到右边的窗口保存。
 
-关于其他的使用方法，请参见 Nexus 的官网或者自行网上搜索。
+### NGINX 加密代理
 
-## NGINX 加密代理
+证书的生成请参见 [`私有仓库高级配置`](registry_auth.md) 里面证书生成一节。
 
-NGINX 的安装方法请自行网上查找答案，这里只讲配置方法。
-
-证书的生成请参见 [`私有仓库高级配置`](https://yeasy.gitbooks.io/docker_practice/content/repository/registry_auth.html) 里面证书生成一节。
-
-安装完以后编辑 NGINX 配置文件
+NGINX 示例配置如下
 
 ```nginx
 upstream register
@@ -91,9 +86,10 @@ server {
 }
 ```
 
-## Docker 主机访问镜像仓库
+### Docker 主机访问镜像仓库
 
-如果不启用 SSL 加密可以通过前面章节的方法添加信任地址到 Docker 的配置文件中重启程序
+如果不启用 SSL 加密可以通过前面章节的方法添加信任地址到 Docker 的配置文件中然后重启 Docker
+
 使用 SSL 加密以后程序需要访问就不能采用修改配置的访问了。具体方法如下：
 
 ```bash
