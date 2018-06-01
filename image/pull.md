@@ -42,7 +42,7 @@ Status: Downloaded newer image for ubuntu:16.04
 ```bash
 $ docker run -it --rm \
     ubuntu:16.04 \
-    bash
+    bin/bash
 
 root@e7009c6ce357:/# cat /etc/os-release
 NAME="Ubuntu"
