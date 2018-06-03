@@ -160,7 +160,7 @@ volumes:
 编辑 `/etc/hosts`
 
 ```bash
-docker.domain.com 127.0.0.1
+127.0.0.1 docker.domain.com
 ```
 
 ### 启动
