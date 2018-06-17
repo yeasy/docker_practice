@@ -24,7 +24,7 @@ $ sudo service docker restart
 
 ### Ubuntu 16.04+、Debian 8+、CentOS 7
 
-对于使用 [systemd](https://www.freedesktop.org/wiki/Software/systemd/) 的系统，请在 `/etc/docker/daemon.json` 中写入如下内容（如果文件不存在请新建该文件）
+对于使用 [systemd](https://www.freedesktop.org/wiki/Software/systemd/) 的系统，请在 `/etc/docker/daemon.conf` 中写入如下内容（如果文件不存在请新建该文件）
 
 ```json
 {
