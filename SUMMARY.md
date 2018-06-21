@@ -55,7 +55,7 @@
     * [Nexus 3](repository/nexus3_registry.md)
 * [数据管理](data_management/README.md)
     * [数据卷](data_management/volume.md)
-    * [监听主机目录](data_management/bind-mounts.md)
+    * [挂载主机目录](data_management/bind-mounts.md)
 * [使用网络](network/README.md)
     * [外部访问容器](network/port_mapping.md)
     * [容器互联](network/linking.md)
