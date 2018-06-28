@@ -2,11 +2,12 @@
 
 国内从 Docker Hub 拉取镜像有时会遇到困难，此时可以配置镜像加速器。Docker 官方和国内很多云服务商都提供了国内加速器服务，例如：
 
-* [Docker 官方提供的中国 registry mirror](https://docs.docker.com/registry/recipes/mirror/#use-case-the-china-registry-mirror)
-* [阿里云加速器](https://cr.console.aliyun.com/#/accelerator)
-* [DaoCloud 加速器](https://www.daocloud.io/mirror#accelerator-doc)
+* [Docker 官方提供的中国 registry mirror `https://registry.docker-cn.com`](https://docs.docker.com/registry/recipes/mirror/#use-case-the-china-registry-mirror)
+* [七牛云加速器 `https://reg-mirror.qiniu.com/`](https://kirk-enterprise.github.io/hub-docs/#/user-guide/mirror)
 
-我们以 Docker 官方加速器为例进行介绍。
+> 当配置某一个加速器地址之后，若发现拉取不到镜像，请切换到另一个加速器地址。
+
+我们以 Docker 官方加速器 `https://registry.docker-cn.com` 为例进行介绍。
 
 ### Ubuntu 14.04、Debian 7 Wheezy
 
