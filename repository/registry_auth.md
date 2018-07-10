@@ -78,9 +78,17 @@ $ openssl x509 -req -days 750 -in "site.csr" -sha256 \
     -out "docker.domain.com.crt" -extfile "site.cnf" -extensions server
 ```
 
-这样已经拥有了 `docker.domain.com` 的网站 SSL 私钥 `docker.domain.com.key` 和 SSL 证书 `docker.domain.com.crt`。
+这样已经拥有了 `docker.domain.com` 的网站 SSL 私钥 `docker.domain.com.key` 和 SSL 证书 `docker.domain.com.crt` 及 CA 根证书 `root-ca.crt`。
 
-新建 `ssl` 文件夹并将 `docker.domain.com.key` `docker.domain.com.crt` 这两个文件移入，删除其他文件。
+新建 `ssl` 文件夹并将 `docker.domain.com.key` `docker.domain.com.crt` `root-ca.crt` 这三个文件移入，删除其他文件。
+
+由于自行签发的 CA 根证书不被系统信任，所以我们需要将 CA 根证书 `root-ca.crt` 移入 `/etc/docker/certs.d/docker.domain.com` 文件夹中。
+
+```bash
+$ sudo mkdir -p /etc/docker/certs.d/docker.domain.com
+
+$ sudo cp ssl/root-ca.crt /etc/docker/certs.d/docker.domain.com/ca.crt
+```
 
 ### 配置私有仓库
 
