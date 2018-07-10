@@ -8,6 +8,7 @@
 
 Docker CE 支持以下版本的 [Ubuntu](https://www.ubuntu.com/server) 操作系统：
 
+* Bionic 18.04 (LTS)
 * Artful 17.10 (Docker CE 17.11 Edge +)
 * Xenial 16.04 (LTS)
 * Trusty 14.04 (LTS)

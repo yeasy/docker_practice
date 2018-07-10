@@ -7,6 +7,8 @@
 
 > 当配置某一个加速器地址之后，若发现拉取不到镜像，请切换到另一个加速器地址。
 
+> 国内各大云服务商均提供了 Docker 镜像加速服务，建议根据运行 Docker 的云平台选择对应的镜像加速服务。
+
 我们以 Docker 官方加速器 `https://registry.docker-cn.com` 为例进行介绍。
 
 ### Ubuntu 14.04、Debian 7 Wheezy
