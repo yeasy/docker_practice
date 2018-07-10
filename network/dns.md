@@ -27,7 +27,7 @@ tmpfs on /etc/resolv.conf type tmpfs ...
 这样每次启动的容器 DNS 自动配置为 `114.114.114.114` 和 `8.8.8.8`。使用以下命令来证明其已经生效。
 
 ```bash
-$ docker run -it --rm ubuntu:17.10  cat etc/resolv.conf
+$ docker run -it --rm ubuntu:18.04  cat etc/resolv.conf
 
 nameserver 114.114.114.114
 nameserver 8.8.8.8
