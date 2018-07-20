@@ -51,16 +51,16 @@ $ sudo yum-config-manager \
 #     https://download.docker.com/linux/centos/docker-ce.repo    
 ```
 
-如果需要最新版本的 Docker CE 请使用以下命令：
-
-```bash
-$ sudo yum-config-manager --enable docker-ce-edge
-```
-
 如果需要测试版本的 Docker CE 请使用以下命令：
 
 ```bash
 $ sudo yum-config-manager --enable docker-ce-test
+```
+
+如果需要每日构建版本的 Docker CE 请使用以下命令：
+
+```bash
+$ sudo yum-config-manager --enable docker-ce-nightly
 ```
 
 #### 安装 Docker CE

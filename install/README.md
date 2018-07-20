@@ -1,15 +1,7 @@
 # 安装 Docker
 
-Docker 在 1.13 版本之后，从 2017 年的 3 月 1 日开始，版本命名规则变为如下：
+Docker 分为 CE 和 EE 两大版本。CE 即社区版（免费，支持周期 7 个月），EE 即企业版，强调安全，付费使用，支持周期 24 个月。
 
-|项目              | 说明           |
-|:--------------- | :-------      |
-|版本格式           | YY.MM         |
-|Stable 版本       | 每个季度发行    |
-|Edge 版本         | 每个月发行      |
-
-同时 Docker 划分为 CE 和 EE。CE 即社区版（免费，支持周期三个月），EE 即企业版，强调安全，付费使用。
-
-Docker CE 每月发布一个 Edge 版本 (17.03, 17.04, 17.05...)，每三个月发布一个 Stable 版本 (17.03, 17.06, 17.09...)，Docker EE 和 Stable 版本号保持一致，但每个版本提供一年维护。
+Docker CE 分为 **stable**, **test**, 和 **nightly** 三个更新频道。每六个月发布一个 **stable** 版本 (18.09, 19.03, 19.09...)。
 
 官方网站上有各种环境下的 [安装指南](https://docs.docker.com/engine/installation/)，这里主要介绍 Docker CE 在 Linux 、Windows 10 (PC) 和 macOS 上的安装。
