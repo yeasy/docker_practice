@@ -1,3 +1,9 @@
+---
+name: Bug report
+about: Create a report to help us improve
+
+---
+
 * [ ] Have u googled the problem? If no, pls do that first!
 
 ### Environment
@@ -17,11 +23,11 @@
 * [x] Others (Pls describe below)
 
 ### Docker Version
-<!--如果你的 Docker 版本低于 18.03 请尽可能升级到该版本，保留你的 Docker 版本，其他选项删除-->
-<!--if Docker version under 18.03, please upgrade Docker to 18.03-->
+<!--如果你的 Docker 版本低于 18.06 请尽可能升级到该版本，保留你的 Docker 版本，其他选项删除-->
+<!--if Docker version under 18.06, please upgrade Docker to 18.06-->
 
-* [x] Edge (v18.04)
-* [x] Stable (v18.03)
+* [x] Edge (v18.06)
+* [x] Stable (v18.06)
 * [x] 1.13.0 or Before
 
 ### Problem Description
