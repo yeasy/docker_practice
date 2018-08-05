@@ -12,10 +12,10 @@ about: Create a report to help us improve
 
 * [x] Linux
    * [x] CentOS 7
-   * [x] Ubuntu 16.04
-   * [x] Ubuntu 17.10
-   * [x] Debian 9
-   * [x] Debian 8
+   * [x] Ubuntu 14.04
+   * [x] Ubuntu 16.04 +
+   * [x] Debian 7
+   * [x] Debian 8 +
    * [x] CoreOS
 * [x] macOS
 * [x] Windows 10
