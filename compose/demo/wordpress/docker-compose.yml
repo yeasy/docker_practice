@@ -24,4 +24,4 @@ services:
        WORDPRESS_DB_USER: wordpress
        WORDPRESS_DB_PASSWORD: wordpress
 volumes:
-    db_data:
+  db_data:
