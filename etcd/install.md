@@ -50,10 +50,10 @@ $ etcd
 此时，可以使用 `etcdctl` 命令进行测试，设置和获取键值 `testkey: "hello world"`，检查 `etcd` 服务是否启动成功：
 
 ```bash
-$ etcdctl member list
+$ ETCDCTL_API=3 etcdctl member list
 8e9e05c52164694d, started, default, http://localhost:2380, http://localhost:2379
 
-$ etcdctl put testkey "hello world"
+$ ETCDCTL_API=3 etcdctl put testkey "hello world"
 OK
 
 $ etcdctl get testkey
