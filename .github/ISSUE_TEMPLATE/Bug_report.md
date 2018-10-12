@@ -1,3 +1,9 @@
+---
+name: Bug report
+about: Create a report to help us improve
+
+---
+
 * [ ] Have u googled the problem? If no, pls do that first!
 
 ### Environment
@@ -6,10 +12,10 @@
 
 * [x] Linux
    * [x] CentOS 7
-   * [x] Ubuntu 16.04
-   * [x] Ubuntu 17.10
-   * [x] Debian 9
-   * [x] Debian 8
+   * [x] Ubuntu 14.04
+   * [x] Ubuntu 16.04 +
+   * [x] Debian 7
+   * [x] Debian 8 +
    * [x] CoreOS
 * [x] macOS
 * [x] Windows 10
@@ -17,11 +23,11 @@
 * [x] Others (Pls describe below)
 
 ### Docker Version
-<!--如果你的 Docker 版本低于 17.12 请尽可能升级到该版本，保留你的 Docker 版本，其他选项删除-->
-<!--if Docker version under 17.12, please upgrade Docker to 17.12-->
+<!--如果你的 Docker 版本低于 18.06 请尽可能升级到该版本，保留你的 Docker 版本，其他选项删除-->
+<!--if Docker version under 18.06, please upgrade Docker to 18.06-->
 
-* [x] Edge (v18.01)
-* [x] Stable (v17.12)
+* [x] Edge (v18.06)
+* [x] Stable (v18.06)
 * [x] 1.13.0 or Before
 
 ### Problem Description

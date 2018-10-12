@@ -1,18 +1,19 @@
 ## Ubuntu 安装 Docker CE
 
+>警告：切勿在没有配置 Docker APT 源的情况下直接使用 apt 命令安装 Docker.
+
 ### 准备工作
 
 #### 系统要求
 
 Docker CE 支持以下版本的 [Ubuntu](https://www.ubuntu.com/server) 操作系统：
 
-* Artful 17.10 (Docker CE 17.11 Edge)
-* Zesty  17.04
+* Bionic 18.04 (LTS)
+* Artful 17.10 (Docker CE 17.11 Edge +)
 * Xenial 16.04 (LTS)
 * Trusty 14.04 (LTS)
 
-
-Docker CE 可以安装在 64 位的 x86 平台或 ARM 平台上。Ubuntu 发行版中，LTS（Long-Term-Support）长期支持版本，会获得 5 年的升级维护支持，这样的版本会更稳定，因此在生产环境中推荐使用 LTS 版本,当前最新的 LTS 版本为 Ubuntu 16.04。
+Docker CE 可以安装在 64 位的 x86 平台或 ARM 平台上。Ubuntu 发行版中，LTS（Long-Term-Support）长期支持版本，会获得 5 年的升级维护支持，这样的版本会更稳定，因此在生产环境中推荐使用 LTS 版本,当前最新的 LTS 版本为 Ubuntu 18.04。
 
 #### 卸载旧版本
 
@@ -38,9 +39,13 @@ $ sudo apt-get install \
     linux-image-extra-virtual
 ```
 
+#### Ubuntu 16.04 +
+
+Ubuntu 16.04 + 上的 Docker CE 默认使用 `overlay2` 存储层驱动,无需手动配置。
+
 ### 使用 APT 安装
 
-由于 apt 源使用 HTTPS 以确保软件下载过程中不被篡改。因此，我们首先需要添加使用 HTTPS 传输的软件包以及 CA 证书。
+由于 `apt` 源使用 HTTPS 以确保软件下载过程中不被篡改。因此，我们首先需要添加使用 HTTPS 传输的软件包以及 CA 证书。
 
 ```bash
 $ sudo apt-get update
@@ -54,7 +59,7 @@ $ sudo apt-get install \
 
 鉴于国内网络问题，强烈建议使用国内源，官方源请在注释中查看。
 
-为了确认所下载软件包的合法性，需要添加软件源的 GPG 密钥。
+为了确认所下载软件包的合法性，需要添加软件源的 `GPG` 密钥。
 
 ```bash
 $ curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
@@ -80,7 +85,7 @@ $ sudo add-apt-repository \
 #    stable"    
 ```
 
->以上命令会添加稳定版本的 Docker CE APT 镜像源，如果需要最新或者测试版本的 Docker CE 请将 stable 改为 edge 或者 test。从 Docker 17.06 开始，edge test 版本的 APT 镜像源也会包含稳定版本的 Docker。
+>以上命令会添加稳定版本的 Docker CE APT 镜像源，如果需要测试或每日构建版本的 Docker CE 请将 stable 改为 test 或者 nightly。
 
 #### 安装 Docker CE
 

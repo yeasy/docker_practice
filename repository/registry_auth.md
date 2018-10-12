@@ -78,9 +78,9 @@ $ openssl x509 -req -days 750 -in "site.csr" -sha256 \
     -out "docker.domain.com.crt" -extfile "site.cnf" -extensions server
 ```
 
-这样已经拥有了 `docker.domain.com` 的网站 SSL 私钥 `docker.domain.com.key` 和 SSL 证书 `docker.domain.com.crt`。
+这样已经拥有了 `docker.domain.com` 的网站 SSL 私钥 `docker.domain.com.key` 和 SSL 证书 `docker.domain.com.crt` 及 CA 根证书 `root-ca.crt`。
 
-新建 `ssl` 文件夹并将 `docker.domain.com.key` `docker.domain.com.crt` 这两个文件移入，删除其他文件。
+新建 `ssl` 文件夹并将 `docker.domain.com.key` `docker.domain.com.crt` `root-ca.crt` 这三个文件移入，删除其他文件。
 
 ### 配置私有仓库
 
@@ -160,7 +160,7 @@ volumes:
 编辑 `/etc/hosts`
 
 ```bash
-docker.domain.com 127.0.0.1
+127.0.0.1 docker.domain.com
 ```
 
 ### 启动
@@ -173,6 +173,14 @@ $ docker-compose up -d
 
 ### 测试私有仓库功能
 
+由于自行签发的 CA 根证书不被系统信任，所以我们需要将 CA 根证书 `ssl/root-ca.crt` 移入 `/etc/docker/certs.d/docker.domain.com` 文件夹中。
+
+```bash
+$ sudo mkdir -p /etc/docker/certs.d/docker.domain.com
+
+$ sudo cp ssl/root-ca.crt /etc/docker/certs.d/docker.domain.com/ca.crt
+```
+
 登录到私有仓库。
 
 ```bash
@@ -182,15 +190,15 @@ $ docker login docker.domain.com
 尝试推送、拉取镜像。
 
 ```bash
-$ docker pull ubuntu:17.10
+$ docker pull ubuntu:18.04
 
-$ docker tag ubuntu:17.10 docker.domain.com/username/ubuntu:17.10
+$ docker tag ubuntu:18.04 docker.domain.com/username/ubuntu:18.04
 
-$ docker push docker.domain.com/username/ubuntu:17.10
+$ docker push docker.domain.com/username/ubuntu:18.04
 
-$ docker image rm docker.domain.com/username/ubuntu:17.10
+$ docker image rm docker.domain.com/username/ubuntu:18.04
 
-$ docker pull docker.domain.com/username/ubuntu:17.10
+$ docker pull docker.domain.com/username/ubuntu:18.04
 ```
 
 如果我们退出登录，尝试推送镜像。
@@ -198,7 +206,7 @@ $ docker pull docker.domain.com/username/ubuntu:17.10
 ```bash
 $ docker logout docker.domain.com
 
-$ docker push docker.domain.com/username/ubuntu:17.10
+$ docker push docker.domain.com/username/ubuntu:18.04
 
 no basic auth credentials
 ```

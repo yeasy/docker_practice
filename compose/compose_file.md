@@ -285,7 +285,7 @@ healthcheck:
 
 ### `image`
 
-指定为镜像名称或镜像 ID。如果镜像在本地不存在，`Compose` 将会尝试拉去这个镜像。
+指定为镜像名称或镜像 ID。如果镜像在本地不存在，`Compose` 将会尝试拉取这个镜像。
 
 ```yaml
 image: ubuntu
@@ -393,8 +393,8 @@ ports:
 
 存储敏感数据，例如 `mysql` 服务密码。
 
-```bash
-version: "3"
+```yaml
+version: "3.1"
 services:
 
 mysql:

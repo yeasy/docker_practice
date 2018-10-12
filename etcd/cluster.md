@@ -5,7 +5,7 @@
 编辑 `docker-compose.yml` 文件
 
 ```yaml
-version: "3"
+version: "3.6"
 services:
 
   node1:

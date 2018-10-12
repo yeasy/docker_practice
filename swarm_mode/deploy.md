@@ -44,6 +44,22 @@ nginx.1.pjfzd39buzlt@swarm2    | 10.255.0.2 - - [25/Nov/2017:02:10:27 +0000] "GE
 nginx.1.pjfzd39buzlt@swarm2    | 2017/11/25 02:10:27 [error] 5#5: *1 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 10.255.0.2, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "192.168.99.101"
 ```
 
+### 服务伸缩
+
+我们可以使用 `docker service scale` 对一个服务运行的容器数量进行伸缩。
+
+当业务处于高峰期时，我们需要扩展服务运行的容器数量。
+
+```bash
+$ docker service scale nginx=5
+```
+
+当业务平稳时，我们需要减少服务运行的容器数量。
+
+```bash
+$ docker service scale nginx=2
+```
+
 ### 删除服务
 
 使用 `docker service rm` 来从 `Swarm` 集群移除某个服务。

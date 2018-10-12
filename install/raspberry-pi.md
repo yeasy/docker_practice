@@ -1,5 +1,7 @@
 ## 树莓派卡片电脑安装 Docker CE
 
+>警告：切勿在没有配置 Docker APT 源的情况下直接使用 apt 命令安装 Docker.
+
 ### 系统要求
 
 Docker CE 不仅支持 `x86_64` 架构的计算机，同时也支持 `ARM` 架构的计算机，本小节内容以树莓派单片电脑为例讲解 `ARM` 架构安装 Docker CE。
@@ -10,7 +12,7 @@ Docker CE 支持以下版本的 [Raspbian](https://www.raspberrypi.org/downloads
 
 * Raspbian Jessie
 
-*注：* `Raspbian` 是树莓派基金会为树莓派卡片电脑设计的 Linux 发行版，其基于 Debian。
+*注：* `Raspbian` 是树莓派的开发与维护机构 [树莓派基金会](http://www.raspberrypi.org/) 推荐用于树莓派的首选系统，其基于 `Debian`。
 
 ### 使用 APT 安装
 
@@ -56,7 +58,7 @@ $ sudo add-apt-repository \
 #    stable"    
 ```
 
->以上命令会添加稳定版本的 Docker CE APT 镜像源，如果需要最新版本的 Docker CE 请将 stable 改为 edge 或者 test。从 Docker 17.06 开始，edge test 版本的 APT 镜像源也会包含稳定版本的 Docker CE。
+>以上命令会添加稳定版本的 Docker CE APT 源，如果需要测试或每日构建版本的 Docker CE 请将 stable 改为 test 或者 nightly。
 
 #### 安装 Docker CE
 

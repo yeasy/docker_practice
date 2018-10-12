@@ -1,5 +1,7 @@
 ## CentOS 安装 Docker CE
 
+>警告：切勿在没有配置 Docker YUM 源的情况下直接使用 yum 命令安装 Docker.
+
 ### 准备工作
 
 #### 系统要求
@@ -12,9 +14,15 @@ Docker CE 支持 64 位版本 CentOS 7，并且要求内核版本不低于 3.10�
 
 ```bash
 $ sudo yum remove docker \
-           docker-common \
-           docker-selinux \
-           docker-engine
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-selinux \
+                  docker-engine-selinux \
+                  docker-engine
 ```
 
 ### 使用 yum 安装
@@ -43,16 +51,16 @@ $ sudo yum-config-manager \
 #     https://download.docker.com/linux/centos/docker-ce.repo    
 ```
 
-如果需要最新版本的 Docker CE 请使用以下命令：
-
-```bash
-$ sudo yum-config-manager --enable docker-ce-edge
-```
-
 如果需要测试版本的 Docker CE 请使用以下命令：
 
 ```bash
 $ sudo yum-config-manager --enable docker-ce-test
+```
+
+如果需要每日构建版本的 Docker CE 请使用以下命令：
+
+```bash
+$ sudo yum-config-manager --enable docker-ce-nightly
 ```
 
 #### 安装 Docker CE
