@@ -2,7 +2,7 @@
 
 [![](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) [![](https://img.shields.io/docker/pulls/yeasy/docker_practice.svg)](https://store.docker.com/community/images/yeasy/docker_practice) [![](https://travis-ci.org/yeasy/docker_practice.svg?branch=master)](https://travis-ci.org/yeasy/docker_practice) [![](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases) [![](https://badges.gitter.im/docker_practice/Lobby.svg)](https://gitter.im/docker_practice/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-0.9.1
+1.0.0
 
 *说明：本书自 0.9.0 版本起基于最新的 Docker CE v18.X 特性进行讲解。Docker 旧版本（1.13-）使用，请参考 [docker-legacy](https://github.com/yeasy/docker_practice/tree/docker-legacy) 分支。*
 
