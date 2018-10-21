@@ -13,6 +13,7 @@
 * [安装 Docker](install/README.md)
     * [Ubuntu](install/ubuntu.md)
     * [Debian](install/debian.md)
+    * [Fedora](install/fedora.md)
     * [CentOS](install/centos.md)
     * [Raspberry Pi](install/raspberry-pi.md)
     * [macOS](install/mac.md)
