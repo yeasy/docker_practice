@@ -155,8 +155,8 @@ $ docker run hello-world
 
 Unable to find image 'hello-world:latest' locally
 latest: Pulling from library/hello-world
-ca4f61b1923c: Pull complete
-Digest: sha256:be0cd392e45be79ffeffa6b05338b98ebb16c87b255f48e297ec7f98e123905c
+d1725b59e92d: Pull complete
+Digest: sha256:0add3ace90ecb4adbf7777e9aacf18357296e799f81cabc9fde470971e499788
 Status: Downloaded newer image for hello-world:latest
 
 Hello from Docker!
@@ -175,10 +175,10 @@ To try something more ambitious, you can run an Ubuntu container with:
  $ docker run -it ubuntu bash
 
 Share images, automate workflows, and more with a free Docker ID:
- https://cloud.docker.com/
+ https://hub.docker.com/
 
 For more examples and ideas, visit:
- https://docs.docker.com/engine/userguide/
+ https://docs.docker.com/get-started/
 ```
 
 若能正常输出以上信息，则说明安装成功。
@@ -189,4 +189,4 @@ For more examples and ideas, visit:
 
 ### 参考文档
 
-* [Docker 官方 Debian 安装文档](https://docs.docker.com/engine/installation/linux/docker-ce/debian/)
+* [Docker 官方 Debian 安装文档](https://docs.docker.com/install/linux/docker-ce/debian/)
