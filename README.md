@@ -2,7 +2,7 @@
 
 [![](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) [![](https://img.shields.io/docker/pulls/yeasy/docker_practice.svg)](https://store.docker.com/community/images/yeasy/docker_practice) [![](https://travis-ci.org/yeasy/docker_practice.svg?branch=master)](https://travis-ci.org/yeasy/docker_practice) [![](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases) [![](https://badges.gitter.im/docker_practice/Lobby.svg)](https://gitter.im/docker_practice/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-1.0.0
+v1.0.0
 
 *说明：本书自 0.9.0 版本起基于最新的 Docker CE v18.X 特性进行讲解。Docker 旧版本（1.13-）使用，请参考 [docker-legacy](https://github.com/yeasy/docker_practice/tree/docker-legacy) 分支。*
 
@@ -38,12 +38,12 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初�
 >如果有问题，请通过 [Issues](https://github.com/yeasy/docker_practice/issues/new/choose) 来提出。
 
 ## 进阶学习
-![](https://github.com/yeasy/docker_practice/raw/master/_images/docker_primer2.png)
+![](_images/docker_primer3.png)
 
-《[Docker 技术入门与实战](http://item.jd.com/12121728.html)》第二版已经正式出版，针对初版内容进行升级，欢迎大家阅读使用并反馈建议。
+《[Docker 技术入门与实战](http://item.jd.com/12453318.html)》第三版已经面世，介绍最新的容器技术栈，欢迎大家阅读使用并反馈建议。
 
-* [京东图书](https://item.jd.com/12121728.html)
-* [China-Pub](http://product.china-pub.com/5089907)
+* [京东图书](https://item.jd.com/12453318.html)
+* [China-Pub](http://product.china-pub.com/8052127)
 
 ## 鼓励项目
 
