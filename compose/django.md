@@ -55,7 +55,7 @@ services:
 $ docker-compose run web django-admin.py startproject django_example .
 ```
 
-Compose 会先使用 `Dockerfile` 为 web 服务创建一个镜像，接着使用这个镜像在容器里运行 `django-admin.py startproject composeexample` 指令。
+Compose 会先使用 `Dockerfile` 为 web 服务创建一个镜像，接着使用这个镜像在容器里运行 `django-admin.py startproject django_example` 指令。
 
 这将在当前目录生成一个 `Django` 应用。
 
