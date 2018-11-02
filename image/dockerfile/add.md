@@ -21,3 +21,12 @@ ADD ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /
 另外需要注意的是，`ADD` 指令会令镜像构建缓存失效，从而可能会令镜像构建变得比较缓慢。
 
 因此在 `COPY` 和 `ADD` 指令中选择的时候，可以遵循这样的原则，所有的文件复制均使用 `COPY` 指令，仅在需要自动解压缩的场合使用 `ADD`。
+
+在使用该指令的时候还可以加上 `--chown=<user>:<group>` 选项来改变文件的所属用户及所属组。
+
+```Dockerfile
+ADD --chown=55:mygroup files* /mydir/
+ADD --chown=bin files* /mydir/
+ADD --chown=1 files* /mydir/
+ADD --chown=10:11 files* /mydir/
+```
