@@ -10,9 +10,9 @@ Docker CE 支持以下版本的 [Ubuntu](https://www.ubuntu.com/server) 操作�
 
 * Bionic 18.04 (LTS)
 * Xenial 16.04 (LTS)
-* Trusty 14.04 (LTS)
+* Trusty 14.04 (LTS) (Docker CE v18.06 及以下版本)
 
-Docker CE 可以安装在 64 位的 x86 平台或 ARM 平台上。Ubuntu 发行版中，LTS（Long-Term-Support）长期支持版本，会获得 5 年的升级维护支持，这样的版本会更稳定，因此在生产环境中推荐使用 LTS 版本,当前最新的 LTS 版本为 Ubuntu 18.04。
+Docker CE 可以安装在 64 位的 x86 平台或 ARM 平台上。Ubuntu 发行版中，LTS（Long-Term-Support）长期支持版本，会获得 5 年的升级维护支持，这样的版本会更稳定，因此在生产环境中推荐使用 LTS 版本。
 
 #### 卸载旧版本
 

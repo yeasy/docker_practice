@@ -8,10 +8,10 @@
 
 Docker CE 支持以下版本的 [Debian](https://www.debian.org/intro/about) 操作系统：
 
-* Buster 10 (Docker CE 17.11 Edge +)
+* Buster 10
 * Stretch 9
-* Jessie 8 (LTS)
-* Wheezy 7.7 (LTS)
+* Jessie 8 (LTS) (Docker CE v18.06 及以下版本)
+* Wheezy 7.7 (EOL) (Docker CE v18.03 及以下版本)
 
 #### 卸载旧版本
 
