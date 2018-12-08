@@ -21,6 +21,14 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初�
 * [修订记录](CHANGELOG.md)
 * [贡献者名单](https://github.com/yeasy/docker_practice/graphs/contributors)
 
+## 微信小程序
+
+<p align="center">
+<img width="200" src="https://user-images.githubusercontent.com/16733187/49682252-3ac4c500-faec-11e8-86ab-eafe0139be6b.jpg">
+</p>
+
+<p align="center"><strong>微信扫码 随时随地阅读~</strong></p>
+
 ## 技术交流
 欢迎加入 Docker 技术交流 QQ 群，分享 Docker 资源，交流 Docker 技术。
 
@@ -49,4 +57,8 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初�
 
 欢迎鼓励项目一杯 coffee~
 
-![](https://github.com/yeasy/docker_practice/raw/master/_images/donate.jpeg)
+<p align="center">
+<img width="200" src="https://github.com/yeasy/docker_practice/raw/master/_images/donate.jpeg">
+</p>
+
+<p align="center"><strong>欢迎鼓励项目一杯 coffee~</strong></p>
