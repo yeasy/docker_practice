@@ -55,8 +55,6 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初�
 
 ## 鼓励项目
 
-欢迎鼓励项目一杯 coffee~
-
 <p align="center">
 <img width="200" src="https://github.com/yeasy/docker_practice/raw/master/_images/donate.jpeg">
 </p>

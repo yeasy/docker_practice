@@ -2,4 +2,4 @@
 
 *.sh        text eol=lf
 
-secrets/*   text eol=lf
+*.py        linguist-language=go

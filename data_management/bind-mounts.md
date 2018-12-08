@@ -64,7 +64,7 @@ $ docker inspect web
 $ docker run --rm -it \
    # -v $HOME/.bash_history:/root/.bash_history \
    --mount type=bind,source=$HOME/.bash_history,target=/root/.bash_history \
-   ubuntu:17.10 \
+   ubuntu:18.04 \
    bash
 
 root@2affd44b4667:/# history

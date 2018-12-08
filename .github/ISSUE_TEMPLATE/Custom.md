@@ -23,11 +23,11 @@ about: Create a issue about Docker
 * [x] Others (Pls describe below)
 
 ### Docker Version
-<!--如果你的 Docker 版本低于 18.06 请尽可能升级到该版本，保留你的 Docker 版本，其他选项删除-->
-<!--if Docker version under 18.06, please upgrade Docker to 18.06-->
+<!--如果你的 Docker 版本低于 18.09 请尽可能升级到该版本，保留你的 Docker 版本，其他选项删除-->
+<!--if Docker version under 18.09, please upgrade Docker to 18.09-->
 
-* [x] Edge (v18.06)
-* [x] Stable (v18.06)
+* [x] Edge (v18.09)
+* [x] Stable (v18.09)
 * [x] 1.13.0 or Before
 
 ### Problem Description

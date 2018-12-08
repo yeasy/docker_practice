@@ -7,7 +7,7 @@
 如果不使用 `-d` 参数运行容器。
 
 ```bash
-$ docker run ubuntu:17.10 /bin/sh -c "while true; do echo hello world; sleep 1; done"
+$ docker run ubuntu:18.04 /bin/sh -c "while true; do echo hello world; sleep 1; done"
 hello world
 hello world
 hello world
@@ -19,7 +19,7 @@ hello world
 如果使用了 `-d` 参数运行容器。
 
 ```bash
-$ docker run -d ubuntu:17.10 /bin/sh -c "while true; do echo hello world; sleep 1; done"
+$ docker run -d ubuntu:18.04 /bin/sh -c "while true; do echo hello world; sleep 1; done"
 77b2dc01fe0f3f1265df143181e7b9af5e05279a884f4776ee75350ea9d8017a
 ```
 
@@ -32,7 +32,7 @@ $ docker run -d ubuntu:17.10 /bin/sh -c "while true; do echo hello world; sleep 
 ```
 $ docker container ls
 CONTAINER ID  IMAGE         COMMAND               CREATED        STATUS       PORTS NAMES
-77b2dc01fe0f  ubuntu:17.10  /bin/sh -c 'while tr  2 minutes ago  Up 1 minute        agitated_wright
+77b2dc01fe0f  ubuntu:18.04  /bin/sh -c 'while tr  2 minutes ago  Up 1 minute        agitated_wright
 ```
 
 要获取容器的输出信息，可以通过 `docker container logs` 命令。

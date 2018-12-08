@@ -17,7 +17,7 @@
 假设我们需要一个得知自己当前公网 IP 的镜像，那么可以先用 `CMD` 来实现：
 
 ```Dockerfile
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 RUN apt-get update \
     && apt-get install -y curl \
     && rm -rf /var/lib/apt/lists/*
@@ -49,7 +49,7 @@ $ docker run myip curl -s http://ip.cn -i
 这显然不是很好的解决方案，而使用 `ENTRYPOINT` 就可以解决这个问题。现在我们重新用 `ENTRYPOINT` 来实现这个镜像：
 
 ```Dockerfile
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 RUN apt-get update \
     && apt-get install -y curl \
     && rm -rf /var/lib/apt/lists/*
