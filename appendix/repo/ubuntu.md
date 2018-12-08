@@ -11,7 +11,7 @@
 默认会启动一个最小化的 Ubuntu 环境。
 
 ```bash
-$ docker run --name some-ubuntu -it ubuntu:17.10
+$ docker run --name some-ubuntu -it ubuntu:18.04
 root@523c70904d54:/#
 ```
 
