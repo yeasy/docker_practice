@@ -21,7 +21,7 @@ FROM ubuntu:18.04
 RUN apt-get update \
     && apt-get install -y curl \
     && rm -rf /var/lib/apt/lists/*
-CMD [ "curl", "-s", "http://ip.cn" ]
+CMD [ "curl", "-sL", "http://ip.cn" ]
 ```
 
 假如我们使用 `docker build -t myip .` 来构建镜像的话，如果我们需要查询当前公网 IP，只需要执行：
@@ -43,7 +43,7 @@ docker: Error response from daemon: invalid header field value "oci runtime erro
 那么如果我们希望加入 `-i` 这参数，我们就必须重新完整的输入这个命令：
 
 ```bash
-$ docker run myip curl -s http://ip.cn -i
+$ docker run myip curl -sL http://ip.cn -i
 ```
 
 这显然不是很好的解决方案，而使用 `ENTRYPOINT` 就可以解决这个问题。现在我们重新用 `ENTRYPOINT` 来实现这个镜像：
@@ -53,7 +53,7 @@ FROM ubuntu:18.04
 RUN apt-get update \
     && apt-get install -y curl \
     && rm -rf /var/lib/apt/lists/*
-ENTRYPOINT [ "curl", "-s", "http://ip.cn" ]
+ENTRYPOINT [ "curl", "-sL", "http://ip.cn" ]
 ```
 
 这次我们再来尝试直接使用 `docker run myip -i`：
