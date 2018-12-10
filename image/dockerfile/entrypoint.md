@@ -21,7 +21,7 @@ FROM ubuntu:18.04
 RUN apt-get update \
     && apt-get install -y curl \
     && rm -rf /var/lib/apt/lists/*
-CMD [ "curl", "-s", "http://ip.cn" ]
+CMD [ "curl", "-s", "https://ip.cn" ]
 ```
 
 假如我们使用 `docker build -t myip .` 来构建镜像的话，如果我们需要查询当前公网 IP，只需要执行：
@@ -38,12 +38,12 @@ $ docker run myip -i
 docker: Error response from daemon: invalid header field value "oci runtime error: container_linux.go:247: starting container process caused \"exec: \\\"-i\\\": executable file not found in $PATH\"\n".
 ```
 
-我们可以看到可执行文件找不到的报错，`executable file not found`。之前我们说过，跟在镜像名后面的是 `command`，运行时会替换 `CMD` 的默认值。因此这里的 `-i` 替换了原来的 `CMD`，而不是添加在原来的 `curl -s http://ip.cn` 后面。而 `-i` 根本不是命令，所以自然找不到。
+我们可以看到可执行文件找不到的报错，`executable file not found`。之前我们说过，跟在镜像名后面的是 `command`，运行时会替换 `CMD` 的默认值。因此这里的 `-i` 替换了原来的 `CMD`，而不是添加在原来的 `curl -s https://ip.cn` 后面。而 `-i` 根本不是命令，所以自然找不到。
 
 那么如果我们希望加入 `-i` 这参数，我们就必须重新完整的输入这个命令：
 
 ```bash
-$ docker run myip curl -s http://ip.cn -i
+$ docker run myip curl -s https://ip.cn -i
 ```
 
 这显然不是很好的解决方案，而使用 `ENTRYPOINT` 就可以解决这个问题。现在我们重新用 `ENTRYPOINT` 来实现这个镜像：
@@ -53,7 +53,7 @@ FROM ubuntu:18.04
 RUN apt-get update \
     && apt-get install -y curl \
     && rm -rf /var/lib/apt/lists/*
-ENTRYPOINT [ "curl", "-s", "http://ip.cn" ]
+ENTRYPOINT [ "curl", "-s", "https://ip.cn" ]
 ```
 
 这次我们再来尝试直接使用 `docker run myip -i`：
