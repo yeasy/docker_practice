@@ -55,15 +55,16 @@ alpine              latest              baa5d63471ea        5 weeks ago         
 保存镜像的命令为：
 
 ```bash
-$ docker save alpine -o file_name
-$ file file_name
-file_name: POSIX tar archive
+$ docker save alpine -o filename
+$ file filename
+filename: POSIX tar archive
 ```
-这里的file_name可以为任意命名甚至任意后缀名，但文件的本质都是归档文件
 
-**注意：如果同名则会覆盖（没有报警）**
+这里的 filename 可以为任意名称甚至任意后缀名，但文件的本质都是归档文件
 
-若使用`gzip`压缩：
+**注意：如果同名则会覆盖（没有警告）**
+
+若使用 `gzip` 压缩：
 
 ```bash
 $ docker save alpine | gzip > alpine-latest.tar.gz
