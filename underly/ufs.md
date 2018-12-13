@@ -14,9 +14,9 @@ Docker 目前支持的联合文件系统包括 `OverlayFS`, `AUFS`, `Btrfs`, `VF
 
 |Linux 发行版 |	Docker 推荐使用的存储驱动 |
 | :--        | :--                     |
-|Docker CE on Ubuntu |	`aufs`, `devicemapper`, `overlay2` (Ubuntu 14.04.4 +, 16.04 +), `overlay`, `zfs`, `vfs` |
-|Docker CE on Debian |	`aufs`, `devicemapper`, `overlay2` (Debian Stretch), `overlay`, `vfs` |
-|Docker CE on CentOS |	`devicemapper`, `vfs` |
-|Docker CE on Fedora |	`devicemapper`, `overlay2` (Fedora 26 +), `overlay` (实验性支持), `vfs` |
+|Docker CE on Ubuntu |	`overlay2` (Ubuntu 14.04.4 +, 16.04 +) |
+|Docker CE on Debian |	`overlay2` (Debian Stretch), `aufs`, `devicemapper` |
+|Docker CE on CentOS |	`overlay2`  |
+|Docker CE on Fedora |	`overlay2`  |
 
 在可能的情况下，推荐使用 `overlay2` 存储驱动，`overlay2` 是目前 Docker 默认的存储驱动，以前则是 `aufs`。你可以通过配置来使用以上提到的其他类型的存储驱动。
