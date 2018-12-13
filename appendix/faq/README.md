@@ -44,7 +44,7 @@
 
 ### 如何停止所有正在运行的容器？
 
-答：可以使用 `docker kill $(docker container ls -q)` 命令。
+答：可以使用 `docker stop $(docker container ls -q)` 命令。
 
 ### 如何批量清理已经停止的容器？
 
