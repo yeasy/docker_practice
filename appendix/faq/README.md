@@ -105,7 +105,7 @@ $ docker run --network=my-net --ip=172.25.3.3 -itd --name=my-container busybox
 
 ### 如何更改 Docker 的默认存储位置？
 
-答：Docker 的默认存储位置是 `/var/lib/docker`，如果希望将 Docker 的本地文件存储到其他分区，可以使用 Linux 软连接的方式来完成，或者在启动 daemon 时通过 `-g` 参数指定， 或者修改配置文件的"data-root"。使用`docker system info | grep "Root Dir"`查看当前使用的存储位置。
+答：Docker 的默认存储位置是 `/var/lib/docker`，如果希望将 Docker 的本地文件存储到其他分区，可以使用 Linux 软连接的方式来完成，或者在启动 daemon 时通过 `-g` 参数指定，或者修改配置文件 `/etc/docker/daemon.json` 的 "data-root" 项 。可以使用 `docker system info | grep "Root Dir"` 查看当前使用的存储位置。
 
 例如，如下操作将默认存储位置迁移到 /storage/docker。
 
@@ -126,7 +126,7 @@ lrwxrwxrwx. 1 root root 15 11月 17 13:43 docker -> /storage/docker
 [root@s26 lib]# service docker start
 ```
 
-### 使用内存和 swap 限制启动容器时候报警告：“WARNING: Your kernel does not support cgroup swap limit. WARNING: Your kernel does not support swap limit capabilities. Limitation discarded.”？
+### 使用内存和 swap 限制启动容器时候报警告："WARNING: Your kernel does not support cgroup swap limit. WARNING: Your kernel does not support swap limit capabilities. Limitation discarded."？
 
 答：这是因为系统默认没有开启对内存和 swap 使用的统计功能，引入该功能会带来性能的下降。要开启该功能，可以采取如下操作：
 
