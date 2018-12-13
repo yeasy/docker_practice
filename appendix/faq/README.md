@@ -12,7 +12,7 @@
 
 ### 本地的镜像文件都存放在哪里？
 
-答：与 Docker 相关的本地资源都存放在 `/var/lib/docker/` 目录下，以 `aufs` 文件系统为例，其中 `container` 目录存放容器信息，`graph` 目录存放镜像信息，`aufs` 目录下存放具体的镜像层文件。
+答：与 Docker 相关的本地资源默认存放在 `/var/lib/docker/` 目录下，以 `aufs` 文件系统为例，其中 `container` 目录存放容器信息，`graph` 目录存放镜像信息，`aufs` 目录下存放具体的镜像层文件。
 
 ### 构建 Docker 镜像应该遵循哪些原则？
 
@@ -105,7 +105,7 @@ $ docker run --network=my-net --ip=172.25.3.3 -itd --name=my-container busybox
 
 ### 如何更改 Docker 的默认存储位置？
 
-答：Docker 的默认存储位置是 `/var/lib/docker`，如果希望将 Docker 的本地文件存储到其他分区，可以使用 Linux 软连接的方式来完成，或者在启动 daemon 时通过 `-g` 参数指定。
+答：Docker 的默认存储位置是 `/var/lib/docker`，如果希望将 Docker 的本地文件存储到其他分区，可以使用 Linux 软连接的方式来完成，或者在启动 daemon 时通过 `-g` 参数指定， 或者修改配置文件的"data-root"。使用`docker system info | grep "Root Dir"`查看当前使用的存储位置。
 
 例如，如下操作将默认存储位置迁移到 /storage/docker。
 
