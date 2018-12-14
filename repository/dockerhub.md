@@ -4,7 +4,7 @@
 
 ### 注册
 
-你可以在 https://cloud.docker.com 免费注册一个 Docker 账号。
+你可以在 https://hub.docker.com 免费注册一个 Docker 账号。
 
 ### 登录
 
