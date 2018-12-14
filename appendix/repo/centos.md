@@ -1,10 +1,10 @@
-## [CentOS](https://store.docker.com/images/centos/)
+## [CentOS](https://hub.docker.com/_/centos)
 
 ### 基本信息
 
 [CentOS](https://en.wikipedia.org/wiki/CentOS) 是流行的 Linux 发行版，其软件包大多跟 RedHat 系列保持一致。
 
-该仓库位于 https://store.docker.com/images/centos/ ，提供了 CentOS 从 5 ~ 7 各个版本的镜像。
+该仓库位于 `https://hub.docker.com/_/centos` ，提供了 CentOS 从 5 ~ 7 各个版本的镜像。
 
 ### 使用方法
 

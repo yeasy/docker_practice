@@ -1,10 +1,10 @@
-## [MySQL](https://store.docker.com/images/mysql/)
+## [MySQL](https://hub.docker.com/_/mysql/)
 
 ### 基本信息
 
 [MySQL](https://en.wikipedia.org/wiki/MySQL) 是开源的关系数据库实现。
 
-该仓库位于 https://store.docker.com/images/mysql/ ，提供了 MySQL 5.5 ~ 8.x 各个版本的镜像。
+该仓库位于 `https://hub.docker.com/_/mysql/` ，提供了 MySQL 5.5 ~ 8.x 各个版本的镜像。
 
 ### 使用方法
 

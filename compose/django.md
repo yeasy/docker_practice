@@ -84,7 +84,7 @@ DATABASES = {
 }
 ```
 
-这些信息是在 [postgres](https://store.docker.com/images/postgres/) 镜像固定设置好的。然后，运行 `docker-compose up` ：
+这些信息是在 [postgres](https://hub.docker.com/_/postgres/) 镜像固定设置好的。然后，运行 `docker-compose up` ：
 
 ```bash
 $ docker-compose up

@@ -5,8 +5,6 @@
 * Docker 官方主页：https://www.docker.com
 * Docker 官方博客：https://blog.docker.com/
 * Docker 官方文档：https://docs.docker.com/
-* Docker Store：https://store.docker.com
-* Docker Cloud：https://cloud.docker.com
 * Docker Hub：https://hub.docker.com
 * Docker 的源代码仓库：https://github.com/moby/moby
 * Docker 发布版本历史：https://docs.docker.com/release-notes/

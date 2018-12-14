@@ -51,7 +51,7 @@ $ docker-machine --version
 docker-machine version 0.13.0, build 9ba6da9
 ```
 
-如果 `docker version`、`docker info` 都正常的话，可以尝试运行一个 [Nginx 服务器](https://store.docker.com/images/nginx/)：
+如果 `docker version`、`docker info` 都正常的话，可以尝试运行一个 [Nginx 服务器](https://hub.docker.com/_/nginx/)：
 
 ```bash
 $ docker run -d -p 80:80 --name webserver nginx
