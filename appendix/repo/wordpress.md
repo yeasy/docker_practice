@@ -4,7 +4,7 @@
 
 [WordPress](https://en.wikipedia.org/wiki/WordPress) 是开源的 Blog 和内容管理系统框架，它基于 PHP 和 MySQL。
 
-该仓库位于 `https://hub.docker.com/_/wordpress/` ，提供了 WordPress 4.x 版本的镜像。
+该仓库位于 `https://hub.docker.com/_/wordpress/` ，提供了 WordPress 4.x ~ 5.x 版本的镜像。
 
 ### 使用方法
 

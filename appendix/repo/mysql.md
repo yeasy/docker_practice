@@ -20,7 +20,7 @@ $ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=mysecretpassword -d mysql
 $ docker run --name some-app --link some-mysql:mysql -d application-that-uses-mysql
 ```
 
-或者通过 `mysql`。
+或者通过 `mysql` 命令行连接。
 
 ```bash
 $ docker run -it --rm \

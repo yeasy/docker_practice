@@ -4,7 +4,7 @@
 
 [Nginx](https://en.wikipedia.org/wiki/Nginx) 是开源的高效的 Web 服务器实现，支持 HTTP、HTTPS、SMTP、POP3、IMAP 等协议。
 
-该仓库位于 `https://hub.docker.com/_/nginx/` ，提供了 Nginx 1.0 ~ 1.13.x 各个版本的镜像。
+该仓库位于 `https://hub.docker.com/_/nginx/` ，提供了 Nginx 1.0 ~ 1.15.x 各个版本的镜像。
 
 ### 使用方法
 
