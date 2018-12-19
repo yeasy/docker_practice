@@ -26,14 +26,14 @@ Linux 系统请使用以下介绍的方法安装。
 $ sudo curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 $ sudo chmod +x /usr/local/bin/docker-compose
 ```
-如果安装包的版本小于2.0.1运行的时候可能会遇到错误, 有个workaround可以解决这个
+如果安装包的版本小于2.0.1运行的时候可能会遇到错误, 有个方案可以解决这个
 ```
 mkdir /usr/loca/tmpdir/
 chmod 755 /usr/loca/tmpdir/
 TMP=/usr/local/tmpdir/
 export TMP
 ```
-For more detail, please refer to this https://admin-ahead.com/portal/knowledgebase/4/error-while-loading-shared-libraries-libzso1-failed-to-map-segment-from-shared-object-Operation-not-permitted.html
+For more detail, please refer to this [document](https://admin-ahead.com/portal/knowledgebase/4/error-while-loading-shared-libraries-libzso1-failed-to-map-segment-from-shared-object-Operation-not-permitted.html)
 ### PIP 安装
 
 *注：* `x86_64` 架构的 Linux 建议按照上边的方法下载二进制包进行安装，如果您计算机的架构是 `ARM` (例如，树莓派)，再使用 `pip` 安装。
