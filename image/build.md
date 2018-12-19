@@ -57,11 +57,11 @@ RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
 既然 `RUN` 就像 Shell 脚本一样可以执行命令，那么我们是否就可以像 Shell 脚本一样把每个命令对应一个 RUN 呢？比如这样：
 
 ```dockerfile
-FROM debian:jessie
+FROM debian:stretch
 
 RUN apt-get update
-RUN apt-get install -y gcc libc6-dev make
-RUN wget -O redis.tar.gz "http://download.redis.io/releases/redis-3.2.5.tar.gz"
+RUN apt-get install -y gcc libc6-dev make wget
+RUN wget -O redis.tar.gz "http://download.redis.io/releases/redis-5.0.3.tar.gz"
 RUN mkdir -p /usr/src/redis
 RUN tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1
 RUN make -C /usr/src/redis
@@ -78,12 +78,12 @@ RUN make -C /usr/src/redis install
 上面的 `Dockerfile` 正确的写法应该是这样：
 
 ```dockerfile
-FROM debian:jessie
+FROM debian:stretch
 
-RUN buildDeps='gcc libc6-dev make' \
+RUN buildDeps='gcc libc6-dev make wget' \
     && apt-get update \
     && apt-get install -y $buildDeps \
-    && wget -O redis.tar.gz "http://download.redis.io/releases/redis-3.2.5.tar.gz" \
+    && wget -O redis.tar.gz "http://download.redis.io/releases/redis-5.0.3.tar.gz" \
     && mkdir -p /usr/src/redis \
     && tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1 \
     && make -C /usr/src/redis \
@@ -177,17 +177,17 @@ Sending build context to Docker daemon 2.048 kB
 或许你已经注意到了，`docker build` 还支持从 URL 构建，比如可以直接从 Git repo 中构建：
 
 ```bash
-$ docker build https://github.com/twang2218/gitlab-ce-zh.git#:8.14
-docker build https://github.com/twang2218/gitlab-ce-zh.git\#:8.14
+$ docker build https://github.com/twang2218/gitlab-ce-zh.git#:11.1
+
 Sending build context to Docker daemon 2.048 kB
-Step 1 : FROM gitlab/gitlab-ce:8.14.0-ce.0
-8.14.0-ce.0: Pulling from gitlab/gitlab-ce
+Step 1 : FROM gitlab/gitlab-ce:11.1.0-ce.0
+11.1.0-ce.0: Pulling from gitlab/gitlab-ce
 aed15891ba52: Already exists
 773ae8583d14: Already exists
 ...
 ```
 
-这行命令指定了构建所需的 Git repo，并且指定默认的 `master` 分支，构建目录为 `/8.14/`，然后 Docker 就会自己去 `git clone` 这个项目、切换到指定分支、并进入到指定目录后开始构建。
+这行命令指定了构建所需的 Git repo，并且指定默认的 `master` 分支，构建目录为 `/11.1/`，然后 Docker 就会自己去 `git clone` 这个项目、切换到指定分支、并进入到指定目录后开始构建。
 
 #### 用给定的 tar 压缩包构建
 
