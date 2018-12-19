@@ -11,7 +11,7 @@
 例如，下面的命令输出一个 “Hello World”，之后终止容器。
 
 ```bash
-$ docker run ubuntu:14.04 /bin/echo 'Hello world'
+$ docker run ubuntu:18.04 /bin/echo 'Hello world'
 Hello world
 ```
 
@@ -20,7 +20,7 @@ Hello world
 下面的命令则启动一个 bash 终端，允许用户进行交互。
 
 ```bash
-$ docker run -t -i ubuntu:14.04 /bin/bash
+$ docker run -t -i ubuntu:18.04 /bin/bash
 root@af8bae53bdd3:/#
 ```
 

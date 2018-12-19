@@ -118,7 +118,7 @@ RUN apt-get update && apt-get install -y \
 将 `apt-get update` 放在一条单独的 `RUN` 声明中会导致缓存问题以及后续的 `apt-get install` 失败。比如，假设你有一个 `Dockerfile` 文件：
 
 ```docker
-FROM ubuntu:14.04
+FROM ubuntu:18.04
 
 RUN apt-get update
 
@@ -128,7 +128,7 @@ RUN apt-get install -y curl
 构建镜像后，所有的层都在 Docker 的缓存中。假设你后来又修改了其中的 `apt-get install` 添加了一个包：
 
 ```docker
-FROM ubuntu:14.04
+FROM ubuntu:18.04
 
 RUN apt-get update
 

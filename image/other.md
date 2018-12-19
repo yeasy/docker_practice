@@ -8,7 +8,7 @@
 
 压缩包可以是本地文件、远程 Web 文件，甚至是从标准输入中得到。压缩包将会在镜像 `/` 目录展开，并直接作为镜像第一层提交。
 
-比如我们想要创建一个 [OpenVZ](https://openvz.org/Main_Page) 的 Ubuntu 14.04 [模板](https://openvz.org/Download/template/precreated)的镜像：
+比如我们想要创建一个 [OpenVZ](https://openvz.org) 的 Ubuntu 14.04 [模板](https://openvz.org/Download/template/precreated)的镜像：
 
 ```bash
 $ docker import \
