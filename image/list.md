@@ -11,7 +11,6 @@ mongo                3.2                 fe9198c04d62        5 days ago         
 <none>               <none>              00285df0df87        5 days ago          342 MB
 ubuntu               18.04               f753707788c5        4 weeks ago         127 MB
 ubuntu               latest              f753707788c5        4 weeks ago         127 MB
-ubuntu               14.04               1e0c3dd64ccd        4 weeks ago         188 MB
 ```
 
 列表包含了 `仓库名`、`标签`、`镜像 ID`、`创建时间` 以及 `所占用的空间`。
@@ -79,7 +78,6 @@ $ docker image ls ubuntu
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 ubuntu              18.04               f753707788c5        4 weeks ago         127 MB
 ubuntu              latest              f753707788c5        4 weeks ago         127 MB
-ubuntu              14.04               1e0c3dd64ccd        4 weeks ago         188 MB
 ```
 
 列出特定的某个镜像，也就是说指定仓库名和标签
@@ -151,5 +149,4 @@ fe9198c04d62        mongo               3.2
 00285df0df87        <none>              <none>
 f753707788c5        ubuntu              18.04
 f753707788c5        ubuntu              latest
-1e0c3dd64ccd        ubuntu              14.04
 ```
