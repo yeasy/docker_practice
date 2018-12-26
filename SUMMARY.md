@@ -157,5 +157,5 @@
         * [Node.js](appendix/repo/nodejs.md)
     * [附录三：Docker 命令查询](appendix/command/README.md)
     * [附录四：Dockerfile 最佳实践](appendix/best_practices.md)
-    * [附录五：资源链接](appendix/resources/README.md)
-    * [附录六：如何调试 Docker](appendix/debug.md)
+    * [附录五：如何调试 Docker](appendix/debug.md)
+    * [附录六：资源链接](appendix/resources.md)

@@ -32,3 +32,11 @@ $ sudo dmesag |grep runc
 ```bash
 $ sudo kill -SIGUSR1 $(pidof dockerd)
 ```
+
+## 重置 Docker 本地数据
+
+*注意，本操作会移除所有的 Docker 本地数据，包括镜像和容器等。*
+
+```bash
+$ sudo rm -rf /var/lib/docker
+```
