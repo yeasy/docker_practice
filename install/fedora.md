@@ -39,7 +39,7 @@ $ sudo dnf -y install dnf-plugins-core
 
 鉴于国内网络问题，强烈建议使用国内源，官方源请在注释中查看。
 
-执行下面的命令添加 `dnf 软件源：
+执行下面的命令添加 `dnf` 软件源：
 
 ```bash
 $ sudo dnf config-manager \
