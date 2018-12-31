@@ -29,7 +29,7 @@ kubectl [command]
 
 ## log
 
-输出 pod 中一个容器的日志。
+输出 pod 中一个容器的日志
 
 ## rolling-update
 
