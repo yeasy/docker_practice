@@ -143,6 +143,7 @@
     * [本章小结](cases/os/summary.md)
 * [实战案例-CI/CD](cases/ci/README.md)
     * [Drone](cases/ci/drone.md)
+    * [Travis CI](cases/ci/travis.md)
 * [Docker 开源项目](opensource/README.md)
     * [LinuxKit](opensource/linuxkit.md)
 * [附录](appendix/README.md)
