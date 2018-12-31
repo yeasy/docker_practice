@@ -1,5 +1,5 @@
 # kubectl 使用
-[kubectl](https://github.com/GoogleCloudPlatform/kubernetes) 是 Kubernetes 自带的客户端，可以用它来直接操作 Kubernetes。
+[kubectl](https://github.com/kubernetes/kubernetes) 是 Kubernetes 自带的客户端，可以用它来直接操作 Kubernetes。
 
 使用格式有两种：
 ```bash
@@ -8,44 +8,73 @@ kubectl [command]
 ```
 
 ## get
-Display one or many resources
+
+显示一个或多个资源
+
 ## describe
-Show details of a specific resource
+
+显示资源详情
+
 ## create
-Create a resource by filename or stdin
+
+从文件或标准输入创建资源
+
 ## update
-Update a resource by filename or stdin.
+
+从文件或标准输入更新资源
+
 ## delete
-Delete a resource by filename, stdin, resource and ID, or by resources and label selector.
-## namespace
-SUPERCEDED: Set and view the current Kubernetes namespace
+
+通过文件名、标准输入、资源名或者 label selector 删除资源
+
 ## log
-Print the logs for a container in a pod.
+
+输出 pod 中一个容器的日志。
+
 ## rolling-update
-Perform a rolling update of the given ReplicationController.
-## resize
-Set a new size for a Replication Controller.
+
+对指定的 replication controller 执行滚动升级
+
 ## exec
-Execute a command in a container.
+
+在容器内部执行命令
+
 ## port-forward
-Forward one or more local ports to a pod.
+
+将本地端口转发到Pod
+
 ## proxy
-Run a proxy to the Kubernetes API server
-## run-container
-Run a particular image on the cluster.
-## stop
-Gracefully shut down a resource by id or filename.
+
+为 Kubernetes API server 启动代理服务器
+
+## run
+
+在集群中使用指定镜像启动容器
+
 ## expose
-Take a replicated application and expose it as Kubernetes Service
+
+将 replication controller service 或 pod 暴露为新的 kubernetes service
+
 ## label
-Update the labels on a resource
+
+更新资源的 label
+
 ## config
-config modifies kubeconfig files
+
+修改 kubernetes 配置文件
+
 ## cluster-info
-Display cluster info
+
+显示集群信息
+
 ## api-versions
-Print available API versions.
+
+以 "组/版本" 的格式输出服务端支持的 API 版本
+
 ## version
-Print the client and server version information.
+
+输出服务端和客户端的版本信息
+
 ## help
-Help about any command
+
+显示各个命令的帮助信息
