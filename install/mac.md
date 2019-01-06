@@ -2,7 +2,7 @@
 
 ### 系统要求
 
-[Docker for Mac](https://docs.docker.com/docker-for-mac/) 要求系统最低为 macOS 10.10.3 Yosemite。如果系统不满足需求，可以安装 [Docker Toolbox](https://docs.docker.com/toolbox/overview/)。
+[Docker for Mac](https://docs.docker.com/docker-for-mac/) 要求系统最低为 macOS El Capitan 10.11。
 
 ### 安装
 
@@ -44,11 +44,11 @@ $ brew cask install docker
 
 ```bash
 $ docker --version
-Docker version 17.10.0-ce, build f4ffd25
+Docker version 18.09.0, build 4d60db4
 $ docker-compose --version
-docker-compose version 1.17.0-rc1, build a0f95af
+docker-compose version 1.23.2, build 1110ad01
 $ docker-machine --version
-docker-machine version 0.13.0, build 9ba6da9
+docker-machine version 0.16.0, build 702c267f
 ```
 
 如果 `docker version`、`docker info` 都正常的话，可以尝试运行一个 [Nginx 服务器](https://hub.docker.com/_/nginx/)：
@@ -70,4 +70,4 @@ $ docker rm webserver
 
 ### 镜像加速
 
-鉴于国内网络问题，后续拉取 Docker 镜像十分缓慢，强烈建议安装 Docker 之后配置 [国内镜像加速](mirror.md)。
+如果在使用过程中发现拉取 Docker 镜像十分缓慢，可以配置 Docker [国内镜像加速](mirror.md)。
