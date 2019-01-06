@@ -1,6 +1,6 @@
 # Dockerfile 最佳实践
 
-本附录是笔者对 Docker 官方文档中 [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/) 的理解与翻译。
+本附录是笔者对 Docker 官方文档中 [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) 的理解与翻译。
 
 ## 一般性的指南和建议
 
@@ -94,7 +94,7 @@ LABEL vendor=ACME\ Incorporated \
       com.example.release-date="2015-02-12"
 ```
 
-关于标签可以接受的键值对，参考 [Understanding object labels](https://docs.docker.com/engine/userguide/labels-custom-metadata/)。关于查询标签信息，参考 [Managing labels on objects](https://docs.docker.com/engine/userguide/labels-custom-metadata/#managing-labels-on-objects)。
+关于标签可以接受的键值对，参考 [Understanding object labels](https://docs.docker.com/config/labels-custom-metadata/)。关于查询标签信息，参考 [Managing labels on objects](https://docs.docker.com/config/labels-custom-metadata/)。
 
 ### RUN
 
@@ -339,6 +339,6 @@ $ docker run --rm -it postgres bash
 
 为了清晰性和可靠性，你应该总是在 `WORKDIR` 中使用绝对路径。另外，你应该使用 `WORKDIR` 来替代类似于 `RUN cd ... && do-something` 的指令，后者难以阅读、排错和维护。
 
-## 官方仓库示例
+## 官方镜像示例
 
-这些官方仓库的 Dockerfile 都是参考典范：https://github.com/docker-library/docs
+这些官方镜像的 Dockerfile 都是参考典范：https://github.com/docker-library/docs

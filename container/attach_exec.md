@@ -6,7 +6,7 @@
 
 ### `attach` 命令
 
-`docker attach` 是 Docker 自带的命令。下面示例如何使用该命令。
+下面示例如何使用 `docker attach` 命令。
 
 ```bash
 $ docker run -dit ubuntu
