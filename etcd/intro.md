@@ -6,7 +6,7 @@
 
 `etcd` 目前在 [github.com/coreos/etcd](https://github.com/coreos/etcd) 进行维护。
 
-受到 [Apache ZooKeeper](http://zookeeper.apache.org/) 项目和 [doozer](https://github.com/ha/doozerd) 项目的启发，`etcd` 在设计的时候重点考虑了下面四个要素：
+受到 [Apache ZooKeeper](https://zookeeper.apache.org/) 项目和 [doozer](https://github.com/ha/doozerd) 项目的启发，`etcd` 在设计的时候重点考虑了下面四个要素：
 
 * 简单：具有定义良好、面向用户的 `API` ([gRPC](https://github.com/grpc/grpc))
 

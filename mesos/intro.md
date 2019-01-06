@@ -3,7 +3,7 @@ Mesos 最初由 UC Berkeley 的 AMP 实验室于 2009 年发起，遵循 Apache 
 
 如果把数据中心中的集群资源看做一台服务器，那么 Mesos 要做的事情，其实就是今天操作系统内核的职责：抽象资源 + 调度任务。Mesos 项目是 Mesosphere 公司 Datacenter Operating System (DCOS) 产品的核心部件。
 
-Mesos 项目主要由 C++ 语言编写，项目官方地址为 [http://mesos.apache.org](http://mesos.apache.org)，代码仍在快速演化中，已经发布了正式版 1.0.0 版本。
+Mesos 项目主要由 C++ 语言编写，项目官方地址为 [https://mesos.apache.org](https://mesos.apache.org)，代码仍在快速演化中，已经发布了正式版 1.0.0 版本。
 
 Mesos 拥有许多引人注目的特性，包括：
 * 支持数万个节点的大规模场景（Apple、Twitter、eBay 等公司实践）；

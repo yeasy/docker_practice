@@ -8,7 +8,7 @@
 
 #### 使用 Homebrew 安装
 
-[Homebrew](http://brew.sh/) 的 [Cask](https://caskroom.github.io/) 已经支持 Docker for Mac，因此可以很方便的使用 Homebrew Cask 来进行安装：
+[Homebrew](https://brew.sh/) 的 [Cask](https://caskroom.github.io/) 已经支持 Docker for Mac，因此可以很方便的使用 Homebrew Cask 来进行安装：
 
 ```bash
 $ brew cask install docker

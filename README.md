@@ -6,7 +6,7 @@ v1.0.0
 
 *说明：本书自 0.9.0 版本起基于最新的 Docker CE v18.X 特性进行讲解。Docker 旧版本（1.13-）使用，请参考 [docker-legacy](https://github.com/yeasy/docker_practice/tree/docker-legacy) 分支。*
 
-[Docker](http://www.docker.com) 是个划时代的开源项目，它彻底释放了计算虚拟化的威力，极大提高了应用的维护效率，降低了云计算应用开发的成本！使用 Docker，可以让应用的部署、测试和分发都变得前所未有的高效和轻松！
+[Docker](https://www.docker.com) 是个划时代的开源项目，它彻底释放了计算虚拟化的威力，极大提高了应用的维护效率，降低了云计算应用开发的成本！使用 Docker，可以让应用的部署、测试和分发都变得前所未有的高效和轻松！
 
 无论是应用开发者、运维人员、还是其他信息技术从业人员，都有必要认识和掌握 Docker，节约有限的生命。
 
@@ -48,7 +48,7 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初�
 ## 进阶学习
 ![](_images/docker_primer3.png)
 
-《[Docker 技术入门与实战](http://item.jd.com/12453318.html)》第三版已经面世，介绍最新的容器技术栈，欢迎大家阅读使用并反馈建议。
+《[Docker 技术入门与实战](https://item.jd.com/12453318.html)》第三版已经面世，介绍最新的容器技术栈，欢迎大家阅读使用并反馈建议。
 
 * [京东图书](https://item.jd.com/12453318.html)
 * [China-Pub](http://product.china-pub.com/8052127)
