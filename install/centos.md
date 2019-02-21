@@ -48,7 +48,7 @@ $ sudo yum-config-manager \
 # 官方源
 # $ sudo yum-config-manager \
 #     --add-repo \
-#     https://download.docker.com/linux/centos/docker-ce.repo    
+#     https://download.docker.com/linux/centos/docker-ce.repo
 ```
 
 如果需要测试版本的 Docker CE 请使用以下命令：
