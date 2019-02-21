@@ -13,7 +13,7 @@ UUID		  APP	  IMAGE NAME			            STATE	  CREATED		    STARTED		   NETWORKS
 57581644	etcd	quay.io/coreos/etcd:v3.2.10	running	1 minute ago	1 minute ago
 ```
 
-`etcd` 使用方法请查看 [etcd 章节](../etcd/)。 
+`etcd` 使用方法请查看 [etcd 章节](../etcd/)。
 
 ## 容器管理
 

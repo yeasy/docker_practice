@@ -55,7 +55,7 @@ $ sudo add-apt-repository \
 # $ sudo add-apt-repository \
 #    "deb [arch=armhf] https://download.docker.com/linux/raspbian \
 #    $(lsb_release -cs) \
-#    stable"    
+#    stable"
 ```
 
 >以上命令会添加稳定版本的 Docker CE APT 源，如果需要测试或每日构建版本的 Docker CE 请将 stable 改为 test 或者 nightly。

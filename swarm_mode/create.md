@@ -46,7 +46,7 @@ docker@worker1:~$ docker swarm join \
     --token SWMTKN-1-49nj1cmql0jkz5s954yi3oex3nedyz0fb0xx14ie39trti4wxv-8vxv8rssmk743ojnwacrr2e7c \
     192.168.99.100:2377
 
-This node joined a swarm as a worker.    
+This node joined a swarm as a worker.
 ```
 
 ```bash
@@ -58,7 +58,7 @@ docker@worker1:~$ docker swarm join \
     --token SWMTKN-1-49nj1cmql0jkz5s954yi3oex3nedyz0fb0xx14ie39trti4wxv-8vxv8rssmk743ojnwacrr2e7c \
     192.168.99.100:2377
 
-This node joined a swarm as a worker.    
+This node joined a swarm as a worker.
 ```
 
 >注意：一些细心的读者可能通过 `docker-machine create --help` 查看到 `--swarm*` 等一系列参数。该参数是用于旧的 `Docker Swarm`,与本章所讲的 `Swarm mode` 没有关系。
