@@ -67,7 +67,7 @@ services:
     dns: 114.114.114.114
 
 volumes:
-  drone-data:    
+  drone-data:
 ```
 
 替换 `${SSL_PATH}` 为你网站的 SSL 证书路径。
@@ -117,7 +117,7 @@ package main
 
 import "fmt"
 
-func main(){  
+func main(){
     fmt.Printf("Hello World!");
 }
 ```

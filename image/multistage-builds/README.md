@@ -15,11 +15,11 @@
 例如，编写 `app.go` 文件，该程序输出 `Hello World!`
 
 ```go
-package main  
+package main
 
-import "fmt"  
+import "fmt"
 
-func main(){  
+func main(){
     fmt.Printf("Hello World!");
 }
 ```
@@ -146,7 +146,7 @@ WORKDIR /root/
 
 COPY --from=0 /go/src/github.com/go/helloworld/app .
 
-CMD ["./app"]  
+CMD ["./app"]
 ```
 
 构建镜像
