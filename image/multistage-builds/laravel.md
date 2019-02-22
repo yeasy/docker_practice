@@ -62,7 +62,7 @@ COPY webpack.mix.js /app/
 COPY resources/assets/ /app/resources/assets/
 
 RUN cd /app \
-      && npm run production     
+      && npm run production
 ```
 
 ### 安装 Composer 依赖
