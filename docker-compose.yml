@@ -39,4 +39,4 @@ services:
     volumes:
       - ./:/srv/gitbook-src
     command: server
-    # command: build
+    # command: build . 
