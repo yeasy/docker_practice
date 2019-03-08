@@ -1,6 +1,6 @@
 ## 使用 Django
 
-本小节内容适合 `Python` 开发人员阅读。
+> 本小节内容适合 `Python` 开发人员阅读。
 
 我们现在将使用 `Docker Compose` 配置并运行一个 `Django/PostgreSQL` 应用。
 

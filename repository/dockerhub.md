@@ -28,15 +28,13 @@ saltstack/centos-6-minimal                                                      
 tutum/centos-6.4                                DEPRECATED. Use tutum/centos:6.4 instead. ...   5                    [OK]
 ```
 
-可以看到返回了很多包含关键字的镜像，其中包括镜像名字、描述、收藏数（表示该镜像的受关注程度）、是否官方创建、是否自动创建。
+可以看到返回了很多包含关键字的镜像，其中包括镜像名字、描述、收藏数（表示该镜像的受关注程度）、是否官方创建（OFFICIAL）、是否自动构建 （AUTOMATED）。
 
-官方的镜像说明是官方项目组创建和维护的，automated 资源允许用户验证镜像的来源和内容。
-
-根据是否是官方提供，可将镜像资源分为两类。
+根据是否是官方提供，可将镜像分为两类。
 
 一种是类似 `centos` 这样的镜像，被称为基础镜像或根镜像。这些基础镜像由 Docker 公司创建、验证、支持、提供。这样的镜像往往使用单个单词作为名字。
 
-还有一种类型，比如 `tianon/centos` 镜像，它是由 Docker 的用户创建并维护的，往往带有用户名称前缀。可以通过前缀 `username/` 来指定使用某个用户提供的镜像，比如 tianon 用户。
+还有一种类型，比如 `tianon/centos` 镜像，它是由 Docker Hub 的注册用户创建并维护的，往往带有用户名称前缀。可以通过前缀 `username/` 来指定使用某个用户提供的镜像，比如 tianon 用户。
 
 另外，在查找的时候通过 `--filter=stars=N` 参数可以指定仅显示收藏数量为 `N` 以上的镜像。
 
@@ -74,24 +72,24 @@ NAME                      DESCRIPTION                                     STARS 
 username/ubuntu
 ```
 
-### 自动创建
+### 自动构建
 
-自动创建（Automated Builds）功能对于需要经常升级镜像内程序来说，十分方便。
+自动构建（Automated Builds）功能对于需要经常升级镜像内程序来说，十分方便。
 
-有时候，用户创建了镜像，安装了某个软件，如果软件发布新版本则需要手动更新镜像。
+有时候，用户构建了镜像，安装了某个软件，当软件发布新版本则需要手动更新镜像。
 
-而自动创建允许用户通过 Docker Hub 指定跟踪一个目标网站（目前支持 [GitHub](https://github.com) 或 [BitBucket](https://bitbucket.org)）上的项目，一旦项目发生新的提交或者创建新的标签（tag），Docker Hub 会自动构建镜像并推送到 Docker Hub 中。
+而自动构建允许用户通过 Docker Hub 指定跟踪一个目标网站（支持 [GitHub](https://github.com) 或 [BitBucket](https://bitbucket.org)）上的项目，一旦项目发生新的提交 （commit）或者创建了新的标签（tag），Docker Hub 会自动构建镜像并推送到 Docker Hub 中。
 
-要配置自动创建，包括如下的步骤：
+要配置自动构建，包括如下的步骤：
 
-* 创建并登录 Docker Hub，以及目标网站；
+* 登录 Docker Hub；
 
-* 在目标网站中连接帐户到 Docker Hub；
+* 在 Docker Hub 点击右上角头像，在账号设置（Account Settings）中关联（Linked Accounts）目标网站；
 
-* 在 Docker Hub 中 [配置一个自动创建](https://registry.hub.docker.com/builds/add/)；
+* 在 Docker Hub 中新建或选择已有的仓库，在 `Builds` 选项卡中选择 `Configure Automated Builds`；
 
 * 选取一个目标网站中的项目（需要含 `Dockerfile`）和分支；
 
-* 指定 `Dockerfile` 的位置，并提交创建。
+* 指定 `Dockerfile` 的位置，并保存。
 
-之后，可以在 Docker Hub 的 [自动创建页面](https://registry.hub.docker.com/builds/) 中跟踪每次创建的状态。
+之后，可以在 Docker Hub 的仓库页面的 `Timeline` 选项卡中查看每次构建的状态。
