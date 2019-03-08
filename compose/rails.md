@@ -1,6 +1,6 @@
 ## 使用 Rails
 
-本小节内容适合 `Ruby` 开发人员阅读。
+> 本小节内容适合 `Ruby` 开发人员阅读。
 
 我们现在将使用 `Compose` 配置并运行一个 `Rails/PostgreSQL` 应用。
 
