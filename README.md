@@ -1,10 +1,8 @@
 # Docker — 从入门到实践
 
-[![](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) ![](https://img.shields.io/docker/pulls/yeasy/docker_practice.svg) [![](https://travis-ci.org/yeasy/docker_practice.svg?branch=master)](https://travis-ci.org/yeasy/docker_practice) [![](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases) [![](https://badges.gitter.im/docker_practice/Lobby.svg)](https://gitter.im/docker_practice/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) [![](https://travis-ci.org/yeasy/docker_practice.svg?branch=master)](https://travis-ci.org/yeasy/docker_practice) [![](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases) [![](https://img.shields.io/badge/Based-Docker%20CE%20v18.x-blue.svg)](https://github.com/docker/docker-ce) [![](https://img.shields.io/badge/Docker%20%E6%8A%80%E6%9C%AF%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E6%88%98-jd.com-red.svg)](https://u.jd.com/tKZmVG)
 
-v1.0.0
-
-*说明：本书自 0.9.0 版本起基于最新的 Docker CE v18.X 特性进行讲解。Docker 旧版本（1.13-）使用，请参考 [docker-legacy](https://github.com/yeasy/docker_practice/tree/docker-legacy) 分支。*
+**v1.0.0**
 
 [Docker](https://www.docker.com) 是个划时代的开源项目，它彻底释放了计算虚拟化的威力，极大提高了应用的维护效率，降低了云计算应用开发的成本！使用 Docker，可以让应用的部署、测试和分发都变得前所未有的高效和轻松！
 
@@ -30,6 +28,7 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初�
 <p align="center"><strong>微信扫码 随时随地阅读~</strong></p>
 
 ## 技术交流
+
 欢迎加入 Docker 技术交流 QQ 群，分享 Docker 资源，交流 Docker 技术。
 
 * QQ 群 I   （已满）：341410255
@@ -46,11 +45,12 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初�
 >如果有问题，请通过 [Issues](https://github.com/yeasy/docker_practice/issues/new/choose) 来提出。
 
 ## 进阶学习
-![](_images/docker_primer3.png)
 
-《[Docker 技术入门与实战](https://item.jd.com/12453318.html)》第三版已经面世，介绍最新的容器技术栈，欢迎大家阅读使用并反馈建议。
+[![](https://github.com/yeasy/docker_practice/raw/master/_images/docker_primer3.png)](https://u.jd.com/tKZmVG)
 
-* [京东图书](https://item.jd.com/12453318.html)
+《[Docker 技术入门与实战](https://u.jd.com/tKZmVG)》第三版已经面世，介绍最新的容器技术栈，欢迎大家阅读使用并反馈建议。
+
+* [京东图书](https://u.jd.com/tKZmVG)
 * [China-Pub](http://product.china-pub.com/8052127)
 
 ## 鼓励项目
