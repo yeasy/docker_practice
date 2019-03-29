@@ -2,7 +2,7 @@
 
 [![](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) [![](https://travis-ci.org/yeasy/docker_practice.svg?branch=master)](https://travis-ci.org/yeasy/docker_practice) [![](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases) [![](https://img.shields.io/badge/Based-Docker%20CE%20v18.x-blue.svg)](https://github.com/docker/docker-ce) [![](https://img.shields.io/badge/Docker%20%E6%8A%80%E6%9C%AF%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E6%88%98-jd.com-red.svg)](https://u.jd.com/tKZmVG)
 
-**v1.0.0**
+**v1.1.0**
 
 [Docker](https://www.docker.com) 是个划时代的开源项目，它彻底释放了计算虚拟化的威力，极大提高了应用的维护效率，降低了云计算应用开发的成本！使用 Docker，可以让应用的部署、测试和分发都变得前所未有的高效和轻松！
 
@@ -40,7 +40,7 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初�
 * QQ 群 VII （已满）：252403484
 * QQ 群 VIII（已满）：544818750
 * QQ 群 IX  （已满）：571502246
-* QQ 群 X   （可加）：145983035
+* QQ 群 X   （可加）：145983035
 
 >如果有问题，请通过 [Issues](https://github.com/yeasy/docker_practice/issues/new/choose) 来提出。
 
