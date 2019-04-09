@@ -1,0 +1,69 @@
+* {
+    -webkit-font-smoothing: unset;
+}
+
+.page-inner {
+    position: relative;
+}
+
+.book.with-summary .book-summary {
+    width: 230px;
+}
+
+.book.with-summary .book-body {
+    left: 240px;
+}
+
+.page-inner {
+    position: relative;
+    max-width: 900px;
+    /* margin: 0 auto; */
+}
+
+.book-summary {
+    background: #ac4142;
+}
+
+#book-search-input input, #book-search-input input:focus, #book-search-input input:hover {
+    color: #ffebf0;
+}
+
+.book-summary ul.summary li {
+    list-style: none;
+    line-height: 0.8em;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.book-summary ul.summary li a, .book-summary ul.summary li span {
+    color: #ffebf0;
+}
+
+.book-summary ul.summary li.active>a {
+    color: #f1b655;
+    background: #e26d6da3;
+}
+
+
+.markdown-section * {
+    font-family: "IBM Plex Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Droid Sans","Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 14px;
+}
+
+.markdown-section h2 {
+    padding-left: 10px;
+    background-color: #ccb79e;
+    border: 1px solid #b3991bfa;
+    border-radius: 4px;
+    color: #584949;
+}
+
+.markdown-section code {
+    border: 1px #d2d2e6 dotted;
+    background-color: #efefcf87;
+    border-radius: 3px;
+}
+
+.markdown-section pre>code {
+    border: none;
+}

@@ -1,0 +1,25 @@
+{
+  "name": "docker_practice",
+  "version": "1.0.0",
+  "description": "docker_practice gitbook build pkgs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkstorm/docker_practice.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tkstorm/docker_practice/issues"
+  },
+  "homepage": "https://github.com/tkstorm/docker_practice#readme",
+  "dependencies": {
+    "gitbook-plugin-editlink": "^1.0.2",
+    "gitbook-plugin-image-captions": "^3.1.0",
+    "gitbook-plugin-page-treeview": "^3.0.0",
+    "gitbook-plugin-prism": "^2.4.0"
+  }
+}

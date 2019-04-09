@@ -1,10 +1,10 @@
 {
   "title": "Docker -- 从入门到实践",
-  "author": "yeasy",
+  "author": "TERRY.ROD",
   "language": "zh-hans",
   "links": {
     "sidebar": {
-      "GitHub": "https://github.com/yeasy/docker_practice"
+      "https://tkstorm.com": "https://tkstorm.com"
     }
   },
   "plugins": [
@@ -22,11 +22,7 @@
       "caption": "图 _PAGE_LEVEL_._PAGE_IMAGE_NUMBER_ - _CAPTION_"
     },
     "github": {
-      "url": "https://github.com/yeasy/docker_practice"
-    },
-    "editlink": {
-      "base": "https://github.com/yeasy/docker_practice/blob/master/",
-      "label": "编辑本页"
+      "url": "https://github.com/tkstorm"
     },
     "page-treeview": {
       "copyright": "Copyright &#169; yeasy",
