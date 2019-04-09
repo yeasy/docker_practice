@@ -8,7 +8,7 @@
 
 假设我们要制作 Node.js 所写的应用的镜像。我们都知道 Node.js 使用 `npm` 进行包管理，所有依赖、配置、启动信息等会放到 `package.json` 文件里。在拿到程序代码后，需要先进行 `npm install` 才可以获得所有需要的依赖。然后就可以通过 `npm start` 来启动应用。因此，一般来说会这样写 `Dockerfile`：
 
-```Dockerfile
+```docker
 FROM node:slim
 RUN mkdir /app
 WORKDIR /app
@@ -24,7 +24,7 @@ CMD [ "npm", "start" ]
 
 那么我们可不可以做一个基础镜像，然后各个项目使用这个基础镜像呢？这样基础镜像更新，各个项目不用同步 `Dockerfile` 的变化，重新构建后就继承了基础镜像的更新？好吧，可以，让我们看看这样的结果。那么上面的这个 `Dockerfile` 就会变为：
 
-```Dockerfile
+```docker
 FROM node:slim
 RUN mkdir /app
 WORKDIR /app
@@ -33,7 +33,7 @@ CMD [ "npm", "start" ]
 
 这里我们把项目相关的构建指令拿出来，放到子项目里去。假设这个基础镜像的名字为 `my-node` 的话，各个项目内的自己的 `Dockerfile` 就变为：
 
-```Dockerfile
+```docker
 FROM my-node
 COPY ./package.json /app
 RUN [ "npm", "install" ]
@@ -46,7 +46,7 @@ COPY . /app/
 
 `ONBUILD` 可以解决这个问题。让我们用 `ONBUILD` 重新写一下基础镜像的 `Dockerfile`:
 
-```Dockerfile
+```docker
 FROM node:slim
 RUN mkdir /app
 WORKDIR /app
@@ -58,7 +58,7 @@ CMD [ "npm", "start" ]
 
 这次我们回到原始的 `Dockerfile`，但是这次将项目相关的指令加上 `ONBUILD`，这样在构建基础镜像的时候，这三行并不会被执行。然后各个项目的 `Dockerfile` 就变成了简单地：
 
-```Dockerfile
+```docker
 FROM my-node
 ```
 

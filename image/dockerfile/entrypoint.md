@@ -16,7 +16,7 @@
 
 假设我们需要一个得知自己当前公网 IP 的镜像，那么可以先用 `CMD` 来实现：
 
-```Dockerfile
+```docker
 FROM ubuntu:18.04
 RUN apt-get update \
     && apt-get install -y curl \
@@ -48,7 +48,7 @@ $ docker run myip curl -s https://ip.cn -i
 
 这显然不是很好的解决方案，而使用 `ENTRYPOINT` 就可以解决这个问题。现在我们重新用 `ENTRYPOINT` 来实现这个镜像：
 
-```Dockerfile
+```docker
 FROM ubuntu:18.04
 RUN apt-get update \
     && apt-get install -y curl \
@@ -91,7 +91,7 @@ Connection: keep-alive
 
 这些准备工作是和容器 `CMD` 无关的，无论 `CMD` 为什么，都需要事先进行一个预处理的工作。这种情况下，可以写一个脚本，然后放入 `ENTRYPOINT` 中去执行，而这个脚本会将接到的参数（也就是 `<CMD>`）作为命令，在脚本最后执行。比如官方镜像 `redis` 中就是这么做的：
 
-```Dockerfile
+```docker
 FROM alpine:3.4
 ...
 RUN addgroup -S redis && adduser -S -G redis redis

@@ -8,7 +8,7 @@
 
 在某些情况下，这个自动解压缩的功能非常有用，比如官方镜像 `ubuntu` 中：
 
-```Dockerfile
+```docker
 FROM scratch
 ADD ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /
 ...
@@ -24,7 +24,7 @@ ADD ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /
 
 在使用该指令的时候还可以加上 `--chown=<user>:<group>` 选项来改变文件的所属用户及所属组。
 
-```Dockerfile
+```docker
 ADD --chown=55:mygroup files* /mydir/
 ADD --chown=bin files* /mydir/
 ADD --chown=1 files* /mydir/

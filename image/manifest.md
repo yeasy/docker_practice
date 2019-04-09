@@ -6,7 +6,7 @@
 
 例如我们在 `Linux x86_64` 中构建一个 `username/test` 镜像。
 
-```Dockerfile
+```docker
 FROM alpine
 
 CMD echo 1
