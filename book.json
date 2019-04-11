@@ -28,6 +28,11 @@
     "multipart"
   ],
   "pluginsConfig": {
+    "page-treeview": {
+      "copyright": "",
+      "minHeaderCount": "2",
+      "minHeaderDeep": "2"
+    },
     "prism": {
       "lang": {
         "flow": "typescript"
