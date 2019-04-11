@@ -16,6 +16,7 @@
     "-sharing",
     "-search",
     "-lunr",
+    "page-treeview",
     "image-captions",
     "github",
     "theme-comscore",
