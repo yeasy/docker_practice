@@ -11,13 +11,13 @@
 默认会在 `6379` 端口启动数据库。
 
 ```bash
-$ docker run --name some-redis -d redis
+$ docker run --name some-redis -d -p 6379:6379 redis
 ```
 
 另外还可以启用 [持久存储](https://redis.io/topics/persistence)。
 
 ```bash
-$ docker run --name some-redis -d redis redis-server --appendonly yes
+$ docker run --name some-redis -d -p 6379:6379 redis redis-server --appendonly yes
 ```
 
 默认数据存储位置在 `VOLUME/data`。可以使用 `--volumes-from some-volume-container` 或 `-v /docker/host/dir:/data` 将数据存放到本地。
