@@ -3,7 +3,8 @@
 * 1.1.0 2019-06-30
   * 增加 `BuildKit`
   * 增加 `docker manifest` 命令使用说明
-
+  * 移除 `Ubuntu 14.04` `Debian 8` `Debian 7`
+  
 * 1.0.0: 2018-12-31
   * 全面支持 v18.x 新版本
   * 添加如何调试 Docker

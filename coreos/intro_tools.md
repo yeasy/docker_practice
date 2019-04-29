@@ -18,5 +18,3 @@ UUID		  APP	  IMAGE NAME			            STATE	  CREATED		    STARTED		   NETWORKS
 ## 容器管理
 
 第二个组件就是 `Docker`，它用来运行你的代码和应用。`CoreOS` 内置 `Docker`，具体使用请参考本书其他章节。
-
-`CoreOS` 也内置了由自己开发的容器 `Rkt`，`Rkt` 不属于本书的讨论范围，这里不再赘述。
