@@ -100,7 +100,7 @@ $ docker run --network=my-net --ip=172.25.3.3 -itd --name=my-container busybox
 
 ### Docker 的配置文件放在哪里，如何修改配置？
 
-答：使用 `upstart` 的系统（如 Ubuntu 14.04）的配置文件在 `/etc/default/docker`，使用 `systemd` 的系统（如 Ubuntu 16.04、Centos 等）的配置文件在 `/etc/docker/daemon.json`。
+答：使用 `systemd` 的系统（如 Ubuntu 16.04、Centos 等）的配置文件在 `/etc/docker/daemon.json`。
 
 
 ### 如何更改 Docker 的默认存储位置？

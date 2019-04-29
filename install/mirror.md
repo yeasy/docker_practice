@@ -12,20 +12,6 @@
 
 我们以 Docker 官方加速器 `https://registry.docker-cn.com` 为例进行介绍。
 
-### Ubuntu 14.04、Debian 7 Wheezy
-
-对于使用 [upstart](http://upstart.ubuntu.com/) 的系统而言，编辑 `/etc/default/docker` 文件，在其中的 `DOCKER_OPTS` 中配置加速器地址：
-
-```bash
-DOCKER_OPTS="--registry-mirror=https://registry.docker-cn.com"
-```
-
-重新启动服务。
-
-```bash
-$ sudo service docker restart
-```
-
 ### Ubuntu 16.04+、Debian 8+、CentOS 7
 
 对于使用 [systemd](https://www.freedesktop.org/wiki/Software/systemd/) 的系统，请在 `/etc/docker/daemon.json` 中写入如下内容（如果文件不存在请新建该文件）
