@@ -1,0 +1,12 @@
+.idea/
+.git/
+vendor/
+node_modules/
+public/js/
+public/css/
+yarn-error.log
+
+bootstrap/cache/*
+storage/
+
+# 自行添加其他需要排除的文件，例如 .env.* 文件

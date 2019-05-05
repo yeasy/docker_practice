@@ -39,7 +39,7 @@ $ sudo dnf -y install dnf-plugins-core
 
 鉴于国内网络问题，强烈建议使用国内源，官方源请在注释中查看。
 
-执行下面的命令添加 `dnf 软件源：
+执行下面的命令添加 `dnf` 软件源：
 
 ```bash
 $ sudo dnf config-manager \
@@ -163,7 +163,7 @@ For more examples and ideas, visit:
 
 ### 镜像加速
 
-鉴于国内网络问题，后续拉取 Docker 镜像十分缓慢，强烈建议安装 Docker 之后配置 [国内镜像加速](mirror.md)。
+如果在使用过程中发现拉取 Docker 镜像十分缓慢，可以配置 Docker [国内镜像加速](mirror.md)。
 
 ### 参考文档
 

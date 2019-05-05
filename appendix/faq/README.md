@@ -30,7 +30,7 @@
 
 * 使用 Dockerfile 创建镜像时候要添加 .dockerignore 文件或使用干净的工作目录。
 
-更多内容请查看 [Dockerfile 最佳实践](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
+更多内容请查看 [Dockerfile 最佳实践](../best_practices.md)
 
 ### 碰到网络问题，无法 pull 镜像，命令行指定 http_proxy 无效？
 
@@ -82,7 +82,7 @@ $ docker run --network=my-net --ip=172.25.3.3 -itd --name=my-container busybox
 
 ### 可以在一个容器中同时运行多个应用进程么？
 
-答：一般并不推荐在同一个容器内运行多个应用进程。如果有类似需求，可以通过一些额外的进程管理机制，比如 `supervisord` 来管理所运行的进程。可以参考 https://docs.docker.com/engine/admin/multi-service_container/ 。
+答：一般并不推荐在同一个容器内运行多个应用进程。如果有类似需求，可以通过一些额外的进程管理机制，比如 `supervisord` 来管理所运行的进程。可以参考 https://docs.docker.com/config/containers/multi-service_container/ 。
 
 ### 如何控制容器占用系统资源（CPU、内存）的份额？
 
@@ -100,7 +100,7 @@ $ docker run --network=my-net --ip=172.25.3.3 -itd --name=my-container busybox
 
 ### Docker 的配置文件放在哪里，如何修改配置？
 
-答：使用 `upstart` 的系统（如 Ubuntu 14.04）的配置文件在 `/etc/default/docker`，使用 `systemd` 的系统（如 Ubuntu 16.04、Centos 等）的配置文件在 `/etc/docker/daemon.json`。
+答：使用 `systemd` 的系统（如 Ubuntu 16.04、Centos 等）的配置文件在 `/etc/docker/daemon.json`。
 
 
 ### 如何更改 Docker 的默认存储位置？

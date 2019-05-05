@@ -10,7 +10,6 @@ Docker CE 支持以下版本的 [Ubuntu](https://www.ubuntu.com/server) 操作�
 
 * Bionic 18.04 (LTS)
 * Xenial 16.04 (LTS)
-* Trusty 14.04 (LTS) (Docker CE v18.06 及以下版本)
 
 Docker CE 可以安装在 64 位的 x86 平台或 ARM 平台上。Ubuntu 发行版中，LTS（Long-Term-Support）长期支持版本，会获得 5 年的升级维护支持，这样的版本会更稳定，因此在生产环境中推荐使用 LTS 版本。
 
@@ -23,24 +22,6 @@ $ sudo apt-get remove docker \
                docker-engine \
                docker.io
 ```
-
-#### Ubuntu 14.04 可选内核模块
-
-从 Ubuntu 14.04 开始，一部分内核模块移到了可选内核模块包 (`linux-image-extra-*`) ，以减少内核软件包的体积。正常安装的系统应该会包含可选内核模块包，而一些裁剪后的系统可能会将其精简掉。`AUFS` 内核驱动属于可选内核模块的一部分，作为推荐的 Docker 存储层驱动，一般建议安装可选内核模块包以使用 `AUFS`。
-
-如果系统没有安装可选内核模块的话，可以执行下面的命令来安装可选内核模块包：
-
-```bash
-$ sudo apt-get update
-
-$ sudo apt-get install \
-    linux-image-extra-$(uname -r) \
-    linux-image-extra-virtual
-```
-
-#### Ubuntu 16.04 +
-
-Ubuntu 16.04 + 上的 Docker CE 默认使用 `overlay2` 存储层驱动,无需手动配置。
 
 ### 使用 APT 安装
 
@@ -81,7 +62,7 @@ $ sudo add-apt-repository \
 # $ sudo add-apt-repository \
 #    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
 #    $(lsb_release -cs) \
-#    stable"    
+#    stable"
 ```
 
 >以上命令会添加稳定版本的 Docker CE APT 镜像源，如果需要测试或每日构建版本的 Docker CE 请将 stable 改为 test 或者 nightly。
@@ -112,12 +93,6 @@ $ sudo sh get-docker.sh --mirror Aliyun
 ```bash
 $ sudo systemctl enable docker
 $ sudo systemctl start docker
-```
-
-Ubuntu 14.04 请使用以下命令启动：
-
-```bash
-$ sudo service docker start
 ```
 
 ### 建立 docker 用户组
@@ -175,7 +150,7 @@ For more examples and ideas, visit:
 
 ### 镜像加速
 
-鉴于国内网络问题，后续拉取 Docker 镜像十分缓慢，强烈建议安装 Docker 之后配置 [国内镜像加速](mirror.md)。
+如果在使用过程中发现拉取 Docker 镜像十分缓慢，可以配置 Docker [国内镜像加速](mirror.md)。
 
 ### 参考文档
 

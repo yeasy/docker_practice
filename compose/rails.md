@@ -1,6 +1,6 @@
 ## 使用 Rails
 
-本小节内容适合 `Ruby` 开发人员阅读。
+> 本小节内容适合 `Ruby` 开发人员阅读。
 
 我们现在将使用 `Compose` 配置并运行一个 `Rails/PostgreSQL` 应用。
 
@@ -8,7 +8,7 @@
 
 首先，因为应用将要运行在一个满足所有环境依赖的 Docker 容器里面，那么我们可以通过编辑 `Dockerfile` 文件来指定 Docker 容器要安装内容。内容如下：
 
-```docker
+```dockerfile
 FROM ruby
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
 RUN mkdir /myapp

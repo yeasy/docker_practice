@@ -55,7 +55,7 @@ $ sudo add-apt-repository \
 # $ sudo add-apt-repository \
 #    "deb [arch=armhf] https://download.docker.com/linux/raspbian \
 #    $(lsb_release -cs) \
-#    stable"    
+#    stable"
 ```
 
 >以上命令会添加稳定版本的 Docker CE APT 源，如果需要测试或每日构建版本的 Docker CE 请将 stable 改为 test 或者 nightly。
@@ -145,4 +145,4 @@ For more examples and ideas, visit:
 
 ### 镜像加速
 
-鉴于国内网络问题，后续拉取 Docker 镜像十分缓慢，强烈建议安装 Docker 之后配置 [国内镜像加速](mirror.md)。
+如果在使用过程中发现拉取 Docker 镜像十分缓慢，可以配置 Docker [国内镜像加速](mirror.md)。

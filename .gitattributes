@@ -2,4 +2,4 @@
 
 *.sh        text eol=lf
 
-*.py        linguist-language=go
+*           linguist-language=go

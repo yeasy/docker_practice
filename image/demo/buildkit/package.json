@@ -1,0 +1,11 @@
+{
+  "name": "my_app",
+  "version": "19.6.0",
+  "devDependencies": {
+    "webpack": "*",
+    "webpack-cli": "*"
+  },
+  "scripts": {
+    "build": "mkdir -p $PWD/dist && cp -r src/* dist/"
+  }
+}

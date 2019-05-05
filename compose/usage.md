@@ -40,7 +40,7 @@ if __name__ == "__main__":
 
 编写 `Dockerfile` 文件，内容为
 
-```docker
+```dockerfile
 FROM python:3.6-alpine
 ADD . /code
 WORKDIR /code
@@ -60,7 +60,7 @@ services:
     build: .
     ports:
      - "5000:5000"
-     
+
   redis:
     image: "redis:alpine"
 ```

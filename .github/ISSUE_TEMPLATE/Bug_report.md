@@ -12,11 +12,9 @@ about: Create a report to help us improve
 
 * [x] Linux
    * [x] CentOS 7
-   * [x] Ubuntu 14.04
+   * [x] Fedora
    * [x] Ubuntu 16.04 +
-   * [x] Debian 7
-   * [x] Debian 8 +
-   * [x] CoreOS
+   * [x] Debian 9 +
 * [x] macOS
 * [x] Windows 10
 * [x] Raspberry Pi (ARM)

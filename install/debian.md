@@ -10,8 +10,6 @@ Docker CE 支持以下版本的 [Debian](https://www.debian.org/intro/about) 操
 
 * Buster 10
 * Stretch 9
-* Jessie 8 (LTS) (Docker CE v18.06 及以下版本)
-* Wheezy 7.7 (EOL) (Docker CE v18.03 及以下版本)
 
 #### 卸载旧版本
 
@@ -23,15 +21,9 @@ $ sudo apt-get remove docker \
                docker.io
 ```
 
-#### Debian 7 Wheezy
-
-Debian 7 的内核默认为 3.2，为了满足 Docker CE 的需求，应该安装 [`backports`](https://backports.debian.org/Instructions/) 的内核。
-
 ### 使用 APT 安装
 
 由于 apt 源使用 HTTPS 以确保软件下载过程中不被篡改。因此，我们首先需要添加使用 HTTPS 传输的软件包以及 CA 证书。
-
-Debian 8 Jessie 或者 Debian 9 Stretch 使用以下命令:
 
 ```bash
 $ sudo apt-get update
@@ -43,20 +35,6 @@ $ sudo apt-get install \
      gnupg2 \
      lsb-release \
      software-properties-common
-```
-
-Debian 7 Wheezy 使用以下命令：
-
-```bash
-$ sudo apt-get update
-
-$ sudo apt-get install \
-     apt-transport-https \
-     ca-certificates \
-     curl \
-     lsb-release \
-     python-software-properties
-
 ```
 
 鉴于国内网络问题，强烈建议使用国内源，官方源请在注释中查看。
@@ -83,18 +61,10 @@ $ sudo add-apt-repository \
 # $ sudo add-apt-repository \
 #    "deb [arch=amd64] https://download.docker.com/linux/debian \
 #    $(lsb_release -cs) \
-#    stable"  
+#    stable"
 ```
 
 >以上命令会添加稳定版本的 Docker CE APT 源，如果需要测试或每日构建版本的 Docker CE 请将 stable 改为 test 或者 nightly。
-
-Debian 7 需要进行额外的操作：
-
-编辑 `/etc/apt/sources.list` 将 deb-src 一行删除或者使用 # 注释。
-
-```bash
-deb-src [arch=amd64] https://download.docker.com/linux/debian wheezy stable
-```
 
 #### 安装 Docker CE
 
@@ -122,12 +92,6 @@ $ sudo sh get-docker.sh --mirror Aliyun
 ```bash
 $ sudo systemctl enable docker
 $ sudo systemctl start docker
-```
-
-Debian 7 Wheezy 请使用以下命令启动
-
-```bash
-$ sudo service docker start
 ```
 
 ### 建立 docker 用户组
@@ -185,7 +149,7 @@ For more examples and ideas, visit:
 
 ### 镜像加速
 
-鉴于国内网络问题，后续拉取 Docker 镜像十分缓慢，强烈建议安装 Docker 之后配置 [国内镜像加速](mirror.md)。
+如果在使用过程中发现拉取 Docker 镜像十分缓慢，可以配置 Docker [国内镜像加速](mirror.md)。
 
 ### 参考文档
 

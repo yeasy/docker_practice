@@ -8,29 +8,25 @@
 
 一种方式是将所有的构建过程编包含在一个 `Dockerfile` 中，包括项目及其依赖库的编译、测试、打包等流程，这里可能会带来的一些问题：
 
-  * `Dockerfile` 特别长，可维护性降低
-
   * 镜像层次多，镜像体积较大，部署时间变长
 
   * 源代码存在泄露的风险
 
-例如
-
-编写 `app.go` 文件，该程序输出 `Hello World!`
+例如，编写 `app.go` 文件，该程序输出 `Hello World!`
 
 ```go
-package main  
+package main
 
-import "fmt"  
+import "fmt"
 
-func main(){  
+func main(){
     fmt.Printf("Hello World!");
 }
 ```
 
 编写 `Dockerfile.one` 文件
 
-```docker
+```dockerfile
 FROM golang:1.9-alpine
 
 RUN apk --no-cache add git ca-certificates
@@ -58,11 +54,9 @@ $ docker build -t go/helloworld:1 -f Dockerfile.one .
 
 另一种方式，就是我们事先在一个 `Dockerfile` 将项目及其依赖库编译测试打包好后，再将其拷贝到运行环境中，这种方式需要我们编写两个 `Dockerfile` 和一些编译脚本才能将其两个阶段自动整合起来，这种方式虽然可以很好地规避第一种方式存在的风险，但明显部署过程较复杂。
 
-例如
+例如，编写 `Dockerfile.build` 文件
 
-编写 `Dockerfile.build` 文件
-
-```docker
+```dockerfile
 FROM golang:1.9-alpine
 
 RUN apk --no-cache add git
@@ -77,7 +71,7 @@ RUN go get -d -v github.com/go-sql-driver/mysql \
 
 编写 `Dockerfile.copy` 文件
 
-```docker
+```dockerfile
 FROM alpine:latest
 
 RUN apk --no-cache add ca-certificates
@@ -129,11 +123,9 @@ go/helloworld   1      f55d3e16affc    2 minutes ago   295MB
 
 为解决以上问题，Docker v17.05 开始支持多阶段构建 (`multistage builds`)。使用多阶段构建我们就可以很容易解决前面提到的问题，并且只需要编写一个 `Dockerfile`：
 
-例如
+例如，编写 `Dockerfile` 文件
 
-编写 `Dockerfile` 文件
-
-```docker
+```dockerfile
 FROM golang:1.9-alpine as builder
 
 RUN apk --no-cache add git
@@ -154,7 +146,7 @@ WORKDIR /root/
 
 COPY --from=0 /go/src/github.com/go/helloworld/app .
 
-CMD ["./app"]  
+CMD ["./app"]
 ```
 
 构建镜像
@@ -184,7 +176,7 @@ go/helloworld     1     f55d3e16affc     2 minutes ago      295MB
 FROM golang:1.9-alpine as builder
 ```
 
-例如当我们只想构建 `builder` 阶段的镜像时，我们可以在使用 `docker build` 命令时加上 `--target` 参数即可
+例如当我们只想构建 `builder` 阶段的镜像时，增加 `--target=builder` 参数即可
 
 ```bash
 $ docker build --target builder -t username/imagename:tag .

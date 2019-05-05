@@ -19,4 +19,4 @@ UTS("UNIX Time-sharing System") 命名空间允许每个容器拥有独立的 ho
 ### user 命名空间
 每个容器可以有不同的用户和组 id, 也就是说可以在容器内用容器内部的用户执行程序而非主机上的用户。
 
-*注：更多关于 Linux 上命名空间的信息，请阅读 [这篇文章](http://blog.scottlowe.org/2013/09/04/introducing-linux-network-namespaces/)。
+*注：更多关于 Linux 上命名空间的信息，请阅读 [这篇文章](https://blog.scottlowe.org/2013/09/04/introducing-linux-network-namespaces/)。
