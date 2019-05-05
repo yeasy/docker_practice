@@ -8,32 +8,33 @@
 
 压缩包可以是本地文件、远程 Web 文件，甚至是从标准输入中得到。压缩包将会在镜像 `/` 目录展开，并直接作为镜像第一层提交。
 
-比如我们想要创建一个 [OpenVZ](https://openvz.org) 的 Ubuntu 14.04 [模板](https://openvz.org/Download/template/precreated)的镜像：
+比如我们想要创建一个 [OpenVZ](https://openvz.org) 的 Ubuntu 16.04 [模板](https://openvz.org/Download/template/precreated)的镜像：
 
 ```bash
 $ docker import \
-    http://download.openvz.org/template/precreated/ubuntu-14.04-x86_64-minimal.tar.gz \
-    openvz/ubuntu:14.04
-Downloading from http://download.openvz.org/template/precreated/ubuntu-14.04-x86_64-minimal.tar.gz
-sha256:f477a6e18e989839d25223f301ef738b69621c4877600ae6467c4e5289822a79B/78.42 MB
+    http://download.openvz.org/template/precreated/ubuntu-16.04-x86_64.tar.gz \
+    openvz/ubuntu:16.04
+
+Downloading from http://download.openvz.org/template/precreated/ubuntu-16.04-x86_64.tar.gz
+sha256:412b8fc3e3f786dca0197834a698932b9c51b69bd8cf49e100c35d38c9879213
 ```
 
-这条命令自动下载了 `ubuntu-14.04-x86_64-minimal.tar.gz` 文件，并且作为根文件系统展开导入，并保存为镜像 `openvz/ubuntu:14.04`。
+这条命令自动下载了 `ubuntu-16.04-x86_64.tar.gz` 文件，并且作为根文件系统展开导入，并保存为镜像 `openvz/ubuntu:16.04`。
 
 导入成功后，我们可以用 `docker image ls` 看到这个导入的镜像：
 
 ```bash
 $ docker image ls openvz/ubuntu
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-openvz/ubuntu       14.04               f477a6e18e98        55 seconds ago      214.9 MB
+openvz/ubuntu       16.04               412b8fc3e3f7        55 seconds ago      505MB
 ```
 
 如果我们查看其历史的话，会看到描述中有导入的文件链接：
 
 ```bash
-$ docker history openvz/ubuntu:14.04
+$ docker history openvz/ubuntu:16.04
 IMAGE               CREATED              CREATED BY          SIZE                COMMENT
-f477a6e18e98        About a minute ago                       214.9 MB            Imported from http://download.openvz.org/template/precreated/ubuntu-14.04-x86_64-minimal.tar.gz
+f477a6e18e98        About a minute ago                       214.9 MB            Imported from http://download.openvz.org/template/precreated/ubuntu-16.04-x86_64.tar.gz
 ```
 
 ### `docker save` 和 `docker load`

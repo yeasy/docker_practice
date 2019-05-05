@@ -69,7 +69,7 @@ $ docker run --rm -it \
 
 root@2affd44b4667:/# history
 1  ls
-2  diskutil list   
+2  diskutil list
 ```
 
 这样就可以记录在容器输入过的命令了。

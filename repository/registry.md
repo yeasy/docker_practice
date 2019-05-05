@@ -97,20 +97,6 @@ REPOSITORY                         TAG                 IMAGE ID            CREAT
 
 这是因为 Docker 默认不允许非 `HTTPS` 方式推送镜像。我们可以通过 Docker 的配置选项来取消这个限制，或者查看下一节配置能够通过 `HTTPS` 访问的私有仓库。
 
-#### Ubuntu 14.04, Debian 7 Wheezy
-
-对于使用 `upstart` 的系统而言，编辑 `/etc/default/docker` 文件，在其中的 `DOCKER_OPTS` 中增加如下内容：
-
-```bash
-DOCKER_OPTS="--registry-mirror=https://registry.docker-cn.com --insecure-registries=192.168.199.100:5000"
-```
-
-重新启动服务。
-
-```bash
-$ sudo service docker restart
-```
-
 #### Ubuntu 16.04+, Debian 8+, centos 7
 
 对于使用 `systemd` 的系统，请在 `/etc/docker/daemon.json` 中写入如下内容（如果文件不存在请新建该文件）

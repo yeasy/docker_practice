@@ -7,7 +7,7 @@ services:
       - node1-data:/etcd-data
     expose:
       - 2379
-      - 2380      
+      - 2380
     networks:
       cluster_net:
         ipv4_address: 172.16.238.100

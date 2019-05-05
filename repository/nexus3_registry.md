@@ -2,7 +2,7 @@
 
 使用 Docker 官方的 Registry 创建的仓库面临一些维护问题。比如某些镜像删除以后空间默认是不会回收的，需要一些命令去回收空间然后重启 Registry 程序。在企业中把内部的一些工具包放入 Nexus 中是比较常见的做法，最新版本 `Nexus3.x` 全面支持 Docker 的私有镜像。所以使用 [`Nexus3.x`](https://www.sonatype.com/download-oss-sonatype/) 一个软件来管理 `Docker` , `Maven` , `Yum` , `PyPI` 等是一个明智的选择。
 
-### 启动 Nexus 容器 
+### 启动 Nexus 容器
 
 ```bash
 $ docker run -d --name nexus3 --restart=always \
@@ -52,10 +52,10 @@ upstream register
 server {
     server_name YourDomainName;#如果没有 DNS 服务器做解析，请删除此选项使用本机 IP 地址访问
     listen       443 ssl;
-    
+
     ssl_certificate key/example.crt;
     ssl_certificate_key key/example.key;
-    
+
     ssl_session_timeout  5m;
     ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
     ssl_ciphers  HIGH:!aNULL:!MD5;

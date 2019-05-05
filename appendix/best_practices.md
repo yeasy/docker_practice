@@ -1,6 +1,6 @@
 # Dockerfile 最佳实践
 
-本附录是笔者对 Docker 官方文档中 [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/) 的理解与翻译。
+本附录是笔者对 Docker 官方文档中 [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) 的理解与翻译。
 
 ## 一般性的指南和建议
 
@@ -36,7 +36,7 @@
 
 下面是来自 `buildpack-deps` 镜像的例子：
 
-```docker
+```dockerfile
 RUN apt-get update && apt-get install -y \
   bzr \
   cvs \
@@ -72,7 +72,7 @@ RUN apt-get update && apt-get install -y \
 
 >注意：如果你的字符串中包含空格，必须将字符串放入引号中或者对空格使用转义。如果字符串内容本身就包含引号，必须对引号使用转义。
 
-```docker
+```dockerfile
 # Set one or more individual labels
 LABEL com.example.version="0.0.1-beta"
 
@@ -85,7 +85,7 @@ LABEL com.example.version.is-production=""
 
 一个镜像可以包含多个标签，但建议将多个标签放入到一个 `LABEL` 指令中。
 
-```docker
+```dockerfile
 # Set multiple labels at once, using line-continuation characters to break long lines
 LABEL vendor=ACME\ Incorporated \
       com.example.is-beta= \
@@ -94,7 +94,7 @@ LABEL vendor=ACME\ Incorporated \
       com.example.release-date="2015-02-12"
 ```
 
-关于标签可以接受的键值对，参考 [Understanding object labels](https://docs.docker.com/engine/userguide/labels-custom-metadata/)。关于查询标签信息，参考 [Managing labels on objects](https://docs.docker.com/engine/userguide/labels-custom-metadata/#managing-labels-on-objects)。
+关于标签可以接受的键值对，参考 [Understanding object labels](https://docs.docker.com/config/labels-custom-metadata/)。关于查询标签信息，参考 [Managing labels on objects](https://docs.docker.com/config/labels-custom-metadata/)。
 
 ### RUN
 
@@ -108,7 +108,7 @@ LABEL vendor=ACME\ Incorporated \
 
 永远将 `RUN apt-get update` 和 `apt-get install` 组合成一条 `RUN` 声明，例如：
 
-```docker
+```dockerfile
 RUN apt-get update && apt-get install -y \
         package-bar \
         package-baz \
@@ -117,7 +117,7 @@ RUN apt-get update && apt-get install -y \
 
 将 `apt-get update` 放在一条单独的 `RUN` 声明中会导致缓存问题以及后续的 `apt-get install` 失败。比如，假设你有一个 `Dockerfile` 文件：
 
-```docker
+```dockerfile
 FROM ubuntu:18.04
 
 RUN apt-get update
@@ -127,7 +127,7 @@ RUN apt-get install -y curl
 
 构建镜像后，所有的层都在 Docker 的缓存中。假设你后来又修改了其中的 `apt-get install` 添加了一个包：
 
-```docker
+```dockerfile
 FROM ubuntu:18.04
 
 RUN apt-get update
@@ -139,7 +139,7 @@ Docker 发现修改后的 `RUN apt-get update` 指令和之前的完全一样。
 
 使用 `RUN apt-get update && apt-get install -y` 可以确保你的 Dockerfiles 每次安装的都是包的最新的版本，而且这个过程不需要进一步的编码或额外干预。这项技术叫作 `cache busting`。你也可以显示指定一个包的版本号来达到 `cache-busting`，这就是所谓的固定版本，例如：
 
-```docker
+```dockerfile
 RUN apt-get update && apt-get install -y \
     package-bar \
     package-baz \
@@ -150,7 +150,7 @@ RUN apt-get update && apt-get install -y \
 
 下面是一个 `RUN` 指令的示例模板，展示了所有关于 `apt-get` 的建议。
 
-```docker
+```dockerfile
 RUN apt-get update && apt-get install -y \
     aufs-tools \
     automake \
@@ -193,7 +193,7 @@ RUN apt-get update && apt-get install -y \
 
 最后，`ENV` 也能用于设置常见的版本号，比如下面的示例：
 
-```docker
+```dockerfile
 ENV PG_MAJOR 9.3
 
 ENV PG_VERSION 9.3.4
@@ -211,7 +211,7 @@ ENV PATH /usr/local/postgres-$PG_MAJOR/bin:$PATH
 
 如果你的 `Dockerfile` 有多个步骤需要使用上下文中不同的文件。单独 `COPY` 每个文件，而不是一次性的 `COPY` 所有文件，这将保证每个步骤的构建缓存只在特定的文件变化时失效。例如：
 
-```docker
+```dockerfile
 COPY requirements.txt /tmp/
 
 RUN pip install --requirement /tmp/requirements.txt
@@ -223,7 +223,7 @@ COPY . /tmp/
 
 为了让镜像尽量小，最好不要使用 `ADD` 指令从远程 URL 获取包，而是使用 `curl` 和 `wget`。这样你可以在文件提取完之后删掉不再需要的文件来避免在镜像中额外添加一层。比如尽量避免下面的用法：
 
-```docker
+```dockerfile
 ADD http://example.com/big.tar.xz /usr/src/things/
 
 RUN tar -xJf /usr/src/things/big.tar.xz -C /usr/src/things
@@ -233,7 +233,7 @@ RUN make -C /usr/src/things all
 
 而是应该使用下面这种方法：
 
-```docker
+```dockerfile
 RUN mkdir -p /usr/src/things \
     && curl -SL http://example.com/big.tar.xz \
     | tar -xJC /usr/src/things \
@@ -250,7 +250,7 @@ RUN mkdir -p /usr/src/things \
 
 例如，下面的示例镜像提供了命令行工具 `s3cmd`:
 
-```docker
+```dockerfile
 ENTRYPOINT ["s3cmd"]
 
 CMD ["--help"]
@@ -295,7 +295,7 @@ exec "$@"
 
 该辅助脚本被拷贝到容器，并在容器启动时通过 `ENTRYPOINT` 执行：
 
-```docker
+```dockerfile
 COPY ./docker-entrypoint.sh /
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
@@ -339,6 +339,6 @@ $ docker run --rm -it postgres bash
 
 为了清晰性和可靠性，你应该总是在 `WORKDIR` 中使用绝对路径。另外，你应该使用 `WORKDIR` 来替代类似于 `RUN cd ... && do-something` 的指令，后者难以阅读、排错和维护。
 
-## 官方仓库示例
+## 官方镜像示例
 
-这些官方仓库的 Dockerfile 都是参考典范：https://github.com/docker-library/docs
+这些官方镜像的 Dockerfile 都是参考典范：https://github.com/docker-library/docs

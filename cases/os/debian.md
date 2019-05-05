@@ -56,7 +56,6 @@ crashsystems/gitlab-docker           A trusted, regularly updated build of GitL.
 sylvainlasnier/memcached             This is a Memcached 1.4.14 docker images b...   16                   [OK]
 ubuntu-upstart                       Upstart is an event-based replacement for ...   16        [OK]
 mbentley/ubuntu-django-uwsgi-nginx                                                   16                   [OK]
-ansible/ubuntu14.04-ansible          Ubuntu 14.04 LTS with ansible                   15                   [OK]
 clue/ttrss                           The Tiny Tiny RSS feed reader allows you t...   14                   [OK]
 dockerfile/ubuntu-desktop            Trusted automated Ubuntu Desktop (LXDE) (h...   14                   [OK]
 tutum/ubuntu                         Ubuntu image with SSH access. For the root...   12                   [OK]

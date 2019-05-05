@@ -48,7 +48,7 @@ $ sudo yum-config-manager \
 # 官方源
 # $ sudo yum-config-manager \
 #     --add-repo \
-#     https://download.docker.com/linux/centos/docker-ce.repo    
+#     https://download.docker.com/linux/centos/docker-ce.repo
 ```
 
 如果需要测试版本的 Docker CE 请使用以下命令：
@@ -145,11 +145,11 @@ For more examples and ideas, visit:
 
 ### 镜像加速
 
-鉴于国内网络问题，后续拉取 Docker 镜像十分缓慢，强烈建议安装 Docker 之后配置 [国内镜像加速](mirror.md)。
+如果在使用过程中发现拉取 Docker 镜像十分缓慢，可以配置 Docker [国内镜像加速](mirror.md)。
 
 ### 添加内核参数
 
-默认配置下，如果在 CentOS 使用 Docker CE 看到下面的这些警告信息：
+如果在 CentOS 使用 Docker CE 看到下面的这些警告信息：
 
 ```bash
 WARNING: bridge-nf-call-iptables is disabled
