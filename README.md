@@ -1,6 +1,6 @@
 # Docker — 从入门到实践
 
-[![](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) [![](https://travis-ci.org/yeasy/docker_practice.svg?branch=master)](https://travis-ci.org/yeasy/docker_practice) [![](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases) [![](https://img.shields.io/badge/Based-Docker%20CE%20v18.x-blue.svg)](https://github.com/docker/docker-ce) [![](https://img.shields.io/badge/Docker%20%E6%8A%80%E6%9C%AF%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E6%88%98-jd.com-red.svg)](https://u.jd.com/tKZmVG)
+[![](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) [![](https://travis-ci.org/yeasy/docker_practice.svg?branch=master)](https://travis-ci.org/yeasy/docker_practice) [![](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases) [![](https://img.shields.io/badge/Based-Docker%20CE%20v18.x-blue.svg)](https://github.com/docker/docker-ce) [![](https://img.shields.io/badge/Docker%20%E6%8A%80%E6%9C%AF%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E6%88%98-jd.com-red.svg)](https://union-click.jd.com/jdc?e=&p=AyIGZRtYFAcXBFIZWR0yEgRQH1kXAhs3EUQDS10iXhBeGlcJDBkNXg9JHU4YDk5ER1xOGRNLGEEcVV8BXURFUFdfC0RVU1JRUy1OVxUBFwNXGVscMlVYLlAaXAV1Z1JHA0dWEHVXZTliY1QLWStaJQAWB10fXhwKEDdlG1wlUHzf462DsLMO0%2F%2BUjp2VIgZlG18RBBcCUBlbEAoTBWUcWxwySVI7HAhBBxEOBUgOFQYQUGUraxYyIjdVK1glQHxXUEhYEVEUUFQcC0IHGgRRSAgVARAPAhsLFgNCDl0ZWiUAEwZREg%3D%3D&t=W1dCFFlQCxxKQgFHREkdSVJKSQVJHFRXFk9FUlpGQUpLCVBaTFhbXQtWVmpSWRtYEAYQBVUS)
 
 **v1.1.0**
 
@@ -46,9 +46,9 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初�
 
 ## 进阶学习
 
-[![](https://github.com/yeasy/docker_practice/raw/master/_images/docker_primer3.png)](https://u.jd.com/tKZmVG)
+[![](https://github.com/yeasy/docker_practice/raw/master/_images/docker_primer3.png)](https://union-click.jd.com/jdc?e=&p=AyIGZRtYFAcXBFIZWR0yEgRQH1kXAhs3EUQDS10iXhBeGlcJDBkNXg9JHU4YDk5ER1xOGRNLGEEcVV8BXURFUFdfC0RVU1JRUy1OVxUBFwNXGVscMlVYLlAaXAV1Z1JHA0dWEHVXZTliY1QLWStaJQAWB10fXhwKEDdlG1wlUHzf462DsLMO0%2F%2BUjp2VIgZlG18RBBcCUBlbEAoTBWUcWxwySVI7HAhBBxEOBUgOFQYQUGUraxYyIjdVK1glQHxXUEhYEVEUUFQcC0IHGgRRSAgVARAPAhsLFgNCDl0ZWiUAEwZREg%3D%3D&t=W1dCFFlQCxxKQgFHREkdSVJKSQVJHFRXFk9FUlpGQUpLCVBaTFhbXQtWVmpSWRtYEAYQBVUS)
 
-《[Docker 技术入门与实战](https://u.jd.com/tKZmVG)》第三版已经面世，介绍最新的容器技术栈，欢迎大家阅读使用并反馈建议。
+《[Docker 技术入门与实战](https://union-click.jd.com/jdc?e=&p=AyIGZRtYFAcXBFIZWR0yEgRQH1kXAhs3EUQDS10iXhBeGlcJDBkNXg9JHU4YDk5ER1xOGRNLGEEcVV8BXURFUFdfC0RVU1JRUy1OVxUBFwNXGVscMlVYLlAaXAV1Z1JHA0dWEHVXZTliY1QLWStaJQAWB10fXhwKEDdlG1wlUHzf462DsLMO0%2F%2BUjp2VIgZlG18RBBcCUBlbEAoTBWUcWxwySVI7HAhBBxEOBUgOFQYQUGUraxYyIjdVK1glQHxXUEhYEVEUUFQcC0IHGgRRSAgVARAPAhsLFgNCDl0ZWiUAEwZREg%3D%3D&t=W1dCFFlQCxxKQgFHREkdSVJKSQVJHFRXFk9FUlpGQUpLCVBaTFhbXQtWVmpSWRtYEAYQBVUS)》第三版已经面世，介绍最新的容器技术栈，欢迎大家阅读使用并反馈建议。
 
 <p align="center">
 <img width="200" src="https://user-images.githubusercontent.com/16733187/57310918-3c3afd80-711d-11e9-8816-266e5ede70bb.jpg">
@@ -56,7 +56,7 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初�
 
 <p align="center"><strong>微信扫码购买~</strong></p>
 
-* [京东图书](https://u.jd.com/tKZmVG)
+* [京东图书](https://union-click.jd.com/jdc?e=&p=AyIGZRtYFAcXBFIZWR0yEgRQH1kXAhs3EUQDS10iXhBeGlcJDBkNXg9JHU4YDk5ER1xOGRNLGEEcVV8BXURFUFdfC0RVU1JRUy1OVxUBFwNXGVscMlVYLlAaXAV1Z1JHA0dWEHVXZTliY1QLWStaJQAWB10fXhwKEDdlG1wlUHzf462DsLMO0%2F%2BUjp2VIgZlG18RBBcCUBlbEAoTBWUcWxwySVI7HAhBBxEOBUgOFQYQUGUraxYyIjdVK1glQHxXUEhYEVEUUFQcC0IHGgRRSAgVARAPAhsLFgNCDl0ZWiUAEwZREg%3D%3D&t=W1dCFFlQCxxKQgFHREkdSVJKSQVJHFRXFk9FUlpGQUpLCVBaTFhbXQtWVmpSWRtYEAYQBVUS)
 * [China-Pub](http://product.china-pub.com/8052127)
 
 ## 鼓励项目
