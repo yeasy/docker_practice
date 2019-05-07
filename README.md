@@ -50,6 +50,12 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初�
 
 《[Docker 技术入门与实战](https://u.jd.com/tKZmVG)》第三版已经面世，介绍最新的容器技术栈，欢迎大家阅读使用并反馈建议。
 
+<p align="center">
+<img width="200" src="https://user-images.githubusercontent.com/16733187/57310918-3c3afd80-711d-11e9-8816-266e5ede70bb.jpg">
+</p>
+
+<p align="center"><strong>微信扫码购买~</strong></p>
+
 * [京东图书](https://u.jd.com/tKZmVG)
 * [China-Pub](http://product.china-pub.com/8052127)
 
