@@ -134,7 +134,7 @@
 * [容器与云计算](cloud/README.md)
     * [简介](cloud/intro.md)
     * [亚马逊云](cloud/aws.md)
-    * [腾讯云](cloud/qcloud.md)
+    * [腾讯云](cloud/tencentCloud.md)
     * [阿里云](cloud/alicloud.md)
     * [小结](cloud/summary.md)
 * [实战案例-操作系统](cases/os/README.md)
