@@ -1,7 +1,7 @@
 {
-  "title": "Docker -- 从入门到实践",
+  "title": "Docker Practice",
   "author": "yeasy",
-  "language": "zh-hans",
+  "language": "en",
   "links": {
     "sidebar": {
       "GitHub": "https://github.com/yeasy/docker_practice"
@@ -19,14 +19,13 @@
       "attributes": {
         "width": "600"
       },
-      "caption": "图 _PAGE_LEVEL_._PAGE_IMAGE_NUMBER_ - _CAPTION_"
+      "caption": "Image _PAGE_LEVEL_._PAGE_IMAGE_NUMBER_ - _CAPTION_"
     },
     "github": {
       "url": "https://github.com/yeasy/docker_practice"
     },
     "editlink": {
-      "base": "https://github.com/yeasy/docker_practice/blob/master/",
-      "label": "编辑本页"
+      "base": "https://github.com/yeasy/docker_practice/blob/english/"
     },
     "page-treeview": {
       "copyright": "Copyright &#169; yeasy",
