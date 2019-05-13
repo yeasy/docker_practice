@@ -20,11 +20,11 @@ after_success:
 - echo "FROM nginx:1.13.8-alpine" >> Dockerfile
 - echo "COPY _book /usr/share/nginx/html" >> Dockerfile
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- docker build -t dockerpracticecn/docker_practice .
-- docker run -dit --rm -p 4000:80 dockerpracticecn/docker_practice
+- docker build -t dockerpracticecn/docker_practice:us-en .
+- docker run -dit --rm -p 4000:80 dockerpracticecn/docker_practice:us-en
 - sleep 5
 - curl 127.0.0.1:4000
-- docker push dockerpracticecn/docker_practice
+- docker push dockerpracticecn/docker_practice:us-en
 - cd _book
 - git init
 - git remote add origin "$REPO"
@@ -35,7 +35,7 @@ after_success:
 
 env:
   global:
-  - DEPLOY_BRANCH: pages
+  - DEPLOY_BRANCH: pages-us-en
   # - DEPLOY_BRANCH: legacy-pages
   - REPO: git@github.com:yeasy/docker_practice.git
 
@@ -45,6 +45,7 @@ addons:
 
 branches:
   only:
-  - master
-  - dev
-  # - docker-legacy
+    - english
+    # - master
+    # - dev
+    # - docker-legacy
