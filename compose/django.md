@@ -18,7 +18,7 @@ RUN pip install -r requirements.txt
 COPY . /code/
 ```
 
-以上内容指定应用将使用安装了 Python 以及必要依赖包的镜像。更多关于如何编写 `Dockerfile` 文件的信息可以查看 [镜像创建](../image/create.md#利用 Dockerfile 来创建镜像) 和 [ Dockerfile 使用](../dockerfile/README.md)。
+以上内容指定应用将使用安装了 Python 以及必要依赖包的镜像。更多关于如何编写 `Dockerfile` 文件的信息可以查看 [ Dockerfile 使用](../image/dockerfile/README.md)。
 
 第二步，在 `requirements.txt` 文件里面写明需要安装的具体依赖包名。
 
@@ -67,7 +67,7 @@ Dockerfile       docker-compose.yml          django_example       manage.py     
 如果你的系统是 Linux,记得更改文件权限。
 
 ```bash
-sudo chown -R $USER:$USER .
+$ sudo chown -R $USER:$USER .
 ```
 
 首先，我们要为应用设置好数据库的连接信息。用以下内容替换 `django_example/settings.py` 文件中 `DATABASES = ...` 定义的节点内容。
