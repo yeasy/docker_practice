@@ -13,9 +13,9 @@ FROM python:3
 ENV PYTHONUNBUFFERED 1
 RUN mkdir /code
 WORKDIR /code
-ADD requirements.txt /code/
+COPY requirements.txt /code/
 RUN pip install -r requirements.txt
-ADD . /code/
+COPY . /code/
 ```
 
 以上内容指定应用将使用安装了 Python 以及必要依赖包的镜像。更多关于如何编写 `Dockerfile` 文件的信息可以查看 [镜像创建](../image/create.md#利用 Dockerfile 来创建镜像) 和 [ Dockerfile 使用](../dockerfile/README.md)。
@@ -23,8 +23,8 @@ ADD . /code/
 第二步，在 `requirements.txt` 文件里面写明需要安装的具体依赖包名。
 
 ```bash
-Django>=1.8,<2.0
-psycopg2
+Django>=2.0,<3.0
+psycopg2>=2.7,<3.0
 ```
 
 第三步，`docker-compose.yml` 文件将把所有的东西关联起来。它描述了应用的构成（一个 web 服务和一个数据库）、使用的 Docker 镜像、镜像之间的连接、挂载到容器的卷，以及服务开放的端口。
@@ -38,7 +38,7 @@ services:
 
   web:
     build: .
-    command: python3 manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
     ports:
@@ -47,15 +47,15 @@ services:
       - db
 ```
 
-查看 [`docker-compose.yml` 章节](yml_ref.md) 了解更多详细的工作机制。
+查看 [`docker-compose.yml` 章节](compose_file.md) 了解更多详细的工作机制。
 
 现在我们就可以使用 `docker-compose run` 命令启动一个 `Django` 应用了。
 
 ```bash
-$ docker-compose run web django-admin.py startproject django_example .
+$ docker-compose run web django-admin startproject django_example .
 ```
 
-Compose 会先使用 `Dockerfile` 为 web 服务创建一个镜像，接着使用这个镜像在容器里运行 `django-admin.py startproject django_example` 指令。
+由于 web 服务所使用的镜像并不存在，所以 Compose 会首先使用 `Dockerfile` 为 web 服务构建一个镜像，接着使用这个镜像在容器里运行 `django-admin startproject django_example` 指令。
 
 这将在当前目录生成一个 `Django` 应用。
 
