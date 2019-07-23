@@ -1,4 +1,4 @@
-# [Docker — 从入门到实践（英文版）](https://github.com/yeasy/docker_practice/blob/english/SUMMARY.md)
+# [Docker Course: A Hands-On Introduction to Programming](https://github.com/yeasy/docker_practice/blob/english/SUMMARY.md)
 
 * [README](README.md)
 * [CHANGELOG](CHANGELOG.md)
