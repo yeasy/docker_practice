@@ -2,23 +2,46 @@
 
 作为一种新兴的虚拟化方式，Docker 跟传统的虚拟化方式相比具有众多的优势。
 
+## Why use Docker ?
+As a new virtualization solution, Docker has many advantager over
+other traditional virtualization solutions.
+
 ### 更高效的利用系统资源
 
 由于容器不需要进行硬件虚拟以及运行完整操作系统等额外开销，Docker 对系统资源的利用率更高。无论是应用执行速度、内存损耗或者文件存储速度，都要比传统虚拟机技术更高效。因此，相比虚拟机技术，一个相同配置的主机，往往可以运行更多数量的应用。
+
+### Use System Resources more efficiently
+
+Docker has high utilization rate of system resources, because container does not need additional overhead such as hardware virtualization and running the whole system. It's more efficient than traditional virtual machine technology in application executing speed, memory expend and file storage speed. Therefore, a host with the same configuration can often run more applications than virtual machine technology.
 
 ### 更快速的启动时间
 
 传统的虚拟机技术启动应用服务往往需要数分钟，而 Docker 容器应用，由于直接运行于宿主内核，无需启动完整的操作系统，因此可以做到秒级、甚至毫秒级的启动时间。大大的节约了开发、测试、部署的时间。
 
+### Faster startup time
+
+The traditional virtual machine technology needs minutes to startup application service, but Docker can do it in seconds or milliseconds due to running on the kernel of host machine and not running the whole system. It saves a considerable amount of time for developing, testing, deploying.
+
 ### 一致的运行环境
 
 开发过程中一个常见的问题是环境一致性问题。由于开发环境、测试环境、生产环境不一致，导致有些 bug 并未在开发过程中被发现。而 Docker 的镜像提供了除内核外完整的运行时环境，确保了应用运行环境一致性，从而不会再出现 *「这段代码在我机器上没问题啊」* 这类问题。
+
+### Consistent operating environment
+
+The consensus problem of environment is a common problem in developing. It causes some bugs which weren't found at developing due to different environments of developing, testing, production. Docker's image provides a complete runtime environment without kernel, which ensures consistency of the application runtime environment so that problmes like * This piece of code is okey on my machine * do not recur.
+
 
 ### 持续交付和部署
 
 对开发和运维（[DevOps](https://zh.wikipedia.org/wiki/DevOps)）人员来说，最希望的就是一次创建或配置，可以在任意地方正常运行。
 
+### CI/CD
+
+For development and operation（[DevOps](https://zh.wikipedia.org/wiki/DevOps)）people, desirable thing is to create or configure at once and run normally anywhere.
+
 使用 Docker 可以通过定制应用镜像来实现持续集成、持续交付、部署。开发人员可以通过 [Dockerfile](../image/dockerfile/) 来进行镜像构建，并结合 [持续集成(Continuous Integration)](https://en.wikipedia.org/wiki/Continuous_integration) 系统进行集成测试，而运维人员则可以直接在生产环境中快速部署该镜像，甚至结合 [持续部署(Continuous Delivery/Deployment)](https://en.wikipedia.org/wiki/Continuous_delivery) 系统进行自动部署。
+
+CI/CD can be achieved by customizing application mirrors with Docker. Developers can build images with [Dockerfile](../image/dockerfile/) and use [Continuous Integration](https://en.wikipedia.org/wiki/Continuous_integration) for integration testing. Operators can deply product environment quickly with this images, even use [Continuous Delivery/Deployment](https://en.wikipedia.org/wiki/Continuous_delivery) for automatic deployment.
 
 而且使用 `Dockerfile` 使镜像构建透明化，不仅仅开发团队可以理解应用运行环境，也方便运维团队理解应用运行所需条件，帮助更好的生产环境中部署该镜像。
 
