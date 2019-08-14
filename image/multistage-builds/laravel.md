@@ -76,7 +76,7 @@ COPY database/ /app/database/
 COPY composer.json composer.lock /app/
 
 RUN cd /app \
-      && composer config -g repo.packagist composer https://packagist.laravel-china.org \
+      && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/ \
       && composer install \
            --ignore-platform-reqs \
            --no-interaction \
@@ -184,7 +184,7 @@ COPY database/ /app/database/
 COPY composer.json /app/
 
 RUN cd /app \
-      && composer config -g repo.packagist composer https://packagist.laravel-china.org \
+      && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/ \
       && composer install \
            --ignore-platform-reqs \
            --no-interaction \
