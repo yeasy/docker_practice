@@ -13,33 +13,53 @@
 [`docker-compose.yml`](https://github.com/yeasy/docker_practice/blob/master/compose/demo/wordpress/docker-compose.yml) 文件将开启一个 `wordpress` 服务和一个独立的 `MySQL` 实例：
 
 ```yaml
-version: "3"
+version: "3.1"
+
 services:
 
-   db:
-     image: mysql:5.7
-     volumes:
-       - db_data:/var/lib/mysql
-     restart: always
-     environment:
-       MYSQL_ROOT_PASSWORD: somewordpress
-       MYSQL_DATABASE: wordpress
-       MYSQL_USER: wordpress
-       MYSQL_PASSWORD: wordpress
+  wordpress:
+    image: wordpress:latest
+    container_name: wpblog
+    restart: always
+    ports:
+      - 8000:80
+    environment:
+      WORDPRESS_DB_HOST: wpdb
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    depends_on:
+      - wpdb
+    links:
+      - wpdb:mysql
+    volumes:
+      - ~/docker/web/wp-app:/var/www/html
 
-   wordpress:
-     depends_on:
-       - db
-     image: wordpress:latest
-     ports:
-       - "8000:80"
-     restart: always
-     environment:
-       WORDPRESS_DB_HOST: db:3306
-       WORDPRESS_DB_USER: wordpress
-       WORDPRESS_DB_PASSWORD: wordpress
-volumes:
-  db_data:
+  wpdb:
+    # https://hub.docker.com/_/mysql/ - or mariadb https://hub.docker.com/_/mariadb
+
+    # mysql:5.7
+    # image: mysql:5.7
+
+    # or
+    image: mysql:8
+    command: [
+      '--default_authentication_plugin=mysql_native_password',
+      '--character-set-server=utf8mb4',
+      '--collation-server=utf8mb4_unicode_ci'
+    ]
+
+    container_name: wpdb
+    restart: always
+    # ports:
+    #   - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: xiaohan
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    volumes:
+      - ~/docker/db/mysql:/var/lib/mysql
 ```
 
 ### 构建并运行项目
