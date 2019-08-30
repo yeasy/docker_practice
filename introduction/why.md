@@ -1,63 +1,41 @@
-## 为什么要使用 Docker？
-
-作为一种新兴的虚拟化方式，Docker 跟传统的虚拟化方式相比具有众多的优势。
-
 ## Why use Docker ?
 As a new virtualization solution, Docker has many advantager over
 other traditional virtualization solutions.
-
-### 更高效的利用系统资源
-
-由于容器不需要进行硬件虚拟以及运行完整操作系统等额外开销，Docker 对系统资源的利用率更高。无论是应用执行速度、内存损耗或者文件存储速度，都要比传统虚拟机技术更高效。因此，相比虚拟机技术，一个相同配置的主机，往往可以运行更多数量的应用。
 
 ### Use System Resources more efficiently
 
 Docker has high utilization rate of system resources, because container does not need additional overhead such as hardware virtualization and running the whole system. It's more efficient than traditional virtual machine technology in application executing speed, memory expend and file storage speed. Therefore, a host with the same configuration can often run more applications than virtual machine technology.
 
-### 更快速的启动时间
-
-传统的虚拟机技术启动应用服务往往需要数分钟，而 Docker 容器应用，由于直接运行于宿主内核，无需启动完整的操作系统，因此可以做到秒级、甚至毫秒级的启动时间。大大的节约了开发、测试、部署的时间。
-
 ### Faster startup time
 
 The traditional virtual machine technology needs minutes to startup application service, but Docker can do it in seconds or milliseconds due to running on the kernel of host machine and not running the whole system. It saves a considerable amount of time for developing, testing, deploying.
-
-### 一致的运行环境
-
-开发过程中一个常见的问题是环境一致性问题。由于开发环境、测试环境、生产环境不一致，导致有些 bug 并未在开发过程中被发现。而 Docker 的镜像提供了除内核外完整的运行时环境，确保了应用运行环境一致性，从而不会再出现 *「这段代码在我机器上没问题啊」* 这类问题。
 
 ### Consistent operating environment
 
 The consensus problem of environment is a common problem in developing. It causes some bugs which weren't found at developing due to different environments of developing, testing, production. Docker's image provides a complete runtime environment without kernel, which ensures consistency of the application runtime environment so that problmes like * This piece of code is okey on my machine * do not recur.
 
 
-### 持续交付和部署
-
-对开发和运维（[DevOps](https://zh.wikipedia.org/wiki/DevOps)）人员来说，最希望的就是一次创建或配置，可以在任意地方正常运行。
-
 ### CI/CD
 
 For development and operation（[DevOps](https://zh.wikipedia.org/wiki/DevOps)）people, desirable thing is to create or configure at once and run normally anywhere.
 
-使用 Docker 可以通过定制应用镜像来实现持续集成、持续交付、部署。开发人员可以通过 [Dockerfile](../image/dockerfile/) 来进行镜像构建，并结合 [持续集成(Continuous Integration)](https://en.wikipedia.org/wiki/Continuous_integration) 系统进行集成测试，而运维人员则可以直接在生产环境中快速部署该镜像，甚至结合 [持续部署(Continuous Delivery/Deployment)](https://en.wikipedia.org/wiki/Continuous_delivery) 系统进行自动部署。
-
 CI/CD can be achieved by customizing application mirrors with Docker. Developers can build images with [Dockerfile](../image/dockerfile/) and use [Continuous Integration](https://en.wikipedia.org/wiki/Continuous_integration) for integration testing. Operators can deply product environment quickly with this images, even use [Continuous Delivery/Deployment](https://en.wikipedia.org/wiki/Continuous_delivery) for automatic deployment.
 
-而且使用 `Dockerfile` 使镜像构建透明化，不仅仅开发团队可以理解应用运行环境，也方便运维团队理解应用运行所需条件，帮助更好的生产环境中部署该镜像。
+And `Dockerfile` makes mirror construction transparent.Not only does the developmentteam understand the application runtime environment, but it also facilitates the operation team to understande the requirements of the application and better deployment in production environments.
 
-### 更轻松的迁移
+### Easier migration
 
-由于 Docker 确保了执行环境的一致性，使得应用的迁移更加容易。Docker 可以在很多平台上运行，无论是物理机、虚拟机、公有云、私有云，甚至是笔记本，其运行结果是一致的。因此用户可以很轻易的将在一个平台上运行的应用，迁移到另一个平台上，而不用担心运行环境的变化导致应用无法正常运行的情况。
+Because Docker ensures consistency in the execution environment, application migration is easier. Docker can run on many platforms, whether physical, virtual, public/private clouds, or even laptops, and the results are consistent.Therefore, users can easily migrate applications from one platform to another whitout worrying about the situation that different environment makes applications not running properly.
 
-### 更轻松的维护和扩展
+### Easier maintenance and extension
 
-Docker 使用的分层存储以及镜像的技术，使得应用重复部分的复用更为容易，也使得应用的维护更新更加简单，基于基础镜像进一步扩展镜像也变得非常简单。此外，Docker 团队同各个开源项目团队一起维护了一大批高质量的 [官方镜像](https://hub.docker.com/search/?type=image&image_filter=official)，既可以直接在生产环境使用，又可以作为基础进一步定制，大大的降低了应用服务的镜像制作成本。
+Docker uses layered storage and mirror technology, so it is easier to reuse the repetitive parts of the application and simpler to expand the image based on the basic mirror.In addition, the Docker team maintain a lot of high-quality [official images](https://hub.docker.com/search/?type=image&image_filter=official) together with various open source project team. It can be used directly in the production environment and customed which greatly reducing the cost of image production of application services.
 
-### 对比传统虚拟机总结
+### Contrast traditional virtual machines
 
-|   特性     |   容器    |   虚拟机   |
-| :--------   | :--------  | :---------- |
-| 启动       | 秒级      | 分钟级     |
-| 硬盘使用   | 一般为 `MB` | 一般为 `GB`  |
-| 性能       | 接近原生  | 弱于       |
-| 系统支持量 | 单机支持上千个容器 | 一般几十个 |
+|   Feature      |   Container        |   Virtual Machine   |
+| :--------      | :--------          | :----------         |
+| Boot           | seconds            | minutes             |
+| Disk Usage     | MB                 | GB                  |
+| Performance    | close to native    | weaker              |
+| System Support | thousandes         | dozens in general   |
