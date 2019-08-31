@@ -17,7 +17,11 @@ version: "3"
 services:
 
    db:
-     image: mysql:5.7
+     image: mysql:8.0
+     command:
+      - --default_authentication_plugin=mysql_native_password
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci     
      volumes:
        - db_data:/var/lib/mysql
      restart: always
