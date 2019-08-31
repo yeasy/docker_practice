@@ -1,19 +1,19 @@
 ## 安装
 
-`etcd` 基于 `Go` 语言实现，因此，用户可以从 [项目主页](https://github.com/coreos/etcd) 下载源代码自行编译，也可以下载编译好的二进制文件，甚至直接使用制作好的 `Docker` 镜像文件来体验。
+`etcd` 基于 `Go` 语言实现，因此，用户可以从 [项目主页](https://github.com/etcd-io/etcd) 下载源代码自行编译，也可以下载编译好的二进制文件，甚至直接使用制作好的 `Docker` 镜像文件来体验。
 
->注意：本章节内容基于 etcd `3.x` 版本
+>注意：本章节内容基于 etcd `3.4.x` 版本
 
 ### 二进制文件方式下载
 
-编译好的二进制文件都在 [github.com/coreos/etcd/releases](https://github.com/coreos/etcd/releases/) 页面，用户可以选择需要的版本，或通过下载工具下载。
+编译好的二进制文件都在 [github.com/etcd-io/etcd/releases](https://github.com/etcd-io/etcd/releases/) 页面，用户可以选择需要的版本，或通过下载工具下载。
 
 例如，使用 `curl` 工具下载压缩包，并解压。
 
 ```bash
-$ curl -L  https://github.com/coreos/etcd/releases/download/v3.2.10/etcd-v3.2.10-linux-amd64.tar.gz -o etcd-v3.2.10-linux-amd64.tar.gz
-$ tar xzvf etcd-v3.2.10-linux-amd64.tar.gz
-$ cd etcd-v3.2.10-linux-amd64
+$ curl -L https://github.com/etcd-io/etcd/releases/download/v3.4.0/etcd-v3.4.0-linux-amd64.tar.gz -o etcd-v3.4.0-linux-amd64.tar.gz
+$ tar xzvf etcd-v3.4.0-linux-amd64.tar.gz
+$ cd etcd-v3.4.0-linux-amd64
 ```
 
 解压后，可以看到文件包括
@@ -35,14 +35,7 @@ $ sudo cp etcd* /usr/local/bin/
 
 ```bash
 $ etcd
-2017-12-03 11:18:34.406082 I | etcdmain: etcd Version: 3.2.10
-2017-12-03 11:18:34.406226 I | etcdmain: Git SHA: GitNotFound
-2017-12-03 11:18:34.406235 I | etcdmain: Go Version: go1.9.2
-2017-12-03 11:18:34.406242 I | etcdmain: Go OS/Arch: darwin/amd64
-2017-12-03 11:18:34.406250 I | etcdmain: setting maximum number of CPUs to 4, total number of available CPUs is 4
-2017-12-03 11:18:34.406265 N | etcdmain: failed to detect default host (default host not supported on darwin_amd64)
-2017-12-03 11:18:34.406279 W | etcdmain: no data-dir provided, using default data-dir ./default.etcd
-2017-12-03 11:18:34.406457 N | etcdmain: the server is already initialized as member before, starting as etcd member...
+...
 2017-12-03 11:18:34.411579 I | embed: listening for peers on http://localhost:2380
 2017-12-03 11:18:34.411938 I | embed: listening for client requests on localhost:2379
 ```
@@ -68,21 +61,26 @@ hello world
 镜像名称为 `quay.io/coreos/etcd`，可以通过下面的命令启动 `etcd` 服务监听到 `2379` 和 `2380` 端口。
 
 ```bash
-$ export NODE1=192.168.1.21
-
-$ docker run --name etcd \
-    -p 2379:2379 \
-    -p 2380:2380 \
-    --volume=etcd-data:/etcd-data \
-    quay.io/coreos/etcd:latest \
-    /usr/local/bin/etcd \
-    --data-dir=/etcd-data --name node1 \
-    --initial-advertise-peer-urls http://${NODE1}:2380 --listen-peer-urls http://0.0.0.0:2380 \
-    --advertise-client-urls http://${NODE1}:2379 --listen-client-urls http://0.0.0.0:2379 \
-    --initial-cluster node1=http://${NODE1}:2380
+$ docker run \
+-p 2379:2379 \
+-p 2380:2380 \
+--mount type=bind,source=/tmp/etcd-data.tmp,destination=/etcd-data \
+--name etcd-gcr-v3.4.0 \
+quay.io/coreos/etcd:v3.4.0 \
+/usr/local/bin/etcd \
+--name s1 \
+--data-dir /etcd-data \
+--listen-client-urls http://0.0.0.0:2379 \
+--advertise-client-urls http://0.0.0.0:2379 \
+--listen-peer-urls http://0.0.0.0:2380 \
+--initial-advertise-peer-urls http://0.0.0.0:2380 \
+--initial-cluster s1=http://0.0.0.0:2380 \
+--initial-cluster-token tkn \
+--initial-cluster-state new \
+--log-level info \
+--logger zap \
+--log-outputs stderr
 ```
-
->注意：etcd 官方标注 `quay.io/coreos/etcd` 即将废弃，启用新的 `gcr.io/etcd-development/etcd` 镜像，但后者由于网络原因，国内不能下载到该镜像，这里仍然使用前者作为演示。
 
 打开新的终端按照上一步的方法测试 `etcd` 是否成功启动。
 
