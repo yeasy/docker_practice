@@ -17,14 +17,20 @@ script:
 
 after_success:
 - sudo chmod -R 777 _book
-- echo "FROM nginx:1.13.8-alpine" >> Dockerfile
+
+- echo "FROM nginx:alpine" >> Dockerfile
 - echo "COPY _book /usr/share/nginx/html" >> Dockerfile
+
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- docker build -t dockerpracticecn/docker_practice .
-- docker run -dit --rm -p 4000:80 dockerpracticecn/docker_practice
+
+- docker build -t dockerpracticesig/docker_practice .
+- docker run -dit --rm -p 4000:80 dockerpracticesig/docker_practice
+
 - sleep 5
 - curl 127.0.0.1:4000
-- docker push dockerpracticecn/docker_practice
+
+- docker push dockerpracticesig/docker_practice
+
 - cd _book
 - git init
 - git remote add origin "$REPO"
