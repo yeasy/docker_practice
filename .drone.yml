@@ -1,17 +1,15 @@
-workspace:
-  base: /srv/gitbook-src
-  path: .
-pipeline:
-  build:
-     image: yeasy/docker_practice:latest
-     # pull: true
-     environment:
-       - TZ=Asia/Shanghai
-     secrets: [key1, key2]
-     commands:
-       # - echo $${key1}
-       # - echo $KEY2
-       - docker-entrypoint.sh build
-     when:
-       event: [push, pull_request, tag, deployment]
-       branch: master
+kind: pipeline
+type: docker
+name: build
+steps:
+  - name: build
+    image: yeasy/docker_practice:latest
+    pull: if-not-exists # always never
+    environment:
+      TZ: Asia/Shanghai
+    commands:
+      - docker-entrypoint.sh build
+
+trigger:
+  branch:
+    - master
