@@ -13,9 +13,11 @@ cp -a . /srv/gitbook
 cd /srv/gitbook
 
 main(){
-  if [ "$1" = build ];then gitbook build && cp -a _book $srcDir && echo $START && date "+%F %T" && exit 0; fi
-  exec gitbook serve
-  exit 0
+  if [ "$1" = build ];then
+    gitbook build && cp -a _book $srcDir && echo $START && date "+%F %T" && exit 0
+  else
+    exec gitbook serve
+  fi
 }
 
 main $1 $2 $3
