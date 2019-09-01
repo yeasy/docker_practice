@@ -116,7 +116,6 @@
 * [CoreOS 项目](coreos/README.md)
     * [简介](coreos/intro.md)
     * [工具](coreos/intro_tools.md)
-    * [快速搭建 CoreOS 集群](coreos/quickstart.md)
 * [Kubernetes 项目](kubernetes/README.md)
     * [简介](kubernetes/intro.md)
     * [快速上手](kubernetes/quickstart.md)
