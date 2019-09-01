@@ -1,29 +1,27 @@
-## Windows 10 PC 安装 Docker CE
+## Install Docker Desktop CE on Windows 10
 
-### 系统要求
+### System requirements
 
-[Docker for Windows](https://docs.docker.com/docker-for-windows/install/) 支持 64 位版本的 Windows 10 Pro，且必须开启 Hyper-V。
+[Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/install/) needs Windows 10 Pro 64 bit and activates Hyper-V
 
-### 安装
+### Install
 
-点击以下链接下载 [Stable](https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe) 或 [Edge](https://download.docker.com/win/edge/Docker%20for%20Windows%20Installer.exe) 版本的 Docker for Windows。
+Download Docker Desktop for Windows [Stable](https://download.docker.com/win/stable/Docker%20Desktop%20Installer.exe) or [Edge](https://download.docker.com/win/edge/Docker%20Desktop%20Installer.exe), then double-click Docker for `Docker Desktop Installer.exe` to install.
 
-下载好之后双击 Docker for Windows Installer.exe 开始安装。
+### Running
 
-### 运行
-
-在 Windows 搜索栏输入 Docker 点击 Docker for Windows 开始运行。
+Search Docker in Windows and click Docker for Windows to run.
 
 ![](_images/install-win-docker-app-search.png)
 
-Docker CE 启动之后会在 Windows 任务栏出现鲸鱼图标。
+There is a whale icon in the Windows taskbar after running Docker CE.
 
 ![](_images/install-win-taskbar-circle.png)
 
-等待片刻，点击 Got it 开始使用 Docker CE。
+Wait a moment and click Got it to start using Docker CE.
 
 ![](_images/install-win-success-popup-cloud.png)
 
-### 镜像加速
+### Accelerate Images(In China)
 
-如果在使用过程中发现拉取 Docker 镜像十分缓慢，可以配置 Docker [国内镜像加速](mirror.md)。
+If you pull docker images very slowly, then you can configurate [Registry Mirror](mirror.md).
