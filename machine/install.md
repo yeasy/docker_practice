@@ -4,7 +4,7 @@ Docker Machine 可以在多种操作系统平台上安装，包括 Linux、macOS
 
 ### macOS、Windows
 
-`Docker Desktop` 自带 `docker-machine` 二进制包，安装之后即可使用。
+`Docker Desktop for Mac/Windows` 自带 `docker-machine` 二进制包，安装之后即可使用。
 
 查看版本信息。
 

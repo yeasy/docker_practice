@@ -4,7 +4,7 @@
 
 `Compose` 可以通过 Python 的包管理工具 `pip` 进行安装，也可以直接下载编译好的二进制文件使用，甚至能够直接在 Docker 容器中运行。
 
-`Docker Desktop` 自带 `docker-compose` 二进制文件，安装 Docker 之后可以直接使用。
+`Docker Desktop for Mac/Windows` 自带 `docker-compose` 二进制文件，安装 Docker 之后可以直接使用。
 
 ```bash
 $ docker-compose --version

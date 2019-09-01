@@ -116,4 +116,4 @@ REPOSITORY                         TAG                 IMAGE ID            CREAT
 
 ### 其他
 
-对于 Docker for Windows 、 Docker for Mac 在设置中编辑 `daemon.json` 增加和上边一样的字符串即可。
+对于 Docker Desktop for Windows 、 Docker Desktop for Mac 在设置中编辑 `daemon.json` 增加和上边一样的字符串即可。
