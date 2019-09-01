@@ -116,7 +116,6 @@
 * [CoreOS](coreos/README.md)
     * [Introduction](coreos/intro.md)
     * [Tools](coreos/intro_tools.md)
-    * [CoreOS Cluster](coreos/quickstart.md)
 * [Kubernetes](kubernetes/README.md)
     * [Introduction](kubernetes/intro.md)
     * [Quick start](kubernetes/quickstart.md)
