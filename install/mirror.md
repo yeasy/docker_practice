@@ -58,7 +58,7 @@ Registry Mirrors:
 国内无法直接获取 `gcr.io/*` 镜像，我们可以将 `gcr.io/<repo-name>/<image-name>:<version>` 替换为 `gcr.azk8s.cn/<repo-name>/<image-name>:<version>` ,例如
 
 ```bash
-# docker pull gcr.io/google_containers/hyperkube-amd64:v1.9.2
+# $ docker pull gcr.io/google_containers/hyperkube-amd64:v1.9.2
 
-docker pull gcr.azk8s.cn/google_containers/hyperkube-amd64:v1.9.2
+$ docker pull gcr.azk8s.cn/google_containers/hyperkube-amd64:v1.9.2
 ```

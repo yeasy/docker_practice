@@ -22,6 +22,10 @@ Wait a moment and click Got it to start using Docker CE.
 
 ![](_images/install-win-success-popup-cloud.png)
 
-### Accelerate Images(In China)
+### Registry Mirror(In China)
 
 If you pull docker images very slowly, then you can configurate [Registry Mirror](mirror.md).
+
+### Links
+
+* [Docs](https://docs.docker.com/docker-for-windows/install/)

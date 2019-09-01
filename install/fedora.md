@@ -8,9 +8,9 @@
 
 Docker CE 支持以下版本的 [Fedora](https://fedoraproject.org/) 操作系统：
 
-* 26 (Docker CE v18.03 及以下版本)
-* 27
 * 28
+* 29
+* 30
 
 #### 卸载旧版本
 

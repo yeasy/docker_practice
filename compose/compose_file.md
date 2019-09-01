@@ -18,7 +18,7 @@ services:
 
 注意每个服务都必须通过 `image` 指令指定镜像或 `build` 指令（需要 Dockerfile）等来自动构建生成镜像。
 
-如果使用 `build` 指令，在 `Dockerfile` 中设置的选项(例如：`CMD`, `EXPOSE`, `VOLUME`, `ENV` 等) 将会自动被获取，无需在 `docker-compose.yml` 中再次设置。
+如果使用 `build` 指令，在 `Dockerfile` 中设置的选项(例如：`CMD`, `EXPOSE`, `VOLUME`, `ENV` 等) 将会自动被获取，无需在 `docker-compose.yml` 中重复设置。
 
 下面分别介绍各个指令的用法。
 
@@ -460,7 +460,7 @@ sysctls:
 
 ### `volumes`
 
-数据卷所挂载路径设置。可以设置宿主机路径 （`HOST:CONTAINER`） 或加上访问模式 （`HOST:CONTAINER:ro`）。
+数据卷所挂载路径设置。可以设置为宿主机路径(`HOST:CONTAINER`)或者数据卷名称(`VOLUME:CONTAINER`)，并且可以设置访问模式 （`HOST:CONTAINER:ro`）。
 
 该指令中路径支持相对路径。
 
@@ -469,6 +469,21 @@ volumes:
  - /var/lib/mysql
  - cache/:/tmp/cache
  - ~/configs:/etc/configs/:ro
+```
+
+如果路径为数据卷名称，必须在文件中配置数据卷。
+
+```yaml
+version: "3"
+
+services:
+  my_src:
+    image: mysql:8.0
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:  
 ```
 
 ### 其它指令
@@ -557,3 +572,7 @@ MONGO_VERSION=3.6
 ```
 
 执行 `docker-compose up` 则会启动一个 `mongo:3.6` 镜像的容器。
+
+### 参考资料
+
+* [官方文档](https://docs.docker.com/compose/compose-file/)
