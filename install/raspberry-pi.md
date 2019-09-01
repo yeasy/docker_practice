@@ -10,8 +10,6 @@ Docker CE 支持以下版本的 [Raspbian](https://www.raspberrypi.org/downloads
 
 * Raspbian Stretch
 
-* Raspbian Jessie (Docker CE v18.06 及以下版本)
-
 *注：* `Raspbian` 是树莓派的开发与维护机构 [树莓派基金会](http://www.raspberrypi.org/) 推荐用于树莓派的首选系统，其基于 `Debian`。
 
 ### 使用 APT 安装

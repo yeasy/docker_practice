@@ -2,7 +2,7 @@
 
 `etcdctl` 是一个命令行客户端，它能提供一些简洁的命令，供用户直接跟 `etcd` 服务打交道，而无需基于 `HTTP API` 方式。这在某些情况下将很方便，例如用户对服务进行测试或者手动修改数据库内容。我们也推荐在刚接触 `etcd` 时通过 `etcdctl` 命令来熟悉相关的操作，这些操作跟 `HTTP API` 实际上是对应的。
 
-`etcd` 项目二进制发行包中已经包含了 `etcdctl` 工具，没有的话，可以从 [github.com/coreos/etcd/releases](https://github.com/coreos/etcd/releases) 下载。
+`etcd` 项目二进制发行包中已经包含了 `etcdctl` 工具，没有的话，可以从 [github.com/etcd-io/etcd/releases](https://github.com/etcd-io/etcd/releases) 下载。
 
 `etcdctl` 支持如下的命令，大体上分为数据库操作和非数据库操作两类，后面将分别进行解释。
 
@@ -14,10 +14,10 @@ USAGE:
 	etcdctl
 
 VERSION:
-	3.2.10
+	3.4.0
 
 API VERSION:
-	3.2
+	3.4
 
 
 COMMANDS:

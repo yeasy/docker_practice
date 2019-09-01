@@ -1,8 +1,8 @@
 version: "3"
+
 services:
 
   # $ docker-compose up server => up a server，Only Support Linux or macOS
-
   server:
     image: yeasy/docker_practice:latest
     ports:
@@ -19,13 +19,10 @@ services:
       - ./:/srv/gitbook-src
     command: build
 
-  # $ docker run -it --rm -p 4000:80 dockerpracticecn/docker_practice
-
-  # $ docker up offline
-
+  # $ docker run -it --rm -p 4000:80 dockerpracticesig/docker_practice
   offline:
     # this image build by travis ci
-    image: dockerpracticecn/docker_practice
+    image: dockerpracticesig/docker_practice
     ports:
       - 4000:80
 
