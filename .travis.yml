@@ -33,7 +33,7 @@ after_success:
 
 - cd _book
 - git init
-- git remote add origin "$REPO"
+- git remote add origin "$DEPLOY_REPO"
 - git add .
 - COMMIT=`date "+%F %T"`
 - git commit -m "Travis CI Site updated $COMMIT"
@@ -41,9 +41,8 @@ after_success:
 
 env:
   global:
-  - DEPLOY_BRANCH: pages
-  # - DEPLOY_BRANCH: legacy-pages
-  - REPO: git@github.com:yeasy/docker_practice.git
+  - DEPLOY_BRANCH: master
+  - DEPLOY_REPO: git@github.com:docker-practice/zh-cn.git
 
 addons:
   ssh_known_hosts:
@@ -52,5 +51,3 @@ addons:
 branches:
   only:
   - master
-  - dev
-  # - docker-legacy
