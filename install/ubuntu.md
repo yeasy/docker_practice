@@ -156,4 +156,4 @@ If you pull docker images very slowly, then you can configurate [Registry Mirror
 
 ### Links
 
-* [Offical Docker Innstall Doc](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+* [Offical Docker Docs](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
