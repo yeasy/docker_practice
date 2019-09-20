@@ -1,11 +1,11 @@
 ## Debian/Ubuntu
-Debian 和 Ubuntu 都是目前较为流行的 Debian 系的服务器操作系统，十分适合研发场景。Docker Hub 上提供了官方镜像，国内各大容器云服务也基本都提供了相应的支持。
+`Debian` 和 `Ubuntu` 都是目前较为流行的 Debian 系的服务器操作系统，十分适合研发场景。Docker Hub 上提供了官方镜像，国内各大容器云服务也基本都提供了相应的支持。
 
 ### Debian 系统简介
 
 ![Debian 操作系统](_images/debian-logo.png)
 
-Debian 是由 GPL 和其他自由软件许可协议授权的自由软件组成的操作系统，由Debian 计划（Debian Project）组织维护。Debian 计划是一个独立的、分散的组织，由 3000 人志愿者组成，接受世界多个非盈利组织的资金支持，Software in the Public Interest 提供支持并持有商标作为保护机构。Debian 以其坚守 Unix 和自由软件的精神，以及其给予用户的众多选择而闻名。现时 Debian 包括了超过 25,000 个软件包并支持 12 个计算机系统结构。
+`Debian` 是由 `GPL` 和其他自由软件许可协议授权的自由软件组成的操作系统，由 Debian 计划（Debian Project）组织维护。Debian 计划是一个独立的、分散的组织，由 3000 人志愿者组成，接受世界多个非盈利组织的资金支持，Software in the Public Interest 提供支持并持有商标作为保护机构。Debian 以其坚守 Unix 和自由软件的精神，以及其给予用户的众多选择而闻名。现时 Debian 包括了超过 25,000 个软件包并支持 12 个计算机系统结构。
 
 Debian 作为一个大的系统组织框架，其下有多种不同操作系统核心的分支计划，主要为采用 Linux 核心的 Debian GNU/Linux 系统，其他还有采用 GNU Hurd 核心的 Debian GNU/Hurd 系统、采用 FreeBSD 核心的 Debian GNU/kFreeBSD 系统，以及采用 NetBSD 核心的 Debian GNU/NetBSD 系统。甚至还有利用 Debian 的系统架构和工具，采用 OpenSolaris 核心构建而成的 Nexenta OS 系统。在这些 Debian 系统中，以采用 Linux 核心的 Debian GNU/Linux 最为著名。
 
@@ -63,9 +63,9 @@ tutum/ubuntu                         Ubuntu image with SSH access. For the root.
 
 根据搜索出来的结果，读者可以自行选择下载镜像并使用。
 
-下面以 ubuntu 18.04 为例，演示如何使用该镜像安装一些常用软件。
+下面以 `ubuntu:18.04` 为例，演示如何使用该镜像安装一些常用软件。
 
-首先使用 `-ti` 参数启动容器，登录 bash，查看 ubuntu 的发行版本号。
+首先使用 `-ti` 参数启动容器，登录 `bash`，查看 `ubuntu` 的发行版本号。
 
 ```bash
 $ docker run -ti ubuntu:18.04 /bin/bash
@@ -94,7 +94,7 @@ Reading state information... Done
 E: Unable to locate package curl
 ```
 
-这并非系统不支持 `apt-get` 命令。Docker 镜像在制作时为了精简清除了 apt 仓库信息，因此需要先执行 `apt-get update` 命令来更新仓库信息。更新信息后即可成功通过 apt-get 命令来安装软件。
+这并非系统不支持 `apt-get` 命令。Docker 镜像在制作时为了精简清除了 `apt` 仓库信息，因此需要先执行 `apt-get update` 命令来更新仓库信息。更新信息后即可成功通过 `apt-get` 命令来安装软件。
 
 ```bash
 root@7d93de07bf76:/# apt-get update

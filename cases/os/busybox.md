@@ -4,13 +4,13 @@
 
 ![Busybox - Linux 瑞士军刀](_images/busybox-logo.png)
 
-BusyBox 是一个集成了一百多个最常用 Linux 命令和工具（如 cat、echo、grep、mount、telnet 等）的精简工具箱，它只需要几 MB 的大小，很方便进行各种快速验证，被誉为“Linux 系统的瑞士军刀”。
+`BusyBox` 是一个集成了一百多个最常用 Linux 命令和工具（如 `cat`、`echo`、`grep`、`mount`、`telnet` 等）的精简工具箱，它只需要几 MB 的大小，很方便进行各种快速验证，被誉为“Linux 系统的瑞士军刀”。
 
-BusyBox 可运行于多款 POSIX 环境的操作系统中，如 Linux（包括 Android）、Hurd、FreeBSD 等。
+`BusyBox` 可运行于多款 POSIX 环境的操作系统中，如 `Linux`（包括 `Android`）、`Hurd`、`FreeBSD` 等。
 
 ### 获取官方镜像
 
-在 Docker Hub 中搜索 busybox 相关的镜像。
+在 Docker Hub 中搜索 `busybox` 相关的镜像。
 
 ```bash
 $ docker search busybox
@@ -24,7 +24,7 @@ azukiapp/busybox                This image is meant to be used as the base...   
 ...
 ```
 
-读者可以看到最受欢迎的镜像同时带有 OFFICIAL 标记，说明它是官方镜像。用户使用 docker pull 指令下载镜像 `busybox:latest`：
+读者可以看到最受欢迎的镜像同时带有 `OFFICIAL` 标记，说明它是官方镜像。用户使用 `docker pull` 指令下载 `busybox:latest` 镜像：
 
 ```bash
 $ docker pull busybox:latest
@@ -36,7 +36,7 @@ df7546f9f060: Pull complete
 Status: Downloaded newer image for busybox:latest
 ```
 
-下载后，可以看到 busybox 镜像只有2.433 MB：
+下载后，可以看到 `busybox` 镜像只有 2.433 MB：
 
 ```bash
 $ docker image ls
@@ -46,7 +46,7 @@ busybox                   latest              e72ac664f4f0        6 weeks ago   
 
 ### 运行 busybox
 
-启动一个 busybox 容器，并在容器中执行 grep 命令。
+启动一个 `busybox` 容器，并在容器中执行 `grep` 命令。
 
 ```bash
 $ docker run -it busybox
@@ -103,7 +103,7 @@ proc on /proc/bus type proc (ro,nosuid,nodev,noexec,relatime)
 tmpfs on /proc/kcore type tmpfs (rw,nosuid,mode=755)
 ```
 
-busybox 镜像虽然小巧，但包括了大量常见的 Linux 命令，读者可以用它快速熟悉 Linux 命令。
+`busybox` 镜像虽然小巧，但包括了大量常见的 Linux 命令，读者可以用它快速熟悉 Linux 命令。
 
 ### 相关资源
 

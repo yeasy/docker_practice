@@ -33,15 +33,15 @@ $ docker run alpine echo '123'
 
 ### 迁移至 `Alpine` 基础镜像
 
-目前，大部分 Docker 官方镜像都已经支持 Alpine 作为基础镜像，可以很容易进行迁移。
+目前，大部分 Docker 官方镜像都已经支持 `Alpine` 作为基础镜像，可以很容易进行迁移。
 
 例如：
 
-* ubuntu/debian -> alpine
-* python:2.7 -> python:2.7-alpine
-* ruby:2.3 -> ruby:2.3-alpine
+* `ubuntu/debian` -> `alpine`
+* `python:3` -> `python:3-alpine`
+* `ruby:2.6` -> `ruby:2.6-alpine`
 
-另外，如果使用 `Alpine` 镜像替换 `Ubuntu` 基础镜像，安装软件包时需要用 apk 包管理器替换 apt 工具，如
+另外，如果使用 `Alpine` 镜像替换 `Ubuntu` 基础镜像，安装软件包时需要用 `apk` 包管理器替换 `apt` 工具，如
 
 ```bash
 $ apk add --no-cache <package>
