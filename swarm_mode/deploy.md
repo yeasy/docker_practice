@@ -10,7 +10,7 @@
 $ docker service create --replicas 3 -p 80:80 --name nginx nginx:1.13.7-alpine
 ```
 
-现在我们使用浏览器，输入任意节点 IP ,即可看到 nginx 默认页面。
+现在我们使用浏览器，输入任意节点 IP ，即可看到 nginx 默认页面。
 
 ### 查看服务
 
