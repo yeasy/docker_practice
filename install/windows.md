@@ -1,4 +1,4 @@
-## Windows 10 PC 安装 Docker Desktop CE
+## Windows 10 安装 Docker Desktop CE
 
 ### 系统要求
 

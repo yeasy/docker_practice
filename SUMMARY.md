@@ -17,7 +17,7 @@
     * [CentOS](install/centos.md)
     * [Raspberry Pi](install/raspberry-pi.md)
     * [macOS](install/mac.md)
-    * [Windows PC](install/windows.md)
+    * [Windows 10](install/windows.md)
     * [镜像加速器](install/mirror.md)
 * [使用镜像](image/README.md)
     * [获取镜像](image/pull.md)

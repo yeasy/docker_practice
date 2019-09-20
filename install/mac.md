@@ -2,7 +2,7 @@
 
 ### 系统要求
 
-[Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/) 要求系统最低为 macOS El Capitan 10.11。
+[Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/) 要求系统最低为 macOS Sierra 10.12。
 
 ### 安装
 
