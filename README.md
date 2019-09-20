@@ -49,7 +49,13 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初�
 * QQ 群 IX  （已满）：571502246
 * QQ 群 X   （可加）：145983035
 
->如果有问题，请通过 [Issues](https://github.com/yeasy/docker_practice/issues/new/choose) 来提出。
+>如果有容器相关的疑问，请通过 [Issues](https://github.com/yeasy/docker_practice/issues/new/choose) 来提出。
+
+<p align="center">
+<img width="200" src="https://user-images.githubusercontent.com/16733187/65308302-55b87f80-dbbc-11e9-9d42-57eac554fb3b.jpg">
+</p>
+
+<p align="center"><strong>微信扫码 加入群聊~</strong></p>
 
 ## 进阶学习
 
