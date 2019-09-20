@@ -10,7 +10,7 @@
 
 > 国内各大云服务商均提供了 Docker 镜像加速服务，建议根据运行 Docker 的云平台选择对应的镜像加速服务，具体请参考官方文档。
 
-我们以 Azure 中国镜像 `https://dockerhub.azk8s.cn` 为例进行介绍。
+本节我们以 Azure 中国镜像 `https://dockerhub.azk8s.cn` 为例进行介绍。
 
 ### Ubuntu 16.04+、Debian 8+、CentOS 7
 
@@ -38,7 +38,7 @@ $ sudo systemctl restart docker
 
 ### Windows 10
 
-对于使用 Windows 10 的系统，在系统右下角托盘 Docker 图标内右键菜单选择 `Settings`，打开配置窗口后在左侧导航菜单选择 `Docker Engine`，在右侧像下边一样编辑 json 文件，之后点击 `Apply & Restart` 保存后 Docker 就会重启并应用配置的镜像地址了。
+对于使用 `Windows 10` 的用户，在任务栏托盘 Docker 图标内右键菜单选择 `Settings`，打开配置窗口后在左侧导航菜单选择 `Docker Engine`，在右侧像下边一样编辑 json 文件，之后点击 `Apply & Restart` 保存后 Docker 就会重启并应用配置的镜像地址了。
 
 ```json
 {
