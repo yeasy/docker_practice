@@ -1,8 +1,8 @@
 # GitHub Actions
 
-GitGub Actions 是 GitHub 推出的一款 CI/CD 工具。
+GitHub [Actions](https://github.com/features/actions) 是 GitHub 推出的一款 CI/CD 工具。
 
-我们可以在每个 job 的 step 中使用 Docker 执行构建步骤。
+我们可以在每个 `job` 的 `step` 中使用 Docker 执行构建步骤。
 
 ```yaml
 on: push

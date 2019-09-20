@@ -86,7 +86,7 @@ $ git push origin master
 
 打开我们部署好的 `Drone` 网站或者 Drone Cloud，即可看到构建结果。
 
-![](../.image/drone-build.png)
+![](.image/drone-build.png)
 
 当然我们也可以把构建结果上传到 GitHub，Docker Registry，云服务商提供的对象存储，或者生产环境中。
 
@@ -95,5 +95,5 @@ $ git push origin master
 ## 参考链接
 
 * [Drone Github](https://github.com/drone/drone)
-* [Drone 文档](http://docs.drone.io/)
+* [Drone 文档](https://docs.drone.io/)
 * [Drone 示例](https://github.com/docker-practice/drone-demo)
