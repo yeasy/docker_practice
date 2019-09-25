@@ -104,7 +104,7 @@ REPOSITORY                         TAG                 IMAGE ID            CREAT
 ```json
 {
   "registry-mirror": [
-    "https://registry.docker-cn.com"
+    "https://dockerhub.azk8s.cn"
   ],
   "insecure-registries": [
     "192.168.199.100:5000"
@@ -116,4 +116,4 @@ REPOSITORY                         TAG                 IMAGE ID            CREAT
 
 ### 其他
 
-对于 Docker Desktop for Windows 、 Docker Desktop for Mac 在设置中编辑 `daemon.json` 增加和上边一样的字符串即可。
+对于 Docker Desktop for Windows 、 Docker Desktop for Mac 在设置中的 `Docker Engine` 中进行编辑 ，增加和上边一样的字符串即可。
