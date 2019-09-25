@@ -92,14 +92,15 @@ $ sudo dnf -y install docker-ce-18.06.1.ce
 
 ### 使用脚本自动安装
 
-在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，Debian 系统上可以使用这套脚本安装：
+在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，Debian 系统上可以使用这套脚本安装，另外可以通过 `--mirror` 选项使用国内源进行安装：
 
 ```bash
 $ curl -fsSL get.docker.com -o get-docker.sh
 $ sudo sh get-docker.sh --mirror Aliyun
+# $ sudo sh get-docker.sh --mirror AzureChinaCloud
 ```
 
-执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker CE 最新版本安装在系统中。
+执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker CE 最新稳定(stable)版本安装在系统中。
 
 ### 启动 Docker CE
 
