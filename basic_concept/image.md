@@ -1,15 +1,15 @@
-## Docker 镜像
+## Docker Image
 
-我们都知道，操作系统分为内核和用户空间。对于 Linux 而言，内核启动后，会挂载 `root` 文件系统为其提供用户空间支持。而 Docker 镜像（Image），就相当于是一个 `root` 文件系统。比如官方镜像 `ubuntu:18.04` 就包含了完整的一套 Ubuntu 18.04 最小系统的 `root` 文件系统。
+As we all know, Operating System constitutes kernel and user space. For linux, it will mount `root` file system to support user space. For Docker Image, it almost likes a `root` file system. For example, the offical image `ubuntu:18:04` contains a micro `root` file system of complete opreating system.
 
-Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。镜像不包含任何动态数据，其内容在构建之后也不会被改变。
+Docker Image is a special file system. Except for programes, libs, resources and config witch support running container, Docker Image also includes config parameters like anonymous volumes, environment variables, users and others. Images don't have any dynamic data. Its content will not be changed after build.
 
-### 分层存储
+## Advanced Multi-layered Unification Filesystem (AUFS)
 
-因为镜像包含操作系统完整的 `root` 文件系统，其体积往往是庞大的，因此在 Docker 设计时，就充分利用 [Union FS](https://en.wikipedia.org/wiki/Union_mount) 的技术，将其设计为分层存储的架构。所以严格来说，镜像并非是像一个 ISO 那样的打包文件，镜像只是一个虚拟的概念，其实际体现并非由一个文件组成，而是由一组文件系统组成，或者说，由多层文件系统联合组成。
+Because the image contains the complete `root` file system of the operating system, its volume is often huge. So Docker made full use of [Union FS](https://en.wikipedia.org/wiki/Union_mount) and was designed as AUFS when it was designed. So strictly speaking, image is not a packaged file like an ISO. Image is just a virtual concept. It is not composed of a single file, but a group of file systems, or a combination of multi-layers file systems.
 
-镜像构建时，会一层层构建，前一层是后一层的基础。每一层构建完就不会再发生改变，后一层上的任何改变只发生在自己这一层。比如，删除前一层文件的操作，实际不是真的删除前一层的文件，而是仅在当前层标记为该文件已删除。在最终容器运行的时候，虽然不会看到这个文件，但是实际上该文件会一直跟随镜像。因此，在构建镜像的时候，需要额外小心，每一层尽量只包含该层需要添加的东西，任何额外的东西应该在该层构建结束前清理掉。
+When build an image, it builds layer by layer, and the former is the base of the latter. Once each layer is built, it will not change later. Any change on the latter layer will only occur on its own level. For example,  deleting the previous layer of files is not really deleting the files, but only marked as deleted in the current layter. When the final conatiner runs, you won't see the file, but in fact the file will always follow the image. Therefore, take more care when  building the image, and any additional things should be cleared up before the end of the layer's construction.
 
-分层存储的特征还使得镜像的复用、定制变的更为容易。甚至可以用之前构建好的镜像作为基础层，然后进一步添加新的层，以定制自己所需的内容，构建新的镜像。
+Layered storage features also make it easier to reuse and customize image. You can even use the previously built image as the base layer, and then add a new layer to customize the content you need to build a new image.
 
-关于镜像构建，将会在后续相关章节中做进一步的讲解。
+As for image building, further explanations will be given in subsequent relevant chapters.
