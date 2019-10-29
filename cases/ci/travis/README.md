@@ -10,7 +10,7 @@
 
 在项目根目录新建一个 `Dockerfile` 文件。
 
-```dockerfile
+```docker
 FROM alpine
 
 RUN echo "Hello World"

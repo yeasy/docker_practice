@@ -1,8 +1,9 @@
-## 主要修订记录
+# 修订记录
 
 * 1.1.0 2019-12-31
   * 全面支持 v19.x 新版本
   * 增加 `BuildKit`
+  * 增加 `docker buildx` 命令使用说明
   * 增加 `docker manifest` 命令使用说明
   * 移除 `Ubuntu 14.04` `Debian 8` `Debian 7`
 

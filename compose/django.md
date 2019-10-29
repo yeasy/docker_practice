@@ -8,7 +8,7 @@
 
 第一步，因为应用将要运行在一个满足所有环境依赖的 Docker 容器里面，那么我们可以通过编辑 `Dockerfile` 文件来指定 Docker 容器要安装内容。内容如下：
 
-```dockerfile
+```docker
 FROM python:3
 ENV PYTHONUNBUFFERED 1
 RUN mkdir /code

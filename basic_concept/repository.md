@@ -1,4 +1,4 @@
-## Docker Registry
+# Docker Registry
 
 镜像构建完成后，可以很容易的在当前宿主机上运行，但是，如果需要在其它服务器上使用这个镜像，我们就需要一个集中的存储、分发镜像的服务，[Docker Registry](../repository/registry.md) 就是这样的服务。
 
@@ -10,7 +10,7 @@
 
 仓库名经常以 *两段式路径* 形式出现，比如 `jwilder/nginx-proxy`，前者往往意味着 Docker Registry 多用户环境下的用户名，后者则往往是对应的软件名。但这并非绝对，取决于所使用的具体 Docker Registry 的软件或服务。
 
-### Docker Registry 公开服务
+## Docker Registry 公开服务
 
 Docker Registry 公开服务是开放给用户使用、允许用户管理镜像的 Registry 服务。一般这类公开服务允许用户免费上传、下载公开的镜像，并可能提供收费服务供用户管理私有镜像。
 
@@ -20,7 +20,7 @@ Docker Registry 公开服务是开放给用户使用、允许用户管理镜像�
 
 国内也有一些云服务商提供类似于 Docker Hub 的公开服务。比如 [时速云镜像仓库](https://hub.tenxcloud.com/)、[网易云镜像服务](https://c.163.com/hub#/m/library/)、[DaoCloud 镜像市场](https://hub.daocloud.io/)、[阿里云镜像库](https://cr.console.aliyun.com) 等。
 
-### 私有 Docker Registry
+## 私有 Docker Registry
 
 除了使用公开服务外，用户还可以在本地搭建私有 Docker Registry。Docker 官方提供了 [Docker Registry](https://hub.docker.com/_/registry/) 镜像，可以直接使用做为私有 Registry 服务。在 [私有仓库](../repository/registry.md) 一节中，会有进一步的搭建私有 Registry 服务的讲解。
 
