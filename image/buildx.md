@@ -1,34 +1,14 @@
-## 使用 `BuildKit` 构建镜像
+## 使用 `Buildx` 构建镜像
 
 **BuildKit** 是下一代的镜像构建组件，在 https://github.com/moby/buildkit 开源。
 
 **注意：如果您的镜像构建使用的是云服务商提供的镜像构建服务（Docker Hub 自动构建、腾讯云容器服务、阿里云容器服务等），由于上述服务提供商的 Docker 版本低于 18.09，BuildKit 无法使用，将造成镜像构建失败。建议使用 BuildKit 构建镜像时使用一个新的 Dockerfile 文件（例如 Dockerfile.buildkit）**
 
-**注意：docker-compose build 命令暂时不支持 BuildKit**
-
-下面介绍如何在 Docker CE 18.09 版本中使用 `BuildKit` 提供的 `Dockerfile` 新指令来更快、更安全的构建 Docker 镜像。
-
-### 启用 `BuildKit`
-
-启用 `BuildKit` 必须先设置 **环境变量**。
-
-Linux、macOS 执行如下命令：
-
-```bash
-$ export DOCKER_BUILDKIT=1
-```
-
-Windows 执行如下命令：
-
-```powershell
-$ set $env:DOCKER_BUILDKIT=1
-```
-
-> 以上是设置环境变量的临时方法，若使环境变量永久生效请读者自行设置。
+下面介绍如何在 Docker CE 19.03+ 版本中使用 `BuildKit` 提供的 `Dockerfile` 新指令来更快、更安全的构建 Docker 镜像。
 
 ### `Dockerfile` 新增指令详解
 
-启用 `BuildKit` 之后，我们可以使用下面几个新的指令来加快镜像构建。
+启用 `BuildKit` 之后，我们可以使用下面几个新的指令来加快镜像构建。为了使用 `BuildKit` 我们 **必须** 使用新的 `$ docker buildx build` 命令来构建 Docker 镜像。
 
 #### `RUN --mount=type=cache`
 
@@ -62,7 +42,6 @@ COPY --from=builder /app/dist /app/dist
 `BuildKit` 提供了 `RUN --mount=type=cache` 指令，可以实现上边的设想。
 
 ```docker
-# syntax = docker/dockerfile:experimental
 FROM node:alpine as builder
 
 WORKDIR /app
@@ -89,12 +68,6 @@ RUN --mount=type=cache,target=/tmp/dist,from=builder,source=/app/dist \
     mkdir -p /app/dist && cp -r /tmp/dist/* /app/dist
 ```
 
-**由于 `BuildKit` 为实验特性，每个 `Dockerfile` 文件开头都必须加上如下指令**
-
-```docker
-# syntax = docker/dockerfile:experimental
-```
-
 第一个 `RUN` 指令执行后，`id` 为 `my_app_npm_module` 的缓存文件夹挂载到了 `/app/node_modules` 文件夹中。多次执行也不会产生多个中间层镜像。
 
 第二个 `RUN` 指令执行时需要用到 `node_modules` 文件夹，`node_modules` 已经挂载，命令也可以正确执行。
@@ -117,7 +90,6 @@ RUN --mount=type=cache,target=/tmp/dist,from=builder,source=/app/dist \
 该指令可以将一个镜像（或上一构建阶段）的文件挂载到指定位置。
 
 ```docker
-# syntax = docker/dockerfile:experimental
 RUN --mount=type=bind,from=php:alpine,source=/usr/local/bin/docker-php-entrypoint,target=/docker-php-entrypoint \
         cat /docker-php-entrypoint
 ```
@@ -127,7 +99,6 @@ RUN --mount=type=bind,from=php:alpine,source=/usr/local/bin/docker-php-entrypoin
 该指令可以将一个 `tmpfs` 文件系统挂载到指定位置。
 
 ```docker
-# syntax = docker/dockerfile:experimental
 RUN --mount=type=tmpfs,target=/temp \
         mount | grep /temp
 ```
@@ -137,13 +108,12 @@ RUN --mount=type=tmpfs,target=/temp \
 该指令可以将一个文件挂载到指定位置。
 
 ```docker
-# syntax = docker/dockerfile:experimental
 RUN --mount=type=secret,id=aws,target=/root/.aws/credentials \
         cat /root/.aws/credentials
 ```
 
 ```bash
-$ docker build -t test --secret id=aws,src=$HOME/.aws/credentials .
+$ docker buildx build -t test --secret id=aws,src=$HOME/.aws/credentials .
 ```
 
 #### `RUN --mount=type=ssh`
@@ -151,7 +121,6 @@ $ docker build -t test --secret id=aws,src=$HOME/.aws/credentials .
 该指令可以挂载 `ssh` 密钥。
 
 ```docker
-# syntax = docker/dockerfile:experimental
 FROM alpine
 RUN apk add --no-cache openssh-client
 RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan gitlab.com >> ~/.ssh/known_hosts
@@ -162,7 +131,8 @@ RUN --mount=type=ssh ssh git@gitlab.com | tee /hello
 $ eval $(ssh-agent)
 $ ssh-add ~/.ssh/id_rsa
 (Input your passphrase here)
-$ docker build -t test --ssh default=$SSH_AUTH_SOCK .
+
+$ docker buildx build -t test --ssh default=$SSH_AUTH_SOCK .
 ```
 
 ### 清理构建缓存

@@ -50,7 +50,7 @@ server {
 
 第一阶段进行前端构建。
 
-```dockerfile
+```docker
 FROM node:alpine as frontend
 
 COPY package.json /app/
@@ -69,7 +69,7 @@ RUN cd /app \
 
 第二阶段安装 Composer 依赖。
 
-```dockerfile
+```docker
 FROM composer as composer
 
 COPY database/ /app/database/
@@ -89,7 +89,7 @@ RUN cd /app \
 
 第三阶段对以上阶段生成的文件进行整合。
 
-```dockerfile
+```docker
 FROM php:7.2-fpm-alpine as laravel
 
 ARG LARAVEL_PATH=/app/laravel
@@ -113,7 +113,7 @@ RUN cd ${LARAVEL_PATH} \
 
 ### 最后一个阶段构建 NGINX 镜像
 
-```dockerfile
+```docker
 FROM nginx:alpine as nginx
 
 ARG LARAVEL_PATH=/app/laravel
@@ -164,7 +164,7 @@ $ docker run -it --rm --network=laravel -p 8080:80 my/nginx
 
 完整的 `Dockerfile` 文件如下。
 
-```dockerfile
+```docker
 FROM node:alpine as frontend
 
 COPY package.json /app/

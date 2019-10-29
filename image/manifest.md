@@ -2,11 +2,11 @@
 
 我们知道使用镜像创建一个容器，该镜像必须与 Docker 宿主机系统架构一致，例如 `Linux x86_64` 架构的系统中只能使用 `Linux x86_64` 的镜像创建容器。
 
-> macOS 除外，其使用了 [binfmt_misc](https://docs.docker.com/docker-for-mac/multi-arch/) 提供了多种架构支持，在 macOS 系统上 (x86_64) 可以运行 arm 等其他架构的镜像。
+> Windows、macOS 除外，其使用了 [binfmt_misc](https://docs.docker.com/docker-for-mac/multi-arch/) 提供了多种架构支持，在 Windows、macOS 系统上 (x86_64) 可以运行 arm 等其他架构的镜像。
 
 例如我们在 `Linux x86_64` 中构建一个 `username/test` 镜像。
 
-```Dockerfile
+```docker
 FROM alpine
 
 CMD echo 1

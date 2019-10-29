@@ -52,11 +52,18 @@
 
 ### 如何获取某个容器的 PID 信息？
 
-答：可以使用 `docker inspect --format '{{ .State.Pid }}' <CONTAINER ID or NAME>` 命令。
+答：可以使用
+
+```bash
+docker inspect --format '{{ .State.Pid }}' <CONTAINER ID or NAME>
+```
 
 ### 如何获取某个容器的 IP 地址？
 
-答：可以使用 `docker inspect --format '{{ .NetworkSettings.IPAddress }}' <CONTAINER ID or NAME>` 命令
+答：可以使用
+```bash
+docker inspect --format '{{ .NetworkSettings.IPAddress }}' <CONTAINER ID or NAME>
+```
 
 ### 如何给容器指定一个固定 IP 地址，而不是每次重启容器 IP 地址都会变？
 

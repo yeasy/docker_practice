@@ -16,7 +16,7 @@ $ touch Dockerfile
 
 其内容为：
 
-```dockerfile
+```docker
 FROM nginx
 RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
 ```
@@ -33,7 +33,7 @@ RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
 
 除了选择现有镜像为基础镜像外，Docker 还存在一个特殊的镜像，名为 `scratch`。这个镜像是虚拟的概念，并不实际存在，它表示一个空白的镜像。
 
-```dockerfile
+```docker
 FROM scratch
 ...
 ```
@@ -48,7 +48,7 @@ FROM scratch
 
 * *shell* 格式：`RUN <命令>`，就像直接在命令行中输入的命令一样。刚才写的 Dockerfile 中的 `RUN` 指令就是这种格式。
 
-```Dockerfile
+```docker
 RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
 ```
 
@@ -56,7 +56,7 @@ RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
 
 既然 `RUN` 就像 Shell 脚本一样可以执行命令，那么我们是否就可以像 Shell 脚本一样把每个命令对应一个 RUN 呢？比如这样：
 
-```dockerfile
+```docker
 FROM debian:stretch
 
 RUN apt-get update
@@ -77,7 +77,7 @@ RUN make -C /usr/src/redis install
 
 上面的 `Dockerfile` 正确的写法应该是这样：
 
-```dockerfile
+```docker
 FROM debian:stretch
 
 RUN buildDeps='gcc libc6-dev make wget' \
@@ -142,7 +142,7 @@ docker build [选项] <上下文路径/URL/->
 
 如果在 `Dockerfile` 中这么写：
 
-```Dockerfile
+```docker
 COPY ./package.json /app/
 ```
 

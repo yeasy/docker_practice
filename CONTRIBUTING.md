@@ -1,4 +1,4 @@
-## 如何贡献项目
+# 如何贡献
 
 领取或创建新的 [Issue](https://github.com/yeasy/docker_practice/issues)，如 [issue 235](https://github.com/yeasy/docker_practice/issues/235)，添加自己为 `Assignee`。
 

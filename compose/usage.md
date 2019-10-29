@@ -40,7 +40,7 @@ if __name__ == "__main__":
 
 编写 `Dockerfile` 文件，内容为
 
-```dockerfile
+```docker
 FROM python:3.6-alpine
 ADD . /code
 WORKDIR /code
