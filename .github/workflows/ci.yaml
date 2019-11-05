@@ -18,6 +18,7 @@ jobs:
           args: build
       - name: vuepress
         run: |
+          rm -rf _book
           npx vuepress build
       - name: Upload Vuepress dist
         uses: docker://pcit/pages

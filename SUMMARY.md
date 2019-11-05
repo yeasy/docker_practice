@@ -138,6 +138,8 @@
     * [Drone](cases/ci/drone/README.md)
         * [部署 Drone](cases/ci/drone/install.md)
     * [Travis CI](cases/ci/travis/README.md)
+* [在 IDE 中使用 Docker](IDE/README.md)
+    * [VS Code](IDE/vsCode.md)
 * [Docker 开源项目](opensource/README.md)
     * [LinuxKit](opensource/linuxkit.md)
 * [附录](appendix/README.md)
