@@ -115,6 +115,14 @@ module.exports = {
             'summary',
           ],
         },
+        {
+          title: "在 IDE 中使用 Docker",
+          collapsable: false,
+          children: [
+            '/ide/',
+            '/ide/vscode',
+          ],
+        },
       ],
       '/cases/ci/': [
         '/cases/ci/',
