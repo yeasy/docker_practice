@@ -325,6 +325,13 @@ module.exports = {
           ],
         },
         {
+          title: "归档",
+          collapsable: false,
+          children: [
+            'archive/',
+          ],
+        },
+        {
           title: "Docker Machine",
           collapsable: false,
           children: [
