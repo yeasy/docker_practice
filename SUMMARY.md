@@ -19,6 +19,7 @@
     * [macOS](install/mac.md)
     * [Windows 10](install/windows.md)
     * [镜像加速器](install/mirror.md)
+    * [开启实验特性](install/experimental.md)
 * [使用镜像](image/README.md)
     * [获取镜像](image/pull.md)
     * [列出镜像](image/list.md)
