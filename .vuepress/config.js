@@ -3,7 +3,7 @@ module.exports = {
   base: '/',
   themeConfig: {
     docsRepo: 'yeasy/docker_practice',
-    docsDir: '/',
+    docsDir: '/vuepress',
     editLinks: true,
     nav: [{
         text: '安装 Docker',
@@ -186,9 +186,6 @@ module.exports = {
             '/image/multistage-builds/',
             '/image/multistage-builds/laravel',
             '/image/manifest',
-            '/image/buildx_multi-arch-images',
-            '/image/buildkit',
-            '/image/buildx',
           ]
         },{
           title: "操作容器",
@@ -260,6 +257,16 @@ module.exports = {
             'security/kernel_capability',
             'security/other_feature',
             'security/summary',
+          ],
+        },
+        {
+          title: "Docker Buildx",
+          collapsable: false,
+          children: [
+            "buildx/",
+            "buildx/buildkit",
+            "buildx/buildx",
+            "buildx/multi-arch-images",
           ],
         },
         {

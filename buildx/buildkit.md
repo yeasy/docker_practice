@@ -1,4 +1,4 @@
-## 使用 `BuildKit` 构建镜像
+# 使用 `BuildKit` 构建镜像
 
 **BuildKit** 是下一代的镜像构建组件，在 https://github.com/moby/buildkit 开源。
 
@@ -6,31 +6,11 @@
 
 **注意：docker-compose build 命令暂时不支持 BuildKit**
 
-下面介绍如何在 Docker CE 18.09 版本中使用 `BuildKit` 提供的 `Dockerfile` 新指令来更快、更安全的构建 Docker 镜像。
+## `Dockerfile` 新增指令详解
 
-### 启用 `BuildKit`
+启用 `BuildKit` 之后，我们可以使用下面几个新的 `Dockerfile` 指令来加快镜像构建。
 
-启用 `BuildKit` 必须先设置 **环境变量**。
-
-Linux、macOS 执行如下命令：
-
-```bash
-$ export DOCKER_BUILDKIT=1
-```
-
-Windows 执行如下命令：
-
-```powershell
-$ set $env:DOCKER_BUILDKIT=1
-```
-
-> 以上是设置环境变量的临时方法，若使环境变量永久生效请读者自行设置。
-
-### `Dockerfile` 新增指令详解
-
-启用 `BuildKit` 之后，我们可以使用下面几个新的指令来加快镜像构建。
-
-#### `RUN --mount=type=cache`
+### `RUN --mount=type=cache`
 
 目前，几乎所有的程序都会使用依赖管理工具，例如 `Go` 中的 `go mod`、`Node.js` 中的 `npm` 等等，当我们构建一个镜像时，往往会重复的从互联网中获取依赖包，难以缓存，大大降低了镜像的构建效率。
 
@@ -112,7 +92,7 @@ RUN --mount=type=cache,target=/tmp/dist,from=builder,source=/app/dist \
 |`from`               | 缓存来源（构建阶段），不填写时为空文件夹。|
 |`source`             | 来源的文件夹路径。|
 
-#### `RUN --mount=type=bind`
+### `RUN --mount=type=bind`
 
 该指令可以将一个镜像（或上一构建阶段）的文件挂载到指定位置。
 
@@ -122,7 +102,7 @@ RUN --mount=type=bind,from=php:alpine,source=/usr/local/bin/docker-php-entrypoin
         cat /docker-php-entrypoint
 ```
 
-#### `RUN --mount=type=tmpfs`
+### `RUN --mount=type=tmpfs`
 
 该指令可以将一个 `tmpfs` 文件系统挂载到指定位置。
 
@@ -132,9 +112,9 @@ RUN --mount=type=tmpfs,target=/temp \
         mount | grep /temp
 ```
 
-#### `RUN --mount=type=secret`
+### `RUN --mount=type=secret`
 
-该指令可以将一个文件挂载到指定位置。
+该指令可以将一个文件(例如密钥)挂载到指定位置。
 
 ```docker
 # syntax = docker/dockerfile:experimental
@@ -146,7 +126,7 @@ RUN --mount=type=secret,id=aws,target=/root/.aws/credentials \
 $ docker build -t test --secret id=aws,src=$HOME/.aws/credentials .
 ```
 
-#### `RUN --mount=type=ssh`
+### `RUN --mount=type=ssh`
 
 该指令可以挂载 `ssh` 密钥。
 
@@ -165,14 +145,6 @@ $ ssh-add ~/.ssh/id_rsa
 $ docker build -t test --ssh default=$SSH_AUTH_SOCK .
 ```
 
-### 清理构建缓存
-
-执行以下命令清理构建缓存
-
-```bash
-$ docker builder prune
-```
-
-### 官方文档
+## 官方文档
 
 * https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/experimental.md

@@ -1,26 +1,8 @@
 # 使用 buildx 构建多种系统架构支持的 Docker 镜像
 
-在之前的版本中构建多种系统架构支持的 Docker 镜像，要想使用统一的名字必须使用 [`$ docker manifest`](manifest.md) 命令。
+在之前的版本中构建多种系统架构支持的 Docker 镜像，要想使用统一的名字必须使用 [`$ docker manifest`](../image/manifest.md) 命令。
 
-在 Docker 19.03+ 版本中可以使用 `$ docker buildx build` 命令使用 `BuildKit` 构建镜像。
-
-该命令支持 `--platform` 参数可以同时构建支持多种系统架构的 Docker 镜像，大大简化了构建步骤。
-
-## 设置环境变量
-
-`buildx` 命令属于实验特性，必须设置环境变量以使用该命令。
-
-Linux/macOS
-
-```bash
-$ export DOCKER_CLI_EXPERIMENTAL=enabled
-```
-
-Windows
-
-```bash
-$ set $env:DOCKER_CLI_EXPERIMENTAL=enabled
-```
+在 Docker 19.03+ 版本中可以使用 `$ docker buildx build` 命令使用 `BuildKit` 构建镜像。该命令支持 `--platform` 参数可以同时构建支持多种系统架构的 Docker 镜像，大大简化了构建步骤。
 
 ## 新建 `builder` 实例
 
@@ -33,7 +15,9 @@ $ docker run --rm --privileged docker/binfmt:820fdd95a9972a5308930a2bdfb8573dd44
 由于 Docker 默认的 `builder` 实例不支持同时指定多个 `--platform`，我们必须首先创建一个新的 `builder` 实例。
 
 ```bash
-$ docker buildx create --name mybuilder
+# $ docker buildx create --name mybuilder
+
+$ docker buildx create --name=mybuilder --driver docker-container --driver-opt image=dockerpracticesig/buildkit:master
 
 $ docker buildx use mybuilder
 ```
