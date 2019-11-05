@@ -1,4 +1,4 @@
-## 私有仓库
+# 私有仓库
 
 有时候使用 Docker Hub 这样的公共仓库可能不方便，用户可以创建一个本地仓库供私人使用。
 
@@ -6,9 +6,9 @@
 
 [`docker-registry`](https://docs.docker.com/registry/) 是官方提供的工具，可以用于构建私有的镜像仓库。本文内容基于 [`docker-registry`](https://github.com/docker/distribution) v2.x 版本。
 
-### 安装运行 docker-registry
+## 安装运行 docker-registry
 
-#### 容器运行
+### 容器运行
 
 你可以通过获取官方 `registry` 镜像来运行。
 
@@ -25,7 +25,7 @@ $ docker run -d \
     registry
 ```
 
-### 在私有仓库上传、搜索、下载镜像
+## 在私有仓库上传、搜索、下载镜像
 
 创建好私有仓库之后，就可以使用 `docker tag` 来标记一个镜像，然后推送它到仓库。例如私有仓库地址为 `127.0.0.1:5000`。
 
@@ -91,13 +91,13 @@ REPOSITORY                         TAG                 IMAGE ID            CREAT
 127.0.0.1:5000/ubuntu:latest       latest              ba5877dc9bec        6 weeks ago         192.7 MB
 ```
 
-### 注意事项
+## 注意事项
 
 如果你不想使用 `127.0.0.1:5000` 作为仓库地址，比如想让本网段的其他主机也能把镜像推送到私有仓库。你就得把例如 `192.168.199.100:5000` 这样的内网地址作为私有仓库地址，这时你会发现无法成功推送镜像。
 
 这是因为 Docker 默认不允许非 `HTTPS` 方式推送镜像。我们可以通过 Docker 的配置选项来取消这个限制，或者查看下一节配置能够通过 `HTTPS` 访问的私有仓库。
 
-#### Ubuntu 16.04+, Debian 8+, centos 7
+### Ubuntu 16.04+, Debian 8+, centos 7
 
 对于使用 `systemd` 的系统，请在 `/etc/docker/daemon.json` 中写入如下内容（如果文件不存在请新建该文件）
 
@@ -114,6 +114,6 @@ REPOSITORY                         TAG                 IMAGE ID            CREAT
 
 >注意：该文件必须符合 `json` 规范，否则 Docker 将不能启动。
 
-### 其他
+## 其他
 
 对于 Docker Desktop for Windows 、 Docker Desktop for Mac 在设置中的 `Docker Engine` 中进行编辑 ，增加和上边一样的字符串即可。

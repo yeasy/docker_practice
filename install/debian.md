@@ -1,17 +1,17 @@
-## Debian 安装 Docker CE
+# Debian 安装 Docker CE
 
 >警告：切勿在没有配置 Docker APT 源的情况下直接使用 apt 命令安装 Docker.
 
-### 准备工作
+## 准备工作
 
-#### 系统要求
+### 系统要求
 
 Docker CE 支持以下版本的 [Debian](https://www.debian.org/intro/about) 操作系统：
 
 * Buster 10
 * Stretch 9
 
-#### 卸载旧版本
+### 卸载旧版本
 
 旧版本的 Docker 称为 `docker` 或者 `docker-engine`，使用以下命令卸载旧版本：
 
@@ -21,7 +21,7 @@ $ sudo apt-get remove docker \
                docker.io
 ```
 
-### 使用 APT 安装
+## 使用 APT 安装
 
 由于 apt 源使用 HTTPS 以确保软件下载过程中不被篡改。因此，我们首先需要添加使用 HTTPS 传输的软件包以及 CA 证书。
 
@@ -66,7 +66,7 @@ $ sudo add-apt-repository \
 
 >以上命令会添加稳定版本的 Docker CE APT 源，如果需要测试或每日构建版本的 Docker CE 请将 stable 改为 test 或者 nightly。
 
-#### 安装 Docker CE
+### 安装 Docker CE
 
 更新 apt 软件包缓存，并安装 `docker-ce`。
 
@@ -76,7 +76,7 @@ $ sudo apt-get update
 $ sudo apt-get install docker-ce
 ```
 
-### 使用脚本自动安装
+## 使用脚本自动安装
 
 在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，Debian 系统上可以使用这套脚本安装，另外可以通过 `--mirror` 选项使用国内源进行安装：
 
@@ -88,14 +88,14 @@ $ sudo sh get-docker.sh --mirror Aliyun
 
 执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker CE 的稳定(stable)版本安装在系统中。
 
-### 启动 Docker CE
+## 启动 Docker CE
 
 ```bash
 $ sudo systemctl enable docker
 $ sudo systemctl start docker
 ```
 
-### 建立 docker 用户组
+## 建立 docker 用户组
 
 默认情况下，`docker` 命令会使用 [Unix socket](https://en.wikipedia.org/wiki/Unix_domain_socket) 与 Docker 引擎通讯。而只有 `root` 用户和 `docker` 组的用户才可以访问 Docker 引擎的 Unix socket。出于安全考虑，一般 Linux 系统上不会直接使用 `root` 用户。因此，更好地做法是将需要使用 `docker` 的用户加入 `docker` 用户组。
 
@@ -113,7 +113,7 @@ $ sudo usermod -aG docker $USER
 
 退出当前终端并重新登录，进行如下测试。
 
-### 测试 Docker 是否安装正确
+## 测试 Docker 是否安装正确
 
 ```bash
 $ docker run hello-world
@@ -148,10 +148,10 @@ For more examples and ideas, visit:
 
 若能正常输出以上信息，则说明安装成功。
 
-### 镜像加速
+## 镜像加速
 
 如果在使用过程中发现拉取 Docker 镜像十分缓慢，可以配置 Docker [国内镜像加速](mirror.md)。
 
-### 参考文档
+## 参考文档
 
 * [Docker 官方 Debian 安装文档](https://docs.docker.com/install/linux/docker-ce/debian/)

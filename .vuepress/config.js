@@ -38,6 +38,10 @@ module.exports = {
         link: '/kubernetes/',
       },
       {
+        text: "云计算",
+        link: "/cloud/",
+      },
+      {
         text: 'GitHub',
         link: 'https://github.com/yeasy/docker_practice'
       },
@@ -58,6 +62,13 @@ module.exports = {
       // }
     ],
     sidebar: {
+      '/cloud/': [
+        'intro',
+        'aws',
+        'tencentCloud',
+        'alicloud',
+        'summary',
+      ],
       '/kubernetes/': [
         'intro',
         'quickstart',
@@ -76,7 +87,6 @@ module.exports = {
         'wordpress',
       ],
       '/install/': [
-         '/install/',
          'ubuntu',
          'debian',
          'fedora',
@@ -85,9 +95,9 @@ module.exports = {
          'mac',
          'windows',
          'mirror',
+         'experimental',
       ],
       '/underly/': [
-         '/underly/',
          'arch',
          'namespace',
          'cgroups',
@@ -96,7 +106,6 @@ module.exports = {
          'network',
       ],
       '/repository/': [
-        '/repository/',
         'dockerhub',
         'registry',
         'registry_auth',
@@ -107,7 +116,6 @@ module.exports = {
           title: "操作系统",
           collapsable:false,
           children: [
-            '/cases/os/',
             'busybox',
             'alpine',
             'debian',
@@ -119,14 +127,13 @@ module.exports = {
           title: "在 IDE 中使用 Docker",
           collapsable: false,
           children: [
-            '/ide/',
-            '/ide/vscode',
+            '/IDE/',
+            '/IDE/vsCode',
           ],
         },
       ],
       '/cases/ci/': [
-        '/cases/ci/',
-        '/cases/ci/actions/',
+        'actions/',
         {
           title: "Drone",
           collapsable: false,
@@ -145,55 +152,55 @@ module.exports = {
           title: "Docker 简介",
           collapsable: false,
           children: [
-            '/introduction/',
-            '/introduction/what',
-            '/introduction/why',
+            'introduction/',
+            'introduction/what',
+            'introduction/why',
           ]
         },{
           title: "基本概念",
           collapsable: false,
           children: [
-            '/basic_concept/',
-            '/basic_concept/image',
-            '/basic_concept/container',
-            '/basic_concept/repository'
+            'basic_concept/',
+            'basic_concept/image',
+            'basic_concept/container',
+            'basic_concept/repository'
           ]
         },
         {
           title: "使用镜像",
           collapsable: false,
           children: [
-            '/image/',
-            '/image/pull',
-            '/image/list',
-            '/image/rm',
-            '/image/commit',
-            '/image/build',
-            '/image/other.md',
-            '/image/internal.md',
+            'image/',
+            'image/pull',
+            'image/list',
+            'image/rm',
+            'image/commit',
+            'image/build',
+            'image/other.md',
+            'image/internal.md',
           ]
         },
         {
           title: 'Dockerfile',
           collapsable: false,
           children: [
-            "/image/dockerfile/",
-            '/image/dockerfile/copy',
-            '/image/dockerfile/add',
-            '/image/dockerfile/cmd',
-            '/image/dockerfile/entrypoint',
-            '/image/dockerfile/env',
-            '/image/dockerfile/arg',
-            '/image/dockerfile/volume',
-            '/image/dockerfile/expose',
-            '/image/dockerfile/workdir',
-            '/image/dockerfile/user',
-            '/image/dockerfile/healthcheck',
-            '/image/dockerfile/onbuild',
-            '/image/dockerfile/references',
-            '/image/multistage-builds/',
-            '/image/multistage-builds/laravel',
-            '/image/manifest',
+            "image/dockerfile/",
+            'image/dockerfile/copy',
+            'image/dockerfile/add',
+            'image/dockerfile/cmd',
+            'image/dockerfile/entrypoint',
+            'image/dockerfile/env',
+            'image/dockerfile/arg',
+            'image/dockerfile/volume',
+            'image/dockerfile/expose',
+            'image/dockerfile/workdir',
+            'image/dockerfile/user',
+            'image/dockerfile/healthcheck',
+            'image/dockerfile/onbuild',
+            'image/dockerfile/references',
+            'image/multistage-builds/',
+            'image/multistage-builds/laravel',
+            'image/manifest',
           ]
         },{
           title: "操作容器",
@@ -298,18 +305,6 @@ module.exports = {
           ],
         },
         {
-          title: "容器与云计算",
-          collapsable:false,
-          children: [
-            'cloud/',
-            'cloud/intro',
-            'cloud/aws',
-            'cloud/tencentCloud',
-            'cloud/alicloud',
-            'cloud/summary',
-          ],
-        },
-        {
           title: "Docker 开源项目",
           collapsable:false,
           children:[
@@ -359,15 +354,23 @@ module.exports = {
           title: 'Mesos',
           collapsable: false,
           children: [
-            '/mesos/intro',
-            '/mesos/installation',
-            '/mesos/architecture',
-            '/mesos/configuration',
-            '/mesos/monitor',
-            '/mesos/framework',
-            '/mesos/summary',
+            'mesos/',
+            'mesos/intro',
+            'mesos/installation',
+            'mesos/architecture',
+            'mesos/configuration',
+            'mesos/monitor',
+            'mesos/framework',
+            'mesos/summary',
           ]
         },
+        {
+          title: 'Docker Swarm',
+          collapsable: false,
+          children: [
+            "swarm/"
+          ]
+        }
       ],
     },
   }

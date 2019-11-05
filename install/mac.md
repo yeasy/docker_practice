@@ -1,12 +1,12 @@
-## macOS 安装 Docker Desktop CE
+# macOS 安装 Docker Desktop CE
 
-### 系统要求
+## 系统要求
 
 [Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/) 要求系统最低为 macOS Sierra 10.12。
 
-### 安装
+## 安装
 
-#### 使用 Homebrew 安装
+### 使用 Homebrew 安装
 
 [Homebrew](https://brew.sh/) 的 [Cask](https://caskroom.github.io/) 已经支持 Docker Desktop for Mac，因此可以很方便的使用 Homebrew Cask 来进行安装：
 
@@ -14,7 +14,7 @@
 $ brew cask install docker
 ```
 
-#### 手动下载安装
+### 手动下载安装
 
 如果需要手动下载，请点击以下链接下载 [Stable](https://download.docker.com/mac/stable/Docker.dmg) 或 [Edge](https://download.docker.com/mac/edge/Docker.dmg) 版本的 Docker Desktop for Mac。
 
@@ -22,7 +22,7 @@ $ brew cask install docker
 
 ![](_images/install-mac-dmg.png)
 
-### 运行
+## 运行
 
 从应用中找到 Docker 图标并点击运行。
 
@@ -68,10 +68,10 @@ $ docker stop webserver
 $ docker rm webserver
 ```
 
-### 镜像加速
+## 镜像加速
 
 如果在使用过程中发现拉取 Docker 镜像十分缓慢，可以配置 Docker [国内镜像加速](mirror.md)。
 
-### 参考链接
+## 参考链接
 
 * [官方文档](https://docs.docker.com/docker-for-mac/install/)

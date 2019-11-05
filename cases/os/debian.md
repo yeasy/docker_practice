@@ -1,7 +1,7 @@
-## Debian/Ubuntu
+# Debian/Ubuntu
 `Debian` 和 `Ubuntu` 都是目前较为流行的 **Debian 系** 的服务器操作系统，十分适合研发场景。`Docker Hub` 上提供了官方镜像，国内各大容器云服务也基本都提供了相应的支持。
 
-### Debian 系统简介
+## Debian 系统简介
 
 ![Debian 操作系统](_images/debian-logo.png)
 
@@ -11,7 +11,7 @@
 
 众多的 `Linux` 发行版，例如 `Ubuntu`、`Knoppix` 和 `Linspire` 及 `Xandros` 等，都基于 `Debian GNU/Linux`。
 
-#### 使用 Debian 官方镜像
+### 使用 Debian 官方镜像
 
 读者可以使用 `docker search` 查找 `Debian` 镜像：
 
@@ -36,13 +36,13 @@ Debian GNU/Linux 8
 
 `Debian` 镜像很适合作为基础镜像，构建自定义镜像。
 
-### Ubuntu 系统简介
+## Ubuntu 系统简介
 
 ![Ubuntu 操作系统](_images/ubuntu-logo.jpg)
 
 `Ubuntu` 是一个以桌面应用为主的 `GNU/Linux` 操作系统，其名称来自非洲南部祖鲁语或豪萨语的“ubuntu”一词（官方译名“友帮拓”，另有“吾帮托”、“乌班图”、“有奔头”或“乌斑兔”等译名）。`Ubuntu` 意思是“人性”以及“我的存在是因为大家的存在”，是非洲传统的一种价值观，类似华人社会的“仁爱”思想。 `Ubuntu` 基于 `Debian` 发行版和 `GNOME/Unity` 桌面环境，与 `Debian` 的不同在于它每 6 个月会发布一个新版本，每 2 年推出一个长期支持 **（Long Term Support，LTS）** 版本，一般支持 3 年时间。
 
-#### 使用 Ubuntu 官方镜像
+### 使用 Ubuntu 官方镜像
 
 `Ubuntu` 相关的镜像有很多，这里使用 `--filter=stars=10` 参数，只搜索那些被收藏 `10` 次以上的镜像。
 
@@ -162,7 +162,7 @@ root@7d93de07bf76:/# curl 127.0.0.1
 
 配合使用 `-p` 参数对外映射服务端口，可以允许容器外来访问该服务。
 
-### 相关资源
+## 相关资源
 
 * `Debian` 官网：https://www.debian.org/
 * `Neuro Debian` 官网：http://neuro.debian.net/

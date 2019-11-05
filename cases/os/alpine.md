@@ -1,6 +1,6 @@
-## Alpine
+# Alpine
 
-### 简介
+## 简介
 
 ![Apline Linux 操作系统](_images/alpinelinux-logo.png)
 
@@ -22,7 +22,7 @@ ubuntu              latest        b39b81afc8ca      188.3 MB
 centos              latest        8efe422e6104      210 MB
 ```
 
-### 获取并使用官方镜像
+## 获取并使用官方镜像
 
 由于镜像很小，下载时间往往很短，读者可以直接使用 `docker run` 指令直接运行一个 `Alpine` 容器，并指定运行的 Linux 指令，例如：
 
@@ -31,7 +31,7 @@ $ docker run alpine echo '123'
 123
 ```
 
-### 迁移至 `Alpine` 基础镜像
+## 迁移至 `Alpine` 基础镜像
 
 目前，大部分 Docker 官方镜像都已经支持 `Alpine` 作为基础镜像，可以很容易进行迁移。
 
@@ -54,7 +54,7 @@ $ echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositorie
 $ apk --update add --no-cache <package>
 ```
 
-### 相关资源
+## 相关资源
 
 * `Alpine` 官网：https://www.alpinelinux.org/
 * `Alpine` 官方仓库：https://github.com/alpinelinux

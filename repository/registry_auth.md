@@ -1,10 +1,10 @@
-## 私有仓库高级配置
+# 私有仓库高级配置
 
 上一节我们搭建了一个具有基础功能的私有仓库，本小节我们来使用 `Docker Compose` 搭建一个拥有权限认证、TLS 的私有仓库。
 
 新建一个文件夹，以下步骤均在该文件夹中进行。
 
-### 准备站点证书
+## 准备站点证书
 
 如果你拥有一个域名，国内各大云服务商均提供免费的站点证书。你也可以使用 `openssl` 自行签发证书。
 
@@ -82,7 +82,7 @@ $ openssl x509 -req -days 750 -in "site.csr" -sha256 \
 
 新建 `ssl` 文件夹并将 `docker.domain.com.key` `docker.domain.com.crt` `root-ca.crt` 这三个文件移入，删除其他文件。
 
-### 配置私有仓库
+## 配置私有仓库
 
 私有仓库默认的配置文件位于 `/etc/docker/registry/config.yml`，我们先在本地编辑 `config.yml`，之后挂载到容器中。
 
@@ -124,7 +124,7 @@ health:
 threshold: 3
 ```
 
-### 生成 http 认证文件
+## 生成 http 认证文件
 
 ```bash
 $ mkdir auth
@@ -137,7 +137,7 @@ $ docker run --rm \
 
 > 将上面的 `username` `password` 替换为你自己的用户名和密码。
 
-### 编辑 `docker-compose.yml`
+## 编辑 `docker-compose.yml`
 
 ```yaml
 version: '3'
@@ -155,7 +155,7 @@ volumes:
   registry-data:
 ```
 
-### 修改 hosts
+## 修改 hosts
 
 编辑 `/etc/hosts`
 
@@ -163,7 +163,7 @@ volumes:
 127.0.0.1 docker.domain.com
 ```
 
-### 启动
+## 启动
 
 ```bash
 $ docker-compose up -d
@@ -171,7 +171,7 @@ $ docker-compose up -d
 
 这样我们就搭建好了一个具有权限认证、TLS 的私有仓库，接下来我们测试其功能是否正常。
 
-### 测试私有仓库功能
+## 测试私有仓库功能
 
 由于自行签发的 CA 根证书不被系统信任，所以我们需要将 CA 根证书 `ssl/root-ca.crt` 移入 `/etc/docker/certs.d/docker.domain.com` 文件夹中。
 
@@ -213,6 +213,6 @@ no basic auth credentials
 
 发现会提示没有登录，不能将镜像推送到私有仓库中。
 
-### 注意事项
+## 注意事项
 
 如果你本机占用了 `443` 端口，你可以配置 [Nginx 代理](https://docs.docker.com/registry/recipes/nginx/)，这里不再赘述。
