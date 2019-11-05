@@ -34,21 +34,7 @@ $ docker run -it --rm username/test
 
 我们可以使用 `$ docker manifest inspect golang:alpine` 查看这个 `manifest` 列表的结构。
 
-由于该命令属于实验特性，必须设置如下 **环境变量** 之后才能使用：
-
-```bash
-# Linux、macOS
-
-$ export DOCKER_CLI_EXPERIMENTAL=enabled
-
-# Windows
-
-$ set $env:DOCKER_CLI_EXPERIMENTAL=enabled
-```
-
-> 以上是设置环境变量的临时方法，若使环境变量永久生效请读者自行设置。
-
-设置之后，执行结果如下
+> 该命令属于实验特性，请参考 [开启实验特性](../install/experimental) 一节。
 
 ```bash
 $ docker manifest inspect golang:alpine

@@ -1,18 +1,18 @@
-## Docker Hub
+# Docker Hub
 
 目前 Docker 官方维护了一个公共仓库 [Docker Hub](https://hub.docker.com/)，其中已经包括了数量超过 [2,650,000](https://hub.docker.com/search/?type=image) 的镜像。大部分需求都可以通过在 Docker Hub 中直接下载镜像来实现。
 
-### 注册
+## 注册
 
 你可以在 https://hub.docker.com 免费注册一个 Docker 账号。
 
-### 登录
+## 登录
 
 可以通过执行 `docker login` 命令交互式的输入用户名及密码来完成在命令行界面登录 Docker Hub。
 
 你可以通过 `docker logout` 退出登录。
 
-### 拉取镜像
+## 拉取镜像
 
 你可以通过 `docker search` 命令来查找官方仓库中的镜像，并利用 `docker pull` 命令来将它下载到本地。
 
@@ -49,7 +49,7 @@ Pulling repository centos
 7064731afe90: Download complete
 ```
 
-### 推送镜像
+## 推送镜像
 
 用户也可以在登录后通过 `docker push` 命令来将自己的镜像推送到 Docker Hub。
 
@@ -72,7 +72,7 @@ NAME                      DESCRIPTION                                     STARS 
 username/ubuntu
 ```
 
-### 自动构建
+## 自动构建
 
 自动构建（Automated Builds）功能对于需要经常升级镜像内程序来说，十分方便。
 

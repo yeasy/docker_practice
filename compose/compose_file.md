@@ -1,4 +1,4 @@
-## Compose 模板文件
+# Compose 模板文件
 
 模板文件是使用 `Compose` 的核心，涉及到的指令关键字也比较多。但大家不用担心，这里面大部分指令跟 `docker run` 相关参数的含义都是类似的。
 
@@ -22,7 +22,7 @@ services:
 
 下面分别介绍各个指令的用法。
 
-### `build`
+## `build`
 
 指定 `Dockerfile` 所在文件夹的路径（可以是绝对路径，或者相对 docker-compose.yml 文件的路径）。 `Compose` 将会利用它自动构建这个镜像，然后使用这个镜像。
 
@@ -62,7 +62,7 @@ build:
     - corp/web_app:3.14
 ```
 
-### `cap_add, cap_drop`
+## `cap_add, cap_drop`
 
 指定容器的内核能力（capacity）分配。
 
@@ -80,7 +80,7 @@ cap_drop:
   - NET_ADMIN
 ```
 
-### `command`
+## `command`
 
 覆盖容器启动后默认执行的命令。
 
@@ -88,11 +88,11 @@ cap_drop:
 command: echo "hello world"
 ```
 
-### `configs`
+## `configs`
 
 仅用于 `Swarm mode`，详细内容请查看 [`Swarm mode`](../swarm_mode/) 一节。
 
-### `cgroup_parent`
+## `cgroup_parent`
 
 指定父 `cgroup` 组，意味着将继承该组的资源限制。
 
@@ -102,7 +102,7 @@ command: echo "hello world"
 cgroup_parent: cgroups_1
 ```
 
-### `container_name`
+## `container_name`
 
 指定容器名称。默认将会使用 `项目名称_服务名称_序号` 这样的格式。
 
@@ -112,11 +112,11 @@ container_name: docker-web-container
 
 >注意: 指定容器名称后，该服务将无法进行扩展（scale），因为 Docker 不允许多个容器具有相同的名称。
 
-### `deploy`
+## `deploy`
 
 仅用于 `Swarm mode`，详细内容请查看 [`Swarm mode`](../swarm_mode/) 一节
 
-### `devices`
+## `devices`
 
 指定设备映射关系。
 
@@ -125,7 +125,7 @@ devices:
   - "/dev/ttyUSB1:/dev/ttyUSB0"
 ```
 
-### `depends_on`
+## `depends_on`
 
 解决容器的依赖、启动先后的问题。以下例子中会先启动 `redis` `db` 再启动 `web`
 
@@ -148,7 +148,7 @@ services:
 
 >注意：`web` 服务不会等待 `redis` `db` 「完全启动」之后才启动。
 
-### `dns`
+## `dns`
 
 自定义 `DNS` 服务器。可以是一个值，也可以是一个列表。
 
@@ -160,7 +160,7 @@ dns:
   - 114.114.114.114
 ```
 
-### `dns_search`
+## `dns_search`
 
 配置 `DNS` 搜索域。可以是一个值，也可以是一个列表。
 
@@ -172,7 +172,7 @@ dns_search:
   - domain2.example.com
 ```
 
-### `tmpfs`
+## `tmpfs`
 
 挂载一个 tmpfs 文件系统到容器。
 
@@ -183,7 +183,7 @@ tmpfs:
   - /tmp
 ```
 
-### `env_file`
+## `env_file`
 
 从文件中获取环境变量，可以为单独的文件路径或列表。
 
@@ -207,7 +207,7 @@ env_file:
 PROG_ENV=development
 ```
 
-### `environment`
+## `environment`
 
 设置环境变量。你可以使用数组或字典两种格式。
 
@@ -229,7 +229,7 @@ environment:
 y|Y|yes|Yes|YES|n|N|no|No|NO|true|True|TRUE|false|False|FALSE|on|On|ON|off|Off|OFF
 ```
 
-### `expose`
+## `expose`
 
 暴露端口，但不映射到宿主机，只被连接的服务访问。
 
@@ -241,7 +241,7 @@ expose:
  - "8000"
 ```
 
-### `external_links`
+## `external_links`
 
 >注意：不建议使用该指令。
 
@@ -254,7 +254,7 @@ external_links:
  - project_db_1:postgresql
 ```
 
-### `extra_hosts`
+## `extra_hosts`
 
 类似 Docker 中的 `--add-host` 参数，指定额外的 host 名称映射信息。
 
@@ -271,7 +271,7 @@ extra_hosts:
 52.1.157.61 dockerhub
 ```
 
-### `healthcheck`
+## `healthcheck`
 
 通过命令检查容器是否健康运行。
 
@@ -283,7 +283,7 @@ healthcheck:
   retries: 3
 ```
 
-### `image`
+## `image`
 
 指定为镜像名称或镜像 ID。如果镜像在本地不存在，`Compose` 将会尝试拉取这个镜像。
 
@@ -293,7 +293,7 @@ image: orchardup/postgresql
 image: a4bc65fd
 ```
 
-### `labels`
+## `labels`
 
 为容器添加 Docker 元数据（metadata）信息。例如可以为容器添加辅助说明信息。
 
@@ -304,11 +304,11 @@ labels:
   com.startupteam.release: "rc3 for v1.0"
 ```
 
-### `links`
+## `links`
 
 >注意：不推荐使用该指令。
 
-### `logging`
+## `logging`
 
 配置日志选项。
 
@@ -335,7 +335,7 @@ options:
   max-file: "10"
 ```
 
-### `network_mode`
+## `network_mode`
 
 设置网络模式。使用和 `docker run` 的 `--network` 参数一样的值。
 
@@ -347,7 +347,7 @@ network_mode: "service:[service name]"
 network_mode: "container:[container name/id]"
 ```
 
-### `networks`
+## `networks`
 
 配置容器连接的网络。
 
@@ -365,7 +365,7 @@ networks:
   other-network:
 ```
 
-### `pid`
+## `pid`
 
 跟主机系统共享进程命名空间。打开该选项的容器之间，以及容器和宿主机系统之间可以通过进程 ID 来相互访问和操作。
 
@@ -373,7 +373,7 @@ networks:
 pid: "host"
 ```
 
-### `ports`
+## `ports`
 
 暴露端口信息。
 
@@ -389,7 +389,7 @@ ports:
 
 *注意：当使用 `HOST:CONTAINER` 格式来映射端口时，如果你使用的容器端口小于 60 并且没放到引号里，可能会得到错误结果，因为 `YAML` 会自动解析 `xx:yy` 这种数字格式为 60 进制。为避免出现这种问题，建议数字串都采用引号包括起来的字符串格式。*
 
-### `secrets`
+## `secrets`
 
 存储敏感数据，例如 `mysql` 服务密码。
 
@@ -412,7 +412,7 @@ secrets:
     external: true
 ```
 
-### `security_opt`
+## `security_opt`
 
 指定容器模板标签（label）机制的默认属性（用户、角色、类型、级别等）。例如配置标签的用户名和角色名。
 
@@ -422,7 +422,7 @@ security_opt:
     - label:role:ROLE
 ```
 
-### `stop_signal`
+## `stop_signal`
 
 设置另一个信号来停止容器。在默认情况下使用的是 SIGTERM 停止容器。
 
@@ -430,7 +430,7 @@ security_opt:
 stop_signal: SIGUSR1
 ```
 
-### `sysctls`
+## `sysctls`
 
 配置容器内核参数。
 
@@ -444,7 +444,7 @@ sysctls:
   - net.ipv4.tcp_syncookies=0
 ```
 
-### `ulimits`
+## `ulimits`
 
 指定容器的 ulimits 限制值。
 
@@ -458,7 +458,7 @@ sysctls:
       hard: 40000
 ```
 
-### `volumes`
+## `volumes`
 
 数据卷所挂载路径设置。可以设置为宿主机路径(`HOST:CONTAINER`)或者数据卷名称(`VOLUME:CONTAINER`)，并且可以设置访问模式 （`HOST:CONTAINER:ro`）。
 
@@ -486,7 +486,7 @@ volumes:
   mysql_data:  
 ```
 
-### 其它指令
+## 其它指令
 
 此外，还有包括 `domainname, entrypoint, hostname, ipc, mac_address, privileged, read_only, shm_size, restart, stdin_open, tty, user, working_dir` 等指令，基本跟 `docker run` 中对应参数的功能一致。
 
@@ -546,7 +546,7 @@ stdin_open: true
 tty: true
 ```
 
-### 读取变量
+## 读取变量
 
 Compose 模板文件支持动态读取主机的系统环境变量和当前目录下的 `.env` 文件中的变量。
 
@@ -573,6 +573,6 @@ MONGO_VERSION=3.6
 
 执行 `docker-compose up` 则会启动一个 `mongo:3.6` 镜像的容器。
 
-### 参考资料
+## 参考资料
 
 * [官方文档](https://docs.docker.com/compose/compose-file/)

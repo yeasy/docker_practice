@@ -1,4 +1,4 @@
-## 使用 Django
+# 使用 Django
 
 > 本小节内容适合 `Python` 开发人员阅读。
 

@@ -2,19 +2,7 @@
 
 ## 启用 Buildx
 
-`buildx` 命令属于实验特性，必须设置环境变量以使用该命令。
-
-Linux/macOS
-
-```bash
-$ export DOCKER_CLI_EXPERIMENTAL=enabled
-```
-
-Windows
-
-```bash
-$ set $env:DOCKER_CLI_EXPERIMENTAL=enabled
-```
+`buildx` 命令属于实验特性，参考 [开启实验特性](../install/experimental.md) 一节。
 
 ## 使用
 
