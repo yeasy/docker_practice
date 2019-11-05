@@ -27,6 +27,6 @@ jobs:
           PCIT_GIT_URL: github.com/docker-practice/vuepress
           PCIT_KEEP_HISTORY: "1"
           PCIT_LOCAL_DIR: .vuepress/dist
-          PCIT_MESSAGE: Sync from yeasy/docker-practice@${{github.sha}} by PCIT
+          PCIT_MESSAGE: Sync from yeasy/docker_practice@${{github.sha}} by PCIT
           PCIT_TARGET_BRANCH: master
           PCIT_USERNAME: khs1994
