@@ -18,10 +18,11 @@ jobs:
           args: build
       - name: vuepress
         run: |
-          rm -rf _book
+          sudo rm -rf _book
           npx vuepress build
       - name: Upload Vuepress dist
         uses: docker://pcit/pages
+        if: github.repository == 'docker-practice/docker_practice'
         env:
           PCIT_EMAIL: khs1994@khs1994.com
           PCIT_GIT_TOKEN: ${{ secrets.PCIT_GIT_TOKEN }}
