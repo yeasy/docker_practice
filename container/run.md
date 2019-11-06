@@ -1,10 +1,10 @@
-## 启动容器
+# 启动容器
 
 启动容器有两种方式，一种是基于镜像新建一个容器并启动，另外一个是将在终止状态（`stopped`）的容器重新启动。
 
 因为 Docker 的容器实在太轻量级了，很多时候用户都是随时删除和新创建容器。
 
-### 新建并启动
+## 新建并启动
 
 所需要的命令主要为 `docker run`。
 
@@ -45,7 +45,7 @@ bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr
 * 执行用户指定的应用程序
 * 执行完毕后容器被终止
 
-### 启动已终止容器
+## 启动已终止容器
 
 可以利用 `docker container start` 命令，直接将一个已经终止的容器启动运行。
 

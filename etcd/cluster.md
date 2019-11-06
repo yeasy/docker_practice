@@ -1,4 +1,4 @@
-## etcd 集群
+# etcd 集群
 
 下面我们使用 [Docker Compose](../compose/) 模拟启动一个 3 节点的 `etcd` 集群。
 

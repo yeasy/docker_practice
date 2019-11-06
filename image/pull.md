@@ -1,4 +1,4 @@
-## 获取镜像
+# 获取镜像
 
 之前提到过，[Docker Hub](https://hub.docker.com/explore/) 上有大量的高质量的镜像可以用，这里我们就说一下怎么获取这些镜像。
 
@@ -35,7 +35,7 @@ Status: Downloaded newer image for ubuntu:18.04
 
 *如果从 Docker Hub 下载镜像非常缓慢，可以参照 [镜像加速器](/install/mirror.md) 一节配置加速器。*
 
-### 运行
+## 运行
 
 有了镜像后，我们就能够以这个镜像为基础启动并运行一个容器。以上面的 `ubuntu:18.04` 为例，如果我们打算启动里面的 `bash` 并且进行交互式操作的话，可以执行下面的命令。
 

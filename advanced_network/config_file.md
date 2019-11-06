@@ -1,4 +1,4 @@
-## 编辑网络配置文件
+# 编辑网络配置文件
 
 Docker 1.2.0 开始支持在运行中的容器里编辑 `/etc/hosts`, `/etc/hostname` 和 `/etc/resolv.conf` 文件。
 

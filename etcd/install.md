@@ -1,10 +1,10 @@
-## 安装
+# 安装
 
 `etcd` 基于 `Go` 语言实现，因此，用户可以从 [项目主页](https://github.com/etcd-io/etcd) 下载源代码自行编译，也可以下载编译好的二进制文件，甚至直接使用制作好的 `Docker` 镜像文件来体验。
 
 >注意：本章节内容基于 etcd `3.4.x` 版本
 
-### 二进制文件方式下载
+## 二进制文件方式下载
 
 编译好的二进制文件都在 [github.com/etcd-io/etcd/releases](https://github.com/etcd-io/etcd/releases/) 页面，用户可以选择需要的版本，或通过下载工具下载。
 
@@ -56,7 +56,7 @@ hello world
 
 说明 etcd 服务已经成功启动了。
 
-### Docker 镜像方式运行
+## Docker 镜像方式运行
 
 镜像名称为 `quay.io/coreos/etcd`，可以通过下面的命令启动 `etcd` 服务监听到 `2379` 和 `2380` 端口。
 
@@ -84,7 +84,7 @@ quay.io/coreos/etcd:v3.4.0 \
 
 打开新的终端按照上一步的方法测试 `etcd` 是否成功启动。
 
-### macOS 中运行
+## macOS 中运行
 
 ```bash
 $ brew install etcd

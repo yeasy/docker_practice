@@ -1,10 +1,10 @@
-## 容器互联
+# 容器互联
 
 如果你之前有 `Docker` 使用经验，你可能已经习惯了使用 `--link` 参数来使容器互联。
 
 随着 Docker 网络的完善，强烈建议大家将容器加入自定义的 Docker 网络来连接多个容器，而不是使用 `--link` 参数。
 
-### 新建网络
+## 新建网络
 
 下面先创建一个新的 Docker 网络。
 
@@ -14,7 +14,7 @@ $ docker network create -d bridge my-net
 
 `-d` 参数指定 Docker 网络类型，有 `bridge` `overlay`。其中 `overlay` 网络类型用于 [Swarm mode](../swarm_mode/)，在本小节中你可以忽略它。
 
-### 连接容器
+## 连接容器
 
 运行一个容器并连接到新建的 `my-net` 网络
 
@@ -62,6 +62,6 @@ PING busybox1 (172.19.0.2): 56 data bytes
 
 这样，`busybox1` 容器和 `busybox2` 容器建立了互联关系。
 
-### Docker Compose
+## Docker Compose
 
 如果你有多个容器之间需要互相连接，推荐使用 [Docker Compose](../compose)。

@@ -1,4 +1,4 @@
-## 使用 etcdctl v2
+# 使用 etcdctl v2
 
 `etcdctl` 是一个命令行客户端，它能提供一些简洁的命令，供用户直接跟 `etcd` 服务打交道，而无需基于 `HTTP API` 方式。这在某些情况下将很方便，例如用户对服务进行测试或者手动修改数据库内容。我们也推荐在刚接触 `etcd` 时通过 `etcdctl` 命令来熟悉相关的操作，这些操作跟 `HTTP API` 实际上是对应的。
 
@@ -46,14 +46,14 @@ GLOBAL OPTIONS:
    --version, -v		print the version
 ```
 
-### 数据库操作
+## 数据库操作
 数据库操作围绕对键值和目录的 CRUD （符合 REST 风格的一套操作：Create）完整生命周期的管理。
 
 etcd 在键的组织上采用了层次化的空间结构（类似于文件系统中目录的概念），用户指定的键可以为单独的名字，如 `testkey`，此时实际上放在根目录 `/` 下面，也可以为指定目录结构，如 `cluster1/node2/testkey`，则将创建相应的目录结构。
 
 *注：CRUD 即 Create, Read, Update, Delete，是符合 REST 风格的一套 API 操作。*
 
-#### set
+### set
 指定某个键的值。例如
 ```bash
 $ etcdctl set /testdir/testkey "Hello world"
@@ -66,7 +66,7 @@ Hello world
 --swap-with-index '0'	若该键现在的索引值是指定索引，则进行设置操作
 ```
 
-#### get
+### get
 获取指定键的值。例如
 ```bash
 $ etcdctl set testkey hello
@@ -87,7 +87,7 @@ Error:  100: Key not found (/testkey2) [1]
 --consistent 将请求发给主节点，保证获取内容的一致性
 ```
 
-#### update
+### update
 当键存在时，更新值内容。例如
 ```bash
 $ etcdctl set testkey hello
@@ -107,7 +107,7 @@ Error:  100: Key not found (/testkey2) [1]
 --ttl '0'	超时时间（单位为秒），不配置（默认为 0）则永不超时
 ```
 
-#### rm
+### rm
 删除某个键值。例如
 ```bash
 $ etcdctl rm testkey
@@ -127,7 +127,7 @@ Error:  100: Key not found (/testkey2) [8]
 --with-index '0'	检查现有的 index 是否匹配
 ```
 
-#### mk
+### mk
 如果给定的键不存在，则创建一个新的键值。例如
 ```bash
 $ etcdctl mk /testdir/testkey "Hello world"
@@ -146,7 +146,7 @@ Error:  105: Key already exists (/testkey) [2]
 --ttl '0'	超时时间（单位为秒），不配置（默认为 0）则永不超时
 ```
 
-#### mkdir
+### mkdir
 如果给定的键目录不存在，则创建一个新的键目录。例如
 ```bash
 $ etcdctl mkdir testdir
@@ -162,7 +162,7 @@ Error:  105: Key already exists (/testdir) [7]
 --ttl '0'	超时时间（单位为秒），不配置（默认为 0）则永不超时
 ```
 
-#### setdir
+### setdir
 
 创建一个键目录，无论存在与否。
 
@@ -171,14 +171,14 @@ Error:  105: Key already exists (/testdir) [7]
 --ttl '0'	超时时间（单位为秒），不配置（默认为 0）则永不超时
 ```
 
-#### updatedir
+### updatedir
 更新一个已经存在的目录。
 支持的选项为
 ```bash
 --ttl '0'	超时时间（单位为秒），不配置（默认为 0）则永不超时
 ```
 
-#### rmdir
+### rmdir
 删除一个空目录，或者键值对。
 
 若目录不空，会报错
@@ -189,7 +189,7 @@ $ etcdctl rmdir /dir
 Error:  108: Directory not empty (/dir) [13]
 ```
 
-#### ls
+### ls
 列出目录（默认为根目录）下的键或者子目录，默认不显示子目录中内容。
 
 例如
@@ -212,9 +212,9 @@ $ ./etcdctl ls dir
 -p		对于输出为目录，在最后添加 `/` 进行区分
 ```
 
-### 非数据库操作
+## 非数据库操作
 
-#### backup
+### backup
 备份 etcd 的数据。
 
 支持的选项包括
@@ -222,7 +222,7 @@ $ ./etcdctl ls dir
 --data-dir 		etcd 的数据目录
 --backup-dir 	备份到指定路径
 ```
-#### watch
+### watch
 监测一个键值的变化，一旦键值发生更新，就会输出最新的值并退出。
 
 例如，用户更新 testkey 键值为 Hello world。
@@ -237,7 +237,7 @@ Hello world
 --after-index '0'	在指定 index 之前一直监测
 --recursive		返回所有的键值和子键值
 ```
-#### exec-watch
+### exec-watch
 监测一个键值的变化，一旦键值发生更新，就执行给定命令。
 
 例如，用户更新 testkey 键值。
@@ -258,7 +258,7 @@ README.md
 --recursive		返回所有的键值和子键值
 ```
 
-#### member
+### member
 
 通过 list、add、remove 命令列出、添加、删除 etcd 实例到 etcd 集群中。
 
@@ -269,7 +269,7 @@ $ etcdctl member list
 ce2a822cea30bfca: name=default peerURLs=http://localhost:2380,http://localhost:7001 clientURLs=http://localhost:2379,http://localhost:4001
 ```
 
-### 命令选项
+## 命令选项
 * `--debug`			输出 cURL 命令，显示执行命令的时候发起的请求
 * `--no-sync`			发出请求之前不同步集群信息
 * `--output, -o 'simple'`	输出内容的格式 (`simple` 为原始信息，`json` 为进行json格式解码，易读性好一些)

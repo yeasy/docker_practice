@@ -1,4 +1,4 @@
-## 删除本地镜像
+# 删除本地镜像
 
 如果要删除本地的镜像，可以使用 `docker image rm` 命令，其格式为：
 
@@ -6,7 +6,7 @@
 $ docker image rm [选项] <镜像1> [<镜像2> ...]
 ```
 
-### 用 ID、镜像名、摘要删除镜像
+## 用 ID、镜像名、摘要删除镜像
 
 其中，`<镜像>` 可以是 `镜像短 ID`、`镜像长 ID`、`镜像名` 或者 `镜像摘要`。
 
@@ -58,7 +58,7 @@ $ docker image rm node@sha256:b4f0e0bdeb578043c1ea6862f0d40cc4afe32a4a582f3be235
 Untagged: node@sha256:b4f0e0bdeb578043c1ea6862f0d40cc4afe32a4a582f3be235a3b164422be228
 ```
 
-### Untagged 和 Deleted
+## Untagged 和 Deleted
 
 如果观察上面这几个命令的运行输出信息的话，你会注意到删除行为分为两类，一类是 `Untagged`，另一类是 `Deleted`。我们之前介绍过，镜像的唯一标识是其 ID 和摘要，而一个镜像可以有多个标签。
 
@@ -68,7 +68,7 @@ Untagged: node@sha256:b4f0e0bdeb578043c1ea6862f0d40cc4afe32a4a582f3be235a3b16442
 
 除了镜像依赖以外，还需要注意的是容器对镜像的依赖。如果有用这个镜像启动的容器存在（即使容器没有运行），那么同样不可以删除这个镜像。之前讲过，容器是以镜像为基础，再加一层容器存储层，组成这样的多层存储结构去运行的。因此该镜像如果被这个容器所依赖的，那么删除必然会导致故障。如果这些容器是不需要的，应该先将它们删除，然后再来删除镜像。
 
-### 用 docker image ls 命令来配合
+## 用 docker image ls 命令来配合
 
 像其它可以承接多个实体的命令一样，可以使用 `docker image ls -q` 来配合使用 `docker image rm`，这样可以成批的删除希望删除的镜像。我们在“镜像列表”章节介绍过很多过滤镜像列表的方式都可以拿过来使用。
 
@@ -86,7 +86,7 @@ $ docker image rm $(docker image ls -q -f before=mongo:3.2)
 
 充分利用你的想象力和 Linux 命令行的强大，你可以完成很多非常赞的功能。
 
-### CentOS/RHEL 的用户需要注意的事项
+## CentOS/RHEL 的用户需要注意的事项
 
 > 以下内容仅适用于 Docker CE 18.09 以下版本，在 Docker CE 18.09 版本中默认使用的是 `overlay2` 驱动。
 

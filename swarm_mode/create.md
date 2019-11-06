@@ -1,8 +1,8 @@
-## 创建 Swarm 集群
+# 创建 Swarm 集群
 
 阅读 [基本概念](overview.md) 一节我们知道 `Swarm` 集群由 **管理节点** 和 **工作节点** 组成。本节我们来创建一个包含一个管理节点和两个工作节点的最小 `Swarm` 集群。
 
-### 初始化集群
+## 初始化集群
 
 在 [`Docker Machine`](../machine) 一节中我们了解到 `Docker Machine` 可以在数秒内创建一个虚拟的 Docker 主机，下面我们使用它来创建三个 Docker 主机，并加入到集群中。
 
@@ -33,7 +33,7 @@ To add a manager to this swarm, run 'docker swarm join-token manager' and follow
 
 > 执行 `docker swarm init` 命令的节点自动成为管理节点。
 
-### 增加工作节点
+## 增加工作节点
 
 上一步我们初始化了一个 `Swarm` 集群，拥有了一个管理节点，下面我们继续创建两个 Docker 主机作为工作节点，并加入到集群中。
 
@@ -63,7 +63,7 @@ This node joined a swarm as a worker.
 
 >注意：一些细心的读者可能通过 `docker-machine create --help` 查看到 `--swarm*` 等一系列参数。该参数是用于旧的 `Docker Swarm`，与本章所讲的 `Swarm mode` 没有关系。
 
-### 查看集群
+## 查看集群
 
 经过上边的两步，我们已经拥有了一个最小的 `Swarm` 集群，包含一个管理节点和两个工作节点。
 

@@ -1,4 +1,4 @@
-## SWarm mode 与滚动升级
+# SWarm mode 与滚动升级
 
 在 [部署服务](deploy.md) 一节中我们使用 `nginx:1.13.7-alpine` 镜像部署了一个名为 `nginx` 的服务。
 
@@ -24,7 +24,7 @@ $ docker service update \
 
 更多选项可以通过 `docker service update -h` 命令查看。
 
-### 服务回退
+## 服务回退
 
 现在假设我们发现 `nginx` 服务的镜像升级到 `nginx:1.13.12-alpine` 出现了一些问题，我们可以使用命令一键回退。
 

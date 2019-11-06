@@ -1,4 +1,4 @@
-## 在 Swarm 集群中管理配置数据
+# 在 Swarm 集群中管理配置数据
 
 在动态的、大规模的分布式集群上，管理和分发配置文件也是很重要的工作。传统的配置文件分发方式（如配置文件放入镜像中，设置环境变量，volume 动态挂载等）都降低了镜像的通用性。
 
@@ -8,7 +8,7 @@
 
 这里我们以在 Swarm 集群中部署 `redis` 服务为例。
 
-### 创建 config
+## 创建 config
 
 新建 `redis.conf` 文件
 
@@ -24,7 +24,7 @@ port 6380
 $ docker config create redis.conf redis.conf
 ```
 
-### 查看 config
+## 查看 config
 
 使用 `docker config ls` 命令来查看 `config`
 
@@ -35,7 +35,7 @@ ID                          NAME                CREATED             UPDATED
 yod8fx8iiqtoo84jgwadp86yk   redis.conf          4 seconds ago       4 seconds ago
 ```
 
-### 创建 redis 服务
+## 创建 redis 服务
 
 ```bash
 $ docker service create \
