@@ -1,10 +1,10 @@
-## 基本概念
+# 基本概念
 
 `Swarm` 是使用 [`SwarmKit`](https://github.com/docker/swarmkit/) 构建的 Docker 引擎内置（原生）的集群管理和编排工具。
 
  使用 `Swarm` 集群之前需要了解以下几个概念。
 
-### 节点
+## 节点
 
 运行 Docker 的主机可以主动初始化一个 `Swarm` 集群或者加入一个已存在的 `Swarm` 集群，这样这个运行 Docker 的主机就成为一个 `Swarm` 集群的节点 (`node`) 。
 
@@ -18,7 +18,7 @@
 
 ![](https://docs.docker.com/engine/swarm/images/swarm-diagram.png)
 
-### 服务和任务
+## 服务和任务
 
 任务 （`Task`）是 `Swarm` 中的最小的调度单位，目前来说就是一个单一的容器。
 

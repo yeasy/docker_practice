@@ -1,12 +1,12 @@
-## [Node.js](https://hub.docker.com/_/node/)
+# [Node.js](https://hub.docker.com/_/node/)
 
-### 基本信息
+## 基本信息
 
 [Node.js](https://en.wikipedia.org/wiki/Node.js) 是基于 JavaScript 的可扩展服务端和网络软件开发平台。
 
 该仓库位于 `https://hub.docker.com/_/node/` ，提供了 Node.js 0.10 ~ 12.x 各个版本的镜像。
 
-### 使用方法
+## 使用方法
 
 在项目中创建一个 Dockerfile。
 
@@ -35,6 +35,6 @@ $ docker run -it --rm \
     node your-daemon-or-script.js
 ```
 
-### Dockerfile
+## Dockerfile
 
 请到 https://github.com/docker-library/docs/tree/master/node 查看。

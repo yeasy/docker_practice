@@ -1,8 +1,8 @@
-## 其它制作镜像的方式
+# 其它制作镜像的方式
 
 除了标准的使用 `Dockerfile` 生成镜像的方法外，由于各种特殊需求和历史原因，还提供了一些其它方法用以生成镜像。
 
-### 从 rootfs 压缩包导入
+## 从 rootfs 压缩包导入
 
 格式：`docker import [选项] <文件>|<URL>|- [<仓库名>[:<标签>]]`
 
@@ -37,11 +37,11 @@ IMAGE               CREATED              CREATED BY          SIZE               
 f477a6e18e98        About a minute ago                       214.9 MB            Imported from http://download.openvz.org/template/precreated/ubuntu-16.04-x86_64.tar.gz
 ```
 
-### `docker save` 和 `docker load`
+## `docker save` 和 `docker load`
 
 Docker 还提供了 `docker save` 和 `docker load` 命令，用以将镜像保存为一个文件，然后传输到另一个位置上，再加载进来。这是在没有 Docker Registry 时的做法，现在已经不推荐，镜像迁移应该直接使用 Docker Registry，无论是直接使用 Docker Hub 还是使用内网私有 Registry 都可以。
 
-#### 保存镜像
+### 保存镜像
 
 使用 `docker save` 命令可以将镜像保存为归档文件。
 

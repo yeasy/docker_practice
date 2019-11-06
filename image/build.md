@@ -1,4 +1,4 @@
-## 使用 Dockerfile 定制镜像
+# 使用 Dockerfile 定制镜像
 
 从刚才的 `docker commit` 的学习中，我们可以了解到，镜像的定制实际上就是定制每一层所添加的配置、文件。如果我们可以把每一层修改、安装、构建、操作的命令都写入一个脚本，用这个脚本来构建、定制镜像，那么之前提及的无法重复的问题、镜像构建透明性的问题、体积的问题就都会解决。这个脚本就是 Dockerfile。
 
@@ -23,7 +23,7 @@ RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
 
 这个 Dockerfile 很简单，一共就两行。涉及到了两条指令，`FROM` 和 `RUN`。
 
-### FROM 指定基础镜像
+## FROM 指定基础镜像
 
 所谓定制镜像，那一定是以一个镜像为基础，在其上进行定制。就像我们之前运行了一个 `nginx` 镜像的容器，再进行修改一样，基础镜像是必须指定的。而 `FROM` 就是指定 **基础镜像**，因此一个 `Dockerfile` 中 `FROM` 是必备的指令，并且必须是第一条指令。
 
@@ -42,7 +42,7 @@ FROM scratch
 
 不以任何系统为基础，直接将可执行文件复制进镜像的做法并不罕见，比如 [`swarm`](https://hub.docker.com/_/swarm/)、[`etcd`](https://quay.io/repository/coreos/etcd)。对于 Linux 下静态编译的程序来说，并不需要有操作系统提供运行时支持，所需的一切库都已经在可执行文件里了，因此直接 `FROM scratch` 会让镜像体积更加小巧。使用 [Go 语言](https://golang.org/) 开发的应用很多会使用这种方式来制作镜像，这也是为什么有人认为 Go 是特别适合容器微服务架构的语言的原因之一。
 
-### RUN 执行命令
+## RUN 执行命令
 
 `RUN` 指令是用来执行命令行命令的。由于命令行的强大能力，`RUN` 指令在定制镜像时是最常用的指令之一。其格式有两种：
 
@@ -102,7 +102,7 @@ RUN buildDeps='gcc libc6-dev make wget' \
 
 很多人初学 Docker 制作出了很臃肿的镜像的原因之一，就是忘记了每一层构建的最后一定要清理掉无关文件。
 
-### 构建镜像
+## 构建镜像
 
 好了，让我们再回到之前定制的 nginx 镜像的 Dockerfile 来。现在我们明白了这个 Dockerfile 的内容，那么让我们来构建这个镜像吧。
 
@@ -130,7 +130,7 @@ docker build [选项] <上下文路径/URL/->
 
 在这里我们指定了最终镜像的名称 `-t nginx:v3`，构建成功后，我们可以像之前运行 `nginx:v2` 那样来运行这个镜像，其结果会和 `nginx:v2` 一样。
 
-### 镜像构建上下文（Context）
+## 镜像构建上下文（Context）
 
 如果注意，会看到 `docker build` 命令最后有一个 `.`。`.` 表示当前目录，而 `Dockerfile` 就在当前目录，因此不少初学者以为这个路径是在指定 `Dockerfile` 所在路径，这么理解其实是不准确的。如果对应上面的命令格式，你可能会发现，这是在指定 **上下文路径**。那么什么是上下文呢？
 
@@ -170,9 +170,9 @@ Sending build context to Docker daemon 2.048 kB
 
 当然，一般大家习惯性的会使用默认的文件名 `Dockerfile`，以及会将其置于镜像构建上下文目录中。
 
-### 其它 `docker build` 的用法
+## 其它 `docker build` 的用法
 
-#### 直接用 Git repo 进行构建
+### 直接用 Git repo 进行构建
 
 或许你已经注意到了，`docker build` 还支持从 URL 构建，比如可以直接从 Git repo 中构建：
 
@@ -189,7 +189,7 @@ aed15891ba52: Already exists
 
 这行命令指定了构建所需的 Git repo，并且指定默认的 `master` 分支，构建目录为 `/11.1/`，然后 Docker 就会自己去 `git clone` 这个项目、切换到指定分支、并进入到指定目录后开始构建。
 
-#### 用给定的 tar 压缩包构建
+### 用给定的 tar 压缩包构建
 
 ```bash
 $ docker build http://server/context.tar.gz
@@ -197,7 +197,7 @@ $ docker build http://server/context.tar.gz
 
 如果所给出的 URL 不是个 Git repo，而是个 `tar` 压缩包，那么 Docker 引擎会下载这个包，并自动解压缩，以其作为上下文，开始构建。
 
-#### 从标准输入中读取 Dockerfile 进行构建
+### 从标准输入中读取 Dockerfile 进行构建
 
 ```bash
 docker build - < Dockerfile
@@ -211,7 +211,7 @@ cat Dockerfile | docker build -
 
 如果标准输入传入的是文本文件，则将其视为 `Dockerfile`，并开始构建。这种形式由于直接从标准输入中读取 Dockerfile 的内容，它没有上下文，因此不可以像其他方法那样可以将本地文件 `COPY` 进镜像之类的事情。
 
-#### 从标准输入中读取上下文压缩包进行构建
+### 从标准输入中读取上下文压缩包进行构建
 
 ```bash
 $ docker build - < context.tar.gz

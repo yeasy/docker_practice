@@ -1,4 +1,4 @@
-## 在 Swarm 集群中管理敏感数据
+# 在 Swarm 集群中管理敏感数据
 
 在动态的、大规模的分布式集群上，管理和分发 `密码`、`证书` 等敏感信息是极其重要的工作。传统的密钥分发方式（如密钥放入镜像中，设置环境变量，volume 动态挂载等）都存在着潜在的巨大的安全风险。
 
@@ -10,7 +10,7 @@ Docker 目前已经提供了 `secrets` 管理功能，用户可以在 Swarm 集�
 
 这里我们以在 Swarm 集群中部署 `mysql` 和 `wordpress` 服务为例。
 
-### 创建 secret
+## 创建 secret
 
 我们使用 `docker secret create` 命令以管道符的形式创建 `secret`
 
@@ -20,7 +20,7 @@ $ openssl rand -base64 20 | docker secret create mysql_password -
 $ openssl rand -base64 20 | docker secret create mysql_root_password -
 ```
 
-### 查看 secret
+## 查看 secret
 
 使用 `docker secret ls` 命令来查看 `secret`
 
@@ -32,7 +32,7 @@ l1vinzevzhj4goakjap5ya409   mysql_password        41 seconds ago      41 seconds
 yvsczlx9votfw3l0nz5rlidig   mysql_root_password   12 seconds ago      12 seconds ago
 ```
 
-### 创建 MySQL 服务
+## 创建 MySQL 服务
 
 创建服务相关命令已经在前边章节进行了介绍，这里直接列出命令。
 

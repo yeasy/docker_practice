@@ -1,4 +1,4 @@
-## 什么是 etcd
+# 什么是 etcd
 
 ![](_images/etcd_logo.png)
 

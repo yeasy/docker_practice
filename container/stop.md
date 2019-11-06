@@ -1,4 +1,4 @@
-## 终止容器
+# 终止容器
 
 可以使用 `docker container stop` 来终止一个运行中的容器。
 

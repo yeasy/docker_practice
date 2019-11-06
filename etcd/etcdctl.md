@@ -1,4 +1,4 @@
-## 使用 etcdctl
+# 使用 etcdctl
 
 `etcdctl` 是一个命令行客户端，它能提供一些简洁的命令，供用户直接跟 `etcd` 服务打交道，而无需基于 `HTTP API` 方式。这在某些情况下将很方便，例如用户对服务进行测试或者手动修改数据库内容。我们也推荐在刚接触 `etcd` 时通过 `etcdctl` 命令来熟悉相关的操作，这些操作跟 `HTTP API` 实际上是对应的。
 
@@ -81,7 +81,7 @@ OPTIONS:
   -w, --write-out="simple"			set the output format (fields, json, protobuf, simple, table)
 ```
 
-### 数据库操作
+## 数据库操作
 
 数据库操作围绕对键值和目录的 CRUD （符合 REST 风格的一套操作：Create）完整生命周期的管理。
 
@@ -89,14 +89,14 @@ etcd 在键的组织上采用了层次化的空间结构（类似于文件系统
 
 >注：CRUD 即 Create, Read, Update, Delete，是符合 REST 风格的一套 API 操作。
 
-#### put
+### put
 
 ```bash
 $ etcdctl put /testdir/testkey "Hello world"
 OK
 ```
 
-#### get
+### get
 
 获取指定键的值。例如
 
@@ -114,7 +114,7 @@ hello
 
 `--consistent` 将请求发给主节点，保证获取内容的一致性
 
-#### del
+### del
 
 删除某个键值。例如
 
@@ -123,9 +123,9 @@ $ etcdctl del testkey
 1
 ```
 
-### 非数据库操作
+## 非数据库操作
 
-#### watch
+### watch
 
 监测一个键值的变化，一旦键值发生更新，就会输出最新的值。
 
@@ -138,7 +138,7 @@ testkey
 2
 ```
 
-#### member
+### member
 
 通过 `list`、`add`、`update`、`remove` 命令列出、添加、更新、删除 etcd 实例到 etcd 集群中。
 

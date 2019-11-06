@@ -312,12 +312,11 @@ module.exports = {
            'opensource/linuxkit',
           ],
         },
+        'appendix/faq/',
         {
-          title: "附录",
-          collapsable:false,
+          title: "热门镜像介绍",
+          collapsable: false,
           children: [
-            'appendix/',
-            'appendix/faq/',
             'appendix/repo/',
             'appendix/repo/ubuntu',
             'appendix/repo/centos',
@@ -328,19 +327,13 @@ module.exports = {
             'appendix/repo/wordpress',
             'appendix/repo/mongodb',
             'appendix/repo/redis',
-            'appendix/command/',
-            'appendix/best_practices',
-            'appendix/debug',
-            'appendix/resources'
           ],
         },
-        {
-          title: "归档",
-          collapsable: false,
-          children: [
-            'archive/',
-          ],
-        },
+        'appendix/command/',
+        'appendix/best_practices',
+        'appendix/debug',
+        'appendix/resources',
+        'archive/',
         {
           title: "Docker Machine",
           collapsable: false,

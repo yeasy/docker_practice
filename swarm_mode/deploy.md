@@ -1,8 +1,8 @@
-## 部署服务
+# 部署服务
 
 我们使用 `docker service` 命令来管理 `Swarm` 集群中的服务，该命令只能在管理节点运行。
 
-### 新建服务
+## 新建服务
 
 现在我们在上一节创建的 `Swarm` 集群中运行一个名为 `nginx` 服务。
 
@@ -12,7 +12,7 @@ $ docker service create --replicas 3 -p 80:80 --name nginx nginx:1.13.7-alpine
 
 现在我们使用浏览器，输入任意节点 IP ，即可看到 nginx 默认页面。
 
-### 查看服务
+## 查看服务
 
 使用 `docker service ls` 来查看当前 `Swarm` 集群运行的服务。
 
@@ -44,7 +44,7 @@ nginx.1.pjfzd39buzlt@swarm2    | 10.255.0.2 - - [25/Nov/2017:02:10:27 +0000] "GE
 nginx.1.pjfzd39buzlt@swarm2    | 2017/11/25 02:10:27 [error] 5#5: *1 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 10.255.0.2, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "192.168.99.101"
 ```
 
-### 服务伸缩
+## 服务伸缩
 
 我们可以使用 `docker service scale` 对一个服务运行的容器数量进行伸缩。
 
@@ -60,7 +60,7 @@ $ docker service scale nginx=5
 $ docker service scale nginx=2
 ```
 
-### 删除服务
+## 删除服务
 
 使用 `docker service rm` 来从 `Swarm` 集群移除某个服务。
 
