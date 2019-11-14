@@ -329,7 +329,15 @@ module.exports = {
             'appendix/repo/redis',
           ],
         },
-        'appendix/command/',
+        {
+          title: "Docker 命令",
+          collapsable: false,
+          children: [
+            'appendix/command/',
+            'appendix/command/docker',
+            'appendix/command/dockerd',
+          ]
+        },
         'appendix/best_practices',
         'appendix/debug',
         'appendix/resources',
