@@ -1,6 +1,6 @@
-# 快速上手
+# 使用 Docker 容器部署 Kubernetes
 
-目前，Kubernetes 支持在多种环境下的安装，包括本地主机（Fedora）、云服务（Google GAE、AWS 等）。然而最快速体验 Kubernetes 的方式显然是本地通过 Docker 的方式来启动相关进程。
+最快速体验 Kubernetes 的方式就是在本地通过 Docker 的方式来启动相关进程。
 
 下图展示了在单节点使用 Docker 快速部署一套 Kubernetes 的拓扑。
 

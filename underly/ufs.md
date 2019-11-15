@@ -19,4 +19,4 @@ Docker 目前支持的联合文件系统包括 `OverlayFS`, `AUFS`, `Btrfs`, `VF
 |Docker CE on CentOS |	`overlay2`  |
 |Docker CE on Fedora |	`overlay2`  |
 
-在可能的情况下，推荐使用 `overlay2` 存储驱动，`overlay2` 是目前 Docker 默认的存储驱动，以前则是 `aufs`。你可以通过配置来使用以上提到的其他类型的存储驱动。
+在可能的情况下，[推荐](https://docs.docker.com/storage/storagedriver/select-storage-driver/) 使用 `overlay2` 存储驱动，`overlay2` 是目前 Docker 默认的存储驱动，以前则是 `aufs`。你可以通过配置来使用以上提到的其他类型的存储驱动。
