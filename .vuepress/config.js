@@ -71,10 +71,23 @@ module.exports = {
       ],
       '/kubernetes/': [
         'intro',
-        'quickstart',
         'concepts',
-        'kubectl',
         'design',
+        {
+          title: "部署 Kubernetes",
+          collapsable: false,
+          children: [
+            "setup/",
+            "setup/docker",
+          ]
+        },
+        {
+          title: "Kubernetes 命令行 kubectl",
+          collapsable:false,
+          children: [
+            'kubectl/'
+          ]
+        }
       ],
       '/compose/': [
         'introduction',
