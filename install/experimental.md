@@ -23,7 +23,11 @@ $ export DOCKER_CLI_EXPERIMENTAL=enabled
 **Windows**
 
 ```powershell
-$ set $env:DOCKER_CLI_EXPERIMENTAL=enabled
+# 临时生效
+$ set $env:DOCKER_CLI_EXPERIMENTAL="enabled"
+
+# 永久生效
+$ [environment]::SetEnvironmentvariable("DOCKER_CLI_EXPERIMENTAL","enabled","User")
 ```
 
 ## 开启 Dockerd 的实验特性
