@@ -3,7 +3,7 @@ module.exports = {
   base: '/',
   themeConfig: {
     docsRepo: 'yeasy/docker_practice',
-    docsDir: '/vuepress',
+    docsDir: '/',
     editLinks: true,
     nav: [{
         text: '安装 Docker',

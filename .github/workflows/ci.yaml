@@ -33,6 +33,9 @@ jobs:
           PCIT_MESSAGE: Sync from yeasy/docker_practice@${{github.sha}} by PCIT
           PCIT_TARGET_BRANCH: master
           PCIT_USERNAME: khs1994
+      - name: Set coding.net CNAME
+        run: |
+          echo "vuepress.mirror.docker-practice.com" > .vuepress/dist/CNAME
       - name: Upload Vuepress dist to coding.net
         uses: docker://pcit/pages
         if: github.repository == 'docker-practice/docker_practice'
