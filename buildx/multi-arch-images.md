@@ -15,9 +15,7 @@ $ docker run --rm --privileged docker/binfmt:820fdd95a9972a5308930a2bdfb8573dd44
 由于 Docker 默认的 `builder` 实例不支持同时指定多个 `--platform`，我们必须首先创建一个新的 `builder` 实例。
 
 ```bash
-# $ docker buildx create --name mybuilder
-
-$ docker buildx create --name=mybuilder --driver docker-container --driver-opt image=dockerpracticesig/buildkit:master
+$ docker buildx create --name mybuilder --driver docker-container
 
 $ docker buildx use mybuilder
 ```
