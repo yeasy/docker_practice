@@ -19,7 +19,9 @@ jobs:
       - name: vuepress
         run: |
           sudo rm -rf _book
-          npx vuepress build
+          npm i vuepress --save-dev
+          npm i
+          npm run vuepress:build
           echo "vuepress.docker-practice.com" > .vuepress/dist/CNAME
       - name: Upload Vuepress dist
         uses: docker://pcit/pages

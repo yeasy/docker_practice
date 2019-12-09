@@ -1,58 +1,89 @@
 module.exports = {
   title: 'Docker 从入门到实践',
   base: '/',
+  head: [['script', {}, `
+  var _hmt = _hmt || [];
+  (function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?81a3490c9cd141dbcf6d00bc18b6edae";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+`],
+  [
+    'script', {}, `
+  (function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+  `
+  ]
+  ],
+  plugins: {
+    sitemap: {
+      hostname: 'https://vuepress.mirror.docker-practice.com'
+    },
+  },
   themeConfig: {
     docsRepo: 'yeasy/docker_practice',
     docsDir: '/',
     editLinks: true,
     nav: [{
-        text: '安装 Docker',
-        link: '/install/',
-      },
-      {
-        text: 'Docker 入门',
-        link: '/'
-      },
-      {
-        text: 'Docker 实战',
-        link: '/cases/os/'
-      },
-      {
-        text: 'CI/CD',
-        link: '/cases/ci/'
-      },
-      {
-        text: 'Docker 仓库',
-        link: '/repository/'
-      },
-      {
-        text: '底层实现',
-        link: '/underly/',
-      },
-      {
-        text: 'Compose',
-        link: '/compose/',
-      },
-      {
-        text: 'Kubernetes',
-        link: '/kubernetes/',
-      },
-      {
-        text: "云计算",
-        link: "/cloud/",
-      },
-      {
-        text: 'GitHub',
-        link: 'https://github.com/yeasy/docker_practice'
-      },
-      // {
-      //   text: '捐赠',
-      //   link: ''
-      // },
-      {
-        text: '腾讯云容器服务',
-        link: 'https://cloud.tencent.com/redirect.php?redirect=10058&cps_key=3a5255852d5db99dcd5da4c72f05df61'
-      },
+      text: '安装 Docker',
+      link: '/install/',
+    },
+    {
+      text: 'Docker 入门',
+      link: '/'
+    },
+    {
+      text: 'Docker 实战',
+      link: '/cases/os/'
+    },
+    {
+      text: 'CI/CD',
+      link: '/cases/ci/'
+    },
+    {
+      text: 'Docker 仓库',
+      link: '/repository/'
+    },
+    {
+      text: '底层实现',
+      link: '/underly/',
+    },
+    {
+      text: 'Compose',
+      link: '/compose/',
+    },
+    {
+      text: 'Kubernetes',
+      link: '/kubernetes/',
+    },
+    {
+      text: "云计算",
+      link: "/cloud/",
+    },
+    {
+      text: 'GitHub',
+      link: 'https://github.com/yeasy/docker_practice'
+    },
+    // {
+    //   text: '捐赠',
+    //   link: ''
+    // },
+    {
+      text: '腾讯云容器服务',
+      link: 'https://cloud.tencent.com/redirect.php?redirect=10058&cps_key=3a5255852d5db99dcd5da4c72f05df61'
+    },
       // {
       //   text: '语言',
       //   items: [{
@@ -84,7 +115,7 @@ module.exports = {
         },
         {
           title: "Kubernetes 命令行 kubectl",
-          collapsable:false,
+          collapsable: false,
           children: [
             'kubectl/'
           ]
@@ -101,23 +132,23 @@ module.exports = {
         'wordpress',
       ],
       '/install/': [
-         'ubuntu',
-         'debian',
-         'fedora',
-         'centos',
-         'raspberry-pi',
-         'mac',
-         'windows',
-         'mirror',
-         'experimental',
+        'ubuntu',
+        'debian',
+        'fedora',
+        'centos',
+        'raspberry-pi',
+        'mac',
+        'windows',
+        'mirror',
+        'experimental',
       ],
       '/underly/': [
-         'arch',
-         'namespace',
-         'cgroups',
-         'ufs',
-         'container_format',
-         'network',
+        'arch',
+        'namespace',
+        'cgroups',
+        'ufs',
+        'container_format',
+        'network',
       ],
       '/repository/': [
         'dockerhub',
@@ -128,7 +159,7 @@ module.exports = {
       '/cases/os/': [
         {
           title: "操作系统",
-          collapsable:false,
+          collapsable: false,
           children: [
             'busybox',
             'alpine',
@@ -162,7 +193,7 @@ module.exports = {
         '/',
         '/CHANGELOG',
         '/CONTRIBUTING',
-       {
+        {
           title: "Docker 简介",
           collapsable: false,
           children: [
@@ -170,7 +201,7 @@ module.exports = {
             'introduction/what',
             'introduction/why',
           ]
-        },{
+        }, {
           title: "基本概念",
           collapsable: false,
           children: [
@@ -216,7 +247,7 @@ module.exports = {
             'image/multistage-builds/laravel',
             'image/manifest',
           ]
-        },{
+        }, {
           title: "操作容器",
           collapsable: false,
           children: [
@@ -231,25 +262,25 @@ module.exports = {
         },
         {
           title: "数据管理",
-          collapsable:false,
+          collapsable: false,
           children: [
             'data_management/',
             'data_management/volume',
             'data_management/bind-mounts',
           ],
-        },{
-           title: "使用网络",
-           collapsable:false,
-           children: [
-             'network/',
-             'network/port_mapping',
-             'network/linking',
-             'network/dns',
-           ],
+        }, {
+          title: "使用网络",
+          collapsable: false,
+          children: [
+            'network/',
+            'network/port_mapping',
+            'network/linking',
+            'network/dns',
+          ],
         },
         {
           title: "高级网络配置",
-          collapsable:false,
+          collapsable: false,
           children: [
             'advanced_network/',
             'advanced_network/quick_guide',
@@ -263,7 +294,7 @@ module.exports = {
         },
         {
           title: "Swarm mode",
-          collapsable:false,
+          collapsable: false,
           children: [
             'swarm_mode/',
             'swarm_mode/overview',
@@ -300,7 +331,7 @@ module.exports = {
         },
         {
           title: "Etcd",
-          collapsable:false,
+          collapsable: false,
           children: [
             'etcd/',
             'etcd/intro',
@@ -320,10 +351,10 @@ module.exports = {
         },
         {
           title: "Docker 开源项目",
-          collapsable:false,
-          children:[
-           'opensource/',
-           'opensource/linuxkit',
+          collapsable: false,
+          children: [
+            'opensource/',
+            'opensource/linuxkit',
           ],
         },
         'appendix/faq/',

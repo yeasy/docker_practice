@@ -1,0 +1,28 @@
+{
+  "name": "docker_practice",
+  "version": "1.0.0",
+  "description": "docker_practice",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "chalk": "^3.0.0",
+    "commander": "^4.0.1",
+    "esm": "^3.2.25",
+    "vuepress-plugin-container": "^2.1.2",
+    "vuepress-plugin-sitemap": "^2.3.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "vuepress:build": "npx vuepress build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yeasy/docker_practice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yeasy/docker_practice/issues"
+  },
+  "homepage": "https://github.com/yeasy/docker_practice#readme"
+}
