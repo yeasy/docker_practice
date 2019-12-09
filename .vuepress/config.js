@@ -95,9 +95,9 @@ module.exports = {
     sidebar: {
       '/cloud/': [
         'intro',
-        'aws',
         'tencentCloud',
         'alicloud',
+        'aws',
         'summary',
       ],
       '/kubernetes/': [
