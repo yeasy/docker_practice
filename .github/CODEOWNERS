@@ -1,0 +1,40 @@
+*                     @yeasy @khs1994
+/.github/*            @khs1994
+/.travis/*            @khs1994
+/.vuepress/*          @khs1994
+/advanced_network/*   @yeasy @khs1994
+/appendix/*           @yeasy @khs1994
+/archive/*            @khs1994
+/basic_concept/*      @yeasy @khs1994
+/buildx/*             @khs1994
+/cases/*              @yeasy @khs1994
+/cloud/*              @khs1994
+/compose/*            @yeasy @khs1994
+/container/*          @yeasy @khs1994
+/coreos/*             @khs1994
+/data_management/*    @khs1994
+/etcd/*               @khs1994
+/IDE/*                @khs1994
+/image/*              @yeasy @khs1994
+/install/*            @khs1994
+/introduction/*       @yeasy @khs1994
+/kubernetes/*         @yeasy @khs1994
+/network/*            @yeasy @khs1994
+/opensource/*         @khs1994
+/repository/*         @khs1994
+/security/*           @yeasy @khs1994
+/underly/*            @yeasy @khs1994
+/.drone.yml           @khs1994
+/.editorconfig/       @khs1994
+/.gitattributes       @khs1994
+/.gitignore           @khs1994
+/.travis.yml          @khs1994
+/_config.yml          @yeasy @khs1994
+/book.json            @yeasy @khs1994
+/CHANGELOG.md         @yeasy @khs1994
+/CONTRIBUTING.md      @yeasy @khs1994
+/docker-compose.yml   @khs1994
+/manifest             @khs1994
+/package.json         @khs1994
+/README.md            @yeasy @khs1994
+/SUMMARY.md           @yeasy @khs1994
