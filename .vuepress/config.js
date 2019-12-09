@@ -79,6 +79,7 @@ module.exports = {
           children: [
             "setup/",
             "setup/docker",
+            "setup/docker-desktop",
           ]
         },
         {
