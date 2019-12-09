@@ -4,9 +4,9 @@
 
 * [Azure 中国镜像 `https://dockerhub.azk8s.cn`](https://github.com/Azure/container-service-for-azure-china/blob/master/aks/README.md#22-container-registry-proxy)
 * [阿里云加速器(需登录账号获取)](https://cr.console.aliyun.com/cn-hangzhou/mirrors)
-* [七牛云加速器 `https://reg-mirror.qiniu.com`](https://kirk-enterprise.github.io/hub-docs/#/user-guide/mirror)
+* [网易云加速器 `https://hub-mirror.c.163.com`](https://www.163yun.com/help/documents/56918246390157312)
 
-> 由于镜像服务可能出现宕机，建议同时配置多个镜像。
+> 由于镜像服务可能出现宕机，建议同时配置多个镜像。各个镜像站测试结果请到 [docker-practice/docker-registry-cn-mirror-test](https://github.com/docker-practice/docker-registry-cn-mirror-test/actions) 查看。
 
 > 国内各大云服务商均提供了 Docker 镜像加速服务，建议根据运行 Docker 的云平台选择对应的镜像加速服务，具体请参考官方文档。
 
@@ -20,7 +20,7 @@
 {
   "registry-mirrors": [
     "https://dockerhub.azk8s.cn",
-    "https://reg-mirror.qiniu.com"
+    "https://hub-mirror.c.163.com"
   ]
 }
 ```
@@ -44,7 +44,7 @@ $ sudo systemctl restart docker
 {
   "registry-mirrors": [
     "https://dockerhub.azk8s.cn",
-    "https://reg-mirror.qiniu.com"
+    "https://hub-mirror.c.163.com"
   ]
 }
 ```
@@ -57,7 +57,7 @@ $ sudo systemctl restart docker
 {
   "registry-mirrors": [
     "https://dockerhub.azk8s.cn",
-    "https://reg-mirror.qiniu.com"
+    "https://hub-mirror.c.163.com"
   ]
 }
 ```
