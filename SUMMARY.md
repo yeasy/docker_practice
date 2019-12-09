@@ -122,6 +122,7 @@
     * [架构设计](kubernetes/design.md)
 * [部署 Kubernetes](kubernetes/setup/README.md)
     * [使用 Docker 容器部署](kubernetes/setup/docker.md)
+    * [在 Docker Desktop 使用](kubernetes/setup/docker-desktop.md)
 * [Kubernetes 命令行 kubectl](kubernetes/kubectl/README.md)
 * [容器与云计算](cloud/README.md)
     * [简介](cloud/intro.md)
