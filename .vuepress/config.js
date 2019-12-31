@@ -358,6 +358,7 @@ module.exports = {
             'opensource/linuxkit',
           ],
         },
+        'podman/',
         'appendix/faq/',
         {
           title: "热门镜像介绍",
