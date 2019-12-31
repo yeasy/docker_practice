@@ -4,6 +4,8 @@
 
 你可以使用以下几种方式部署 Kubernetes：
 
-* Docker 容器
+* kubeadm
+* docker-desktop
+* k3s
 
 接下来的小节会对以上几种方式进行详细介绍。

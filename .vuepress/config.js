@@ -109,8 +109,9 @@ module.exports = {
           collapsable: false,
           children: [
             "setup/",
-            "setup/docker",
+            "setup/kubeadm",
             "setup/docker-desktop",
+            "setup/systemd",
           ]
         },
         {
