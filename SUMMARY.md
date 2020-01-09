@@ -86,6 +86,7 @@
     * [实战 Django](compose/django.md)
     * [实战 Rails](compose/rails.md)
     * [实战 WordPress](compose/wordpress.md)
+    * [实战 LNMP](compose/lnmp.md)
 * [Swarm mode](swarm_mode/README.md)
     * [基本概念](swarm_mode/overview.md)
     * [创建 Swarm 集群](swarm_mode/create.md)

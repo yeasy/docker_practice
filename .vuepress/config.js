@@ -132,6 +132,7 @@ module.exports = {
         'django',
         'rails',
         'wordpress',
+        'lnmp',
       ],
       '/install/': [
         'ubuntu',
