@@ -112,6 +112,7 @@ module.exports = {
             "setup/kubeadm",
             "setup/docker-desktop",
             "setup/systemd",
+            "setup/dashboard",
           ]
         },
         {
