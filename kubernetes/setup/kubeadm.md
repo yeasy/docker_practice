@@ -181,3 +181,7 @@ $ kubectl taint nodes --all node-role.kubernetes.io/master-
 # 恢复默认值
 # $ kubectl taint nodes NODE_NAME node-role.kubernetes.io/master=true:NoSchedule
 ```
+
+## 参考文档
+
+* [官方文档](https://kubernetes.io/zh/docs/setup/independent/create-cluster-kubeadm/)
