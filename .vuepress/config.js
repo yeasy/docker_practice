@@ -349,7 +349,7 @@ module.exports = {
           children: [
             'coreos/',
             'coreos/intro',
-            'coreos/intro_tools',
+            'coreos/install',
           ],
         },
         {
