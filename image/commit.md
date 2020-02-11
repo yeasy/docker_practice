@@ -91,7 +91,8 @@ $ docker image ls nginx
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 nginx               v2                  07e334659748        9 seconds ago       181.5 MB
 nginx               1.11                05a60462f8ba        12 days ago         181.5 MB
-nginx               latest              e43d811ce2f4        4 weeks ago         181.5 MB```
+nginx               latest              e43d811ce2f4        4 weeks ago         181.5 MB
+```
 
 我们还可以用 `docker history` 具体查看镜像内的历史记录，如果比较 `nginx:latest` 的历史记录，我们会发现新增了我们刚刚提交的这一层。
 
