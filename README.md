@@ -6,7 +6,7 @@
 
 | 语言           | 构建状态   | - |
 | :------------- | :------------- | :--- |
-| [zh-hans](https://github.com/yeasy/docker_practice)        | [![](https://travis-ci.org/yeasy/docker_practice.svg?branch=master)](https://travis-ci.org/yeasy/docker_practice)| [阅读](https://docker_practice.gitee.io/zh-cn) |
+| [zh-hans](https://github.com/yeasy/docker_practice)        | [![](https://travis-ci.org/yeasy/docker_practice.svg?branch=master)](https://travis-ci.org/yeasy/docker_practice)| [阅读](https://vuepress.mirror.docker-practice.com/) |
 | [us-en](https://github.com/yeasy/docker_practice/tree/english)          | [![](https://travis-ci.org/yeasy/docker_practice.svg?branch=english)](https://travis-ci.org/yeasy/docker_practice)| [阅读](https://docker_practice.gitee.io/us-en) |
 | [zh-hant](https://github.com/yeasy/docker_practice/tree/zh-Hant)        | [![](https://travis-ci.org/yeasy/docker_practice.svg?branch=zh-hant)](https://travis-ci.org/yeasy/docker_practice)| [阅读](https://docker_practice.gitee.io/zh-hant) |
 

@@ -390,37 +390,6 @@ module.exports = {
         'appendix/best_practices',
         'appendix/debug',
         'appendix/resources',
-        'archive/',
-        {
-          title: "Docker Machine",
-          collapsable: false,
-          children: [
-            'machine/',
-            'machine/install',
-            'machine/usage',
-          ],
-        },
-        {
-          title: 'Mesos',
-          collapsable: false,
-          children: [
-            'mesos/',
-            'mesos/intro',
-            'mesos/installation',
-            'mesos/architecture',
-            'mesos/configuration',
-            'mesos/monitor',
-            'mesos/framework',
-            'mesos/summary',
-          ]
-        },
-        {
-          title: 'Docker Swarm',
-          collapsable: false,
-          children: [
-            "swarm/"
-          ]
-        }
       ],
     },
   }
