@@ -44,9 +44,9 @@ jobs:
         env:
           PCIT_EMAIL: khs1994@khs1994.com
           PCIT_GIT_TOKEN: ${{ secrets.CODING_GIT_TOKEN }}
-          PCIT_GIT_URL: git.dev.tencent.com/khs1994/docker_practice
+          PCIT_GIT_URL: e.coding.net/dpsigs/docker_practice
           PCIT_KEEP_HISTORY: "true"
           PCIT_LOCAL_DIR: .vuepress/dist
           PCIT_MESSAGE: Sync from yeasy/docker_practice@${{github.sha}} by PCIT
           PCIT_TARGET_BRANCH: master
-          PCIT_USERNAME: khs1994
+          PCIT_USERNAME: ptt0xjqzbke3
