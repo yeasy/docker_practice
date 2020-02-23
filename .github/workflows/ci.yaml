@@ -23,6 +23,23 @@ jobs:
           npm i
           npm run vuepress:build
           echo "vuepress.docker-practice.com" > .vuepress/dist/CNAME
+
+          cp -r _images .vuepress/dist
+          cp -r advanced_network/_images .vuepress/dist/advanced_network
+          cp -r appendix/_images .vuepress/dist/appendix
+          cp -r cases/ci/drone/_images .vuepress/dist/cases/ci/drone
+          cp -r cases/os/_images .vuepress/dist/cases/os
+          cp -r cloud/_images .vuepress/dist/cloud
+          cp -r data_management/_images .vuepress/dist/data_management
+          cp -r etcd/_images .vuepress/dist/etcd
+          cp -r image/_images .vuepress/dist/image
+          cp -r install/_images .vuepress/dist/install
+          cp -r introduction/_images .vuepress/dist/introduction
+          cp -r kubernetes/_images .vuepress/dist/kubernetes
+          cp -r mesos/_images .vuepress/dist/mesos
+          cp -r underly/_images .vuepress/dist/underly
+
+          echo "include: [_images]" > .vuepress/dist/_config
       - name: Upload Vuepress dist
         uses: docker://pcit/pages
         if: github.repository == 'docker-practice/docker_practice'
