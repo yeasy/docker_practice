@@ -16,9 +16,9 @@ jobs:
           docker run -i --rm \
           -v $PWD:/mnt:ro \
           dkhamsing/awesome_bot \
-          --white-list "localhost" \
+          --white-list "localhost","0.0.0.0","172.16.238.100","server","example.com",\
+          "docker.domain.com","YourIP","registry" \
           --allow-dupe \
-          --allow-redirect \
           --skip-save-results \
           `find . -name "*.md"`
         name: check-link
