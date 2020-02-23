@@ -49,16 +49,22 @@ Debian GNU/Linux 8
 ```bash
 $ docker search --filter=stars=10 ubuntu
 
-NAME                                 DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
-ubuntu                               Official Ubuntu base image                      840       [OK]
-dockerfile/ubuntu                    Trusted automated Ubuntu (http://www.ubunt...   30                   [OK]
-crashsystems/gitlab-docker           A trusted, regularly updated build of GitL...   20                   [OK]
-sylvainlasnier/memcached             This is a Memcached 1.4.14 docker images b...   16                   [OK]
-ubuntu-upstart                       Upstart is an event-based replacement for ...   16        [OK]
-mbentley/ubuntu-django-uwsgi-nginx                                                   16                   [OK]
-clue/ttrss                           The Tiny Tiny RSS feed reader allows you t...   14                   [OK]
-dockerfile/ubuntu-desktop            Trusted automated Ubuntu Desktop (LXDE) (h...   14                   [OK]
-tutum/ubuntu                         Ubuntu image with SSH access. For the root...   12                   [OK]
+NAME                                                      DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED
+ubuntu                                                    Ubuntu is a Debian-based Linux operating sys…   10539               [OK]
+dorowu/ubuntu-desktop-lxde-vnc                            Docker image to provide HTML5 VNC interface …   395                                     [OK]
+rastasheep/ubuntu-sshd                                    Dockerized SSH service, built on top of offi…   243                                     [OK]
+consol/ubuntu-xfce-vnc                                    Ubuntu container with "headless" VNC session…   210                                     [OK]
+ubuntu-upstart                                            Upstart is an event-based replacement for th…   105                 [OK]
+ansible/ubuntu14.04-ansible                               Ubuntu 14.04 LTS with ansible                   98                                      [OK]
+neurodebian                                               NeuroDebian provides neuroscience research s…   64                  [OK]
+1and1internet/ubuntu-16-nginx-php-phpmyadmin-mysql-5      ubuntu-16-nginx-php-phpmyadmin-mysql-5          50                                      [OK]
+ubuntu-debootstrap                                        debootstrap --variant=minbase --components=m…   42                  [OK]
+nuagebec/ubuntu                                           Simple always updated Ubuntu docker images w…   24                                      [OK]
+i386/ubuntu                                               Ubuntu is a Debian-based Linux operating sys…   19
+1and1internet/ubuntu-16-apache-php-5.6                    ubuntu-16-apache-php-5.6                        14                                      [OK]
+1and1internet/ubuntu-16-apache-php-7.0                    ubuntu-16-apache-php-7.0                        13                                      [OK]
+eclipse/ubuntu_jdk8                                       Ubuntu, JDK8, Maven 3, git, curl, nmap, mc, …   12                                      [OK]
+1and1internet/ubuntu-16-nginx-php-phpmyadmin-mariadb-10   ubuntu-16-nginx-php-phpmyadmin-mariadb-10       11                                      [OK]
 ```
 
 根据搜索出来的结果，读者可以自行选择下载镜像并使用。
@@ -98,12 +104,26 @@ E: Unable to locate package curl
 
 ```bash
 root@7d93de07bf76:/# apt-get update
-Ign http://archive.ubuntu.com trusty InRelease
-Ign http://archive.ubuntu.com trusty-updates InRelease
-Ign http://archive.ubuntu.com trusty-security InRelease
-Ign http://archive.ubuntu.com trusty-proposed InRelease
-Get:1 http://archive.ubuntu.com trusty Release.gpg [933 B]
-...
+Get:1 http://archive.ubuntu.com/ubuntu bionic InRelease [242 kB]
+Get:2 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
+Get:3 http://security.ubuntu.com/ubuntu bionic-security/multiverse amd64 Packages [7348 B]
+Get:4 http://security.ubuntu.com/ubuntu bionic-security/universe amd64 Packages [823 kB]
+Get:5 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
+Get:6 http://archive.ubuntu.com/ubuntu bionic-backports InRelease [74.6 kB]
+Get:7 http://archive.ubuntu.com/ubuntu bionic/universe amd64 Packages [11.3 MB]
+Get:8 http://security.ubuntu.com/ubuntu bionic-security/restricted amd64 Packages [31.0 kB]
+Get:9 http://security.ubuntu.com/ubuntu bionic-security/main amd64 Packages [835 kB]
+Get:10 http://archive.ubuntu.com/ubuntu bionic/restricted amd64 Packages [13.5 kB]
+Get:11 http://archive.ubuntu.com/ubuntu bionic/main amd64 Packages [1344 kB]
+Get:12 http://archive.ubuntu.com/ubuntu bionic/multiverse amd64 Packages [186 kB]
+Get:13 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 Packages [1127 kB]
+Get:14 http://archive.ubuntu.com/ubuntu bionic-updates/universe amd64 Packages [1350 kB]
+Get:15 http://archive.ubuntu.com/ubuntu bionic-updates/multiverse amd64 Packages [11.4 kB]
+Get:16 http://archive.ubuntu.com/ubuntu bionic-updates/restricted amd64 Packages [44.7 kB]
+Get:17 http://archive.ubuntu.com/ubuntu bionic-backports/main amd64 Packages [2496 B]
+Get:18 http://archive.ubuntu.com/ubuntu bionic-backports/universe amd64 Packages [4252 B]
+Fetched 17.6 MB in 1min 25s (207 kB/s)
+Reading package lists... Done
 ```
 
 首先，安装 `curl` 工具。
@@ -113,13 +133,9 @@ root@7d93de07bf76:/# apt-get install curl
 Reading package lists... Done
 Building dependency tree
 Reading state information... Done
-The following extra packages will be installed:
-  ca-certificates krb5-locales libasn1-8-heimdal libcurl3 libgssapi-krb5-2
-  libgssapi3-heimdal libhcrypto4-heimdal libheimbase1-heimdal
-  libheimntlm0-heimdal libhx509-5-heimdal libidn11 libk5crypto3 libkeyutils1
-  libkrb5-26-heimdal libkrb5-3 libkrb5support0 libldap-2.4-2
-  libroken18-heimdal librtmp0 libsasl2-2 libsasl2-modules libsasl2-modules-db
-  libwind0-heimdal openssl
+The following additional packages will be installed:
+  ca-certificates krb5-locales libasn1-8-heimdal libcurl4 libgssapi-krb5-2 libgssapi3-heimdal libhcrypto4-heimdal libheimbase1-heimdal libheimntlm0-heimdal libhx509-5-heimdal
+  libk5crypto3 libkeyutils1 libkrb5-26-heimdal libkrb5-3 libkrb5support0 libldap-2.4-2 libldap-common libnghttp2-14 libpsl5 libroken18-heimdal librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db libsqlite3-0 libssl1.1 libwind0-heimdal openssl publicsuffix
 ...
 root@7d93de07bf76:/# curl
 curl: try 'curl --help' or 'curl --manual' for more information
@@ -132,9 +148,8 @@ root@7d93de07bf76:/# apt-get install -y apache2
 Reading package lists... Done
 Building dependency tree
 Reading state information... Done
-The following extra packages will be installed:
-  apache2-bin apache2-data libapr1 libaprutil1 libaprutil1-dbd-sqlite3
-  libaprutil1-ldap libxml2 sgml-base ssl-cert xml-core
+The following additional packages will be installed:
+  apache2-bin apache2-data apache2-utils file libapr1 libaprutil1 libaprutil1-dbd-sqlite3 libaprutil1-ldap libexpat1 libgdbm-compat4 libgdbm5 libicu60 liblua5.2-0 libmagic-mgc libmagic1 libperl5.26 libxml2 mime-support netbase perl perl-modules-5.26 ssl-cert xz-utils
 ...
 ```
 
@@ -150,7 +165,7 @@ root@7d93de07bf76:/# curl 127.0.0.1
 <html xmlns="http://www.w3.org/1999/xhtml">
   <!--
     Modified from the Debian original for Ubuntu
-    Last updated: 2014-03-19
+    Last updated: 2016-11-16
     See: https://launchpad.net/bugs/1288690
   -->
   <head>
@@ -169,7 +184,7 @@ root@7d93de07bf76:/# curl 127.0.0.1
 * `Debian` 官方仓库：https://github.com/Debian
 * `Debian` 官方镜像：https://hub.docker.com/_/debian/
 * `Debian` 官方镜像仓库：https://github.com/tianon/docker-brew-debian/
-* `Ubuntu` 官网：http://www.ubuntu.org.cn/global
+* `Ubuntu` 官网：https://ubuntu.com
 * `Ubuntu` 官方仓库：https://github.com/ubuntu
 * `Ubuntu` 官方镜像：https://hub.docker.com/_/ubuntu/
 * `Ubuntu` 官方镜像仓库：https://github.com/tianon/docker-brew-ubuntu-core

@@ -15,7 +15,7 @@ $ brew install --HEAD linuxkit
 ## 克隆源代码
 
 ```bash
-$ git clone -b master --depth=1 https://github.com/linuxkit/linuxkit.git
+$ git clone -b master --depth=1 https://github.com/linuxkit/linuxkit
 
 $ cd linuxkit
 ```

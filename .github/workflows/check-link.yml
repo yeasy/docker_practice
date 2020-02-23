@@ -16,9 +16,49 @@ jobs:
           docker run -i --rm \
           -v $PWD:/mnt:ro \
           dkhamsing/awesome_bot \
-          --white-list "localhost","0.0.0.0","172.16.238.100","server","example.com",\
-          "docker.domain.com","YourIP","registry" \
+          --white-list "localhost","0.0.0.0",\
+          "server","example.com","docker",\
+          "docker.domain.com","YourIP","register",\
+          "172.16.238.100","172.16.238.101","172.16.238.102",\
+          "192.168.199.100",\
+          "github.com/settings",\
+          "github.com/docker/compose/releases/download",\
+          "github.com/docker/machine/releases/download",\
+          "github.com/etcd-io/etcd/releases/download",\
+          "github.com/tianon/gosu/releases/download",\
+          "github.com/yeasy/docker_practice",\
+          "github.com/twang2218/gitlab-ce-zh.git",\
+          "github.com/AliyunContainerService/k8s-for-docker-desktop/raw",\
+          "dl-4.alpinelinux.org/alpine/edge/testing",\
+          "www.w3.org/1999/xhtml",\
+          "cr.console.aliyun.com",\
+          "cloud.tencent.com",\
+          "nodejs.org/dist/",\
+          "c.163.com/hub",\
+          "drone.yeasy.com",\
+          "mirrors.ustc.edu.cn",\
+          "docs.docker.com",\
+          "dockerhub.azk8s.cn",\
+          "vuepress.mirror.docker-practice.com",\
+          "mc.qcloudimg.com/static/img",\
+          "www.daocloud.io/mirror",\
+          "download.docker.com",\
+          "www.ubuntu.com",\
+          "archive.ubuntu.com",\
+          "security.ubuntu.com/ubuntu",\
+          "nginx.com",\
+          "img.shields.io/github/release/yeasy/docker_practice",\
+          "travis-ci.org/yeasy/docker_practice.svg",\
+          "launchpad.net",\
+          "www.w3.org/1999",\
+          "chat.freenode.net",\
+          "en.wikipedia.org/wiki/UnionFS",\
+          "product.china-pub.com",\
+          "union-click.jd.com",\
+          "www.aliyun.com" \
           --allow-dupe \
           --skip-save-results \
-          `find . -name "*.md"`
+          -t 5 \
+          `find . \( -path "./mesos" -o -path "./machine" -o -path "./swarm_mode" \) -prune -o -name "*.md" -exec ls {} \;`
         name: check-link
+        timeout-minutes: 25

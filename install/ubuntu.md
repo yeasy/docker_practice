@@ -6,7 +6,7 @@
 
 ### 系统要求
 
-Docker CE 支持以下版本的 [Ubuntu](https://www.ubuntu.com/server) 操作系统：
+Docker CE 支持以下版本的 [Ubuntu](https://ubuntu.com/server) 操作系统：
 
 * Disco 19.04
 * Cosmic 18.10

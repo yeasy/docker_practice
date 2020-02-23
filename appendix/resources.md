@@ -3,7 +3,7 @@
 ## 官方网站
 
 * Docker 官方主页：https://www.docker.com
-* Docker 官方博客：https://blog.docker.com/
+* Docker 官方博客：https://www.docker.com/blog/
 * Docker 官方文档：https://docs.docker.com/
 * Docker Hub：https://hub.docker.com
 * Docker 的源代码仓库：https://github.com/moby/moby
