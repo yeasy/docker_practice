@@ -38,8 +38,6 @@ jobs:
           cp -r kubernetes/_images .vuepress/dist/kubernetes
           cp -r mesos/_images .vuepress/dist/mesos
           cp -r underly/_images .vuepress/dist/underly
-
-          echo "include: [_images]" > .vuepress/dist/_config
       - name: Upload Vuepress dist
         uses: docker://pcit/pages
         if: github.repository == 'docker-practice/docker_practice'

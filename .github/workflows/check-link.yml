@@ -1,0 +1,24 @@
+name: check-link
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check-link:
+    name: check-link
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+      - run: |
+          docker run -i --rm \
+          -v $PWD:/mnt:ro \
+          dkhamsing/awesome_bot \
+          --white-list "localhost" \
+          --allow-dupe \
+          --allow-redirect \
+          --skip-save-results \
+          `find . -name "*.md"`
+        name: check-link
