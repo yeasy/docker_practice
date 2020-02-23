@@ -161,4 +161,4 @@ $ docker manifest push username/test
 
 详细了解 `manifest` 可以阅读官方博客。
 
-* https://blog.docker.com/2017/11/multi-arch-all-the-things/
+* https://www.docker.com/blog/multi-arch-all-the-things/

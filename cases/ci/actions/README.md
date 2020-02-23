@@ -25,4 +25,4 @@ jobs:
 
 ## 参考资料
 
-* [Actions Docs](https://help.github.com/en/categories/automating-your-workflow-with-github-actions)
+* [Actions Docs](https://help.github.com/en/actions)

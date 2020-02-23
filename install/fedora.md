@@ -6,7 +6,7 @@
 
 ### 系统要求
 
-Docker CE 支持以下版本的 [Fedora](https://fedoraproject.org/) 操作系统：
+Docker CE 支持以下版本的 [Fedora](https://getfedora.org/) 操作系统：
 
 * 28
 * 29
