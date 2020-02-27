@@ -29,7 +29,7 @@ jobs:
           "github.com/yeasy/docker_practice",\
           "github.com/twang2218/gitlab-ce-zh.git",\
           "github.com/AliyunContainerService/k8s-for-docker-desktop/raw",\
-          "dl-4.alpinelinux.org/alpine/edge/testing",\
+          "dl-cdn.alpinelinux.org/alpine/edge/testing",\
           "www.w3.org/1999/xhtml",\
           "cr.console.aliyun.com",\
           "cloud.tencent.com",\
@@ -58,7 +58,7 @@ jobs:
           "www.aliyun.com" \
           --allow-dupe \
           --skip-save-results \
-          -t 5 \
+          -t 10 \
           `find . \( -path "./mesos" -o -path "./machine" -o -path "./swarm_mode" \) -prune -o -name "*.md" -exec ls {} \;`
         name: check-link
         timeout-minutes: 25

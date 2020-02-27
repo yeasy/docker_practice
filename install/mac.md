@@ -2,13 +2,13 @@
 
 ## 系统要求
 
-[Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/) 要求系统最低为 macOS Sierra 10.12。
+[Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/) 要求系统最低为 macOS Catalina 10.13。
 
 ## 安装
 
 ### 使用 Homebrew 安装
 
-[Homebrew](https://brew.sh/) 的 [Cask](https://caskroom.github.io/) 已经支持 Docker Desktop for Mac，因此可以很方便的使用 Homebrew Cask 来进行安装：
+[Homebrew](https://brew.sh/) 的 [Cask](https://github.com/Homebrew/homebrew-cask) 已经支持 Docker Desktop for Mac，因此可以很方便的使用 Homebrew Cask 来进行安装：
 
 ```bash
 $ brew cask install docker

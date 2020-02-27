@@ -50,8 +50,15 @@ $ apk add --no-cache <package>
 `Alpine` 中软件安装包的名字可能会与其他发行版有所不同，可以在 `https://pkgs.alpinelinux.org/packages` 网站搜索并确定安装包名称。如果需要的安装包不在主索引内，但是在测试或社区索引中。那么可以按照以下方法使用这些安装包。
 
 ```bash
-$ echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+$ echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 $ apk --update add --no-cache <package>
+```
+
+由于在国内访问 `apk` 仓库较缓慢，建议在使用 `apk` 之前先替换仓库地址为国内镜像。
+
+```docker
+RUN sed -i "s/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g" /etc/apk/repositories \
+      && apk add --no-cache <package>
 ```
 
 ## 相关资源
