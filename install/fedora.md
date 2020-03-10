@@ -8,9 +8,8 @@
 
 Docker CE 支持以下版本的 [Fedora](https://getfedora.org/) 操作系统：
 
-* 28
-* 29
 * 30
+* 31
 
 ### 卸载旧版本
 
@@ -88,6 +87,12 @@ $ dnf list docker-ce  --showduplicates | sort -r
 docker-ce.x86_64          18.06.1.ce-3.fc28                     docker-ce-stable
 
 $ sudo dnf -y install docker-ce-18.06.1.ce
+```
+
+由于 Fedora 31 默认启用了 **Cgroupv2**，暂时 Docker 与 Cgroupv2 不兼容，请执行以下命令切换到 **Cgroupv1** 并重启计算机:
+
+```bash
+$ sudo grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"
 ```
 
 ## 使用脚本自动安装

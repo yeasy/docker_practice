@@ -8,8 +8,7 @@
 
 Docker CE 支持以下版本的 [Ubuntu](https://ubuntu.com/server) 操作系统：
 
-* Disco 19.04
-* Cosmic 18.10
+* Eoan 19.10
 * Bionic 18.04 (LTS)
 * Xenial 16.04 (LTS)
 

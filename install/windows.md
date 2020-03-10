@@ -12,7 +12,7 @@
 
 ## 运行
 
-在 Windows 搜索栏输入 Docker 点击 Docker for Windows 开始运行。
+在 Windows 搜索栏输入 **Docker** 点击 **Docker Desktop** 开始运行。
 
 ![](_images/install-win-docker-app-search.png)
 
