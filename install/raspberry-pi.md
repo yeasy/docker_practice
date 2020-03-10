@@ -8,6 +8,7 @@ Docker CE 不仅支持 `x86_64` 架构的计算机，同时也支持 `ARM` 架�
 
 Docker CE 支持以下版本的 [Raspbian](https://www.raspberrypi.org/downloads/raspbian/) 操作系统：
 
+* Raspbian Buster
 * Raspbian Stretch
 
 *注：* `Raspbian` 是树莓派的开发与维护机构 [树莓派基金会](https://www.raspberrypi.org/) 推荐用于树莓派的首选系统，其基于 `Debian`。
