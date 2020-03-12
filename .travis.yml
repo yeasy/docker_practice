@@ -32,6 +32,7 @@ after_success:
 - docker push dockerpracticesig/docker_practice
 
 - cd _book
+- rm -rf .github/workflows
 - git init
 - git remote add origin "$DEPLOY_REPO"
 - git add .
