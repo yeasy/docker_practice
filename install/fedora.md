@@ -45,6 +45,7 @@ $ sudo dnf config-manager \
     --add-repo \
     https://mirrors.ustc.edu.cn/docker-ce/linux/fedora/docker-ce.repo
 
+$ sudo sed -i 's/download.docker.com/mirrors.ustc.edu.cn\/docker-ce/g' /etc/yum.repos.d/docker-ce.repo
 
 # 官方源
 # $ sudo dnf config-manager \
