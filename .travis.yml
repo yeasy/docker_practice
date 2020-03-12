@@ -37,7 +37,7 @@ after_success:
 - git remote add origin "$DEPLOY_REPO"
 - git add .
 - COMMIT=`date "+%F %T"`
-- git commit -m "Travis CI Site updated $COMMIT"
+- git commit -m "Travis CI Site updated $COMMIT yeasy/docker_practice@${TRAVIS_COMMIT}"
 - git push -f origin master:"$DEPLOY_BRANCH"
 
 env:
