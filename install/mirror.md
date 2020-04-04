@@ -2,15 +2,14 @@
 
 国内从 Docker Hub 拉取镜像有时会遇到困难，此时可以配置镜像加速器。国内很多云服务商都提供了国内加速器服务，例如：
 
-* [Azure 中国镜像 `https://dockerhub.azk8s.cn`](https://github.com/Azure/container-service-for-azure-china/blob/master/aks/README.md#22-container-registry-proxy)
-* [阿里云加速器(需登录账号获取)](https://cr.console.aliyun.com/cn-hangzhou/mirrors)
 * [网易云加速器 `https://hub-mirror.c.163.com`](https://www.163yun.com/help/documents/56918246390157312)
+* [阿里云加速器(需登录账号获取)](https://cr.console.aliyun.com/cn-hangzhou/mirrors)
 
 > 由于镜像服务可能出现宕机，建议同时配置多个镜像。各个镜像站测试结果请到 [docker-practice/docker-registry-cn-mirror-test](https://github.com/docker-practice/docker-registry-cn-mirror-test/actions) 查看。
 
 > 国内各大云服务商均提供了 Docker 镜像加速服务，建议根据运行 Docker 的云平台选择对应的镜像加速服务，具体请参考官方文档。
 
-本节我们以 Azure 中国镜像 `https://dockerhub.azk8s.cn` 为例进行介绍。
+本节我们以 [网易云](https://www.163yun.com/) 镜像服务 `https://hub-mirror.c.163.com` 为例进行介绍。
 
 ## Ubuntu 16.04+、Debian 8+、CentOS 7
 
@@ -19,7 +18,6 @@
 ```json
 {
   "registry-mirrors": [
-    "https://dockerhub.azk8s.cn",
     "https://hub-mirror.c.163.com"
   ]
 }
@@ -34,7 +32,7 @@ $ sudo systemctl daemon-reload
 $ sudo systemctl restart docker
 ```
 
->注意：如果您之前查看旧教程，修改了 `docker.service` 文件内容，请去掉您添加的内容（`--registry-mirror=https://dockerhub.azk8s.cn`）。
+>注意：如果您之前查看旧教程，修改了 `docker.service` 文件内容，请去掉您添加的内容（`--registry-mirror=https://hub-mirror.c.163.com`）。
 
 ## Windows 10
 
@@ -43,7 +41,6 @@ $ sudo systemctl restart docker
 ```json
 {
   "registry-mirrors": [
-    "https://dockerhub.azk8s.cn",
     "https://hub-mirror.c.163.com"
   ]
 }
@@ -56,7 +53,6 @@ $ sudo systemctl restart docker
 ```json
 {
   "registry-mirrors": [
-    "https://dockerhub.azk8s.cn",
     "https://hub-mirror.c.163.com"
   ]
 }
@@ -68,15 +64,13 @@ $ sudo systemctl restart docker
 
 ```bash
 Registry Mirrors:
- https://dockerhub.azk8s.cn/
+ https://hub-mirror.c.163.com/
 ```
 
-## gcr.io 镜像
+## 云服务商
 
-国内无法直接获取 `gcr.io/*` 镜像，我们可以将 `gcr.io/<repo-name>/<image-name>:<version>` 替换为 `gcr.azk8s.cn/<repo-name>/<image-name>:<version>` ,例如
+某些云服务商提供了仅供内部访问的镜像服务，当您的 Docker 运行在云平台时可以选择它们。
 
-```bash
-# $ docker pull gcr.io/google_containers/hyperkube-amd64:v1.9.2
+* [Azure 中国镜像 `https://dockerhub.azk8s.cn`](https://github.com/Azure/container-service-for-azure-china/blob/master/aks/README.md#22-container-registry-proxy)
 
-$ docker pull gcr.azk8s.cn/google_containers/hyperkube-amd64:v1.9.2
-```
+* [腾讯云 `https://mirror.ccs.tencentyun.com`](https://cloud.tencent.com/redirect.php?redirect=10058&cps_key=3a5255852d5db99dcd5da4c72f05df61)

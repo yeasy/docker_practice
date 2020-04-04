@@ -16,7 +16,7 @@ $ docker-machine create -d virtualbox test
 
 `--engine-opt dns=114.114.114.114` 配置 Docker 的默认 DNS
 
-`--engine-registry-mirror https://dockerhub.azk8s.cn` 配置 Docker 的仓库镜像
+`--engine-registry-mirror https://hub-mirror.c.163.com` 配置 Docker 的仓库镜像
 
 `--virtualbox-memory 2048` 配置主机内存
 
@@ -37,7 +37,7 @@ $ docker-machine create \
       -d xhyve \
       # --xhyve-boot2docker-url ~/.docker/machine/cache/boot2docker.iso \
       --engine-opt dns=114.114.114.114 \
-      --engine-registry-mirror https://dockerhub.azk8s.cn \
+      --engine-registry-mirror https://hub-mirror.c.163.com \
       --xhyve-memory-size 2048 \
       --xhyve-rawdisk \
       --xhyve-cpu-count 2 \

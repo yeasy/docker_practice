@@ -77,7 +77,7 @@ $ sudo systemctl daemon-reload
 ### master
 
 ```bash
-$ sudo kubeadm init --image-repository gcr.azk8s.cn/google-containers \
+$ sudo kubeadm init --image-repository registry.cn-hangzhou.aliyuncs.com/google_containers \
       --pod-network-cidr 10.244.0.0/16 \
       --v 5 \
       --ignore-preflight-errors=all

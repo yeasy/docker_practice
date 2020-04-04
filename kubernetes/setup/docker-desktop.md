@@ -4,9 +4,7 @@
 
 ## 获取 `k8s.gcr.io` 镜像
 
-我们可以先从国内镜像 `gcr.azk8s.cn` 拉取镜像，再通过 `$ docker tag` 命令重新将镜像标记为 `k8s.gcr.io` 镜像。
-
-开源项目 [AliyunContainerService/k8s-for-docker-desktop](https://github.com/AliyunContainerService/k8s-for-docker-desktop) 使用 `powershell` 或 `shell` 脚本简化了以上步骤，建议读者使用该开源项目获取 `k8s.gcr.io` 镜像。
+由于国内拉取不到 `k8s.gcr.io` 镜像，我们可以使用开源项目 [AliyunContainerService/k8s-for-docker-desktop](https://github.com/AliyunContainerService/k8s-for-docker-desktop) 来获取所需的镜像。
 
 ## 启用 Kubernetes
 
