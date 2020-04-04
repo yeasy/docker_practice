@@ -39,6 +39,7 @@ jobs:
           "mirrors.ustc.edu.cn",\
           "docs.docker.com",\
           "dockerhub.azk8s.cn",\
+          "mirror.ccs.tencentyun.com",\
           "vuepress.mirror.docker-practice.com",\
           "mc.qcloudimg.com/static/img",\
           "www.daocloud.io/mirror",\
