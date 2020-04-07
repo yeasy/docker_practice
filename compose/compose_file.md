@@ -576,3 +576,4 @@ MONGO_VERSION=3.6
 ## 参考资料
 
 * [官方文档](https://docs.docker.com/compose/compose-file/)
+* [awesome-compose](https://github.com/docker/awesome-compose)
