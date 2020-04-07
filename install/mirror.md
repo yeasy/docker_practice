@@ -67,6 +67,20 @@ Registry Mirrors:
  https://hub-mirror.c.163.com/
 ```
 
+## `k8s.gcr.io` 镜像
+
+可以登录 [阿里云 容器镜像服务](https://www.aliyun.com/product/acr?source=5176.11533457&userCode=8lx5zmtu&type=copy) **镜像中心** -> **镜像搜索** 查找。
+
+例如 `k8s.gcr.io/coredns:1.6.7` 镜像可以用 `registry.cn-hangzhou.aliyuncs.com/google_containers/coredns:1.6.7` 代替。
+
+一般情况下有如下对应关系：
+
+```bash
+# $ docker pull k8s.gcr.io/xxx
+
+$ docker pull registry.cn-hangzhou.aliyuncs.com/google_containers/xxx
+```
+
 ## 云服务商
 
 某些云服务商提供了仅供内部访问的镜像服务，当您的 Docker 运行在云平台时可以选择它们。
