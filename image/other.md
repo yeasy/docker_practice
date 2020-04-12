@@ -37,7 +37,7 @@ IMAGE               CREATED              CREATED BY          SIZE               
 f477a6e18e98        About a minute ago                       214.9 MB            Imported from http://download.openvz.org/template/precreated/ubuntu-16.04-x86_64.tar.gz
 ```
 
-## `docker save` 和 `docker load`
+## Docker 镜像的导入和导出 `docker save` 和 `docker load`
 
 Docker 还提供了 `docker save` 和 `docker load` 命令，用以将镜像保存为一个文件，然后传输到另一个位置上，再加载进来。这是在没有 Docker Registry 时的做法，现在已经不推荐，镜像迁移应该直接使用 Docker Registry，无论是直接使用 Docker Hub 还是使用内网私有 Registry 都可以。
 
