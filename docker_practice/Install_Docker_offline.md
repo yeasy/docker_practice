@@ -4,9 +4,11 @@
 
 生产环境中一般都是没有公网资源的，本文介绍如何在生产服务器上离线部署`Docker`
 
+
+
 括号内的字母表示该操作需要在哪些服务器上执行
 
-![image-20200412202617411](Install_Docker_offline.assets/image-20200412202617411.png)
+<img src="Install_Docker_offline.assets/image-20200412202617411.png" alt="Docker-offile-install-top" style="zoom:30%;" />
 
 ## Centos7 离线安装Docker
 
