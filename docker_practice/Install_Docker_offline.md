@@ -6,7 +6,7 @@
 
 括号内的字母表示该操作需要在哪些服务器上执行
 
-<img src="/Users/dwj/docker_practice/docker_practice/Install_Docker_offline.assets/image-20200412200528391.png" alt="image-20200412200528391" style="zoom:50%;" />
+![image-20200412202617411](Install_Docker_offline.assets/image-20200412202617411.png)
 
 ## Centos7 离线安装Docker
 
