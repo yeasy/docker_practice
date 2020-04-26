@@ -44,9 +44,9 @@ $ brew cask install docker
 
 ```bash
 $ docker --version
-Docker version 19.03.1, build 74b1e89
+Docker version 19.03.8, build afacb8b
 $ docker-compose --version
-docker-compose version 1.24.1, build 4667896b
+docker-compose version 1.25.5, build 8a1c60f6
 $ docker-machine --version
 docker-machine version 0.16.1, build cce350d7
 ```

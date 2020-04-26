@@ -9,7 +9,7 @@
 ```bash
 $ docker-compose --version
 
-docker-compose version 1.24.1, build 4667896b
+docker-compose version 1.25.5, build 4667896b
 ```
 
 Linux 系统请使用以下介绍的方法安装。
@@ -21,7 +21,7 @@ Linux 系统请使用以下介绍的方法安装。
 例如，在 Linux 64 位系统上直接下载对应的二进制包。
 
 ```bash
-$ sudo curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+$ sudo curl -L https://github.com/docker/compose/releases/download/1.25.5/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 
 $ sudo chmod +x /usr/local/bin/docker-compose
 ```
@@ -42,7 +42,7 @@ $ sudo pip install -U docker-compose
 
 ```bash
 Collecting docker-compose
-  Downloading docker-compose-1.24.1.tar.gz (149kB): 149kB downloaded
+  Downloading docker-compose-1.25.5.tar.gz (149kB): 149kB downloaded
 ...
 Successfully installed docker-compose cached-property requests texttable websocket-client docker-py dockerpty six enum34 backports.ssl-match-hostname ipaddress
 ```
@@ -50,7 +50,7 @@ Successfully installed docker-compose cached-property requests texttable websock
 ## bash 补全命令
 
 ```bash
-$ curl -L https://raw.githubusercontent.com/docker/compose/1.24.1/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
+$ curl -L https://raw.githubusercontent.com/docker/compose/1.25.5/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
 ```
 
 ## 卸载
