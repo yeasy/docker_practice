@@ -14,9 +14,14 @@ $ docker run --rm --privileged docker/binfmt:820fdd95a9972a5308930a2bdfb8573dd44
 
 由于 Docker 默认的 `builder` 实例不支持同时指定多个 `--platform`，我们必须首先创建一个新的 `builder` 实例。同时由于国内拉取镜像较缓慢，我们可以使用配置了 [镜像加速地址](https://github.com/moby/buildkit/blob/master/docs/buildkitd.toml.md)  的 [`dockerpracticesig/buildkit:master`](https://github.com/docker-practice/buildx) 镜像替换官方镜像。
 
+> 如果你有私有的镜像加速器，可以基于 https://github.com/docker-practice/buildx 构建自己的 buildkit 镜像并使用它。
+
 ```bash
 # 适用于国内环境
 $ docker buildx create --use --name=mybuilder-cn --driver docker-container --driver-opt image=dockerpracticesig/buildkit:master
+
+# 适用于腾讯云环境(腾讯云主机、coding.net 持续集成)
+$ docker buildx create --use --name=mybuilder-cn --driver docker-container --driver-opt image=dockerpracticesig/buildkit:master-tencent
 
 # $ docker buildx create --name mybuilder --driver docker-container
 
