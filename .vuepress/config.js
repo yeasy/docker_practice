@@ -140,6 +140,7 @@ module.exports = {
         'fedora',
         'centos',
         'raspberry-pi',
+        'offline',
         'mac',
         'windows',
         'mirror',
@@ -376,6 +377,7 @@ module.exports = {
             'appendix/repo/wordpress',
             'appendix/repo/mongodb',
             'appendix/repo/redis',
+            'appendix/repo/minio',
           ],
         },
         {
