@@ -8,7 +8,7 @@
 
 括号内的字母表示该操作需要在哪些服务器上执行
 
-<img src="Install_Docker_offline.assets/image-20200412202617411.png" alt="Docker-offile-install-top" style="zoom:30%;" />
+<img src="_images/image-20200412202617411.png" alt="Docker-offile-install-top" style="zoom:30%;" />
 
 ## Centos7 离线安装Docker
 
