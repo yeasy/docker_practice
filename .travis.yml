@@ -22,14 +22,22 @@ after_success:
 - echo "COPY _book /usr/share/nginx/html" >> Dockerfile
 
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- export VCS_REF=`git rev-parse --short HEAD`
+- |
+  docker build \
+    -t dockerpracticesig/docker_practice \
+    -t dockerpracticesig/docker_practice:gitbook \
+    --label org.opencontainers.image.revision=$VCS_REF \
+    --label org.opencontainers.image.source="https://github.com/yeasy/docker_practice" \
+    .
 
-- docker build -t dockerpracticesig/docker_practice .
 - docker run -dit --rm -p 4000:80 dockerpracticesig/docker_practice
 
 - sleep 5
 - curl 127.0.0.1:4000
 
 - docker push dockerpracticesig/docker_practice
+- docker push dockerpracticesig/docker_practice:gitbook
 
 - cd _book
 - rm -rf .github/workflows
