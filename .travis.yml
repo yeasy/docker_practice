@@ -20,6 +20,8 @@ after_success:
 
 - echo "FROM nginx:alpine" >> Dockerfile
 - echo "COPY _book /usr/share/nginx/html" >> Dockerfile
+- echo "COPY .docker/docker-entrypoint.sh /" >> Dockerfile
+- echo "CMD [\"sh\", \"/docker-entrypoint.sh\"]" >> Dockerfile
 
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - export VCS_REF=`git rev-parse --short HEAD`
@@ -29,6 +31,7 @@ after_success:
     -t dockerpracticesig/docker_practice:gitbook \
     --label org.opencontainers.image.revision=$VCS_REF \
     --label org.opencontainers.image.source="https://github.com/yeasy/docker_practice" \
+    --label maintainer="https://github.com/docker-practice" \
     .
 
 - docker run -dit --rm -p 4000:80 dockerpracticesig/docker_practice
