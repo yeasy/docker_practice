@@ -18,7 +18,7 @@
 
 * 在线阅读：[docker-practice.com](https://vuepress.mirror.docker-practice.com/)，[GitBook](https://yeasy.gitbook.io/docker_practice/)，[Github](https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md)
 * 下载：[pdf](https://github.com/yeasy/docker_practice/wiki/%E4%B8%8B%E8%BD%BD)，[epub](https://github.com/yeasy/docker_practice/wiki/%E4%B8%8B%E8%BD%BD)
-* [离线阅读 `$ docker run -it --rm -p 4000:80 dockerpracticesig/docker_practice`](https://github.com/yeasy/docker_practice/wiki/%E7%A6%BB%E7%BA%BF%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3)
+* [离线阅读 `$ docker run -it --rm -p 4000:80 ccr.ccs.tencentyun.com/dockerpracticesig/docker_practice:vuepress`](https://github.com/yeasy/docker_practice/wiki/%E7%A6%BB%E7%BA%BF%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3)
 
 Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初学者使用最新稳定版本的 Docker 进行学习实践。欢迎 [参与项目维护](CONTRIBUTING.md)。
 
