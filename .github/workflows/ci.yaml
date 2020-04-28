@@ -67,3 +67,24 @@ jobs:
           PCIT_MESSAGE: Sync from yeasy/docker_practice@${{github.sha}} by PCIT
           PCIT_TARGET_BRANCH: master
           PCIT_USERNAME: ptt0xjqzbke3
+      - name: Build vuepress docker image
+        if: github.repository == 'docker-practice/docker_practice'
+        run: |
+          sudo rm -rf .vuepress/dist/.git
+
+          echo "FROM nginx:alpine" >> Dockerfile
+          echo "COPY .vuepress/dist /usr/share/nginx/html" >> Dockerfile
+
+          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+          VCS_REF=`git rev-parse --short HEAD`
+
+          docker build -t dockerpracticesig/docker_practice:vuepress \
+          --label org.opencontainers.image.revision=$VCS_REF \
+          --label org.opencontainers.image.source="https://github.com/yeasy/docker_practice" \
+          .
+
+          docker push dockerpracticesig/docker_practice:vuepress
+        env:
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}

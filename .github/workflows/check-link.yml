@@ -12,6 +12,7 @@ jobs:
       - uses: actions/checkout@master
         with:
           fetch-depth: 1
+      # search Issues :-(
       - run: |
           docker run -i --rm \
           -v $PWD:/mnt:ro \
@@ -56,6 +57,8 @@ jobs:
           "en.wikipedia.org/wiki/UnionFS",\
           "product.china-pub.com",\
           "union-click.jd.com",\
+          "x.x.x.x/base",\
+          "x.x.x.x:9000/minio/",\
           "www.aliyun.com" \
           --allow-dupe \
           --skip-save-results \
