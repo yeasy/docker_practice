@@ -3,9 +3,10 @@
 国内从 Docker Hub 拉取镜像有时会遇到困难，此时可以配置镜像加速器。国内很多云服务商都提供了国内加速器服务，例如：
 
 * [网易云加速器 `https://hub-mirror.c.163.com`](https://www.163yun.com/help/documents/56918246390157312)
+* [百度云加速器 `https://mirror.baidubce.com`](https://cloud.baidu.com/doc/CCE/s/Yjxppt74z#%E4%BD%BF%E7%94%A8dockerhub%E5%8A%A0%E9%80%9F%E5%99%A8)
 * [阿里云加速器(需登录账号获取)](https://cr.console.aliyun.com/cn-hangzhou/mirrors)
 
-> 由于镜像服务可能出现宕机，建议同时配置多个镜像。各个镜像站测试结果请到 [docker-practice/docker-registry-cn-mirror-test](https://github.com/docker-practice/docker-registry-cn-mirror-test/actions) 查看。
+**由于镜像服务可能出现宕机，建议同时配置多个镜像。各个镜像站测试结果请到 [docker-practice/docker-registry-cn-mirror-test](https://github.com/docker-practice/docker-registry-cn-mirror-test/actions) 查看。**
 
 > 国内各大云服务商均提供了 Docker 镜像加速服务，建议根据运行 Docker 的云平台选择对应的镜像加速服务，具体请参考官方文档。
 
@@ -18,7 +19,8 @@
 ```json
 {
   "registry-mirrors": [
-    "https://hub-mirror.c.163.com"
+    "https://hub-mirror.c.163.com",
+    "https://mirror.baidubce.com"
   ]
 }
 ```
@@ -41,7 +43,8 @@ $ sudo systemctl restart docker
 ```json
 {
   "registry-mirrors": [
-    "https://hub-mirror.c.163.com"
+    "https://hub-mirror.c.163.com",
+    "https://mirror.baidubce.com"
   ]
 }
 ```
@@ -53,7 +56,8 @@ $ sudo systemctl restart docker
 ```json
 {
   "registry-mirrors": [
-    "https://hub-mirror.c.163.com"
+    "https://hub-mirror.c.163.com",
+    "https://mirror.baidubce.com"
   ]
 }
 ```
