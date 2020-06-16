@@ -2,7 +2,7 @@
 
 ## 启用 Buildx
 
-`buildx` 命令属于实验特性，参考 [开启实验特性](../install/experimental.md) 一节开启 Docker CLI 实验特性。
+`buildx` 命令属于实验特性，请参考 [开启实验特性](../install/experimental.md) 一节开启 Docker CLI 实验特性。
 
 ## 使用
 
