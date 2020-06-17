@@ -6,12 +6,11 @@
 
 Docker CE 不仅支持 `x86_64` 架构的计算机，同时也支持 `ARM` 架构的计算机，本小节内容以树莓派单片电脑为例讲解 `ARM` 架构安装 Docker CE。
 
-Docker CE 支持以下版本的 [Raspbian](https://www.raspberrypi.org/downloads/raspbian/) 操作系统：
+Docker CE 支持以下版本的 [Raspberry Pi OS](https://www.raspberrypi.org/downloads/raspberry-pi-os/) 操作系统：
 
-* Raspbian Buster
-* Raspbian Stretch
+* Raspberry Pi OS Buster
 
-*注：* `Raspbian` 是树莓派的开发与维护机构 [树莓派基金会](https://www.raspberrypi.org/) 推荐用于树莓派的首选系统，其基于 `Debian`。
+*注：* `Raspberry Pi OS` 由树莓派的开发与维护机构 [树莓派基金会](https://www.raspberrypi.org/) 官方支持，并推荐用作树莓派的首选系统，其基于 `Debian`。
 
 ## 使用 APT 安装
 
@@ -71,7 +70,7 @@ $ sudo apt-get install docker-ce
 
 ## 使用脚本自动安装
 
-在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，Raspbian 系统上可以使用这套脚本安装，另外可以通过 `--mirror` 选项使用国内源进行安装：
+在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，Raspberry Pi OS 系统上可以使用这套脚本安装，另外可以通过 `--mirror` 选项使用国内源进行安装：
 
 ```bash
 $ curl -fsSL get.docker.com -o get-docker.sh
@@ -141,7 +140,7 @@ For more examples and ideas, visit:
 
 若能正常输出以上信息，则说明安装成功。
 
-*注意：* ARM 平台不能使用 `x86` 镜像，查看 Raspbian 可使用镜像请访问 [arm32v7](https://hub.docker.com/u/arm32v7/)。
+*注意：* ARM 平台不能使用 `x86` 镜像，查看 Raspberry Pi OS 可使用镜像请访问 [arm32v7](https://hub.docker.com/u/arm32v7/) 或者 [arm64v8](https://hub.docker.com/u/arm64v8/)。
 
 ## 镜像加速
 
