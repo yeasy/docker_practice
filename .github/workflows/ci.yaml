@@ -75,7 +75,7 @@ jobs:
           echo "FROM nginx:alpine" >> Dockerfile
           echo "COPY .vuepress/dist /usr/share/nginx/html" >> Dockerfile
           echo "COPY .docker/docker-entrypoint.sh /" >> Dockerfile
-          echo "CMD [\"sh\", \"/docker-entrypoint.sh\"]" >> Dockerfile
+          echo "ENTRYPOINT [\"/docker-entrypoint.sh\"]" >> Dockerfile
 
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
@@ -88,6 +88,10 @@ jobs:
           .
 
           docker push dockerpracticesig/docker_practice:vuepress
+
+          docker run -it --rm -d -p 4000:80 dockerpracticesig/docker_practice:vuepress
+
+          curl 127.0.0.1:4000
         env:
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
           DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
