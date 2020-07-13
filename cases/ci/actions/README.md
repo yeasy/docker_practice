@@ -25,4 +25,4 @@ jobs:
 
 ## 参考资料
 
-* [Actions Docs](https://help.github.com/en/actions)
+* [Actions Docs](https://docs.github.com/en/actions)
