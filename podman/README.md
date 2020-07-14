@@ -1,6 +1,6 @@
 # podman
 
-[`podman`](https://github.com/containers/libpod) 是一个无守护程序与 docker 命令兼容的下一代 Linux 容器工具。
+[`podman`](https://github.com/containers/podman) 是一个无守护程序与 docker 命令兼容的下一代 Linux 容器工具。
 
 ## 安装
 
