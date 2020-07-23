@@ -82,7 +82,7 @@ module.exports = {
     // },
     {
       text: '腾讯云容器服务',
-      link: 'https://cloud.tencent.com/redirect.php?redirect=10058&cps_key=3a5255852d5db99dcd5da4c72f05df61'
+      link: 'https://cloud.tencent.com/act/cps/redirect?redirect=10058&cps_key=3a5255852d5db99dcd5da4c72f05df61'
     },
       // {
       //   text: '语言',
