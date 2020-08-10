@@ -34,6 +34,12 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初�
 
 ## 技术交流
 
+<p align="center">
+<img width="200" src="https://yewm28.coding-pages.com/wechat.jpg">
+</p>
+
+<p align="center"><strong>微信扫码 加入群聊~ 或者微信添加 <code>dpsigs</code> 邀请入群</strong></p>
+
 欢迎加入 Docker 技术交流 QQ 群，分享 Docker 资源，交流 Docker 技术。
 
 * QQ 群 I   （已满）：341410255
@@ -48,12 +54,6 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初�
 * QQ 群 X   （可加）：145983035
 
 >如果有容器相关的疑问，请通过 [Issues](https://github.com/yeasy/docker_practice/issues/new/choose) 来提出。
-
-<p align="center">
-<img width="200" src="https://yewm28.coding-pages.com/wechat.jpg">
-</p>
-
-<p align="center"><strong>微信扫码 加入群聊~ 或者微信添加 <code>dpsigs</code> 邀请入群</strong></p>
 
 ## 进阶学习
 
