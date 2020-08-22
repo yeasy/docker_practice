@@ -2,7 +2,7 @@
 
 ## 系统要求
 
-[Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/install/) 支持 64 位版本的 Windows 10 Pro，且必须开启 Hyper-V（若版本为 v2004 及以上则无需开启 Hyper-V），或者 64 位版本的 Windows 10 Home v2004 及以上版本。
+[Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/install/) 支持 64 位版本的 Windows 10 Pro，且必须开启 Hyper-V（若版本为 v1903 及以上则无需开启 Hyper-V），或者 64 位版本的 Windows 10 Home v1903 及以上版本。
 
 ## 安装
 
@@ -44,3 +44,4 @@ Docker CE 启动之后会在 Windows 任务栏出现鲸鱼图标。
 
 * [官方文档](https://docs.docker.com/docker-for-windows/install/)
 * [Docker Desktop WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/)
+* [WSL 2 Support is coming to Windows 10 Versions 1903 and 1909](https://devblogs.microsoft.com/commandline/wsl-2-support-is-coming-to-windows-10-versions-1903-and-1909/)
