@@ -12,7 +12,6 @@
 docker container ls -a
 CONTAINER ID        IMAGE                    COMMAND                CREATED             STATUS                          PORTS               NAMES
 ba267838cc1b        ubuntu:18.04             "/bin/bash"            30 minutes ago      Exited (0) About a minute ago                       trusting_newton
-98e5efa7d997        training/webapp:latest   "python app.py"        About an hour ago   Exited (0) 34 minutes ago                           backstabbing_pike
 ```
 
 处于终止状态的容器，可以通过 `docker container start` 命令来重新启动。

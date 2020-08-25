@@ -7,29 +7,27 @@
 ```bash
 $ docker run -d -P \
     --name web \
-    # -v /src/webapp:/opt/webapp \
-    --mount type=bind,source=/src/webapp,target=/opt/webapp \
-    training/webapp \
-    python app.py
+    # -v /src/webapp:/usr/share/nginx/html \
+    --mount type=bind,source=/src/webapp,target=/usr/share/nginx/html \
+    nginx:alpine
 ```
 
-上面的命令加载主机的 `/src/webapp` 目录到容器的 `/opt/webapp`目录。这个功能在进行测试的时候十分方便，比如用户可以放置一些程序到本地目录中，来查看容器是否正常工作。本地目录的路径必须是绝对路径，以前使用 `-v` 参数时如果本地目录不存在 Docker 会自动为你创建一个文件夹，现在使用 `--mount` 参数时如果本地目录不存在，Docker 会报错。
+上面的命令加载主机的 `/src/webapp` 目录到容器的 `/usr/share/nginx/html`目录。这个功能在进行测试的时候十分方便，比如用户可以放置一些程序到本地目录中，来查看容器是否正常工作。本地目录的路径必须是绝对路径，以前使用 `-v` 参数时如果本地目录不存在 Docker 会自动为你创建一个文件夹，现在使用 `--mount` 参数时如果本地目录不存在，Docker 会报错。
 
 Docker 挂载主机目录的默认权限是 `读写`，用户也可以通过增加 `readonly` 指定为 `只读`。
 
 ```bash
 $ docker run -d -P \
     --name web \
-    # -v /src/webapp:/opt/webapp:ro \
-    --mount type=bind,source=/src/webapp,target=/opt/webapp,readonly \
-    training/webapp \
-    python app.py
+    # -v /src/webapp:/usr/share/nginx/html:ro \
+    --mount type=bind,source=/src/webapp,target=/usr/share/nginx/html,readonly \
+    nginx:alpine
 ```
 
-加了 `readonly` 之后，就挂载为 `只读` 了。如果你在容器内 `/opt/webapp` 目录新建文件，会显示如下错误
+加了 `readonly` 之后，就挂载为 `只读` 了。如果你在容器内 `/usr/share/nginx/html` 目录新建文件，会显示如下错误
 
 ```bash
-/opt/webapp # touch new.txt
+/usr/share/nginx/html # touch new.txt
 touch: new.txt: Read-only file system
 ```
 
@@ -48,7 +46,7 @@ $ docker inspect web
     {
         "Type": "bind",
         "Source": "/src/webapp",
-        "Destination": "/opt/webapp",
+        "Destination": "/usr/share/nginx/html",
         "Mode": "",
         "RW": true,
         "Propagation": "rprivate"
