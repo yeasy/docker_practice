@@ -80,7 +80,7 @@ RUN make -C /usr/src/redis install
 ```docker
 FROM debian:stretch
 
-RUN buildDeps='gcc libc6-dev make wget' \
+RUN set -x; buildDeps='gcc libc6-dev make wget' \
     && apt-get update \
     && apt-get install -y $buildDeps \
     && wget -O redis.tar.gz "http://download.redis.io/releases/redis-5.0.3.tar.gz" \
@@ -177,17 +177,23 @@ Sending build context to Docker daemon 2.048 kB
 或许你已经注意到了，`docker build` 还支持从 URL 构建，比如可以直接从 Git repo 中构建：
 
 ```bash
-$ docker build https://github.com/twang2218/gitlab-ce-zh.git#:11.1
+# $env:DOCKER_BUILDKIT=0
+# export DOCKER_BUILDKIT=0
 
-Sending build context to Docker daemon 2.048 kB
-Step 1 : FROM gitlab/gitlab-ce:11.1.0-ce.0
-11.1.0-ce.0: Pulling from gitlab/gitlab-ce
-aed15891ba52: Already exists
-773ae8583d14: Already exists
-...
+$ docker build -t hello-world https://github.com/docker-library/hello-world.git#master:amd64/hello-world
+
+Step 1/3 : FROM scratch
+ --->
+Step 2/3 : COPY hello /
+ ---> ac779757d46e
+Step 3/3 : CMD ["/hello"]
+ ---> Running in d2a513a760ed
+Removing intermediate container d2a513a760ed
+ ---> 038ad4142d2b
+Successfully built 038ad4142d2b
 ```
 
-这行命令指定了构建所需的 Git repo，并且指定默认的 `master` 分支，构建目录为 `/11.1/`，然后 Docker 就会自己去 `git clone` 这个项目、切换到指定分支、并进入到指定目录后开始构建。
+这行命令指定了构建所需的 Git repo，并且指定分支为 `master`，构建目录为 `/amd64/hello-world/`，然后 Docker 就会自己去 `git clone` 这个项目、切换到指定分支、并进入到指定目录后开始构建。
 
 ### 用给定的 tar 压缩包构建
 
