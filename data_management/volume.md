@@ -10,7 +10,7 @@
 
 * `数据卷` 默认会一直存在，即使容器被删除
 
->注意：`数据卷` 的使用，类似于 Linux 下对目录或文件进行 mount，镜像中的被指定为挂载点的目录中的文件会隐藏掉，能显示看到的是挂载的 `数据卷`。
+>注意：`数据卷` 的使用，类似于 Linux 下对目录或文件进行 mount，镜像中的被指定为挂载点的目录中的文件会复制到数据卷中（仅数据卷为空时会复制）。
 
 ## 创建一个数据卷
 
@@ -23,6 +23,7 @@ $ docker volume create my-vol
 ```bash
 $ docker volume ls
 
+DRIVER              VOLUME NAME
 local               my-vol
 ```
 
@@ -46,15 +47,14 @@ $ docker volume inspect my-vol
 
 在用 `docker run` 命令的时候，使用 `--mount` 标记来将 `数据卷` 挂载到容器里。在一次 `docker run` 中可以挂载多个 `数据卷`。
 
-下面创建一个名为 `web` 的容器，并加载一个 `数据卷` 到容器的 `/webapp` 目录。
+下面创建一个名为 `web` 的容器，并加载一个 `数据卷` 到容器的 `/usr/share/nginx/html` 目录。
 
 ```bash
 $ docker run -d -P \
     --name web \
-    # -v my-vol:/wepapp \
-    --mount source=my-vol,target=/webapp \
-    training/webapp \
-    python app.py
+    # -v my-vol:/usr/share/nginx/html \
+    --mount source=my-vol,target=/usr/share/nginx/html \
+    nginx:alpine
 ```
 
 ## 查看数据卷的具体信息
@@ -73,7 +73,7 @@ $ docker inspect web
         "Type": "volume",
         "Name": "my-vol",
         "Source": "/var/lib/docker/volumes/my-vol/_data",
-        "Destination": "/webapp",
+        "Destination": "/usr/share/nginx/html",
         "Driver": "local",
         "Mode": "",
         "RW": true,
