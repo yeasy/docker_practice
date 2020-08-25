@@ -10,7 +10,7 @@ docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]
 
 具体的选项可以通过 `docker pull --help` 命令看到，这里我们说一下镜像名称的格式。
 
-* Docker 镜像仓库地址：地址的格式一般是 `<域名/IP>[:端口号]`。默认地址是 Docker Hub。
+* Docker 镜像仓库地址：地址的格式一般是 `<域名/IP>[:端口号]`。默认地址是 Docker Hub(docker.io)。
 * 仓库名：如之前所说，这里的仓库名是两段式名称，即 `<用户名>/<软件名>`。对于 Docker Hub，如果不给出用户名，则默认为 `library`，也就是官方镜像。
 
 比如：
@@ -40,9 +40,7 @@ Status: Downloaded newer image for ubuntu:18.04
 有了镜像后，我们就能够以这个镜像为基础启动并运行一个容器。以上面的 `ubuntu:18.04` 为例，如果我们打算启动里面的 `bash` 并且进行交互式操作的话，可以执行下面的命令。
 
 ```bash
-$ docker run -it --rm \
-    ubuntu:18.04 \
-    bash
+$ docker run -it --rm ubuntu:18.04 bash
 
 root@e7009c6ce357:/# cat /etc/os-release
 NAME="Ubuntu"

@@ -3,7 +3,7 @@
     See [CONTRIBUTING](CONTRIBUTING.md) for contribution guidelines.
 -->
 
-### Proposed changes (Mandatory)
+**Proposed changes (Mandatory)**
 
 <!--
     Tell us what you did and why:
@@ -13,7 +13,7 @@
     And details in other paragraphs.
 -->
 
-### Fix issues (Optional)
+**Fix issues (Optional)**
 
 <!--
     Tell us what issues you fixed, e.g., fix #123

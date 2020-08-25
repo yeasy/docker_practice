@@ -28,7 +28,6 @@ jobs:
           "github.com/etcd-io/etcd/releases/download",\
           "github.com/tianon/gosu/releases/download",\
           "github.com/yeasy/docker_practice",\
-          "github.com/twang2218/gitlab-ce-zh.git",\
           "github.com/AliyunContainerService/k8s-for-docker-desktop/raw",\
           "dl-cdn.alpinelinux.org/alpine/edge/testing",\
           "www.w3.org/1999/xhtml",\
