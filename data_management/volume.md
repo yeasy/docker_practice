@@ -73,7 +73,7 @@ $ docker inspect web
         "Type": "volume",
         "Name": "my-vol",
         "Source": "/var/lib/docker/volumes/my-vol/_data",
-        "Destination": "/app",
+        "Destination": "/webapp",
         "Driver": "local",
         "Mode": "",
         "RW": true,
