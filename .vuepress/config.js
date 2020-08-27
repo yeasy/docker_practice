@@ -36,54 +36,55 @@ module.exports = {
     docsRepo: 'yeasy/docker_practice',
     docsDir: '/',
     editLinks: true,
-    nav: [{
-      text: '安装 Docker',
-      link: '/install/',
-    },
-    {
-      text: 'Docker 入门',
-      link: '/'
-    },
-    {
-      text: 'Docker 实战',
-      link: '/cases/os/'
-    },
-    {
-      text: 'CI/CD',
-      link: '/cases/ci/'
-    },
-    {
-      text: 'Docker 仓库',
-      link: '/repository/'
-    },
-    {
-      text: '底层实现',
-      link: '/underly/',
-    },
-    {
-      text: 'Compose',
-      link: '/compose/',
-    },
-    {
-      text: 'Kubernetes',
-      link: '/kubernetes/',
-    },
-    {
-      text: "云计算",
-      link: "/cloud/",
-    },
-    {
-      text: 'GitHub',
-      link: 'https://github.com/yeasy/docker_practice'
-    },
-    // {
-    //   text: '捐赠',
-    //   link: ''
-    // },
-    {
-      text: '腾讯云容器服务',
-      link: 'https://cloud.tencent.com/act/cps/redirect?redirect=10058&cps_key=3a5255852d5db99dcd5da4c72f05df61'
-    },
+    nav: [
+      {
+        text: '微信交流群',
+        link: 'https://yewm28.coding-pages.com/wechat.jpg',
+      },
+      {
+        text: '小程序',
+        link: 'https://yewm28.coding-pages.com/49682252-3ac4c500-faec-11e8-86ab-eafe0139be6b.jpg',
+      },
+      {
+        text: '安装 Docker',
+        link: '/install/',
+      },
+      {
+        text: 'Docker 入门',
+        link: '/'
+      },
+      {
+        text: 'Docker 实战',
+        link: '/cases/os/'
+      },
+      {
+        text: 'CI/CD',
+        link: '/cases/ci/'
+      },
+      {
+        text: 'Compose',
+        link: '/compose/',
+      },
+      {
+        text: 'Kubernetes',
+        link: '/kubernetes/',
+      },
+      {
+        text: "云计算",
+        link: "/cloud/",
+      },
+      {
+        text: 'GitHub',
+        link: 'https://github.com/yeasy/docker_practice'
+      },
+      // {
+      //   text: '捐赠',
+      //   link: ''
+      // },
+      {
+        text: '腾讯云容器服务',
+        link: 'https://cloud.tencent.com/act/cps/redirect?redirect=10058&cps_key=3a5255852d5db99dcd5da4c72f05df61'
+      },
       // {
       //   text: '语言',
       //   items: [{
@@ -145,20 +146,6 @@ module.exports = {
         'windows',
         'mirror',
         'experimental',
-      ],
-      '/underly/': [
-        'arch',
-        'namespace',
-        'cgroups',
-        'ufs',
-        'container_format',
-        'network',
-      ],
-      '/repository/': [
-        'dockerhub',
-        'registry',
-        'registry_auth',
-        'nexus3_registry',
       ],
       '/cases/os/': [
         {
@@ -265,6 +252,17 @@ module.exports = {
           ],
         },
         {
+          title: "Docker 仓库",
+          collapsable: false,
+          children: [
+            'repository/',
+            'repository/dockerhub',
+            'repository/registry',
+            'repository/registry_auth',
+            'repository/nexus3_registry',
+          ],
+        },
+        {
           title: "数据管理",
           collapsable: false,
           children: [
@@ -324,6 +322,19 @@ module.exports = {
           ],
         },
         {
+          title: "底层实现",
+          collapsable: false,
+          children: [
+            'underly/',
+            'underly/arch',
+            'underly/namespace',
+            'underly/cgroups',
+            'underly/ufs',
+            'underly/container_format',
+            'underly/network',
+          ],
+        },
+        {
           title: "Docker Buildx",
           collapsable: false,
           children: [
@@ -351,14 +362,6 @@ module.exports = {
             'coreos/',
             'coreos/intro',
             'coreos/install',
-          ],
-        },
-        {
-          title: "Docker 开源项目",
-          collapsable: false,
-          children: [
-            'opensource/',
-            'opensource/linuxkit',
           ],
         },
         'podman/',

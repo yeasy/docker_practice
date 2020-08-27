@@ -18,7 +18,7 @@ RUN [ "redis-server" ]
 # 建立 redis 用户，并使用 gosu 换另一个用户执行命令
 RUN groupadd -r redis && useradd -r -g redis redis
 # 下载 gosu
-RUN wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64" \
+RUN wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/1.12/gosu-amd64" \
     && chmod +x /usr/local/bin/gosu \
     && gosu nobody true
 # 设置 CMD，并以另外的用户执行

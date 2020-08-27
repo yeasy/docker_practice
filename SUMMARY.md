@@ -147,8 +147,6 @@
     * [Travis CI](cases/ci/travis/README.md)
 * [在 IDE 中使用 Docker](ide/README.md)
     * [VS Code](ide/vsCode.md)
-* [Docker 开源项目](opensource/README.md)
-    * [LinuxKit](opensource/linuxkit.md)
 * [podman - 下一代 Linux 容器工具](podman/README.md)
 * [附录](appendix/README.md)
     * [附录一：常见问题总结](appendix/faq/README.md)
