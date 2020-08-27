@@ -32,3 +32,5 @@ COPY --chown=bin files* /mydir/
 COPY --chown=1 files* /mydir/
 COPY --chown=10:11 files* /mydir/
 ```
+
+如果源路径为文件夹，复制的时候不是直接复制该文件夹，而是将文件夹中的内容复制到目标路径。
