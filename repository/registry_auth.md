@@ -131,7 +131,7 @@ $ mkdir auth
 
 $ docker run --rm \
     --entrypoint htpasswd \
-    registry \
+    httpd:alpine \
     -Bbn username password > auth/nginx.htpasswd
 ```
 
