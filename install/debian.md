@@ -49,7 +49,7 @@ $ curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/debian/gpg | sudo apt-k
 # $ curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 ```
 
-然后，我们需要向 `source.list` 中添加 Docker CE 软件源：
+然后，我们需要向 `sources.list` 中添加 Docker CE 软件源：
 
 ```bash
 $ sudo add-apt-repository \

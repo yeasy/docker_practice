@@ -51,7 +51,7 @@ $ curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-k
 # $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```
 
-然后，我们需要向 `source.list` 中添加 Docker 软件源
+然后，我们需要向 `sources.list` 中添加 Docker 软件源
 
 ```bash
 $ sudo add-apt-repository \
