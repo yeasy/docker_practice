@@ -41,6 +41,8 @@
         * [USER 指定当前用户](image/dockerfile/user.md)
         * [HEALTHCHECK 健康检查](image/dockerfile/healthcheck.md)
         * [ONBUILD 为他人作嫁衣裳](image/dockerfile/onbuild.md)
+        * [LABEL 为镜像添加元数据](image/dockerfile/label.md)
+        * [SHELL 指令](image/dockerfile/shell.md)
         * [参考文档](image/dockerfile/references.md)
     * [Dockerfile 多阶段构建](image/multistage-builds/README.md)
         * [实战多阶段构建 Laravel 镜像](image/multistage-builds/laravel.md)

@@ -16,3 +16,21 @@ RUN echo "hello" > world.txt
 之前说过每一个 `RUN` 都是启动一个容器、执行命令、然后提交存储层文件变更。第一层 `RUN cd /app` 的执行仅仅是当前进程的工作目录变更，一个内存上的变化而已，其结果不会造成任何文件变更。而到第二层的时候，启动的是一个全新的容器，跟第一层的容器更完全没关系，自然不可能继承前一层构建过程中的内存变化。
 
 因此如果需要改变以后各层的工作目录的位置，那么应该使用 `WORKDIR` 指令。
+
+```docker
+WORKDIR /app
+
+RUN echo "hello" > world.txt
+```
+
+如果你的 `WORKDIR` 指令使用的相对路径，那么所切换的路径与之前的 `WORKDIR` 有关：
+
+```docker
+WORKDIR /a
+WORKDIR b
+WORKDIR c
+
+RUN pwd
+```
+
+`pwd` 输出的结果为 `/a/b/c`。

@@ -233,6 +233,8 @@ module.exports = {
             'image/dockerfile/workdir',
             'image/dockerfile/user',
             'image/dockerfile/healthcheck',
+            'image/dockerfile/label',
+            'image/dockerfile/shell',
             'image/dockerfile/onbuild',
             'image/dockerfile/references',
             'image/multistage-builds/',
