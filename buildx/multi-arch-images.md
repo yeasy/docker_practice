@@ -107,12 +107,12 @@ Linux buildkitsandbox 4.9.125-linuxkit #1 SMP Fri Sep 7 08:20:28 UTC 2018 x86_64
 
 例如我们要构建支持 `linux/arm/v7` 和 `linux/amd64` 两种架构的镜像。假设已经生成了两个平台对应的二进制文件：
 
-* bin/dist-linux-arm
-* bin/dist-linux-amd64
+* `bin/dist-linux-arm`
+* `bin/dist-linux-amd64`
 
 那么 `Dockerfile` 可以这样书写：
 
-```bash
+```docker
 FROM scratch
 
 # 使用变量必须申明
