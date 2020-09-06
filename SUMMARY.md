@@ -15,6 +15,7 @@
     * [Debian](install/debian.md)
     * [Fedora](install/fedora.md)
     * [CentOS](install/centos.md)
+    * [CentOS8](install/centos8.md)
     * [Raspberry Pi](install/raspberry-pi.md)
     * [Linux 离线安装](install/offline.md)
     * [macOS](install/mac.md)
