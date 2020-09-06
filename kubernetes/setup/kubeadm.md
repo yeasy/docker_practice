@@ -60,10 +60,10 @@ $ sysctl --system
 ```bash
 # 启用 ipvs 相关内核模块
 [Service]
-ExecStartPre=-modprobe ip_vs
-ExecStartPre=-modprobe ip_vs_rr
-ExecStartPre=-modprobe ip_vs_wrr
-ExecStartPre=-modprobe ip_vs_sh
+ExecStartPre=-/sbin/modprobe ip_vs
+ExecStartPre=-/sbin/modprobe ip_vs_rr
+ExecStartPre=-/sbin/modprobe ip_vs_wrr
+ExecStartPre=-/sbin/modprobe ip_vs_sh
 ```
 
 执行以下命令应用配置。
