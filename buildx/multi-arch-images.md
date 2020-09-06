@@ -9,7 +9,7 @@
 Docker for Linux 不支持构建 `arm` 架构镜像，我们可以运行一个新的容器让其支持该特性，Docker 桌面版无需进行此项设置。
 
 ```bash
-$ docker run --rm --privileged docker/binfmt:820fdd95a9972a5308930a2bdfb8573dd4447ad3
+$ docker run --rm --privileged tonistiigi/binfmt:latest --install all
 ```
 
 由于 Docker 默认的 `builder` 实例不支持同时指定多个 `--platform`，我们必须首先创建一个新的 `builder` 实例。同时由于国内拉取镜像较缓慢，我们可以使用配置了 [镜像加速地址](https://github.com/moby/buildkit/blob/master/docs/buildkitd.toml.md)  的 [`dockerpracticesig/buildkit:master`](https://github.com/docker-practice/buildx) 镜像替换官方镜像。
@@ -65,4 +65,62 @@ Linux buildkitsandbox 4.9.125-linuxkit #1 SMP Fri Sep 7 08:20:28 UTC 2018 aarch6
 # amd64
 $ docker run -it --rm myusername/hello
 Linux buildkitsandbox 4.9.125-linuxkit #1 SMP Fri Sep 7 08:20:28 UTC 2018 x86_64 Linux
+```
+
+## 架构相关变量
+
+`Dockerfile` 支持如下架构相关的变量
+
+**TARGETPLATFORM** 
+
+构建镜像的目标平台，例如 `linux/amd64`, `linux/arm/v7`, `windows/amd64`。
+
+**TARGETOS** 
+
+`TARGETPLATFORM` 的 OS 类型，例如 `linux`, `windows`
+
+**TARGETARCH** 
+
+`TARGETPLATFORM` 的架构类型，例如 `amd64`, `arm`
+
+**TARGETVARIANT**
+
+`TARGETPLATFORM` 的变种，该变量可能为空，例如 `v7`
+
+**BUILDPLATFORM**
+
+构建镜像主机平台，例如 `linux/amd64`
+
+**BUILDOS** 
+
+`BUILDPLATFORM` 的 OS 类型，例如 `linux`
+
+**BUILDARCH** 
+
+`BUILDPLATFORM` 的架构类型，例如 `amd64`
+
+**BUILDVARIANT** 
+
+`BUILDPLATFORM` 的变种，该变量可能为空，例如 `v7`
+
+### 使用举例
+
+例如我们要构建支持 `linux/arm/v7` 和 `linux/amd64` 两种架构的镜像。假设已经生成了两个平台对应的二进制文件：
+
+* bin/dist-linux-arm
+* bin/dist-linux-amd64
+
+那么 `Dockerfile` 可以这样书写：
+
+```bash
+FROM scratch
+
+# 使用变量必须申明
+ARG TARGETOS
+
+ARG TARGETARCH
+
+COPY bin/dist-${TARGETOS}-${TARGETARCH} /dist
+
+ENTRYPOINT ["dist"]
 ```
