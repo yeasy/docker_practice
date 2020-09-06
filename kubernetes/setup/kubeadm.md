@@ -163,7 +163,7 @@ $ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
 $ kubectl get node -o yaml | grep CIDR
 
 # 输出
-    podCIDR: 10.244.0.0/24
+    podCIDR: 10.244.0.0/16
     podCIDRs:
 ```
 
