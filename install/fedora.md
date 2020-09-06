@@ -59,12 +59,6 @@ $ sudo sed -i 's/download.docker.com/mirrors.ustc.edu.cn\/docker-ce/g' /etc/yum.
 $ sudo dnf config-manager --set-enabled docker-ce-test
 ```
 
-如果需要每日构建版本的 Docker CE 请使用以下命令：
-
-```bash
-$ sudo dnf config-manager --set-enabled docker-ce-nightly
-```
-
 你也可以禁用测试版本的 Docker CE
 
 ```bash
