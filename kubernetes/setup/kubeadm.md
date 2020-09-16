@@ -184,4 +184,4 @@ $ kubectl taint nodes --all node-role.kubernetes.io/master-
 
 ## 参考文档
 
-* [官方文档](https://kubernetes.io/zh/docs/setup/independent/create-cluster-kubeadm/)
+* [官方文档](https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
