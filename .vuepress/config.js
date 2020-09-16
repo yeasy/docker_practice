@@ -1,4 +1,15 @@
-module.exports = {
+const resolve = require("vuepress-theme-hope/resolve");
+
+module.exports = resolve({
+  themeConfig: {
+    blog: false,
+    comment: {
+      type: "disable", // 使用 Valine
+      appId: "...", // your appId
+      appKey: "...", // your appKey
+    },
+    pageInfo: false
+  },
   title: 'Docker 从入门到实践',
   base: '/',
   head: [['script', {}, `
@@ -401,4 +412,4 @@ module.exports = {
       ],
     },
   }
-}
+});

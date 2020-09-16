@@ -9,7 +9,8 @@
     "commander": "^4.0.1",
     "esm": "^3.2.25",
     "vuepress-plugin-container": "^2.1.2",
-    "vuepress-plugin-sitemap": "^2.3.1"
+    "vuepress-plugin-sitemap": "^2.3.1",
+    "vuepress-theme-hope": "^0.7.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
