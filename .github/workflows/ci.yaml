@@ -21,7 +21,7 @@ jobs:
           sudo rm -rf _book
           npm i vuepress --save-dev
           npm i
-          npm run vuepress:build
+          npm run vuepress:build || true
           echo "vuepress.docker-practice.com" > .vuepress/dist/CNAME
 
           cp -r _images .vuepress/dist
