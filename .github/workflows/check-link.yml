@@ -3,6 +3,7 @@ name: check-link
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   check-link:
@@ -58,6 +59,7 @@ jobs:
           "union-click.jd.com",\
           "x.x.x.x/base",\
           "x.x.x.x:9000/minio/",\
+          "yeasy.gitbooks.io",\
           "https://www.freedesktop.org/wiki/Software/systemd/",\
           "www.aliyun.com" \
           --allow-dupe \
