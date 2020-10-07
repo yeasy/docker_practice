@@ -1,6 +1,6 @@
 # 实战多阶段构建 Laravel 镜像
 
-> 本节适用于 PHP 开发者阅读。
+> 本节适用于 PHP 开发者阅读。`Laravel` 基于 8.x 版本，各个版本的文件结构可能会有差异，请根据实际自行修改。
 
 ## 准备
 
@@ -11,10 +11,15 @@
 ```bash
 .idea/
 .git/
+
 vendor/
+
 node_modules/
+
 public/js/
 public/css/
+public/mix-manifest.json
+
 yarn-error.log
 
 bootstrap/cache/*
@@ -55,13 +60,15 @@ FROM node:alpine as frontend
 
 COPY package.json /app/
 
-RUN cd /app \
+RUN set -x ; cd /app \
       && npm install --registry=https://registry.npm.taobao.org
 
 COPY webpack.mix.js /app/
-COPY resources/assets/ /app/resources/assets/
+COPY resources/ /app/resources/
 
-RUN cd /app \
+RUN set -x ; cd /app \
+      && touch artisan \
+      && mkdir -p public \
       && npm run production
 ```
 
@@ -75,7 +82,7 @@ FROM composer as composer
 COPY database/ /app/database/
 COPY composer.json composer.lock /app/
 
-RUN cd /app \
+RUN set -x ; cd /app \
       && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/ \
       && composer install \
            --ignore-platform-reqs \
@@ -90,7 +97,7 @@ RUN cd /app \
 第三阶段对以上阶段生成的文件进行整合。
 
 ```docker
-FROM php:7.2-fpm-alpine as laravel
+FROM php:7.4-fpm-alpine as laravel
 
 ARG LARAVEL_PATH=/app/laravel
 
@@ -98,17 +105,17 @@ COPY --from=composer /app/vendor/ ${LARAVEL_PATH}/vendor/
 COPY . ${LARAVEL_PATH}
 COPY --from=frontend /app/public/js/ ${LARAVEL_PATH}/public/js/
 COPY --from=frontend /app/public/css/ ${LARAVEL_PATH}/public/css/
-COPY --from=frontend /app/mix-manifest.json ${LARAVEL_PATH}/mix-manifest.json
+COPY --from=frontend /app/public/mix-manifest.json ${LARAVEL_PATH}/public/mix-manifest.json
 
-RUN cd ${LARAVEL_PATH} \
-      && php artisan package:discover \
+RUN set -x ; cd ${LARAVEL_PATH} \
       && mkdir -p storage \
       && mkdir -p storage/framework/cache \
       && mkdir -p storage/framework/sessions \
       && mkdir -p storage/framework/testing \
       && mkdir -p storage/framework/views \
       && mkdir -p storage/logs \
-      && chmod -R 777 storage
+      && chmod -R 777 storage \
+      && php artisan package:discover
 ```
 
 ## 最后一个阶段构建 NGINX 镜像
@@ -143,13 +150,13 @@ $ docker network create laravel
 启动 laravel 容器， `--name=laravel` 参数设定的名字必须与 `nginx` 配置文件中的 `fastcgi_pass   laravel:9000;` 一致
 
 ```bash
-$ docker run -it --rm --name=laravel --network=laravel my/laravel
+$ docker run -dit --rm --name=laravel --network=laravel my/laravel
 ```
 
 启动 nginx 容器
 
 ```bash
-$ docker run -it --rm --network=laravel -p 8080:80 my/nginx
+$ docker run -dit --rm --network=laravel -p 8080:80 my/nginx
 ```
 
 浏览器访问 `127.0.0.1:8080` 可以看到 Laravel 项目首页。
@@ -160,6 +167,8 @@ $ docker run -it --rm --network=laravel -p 8080:80 my/nginx
 
 本小节内容为了方便测试，将配置文件直接放到了镜像中，实际在使用时 **建议** 将配置文件作为 `config` 或 `secret` 挂载到容器中，请读者自行学习 `Swarm mode` 或 `Kubernetes` 的相关内容。
 
+由于篇幅所限本小节只是简单列出，更多内容可以参考 https://github.com/khs1994-docker/laravel-demo 项目。
+
 ## 附录
 
 完整的 `Dockerfile` 文件如下。
@@ -169,13 +178,15 @@ FROM node:alpine as frontend
 
 COPY package.json /app/
 
-RUN cd /app \
+RUN set -x ; cd /app \
       && npm install --registry=https://registry.npm.taobao.org
 
 COPY webpack.mix.js /app/
-COPY resources/assets/ /app/resources/assets/
+COPY resources/ /app/resources/
 
-RUN cd /app \
+RUN set -x ; cd /app \
+      && touch artisan \
+      && mkdir -p public \
       && npm run production
 
 FROM composer as composer
@@ -183,7 +194,7 @@ FROM composer as composer
 COPY database/ /app/database/
 COPY composer.json /app/
 
-RUN cd /app \
+RUN set -x ; cd /app \
       && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/ \
       && composer install \
            --ignore-platform-reqs \
@@ -192,7 +203,7 @@ RUN cd /app \
            --no-scripts \
            --prefer-dist
 
-FROM php:7.2-fpm-alpine as laravel
+FROM php:7.4-fpm-alpine as laravel
 
 ARG LARAVEL_PATH=/app/laravel
 
@@ -200,17 +211,17 @@ COPY --from=composer /app/vendor/ ${LARAVEL_PATH}/vendor/
 COPY . ${LARAVEL_PATH}
 COPY --from=frontend /app/public/js/ ${LARAVEL_PATH}/public/js/
 COPY --from=frontend /app/public/css/ ${LARAVEL_PATH}/public/css/
-COPY --from=frontend /app/mix-manifest.json ${LARAVEL_PATH}/mix-manifest.json
+COPY --from=frontend /app/public/mix-manifest.json ${LARAVEL_PATH}/public/mix-manifest.json
 
-RUN cd ${LARAVEL_PATH} \
-      && php artisan package:discover \
+RUN set -x ; cd ${LARAVEL_PATH} \
       && mkdir -p storage \
       && mkdir -p storage/framework/cache \
       && mkdir -p storage/framework/sessions \
       && mkdir -p storage/framework/testing \
       && mkdir -p storage/framework/views \
       && mkdir -p storage/logs \
-      && chmod -R 777 storage
+      && chmod -R 777 storage \
+      && php artisan package:discover
 
 FROM nginx:alpine as nginx
 
