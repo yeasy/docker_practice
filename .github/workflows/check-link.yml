@@ -40,6 +40,8 @@ jobs:
           "mirrors.ustc.edu.cn",\
           "docs.docker.com",\
           "dockerhub.azk8s.cn",\
+          "reg-mirror.qiniu.com",\
+          "registry.docker-cn.com",\
           "mirror.ccs.tencentyun.com",\
           "vuepress.mirror.docker-practice.com",\
           "mc.qcloudimg.com/static/img",\
