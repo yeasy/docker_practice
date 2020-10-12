@@ -1,4 +1,4 @@
-# Windows 10 安装 Docker Desktop CE
+# Windows 10 安装 Docker
 
 ## 系统要求
 
@@ -28,11 +28,11 @@ $ winget install Docker.DockerDesktopEdge
 
 ![](_images/install-win-docker-app-search.png)
 
-Docker CE 启动之后会在 Windows 任务栏出现鲸鱼图标。
+Docker 启动之后会在 Windows 任务栏出现鲸鱼图标。
 
 ![](_images/install-win-taskbar-circle.png)
 
-等待片刻，点击 Got it 开始使用 Docker CE。
+等待片刻，点击 Got it 开始使用 Docker。
 
 ![](_images/install-win-success-popup-cloud.png)
 

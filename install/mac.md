@@ -1,4 +1,4 @@
-# macOS 安装 Docker Desktop CE
+# macOS 安装 Docker
 
 ## 系统要求
 

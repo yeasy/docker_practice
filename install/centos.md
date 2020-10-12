@@ -1,4 +1,4 @@
-# CentOS 安装 Docker CE
+# CentOS 安装 Docker
 
 >警告：切勿在没有配置 Docker YUM 源的情况下直接使用 yum 命令安装 Docker.
 
@@ -6,7 +6,7 @@
 
 ### 系统要求
 
-Docker CE 支持 64 位版本 CentOS 7，并且要求内核版本不低于 3.10。 CentOS 7 满足最低内核的要求，但由于内核版本比较低，部分功能（如 `overlay2` 存储层驱动）无法使用，并且部分功能可能不太稳定。
+Docker 支持 64 位版本 CentOS 7，并且要求内核版本不低于 3.10。 CentOS 7 满足最低内核的要求，但由于内核版本比较低，部分功能（如 `overlay2` 存储层驱动）无法使用，并且部分功能可能不太稳定。
 
 ### 卸载旧版本
 
@@ -30,9 +30,7 @@ $ sudo yum remove docker \
 执行以下命令安装依赖包：
 
 ```bash
-$ sudo yum install -y yum-utils \
-           device-mapper-persistent-data \
-           lvm2
+$ sudo yum install -y yum-utils
 ```
 
 鉴于国内网络问题，强烈建议使用国内源，官方源请在注释中查看。
@@ -52,19 +50,18 @@ $ sudo sed -i 's/download.docker.com/mirrors.ustc.edu.cn\/docker-ce/g' /etc/yum.
 #     https://download.docker.com/linux/centos/docker-ce.repo
 ```
 
-如果需要测试版本的 Docker CE 请使用以下命令：
+如果需要测试版本的 Docker 请使用以下命令：
 
 ```bash
 $ sudo yum-config-manager --enable docker-ce-test
 ```
 
-### 安装 Docker CE
+### 安装 Docker
 
 更新 `yum` 软件源缓存，并安装 `docker-ce`。
 
 ```bash
-$ sudo yum makecache fast
-$ sudo yum install docker-ce
+$ sudo yum install docker-ce docker-ce-cli containerd.io
 ```
 
 ## 使用脚本自动安装
@@ -77,9 +74,9 @@ $ sudo sh get-docker.sh --mirror Aliyun
 # $ sudo sh get-docker.sh --mirror AzureChinaCloud
 ```
 
-执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker CE 的稳定(stable)版本安装在系统中。
+执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker 的稳定(stable)版本安装在系统中。
 
-## 启动 Docker CE
+## 启动 Docker
 
 ```bash
 $ sudo systemctl enable docker
@@ -145,7 +142,7 @@ For more examples and ideas, visit:
 
 ## 添加内核参数
 
-如果在 CentOS 使用 Docker CE 看到下面的这些警告信息：
+如果在 CentOS 使用 Docker 看到下面的这些警告信息：
 
 ```bash
 WARNING: bridge-nf-call-iptables is disabled
