@@ -1,4 +1,4 @@
-# Ubuntu 安装 Docker CE
+# Ubuntu 安装 Docker
 
 >警告：切勿在没有配置 Docker APT 源的情况下直接使用 apt 命令安装 Docker.
 
@@ -6,13 +6,13 @@
 
 ### 系统要求
 
-Docker CE 支持以下版本的 [Ubuntu](https://ubuntu.com/server) 操作系统：
+Docker 支持以下版本的 [Ubuntu](https://ubuntu.com/server) 操作系统：
 
 * Ubuntu Focal 20.04 (LTS)
 * Bionic 18.04 (LTS)
 * Xenial 16.04 (LTS)
 
-Docker CE 可以安装在 64 位的 x86 平台或 ARM 平台上。Ubuntu 发行版中，LTS（Long-Term-Support）长期支持版本，会获得 5 年的升级维护支持，这样的版本会更稳定，因此在生产环境中推荐使用 LTS 版本。
+Docker 可以安装在 64 位的 x86 平台或 ARM 平台上。Ubuntu 发行版中，LTS（Long-Term-Support）长期支持版本，会获得 5 年的升级维护支持，这样的版本会更稳定，因此在生产环境中推荐使用 LTS 版本。
 
 ### 卸载旧版本
 
@@ -35,6 +35,7 @@ $ sudo apt-get install \
     apt-transport-https \
     ca-certificates \
     curl \
+    gnupg-agent \
     software-properties-common
 ```
 
@@ -66,16 +67,16 @@ $ sudo add-apt-repository \
 #    stable"
 ```
 
->以上命令会添加稳定版本的 Docker CE APT 镜像源，如果需要测试版本的 Docker CE 请将 stable 改为 test。
+>以上命令会添加稳定版本的 Docker APT 镜像源，如果需要测试版本的 Docker 请将 stable 改为 test。
 
-### 安装 Docker CE
+### 安装 Docker
 
 更新 apt 软件包缓存，并安装 `docker-ce`：
 
 ```bash
 $ sudo apt-get update
 
-$ sudo apt-get install docker-ce
+$ sudo apt-get install docker-ce docker-ce-cli containerd.io
 ```
 
 ## 使用脚本自动安装
@@ -88,9 +89,9 @@ $ sudo sh get-docker.sh --mirror Aliyun
 # $ sudo sh get-docker.sh --mirror AzureChinaCloud
 ```
 
-执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker CE 的稳定(stable)版本安装在系统中。
+执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker 的稳定(stable)版本安装在系统中。
 
-## 启动 Docker CE
+## 启动 Docker
 
 ```bash
 $ sudo systemctl enable docker

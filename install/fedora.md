@@ -1,4 +1,4 @@
-# Fedora 安装 Docker CE
+# Fedora 安装 Docker
 
 >警告：切勿在没有配置 Docker dnf 源的情况下直接使用 dnf 命令安装 Docker.
 
@@ -6,7 +6,7 @@
 
 ### 系统要求
 
-Docker CE 支持以下版本的 [Fedora](https://getfedora.org/) 操作系统：
+Docker 支持以下版本的 [Fedora](https://getfedora.org/) 操作系统：
 
 * 30
 * 31
@@ -53,25 +53,25 @@ $ sudo sed -i 's/download.docker.com/mirrors.ustc.edu.cn\/docker-ce/g' /etc/yum.
 #    https://download.docker.com/linux/fedora/docker-ce.repo
 ```
 
-如果需要测试版本的 Docker CE 请使用以下命令：
+如果需要测试版本的 Docker 请使用以下命令：
 
 ```bash
 $ sudo dnf config-manager --set-enabled docker-ce-test
 ```
 
-你也可以禁用测试版本的 Docker CE
+你也可以禁用测试版本的 Docker
 
 ```bash
 $ sudo dnf config-manager --set-disabled docker-ce-test
 ```
 
-### 安装 Docker CE
+### 安装 Docker
 
 更新 `dnf` 软件源缓存，并安装 `docker-ce`。
 
 ```bash
 $ sudo dnf update
-$ sudo dnf install docker-ce
+$ sudo dnf install docker-ce docker-ce-cli containerd.io
 ```
 
 你也可以使用以下命令安装指定版本的 Docker
@@ -100,9 +100,9 @@ $ sudo sh get-docker.sh --mirror Aliyun
 # $ sudo sh get-docker.sh --mirror AzureChinaCloud
 ```
 
-执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker CE 最新稳定(stable)版本安装在系统中。
+执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker 最新稳定(stable)版本安装在系统中。
 
-## 启动 Docker CE
+## 启动 Docker
 
 ```bash
 $ sudo systemctl enable docker

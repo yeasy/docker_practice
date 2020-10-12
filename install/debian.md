@@ -1,4 +1,4 @@
-# Debian 安装 Docker CE
+# Debian 安装 Docker
 
 >警告：切勿在没有配置 Docker APT 源的情况下直接使用 apt 命令安装 Docker.
 
@@ -6,7 +6,7 @@
 
 ### 系统要求
 
-Docker CE 支持以下版本的 [Debian](https://www.debian.org/intro/about) 操作系统：
+Docker 支持以下版本的 [Debian](https://www.debian.org/intro/about) 操作系统：
 
 * Buster 10
 * Stretch 9
@@ -32,7 +32,7 @@ $ sudo apt-get install \
      apt-transport-https \
      ca-certificates \
      curl \
-     gnupg2 \
+     gnupg-agent \
      lsb-release \
      software-properties-common
 ```
@@ -49,7 +49,7 @@ $ curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/debian/gpg | sudo apt-k
 # $ curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 ```
 
-然后，我们需要向 `sources.list` 中添加 Docker CE 软件源：
+然后，我们需要向 `sources.list` 中添加 Docker 软件源：
 
 ```bash
 $ sudo add-apt-repository \
@@ -64,16 +64,16 @@ $ sudo add-apt-repository \
 #    stable"
 ```
 
->以上命令会添加稳定版本的 Docker CE APT 源，如果需要测试版本的 Docker CE 请将 stable 改为 test。
+>以上命令会添加稳定版本的 Docker APT 源，如果需要测试版本的 Docker 请将 stable 改为 test。
 
-### 安装 Docker CE
+### 安装 Docker
 
 更新 apt 软件包缓存，并安装 `docker-ce`。
 
 ```bash
 $ sudo apt-get update
 
-$ sudo apt-get install docker-ce
+$ sudo apt-get install docker-ce docker-ce-cli containerd.io
 ```
 
 ## 使用脚本自动安装
@@ -86,9 +86,9 @@ $ sudo sh get-docker.sh --mirror Aliyun
 # $ sudo sh get-docker.sh --mirror AzureChinaCloud
 ```
 
-执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker CE 的稳定(stable)版本安装在系统中。
+执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker 的稳定(stable)版本安装在系统中。
 
-## 启动 Docker CE
+## 启动 Docker
 
 ```bash
 $ sudo systemctl enable docker
