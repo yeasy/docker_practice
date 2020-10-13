@@ -12,9 +12,19 @@
 
 本节我们以 [网易云](https://www.163yun.com/) 镜像服务 `https://hub-mirror.c.163.com` 为例进行介绍。
 
-## Ubuntu 16.04+、Debian 8+、CentOS 7
+## Ubuntu 16.04+、Debian 8+、CentOS 7+
 
-对于使用 [systemd](https://www.freedesktop.org/wiki/Software/systemd/) 的系统，请在 `/etc/docker/daemon.json` 中写入如下内容（如果文件不存在请新建该文件）
+目前主流 Linux 发行版均已使用 [systemd](https://systemd.io/) 进行服务管理，这里介绍如何在使用 systemd 的 Linux 发行版中配置镜像加速器。
+
+请首先执行以下命令，查看是否在 `docker.service` 文件中配置过镜像地址。
+
+```bash
+$ systemctl cat docker | grep '\-\-registry\-mirror'
+```
+
+如果该命令有输出，那么请执行 `$ systemctl cat docker` 查看 `ExecStart=` 出现的位置，修改对应的文件内容去掉 `--registry-mirror` 参数及其值，并按接下来的步骤进行配置。
+
+如果以上命令没有任何输出，那么就可以在 `/etc/docker/daemon.json` 中写入如下内容（如果文件不存在请新建该文件）：
 
 ```json
 {
@@ -33,8 +43,6 @@
 $ sudo systemctl daemon-reload
 $ sudo systemctl restart docker
 ```
-
->注意：如果您之前查看旧教程，修改了 `docker.service` 文件内容，请去掉您添加的内容（`--registry-mirror=https://hub-mirror.c.163.com`）。
 
 ## Windows 10
 
