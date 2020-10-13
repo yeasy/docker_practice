@@ -9,7 +9,7 @@ COPY book.json book.json
 COPY docker-entrypoint.sh /usr/local/bin/
 
 RUN set -x && apk add --no-cache \
-          tzdata \
+          tzdata bash \
       && npm install -g gitbook-cli \
       && gitbook install \
       && ln -s /usr/local/bin/docker-entrypoint.sh / \
