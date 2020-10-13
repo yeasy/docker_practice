@@ -13,6 +13,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "gitbook:help": "gitbook help",
+    "gitbook:build": "gitbook build",
+    "gitbook:serve": "gitbook serve",
     "vuepress:build": "npx vuepress build"
   },
   "repository": {

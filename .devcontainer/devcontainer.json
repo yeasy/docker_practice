@@ -1,0 +1,20 @@
+{
+  "image": "yeasy/docker_practice:latest",
+  "mounts": [
+    "source=dp-code-remote-cache,target=/root/.vscode-server,type=volume"
+  ],
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/sh"
+  },
+  "forwardPorts": [
+    4000
+  ],
+  "runArgs": [
+    "--cap-add=SYS_ADMIN"
+  ],
+  "postStartCommand": [
+    "sh",
+    "-cx",
+    "pwd ; mkdir -p /workspaces/docker_practice/node_modules; mkdir -p /workspaces/docker_practice/_book; mount --bind /srv/gitbook/node_modules /workspaces/docker_practice/node_modules ; mount --bind /mnt /workspaces/docker_practice/_book"
+  ]
+}
