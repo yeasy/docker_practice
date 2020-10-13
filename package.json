@@ -5,12 +5,11 @@
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
-    "chalk": "^3.0.0",
-    "commander": "^4.0.1",
-    "esm": "^3.2.25",
-    "vuepress-plugin-container": "^2.1.2",
-    "vuepress-plugin-sitemap": "^2.3.1",
-    "vuepress-theme-hope": "^0.7.3"
+    "chalk": "^2.4.2",
+    "commander": "^2.0.0",
+    "esm": "^3.0.0",
+    "vuepress-plugin-container": "^2.1.5",
+    "vuepress-theme-hope": "^0.8.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

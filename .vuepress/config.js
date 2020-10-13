@@ -1,15 +1,6 @@
 const resolve = require("vuepress-theme-hope/resolve");
 
 module.exports = resolve({
-  themeConfig: {
-    blog: false,
-    comment: {
-      type: "disable", // 使用 Valine
-      appId: "...", // your appId
-      appKey: "...", // your appKey
-    },
-    pageInfo: false
-  },
   title: 'Docker 从入门到实践',
   base: '/',
   head: [['script', {}, `
@@ -39,13 +30,57 @@ module.exports = resolve({
   ]
   ],
   plugins: {
-    sitemap: {
-      hostname: 'https://vuepress.mirror.docker-practice.com'
-    },
+    // sitemap: {
+    //   hostname: 'https://vuepress.mirror.docker-practice.com'
+    // },
+    // 'git-log': {
+    //   additionalArgs: '--no-merge',
+    //   onlyFirstAndLastCommit: true,
+    // },
   },
   themeConfig: {
+    blog: false,
+    // comment: false,
+    comment: {
+      type: "disable", // 使用 Valine
+      appId: "...", // your appId
+      appKey: "...", // your appKey
+    },
+    pageInfo: [
+      // 'Author',
+      'ReadTime',
+      'Word',
+    ],
+    footer: {
+      content: "",
+      display: true,
+      copyright: false,
+    },
+    searchPlaceholder: 'Search',
+    repo: 'yeasy/docker_practice',
+    repoLabel: 'GitHub',
+    hostname: 'https://vuepress.mirror.docker-practice.com',
+    // author: 'yeasy',
+    markdown: {
+      // lineNumbers: true,
+      // sub: true,
+      // footnote: true
+      enableAll: true
+    },
+    themeColor: {
+      blue: '#2196f3',
+      red: '#f26d6d',
+      green: '#3eaf7c',
+      orange: '#fb9b5f'
+    },
+
+    //
+
+    showAds: true,
+
     docsRepo: 'yeasy/docker_practice',
     docsDir: '/',
+    docsBranch: 'master',
     editLinks: true,
     nav: [
       {
