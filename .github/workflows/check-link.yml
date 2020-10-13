@@ -62,7 +62,6 @@ jobs:
           "x.x.x.x/base",\
           "x.x.x.x:9000/minio/",\
           "yeasy.gitbooks.io",\
-          "https://www.freedesktop.org/wiki/Software/systemd/",\
           "www.aliyun.com" \
           --allow-dupe \
           --skip-save-results \
