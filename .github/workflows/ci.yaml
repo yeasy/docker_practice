@@ -21,7 +21,13 @@ jobs:
           sudo rm -rf _book
           npm i vuepress --save-dev
           npm i
-          npm run vuepress:build || true
+
+          git clone https://github.com/docker-practice/.vuepress  .vuepress2
+          cp -r .vuepress2/. .vuepress/
+          rm -rf .vuepress2
+          find . \( -path "./mesos" -o -path "./machine" -o -path "./swarm_mode" -o -path "./node_modules" -o -path "./.vuepress" -o -path "./_book" -o -path "./CHANGELOG.md" -o -path "./CONTRIBUTING.md" \) -prune -o -name "*.md" -exec sed -i 'N;2a\<AdSenseTitle/>\n' {} \;
+
+          npm run vuepress:build
           echo "vuepress.docker-practice.com" > .vuepress/dist/CNAME
 
           cp -r _images .vuepress/dist
@@ -39,7 +45,7 @@ jobs:
           cp -r mesos/_images .vuepress/dist/mesos
           cp -r underly/_images .vuepress/dist/underly
 
-          echo "include: [_images]" > .vuepress/dist/_config
+          echo "include: [_images]" > .vuepress/dist/_config.yml
       - name: Upload Vuepress dist
         uses: docker://pcit/pages
         if: github.repository == 'docker-practice/docker_practice'
