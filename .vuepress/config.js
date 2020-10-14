@@ -1,5 +1,7 @@
 const resolve = require("vuepress-theme-hope/resolve");
+// const { config } = require('vuepress-theme-hope')
 
+// module.exports =config({
 module.exports = resolve({
   title: 'Docker 从入门到实践',
   base: '/',
@@ -52,7 +54,7 @@ module.exports = resolve({
       'Word',
     ],
     footer: {
-      content: "",
+      content: "Powerd by Vuepress, Made with <a target='_blank' href='https://github.com/mister-hope/vuepress-theme-hope'>vuepress-theme-hope</a>",
       display: true,
       copyright: false,
     },
@@ -62,16 +64,13 @@ module.exports = resolve({
     hostname: 'https://vuepress.mirror.docker-practice.com',
     // author: 'yeasy',
     markdown: {
-      // lineNumbers: true,
-      // sub: true,
-      // footnote: true
-      enableAll: true
+      lineNumbers: true,
     },
     themeColor: {
       blue: '#2196f3',
-      red: '#f26d6d',
-      green: '#3eaf7c',
-      orange: '#fb9b5f'
+      // red: '#f26d6d',
+      // green: '#3eaf7c',
+      // orange: '#fb9b5f'
     },
 
     //
