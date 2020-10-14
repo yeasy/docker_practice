@@ -6,7 +6,7 @@
 
 ### 系统要求
 
-Docker 支持 64 位版本 CentOS 7，并且要求内核版本不低于 3.10。 CentOS 7 满足最低内核的要求，但由于内核版本比较低，部分功能（如 `overlay2` 存储层驱动）无法使用，并且部分功能可能不太稳定。
+Docker 支持 64 位版本 CentOS 7/8，并且要求内核版本不低于 3.10。 CentOS 7 满足最低内核的要求，但由于内核版本比较低，部分功能（如 `overlay2` 存储层驱动）无法使用，并且部分功能可能不太稳定。
 
 ### 卸载旧版本
 
@@ -50,7 +50,7 @@ $ sudo sed -i 's/download.docker.com/mirrors.ustc.edu.cn\/docker-ce/g' /etc/yum.
 #     https://download.docker.com/linux/centos/docker-ce.repo
 ```
 
-如果需要测试版本的 Docker 请使用以下命令：
+如果需要测试版本的 Docker （**或你的系统是 CentOS 8**）请执行以下命令：
 
 ```bash
 $ sudo yum-config-manager --enable docker-ce-test
@@ -64,11 +64,33 @@ $ sudo yum-config-manager --enable docker-ce-test
 $ sudo yum install docker-ce docker-ce-cli containerd.io
 ```
 
+## CentOS8 额外设置
+
+由于 CentOS8 防火墙使用了 `nftables`，但 Docker 尚未支持 `nftables`， 我们可以使用如下设置使用 `iptables`：
+
+更改 `/etc/firewalld/firewalld.conf`
+
+```bash
+# FirewallBackend=nftables
+FirewallBackend=iptables
+```
+
+或者执行如下命令：
+
+```bash
+$ firewall-cmd --permanent --zone=trusted --add-interface=docker0
+
+$ firewall-cmd --reload
+```
+
 ## 使用脚本自动安装
 
 在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，CentOS 系统上可以使用这套脚本安装，另外可以通过 `--mirror` 选项使用国内源进行安装：
 
+> 若你想安装测试版的 Docker（**或你的系统是 CentOS 8**）, 请从 test.docker.com 获取脚本
+
 ```bash
+# $ curl -fsSL test.docker.com -o get-docker.sh
 $ curl -fsSL get.docker.com -o get-docker.sh
 $ sudo sh get-docker.sh --mirror Aliyun
 # $ sudo sh get-docker.sh --mirror AzureChinaCloud
@@ -167,3 +189,5 @@ $ sudo sysctl -p
 ## 参考文档
 
 * [Docker 官方 CentOS 安装文档](https://docs.docker.com/install/linux/docker-ce/centos/)。
+* https://firewalld.org/2018/07/nftables-backend
+* https://github.com/moby/libnetwork/issues/2496
