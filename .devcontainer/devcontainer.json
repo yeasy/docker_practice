@@ -15,6 +15,6 @@
   "postStartCommand": [
     "sh",
     "-cx",
-    "pwd ; mkdir -p /workspaces/docker_practice/node_modules; mkdir -p /workspaces/docker_practice/_book; mount --bind /srv/gitbook/node_modules /workspaces/docker_practice/node_modules ; mount --bind /mnt /workspaces/docker_practice/_book"
+    "pwd ; cd /workspaces/docker_practice ; mkdir -p ${PWD}/node_modules; mkdir -p ${PWD}/_book; mount --bind /srv/gitbook/node_modules ${PWD}/node_modules ; mount --bind /mnt ${PWD}/_book"
   ]
 }
