@@ -80,7 +80,10 @@ $ sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，Debian 系统上可以使用这套脚本安装，另外可以通过 `--mirror` 选项使用国内源进行安装：
 
+> 若你想安装测试版的 Docker, 请从 test.docker.com 获取脚本
+
 ```bash
+# $ curl -fsSL test.docker.com -o get-docker.sh
 $ curl -fsSL get.docker.com -o get-docker.sh
 $ sudo sh get-docker.sh --mirror Aliyun
 # $ sudo sh get-docker.sh --mirror AzureChinaCloud

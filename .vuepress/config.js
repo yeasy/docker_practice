@@ -185,7 +185,6 @@ module.exports = resolve({
         'debian',
         'fedora',
         'centos',
-        'centos8',
         'raspberry-pi',
         'offline',
         'mac',
