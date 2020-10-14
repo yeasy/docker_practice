@@ -24,7 +24,7 @@ about: Create a report to help us improve
 <!--如果你的 Docker 版本低于 19.03 请尽可能升级到该版本，保留你的 Docker 版本，其他选项删除-->
 <!--if Docker version under 19.03, please upgrade Docker to 19.03-->
 
-* [x] Edge (v19.03)
+* [x] Test (v20.10)
 * [x] Stable (v19.03)
 * [x] 1.13.0 or Before
 
