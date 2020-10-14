@@ -8,6 +8,7 @@
     "chalk": "^2.4.2",
     "commander": "^2.0.0",
     "esm": "^3.0.0",
+    "vuepress": "1.6.0",
     "vuepress-plugin-container": "^2.1.5",
     "vuepress-theme-hope": "^0.8.0"
   },
