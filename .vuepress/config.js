@@ -54,7 +54,7 @@ module.exports = resolve({
       'Word',
     ],
     footer: {
-      content: "Powerd by Vuepress, Made with <a target='_blank' href='https://github.com/mister-hope/vuepress-theme-hope'>vuepress-theme-hope</a>",
+      content: "Made with <a target='_blank' href='https://github.com/mister-hope/vuepress-theme-hope'>vuepress-theme-hope</a>",
       display: true,
       copyright: false,
     },

@@ -20,13 +20,15 @@ jobs:
       - name: vuepress
         run: |
           sudo rm -rf _book
-          npm i vuepress --save-dev
+          # npm i vuepress --save-dev
           npm i
 
           git clone https://github.com/docker-practice/.vuepress  .vuepress2
           cp -r .vuepress2/. .vuepress/
           rm -rf .vuepress2
           find . \( -path "./mesos" -o -path "./machine" -o -path "./swarm_mode" -o -path "./node_modules" -o -path "./.vuepress" -o -path "./_book" -o -path "./CHANGELOG.md" -o -path "./CONTRIBUTING.md" \) -prune -o -name "*.md" -exec sed -i 'N;2a\<AdSenseTitle/>\n' {} \;
+
+          npx vuepress --version
 
           npm run vuepress:build
           echo "vuepress.docker-practice.com" > .vuepress/dist/CNAME
