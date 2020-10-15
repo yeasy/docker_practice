@@ -1,8 +1,6 @@
-const resolve = require("vuepress-theme-hope/resolve");
-// const { config } = require('vuepress-theme-hope')
+const { config } = require('vuepress-theme-hope')
 
-// module.exports =config({
-module.exports = resolve({
+module.exports = config({
   title: 'Docker 从入门到实践',
   base: '/',
   head: [['script', {}, `
@@ -41,6 +39,7 @@ module.exports = resolve({
     // },
   },
   themeConfig: {
+    baseLang: 'zh-CN',
     blog: false,
     // comment: false,
     comment: {
