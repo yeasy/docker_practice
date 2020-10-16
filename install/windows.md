@@ -26,15 +26,15 @@ $ winget install Docker.DockerDesktopEdge
 
 在 Windows 搜索栏输入 **Docker** 点击 **Docker Desktop** 开始运行。
 
-![](_images/install-win-docker-app-search.png)
+![](./_images/install-win-docker-app-search.png)
 
 Docker 启动之后会在 Windows 任务栏出现鲸鱼图标。
 
-![](_images/install-win-taskbar-circle.png)
+![](./_images/install-win-taskbar-circle.png)
 
 等待片刻，点击 Got it 开始使用 Docker。
 
-![](_images/install-win-success-popup-cloud.png)
+![](./_images/install-win-success-popup-cloud.png)
 
 ## 镜像加速
 

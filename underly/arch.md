@@ -4,7 +4,7 @@ Docker 采用了 `C/S` 架构，包括客户端和服务端。Docker 守护进�
 
 客户端和服务端既可以运行在一个机器上，也可通过 `socket` 或者 `RESTful API` 来进行通信。
 
-![Docker 基本架构](_images/docker_arch.png)
+![Docker 基本架构](./_images/docker_arch.png)
 
 Docker 守护进程一般在宿主主机后台运行，等待接收来自客户端的消息。
 

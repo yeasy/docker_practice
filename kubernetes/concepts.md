@@ -1,6 +1,6 @@
 # 基本概念
 
-![](_images/kubernetes_design.jpg)
+![](./_images/kubernetes_design.jpg)
 
 * 节点（`Node`）：一个节点是一个运行 Kubernetes 中的主机。
 * 容器组（`Pod`）：一个 Pod 对应于由若干容器组成的一个容器组，同个组内的容器共享一个存储卷(volume)。

@@ -1,6 +1,6 @@
 # 阿里云
 
-![阿里云](_images/aliyun-logo.png)
+![阿里云](./_images/aliyun-logo.png)
 
 [阿里云](https://www.aliyun.com?source=5176.11533457&userCode=8lx5zmtu&type=copy) 创立于 2009 年，是中国较早的云计算平台。阿里云致力于提供安全、可靠的计算和数据处理能力。
 
