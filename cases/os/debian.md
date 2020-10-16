@@ -3,7 +3,7 @@
 
 ## Debian 系统简介
 
-![Debian 操作系统](_images/debian-logo.png)
+![Debian 操作系统](./_images/debian-logo.png)
 
 `Debian` 是由 `GPL` 和其他自由软件许可协议授权的自由软件组成的操作系统，由 **Debian 计划（Debian Project）** 组织维护。**Debian 计划** 是一个独立的、分散的组织，由 `3000` 人志愿者组成，接受世界多个非盈利组织的资金支持，`Software in the Public Interest` 提供支持并持有商标作为保护机构。`Debian` 以其坚守 `Unix` 和自由软件的精神，以及其给予用户的众多选择而闻名。现时 `Debian` 包括了超过 `25,000` 个软件包并支持 `12` 个计算机系统结构。
 
@@ -38,7 +38,7 @@ Debian GNU/Linux 8
 
 ## Ubuntu 系统简介
 
-![Ubuntu 操作系统](_images/ubuntu-logo.jpg)
+![Ubuntu 操作系统](./_images/ubuntu-logo.jpg)
 
 `Ubuntu` 是一个以桌面应用为主的 `GNU/Linux` 操作系统，其名称来自非洲南部祖鲁语或豪萨语的“ubuntu”一词（官方译名“友帮拓”，另有“吾帮托”、“乌班图”、“有奔头”或“乌斑兔”等译名）。`Ubuntu` 意思是“人性”以及“我的存在是因为大家的存在”，是非洲传统的一种价值观，类似华人社会的“仁爱”思想。 `Ubuntu` 基于 `Debian` 发行版和 `GNOME/Unity` 桌面环境，与 `Debian` 的不同在于它每 6 个月会发布一个新版本，每 2 年推出一个长期支持 **（Long Term Support，LTS）** 版本，一般支持 3 年时间。
 

@@ -1,6 +1,6 @@
 # 腾讯云
 
-![腾讯云](_images/qcloud-logo.jpg)
+![腾讯云](./_images/qcloud-logo.jpg)
 
 [腾讯云](https://cloud.tencent.com/act/cps/redirect?redirect=1040&cps_key=3a5255852d5db99dcd5da4c72f05df61&from=console) 在架构方面经过多年积累，并且有着多年对海量互联网服务的经验。不管是社交、游戏还是其他领域，都有多年的成熟产品来提供产品服务。腾讯在云端完成重要部署，为开发者及企业提供云服务、云数据、云运营等整体一站式服务方案。
 
