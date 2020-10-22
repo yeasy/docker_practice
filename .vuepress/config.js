@@ -62,7 +62,7 @@ module.exports = config({
     repoLabel: 'GitHub',
     hostname: 'https://vuepress.mirror.docker-practice.com',
     // author: 'yeasy',
-    markdown: {
+    mdEnhance: {
       lineNumbers: true,
     },
     themeColor: {
