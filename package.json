@@ -8,7 +8,7 @@
     "chalk": "^2.4.2",
     "commander": "^2.0.0",
     "esm": "^3.0.0",
-    "vuepress": "1.7.0",
+    "vuepress": "1.7.1",
     "vuepress-plugin-container": "^2.1.5",
     "vuepress-theme-hope": "^1.0.0"
   },
@@ -17,7 +17,8 @@
     "gitbook:help": "gitbook help",
     "gitbook:build": "gitbook build",
     "gitbook:serve": "gitbook serve",
-    "vuepress:build": "npx vuepress build"
+    "vuepress:build": "npx vuepress build",
+    "vuepress": "npx vuepress"
   },
   "repository": {
     "type": "git",
