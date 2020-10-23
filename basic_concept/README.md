@@ -1,7 +1,7 @@
-# 基本概念
-Docker 包括三个基本概念
-* 镜像（`Image`）
-* 容器（`Container`）
-* 仓库（`Repository`）
+# Basic Concepts
+Docker contains 3 basic concepts
+* `Image`
+* `Container`
+* `Repository`
 
-理解了这三个概念，就理解了 Docker 的整个生命周期。
+Only after knowing the above 3 concepts will we get a deeper understanding of the lifecyle of docker.
