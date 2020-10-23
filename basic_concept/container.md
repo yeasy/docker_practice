@@ -1,13 +1,13 @@
-## Docker 容器
+## Docker Container
 
-镜像（`Image`）和容器（`Container`）的关系，就像是面向对象程序设计中的 `类` 和 `实例` 一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等。
+The relationship between `Image` and `Container` is just as `Class` and `Instance` in [OOP](https://en.wikipedia.org/wiki/Object-oriented_programming). `Image` is the static definition of `container`, while `containers` are the `images` in running state. `Containers` can be created, started, halted, deleted or stopped.
 
-容器的实质是进程，但与直接在宿主执行的进程不同，容器进程运行于属于自己的独立的 [命名空间](https://en.wikipedia.org/wiki/Linux_namespaces)。因此容器可以拥有自己的 `root` 文件系统、自己的网络配置、自己的进程空间，甚至自己的用户 ID 空间。容器内的进程是运行在一个隔离的环境里，使用起来，就好像是在一个独立于宿主的系统下操作一样。这种特性使得容器封装的应用比直接在宿主运行更加安全。也因为这种隔离的特性，很多人初学 Docker 时常常会混淆容器和虚拟机。
+The essence of `container` is `process`, but different from that in the host OS, the container processes run in their individual [`namespaces`](https://en.wikipedia.org/wiki/Linux_namespaces). With the namespace, a container can have its own `root` filesystem, network configurations, process space and even an ID sapce for users. The processes in a container run in an isolated environment, thus can be used as if it were an individual OS independent of the host OS. This feature makes docker-encapsulated applications safer than those running directly on the host. And that's also an important factor that confuses the novices to tell it from virtual machines.
 
-前面讲过镜像使用的是分层存储，容器也是如此。每一个容器运行时，是以镜像为基础层，在其上创建一个当前容器的存储层，我们可以称这个为容器运行时读写而准备的存储层为 **容器存储层**。
+As we've discussed, `multi-layered filesystem` is applied to images, and so as the containers. When a container is running, it is based on its image, with a writable layer created on top of it. We call this layer prepared for R/W at runtime [**`Container Layer`**](https://docs.docker.com/storage/storagedriver/#images-and-layers).
 
-容器存储层的生存周期和容器一样，容器消亡时，容器存储层也随之消亡。因此，任何保存于容器存储层的信息都会随容器删除而丢失。
+The lifecyle of the container layer is the same as contaier. The container layer dies as soon as the container dies. Therefore, anything stored at the container layer will be discarded when the container is deleted.
 
-按照 Docker 最佳实践的要求，容器不应该向其存储层内写入任何数据，容器存储层要保持无状态化。所有的文件写入操作，都应该使用 [数据卷（Volume）](../data_management/volume.md)、或者绑定宿主目录，在这些位置的读写会跳过容器存储层，直接对宿主（或网络存储）发生读写，其性能和稳定性更高。
+As recommended by the [Docker Development Best Practices](https://docs.docker.com/develop/dev-best-practices/#where-and-how-to-persist-application-data), we should not write any data to the container layer to make it stateless. All file write operations should adhere to [`Volume`](../data_management/volume.md) or bind mounts. Writing to volume or bind mounts skips the container layer and R/W to host storage(or network storage) directly, which achieves better performance and stability.
 
-数据卷的生存周期独立于容器，容器消亡，数据卷不会消亡。因此，使用数据卷后，容器删除或者重新运行之后，数据却不会丢失。
+The lifecyle of volume is independent of the container, and will not vanish when the container is deleted. In light of it, the data persists when a container is deleted or restarted.
