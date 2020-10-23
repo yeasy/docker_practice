@@ -1,6 +1,6 @@
 ## Docker Container
 
-The relationship between `Image` and `Container` is just as `Class` and `Instance` in [OOP](https://en.wikipedia.org/wiki/Object-oriented_programming). `Image` is the static definition of `container`, while `containers` are the `images` in running state. `Containers` can be created, started, halted, deleted or stopped.
+The relationship between `Image` and `Container` is just as `Class` and `Instance` in [OOP](https://en.wikipedia.org/wiki/Object-oriented_programming). `Image` is the static definition of `container`, while `containers` are the `images` in running state. `Containers` can be created, started, paused, deleted or stopped.
 
 The essence of `container` is `process`, but different from that in the host OS, the container processes run in their individual [`namespaces`](https://en.wikipedia.org/wiki/Linux_namespaces). With the namespace, a container can have its own `root` filesystem, network configurations, process space and even an ID sapce for users. The processes in a container run in an isolated environment, thus can be used as if it were an individual OS independent of the host OS. This feature makes docker-encapsulated applications safer than those running directly on the host. And that's also an important factor that confuses the novices to tell it from virtual machines.
 
