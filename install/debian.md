@@ -67,7 +67,7 @@ $ sudo add-apt-repository \
 
 #### Install Docker CE
 
-Update apt cache and install `docker-ce`
+Update apt cache and install `docker-ce`.
 
 ```bash
 $ sudo apt-get update

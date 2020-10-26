@@ -72,7 +72,7 @@ $ sudo yum install docker-ce
 
 ### Install with Automatic Scripts
 
-To simplify the installation process during test or development, Docker official provides a convenient installation script, you can install docker on Fedora with the following script:
+To simplify the installation process during test or development, Docker official provides a convenient installation script, you can install docker on CentOS with the following script:
 
 ```bash
 $ curl -fsSL get.docker.com -o get-docker.sh
