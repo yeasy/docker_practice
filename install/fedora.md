@@ -167,4 +167,4 @@ If you pull docker images very slowly, then you can configure [Registry Mirror](
 
 ### References
 
-* [Docker Official Installation Documents for Fedora](https://docs.docker.com/install/linux/docker-ce/fedora)。
+* [Docker Official Installation Documents for Fedora](https://docs.docker.com/install/linux/docker-ce/fedora)
