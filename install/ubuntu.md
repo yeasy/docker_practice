@@ -2,7 +2,7 @@
 
 > warning: Don't install Docker CE directly using apt without configuring Docker APT source.
 
-### Preparation
+### Prerequisites
 
 #### System requirements
 
@@ -97,9 +97,9 @@ $ sudo systemctl enable docker
 $ sudo systemctl start docker
 ```
 
-### Add docker user group
+### Add Docker Usergroups
 
-Command `docker` uses [Unix socket](https://en.wikipedia.org/wiki/Unix_domain_socket) to communicate with Docker engine default. Only users of `root` and `docker` groups can communicate with Unix socket of Docker engine.`root` user is not directly used on Linux systems in general for security. Therefore, it is better to add users who need to use `docker` to the `docker` user group.
+Command `docker` uses [Unix socket](https://en.wikipedia.org/wiki/Unix_domain_socket) to communicate with Docker engine by default. Only users of `root` and `docker` groups can communicate with Unix socket of the Docker engine.`root` user is not directly used on Linux systems in general for security. Therefore, it is better to add users who need to use `docker` to the `docker` user group.
 
 create `docker` group:
 
@@ -152,7 +152,7 @@ If it shows above message, it means your installation is successful.
 
 ### Registry Mirror(In China)
 
-If you pull docker images very slowly, then you can configurate [Registry Mirror](mirror.md).
+If you pull docker images very slowly, then you can configure [Registry Mirror](mirror.md).
 
 ### References
 
