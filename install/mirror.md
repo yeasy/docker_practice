@@ -1,20 +1,21 @@
-## 镜像加速器
+## Mirror Accelerators
 
-国内从 Docker Hub 拉取镜像有时会遇到困难，此时可以配置镜像加速器。国内很多云服务商都提供了国内加速器服务，例如：
+You may have difficulty pulling images from Docker Hub if you are in China. To resolve this issue, you may configure mirror accelerators. There are many cloud service providers that provide accelerators in China, for example,
 
-* [Azure 中国镜像 `https://dockerhub.azk8s.cn`](https://github.com/Azure/container-service-for-azure-china/blob/master/aks/README.md#22-container-registry-proxy)
-* [阿里云加速器(需登录账号获取)](https://cr.console.aliyun.com/cn-hangzhou/mirrors)
-* [七牛云加速器 `https://reg-mirror.qiniu.com`](https://kirk-enterprise.github.io/hub-docs/#/user-guide/mirror)
+* [Azure China Mirrors `https://dockerhub.azk8s.cn`](https://github.com/Azure/container-service-for-azure-china/blob/master/aks/README.md#22-container-registry-proxy)
+* [Alibaba Cloud Accelerator(Login Required)](https://cr.console.aliyun.com/cn-hangzhou/mirrors)
+* [Qiniu Cloud Accelerator `https://reg-mirror.qiniu.com`](https://kirk-enterprise.github.io/hub-docs/#/user-guide/mirror)
 
-> 由于镜像服务可能出现宕机，建议同时配置多个镜像。
+> Since some mirror services may be down sometimes, it is recommended to configure multiple mirrors simultaneously.
 
-> 国内各大云服务商均提供了 Docker 镜像加速服务，建议根据运行 Docker 的云平台选择对应的镜像加速服务，具体请参考官方文档。
+> Most of the cloud service giants in China provide Docker image acceleration services, you can choose acceleration services based on which platform you are running Docker on. For more detailed information, you may refer to their official documents.
 
-我们以 Azure 中国镜像 `https://dockerhub.azk8s.cn` 为例进行介绍。
+We take Azure China Mirrors `https://dockerhub.azk8s.cn` as an example to introduce more.
+
 
 ### Ubuntu 16.04+、Debian 8+、CentOS 7
 
-对于使用 [systemd](https://www.freedesktop.org/wiki/Software/systemd/) 的系统，请在 `/etc/docker/daemon.json` 中写入如下内容（如果文件不存在请新建该文件）
+For Operating Systems using [systemd](https://www.freedesktop.org/wiki/Software/systemd/), please write the following contents inside `/etc/docker/daemon.json`. And if the file does not exist, please create the file.
 
 ```json
 {
@@ -24,38 +25,37 @@
   ]
 }
 ```
+> Note, make sure the file is in valid json format, otherwise Docker will be unable to start.
 
-> 注意，一定要保证该文件符合 json 规范，否则 Docker 将不能启动。
-
-之后重新启动服务。
+Then restart the service.
 
 ```bash
 $ sudo systemctl daemon-reload
 $ sudo systemctl restart docker
 ```
 
->注意：如果您之前查看旧教程，修改了 `docker.service` 文件内容，请去掉您添加的内容（`--registry-mirror=https://dockerhub.azk8s.cn`）。
+> Note: if you refered to the old tutorial previously, and modified the content of `docker.service`, please remove the added contents(`--registry-mirror=https://dockerhub.azk8s.cn`).
 
 ### Windows 10
 
-对于使用 Windows 10 的系统，在系统右下角托盘 Docker 图标内右键菜单选择 `Settings`，打开配置窗口后左侧导航菜单选择 `Daemon`。在 `Registry mirrors` 一栏中填写加速器地址 `https://dockerhub.azk8s.cn`，之后点击 `Apply` 保存后 Docker 就会重启并应用配置的镜像地址了。
+For windows 10, choose `Settings` in the list after click on the Docker icon at the right-bottom of the desktop. Then choose `Daemon`, and inside the `Registry mirrors`, fill in `https://dockerhub.azk8s.cn`. And finally click `Apply` to save and apply the changes.
 
 ### macOS
 
-对于使用 macOS 的用户，在任务栏点击 Docker Desktop 应用图标 -> Perferences... -> Daemon -> Registry mirrors。在列表中填写加速器地址 `https://dockerhub.azk8s.cn`。修改完成之后，点击 `Apply & Restart` 按钮，Docker 就会重启并应用配置的镜像地址了。
+For macOS users, click Docker Desktop icon at the task bar -> Perferences... -> Daemon -> Registry mirrors. Then fill in the accelerator address `https://dockerhub.azk8s.cn` in the list. After the modification, click on `Apply & Restart` button, Docker will restart and apply the new mirror address.
 
-### 检查加速器是否生效
+### Verify the Accelerator
 
-执行 `$ docker info`，如果从结果中看到了如下内容，说明配置成功。
+After executing `$docker info`, if you can see the following result, you have successfully configured it.
 
 ```bash
 Registry Mirrors:
  https://dockerhub.azk8s.cn/
 ```
 
-### gcr.io 镜像
+### gcr.io Mirror
 
-国内无法直接获取 `gcr.io/*` 镜像，我们可以将 `gcr.io/<repo-name>/<image-name>:<version>` 替换为 `gcr.azk8s.cn/<repo-name>/<image-name>:<version>` ,例如
+In China, we cannot fetch `gcr.io/*` mirrors direclty, but we can replace `gcr.io/<repo-name>/<image-name>:<version>` with `gcr.azk8s.cn/<repo-name>/<image-name>:<version>`, for example
 
 ```bash
 # $ docker pull gcr.io/google_containers/hyperkube-amd64:v1.9.2
