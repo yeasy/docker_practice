@@ -1,16 +1,15 @@
-## CentOS 安装 Docker CE
+## Install Docker CE on CentOS
 
->警告：切勿在没有配置 Docker YUM 源的情况下直接使用 yum 命令安装 Docker.
+> WARNING: DO NOT install Docker with yum directly without configuring yum source.
 
-### 准备工作
+### Prerequisites
 
-#### 系统要求
+#### OS Requirement
+Docker CE supports 64-bit version of CentOS 7, and it requires the kernel version to be no older than 3.10. CentOS 7 satisfies the minimum kernel version requirement. But due to the comparatively old kernel, some of the functionalities like `overlay2` are unable to be used, and some other features may be unstable.
 
-Docker CE 支持 64 位版本 CentOS 7，并且要求内核版本不低于 3.10。 CentOS 7 满足最低内核的要求，但由于内核版本比较低，部分功能（如 `overlay2` 存储层驱动）无法使用，并且部分功能可能不太稳定。
+#### Uninstall the Old Versions
 
-#### 卸载旧版本
-
-旧版本的 Docker 称为 `docker` 或者 `docker-engine`，使用以下命令卸载旧版本：
+The old versions of Docker are called `docker` or `docker-engine`, you can have them uninstalled with the following command:
 
 ```bash
 $ sudo yum remove docker \
@@ -25,9 +24,9 @@ $ sudo yum remove docker \
                   docker-engine
 ```
 
-### 使用 yum 安装
+### Install with yum
 
-执行以下命令安装依赖包：
+Use the following commands to install the dependencies:
 
 ```bash
 $ sudo yum install -y yum-utils \
@@ -35,80 +34,79 @@ $ sudo yum install -y yum-utils \
            lvm2
 ```
 
-鉴于国内网络问题，强烈建议使用国内源，官方源请在注释中查看。
+Due to the network issues in China mainland, it is highly recommended for Chinese users to use Chinese sources. Please refer to the official sources in the comments(they are replaced by a Chinese source).
 
-执行下面的命令添加 `yum` 软件源：
-
+Use the following command to add `dnf` source.
 ```bash
 $ sudo yum-config-manager \
     --add-repo \
     https://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo
 
 
-# 官方源
+# Official source
 # $ sudo yum-config-manager \
 #     --add-repo \
 #     https://download.docker.com/linux/centos/docker-ce.repo
 ```
 
-如果需要测试版本的 Docker CE 请使用以下命令：
+If you want to use the `test` version of Docker CE, use the following command:
 
 ```bash
 $ sudo yum-config-manager --enable docker-ce-test
 ```
 
-如果需要每日构建版本的 Docker CE 请使用以下命令：
+As for `nightly` version:
 
 ```bash
 $ sudo yum-config-manager --enable docker-ce-nightly
 ```
 
-#### 安装 Docker CE
+#### Install Docker CE
 
-更新 `yum` 软件源缓存，并安装 `docker-ce`。
+Update `yum` source cache，and then install `docker-ce`.
 
 ```bash
 $ sudo yum makecache fast
 $ sudo yum install docker-ce
 ```
 
-### 使用脚本自动安装
+### Install with Automatic Scripts
 
-在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，CentOS 系统上可以使用这套脚本安装：
+To simplify the installation process during test or development, Docker official provides a convenient installation script, you can install docker on Fedora with the following script:
 
 ```bash
 $ curl -fsSL get.docker.com -o get-docker.sh
 $ sudo sh get-docker.sh --mirror Aliyun
 ```
 
-执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker CE 的 Edge 版本安装在系统中。
+After execution, the script will have everything prepared, and have installed the stable version on your OS.
 
-### 启动 Docker CE
+### Start Docker CE
 
 ```bash
 $ sudo systemctl enable docker
 $ sudo systemctl start docker
 ```
 
-### 建立 docker 用户组
+### Add Docker Usergroups
 
-默认情况下，`docker` 命令会使用 [Unix socket](https://en.wikipedia.org/wiki/Unix_domain_socket) 与 Docker 引擎通讯。而只有 `root` 用户和 `docker` 组的用户才可以访问 Docker 引擎的 Unix socket。出于安全考虑，一般 Linux 系统上不会直接使用 `root` 用户。因此，更好地做法是将需要使用 `docker` 的用户加入 `docker` 用户组。
+Command `docker` uses [Unix socket](https://en.wikipedia.org/wiki/Unix_domain_socket) to communicate with Docker engine by default. Only users of `root` and `docker` groups can communicate with Unix socket of the Docker engine.`root` user is not directly used on Linux systems in general for security. Therefore, it is better to add users who need to use `docker` to the `docker` user group.
 
-建立 `docker` 组：
+create `docker` group:
 
 ```bash
 $ sudo groupadd docker
 ```
 
-将当前用户加入 `docker` 组：
+add current user to `docker` group:
 
 ```bash
 $ sudo usermod -aG docker $USER
 ```
 
-退出当前终端并重新登录，进行如下测试。
+Exit current terminal and relogin to test.
 
-### 测试 Docker 是否安装正确
+### Verify the Installation
 
 ```bash
 $ docker run hello-world
@@ -141,22 +139,22 @@ For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
 
-若能正常输出以上信息，则说明安装成功。
+If it shows the above message, it means your installation is successful.
 
-### 镜像加速
+### Registry Mirror(In China)
 
-如果在使用过程中发现拉取 Docker 镜像十分缓慢，可以配置 Docker [国内镜像加速](mirror.md)。
+If you pull docker images very slowly, then you can configure [Registry Mirror](mirror.md).
 
-### 添加内核参数
+### Add kernel Parameters
 
-如果在 CentOS 使用 Docker CE 看到下面的这些警告信息：
+If you see the following warnings when using Docker CE,
 
 ```bash
 WARNING: bridge-nf-call-iptables is disabled
 WARNING: bridge-nf-call-ip6tables is disabled
 ```
 
-请添加内核配置参数以启用这些功能。
+Please add the kernel parameters to enable these features.
 
 ```bash
 $ sudo tee -a /etc/sysctl.conf <<-EOF
@@ -165,12 +163,12 @@ net.bridge.bridge-nf-call-iptables = 1
 EOF
 ```
 
-然后重新加载 `sysctl.conf` 即可
+Then reload the `sysctl.confg`
 
 ```bash
 $ sudo sysctl -p
 ```
 
-### 参考文档
+### References
 
-* [Docker 官方 CentOS 安装文档](https://docs.docker.com/install/linux/docker-ce/centos/)。
+* [Docker Official Installation Documents for Fedora](https://docs.docker.com/install/linux/docker-ce/centos/)
