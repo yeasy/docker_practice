@@ -1,12 +1,12 @@
 ## Install Docker CE on Ubuntu
 
->warning: Don't install Docker CE directly using apt without configuring Docker APT source.
+> warning: Don't install Docker CE directly using apt without configuring Docker APT source.
 
 ### Preparation
 
 #### System requirements
 
-Docker CE supports [Ubuntu](https://www.ubuntu.com/server) versions:
+Docker CE supported [Ubuntu](https://www.ubuntu.com/server) versions:
 
 * Disco 19.04
 * Cosmic 18.10
@@ -39,7 +39,7 @@ $ sudo apt-get install \
     software-properties-common
 ```
 
-If you are in China, it is strongly recommended to use chinese sources. The official sources are in the comments.
+If you are in China, it is strongly recommended to use Chinese sources. The official sources are in the comments.
 
 In order to confirm the validity of the downloaded package, we need to add the `GPG` key of the software source.
 
@@ -67,7 +67,7 @@ $ sudo add-apt-repository \
 #    stable"
 ```
 
->The above commands will add stable Docker CE APT source. If you need test or nightly version of Docker, you can change the stable to test or nightly.
+> The above commands will add stable Docker CE APT source. If you need the `test` or `nightly` version of Docker, you can change `stable` to `test` or `nightly`.
 
 #### Install Docker CE
 
@@ -81,14 +81,14 @@ $ sudo apt-get install docker-ce
 
 ### Auto install by script
 
-Docker Offical has provided a set of convenient install scripts which can be installed on Ubuntu system for test or dev environments.
+Docker Offical has provided a set of convenient installation scripts which can be installed on Ubuntu for test or dev environments.
 
 ```bash
 $ curl -fsSL get.docker.com -o get-docker.sh
 $ sudo sh get-docker.sh --mirror Aliyun
 ```
 
-Script will make everythings ok and install Edge version of Docker CE for system after this command.
+The script will have everything prepared and install the stable version of Docker CE for the system after execution.
 
 ### Launcher Docker CE
 
@@ -99,7 +99,7 @@ $ sudo systemctl start docker
 
 ### Add docker user group
 
-Command `docker` uses [Unix socket](https://en.wikipedia.org/wiki/Unix_domain_socket) to communicate with Docker engine default. Only users of `root` and `docker` groups can communicate Unix socket of Docker engine.`root` user is not directly used on Linux systems in general for security. Therefore, it is better to add users who need to use `docker` to the `docker` user group.
+Command `docker` uses [Unix socket](https://en.wikipedia.org/wiki/Unix_domain_socket) to communicate with Docker engine default. Only users of `root` and `docker` groups can communicate with Unix socket of Docker engine.`root` user is not directly used on Linux systems in general for security. Therefore, it is better to add users who need to use `docker` to the `docker` user group.
 
 create `docker` group:
 
@@ -148,12 +148,12 @@ For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
 
-If it shows above message, it means successful installation.
+If it shows above message, it means your installation is successful.
 
 ### Registry Mirror(In China)
 
 If you pull docker images very slowly, then you can configurate [Registry Mirror](mirror.md).
 
-### Links
+### References
 
 * [Offical Docker Docs](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
