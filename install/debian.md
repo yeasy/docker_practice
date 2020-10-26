@@ -84,7 +84,7 @@ $ curl -fsSL get.docker.com -o get-docker.sh
 $ sudo sh get-docker.sh --mirror Aliyun
 ```
 
-After execution, the script will have everything prepared, and install the stable version on your OS.
+After execution, the script will have everything prepared, and have installed the stable version on your OS.
 
 ### Start Docker CE
 
@@ -111,7 +111,7 @@ $ sudo usermod -aG docker $USER
 
 Exit current terminal and relogin to test.
 
-### Test whether Docker is installed correctly
+### Verify the Installation
 
 ```bash
 $ docker run hello-world
@@ -144,7 +144,7 @@ For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
 
-If it shows above message, it means your installation is successful.
+If it shows the above message, it means your installation is successful.
 
 ### Registry Mirror(In China)
 
@@ -152,4 +152,4 @@ If you pull docker images very slowly, then you can configure [Registry Mirror](
 
 ### References
 
-* [Docker Oficial Debian Installation Documents](https://docs.docker.com/install/linux/docker-ce/debian/)
+* [Docker Official Installation Documents for Debian](https://docs.docker.com/install/linux/docker-ce/debian/)
