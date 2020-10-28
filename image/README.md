@@ -1,13 +1,13 @@
-# 使用 Docker 镜像
+# Use Docker Images
 
-在之前的介绍中，我们知道镜像是 Docker 的三大组件之一。
+As we have introduced before, `image` is one of the 3 major components of Docker. 
 
-Docker 运行容器前需要本地存在对应的镜像，如果本地不存在该镜像，Docker 会从镜像仓库下载该镜像。
+Upon running docker container, it can run local image or if the image is not locally available, it will download from a registry.
 
-本章将介绍更多关于镜像的内容，包括：
+In this chapter we will introduce more about `image`, including
 
-* 从仓库获取镜像；
+* Pull images from registry
 
-* 管理本地主机上的镜像；
+* Manage local images
 
-* 介绍镜像实现的基本原理。
+* The mechanisms and implementaion of images
