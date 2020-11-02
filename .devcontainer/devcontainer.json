@@ -1,3 +1,5 @@
+// https://code.visualstudio.com/docs/remote/devcontainerjson-reference
+
 {
   "image": "yeasy/docker_practice:latest",
   "mounts": [
