@@ -45,8 +45,6 @@ services:
       - .:/myapp
     ports:
       - "3000:3000"
-    links:
-      - db
 ```
 
 所有文件就绪后，我们就可以通过使用 `docker-compose run` 命令生成应用的骨架了。
