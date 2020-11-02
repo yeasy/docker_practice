@@ -43,8 +43,6 @@ services:
       - .:/code
     ports:
       - "8000:8000"
-    links:
-      - db
 ```
 
 查看 [`docker-compose.yml` 章节](compose_file.md) 了解更多详细的工作机制。
