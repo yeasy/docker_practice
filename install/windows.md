@@ -32,9 +32,9 @@ Docker 启动之后会在 Windows 任务栏出现鲸鱼图标。
 
 ![](./_images/install-win-taskbar-circle.png)
 
-等待片刻，点击 Got it 开始使用 Docker。
+等待片刻，当鲸鱼图标静止时，说明 Docker 启动成功，之后你可以打开 PowerShell 使用 Docker。
 
-![](./_images/install-win-success-popup-cloud.png)
+> 推荐使用 [Windows Terminal](https://docs.microsoft.com/zh-cn/windows/terminal/get-started) 在终端使用 Docker。
 
 ## 镜像加速
 

@@ -2,7 +2,7 @@
 
 ## 系统要求
 
-[Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/) 要求系统最低为 macOS Catalina 10.13。
+[Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/) 要求系统最低为 macOS Mojave 10.14。
 
 ## 安装
 
@@ -32,15 +32,11 @@ $ brew cask install docker
 
 ![](./_images/install-mac-menubar.png)
 
-第一次点击图标，可能会看到这个安装成功的界面，点击 "Got it!" 可以关闭这个窗口。
-
-![](./_images/install-mac-success.png)
-
-以后每次点击鲸鱼图标会弹出操作菜单。
+每次点击鲸鱼图标会弹出操作菜单。
 
 ![](./_images/install-mac-menu.png)
 
-启动终端后，通过命令可以检查安装后的 Docker 版本。
+之后，你可以在终端通过命令检查安装后的 Docker 版本。
 
 ```bash
 $ docker --version
