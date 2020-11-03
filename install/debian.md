@@ -51,6 +51,8 @@ $ curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/debian/gpg | sudo apt-k
 
 然后，我们需要向 `sources.list` 中添加 Docker 软件源：
 
+> 在一些基于 Debian 的 Linux 发行版中 `$(lsb_release -cs)` 可能不会返回 Debian 的版本代号，例如 [Kail Linux](https://www.kali.org/docs/policy/kali-linux-relationship-with-debian/)、 [BunsenLabs Linux](https://www.bunsenlabs.org/)。在这些发行版中我们需要将下面命令中的 `$(lsb_release -cs)` 替换为 https://mirrors.ustc.edu.cn/docker-ce/linux/debian/dists/ 中支持的 Debian 版本代号，例如 `buster`。
+
 ```bash
 $ sudo add-apt-repository \
    "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/debian \
