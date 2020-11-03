@@ -8,7 +8,7 @@
 
 Docker 支持以下版本的 [Ubuntu](https://ubuntu.com/server) 操作系统：
 
-* Ubuntu Focal 20.04 (LTS)
+* Focal 20.04 (LTS)
 * Bionic 18.04 (LTS)
 * Xenial 16.04 (LTS)
 
