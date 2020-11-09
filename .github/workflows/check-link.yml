@@ -37,7 +37,6 @@ jobs:
           "nodejs.org/dist/",\
           "c.163.com/hub",\
           "drone.yeasy.com",\
-          "mirrors.ustc.edu.cn",\
           "docs.docker.com",\
           "dockerhub.azk8s.cn",\
           "reg-mirror.qiniu.com",\
