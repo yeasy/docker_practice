@@ -1,6 +1,6 @@
 ## Install Docker CE on Ubuntu
 
-> warning: Don't install Docker CE directly using apt without configuring Docker APT source.
+> WARNING: DO NOT install Docker CE directly using apt without configuring Docker APT source.
 
 ### Prerequisites
 
