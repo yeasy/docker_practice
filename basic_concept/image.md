@@ -6,7 +6,7 @@ Docker Image is a special filesystem. Apart from programs, libs, resources and c
 
 ## Advanced Multi-layered Unification Filesystem (AUFS)
 
-Because the image contains the complete `root` file system of the operating system, its volume is often huge. So Docker made full use of [Union FS](https://en.wikipedia.org/wiki/Union_mount) and was designed as AUFS when it was designed. So strictly speaking, image is not a packaged file like an ISO iamge file. Image is just a virtual concept. It is not composed of a single file, but a group of file systems, or a combination of multi-layered filesystems.
+Because the image contains the complete `root` file system of the operating system, its volume is often huge. So Docker made full use of [Union FS](https://en.wikipedia.org/wiki/Union_mount) and was designed as AUFS when it was designed. So strictly speaking, image is not a packaged file like an ISO image file. Image is just a virtual concept. It is not composed of a single file, but a group of file systems, or a combination of multi-layered filesystems.
 
 When building an image, it builds layer by layer, and the former is the basis for the latter. Once each layer is built, it will not change later. Any change on the latter layer will only occur on its own level. For example, deleting the previous layer of files is not really deleting the files, but only marked as deleted in the current layer. When the final container runs, you won't see the file, but in fact the file will always follow the image. Therefore, take more care when building the image, and any redundant file should be cleared up in ahead of the layer's final construction.
 
