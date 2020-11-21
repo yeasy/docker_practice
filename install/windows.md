@@ -22,6 +22,10 @@ $ winget install Docker.DockerDesktop
 $ winget install Docker.DockerDesktopEdge
 ```
 
+## 在 WSL2 运行 Docker 
+
+若你的 Windows 版本为 Windows 10 专业版或家庭版 v1903 及以上版本可以使用 WSL2 运行 Docker，具体请查看 [Docker Desktop WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/)。
+
 ## 运行
 
 在 Windows 搜索栏输入 **Docker** 点击 **Docker Desktop** 开始运行。
@@ -43,5 +47,4 @@ Docker 启动之后会在 Windows 任务栏出现鲸鱼图标。
 ## 参考链接
 
 * [官方文档](https://docs.docker.com/docker-for-windows/install/)
-* [Docker Desktop WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/)
 * [WSL 2 Support is coming to Windows 10 Versions 1903 and 1909](https://devblogs.microsoft.com/commandline/wsl-2-support-is-coming-to-windows-10-versions-1903-and-1909/)
