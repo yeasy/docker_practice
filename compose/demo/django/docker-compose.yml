@@ -3,6 +3,8 @@ services:
 
   db:
     image: postgres
+    environment:
+      POSTGRES_PASSWORD: 'postgres'
 
   web:
     build: .
