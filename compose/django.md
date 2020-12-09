@@ -35,6 +35,8 @@ services:
 
   db:
     image: postgres
+    environment:
+      POSTGRES_PASSWORD: 'postgres'
 
   web:
     build: .
@@ -78,6 +80,7 @@ DATABASES = {
         'USER': 'postgres',
         'HOST': 'db',
         'PORT': 5432,
+        'PASSWORD': 'postgres',
     }
 }
 ```
