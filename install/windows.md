@@ -8,18 +8,14 @@
 
 **手动下载安装**
 
-点击以下链接下载 [Stable](https://download.docker.com/win/stable/Docker%20Desktop%20Installer.exe) 或 [Edge](https://download.docker.com/win/edge/Docker%20Desktop%20Installer.exe) 版本的 Docker Desktop for Windows。
+点击以下 [链接](https://desktop.docker.com/win/stable/Docker%20Desktop%20Installer.exe) 下载 Docker Desktop for Windows。
 
 下载好之后双击 `Docker Desktop Installer.exe` 开始安装。
 
 **使用 [winget](https://docs.microsoft.com/zh-cn/windows/package-manager/) 安装**
 
 ```powershell
-# stable
 $ winget install Docker.DockerDesktop
-
-# edge
-$ winget install Docker.DockerDesktopEdge
 ```
 
 ## 在 WSL2 运行 Docker 
