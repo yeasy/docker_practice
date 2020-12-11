@@ -16,7 +16,7 @@ $ brew cask install docker
 
 ### 手动下载安装
 
-如果需要手动下载，请点击以下链接下载 [Stable](https://download.docker.com/mac/stable/Docker.dmg) 或 [Edge](https://download.docker.com/mac/edge/Docker.dmg) 版本的 Docker Desktop for Mac。
+如果需要手动下载，请点击以下 [链接](https://desktop.docker.com/mac/stable/Docker.dmg) 下载 Docker Desktop for Mac。
 
 如同 macOS 其它软件一样，安装也非常简单，双击下载的 `.dmg` 文件，然后将那只叫 [Moby](https://www.docker.com/blog/call-me-moby-dock/) 的鲸鱼图标拖拽到 `Application` 文件夹即可（其间需要输入用户密码）。
 
