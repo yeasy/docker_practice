@@ -146,7 +146,6 @@
     * [GitHub Actions](cases/ci/actions/README.md)
     * [Drone](cases/ci/drone/README.md)
         * [部署 Drone](cases/ci/drone/install.md)
-    * [Travis CI](cases/ci/travis/README.md)
 * [在 IDE 中使用 Docker](ide/README.md)
     * [VS Code](ide/vsCode.md)
 * [podman - 下一代 Linux 容器工具](podman/README.md)
