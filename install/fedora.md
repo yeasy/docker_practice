@@ -85,12 +85,6 @@ docker-ce.x86_64          18.06.1.ce-3.fc28                     docker-ce-stable
 $ sudo dnf -y install docker-ce-18.06.1.ce
 ```
 
-由于 Fedora 31 默认启用了 **Cgroupv2**，稳定版本的 Docker 与 Cgroupv2 不兼容，你可以安装测试版 Docker，或者执行以下命令切换到 **Cgroupv1** 并重启计算机:
-
-```bash
-$ sudo grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"
-```
-
 ## 使用脚本自动安装
 
 在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，Debian 系统上可以使用这套脚本安装，另外可以通过 `--mirror` 选项使用国内源进行安装：

@@ -40,9 +40,7 @@ $ brew cask install docker
 
 ```bash
 $ docker --version
-Docker version 19.03.8, build afacb8b
-$ docker-compose --version
-docker-compose version 1.25.5, build 8a1c60f6
+Docker version 20.10.0, build 7287ab3
 ```
 
 如果 `docker version`、`docker info` 都正常的话，可以尝试运行一个 [Nginx 服务器](https://hub.docker.com/_/nginx/)：
