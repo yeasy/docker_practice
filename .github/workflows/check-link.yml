@@ -51,7 +51,6 @@ jobs:
           "security.ubuntu.com/ubuntu",\
           "nginx.com",\
           "img.shields.io/github/release/yeasy/docker_practice",\
-          "travis-ci.org/yeasy/docker_practice.svg",\
           "launchpad.net",\
           "www.w3.org/1999",\
           "chat.freenode.net",\

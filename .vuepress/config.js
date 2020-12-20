@@ -222,7 +222,6 @@ module.exports = config({
             'drone/install'
           ]
         },
-        'travis/'
       ],
       '/': [
         '/',
