@@ -87,7 +87,6 @@ jobs:
           cp -r install/_images .vuepress/dist/install
           cp -r introduction/_images .vuepress/dist/introduction
           cp -r kubernetes/_images .vuepress/dist/kubernetes
-          cp -r mesos/_images .vuepress/dist/mesos
           cp -r underly/_images .vuepress/dist/underly
 
           echo "include: [_images]" > .vuepress/dist/_config.yml
