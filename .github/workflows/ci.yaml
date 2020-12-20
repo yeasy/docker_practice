@@ -7,16 +7,58 @@ name: CI
 
 jobs:
   build:
-    name: Build GitBook
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
         with:
           fetch-depth: 2
-      - name: Build
+      - name: Build Gitbook
         uses: docker://yeasy/docker_practice
         with:
           args: build
+      - name: Build Gitbook Docker Image
+        if: github.repository == 'docker-practice/docker_practice'
+        run: |
+          sudo chmod -R 777 _book
+          echo "FROM nginx:alpine" >> Dockerfile
+          echo "COPY _book /usr/share/nginx/html" >> Dockerfile
+          echo "COPY .docker/docker-entrypoint.sh /" >> Dockerfile
+          echo "ENTRYPOINT [\"/docker-entrypoint.sh\"]" >> Dockerfile
+
+          export VCS_REF=`git rev-parse --short HEAD`
+
+          docker build \
+          -t dockerpracticesig/docker_practice \
+          -t dockerpracticesig/docker_practice:gitbook \
+          --label org.opencontainers.image.revision=$VCS_REF \
+          --label org.opencontainers.image.source="https://github.com/yeasy/docker_practice" \
+          --label maintainer="https://github.com/docker-practice" \
+          .
+
+          docker run -d --rm -p 4000:80 dockerpracticesig/docker_practice
+
+          sleep 5
+          curl 127.0.0.1:4000
+
+          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+          docker push dockerpracticesig/docker_practice
+          docker push dockerpracticesig/docker_practice:gitbook
+        env:
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+      - name: Upload Gitbook dist
+        uses: docker://pcit/pages
+        if: github.repository == 'docker-practice/docker_practice'
+        env:
+          PCIT_EMAIL: khs1994@khs1994.com
+          PCIT_GIT_TOKEN: ${{ secrets.PCIT_GIT_TOKEN }}
+          PCIT_GIT_URL: github.com/docker-practice/zh-cn
+          PCIT_KEEP_HISTORY: "true"
+          PCIT_LOCAL_DIR: _book
+          PCIT_MESSAGE: Build from yeasy/docker_practice@${{github.sha}}
+          PCIT_TARGET_BRANCH: master
+          PCIT_USERNAME: khs1994
       - name: vuepress
         run: |
           sudo rm -rf _book
@@ -73,7 +115,7 @@ jobs:
           PCIT_GIT_URL: e.coding.net/dpsigs/docker_practice
           PCIT_KEEP_HISTORY: "true"
           PCIT_LOCAL_DIR: .vuepress/dist
-          PCIT_MESSAGE: Sync from yeasy/docker_practice@${{github.sha}} by PCIT
+          PCIT_MESSAGE: Build from yeasy/docker_practice@${{github.sha}}
           PCIT_TARGET_BRANCH: master
           PCIT_USERNAME: ptt0xjqzbke3
       - name: Build vuepress docker image

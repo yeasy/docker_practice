@@ -1,14 +1,13 @@
 # Docker — 从入门到实践
 
-[![](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) [![](https://travis-ci.org/yeasy/docker_practice.svg?branch=master)](https://travis-ci.org/yeasy/docker_practice) [![](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases) [![](https://img.shields.io/badge/Based-Docker%20CE%20v20.10-blue.svg)](https://github.com/docker/docker-ce) [![](https://img.shields.io/badge/Docker%20%E6%8A%80%E6%9C%AF%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E6%88%98-jd.com-red.svg)][1]
+[![](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) [![](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases) [![](https://img.shields.io/badge/Based-Docker%20CE%20v20.10-blue.svg)](https://github.com/docker/docker-ce) [![](https://img.shields.io/badge/Docker%20%E6%8A%80%E6%9C%AF%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E6%88%98-jd.com-red.svg)][1]
 
 **v1.3.0**
 
-| 语言           | 构建状态   | - |
-| :------------- | :------------- | :--- |
-| [zh-hans](https://github.com/yeasy/docker_practice)        | [![](https://travis-ci.org/yeasy/docker_practice.svg?branch=master)](https://travis-ci.org/yeasy/docker_practice)| [阅读](https://vuepress.mirror.docker-practice.com/) |
-| [us-en](https://github.com/yeasy/docker_practice/tree/english)          | [![](https://travis-ci.org/yeasy/docker_practice.svg?branch=english)](https://travis-ci.org/yeasy/docker_practice)| [阅读](https://docker_practice.gitee.io/us-en) |
-| [zh-hant](https://github.com/yeasy/docker_practice/tree/zh-Hant)        | [![](https://travis-ci.org/yeasy/docker_practice.svg?branch=zh-hant)](https://travis-ci.org/yeasy/docker_practice)| [阅读](https://docker_practice.gitee.io/zh-hant) |
+| 语言           | - |
+| :------------- | :--- |
+| [简体中文](https://github.com/yeasy/docker_practice)              | [阅读](https://vuepress.mirror.docker-practice.com/) |
+| [us-en](https://github.com/yeasy/docker_practice/tree/english)   | [阅读](https://docker_practice.gitee.io/us-en) |
 
 [Docker](https://www.docker.com) 是个划时代的开源项目，它彻底释放了计算虚拟化的威力，极大提高了应用的维护效率，降低了云计算应用开发的成本！使用 Docker，可以让应用的部署、测试和分发都变得前所未有的高效和轻松！
 
