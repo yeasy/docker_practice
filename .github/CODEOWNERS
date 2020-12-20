@@ -28,7 +28,6 @@
 /.editorconfig/       @khs1994
 /.gitattributes       @khs1994
 /.gitignore           @khs1994
-/.travis.yml          @khs1994
 /_config.yml          @yeasy @khs1994
 /book.json            @yeasy @khs1994
 /CHANGELOG.md         @yeasy @khs1994
