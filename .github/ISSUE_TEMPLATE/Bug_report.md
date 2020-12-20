@@ -21,11 +21,11 @@ about: Create a report to help us improve
 * [x] Others (Pls describe below)
 
 ### Docker Version
-<!--如果你的 Docker 版本低于 19.03 请尽可能升级到该版本，保留你的 Docker 版本，其他选项删除-->
-<!--if Docker version under 19.03, please upgrade Docker to 19.03-->
+<!--如果你的 Docker 版本低于 20.10 请尽可能升级到该版本，保留你的 Docker 版本，其他选项删除-->
+<!--if Docker version under 20.10, please upgrade Docker to 20.10-->
 
 * [x] Test (v20.10)
-* [x] Stable (v19.03)
+* [x] Stable (v20.10)
 * [x] 1.13.0 or Before
 
 ### Problem Description

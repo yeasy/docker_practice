@@ -50,7 +50,7 @@ $ sudo sed -i 's/download.docker.com/mirrors.aliyun.com\/docker-ce/g' /etc/yum.r
 #     https://download.docker.com/linux/centos/docker-ce.repo
 ```
 
-如果需要测试版本的 Docker （**或你的系统是 CentOS 8**）请执行以下命令：
+如果需要测试版本的 Docker 请执行以下命令：
 
 ```bash
 $ sudo yum-config-manager --enable docker-ce-test
@@ -87,7 +87,7 @@ $ firewall-cmd --reload
 
 在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，CentOS 系统上可以使用这套脚本安装，另外可以通过 `--mirror` 选项使用国内源进行安装：
 
-> 若你想安装测试版的 Docker（**或你的系统是 CentOS 8**）, 请从 test.docker.com 获取脚本
+> 若你想安装测试版的 Docker, 请从 test.docker.com 获取脚本
 
 ```bash
 # $ curl -fsSL test.docker.com -o get-docker.sh
