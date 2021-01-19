@@ -21,8 +21,8 @@ $ sudo kill -SIGHUP $(pidof dockerd)
 ## 检查内核日志
 
 ```bash
-$ sudo dmesag |grep dockerd
-$ sudo dmesag |grep runc
+$ sudo dmesg |grep dockerd
+$ sudo dmesg |grep runc
 ```
 
 ## Docker 不响应时处理
