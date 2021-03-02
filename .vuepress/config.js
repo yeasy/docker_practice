@@ -48,9 +48,9 @@ module.exports = config({
       appKey: "...", // your appKey
     },
     pageInfo: [
-      // 'Author',
-      'ReadTime',
-      'Word',
+      // 'author',
+      'reading-time',
+      'word',
     ],
     footer: {
       content: "Made with <a target='_blank' href='https://github.com/mister-hope/vuepress-theme-hope'>vuepress-theme-hope</a>",
@@ -126,8 +126,8 @@ module.exports = config({
       //   link: ''
       // },
       {
-        text: '腾讯云容器服务',
-        link: 'https://cloud.tencent.com/act/cps/redirect?redirect=10058&cps_key=3a5255852d5db99dcd5da4c72f05df61'
+        text: '腾讯云2021新春采购节',
+        link: 'https://cloud.tencent.com/act/cps/redirect?redirect=10488&cps_key=3a5255852d5db99dcd5da4c72f05df61&from=activity'
       },
       // {
       //   text: '语言',

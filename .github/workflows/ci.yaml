@@ -122,7 +122,7 @@ jobs:
         run: |
           sudo rm -rf .vuepress/dist/.git
 
-          echo "FROM nginx:alpine" >> Dockerfile
+          echo "FROM nginx:alpine" > Dockerfile
           echo "COPY .vuepress/dist /usr/share/nginx/html" >> Dockerfile
           echo "COPY .docker/docker-entrypoint.sh /" >> Dockerfile
           echo "ENTRYPOINT [\"/docker-entrypoint.sh\"]" >> Dockerfile

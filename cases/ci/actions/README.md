@@ -25,4 +25,4 @@ jobs:
 
 ## 参考资料
 
-* [Actions Docs](https://docs.github.com/en/free-pro-team@latest/actions)
+* [Actions Docs](https://docs.github.com/en/actions)

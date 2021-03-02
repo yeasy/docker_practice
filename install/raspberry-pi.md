@@ -6,7 +6,7 @@
 
 Docker 不仅支持 `x86_64` 架构的计算机，同时也支持 `ARM` 架构的计算机，本小节内容以树莓派单片电脑为例讲解 `ARM` 架构安装 Docker。
 
-Docker 支持以下版本的 [Raspberry Pi OS](https://www.raspberrypi.org/downloads/raspberry-pi-os/) 操作系统：
+Docker 支持以下版本的 [Raspberry Pi OS](https://www.raspberrypi.org/software/operating-systems/) 操作系统：
 
 * Raspberry Pi OS Buster
 

@@ -60,6 +60,7 @@ jobs:
           "x.x.x.x/base",\
           "x.x.x.x:9000/minio/",\
           "yeasy.gitbooks.io",\
+          "download.fastgit.org",\
           "www.aliyun.com" \
           --allow-dupe \
           --skip-save-results \
