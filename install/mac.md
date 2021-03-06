@@ -11,7 +11,7 @@
 [Homebrew](https://brew.sh/) 的 [Cask](https://github.com/Homebrew/homebrew-cask) 已经支持 Docker Desktop for Mac，因此可以很方便的使用 Homebrew Cask 来进行安装：
 
 ```bash
-$ brew cask install docker
+$ brew install --cask docker
 ```
 
 ### 手动下载安装
