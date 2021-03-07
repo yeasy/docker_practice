@@ -5,6 +5,10 @@ on:
 
 name: CI
 
+defaults:
+  run:
+    shell: bash --noprofile --norc -exo pipefail {0}
+
 jobs:
   build:
     name: Build
@@ -39,7 +43,10 @@ jobs:
           docker run -d --rm -p 4000:80 dockerpracticesig/docker_practice
 
           sleep 5
+
+          echo "::group::Test"
           curl 127.0.0.1:4000
+          echo "::endgroup::"
 
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
           docker push dockerpracticesig/docker_practice
@@ -139,9 +146,13 @@ jobs:
 
           docker push dockerpracticesig/docker_practice:vuepress
 
-          docker run -it --rm -d -p 4000:80 dockerpracticesig/docker_practice:vuepress
+          docker run -it --rm -d -p 4001:80 dockerpracticesig/docker_practice:vuepress
 
-          curl 127.0.0.1:4000
+          sleep 5
+
+          echo "::group::Test"
+          curl 127.0.0.1:4001
+          echo "::endgroup::"
         env:
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
           DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}

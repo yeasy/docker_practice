@@ -1,4 +1,4 @@
-### ENTRYPOINT 入口点
+# ENTRYPOINT 入口点
 
 `ENTRYPOINT` 的格式和 `RUN` 指令格式一样，分为 `exec` 格式和 `shell` 格式。
 
