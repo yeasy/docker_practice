@@ -9,7 +9,7 @@
 终止状态的容器可以用 `docker container ls -a` 命令看到。例如
 
 ```bash
-docker container ls -a
+$ docker container ls -a
 CONTAINER ID        IMAGE                    COMMAND                CREATED             STATUS                          PORTS               NAMES
 ba267838cc1b        ubuntu:18.04             "/bin/bash"            30 minutes ago      Exited (0) About a minute ago                       trusting_newton
 ```
