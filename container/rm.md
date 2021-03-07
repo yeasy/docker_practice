@@ -3,7 +3,7 @@
 可以使用 `docker container rm` 来删除一个处于终止状态的容器。例如
 
 ```bash
-$ docker container rm  trusting_newton
+$ docker container rm trusting_newton
 trusting_newton
 ```
 
