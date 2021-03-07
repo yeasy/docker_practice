@@ -1,4 +1,4 @@
-### WORKDIR 指定工作目录
+# WORKDIR 指定工作目录
 
 格式为 `WORKDIR <工作目录路径>`。
 
