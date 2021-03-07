@@ -18,13 +18,12 @@ docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]
 ```bash
 $ docker pull ubuntu:18.04
 18.04: Pulling from library/ubuntu
-bf5d46315322: Pull complete
-9f13e0ac480c: Pull complete
-e8988b5b3097: Pull complete
-40af181810e7: Pull complete
-e6f7c7e5c03e: Pull complete
-Digest: sha256:147913621d9cdea08853f6ba9116c2e27a3ceffecf3b492983ae97c3d643fbbe
+92dc2a97ff99: Pull complete
+be13a9d27eb8: Pull complete
+c8299583700a: Pull complete
+Digest: sha256:4bc3ae6596938cb0d9e5ac51a1152ec9dcac2a1c50829c74abd9c4361e321b26
 Status: Downloaded newer image for ubuntu:18.04
+docker.io/library/ubuntu:18.04
 ```
 
 上面的命令中没有给出 Docker 镜像仓库地址，因此将会从 Docker Hub 获取镜像。而镜像名称是 `ubuntu:18.04`，因此将会获取官方镜像 `library/ubuntu` 仓库中标签为 `18.04` 的镜像。

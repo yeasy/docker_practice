@@ -28,12 +28,11 @@ azukiapp/busybox                This image is meant to be used as the base...   
 
 ```bash
 $ docker pull busybox:latest
-busybox:latest: The image you are pulling has been verified
-e433a6c5b276: Pull complete
-e72ac664f4f0: Pull complete
-511136ea3c5a: Pull complete
-df7546f9f060: Pull complete
+latest: Pulling from library/busybox
+5c4213be9af9: Pull complete
+Digest: sha256:c6b45a95f932202dbb27c31333c4789f45184a744060f6e569cc9d2bf1b9ad6f
 Status: Downloaded newer image for busybox:latest
+docker.io/library/busybox:latest
 ```
 
 下载后，可以看到 `busybox` 镜像只有 **2.433 MB**：

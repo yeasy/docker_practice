@@ -28,7 +28,7 @@ saltstack/centos-6-minimal                                                      
 tutum/centos-6.4                                DEPRECATED. Use tutum/centos:6.4 instead. ...   5                    [OK]
 ```
 
-可以看到返回了很多包含关键字的镜像，其中包括镜像名字、描述、收藏数（表示该镜像的受关注程度）、是否官方创建（OFFICIAL）、是否自动构建 （AUTOMATED）。
+可以看到返回了很多包含关键字的镜像，其中包括镜像名字、描述、收藏数（表示该镜像的受关注程度）、是否官方创建（`OFFICIAL`）、是否自动构建 （`AUTOMATED`）。
 
 根据是否是官方提供，可将镜像分为两类。
 
@@ -42,11 +42,12 @@ tutum/centos-6.4                                DEPRECATED. Use tutum/centos:6.4
 
 ```bash
 $ docker pull centos
-Pulling repository centos
-0b443ba03958: Download complete
-539c0211cd76: Download complete
-511136ea3c5a: Download complete
-7064731afe90: Download complete
+Using default tag: latest
+latest: Pulling from library/centos
+7a0437f04f83: Pull complete
+Digest: sha256:5528e8b1b1719d34604c87e11dcd1c0a20bedf46e83b5632cdeac91b8c04efc1
+Status: Downloaded newer image for centos:latest
+docker.io/library/centos:latest
 ```
 
 ## 推送镜像
@@ -74,17 +75,17 @@ username/ubuntu
 
 ## 自动构建
 
-自动构建（Automated Builds）功能对于需要经常升级镜像内程序来说，十分方便。
+自动构建（`Automated Builds`）功能对于需要经常升级镜像内程序来说，十分方便。
 
 有时候，用户构建了镜像，安装了某个软件，当软件发布新版本则需要手动更新镜像。
 
-而自动构建允许用户通过 Docker Hub 指定跟踪一个目标网站（支持 [GitHub](https://github.com) 或 [BitBucket](https://bitbucket.org)）上的项目，一旦项目发生新的提交 （commit）或者创建了新的标签（tag），Docker Hub 会自动构建镜像并推送到 Docker Hub 中。
+而自动构建允许用户通过 Docker Hub 指定跟踪一个目标网站（支持 [GitHub](https://github.com) 或 [BitBucket](https://bitbucket.org)）上的项目，一旦项目发生新的提交 （`commit`）或者创建了新的标签（`tag`），Docker Hub 会自动构建镜像并推送到 Docker Hub 中。
 
 要配置自动构建，包括如下的步骤：
 
 * 登录 Docker Hub；
 
-* 在 Docker Hub 点击右上角头像，在账号设置（Account Settings）中关联（Linked Accounts）目标网站；
+* 在 Docker Hub 点击右上角头像，在账号设置（`Account Settings`）中关联（`Linked Accounts`）目标网站；
 
 * 在 Docker Hub 中新建或选择已有的仓库，在 `Builds` 选项卡中选择 `Configure Automated Builds`；
 
