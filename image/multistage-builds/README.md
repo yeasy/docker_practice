@@ -27,7 +27,7 @@ func main(){
 编写 `Dockerfile.one` 文件
 
 ```docker
-FROM golang:1.9-alpine
+FROM golang:alpine
 
 RUN apk --no-cache add git ca-certificates
 
@@ -57,7 +57,7 @@ $ docker build -t go/helloworld:1 -f Dockerfile.one .
 例如，编写 `Dockerfile.build` 文件
 
 ```docker
-FROM golang:1.9-alpine
+FROM golang:alpine
 
 RUN apk --no-cache add git
 
@@ -126,7 +126,7 @@ go/helloworld   1      f55d3e16affc    2 minutes ago   295MB
 例如，编写 `Dockerfile` 文件
 
 ```docker
-FROM golang:1.9-alpine as builder
+FROM golang:alpine as builder
 
 RUN apk --no-cache add git
 
@@ -173,7 +173,7 @@ go/helloworld     1     f55d3e16affc     2 minutes ago      295MB
 我们可以使用 `as` 来为某一阶段命名，例如
 
 ```docker
-FROM golang:1.9-alpine as builder
+FROM golang:alpine as builder
 ```
 
 例如当我们只想构建 `builder` 阶段的镜像时，增加 `--target=builder` 参数即可
