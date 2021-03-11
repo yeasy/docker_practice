@@ -8,8 +8,8 @@
 
 Docker 支持以下版本的 [Debian](https://www.debian.org/intro/about) 操作系统：
 
-* Buster 10
-* Stretch 9
+* Debian Buster 10
+* Debian Stretch 9
 
 ### 卸载旧版本
 
@@ -32,9 +32,8 @@ $ sudo apt-get install \
      apt-transport-https \
      ca-certificates \
      curl \
-     gnupg-agent \
-     lsb-release \
-     software-properties-common
+     gnupg \
+     lsb-release
 ```
 
 鉴于国内网络问题，强烈建议使用国内源，官方源请在注释中查看。
@@ -42,11 +41,11 @@ $ sudo apt-get install \
 为了确认所下载软件包的合法性，需要添加软件源的 GPG 密钥。
 
 ```bash
-$ curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/debian/gpg | sudo apt-key add -
+$ curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
 
 # 官方源
-# $ curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+# $ curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 ```
 
 然后，我们需要向 `sources.list` 中添加 Docker 软件源：
@@ -54,16 +53,16 @@ $ curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/debian/gpg | sudo apt-ke
 > 在一些基于 Debian 的 Linux 发行版中 `$(lsb_release -cs)` 可能不会返回 Debian 的版本代号，例如 [Kail Linux](https://www.kali.org/docs/policy/kali-linux-relationship-with-debian/)、 [BunsenLabs Linux](https://www.bunsenlabs.org/)。在这些发行版中我们需要将下面命令中的 `$(lsb_release -cs)` 替换为 https://mirrors.aliyun.com/docker-ce/linux/debian/dists/ 中支持的 Debian 版本代号，例如 `buster`。
 
 ```bash
-$ sudo add-apt-repository \
-   "deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/debian \
-   $(lsb_release -cs) \
-   stable"
+$ echo \
+  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://mirrors.aliyun.com/docker-ce/linux/debian \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
 
 # 官方源
-# $ sudo add-apt-repository \
-#    "deb [arch=amd64] https://download.docker.com/linux/debian \
-#    $(lsb_release -cs) \
-#    stable"
+# $ echo \
+#   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://https://download.docker.com/linux/debian \
+#   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
 ```
 
 >以上命令会添加稳定版本的 Docker APT 源，如果需要测试版本的 Docker 请将 stable 改为 test。

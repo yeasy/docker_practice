@@ -8,9 +8,10 @@
 
 Docker 支持以下版本的 [Ubuntu](https://ubuntu.com/server) 操作系统：
 
-* Focal 20.04 (LTS)
-* Bionic 18.04 (LTS)
-* Xenial 16.04 (LTS)
+* Ubuntu Groovy 20.10
+* Ubuntu Focal 20.04 (LTS)
+* Ubuntu Bionic 18.04 (LTS)
+* Ubuntu Xenial 16.04 (LTS)
 
 Docker 可以安装在 64 位的 x86 平台或 ARM 平台上。Ubuntu 发行版中，LTS（Long-Term-Support）长期支持版本，会获得 5 年的升级维护支持，这样的版本会更稳定，因此在生产环境中推荐使用 LTS 版本。
 
@@ -35,8 +36,8 @@ $ sudo apt-get install \
     apt-transport-https \
     ca-certificates \
     curl \
-    gnupg-agent \
-    software-properties-common
+    gnupg \
+    lsb-release
 ```
 
 鉴于国内网络问题，强烈建议使用国内源，官方源请在注释中查看。
@@ -44,27 +45,25 @@ $ sudo apt-get install \
 为了确认所下载软件包的合法性，需要添加软件源的 `GPG` 密钥。
 
 ```bash
-$ curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+$ curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
 
 # 官方源
-# $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+# $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 ```
 
 然后，我们需要向 `sources.list` 中添加 Docker 软件源
 
 ```bash
-$ sudo add-apt-repository \
-    "deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu \
-    $(lsb_release -cs) \
-    stable"
+$ echo \
+  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://mirrors.aliyun.com/docker-ce/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 
 # 官方源
-# $ sudo add-apt-repository \
-#    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-#    $(lsb_release -cs) \
-#    stable"
+# $ echo \
+#   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+#   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
 
 >以上命令会添加稳定版本的 Docker APT 镜像源，如果需要测试版本的 Docker 请将 stable 改为 test。
