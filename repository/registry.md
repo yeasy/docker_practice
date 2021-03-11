@@ -10,7 +10,7 @@
 
 ### 容器运行
 
-你可以通过获取官方 `registry` 镜像来运行。
+你可以使用官方 `registry` 镜像来运行。
 
 ```bash
 $ docker run -d -p 5000:5000 --restart=always --name registry registry
@@ -91,7 +91,7 @@ REPOSITORY                         TAG                 IMAGE ID            CREAT
 127.0.0.1:5000/ubuntu:latest       latest              ba5877dc9bec        6 weeks ago         192.7 MB
 ```
 
-## 注意事项
+## 配置非 https 仓库地址
 
 如果你不想使用 `127.0.0.1:5000` 作为仓库地址，比如想让本网段的其他主机也能把镜像推送到私有仓库。你就得把例如 `192.168.199.100:5000` 这样的内网地址作为私有仓库地址，这时你会发现无法成功推送镜像。
 

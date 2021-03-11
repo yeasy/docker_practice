@@ -20,12 +20,12 @@
 
 ```bash
 $ docker search centos
-NAME                                            DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
-centos                                          The official build of CentOS.                   465       [OK]
-tianon/centos                                   CentOS 5 and 6, created using rinse instea...   28
-blalor/centos                                   Bare-bones base CentOS 6.5 image                6                    [OK]
-saltstack/centos-6-minimal                                                                      6                    [OK]
-tutum/centos-6.4                                DEPRECATED. Use tutum/centos:6.4 instead. ...   5                    [OK]
+NAME                               DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+centos                             The official build of CentOS.                   6449      [OK]
+ansible/centos7-ansible            Ansible on Centos7                              132                  [OK]
+consol/centos-xfce-vnc             Centos container with "headless" VNC session…   126                  [OK]
+jdeathe/centos-ssh                 OpenSSH / Supervisor / EPEL/IUS/SCL Repos - …   117                  [OK]
+centos/systemd                     systemd enabled base container.                 96                   [OK]
 ```
 
 可以看到返回了很多包含关键字的镜像，其中包括镜像名字、描述、收藏数（表示该镜像的受关注程度）、是否官方创建（`OFFICIAL`）、是否自动构建 （`AUTOMATED`）。
@@ -34,7 +34,7 @@ tutum/centos-6.4                                DEPRECATED. Use tutum/centos:6.4
 
 一种是类似 `centos` 这样的镜像，被称为基础镜像或根镜像。这些基础镜像由 Docker 公司创建、验证、支持、提供。这样的镜像往往使用单个单词作为名字。
 
-还有一种类型，比如 `tianon/centos` 镜像，它是由 Docker Hub 的注册用户创建并维护的，往往带有用户名称前缀。可以通过前缀 `username/` 来指定使用某个用户提供的镜像，比如 tianon 用户。
+还有一种类型，比如 `ansible/centos7-ansible` 镜像，它是由 Docker Hub 的注册用户创建并维护的，往往带有用户名称前缀。可以通过前缀 `username/` 来指定使用某个用户提供的镜像，比如 ansible 用户。
 
 另外，在查找的时候通过 `--filter=stars=N` 参数可以指定仅显示收藏数量为 `N` 以上的镜像。
 
