@@ -33,4 +33,4 @@ WORKDIR c
 RUN pwd
 ```
 
-`pwd` 输出的结果为 `/a/b/c`。
+`RUN pwd` 的工作目录为 `/a/b/c`。

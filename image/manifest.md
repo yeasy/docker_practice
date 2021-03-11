@@ -24,11 +24,11 @@ $ docker run -it --rm username/test
 
 这样做显得很繁琐，那么有没有一种方法让 Docker 引擎根据系统架构自动拉取对应的镜像呢？
 
-我们发现在 `Linux x86_64` 和 `Linux arm64v8` 架构的计算机中执行 `$ docker run golang:alpine go version` 时我们发现可以正确的运行。
+我们发现在 `Linux x86_64` 和 `Linux arm64v8` 架构的计算机中分别使用 `golang:alpine` 镜像运行容器 `$ docker run golang:alpine go version` 时，容器能够正常的运行。
 
 这是什么原因呢？
 
-原因就是 `golang:alpine` 官方镜像有一个 [`manifest` 列表](https://docs.docker.com/registry/spec/manifest-v2-2/)。
+原因就是 `golang:alpine` 官方镜像有一个 [`manifest` 列表 (`manifest list`)](https://docs.docker.com/registry/spec/manifest-v2-2/)。
 
 当用户获取一个镜像时，Docker 引擎会首先查找该镜像是否有 `manifest` 列表，如果有的话 Docker 引擎会按照 Docker 运行环境（系统及架构）查找出对应镜像（例如 `golang:alpine`）。如果没有的话会直接获取镜像（例如上例中我们构建的 `username/test`）。
 
@@ -122,7 +122,7 @@ $ docker manifest create username/test \
       username/arm64v8-test
 ```
 
-当要修改一个 `manifest` 列表时，可以加入 `-a,--amend` 参数。
+当要修改一个 `manifest` 列表时，可以加入 `-a` 或 `--amend` 参数。
 
 ## 设置 `manifest` 列表
 
