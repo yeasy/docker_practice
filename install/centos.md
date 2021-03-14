@@ -126,12 +126,12 @@ $ sudo usermod -aG docker $USER
 ## 测试 Docker 是否安装正确
 
 ```bash
-$ docker run hello-world
+$ docker run --rm hello-world
 
 Unable to find image 'hello-world:latest' locally
 latest: Pulling from library/hello-world
-d1725b59e92d: Pull complete
-Digest: sha256:0add3ace90ecb4adbf7777e9aacf18357296e799f81cabc9fde470971e499788
+b8dfde127a29: Pull complete
+Digest: sha256:308866a43596e83578c7dfa15e27a73011bdd402185a84c5cd7f32a88b501a24
 Status: Downloaded newer image for hello-world:latest
 
 Hello from Docker!
