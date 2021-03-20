@@ -16,7 +16,7 @@ $ docker run --name some-nginx -v /some/content:/usr/share/nginx/html:ro -d ngin
 
 用户也可以不使用这种映射方式，通过利用 Dockerfile 来直接将静态页面内容放到镜像中，内容为
 
-```bash
+```docker
 FROM nginx
 COPY static-html-directory /usr/share/nginx/html
 ```
@@ -39,7 +39,8 @@ Nginx的默认配置文件路径为 `/etc/nginx/nginx.conf`，可以通过映射
 ```bash
 $ docker run -d \
     --name some-nginx \
-    -v /some/nginx.conf:/etc/nginx/nginx.conf:ro \
+    -p 8080:80 \
+    -v /path/nginx.conf:/etc/nginx/nginx.conf:ro \
     nginx
 ```
 
