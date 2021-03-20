@@ -83,11 +83,11 @@ module.exports = config({
     nav: [
       {
         text: '微信交流群',
-        link: 'https://yewm28.coding-pages.com/wechat.jpg',
+        link: 'https://docker_practice.gitee.io/pic/dpsig-wechat.jpg',
       },
       {
         text: '小程序',
-        link: 'https://yewm28.coding-pages.com/49682252-3ac4c500-faec-11e8-86ab-eafe0139be6b.jpg',
+        link: 'https://docker_practice.gitee.io/pic/dp-wechat-miniprogram.jpg',
       },
       {
         text: '安装 Docker',
@@ -261,7 +261,7 @@ module.exports = config({
         },
         {
           title: 'Dockerfile',
-          collapsable: false,
+          collapsable: true,
           children: [
             "image/dockerfile/",
             'image/dockerfile/copy',

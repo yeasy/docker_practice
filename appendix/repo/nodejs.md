@@ -10,7 +10,7 @@
 
 在项目中创建一个 Dockerfile。
 
-```bash
+```docker
 FROM node:12
 # replace this with your application's default port
 EXPOSE 8888

@@ -37,7 +37,7 @@ bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr
 
 当利用 `docker run` 来创建容器时，Docker 在后台运行的标准操作包括：
 
-* 检查本地是否存在指定的镜像，不存在就从 [`registry`](../repository/README.md) 下载
+* 检查本地是否存在指定的镜像，不存在就从 [registry](../repository/README.md) 下载
 * 利用镜像创建并启动一个容器
 * 分配一个文件系统，并在只读的镜像层外面挂载一层可读写层
 * 从宿主主机配置的网桥接口中桥接一个虚拟接口到容器中去
@@ -47,7 +47,7 @@ bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr
 
 ## 启动已终止容器
 
-可以利用 `docker container start` 命令，直接将一个已经终止的容器启动运行。
+可以利用 `docker container start` 命令，直接将一个已经终止（`exited`）的容器启动运行。
 
 容器的核心为所执行的应用程序，所需要的资源都是应用程序运行所必需的。除此之外，并没有其它的资源。可以在伪终端中利用 `ps` 或 `top` 来查看进程信息。
 
