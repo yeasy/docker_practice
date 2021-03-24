@@ -59,3 +59,60 @@ root@ba267838cc1b:/# ps
 ```
 
 可见，容器中仅运行了指定的 bash 应用。这种特点使得 Docker 对资源的利用率极高，是货真价实的轻量级虚拟化。
+
+
+#停止容器
+docker stop可以停止运行的容器。
+理解：容器在docker host中实际上是一个进程，docker stop命令本质上是向该进程发送一个SIGTERM信号。如果
+想要快速停止容器，可使用docker kill命令，其作用是向容器进程发送SIGKILL信号。
+```bash
+        $ docker ps
+        CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                  PORTS               NAMES
+        bdf593fda8be        ubuntu:15.10        "/bin/bash"         3 minutes ago       Up 3 minutes (Paused)                       cranky_mclaren                  
+    
+        $ docker stop bdf593fda8be
+            bdf593fda8be
+        $ docker ps
+        CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+        LM-
+  
+```
+备注：docker ps 列出容器，默认列出只在运行的容器；加-a可以显示所有的容器，包括未运行的（例如异常退出（Exited）状态的容器）。
+
+```bash
+    $ docker ps -a
+    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+    bdf593fda8be        ubuntu:15.10        "/bin/bash"         18 minutes ago      Up 6 minutes                            cranky_mclaren
+    $ docker ps -a
+    CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                    PORTS               NAMES
+    2a545c90e593        ubuntu:15.10        "/bin/echo -d 'Hello…"   1 second ago        Exited (0) 1 second ago                       blissful_leakey
+    bdf593fda8be        ubuntu:15.10        "/bin/bash"              18 minutes ago      Up 6 minutes                                  cranky_mclaren
+```
+
+
+#重启容器
+对于已经处于停止状态的容器，可以通过docker start重新启动。
+```bash
+       $ docker start bdf593fda8be
+            bdf593fda8be
+       $ docker ps
+            CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+            bdf593fda8be        ubuntu:15.10        "/bin/bash"         11 minutes ago      Up 2 seconds                            cranky_mclaren
+            L
+```
+docker start会保留容器的第一次启动时的所有参数。
+docker restart可以重启容器，其作用就是依次执行docker stop和docker start。
+容器可能因某种错误而停止运行。对于服务类容器，通常希望它能够自动重启。启动容器时设置--restart就可以达到效果。
+
+--restart=always意味着无论容器因何种原因退出（包括正常退出），都立即重启；
+
+```bash
+$ docker run -it ubuntu:15.10 /bin/echo --restart=always -d "Hello world"
+--restart=always -d Hello world
+
+$ docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                     PORTS               NAMES
+ad0723ad8383        ubuntu:15.10        "/bin/echo --restart…"   9 seconds ago       Exited (0) 8 seconds ago                       gracious_chatelet
+2a545c90e593        ubuntu:15.10        "/bin/echo -d 'Hello…"   6 minutes ago       Exited (0) 6 minutes ago                       blissful_leakey
+bdf593fda8be        ubuntu:15.10        "/bin/bash"              25 minutes ago      Up 13 minutes                                  cranky_mclaren
+```
