@@ -16,3 +16,19 @@ trusting_newton
 ```bash
 $ docker container prune
 ```
+
+# 批量删除所有已经退出的容器
+```bash
+$ docker rm -v $(docker ps -aq -f status=exited)
+```
+
+# unpause容器
+有时我们只是希望让容器暂停工作一段时间，比如要对容器的文件系统打个快照，或者docker host需要使用CPU，可以执行:docker pause CONTAINER [CONTAINER...]，如图所示：
+    ```bash
+        $ docker pause bdf593fda8be
+            bdf593fda8be
+        $ docker ps
+        CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                  PORTS               NAMES
+        bdf593fda8be        ubuntu:15.10        "/bin/bash"         3 minutes ago       Up 3 minutes (Paused)                       cranky_mclaren                  
+    ```
+    
