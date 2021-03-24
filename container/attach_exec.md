@@ -1,6 +1,6 @@
 # 进入容器
 
-在使用 `-d` 参数时，容器启动后会进入后台。
+在使用 `-d` 参数时，容器启动后会进入后台，启动完容器之后会停在host端；
 
 某些时候需要进入容器进行操作，包括使用 `docker attach` 命令或 `docker exec` 命令，推荐大家使用 `docker exec` 命令，原因会在下面说明。
 
@@ -20,7 +20,7 @@ $ docker attach 243c
 root@243c32535da7:/#
 ```
 
-*注意：* 如果从这个 stdin 中 exit，会导致容器的停止。
+*注意：* 如果从这个 stdin 中exit回到host端，会导致容器的停止。
 
 ## `exec` 命令
 
@@ -51,6 +51,13 @@ $ docker exec -it 69d1 bash
 root@69d137adef7a:/#
 ```
 
-如果从这个 stdin 中 exit，不会导致容器的停止。这就是为什么推荐大家使用 `docker exec` 的原因。
+如果从这个 stdin 中 exit回到host端，但不会导致容器的停止。这就是为什么推荐大家使用 `docker exec` 的原因。
+
+
+## attach和exec的区别
+ attach和exec的区别：
+（1）attach直接进入容器启动命令的终端，不会启动新的进程；
+（2）exec则是在容器中打开新的终端，并且可以启动新的进程；
+（3）如果想直接在终端中查看命令的输出，用attach，其他情况使用exec；
 
 更多参数说明请使用 `docker exec --help` 查看。
