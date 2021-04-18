@@ -1,9 +1,5 @@
 # 使用 Buildx 构建镜像
 
-## 启用 Buildx
-
-`buildx` 命令属于实验特性，请参考 [开启实验特性](../install/experimental.md) 一节开启 Docker CLI 实验特性。
-
 ## 使用
 
 你可以直接使用 `docker buildx build` 命令构建镜像。
