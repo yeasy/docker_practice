@@ -126,8 +126,8 @@ module.exports = config({
       //   link: ''
       // },
       {
-        text: '腾讯云2021新春采购节',
-        link: 'https://cloud.tencent.com/act/cps/redirect?redirect=10488&cps_key=3a5255852d5db99dcd5da4c72f05df61&from=activity'
+        text: '云服务器特惠',
+        link: 'https://cloud.tencent.com/act/cps/redirect?redirect=1062&cps_key=3a5255852d5db99dcd5da4c72f05df61&from=console'
       },
       // {
       //   text: '语言',
@@ -151,7 +151,7 @@ module.exports = config({
         'design',
         {
           title: "部署 Kubernetes",
-          collapsable: false,
+          collapsable: true,
           children: [
             "setup/",
             "setup/kubeadm",
@@ -162,7 +162,7 @@ module.exports = config({
         },
         {
           title: "Kubernetes 命令行 kubectl",
-          collapsable: false,
+          collapsable: true,
           children: [
             'kubectl/'
           ]
@@ -185,7 +185,7 @@ module.exports = config({
         'fedora',
         'centos',
         'raspberry-pi',
-        'offline',
+        // 'offline',
         'mac',
         'windows',
         'mirror',
@@ -216,7 +216,7 @@ module.exports = config({
         'actions/',
         {
           title: "Drone",
-          collapsable: false,
+          collapsable: true,
           children: [
             'drone/',
             'drone/install'
@@ -327,7 +327,7 @@ module.exports = config({
         },
         {
           title: "高级网络配置",
-          collapsable: false,
+          collapsable: true,
           children: [
             'advanced_network/',
             'advanced_network/quick_guide',
@@ -341,7 +341,7 @@ module.exports = config({
         },
         {
           title: "Swarm mode",
-          collapsable: false,
+          collapsable: true,
           children: [
             'swarm_mode/',
             'swarm_mode/overview',
@@ -355,7 +355,7 @@ module.exports = config({
         },
         {
           title: "安全",
-          collapsable: false,
+          collapsable: true,
           children: [
             'security/',
             'security/kernel_ns',
@@ -368,7 +368,7 @@ module.exports = config({
         },
         {
           title: "底层实现",
-          collapsable: false,
+          collapsable: true,
           children: [
             'underly/',
             'underly/arch',
@@ -391,7 +391,7 @@ module.exports = config({
         },
         {
           title: "Etcd",
-          collapsable: false,
+          collapsable: true,
           children: [
             'etcd/',
             'etcd/intro',
@@ -402,7 +402,7 @@ module.exports = config({
         },
         {
           title: "Fedora CoreOS",
-          collapsable: false,
+          collapsable: true,
           children: [
             'coreos/',
             'coreos/intro',
@@ -413,7 +413,7 @@ module.exports = config({
         'appendix/faq/',
         {
           title: "热门镜像介绍",
-          collapsable: false,
+          collapsable: true,
           children: [
             'appendix/repo/',
             'appendix/repo/ubuntu',
@@ -430,7 +430,7 @@ module.exports = config({
         },
         {
           title: "Docker 命令",
-          collapsable: false,
+          collapsable: true,
           children: [
             'appendix/command/',
             'appendix/command/docker',

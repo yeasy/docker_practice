@@ -34,8 +34,6 @@ $ docker run -it --rm username/test
 
 我们可以使用 `$ docker manifest inspect golang:alpine` 查看这个 `manifest` 列表的结构。
 
-> 该命令属于实验特性，请参考 [开启实验特性](../install/experimental) 一节。
-
 ```bash
 $ docker manifest inspect golang:alpine
 ```
