@@ -28,7 +28,7 @@ CMD [ "npm", "start" ]
 FROM node:slim
 RUN mkdir /app
 WORKDIR /app
-CMD [ "npm", "start" ]
+CMD [ "npm", "install" ]
 ```
 
 这里我们把项目相关的构建指令拿出来，放到子项目里去。假设这个基础镜像的名字为 `my-node` 的话，各个项目内的自己的 `Dockerfile` 就变为：
@@ -36,7 +36,7 @@ CMD [ "npm", "start" ]
 ```docker
 FROM my-node
 COPY ./package.json /app
-RUN [ "npm", "install" ]
+RUN [ "npm", "start" ]
 COPY . /app/
 ```
 
