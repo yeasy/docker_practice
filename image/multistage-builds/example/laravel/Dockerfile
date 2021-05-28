@@ -5,7 +5,7 @@ COPY package.json /app/
 RUN set -x ; cd /app \
       && npm install --registry=https://registry.npm.taobao.org
 
-COPY webpack.mix.js /app/
+COPY webpack.mix.js webpack.config.js tailwind.config.js /app/
 COPY resources/ /app/resources/
 
 RUN set -x ; cd /app \
