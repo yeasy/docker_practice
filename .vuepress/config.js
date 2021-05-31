@@ -39,7 +39,6 @@ module.exports = config({
     // },
   },
   themeConfig: {
-    baseLang: 'zh-CN',
     blog: false,
     // comment: false,
     comment: {
@@ -53,7 +52,7 @@ module.exports = config({
       'word',
     ],
     footer: {
-      content: "Made with <a target='_blank' href='https://github.com/mister-hope/vuepress-theme-hope'>vuepress-theme-hope</a>",
+      content: "Made with <a target='_blank' href='https://github.com/vuepress-theme-hope/vuepress-theme-hope'>vuepress-theme-hope</a>",
       display: true,
       copyright: false,
     },
@@ -65,12 +64,22 @@ module.exports = config({
     mdEnhance: {
       lineNumbers: true,
     },
+    git: {
+      contributor: false,
+    },
     themeColor: {
       blue: '#2196f3',
       // red: '#f26d6d',
       // green: '#3eaf7c',
       // orange: '#fb9b5f'
     },
+    locales: {
+      "/": {
+        lang: "zh-CN"
+      }
+    },
+
+    darkmode: 'auto-switch',
 
     //
 
@@ -117,10 +126,10 @@ module.exports = config({
         text: "云计算",
         link: "/cloud/",
       },
-      {
-        text: 'GitHub',
-        link: 'https://github.com/yeasy/docker_practice'
-      },
+      // {
+      //   text: 'GitHub',
+      //   link: 'https://github.com/yeasy/docker_practice'
+      // },
       // {
       //   text: '捐赠',
       //   link: ''

@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "docker_practice",
   "main": "index.js",
-  "dependencies": {},
   "devDependencies": {
-    "chalk": "^2.4.2",
-    "commander": "^2.0.0",
+    "chalk": "^4.1.1",
+    "commander": "^7.2.0",
     "esm": "^3.0.0",
     "vuepress": "1.8.2",
     "vuepress-plugin-container": "^2.1.5",
