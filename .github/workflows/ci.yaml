@@ -80,7 +80,8 @@ jobs:
           npx vuepress --version
 
           npm run vuepress:build
-          echo "vuepress.docker-practice.com" > .vuepress/dist/CNAME
+          # echo "vuepress.docker-practice.com" > .vuepress/dist/CNAME
+          echo "vuepress.mirror.docker-practice.com" > .vuepress/dist/CNAME
 
           cp -r _images .vuepress/dist
           cp -r advanced_network/_images .vuepress/dist/advanced_network
@@ -109,21 +110,21 @@ jobs:
           PCIT_MESSAGE: Build from yeasy/docker_practice@${{github.sha}}
           PCIT_TARGET_BRANCH: master
           PCIT_USERNAME: khs1994
-      - name: Set coding.net CNAME
-        run: |
-          echo "vuepress.mirror.docker-practice.com" > .vuepress/dist/CNAME
-      - name: Upload Vuepress dist to coding.net
-        uses: docker://pcit/pages
-        if: github.repository == 'docker-practice/docker_practice'
-        env:
-          PCIT_EMAIL: khs1994@khs1994.com
-          PCIT_GIT_TOKEN: ${{ secrets.CODING_GIT_TOKEN }}
-          PCIT_GIT_URL: e.coding.net/dpsigs/docker_practice
-          PCIT_KEEP_HISTORY: "true"
-          PCIT_LOCAL_DIR: .vuepress/dist
-          PCIT_MESSAGE: Build from yeasy/docker_practice@${{github.sha}}
-          PCIT_TARGET_BRANCH: master
-          PCIT_USERNAME: ptt0xjqzbke3
+      # - name: Set coding.net CNAME
+      #   run: |
+      #     echo "vuepress.mirror.docker-practice.com" > .vuepress/dist/CNAME
+      # - name: Upload Vuepress dist to coding.net
+      #   uses: docker://pcit/pages
+      #   if: github.repository == 'docker-practice/docker_practice'
+      #   env:
+      #     PCIT_EMAIL: khs1994@khs1994.com
+      #     PCIT_GIT_TOKEN: ${{ secrets.CODING_GIT_TOKEN }}
+      #     PCIT_GIT_URL: e.coding.net/dpsigs/docker_practice
+      #     PCIT_KEEP_HISTORY: "true"
+      #     PCIT_LOCAL_DIR: .vuepress/dist
+      #     PCIT_MESSAGE: Build from yeasy/docker_practice@${{github.sha}}
+      #     PCIT_TARGET_BRANCH: master
+      #     PCIT_USERNAME: ptt0xjqzbke3
       - name: Build vuepress docker image
         if: github.repository == 'docker-practice/docker_practice'
         run: |
