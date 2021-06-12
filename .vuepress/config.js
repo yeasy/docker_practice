@@ -186,6 +186,7 @@ module.exports = config({
       ],
       '/compose/': [
         'introduction',
+        'v2',
         'install',
         'usage',
         'commands',
