@@ -2,6 +2,8 @@
 
 * 1.3.0 2021-YY-DD
   * 全面支持 Docker v20.10 新版本
+  * 新增 Docker Compose v2
+  * Docker Hub 自动构建转为付费功能
 
 * 1.2.0 2020-12-20
   * 错误修复

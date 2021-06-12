@@ -82,6 +82,7 @@
     * [使用 buildx 构建多种系统架构支持的 Docker 镜像](buildx/multi-arch-images.md)
 * [Docker Compose](compose/README.md)
     * [简介](compose/introduction.md)
+    * [Compose v2](compose/v2.md)
     * [安装与卸载](compose/install.md)
     * [使用](compose/usage.md)
     * [命令说明](compose/commands.md)
