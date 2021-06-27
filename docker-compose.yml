@@ -2,29 +2,30 @@ version: "3"
 
 services:
 
-  # $ docker-compose up server => up a server，Only Support Linux or macOS
-  server:
-    image: yeasy/docker_practice:latest
-    ports:
-      - 4000:4000
-    volumes:
-      - ./:/srv/gitbook-src
-    command: server
-
-  # $ docker-compose up build => build gitbook
-
-  build:
+  gitbook-build:
+    &gitbook-build
     image: yeasy/docker_practice:latest
     volumes:
       - ./:/srv/gitbook-src
     command: build
 
-  # $ docker run -it --rm -p 4000:80 dockerpracticesig/docker_practice
-  offline:
+  gitbook-server:
+    << : *gitbook-build
+    ports:
+      - 4000:4000
+    command: server
+
+  # docker run -it --rm -p 4000:80 dockerpracticesig/docker_practice
+  gitbook-offline:
+    &gitbook-offline
     # this image build by GitHub Action
-    image: dockerpracticesig/docker_practice
+    image: dockerpracticesig/docker_practice:gitbook
     ports:
       - 4000:80
+
+  vuepress-offline:
+    << : *gitbook-offline
+    image: dockerpracticesig/docker_practice:vuepress
 
   # developer test docker image
 
