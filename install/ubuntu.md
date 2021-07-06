@@ -8,10 +8,10 @@
 
 Docker 支持以下版本的 [Ubuntu](https://ubuntu.com/server) 操作系统：
 
+* Ubuntu Hirsute 21.04
 * Ubuntu Groovy 20.10
 * Ubuntu Focal 20.04 (LTS)
 * Ubuntu Bionic 18.04 (LTS)
-* Ubuntu Xenial 16.04 (LTS)
 
 Docker 可以安装在 64 位的 x86 平台或 ARM 平台上。Ubuntu 发行版中，LTS（Long-Term-Support）长期支持版本，会获得 5 年的升级维护支持，这样的版本会更稳定，因此在生产环境中推荐使用 LTS 版本。
 
