@@ -58,7 +58,7 @@ jobs:
           "product.china-pub.com",\
           "union-click.jd.com",\
           "x.x.x.x/base",\
-          "x.x.x.x:9000/minio/",\
+          "x.x.x.x:9090",\
           "yeasy.gitbooks.io",\
           "download.fastgit.org",\
           "www.aliyun.com" \

@@ -1,8 +1,8 @@
 # minio
-[TOC]
-MinIO 是一个基于Apache License v2.0开源协议的对象存储服务。它兼容亚马逊S3云存储服务接口，非常适合于存储大容量非结构化的数据，例如图片、视频、日志文件、备份数据和容器/虚拟机镜像等，而一个对象文件可以是任意大小，从几kb到最大5T不等。
 
-MinIO是一个非常轻量的服务,可以很简单的和其他应用的结合，类似 NodeJS, Redis 或者 MySQL。
+**MinIO** 是一个基于 Apache License v2.0 开源协议的对象存储服务。它兼容亚马逊 S3 云存储服务接口，非常适合于存储大容量非结构化的数据，例如图片、视频、日志文件、备份数据和容器/虚拟机镜像等，而一个对象文件可以是任意大小，从几 kb 到最大 5T 不等。
+
+MinIO 是一个非常轻量的服务,可以很简单的和其他应用的结合，类似 NodeJS, Redis 或者 MySQL。
 
 [官方文档](https://docs.min.io/)
 
@@ -11,11 +11,8 @@ MinIO是一个非常轻量的服务,可以很简单的和其他应用的结合�
 测试、开发环境下不考虑数据存储的情况下可以使用下面的命令快速开启服务。
 
 ```bash
-docker pull minio/minio
-docker run -p 9000:9000 minio/minio server /data
+$ docker run -d -p 9000:9000 -p 9090:9090 minio/minio server /data --console-address ':9090'
 ```
-
-
 
 ## 离线部署
 
@@ -26,37 +23,36 @@ docker run -p 9000:9000 minio/minio server /data
 在有公网资源的服务器上下载好`minio/minio`镜像
 
 ```bash
-docker save -o minio.tar minio/minio:latest
+$ docker save -o minio.tar minio/minio:latest
 ```
 
-<!--使用docker save 的时候，也可以使用image id 来导出，但是那样导出的时候，就会丢失原来的镜像名称，推荐，还是使用镜像名字+tag来导出镜像-->
+> 使用docker save 的时候，也可以使用image id 来导出，但是那样导出的时候，就会丢失原来的镜像名称，推荐，还是使用镜像名字+tag来导出镜像
 
 ### 导入镜像
 
 把压缩文件复制到内网服务器上，使用下面的命令导入镜像
 
 ```bash
-docker load minio.tar 
+$ docker load minio.tar 
 ```
 
 ### 运行 minio
 
-- 把/mnt/data 改成要替换的数据目录
-- 替换 MINIO_ACCESS_KEY
-- 替换 MINIO_SECRET_KEY
+- 把 `/mnt/data` 改成要替换的数据目录
+- 替换 `MINIO_ROOT_USER` 的值
+- 替换 `MINIO_ROOT_PASSWORD` 的值
 - 替换 name,minio1(可选)
-- 如果9000端口冲突,替换端口前面的如:9009:9000
+- 如果 9000、9090 端口冲突,替换端口前面的如 `9009:9000`
 
 ```bash
-sudo docker run -d -p 9000:9000 --name minio1 \
-  -e "MINIO_ACCESS_KEY=改成自己需要的" \
-  -e "MINIO_SECRET_KEY=改成自己需要的" \
+$ sudo docker run -d -p 9000:9000 -p 9090:9090 --name minio1 \
+  -e "MINIO_ROOT_USER=改成自己需要的" \
+  -e "MINIO_ROOT_PASSWORD=改成自己需要的" \
   -v /mnt/data:/data \
   --restart=always \
-  minio/minio server /data
+  minio/minio server /data --console-address ':9090'
 ```
 
 ### 访问 web 管理页面
 
-http://x.x.x.x:9000/minio/
-
+http://x.x.x.x:9090
