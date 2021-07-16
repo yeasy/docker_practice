@@ -141,9 +141,8 @@ module.exports = config({
       //   link: ''
       // },
       {
-        text: '云服务器618特惠',
-        //link: 'https://cloud.tencent.com/act/cps/redirect?redirect=1062&cps_key=3a5255852d5db99dcd5da4c72f05df61&from=console'
-        link: 'https://cloud.tencent.com/act/cps/redirect?redirect=10488&cps_key=3a5255852d5db99dcd5da4c72f05df61&from=activity'
+        text: '云服务器99/元首年特惠',
+        link: 'https://cloud.tencent.com/act/cps/redirect?redirect=1062&cps_key=3a5255852d5db99dcd5da4c72f05df61&from=console'
       },
       // {
       //   text: '语言',
