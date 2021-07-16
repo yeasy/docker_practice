@@ -10,21 +10,7 @@
 
 ## 获取官方镜像
 
-在 `Docker Hub` 中搜索 `busybox` 相关的镜像。
-
-```bash
-$ docker search busybox
-NAME                            DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
-busybox                         Busybox base image.                             755       [OK]
-progrium/busybox                                                                63                   [OK]
-radial/busyboxplus              Full-chain, Internet enabled, busybox made...   11                   [OK]
-odise/busybox-python                                                            3                    [OK]
-multiarch/busybox               multiarch ports of ubuntu-debootstrap           2                    [OK]
-azukiapp/busybox                This image is meant to be used as the base...   2                    [OK]
-...
-```
-
-读者可以看到最受欢迎的镜像同时带有 `OFFICIAL` 标记，说明它是官方镜像。用户使用 `docker pull` 指令下载 `busybox:latest` 镜像：
+可以使用 `docker pull` 指令下载 `busybox:latest` 镜像：
 
 ```bash
 $ docker pull busybox:latest
