@@ -14,20 +14,7 @@
 
 ### 使用 Debian 官方镜像
 
-读者可以使用 `docker search` 查找 `Debian` 镜像：
-
-```bash
-$ docker search debian
-NAME         DESCRIPTION    STARS     OFFICIAL   AUTOMATED
-debian       Debian is...   1565      [OK]
-neurodebian  NeuroDebian...   26      [OK]
-armbuild/debian port of debian 8                 [OK]
-...
-```
-
-官方提供了大家熟知的 `debian` 镜像以及面向科研领域的 `neurodebian` 镜像。
-
-可以使用 `docker run` 直接运行 `Debian` 镜像。
+官方提供了大家熟知的 `debian` 镜像以及面向科研领域的 `neurodebian` 镜像。可以使用 `docker run` 直接运行 `Debian` 镜像。
 
 ```bash
 $ docker run -it debian bash
@@ -44,31 +31,6 @@ Debian GNU/Linux 8
 `Ubuntu` 是一个以桌面应用为主的 `GNU/Linux` 操作系统，其名称来自非洲南部祖鲁语或豪萨语的“ubuntu”一词（官方译名“友帮拓”，另有“吾帮托”、“乌班图”、“有奔头”或“乌斑兔”等译名）。`Ubuntu` 意思是“人性”以及“我的存在是因为大家的存在”，是非洲传统的一种价值观，类似华人社会的“仁爱”思想。 `Ubuntu` 基于 `Debian` 发行版和 `GNOME/Unity` 桌面环境，与 `Debian` 的不同在于它每 6 个月会发布一个新版本，每 2 年推出一个长期支持 **（Long Term Support，LTS）** 版本，一般支持 3 年时间。
 
 ### 使用 Ubuntu 官方镜像
-
-`Ubuntu` 相关的镜像有很多，这里使用 `--filter=stars=10` 参数，只搜索那些被收藏 `10` 次以上的镜像。
-
-```bash
-$ docker search --filter=stars=10 ubuntu
-
-NAME                                                      DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED
-ubuntu                                                    Ubuntu is a Debian-based Linux operating sys…   10539               [OK]
-dorowu/ubuntu-desktop-lxde-vnc                            Docker image to provide HTML5 VNC interface …   395                                     [OK]
-rastasheep/ubuntu-sshd                                    Dockerized SSH service, built on top of offi…   243                                     [OK]
-consol/ubuntu-xfce-vnc                                    Ubuntu container with "headless" VNC session…   210                                     [OK]
-ubuntu-upstart                                            Upstart is an event-based replacement for th…   105                 [OK]
-ansible/ubuntu14.04-ansible                               Ubuntu 14.04 LTS with ansible                   98                                      [OK]
-neurodebian                                               NeuroDebian provides neuroscience research s…   64                  [OK]
-1and1internet/ubuntu-16-nginx-php-phpmyadmin-mysql-5      ubuntu-16-nginx-php-phpmyadmin-mysql-5          50                                      [OK]
-ubuntu-debootstrap                                        debootstrap --variant=minbase --components=m…   42                  [OK]
-nuagebec/ubuntu                                           Simple always updated Ubuntu docker images w…   24                                      [OK]
-i386/ubuntu                                               Ubuntu is a Debian-based Linux operating sys…   19
-1and1internet/ubuntu-16-apache-php-5.6                    ubuntu-16-apache-php-5.6                        14                                      [OK]
-1and1internet/ubuntu-16-apache-php-7.0                    ubuntu-16-apache-php-7.0                        13                                      [OK]
-eclipse/ubuntu_jdk8                                       Ubuntu, JDK8, Maven 3, git, curl, nmap, mc, …   12                                      [OK]
-1and1internet/ubuntu-16-nginx-php-phpmyadmin-mariadb-10   ubuntu-16-nginx-php-phpmyadmin-mariadb-10       11                                      [OK]
-```
-
-根据搜索出来的结果，读者可以自行选择下载镜像并使用。
 
 下面以 `ubuntu:18.04` 为例，演示如何使用该镜像安装一些常用软件。
 
