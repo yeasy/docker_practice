@@ -126,7 +126,7 @@
   * [基本概念](kubernetes/concepts.md)
   * [架构设计](kubernetes/design.md)
 * [部署 Kubernetes](kubernetes/setup/README.md)
-  * [使用 kubeadm 部署 kubernetes](kubernetes/setup/kubeadm.md)
+  * [使用 kubeadm 部署 kubernetes(CRI 使用 containerd)](kubernetes/setup/kubeadm.md)
   * [在 Docker Desktop 使用](kubernetes/setup/docker-desktop.md)
   * [一步步部署 kubernetes 集群](kubernetes/setup/systemd.md)
   * [部署 Dashboard](kubernetes/setup/dashboard.md)
