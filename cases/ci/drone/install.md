@@ -30,7 +30,7 @@ version: '3'
 services:
 
   drone-server:
-    image: drone/drone:1
+    image: drone/drone:2.3.1
     ports:
       - 443:443
       - 80:80
@@ -39,7 +39,6 @@ services:
       - ./ssl:/etc/certs
     restart: always
     environment:
-      - DRONE_AGENTS_ENABLED=true
       - DRONE_SERVER_HOST=${DRONE_SERVER_HOST:-https://drone.yeasy.com}
       - DRONE_SERVER_PROTO=${DRONE_SERVER_PROTO:-https}
       - DRONE_RPC_SECRET=${DRONE_RPC_SECRET:-secret}
