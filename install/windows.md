@@ -8,7 +8,7 @@
 
 **手动下载安装**
 
-点击以下 [链接](https://desktop.docker.com/win/stable/amd64/Docker%20Desktop%20Installer.exe) 下载 Docker Desktop for Windows。
+点击以下 [链接](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe) 下载 Docker Desktop for Windows。
 
 下载好之后双击 `Docker Desktop Installer.exe` 开始安装。
 
