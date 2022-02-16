@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package.json /app/
 
-RUN npm i --registry=https://registry.npm.taobao.org \
+RUN npm i --registry=https://registry.npmmirror.com \
         && rm -rf ~/.npm
 
 COPY src /app/src
