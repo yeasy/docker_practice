@@ -61,7 +61,7 @@ FROM node:alpine as frontend
 COPY package.json /app/
 
 RUN set -x ; cd /app \
-      && npm install --registry=https://registry.npm.taobao.org
+      && npm install --registry=https://registry.npmmirror.com
 
 COPY webpack.mix.js webpack.config.js tailwind.config.js /app/
 COPY resources/ /app/resources/
@@ -179,7 +179,7 @@ FROM node:alpine as frontend
 COPY package.json /app/
 
 RUN set -x ; cd /app \
-      && npm install --registry=https://registry.npm.taobao.org
+      && npm install --registry=https://registry.npmmirror.com
 
 COPY webpack.mix.js webpack.config.js tailwind.config.js /app/
 COPY resources/ /app/resources/
