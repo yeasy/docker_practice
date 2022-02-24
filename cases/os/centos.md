@@ -10,17 +10,17 @@ CentOS（Community Enterprise Operating System，中文意思是：社区企业�
 
 ### 使用 CentOS 官方镜像
 
-使用 `docker run` 直接运行最新的 `CentOS` 镜像，并登录 `bash`。
+使用 `docker run` 直接运行 `CentOS 7` 镜像，并登录 `bash`。
 
 ```bash
-$ docker run -it centos bash
+$ docker run -it centos:7 bash
 Unable to find image 'centos:latest' locally
 latest: Pulling from library/centos
 3d8673bd162a: Pull complete
 Digest: sha256:a66ffcb73930584413de83311ca11a4cb4938c9b2521d331026dad970c19adf4
 Status: Downloaded newer image for centos:latest
 [root@43eb3b194d48 /]# cat /etc/redhat-release
-CentOS Linux release 7.2.1511 (Core)
+CentOS Linux release 7.9.2009 (Core)
 ```
 
 ## Fedora 系统简介
