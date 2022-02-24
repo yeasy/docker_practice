@@ -75,7 +75,7 @@ username/ubuntu
 
 ## 自动构建
 
-> 2021 年 6 月 18 日之后，该项功能仅限[付费用户](https://www.docker.com/blog/changes-to-docker-hub-autobuilds/)使用。
+> 2021 年 7 月 26 日之后，该项功能仅限[付费用户](https://www.docker.com/blog/changes-to-docker-hub-autobuilds/)使用。
 
 自动构建（`Automated Builds`）功能对于需要经常升级镜像内程序来说，十分方便。
 
