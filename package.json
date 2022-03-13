@@ -4,19 +4,20 @@
   "description": "docker_practice",
   "main": "index.js",
   "devDependencies": {
-    "chalk": "^4.1.1",
+    "chalk": "^4.1.2",
     "commander": "^7.2.0",
     "esm": "^3.0.0",
-    "vuepress": "1.8.2",
-    "vuepress-plugin-container": "^2.1.5",
-    "vuepress-theme-hope": "^1.0.0"
+    "@vuepress/plugin-search": "2.0.0-beta.36",
+    "vuepress": "2.0.0-beta.36",
+    "vuepress-theme-hope": "2.0.0-beta.14"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "gitbook:help": "gitbook help",
     "gitbook:build": "gitbook build",
     "gitbook:serve": "gitbook serve",
-    "vuepress:build": "npx vuepress build",
+    "vuepress:build": "vuepress build .",
+    "vuepress:serve": "vuepress dev .",
     "vuepress": "npx vuepress"
   },
   "repository": {
