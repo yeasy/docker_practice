@@ -47,7 +47,7 @@ bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr
 
 ## 启动已终止容器
 
-可以利用 `docker container start` 命令，直接将一个已经终止（`exited`）的容器启动运行。
+可以利用 `docker start container` 命令，直接将一个已经终止（`exited`）的容器启动运行。
 
 容器的核心为所执行的应用程序，所需要的资源都是应用程序运行所必需的。除此之外，并没有其它的资源。可以在伪终端中利用 `ps` 或 `top` 来查看进程信息。
 
