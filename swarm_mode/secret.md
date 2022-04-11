@@ -62,7 +62,7 @@ $ docker service create \
      --network mysql_private \
      --publish target=30000,port=80 \
      --mount type=volume,source=wpdata,destination=/var/www/html \
-     --secret source=mysql_password,target=wp_db_password,mode=0400 \
+     --secret source=mysql_password,target=wp_db_password,mode=0444 \
      -e WORDPRESS_DB_USER="wordpress" \
      -e WORDPRESS_DB_PASSWORD_FILE="/run/secrets/wp_db_password" \
      -e WORDPRESS_DB_HOST="mysql:3306" \
