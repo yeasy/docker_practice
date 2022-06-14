@@ -1,9 +1,9 @@
 # 删除本地镜像
 
-如果要删除本地的镜像，可以使用 `docker image rm` 命令，其格式为：
+如果要删除本地的镜像，可以使用 `docker image rmi` 命令，其格式为：
 
 ```bash
-$ docker image rm [选项] <镜像1> [<镜像2> ...]
+$ docker image rmi [选项] <镜像1> [<镜像2> ...]
 ```
 
 ## 用 ID、镜像名、摘要删除镜像
@@ -26,7 +26,7 @@ nginx                       latest              e43d811ce2f4        5 weeks ago 
 比如这里，如果我们要删除 `redis:alpine` 镜像，可以执行：
 
 ```bash
-$ docker image rm 501
+$ docker image rmi 501
 Untagged: redis:alpine
 Untagged: redis@sha256:f1ed3708f538b537eb9c2a7dd50dc90a706f7debd7e1196c9264edeea521a86d
 Deleted: sha256:501ad78535f015d88872e13fa87a828425117e3d28075d0c117932b05bf189b7
@@ -40,7 +40,7 @@ Deleted: sha256:4fc455b921edf9c4aea207c51ab39b10b06540c8b4825ba57b3feed1668fa7c7
 我们也可以用`镜像名`，也就是 `<仓库名>:<标签>`，来删除镜像。
 
 ```bash
-$ docker image rm centos
+$ docker image rmi centos
 Untagged: centos:latest
 Untagged: centos@sha256:b2f9d1c0ff5f87a4743104d099a3d561002ac500db1b9bfa02a783a46e0d366c
 Deleted: sha256:0584b3d2cf6d235ee310cf14b54667d889887b838d3f3d3033acd70fc3c48b8a
@@ -70,18 +70,18 @@ Untagged: node@sha256:b4f0e0bdeb578043c1ea6862f0d40cc4afe32a4a582f3be235a3b16442
 
 ## 用 docker image ls 命令来配合
 
-像其它可以承接多个实体的命令一样，可以使用 `docker image ls -q` 来配合使用 `docker image rm`，这样可以成批的删除希望删除的镜像。我们在“镜像列表”章节介绍过很多过滤镜像列表的方式都可以拿过来使用。
+像其它可以承接多个实体的命令一样，可以使用 `docker image ls -q` 来配合使用 `docker image rmi`，这样可以成批的删除希望删除的镜像。我们在“镜像列表”章节介绍过很多过滤镜像列表的方式都可以拿过来使用。
 
 比如，我们需要删除所有仓库名为 `redis` 的镜像：
 
 ```bash
-$ docker image rm $(docker image ls -q redis)
+$ docker image rmi $(docker image ls -q redis)
 ```
 
 或者删除所有在 `mongo:3.2` 之前的镜像：
 
 ```bash
-$ docker image rm $(docker image ls -q -f before=mongo:3.2)
+$ docker image rmi $(docker image ls -q -f before=mongo:3.2)
 ```
 
 充分利用你的想象力和 Linux 命令行的强大，你可以完成很多非常赞的功能。
