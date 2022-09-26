@@ -6,7 +6,7 @@
 
 从 `v20.10` 版本开始，Docker CLI 所有实验特性的命令均默认开启，无需再进行配置或设置系统环境变量。
 
-## 开启 dockerd 的实验特性
+## 开启 docker 的实验特性
 
 编辑 `/etc/docker/daemon.json`，新增如下条目
 
