@@ -103,7 +103,7 @@ REPOSITORY                         TAG                 IMAGE ID            CREAT
 
 ```json
 {
-  "registry-mirror": [
+  "registry-mirrors": [
     "https://hub-mirror.c.163.com",
     "https://mirror.baidubce.com"
   ],
