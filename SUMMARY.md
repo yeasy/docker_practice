@@ -75,6 +75,7 @@
   * [自定义网桥](advanced_network/bridge.md)
   * [工具和示例](advanced_network/example.md)
   * [编辑网络配置文件](advanced_network/config_file.md)
+  * [配置 HTTP/HTTPS 网络代理](advanced_network/http_https_proxy.md)
   * [实例：创建一个点到点连接](advanced_network/ptp.md)
 * [Docker Buildx](buildx/README.md)
   * [BuildKit](buildx/buildkit.md)
