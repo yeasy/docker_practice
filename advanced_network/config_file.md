@@ -1,5 +1,5 @@
-# 编辑网络配置文件
+# Editing Network Configuration Files
 
-Docker 1.2.0 开始支持在运行中的容器里编辑 `/etc/hosts`, `/etc/hostname` 和 `/etc/resolv.conf` 文件。
+Starting with Docker 1.2.0, you can edit the /etc/hosts, /etc/hostname, and /etc/resolv.conf files in a running container.
 
-但是这些修改是临时的，只在运行的容器中保留，容器终止或重启后并不会被保存下来，也不会被 `docker commit` 提交。
+However, these changes are temporary and are only retained in the running container. They are not saved after the container terminates or restarts and are not committed by docker commit.
