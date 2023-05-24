@@ -1,45 +1,32 @@
-# 自定义网桥
+# Custom Bridge
+In addition to the default docker0 bridge, users can also specify a bridge to connect containers.
+When starting the Docker service, use -b BRIDGE or --bridge=BRIDGE to specify the bridge to use.
+If the service is already running, you need to stop the service and delete the old bridge.
 
-除了默认的 `docker0` 网桥，用户也可以指定网桥来连接各个容器。
 
-在启动 Docker 服务的时候，使用 `-b BRIDGE`或`--bridge=BRIDGE` 来指定使用的网桥。
-
-如果服务已经运行，那需要先停止服务，并删除旧的网桥。
-
-```bash
 $ sudo systemctl stop docker
 $ sudo ip link set dev docker0 down
 $ sudo brctl delbr docker0
-```
+Then create a bridge bridge0.
 
-然后创建一个网桥 `bridge0`。
 
-```bash
 $ sudo brctl addbr bridge0
 $ sudo ip addr add 192.168.5.1/24 dev bridge0
 $ sudo ip link set dev bridge0 up
-```
+Check that the bridge has been created and started.
 
-查看确认网桥创建并启动。
 
-```bash
 $ ip addr show bridge0
 4: bridge0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state UP group default
-    link/ether 66:38:d0:0d:76:18 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.5.1/24 scope global bridge0
-       valid_lft forever preferred_lft forever
-```
+ link/ether 66:38:d0:0d:76:18 brd ff:ff:ff:ff:ff:ff
+ inet 192.168.5.1/24 scope global bridge0
+ valid_lft forever preferred_lft forever
+Add the following content to the Docker configuration file /etc/docker/daemon.json to bridge Docker to the created bridge by default.
 
-在 Docker 配置文件 `/etc/docker/daemon.json` 中添加如下内容，即可将 Docker 默认桥接到创建的网桥上。
 
-```json
 {
-  "bridge": "bridge0",
+ "bridge": "bridge0",
 }
-```
-
-启动 Docker 服务。
-
-新建一个容器，可以看到它已经桥接到了 `bridge0` 上。
-
-可以继续用 `brctl show` 命令查看桥接的信息。另外，在容器中可以使用 `ip addr` 和 `ip route` 命令来查看 IP 地址配置和路由信息。
+Start the Docker service.
+Create a new container and you can see that it is already bridged to bridge0.
+You can continue to use the brctl show command to view bridging information. In addition, you can use the ip addr and ip route commands in the container to view IP address configuration and routing information.
