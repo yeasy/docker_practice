@@ -46,7 +46,9 @@ docker-ce.x86_64            3:19.03.1-3.el7                     docker-ce-stable
 #### 下载到指定文件夹(A)
 
 ```bash
-sudo yum install --downloadonly --downloaddir=/tmp/docker-19.03 docker-ce-19.03.8-3.el7 docker-ce-cli-19.03.8-3.el7 
+mkdir -p /home/download/docker-ce-19
+cd /home/download/docker-ce-19
+sudo repotrack docker-ce-19.03.8-3.el7 docker-ce-cli-19.03.8-3.el7
 ```
 
 ```bash
@@ -79,8 +81,9 @@ exiting because "Download Only" specified
 ```
 #### 复制到目标服务器之后进入文件夹安装(C-N)
 
+安装时不检查依赖
 ```bash
-yum install *.rpm
+rpm -Uvh *.rpm --nodeps --force
 ```
 
 #### 锁定软件版本(C-N)
