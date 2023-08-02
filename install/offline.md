@@ -32,7 +32,7 @@ sudo yum list docker-ce --showduplicates|sort -r
 
 Loading mirror speeds from cached hostfile
 Loaded plugins: fastestmirror
-docker-ce.x86_64            3:19.03.8-3.el7                     docker-ce-stable
+docker-ce.x86_64            24.0.4-1.el7                        docker-ce-stable
 docker-ce.x86_64            3:19.03.7-3.el7                     docker-ce-stable
 docker-ce.x86_64            3:19.03.6-3.el7                     docker-ce-stable
 docker-ce.x86_64            3:19.03.5-3.el7                     docker-ce-stable
@@ -46,7 +46,7 @@ docker-ce.x86_64            3:19.03.1-3.el7                     docker-ce-stable
 #### 下载到指定文件夹(A)
 
 ```bash
-sudo yum install --downloadonly --downloaddir=/tmp/docker-19.03 docker-ce-19.03.8-3.el7 docker-ce-cli-19.03.8-3.el7 
+sudo yum install --downloadonly --downloaddir=/tmp/docker24_offline_install/ docker-ce-24.0.4-1.el7 docker-ce-cli-24.0.4-1.el7
 ```
 
 ```bash
@@ -56,11 +56,11 @@ Dependencies Resolved
  Package                                          Arch                                  Version                                         Repository                             Size
 ====================================================================================================================================================================================
 Installing:
- docker-ce                                        x86_64                                3:19.03.8-3.el7                                 docker                                 25 M
+ docker-ce                                        x86_64                                24.0.4-1.el7                                 docker                                 25 M
 Installing for dependencies:
- container-selinux                                noarch                                2:2.107-3.el7                                   extras                                 39 k
- containerd.io                                    x86_64                                1.2.13-3.1.el7                                  docker                                 23 M
- docker-ce-cli                                    x86_64                                1:19.03.8-3.el7                                 docker                                 40 M
+ container-selinux                                noarch                                24.0.4-1.el7                                   extras                                 39 k
+ containerd.io                                    x86_64                                24.0.4-1.el7                                  docker                                 23 M
+ docker-ce-cli                                    x86_64                                24.0.4-1.el7                                 docker                                 40 M
 
 Transaction Summary
 ====================================================================================================================================================================================
@@ -69,10 +69,10 @@ Install  1 Package (+3 Dependent packages)
 Total download size: 87 M
 Installed size: 363 M
 Background downloading packages, then exiting:
-(1/4): container-selinux-2.107-3.el7.noarch.rpm                                                                                                              |  39 kB  00:00:00
-(2/4): containerd.io-1.2.13-3.1.el7.x86_64.rpm                                                                                                               |  23 MB  00:00:00
-(3/4): docker-ce-19.03.8-3.el7.x86_64.rpm                                                                                                                    |  25 MB  00:00:00
-(4/4): docker-ce-cli-19.03.8-3.el7.x86_64.rpm                                                                                                                |  40 MB  00:00:00
+(1/4): container-selinux-24.0.4-1.el7.noarch.rpm                                                                                                              |  39 kB  00:00:00
+(2/4): containerd.io-24.0.4-1.el7.x86_64.rpm                                                                                                               |  23 MB  00:00:00
+(3/4): docker-ce-24.0.4-1.el7.x86_64.rpm                                                                                                                    |  25 MB  00:00:00
+(4/4): docker-ce-cli-24.0.4-1.el7.x86_64.rpm                                                                                                                |  40 MB  00:00:00
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Total                                                                                                                                               118 MB/s |  87 MB  00:00:00
 exiting because "Download Only" specified
@@ -105,7 +105,7 @@ sudo yum versionlock list
 
 ```bash
 Loaded plugins: fastestmirror, versionlock
-3:docker-ce-18.09.9-3.el7.*
+3:docker-ce-24.0.4-1.el7.*
 versionlock list done
 ```
 
@@ -116,7 +116,7 @@ sudo yum install docker-ce
 Loaded plugins: fastestmirror, versionlock
 Loading mirror speeds from cached hostfile
 Excluding 1 update due to versionlock (use "yum versionlock status" to show it)
-Package 3:docker-ce-18.09.9-3.el7.x86_64 already installed and latest version
+Package 3:docker-ce-24.0.4-1.el7.x86_64 already installed and latest version
 Nothing to do
 ```
 
@@ -128,7 +128,7 @@ sudo yum versionlock delete docker-ce
 
 ```bash
 Loaded plugins: fastestmirror, versionlock
-Deleting versionlock for: 3:docker-ce-18.09.9-3.el7.*
+Deleting versionlock for: 3:docker-ce-24.0.4-1.el7.*
 versionlock deleted: 1
 ```
 
@@ -244,6 +244,5 @@ sudo yum makecache fast
 sudo yum install docker-ce docker-ce-cli containerd.io
 sudo systemctl enable docker
 ```
-
 
 
