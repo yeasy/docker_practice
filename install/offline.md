@@ -79,8 +79,9 @@ exiting because "Download Only" specified
 ```
 #### 复制到目标服务器之后进入文件夹安装(C-N)
 
+* 离线安装时，必须使用rpm命令不检查依赖的方式安装
 ```bash
-yum install *.rpm
+rpm -Uvh *.rpm --nodeps --force
 ```
 
 #### 锁定软件版本(C-N)
