@@ -68,6 +68,7 @@ jobs:
           PCIT_USERNAME: khs1994
       - name: vuepress
         run: |
+          export NODE_OPTIONS=--openssl-legacy-provider
           sudo rm -rf _book
           # npm i vuepress --save-dev
           npm i
