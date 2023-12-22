@@ -1,9 +1,9 @@
+name: CI
+
 on:
   push:
   pull_request:
   workflow_dispatch:
-
-name: CI
 
 defaults:
   run:
@@ -14,9 +14,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-        with:
-          fetch-depth: 2
+      - uses: actions/checkout@v4.1.1
       - name: Build Gitbook
         uses: docker://yeasy/docker_practice
         with:
@@ -70,7 +68,6 @@ jobs:
         run: |
           export NODE_OPTIONS=--openssl-legacy-provider
           sudo rm -rf _book
-          # npm i vuepress --save-dev
           npm i
 
           git clone https://github.com/docker-practice/.vuepress  .vuepress2
@@ -81,7 +78,6 @@ jobs:
           npx vuepress --version
 
           npm run vuepress:build
-          # echo "vuepress.docker-practice.com" > .vuepress/dist/CNAME
           echo "vuepress.mirror.docker-practice.com" > .vuepress/dist/CNAME
 
           cp -r _images .vuepress/dist

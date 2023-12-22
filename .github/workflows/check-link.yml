@@ -1,8 +1,6 @@
 name: Check link
 
 on:
-  # push:
-  # pull_request:
   workflow_dispatch:
 
 jobs:
@@ -10,9 +8,7 @@ jobs:
     name: check-link
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-        with:
-          fetch-depth: 1
+      - uses: actions/checkout@v4.1.1
       # search Issues :-(
       - run: |
           docker run -i --rm \
