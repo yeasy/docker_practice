@@ -9,6 +9,7 @@ Docker 不仅支持 `x86_64` 架构的计算机，同时也支持 `ARM` 架构�
 Docker 支持以下版本的 [Raspberry Pi OS](https://www.raspberrypi.org/software/operating-systems/) 操作系统：
 
 * Raspberry Pi OS Buster
+* Raspberry Pi OS Bullseye
 
 *注：* `Raspberry Pi OS` 由树莓派的开发与维护机构 [树莓派基金会](https://www.raspberrypi.org/) 官方支持，并推荐用作树莓派的首选系统，其基于 `Debian`。
 
@@ -57,6 +58,33 @@ $ sudo add-apt-repository \
 ```
 
 >以上命令会添加稳定版本的 Docker APT 源，如果需要测试版本的 Docker 请将 stable 改为 test。
+
+#### 报错解决办法
+
+在 `Raspberry Pi OS Bullseye` 上这一步可能会出现如下报错:
+
+```bash
+Traceback (most recent call last):
+ File "/usr/bin/add-apt-repository", line 95, in <module>
+   sp = SoftwareProperties(options=options)
+ File "/usr/lib/python3/dist-packages/softwareproperties/SoftwareProperties.py", line 109, in __init__
+   self.reload_sourceslist()
+ File "/usr/lib/python3/dist-packages/softwareproperties/SoftwareProperties.py", line 599, in reload_sourceslist
+   self.distro.get_sources(self.sourceslist)    
+ File "/usr/lib/python3/dist-packages/aptsources/distro.py", line 91, in get_sources
+   raise NoDistroTemplateException(
+aptsources.distro.NoDistroTemplateException: Error: could not find a distribution template for Raspbian/bullseye
+```
+
+可以通过以下命令手动添加镜像源到 `/etc/apt/sources.list` 文件中:
+
+```bash
+$ sudo echo "deb [arch=armhf] https://mirrors.aliyun.com/docker-ce/linux/raspbian bullseye stable" | sudo tee -a /etc/apt/sources.list
+
+
+# 官方源
+# $ sudo echo "deb [arch=armhf] https://download.docker.com/linux/raspbian bullseye stable" | sudo tee -a /etc/apt/sources.list
+```
 
 ### 安装 Docker
 
