@@ -10,6 +10,7 @@ Docker 支持以下版本的 [Raspberry Pi OS](https://www.raspberrypi.org/softw
 
 * Raspberry Pi OS Buster
 * Raspberry Pi OS Bullseye
+* Raspberry Pi OS Bookworm
 
 *注：* `Raspberry Pi OS` 由树莓派的开发与维护机构 [树莓派基金会](https://www.raspberrypi.org/) 官方支持，并推荐用作树莓派的首选系统，其基于 `Debian`。
 
@@ -61,7 +62,7 @@ $ sudo add-apt-repository \
 
 #### 报错解决办法
 
-在 `Raspberry Pi OS Bullseye` 上这一步可能会出现如下报错:
+在 `Raspberry Pi OS Bullseye/Bookworm` 中，添加 Docker 软件源的步骤可能会出现如下报错:
 
 ```bash
 Traceback (most recent call last):
@@ -76,14 +77,14 @@ Traceback (most recent call last):
 aptsources.distro.NoDistroTemplateException: Error: could not find a distribution template for Raspbian/bullseye
 ```
 
-可以通过以下命令手动添加镜像源到 `/etc/apt/sources.list` 文件中:
+通过以下命令手动添加镜像源到 `/etc/apt/sources.list` 文件中即可解决:
 
 ```bash
-$ sudo echo "deb [arch=armhf] https://mirrors.aliyun.com/docker-ce/linux/raspbian bullseye stable" | sudo tee -a /etc/apt/sources.list
+$ sudo echo "deb [arch=armhf] https://mirrors.aliyun.com/docker-ce/linux/raspbian $(lsb_release -cs) stable" | sudo tee -a /etc/apt/sources.list
 
 
 # 官方源
-# $ sudo echo "deb [arch=armhf] https://download.docker.com/linux/raspbian bullseye stable" | sudo tee -a /etc/apt/sources.list
+# $ sudo echo "deb [arch=armhf] https://download.docker.com/linux/raspbian $(lsb_release -cs) stable" | sudo tee -a /etc/apt/sources.list
 ```
 
 ### 安装 Docker
