@@ -5,6 +5,7 @@
 * [阿里云加速器(点击管理控制台 -> 登录账号(淘宝账号) -> 左侧镜像工具 -> 镜像加速器 -> 复制加速器地址)](https://cr.console.aliyun.com/cn-hangzhou/instances)
 * [网易云加速器 `https://hub-mirror.c.163.com`](https://www.163yun.com/help/documents/56918246390157312)
 * [百度云加速器 `https://mirror.baidubce.com`](https://cloud.baidu.com/doc/CCE/s/Yjxppt74z#%E4%BD%BF%E7%94%A8dockerhub%E5%8A%A0%E9%80%9F%E5%99%A8)
+* [AtomHub 可信镜像中心](https://atomhub.openatom.cn/)
 
 **由于镜像服务可能出现宕机，建议同时配置多个镜像。各个镜像站测试结果请到 [docker-practice/docker-registry-cn-mirror-test](https://github.com/docker-practice/docker-registry-cn-mirror-test/actions) 查看。**
 
@@ -29,6 +30,7 @@ $ systemctl cat docker | grep '\-\-registry\-mirror'
 ```json
 {
   "registry-mirrors": [
+    "https://atomhub.openatom.cn",
     "https://hub-mirror.c.163.com",
     "https://mirror.baidubce.com"
   ]
@@ -51,6 +53,7 @@ $ sudo systemctl restart docker
 ```json
 {
   "registry-mirrors": [
+    "https://atomhub.openatom.cn",
     "https://hub-mirror.c.163.com",
     "https://mirror.baidubce.com"
   ]
@@ -64,6 +67,7 @@ $ sudo systemctl restart docker
 ```json
 {
   "registry-mirrors": [
+    "https://atomhub.openatom.cn",
     "https://hub-mirror.c.163.com",
     "https://mirror.baidubce.com"
   ]
