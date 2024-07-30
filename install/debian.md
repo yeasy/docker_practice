@@ -65,7 +65,7 @@ $ echo \
 
 ```
 
->以上命令会添加稳定版本的 Docker APT 源，如果需要测试版本的 Docker 请将 stable 改为 test。
+>以上命令会添加稳定版本的 Docker APT 源，如果需要测试版本的 Docker 请将 stable 改为 test。 Debian11可能不使用`/etc/apt/keyrings/`， 如gpg错误可以考虑更换为`/etc/apt/trusted.gpg.d`， 见[issue 15727](https://github.com/docker/docs/issues/15727)。
 
 ### 安装 Docker
 
