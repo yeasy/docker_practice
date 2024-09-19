@@ -6,23 +6,31 @@
 
 ### 系统要求
 
-Docker 支持以下版本的 [Ubuntu](https://ubuntu.com/server) 操作系统：
+Docker 支持诸多版本的 [Ubuntu](https://ubuntu.com/server) 操作系统。但是较旧的版本上将不会有Docker新版本的持续更新，以截至2024年中的几个 Ubuntu LTS（Long Term Support，长期支持）版本为例：
 
-* Ubuntu Hirsute 21.04
-* Ubuntu Groovy 20.10
-* Ubuntu Focal 20.04 (LTS)
-* Ubuntu Bionic 18.04 (LTS)
+* Ubuntu Noble 24.04 (LTS)，Docker v27.2.1
+* Ubuntu Jammy 22.04 (LTS), Docker v27.2.1
+* Ubuntu Focal 20.04 (LTS), Docker v27.2.1
+* Ubuntu Bionic 18.04 (LTS)，Docker v24.0.2
 
-Docker 可以安装在 64 位的 x86 平台或 ARM 平台上。Ubuntu 发行版中，LTS（Long-Term-Support）长期支持版本，会获得 5 年的升级维护支持，这样的版本会更稳定，因此在生产环境中推荐使用 LTS 版本。
+在 Ubuntu LTS 版本上，目前 Docker 支持 amd64、arm64、armhf、ppc64el、s390x 等 5 个平台；而非 LTS 版本支持的平台通常较少。同时，LTS 版本会获得 5 年的升级维护支持，这样的系统会获得更长期的安全保障，因此在生产环境中推荐使用 LTS 版本。
 
 ### 卸载旧版本
 
 旧版本的 Docker 称为 `docker` 或者 `docker-engine`，使用以下命令卸载旧版本：
 
 ```bash
-$ sudo apt-get remove docker \
-               docker-engine \
-               docker.io
+$ for pkg in docker \
+           docker-engine \
+           docker.io \
+           docker-doc \
+           docker-compose \
+           podman-docker \
+           containerd \
+           runc;
+do
+    sudo apt remove $pkg;
+done
 ```
 
 ## 使用 APT 安装
@@ -30,9 +38,9 @@ $ sudo apt-get remove docker \
 由于 `apt` 源使用 HTTPS 以确保软件下载过程中不被篡改。因此，我们首先需要添加使用 HTTPS 传输的软件包以及 CA 证书。
 
 ```bash
-$ sudo apt-get update
+$ sudo apt update
 
-$ sudo apt-get install \
+$ sudo apt install \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -73,9 +81,9 @@ $ echo \
 更新 apt 软件包缓存，并安装 `docker-ce`：
 
 ```bash
-$ sudo apt-get update
+$ sudo apt update
 
-$ sudo apt-get install docker-ce docker-ce-cli containerd.io
+$ sudo apt install docker-ce docker-ce-cli containerd.io
 ```
 
 ## 使用脚本自动安装
