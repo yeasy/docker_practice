@@ -1,16 +1,16 @@
 # 镜像加速器
 
-国内从 Docker Hub 拉取镜像有时会遇到困难，此时可以配置镜像加速器。国内很多云服务商都提供了国内加速器服务，例如：
+国内从 Docker Hub 拉取镜像有时会遇到困难，此时可以配置镜像加速器。~~国内很多云服务商都提供了国内加速器服务，例如：~~
 
 * [阿里云加速器(点击管理控制台 -> 登录账号(淘宝账号) -> 左侧镜像工具 -> 镜像加速器 -> 复制加速器地址)](https://cr.console.aliyun.com/cn-hangzhou/instances)
-* [网易云加速器 `https://hub-mirror.c.163.com`](https://www.163yun.com/help/documents/56918246390157312)
-* [百度云加速器 `https://mirror.baidubce.com`](https://cloud.baidu.com/doc/CCE/s/Yjxppt74z#%E4%BD%BF%E7%94%A8dockerhub%E5%8A%A0%E9%80%9F%E5%99%A8)
 
 **由于镜像服务可能出现宕机，建议同时配置多个镜像。各个镜像站测试结果请到 [docker-practice/docker-registry-cn-mirror-test](https://github.com/docker-practice/docker-registry-cn-mirror-test/actions) 查看。**
 
 > 国内各大云服务商（腾讯云、阿里云、百度云）均提供了 Docker 镜像加速服务，建议根据运行 Docker 的云平台选择对应的镜像加速服务，具体请参考本页最后一小节。
 
-本节我们以 [网易云](https://www.163yun.com/) 镜像服务 `https://hub-mirror.c.163.com` 为例进行介绍。
+本节我们以 [AtomHub 可信镜像中心](https://hub.atomgit.com/) 镜像服务 `https://hub.atomgit.com` 为例进行介绍。
+
+> `hub.atomgit.com` 仅包含部分官方镜像，可以满足初学者的使用。
 
 ## Ubuntu 16.04+、Debian 8+、CentOS 7+
 
@@ -29,8 +29,7 @@ $ systemctl cat docker | grep '\-\-registry\-mirror'
 ```json
 {
   "registry-mirrors": [
-    "https://hub-mirror.c.163.com",
-    "https://mirror.baidubce.com"
+    "https://hub.atomgit.com"
   ]
 }
 ```
@@ -46,13 +45,12 @@ $ sudo systemctl restart docker
 
 ## Windows 10
 
-对于使用 `Windows 10` 的用户，在任务栏托盘 Docker 图标内右键菜单选择 `Settings`，打开配置窗口后在左侧导航菜单选择 `Docker Engine`，在右侧像下边一样编辑 json 文件，之后点击 `Apply & Restart` 保存后 Docker 就会重启并应用配置的镜像地址了。
+对于使用 `Windows 10` 的用户，在任务栏托盘 Docker 图标内右键菜单选择 `Change settings`，打开配置窗口后在左侧导航菜单选择 `Docker Engine`，在右侧像下边一样编辑 json 文件，之后点击 `Apply & Restart` 保存后 Docker 就会重启并应用配置的镜像地址了。
 
 ```json
 {
   "registry-mirrors": [
-    "https://hub-mirror.c.163.com",
-    "https://mirror.baidubce.com"
+    "https://hub.atomgit.com"
   ]
 }
 ```
@@ -64,8 +62,7 @@ $ sudo systemctl restart docker
 ```json
 {
   "registry-mirrors": [
-    "https://hub-mirror.c.163.com",
-    "https://mirror.baidubce.com"
+    "https://hub.atomgit.com"
   ]
 }
 ```
@@ -76,7 +73,7 @@ $ sudo systemctl restart docker
 
 ```bash
 Registry Mirrors:
- https://hub-mirror.c.163.com/
+ https://hub.atomgit.com/
 ```
 
 ## `k8s.gcr.io` 镜像
@@ -100,6 +97,8 @@ $ docker pull registry.cn-hangzhou.aliyuncs.com/google_containers/xxx
 * https://dockerhub.azk8s.cn **已转为私有**
 * https://reg-mirror.qiniu.com
 * https://registry.docker-cn.com
+* https://hub-mirror.c.163.com
+* https://mirror.baidubce.com
 
 建议 **watch（页面右上角）** [镜像测试](https://github.com/docker-practice/docker-registry-cn-mirror-test) 这个 GitHub 仓库，我们会在此更新各个镜像地址的状态。
 
