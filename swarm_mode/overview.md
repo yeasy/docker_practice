@@ -16,7 +16,7 @@
 
 来自 Docker 官网的这张图片形象的展示了集群中管理节点与工作节点的关系。
 
-![](https://docs.docker.com/engine/swarm/images/swarm-diagram.png)
+![](https://docs.docker.com/engine/swarm/images/swarm-diagram.webp)
 
 ## 服务和任务
 
@@ -32,4 +32,4 @@
 
 来自 Docker 官网的这张图片形象的展示了容器、任务、服务的关系。
 
-![](https://docs.docker.com/engine/swarm/images/services-diagram.png)
+![](https://docs.docker.com/engine/swarm/images/services-diagram.webp)
