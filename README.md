@@ -1,3 +1,5 @@
+## Chinese Version :
+
 # Docker — 从入门到实践
 
 [![](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) [![](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases) [![](https://img.shields.io/badge/Based-Docker%20CE%20v20.10-blue.svg)](https://github.com/docker/docker-ce) [![](https://img.shields.io/badge/Docker%20%E6%8A%80%E6%9C%AF%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E6%88%98-jd.com-red.svg)][1]
@@ -69,5 +71,85 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初�
 </p>
 
 <p align="center"><strong>欢迎鼓励项目一杯 coffee~</strong></p>
+
+[1]: https://union-click.jd.com/jdc?e=&p=JF8AANADIgZlGF0VAxUDVBJdHDISBFAfWRcCGzcRRANLXSJeEF4aVwkMGQ1eD0kdSVJKSQVJHBIEUB9ZFwIbGAxeB0gyS34PbFlHVHNkI0MQEAoIcSxyBWFLRAtZK1olABYHXR9eHAoQN2UbXCVQfN_jrYOwsw7T_5SOnZUiBmUbXBYBFwBVG14UBBAAZRxbHDJJUjscCEEHEQ4FSA4VBhBQZStrFjIiN1UrWCVAfARQT1gQA0cFAEwOEAcRDlMTDEALQAFTEwwRUhMAUR1cJQATBlES
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+## English Version :
+
+
+# Docker — From Beginner to Practice
+
+[![](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) [![](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases) [![](https://img.shields.io/badge/Based-Docker%20CE%20v20.10-blue.svg)](https://github.com/docker/docker-ce) [![](https://img.shields.io/badge/Docker%20Technology%20Introduction%20and%20Practice-jd.com-red.svg)][1]
+
+**v1.3.0**
+
+| Language | - |
+| :------------- | :--- |
+| [Simplified Chinese](https://github.com/yeasy/docker_practice) | [Read Online](https://vuepress.mirror.docker-practice.com/) |
+
+[Docker](https://www.docker.com) is a revolutionary open-source project that unleashes the full potential of computing virtualization. It greatly improves application maintenance efficiency and reduces the cost of developing cloud applications! With Docker, deploying, testing, and distributing applications has never been more efficient and effortless!
+
+Whether you are an application developer, operations engineer, or IT professional, understanding and mastering Docker is essential to save valuable time and energy.
+
+This book is suitable for both beginners with basic Linux knowledge and advanced users who want to understand Docker’s principles and implementation. The provided practical cases can also serve as a reference for real-world deployments. The first six chapters cover the fundamentals of Docker concepts and operations; chapters 7–9 discuss advanced operations such as data management and networking; chapters 10–12 introduce core projects in the container ecosystem; chapters 13–14 cover topics on Docker security and implementation techniques. Later chapters introduce popular open-source projects like Etcd, Fedora CoreOS, Kubernetes, and container clouds. Finally, it showcases typical application scenarios and case studies of container technologies.
+
+* Online reading: [docker-practice.com](https://vuepress.mirror.docker-practice.com/), [GitBook](https://yeasy.gitbook.io/docker_practice/), [Github](https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md)
+* Offline reading: [`$ docker run -it --rm -p 4000:80 ccr.ccs.tencentyun.com/dockerpracticesig/docker_practice:vuepress`](https://github.com/yeasy/docker_practice/wiki/%E7%A6%BB%E7%BA%BF%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3)
+
+Docker itself is still evolving rapidly, and its ecosystem continues to grow. Beginners are encouraged to use the latest stable version of Docker for learning and practice. You are welcome to [contribute to the project](CONTRIBUTING.md).
+
+* [Changelog](CHANGELOG.md)
+* [List of Contributors](https://github.com/yeasy/docker_practice/graphs/contributors)
+
+## WeChat Mini Program
+
+<p align="center">
+<img width="200" src="https://docker_practice.gitee.io/pic/dp-wechat-miniprogram.jpg">
+</p>
+
+<p align="center"><strong>Scan with WeChat to read anytime, anywhere~</strong></p>
+
+## Technical Communication
+
+<p align="center">
+<img width="200" src="https://docker_practice.gitee.io/pic/dpsig-wechat.jpg">
+</p>
+
+<p align="center"><strong>Scan the QR code to join the group chat, or add <code>dpsigs</code> on WeChat to be invited.</strong></p>
+
+Join the Docker Technology Exchange QQ groups to share resources and discuss Docker technology.
+
+* QQ Group I (Full): 341410255
+* QQ Group II (Full): 419042067
+* QQ Group III (Full): 210028779
+* QQ Group IV (Full): 483702734
+* QQ Group V (Full): 460598761
+* QQ Group VI (Full): 581983671
+* QQ Group VII (Full): 252403484
+* QQ Group VIII (Full): 544818750
+* QQ Group IX (Full): 571502246
+* QQ Group X (Available): 145983035
+
+>If you have any questions about container technologies, please raise them via [Issues](https://github.com/yeasy/docker_practice/issues/new/choose).
+
+## Advanced Learning
+
+[![](https://github.com/yeasy/docker_practice/raw/master/_images/docker_primer3.png)][1]
+
+The third edition of “[Docker Technology Introduction and Practice][1]” is now available. It introduces the latest container technology stack — readers are welcome to read, use, and provide feedback.
+
+* [JD Books][1]
+* [China-Pub](http://product.china-pub.com/8052127)
+
+## Support the Project
+
+<p align="center">
+<img width="200" src="https://github.com/yeasy/docker_practice/raw/master/_images/donate.jpeg">
+</p>
+
+<p align="center"><strong>Support the project with a cup of coffee~</strong></p>
 
 [1]: https://union-click.jd.com/jdc?e=&p=JF8AANADIgZlGF0VAxUDVBJdHDISBFAfWRcCGzcRRANLXSJeEF4aVwkMGQ1eD0kdSVJKSQVJHBIEUB9ZFwIbGAxeB0gyS34PbFlHVHNkI0MQEAoIcSxyBWFLRAtZK1olABYHXR9eHAoQN2UbXCVQfN_jrYOwsw7T_5SOnZUiBmUbXBYBFwBVG14UBBAAZRxbHDJJUjscCEEHEQ4FSA4VBhBQZStrFjIiN1UrWCVAfARQT1gQA0cFAEwOEAcRDlMTDEALQAFTEwwRUhMAUR1cJQATBlES
