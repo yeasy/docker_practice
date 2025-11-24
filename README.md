@@ -2,7 +2,7 @@
 
 [![](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) [![](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases) [![](https://img.shields.io/badge/Based-Docker%20CE%20v20.10-blue.svg)](https://github.com/docker/docker-ce) [![](https://img.shields.io/badge/Docker%20%E6%8A%80%E6%9C%AF%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E6%88%98-jd.com-red.svg)][1]
 
-**v1.3.0**
+**v1.3.1**
 
 | 语言           | - |
 | :------------- | :--- |
@@ -55,12 +55,12 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初�
 
 ## 进阶学习
 
-[![](https://github.com/yeasy/docker_practice/raw/master/_images/docker_primer3.png)][1]
+[![](https://github.com/yeasy/docker_practice/raw/master/_images/docker_primer4.jpg)][1]
 
-《[Docker 技术入门与实战][1]》第三版已经面世，介绍最新的容器技术栈，欢迎大家阅读使用并反馈建议。
+《[Docker 技术入门与实战][1]》已更新到第 4 版，讲解最新容器技术栈知识，欢迎大家阅读并反馈建议。
 
 * [京东图书][1]
-* [China-Pub](http://product.china-pub.com/8052127)
+* [天猫图书](https://detail.tmall.com/item.htm?id=997383773726&skuId=6143496614475)
 
 ## 鼓励项目
 
@@ -70,4 +70,4 @@ Docker 自身仍在快速发展中，生态环境也在蓬勃成长。建议初�
 
 <p align="center"><strong>欢迎鼓励项目一杯 coffee~</strong></p>
 
-[1]: https://union-click.jd.com/jdc?e=&p=JF8AANADIgZlGF0VAxUDVBJdHDISBFAfWRcCGzcRRANLXSJeEF4aVwkMGQ1eD0kdSVJKSQVJHBIEUB9ZFwIbGAxeB0gyS34PbFlHVHNkI0MQEAoIcSxyBWFLRAtZK1olABYHXR9eHAoQN2UbXCVQfN_jrYOwsw7T_5SOnZUiBmUbXBYBFwBVG14UBBAAZRxbHDJJUjscCEEHEQ4FSA4VBhBQZStrFjIiN1UrWCVAfARQT1gQA0cFAEwOEAcRDlMTDEALQAFTEwwRUhMAUR1cJQATBlES
+[1]: https://item.jd.com/10200902362001.html
