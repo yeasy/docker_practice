@@ -1,4 +1,4 @@
-# 客户端命令(docker)
+# 客户端命令 - docker
 
 ## 客户端命令选项
 
@@ -63,7 +63,8 @@
 * `wait`：阻塞直到一个容器终止，然后输出它的退出符。
 
 ## 一张图总结 Docker 的命令
-![Docker 命令总结](../_images/cmd_logic.png)
+
+![Docker 命令总结](../../.gitbook/assets/cmd_logic.png)
 
 ## 参考
 

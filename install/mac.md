@@ -1,4 +1,4 @@
-# macOS 安装 Docker
+# macOS
 
 ## 系统要求
 
@@ -22,21 +22,21 @@ $ brew install --cask docker
 
 如同 macOS 其它软件一样，安装也非常简单，双击下载的 `.dmg` 文件，然后将那只叫 [Moby](https://www.docker.com/blog/call-me-moby-dock/) 的鲸鱼图标拖拽到 `Application` 文件夹即可（其间需要输入用户密码）。
 
-![](./_images/install-mac-dmg.png)
+![](../.gitbook/assets/install-mac-dmg.png)
 
 ## 运行
 
 从应用中找到 Docker 图标并点击运行。
 
-![](./_images/install-mac-apps.png)
+![](../.gitbook/assets/install-mac-apps.png)
 
 运行之后，会在右上角菜单栏看到多了一个鲸鱼图标，这个图标表明了 Docker 的运行状态。
 
-![](./_images/install-mac-menubar.png)
+![](../.gitbook/assets/install-mac-menubar.png)
 
 每次点击鲸鱼图标会弹出操作菜单。
 
-![](./_images/install-mac-menu.png)
+![](../.gitbook/assets/install-mac-menu.png)
 
 之后，你可以在终端通过命令检查安装后的 Docker 版本。
 
@@ -51,9 +51,9 @@ Docker version 20.10.0, build 7287ab3
 $ docker run -d -p 80:80 --name webserver nginx
 ```
 
-服务运行后，可以访问 <http://localhost>，如果看到了 "Welcome to nginx!"，就说明 Docker Desktop for Mac 安装成功了。
+服务运行后，可以访问 [http://localhost](http://localhost)，如果看到了 "Welcome to nginx!"，就说明 Docker Desktop for Mac 安装成功了。
 
-![](./_images/install-mac-example-nginx.png)
+![](../.gitbook/assets/install-mac-example-nginx.png)
 
 要停止 Nginx 服务器并删除执行下面的命令：
 
