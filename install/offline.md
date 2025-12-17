@@ -1,14 +1,12 @@
-# 离线部署Docker
+# Linux 离线安装
 
-[TOC]
+\[TOC]
 
 生产环境中一般都是没有公网资源的，本文介绍如何在生产服务器上离线部署`Docker`
 
-
-
 括号内的字母表示该操作需要在哪些服务器上执行
 
-<img src="_images/image-20200412202617411.png" alt="Docker-offile-install-top" style="zoom:30%;" />
+![Docker-offile-install-top](../.gitbook/assets/image-20200412202617411.png)
 
 ## Centos7 离线安装Docker
 
@@ -16,7 +14,7 @@
 
 推荐这种方式，是因为在生产环境种一般会选定某个指定的文档软件版本使用。
 
-####  查询可用的软件版本(A)
+#### 查询可用的软件版本(A)
 
 ```bash
 #下载清华的镜像源文件
@@ -77,28 +75,32 @@ Background downloading packages, then exiting:
 Total                                                                                                                                               118 MB/s |  87 MB  00:00:00
 exiting because "Download Only" specified
 ```
+
 #### 复制到目标服务器之后进入文件夹安装(C-N)
 
 * 离线安装时，必须使用rpm命令不检查依赖的方式安装
+
 ```bash
 rpm -Uvh *.rpm --nodeps --force
 ```
 
 #### 锁定软件版本(C-N)
 
-##### 下载锁定版本软件
+**下载锁定版本软件**
+
 可参考下文的网络源搭建
+
 ```bash
 sudo yum install yum-plugin-versionlock
 ```
 
-##### 锁定软件版本
+**锁定软件版本**
 
 ```bash
 sudo yum versionlock add docker
 ```
 
-##### 查看锁定列表
+**查看锁定列表**
 
 ```bash
 sudo yum versionlock list
@@ -110,7 +112,7 @@ Loaded plugins: fastestmirror, versionlock
 versionlock list done
 ```
 
-##### 锁定后无法再更新
+**锁定后无法再更新**
 
 ```bash
 sudo yum install docker-ce
@@ -121,7 +123,7 @@ Package 3:docker-ce-24.0.4-1.el7.x86_64 already installed and latest version
 Nothing to do
 ```
 
-##### 解锁指定软件
+**解锁指定软件**
 
 ```bash
 sudo yum versionlock delete docker-ce
@@ -133,13 +135,11 @@ Deleting versionlock for: 3:docker-ce-24.0.4-1.el7.*
 versionlock deleted: 1
 ```
 
-##### 解锁所有软件
+**解锁所有软件**
 
 ```bash
 sudo yum versionlock delete all
 ```
-
-
 
 ### YUM 本地源服务器搭建安装Docker
 
@@ -169,8 +169,6 @@ EOF
 yum clean all 
 yum install createrepo -y
 ```
-
-
 
 #### 根据本地文件搭建BASE网络源（B）
 
@@ -245,5 +243,3 @@ sudo yum makecache fast
 sudo yum install docker-ce docker-ce-cli containerd.io
 sudo systemctl enable docker
 ```
-
-

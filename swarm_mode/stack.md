@@ -1,4 +1,4 @@
-# 在 Swarm 集群中使用 compose 文件
+# 使用 compose 文件
 
 正如之前使用 `docker-compose.yml` 来一次配置、启动多个容器，在 `Swarm` 集群中也可以使用 `compose` 文件 （`docker-compose.yml`） 来配置、启动多个服务。
 
@@ -70,7 +70,7 @@ $ docker stack deploy -c docker-compose.yml wordpress
 
 现在我们打开浏览器输入 `任一节点IP:8080` 即可看到各节点运行状态。如下图所示：
 
-![](image/wordpress.png)
+![](../.gitbook/assets/wordpress.png)
 
 在浏览器新的标签页输入 `任一节点IP` 即可看到 `WordPress` 安装界面，安装完成之后，输入 `任一节点IP` 即可看到 `WordPress` 页面。
 
