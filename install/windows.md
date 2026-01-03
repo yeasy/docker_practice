@@ -1,4 +1,4 @@
-# Windows 10 安装 Docker
+# Windows 10
 
 ## 系统要求
 
@@ -12,13 +12,13 @@
 
 下载好之后双击 `Docker Desktop Installer.exe` 开始安装。
 
-**使用 [winget](https://docs.microsoft.com/zh-cn/windows/package-manager/) 安装**
+**使用** [**winget**](https://docs.microsoft.com/zh-cn/windows/package-manager/) **安装**
 
 ```powershell
 $ winget install Docker.DockerDesktop
 ```
 
-## 在 WSL2 运行 Docker 
+## 在 WSL2 运行 Docker
 
 若你的 Windows 版本为 Windows 10 专业版或家庭版 v1903 及以上版本可以使用 WSL2 运行 Docker，具体请查看 [Docker Desktop WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/)。
 
@@ -26,11 +26,11 @@ $ winget install Docker.DockerDesktop
 
 在 Windows 搜索栏输入 **Docker** 点击 **Docker Desktop** 开始运行。
 
-![](./_images/install-win-docker-app-search.png)
+![](../.gitbook/assets/install-win-docker-app-search.png)
 
 Docker 启动之后会在 Windows 任务栏出现鲸鱼图标。
 
-![](./_images/install-win-taskbar-circle.png)
+![](../.gitbook/assets/install-win-taskbar-circle.png)
 
 等待片刻，当鲸鱼图标静止时，说明 Docker 启动成功，之后你可以打开 PowerShell 使用 Docker。
 

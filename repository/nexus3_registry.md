@@ -1,4 +1,4 @@
-# Nexus3.x 的私有仓库
+# Nexus 3
 
 使用 Docker 官方的 Registry 创建的仓库面临一些维护问题。比如某些镜像删除以后空间默认是不会回收的，需要一些命令去回收空间然后重启 Registry。在企业中把内部的一些工具包放入 `Nexus` 中是比较常见的做法，最新版本 `Nexus3.x` 全面支持 Docker 的私有镜像。所以使用 [`Nexus3.x`](https://www.sonatype.com/product/repository-oss-download) 一个软件来管理 `Docker` , `Maven` , `Yum` , `PyPI` 等是一个明智的选择。
 
@@ -22,7 +22,6 @@ $ docker logs nexus3 -f
 Started Sonatype Nexus OSS 3.30.0-01
 
 -------------------------------------------------
-
 ```
 
 如果你看到以上内容，说明 `Nexus` 已经启动成功，你可以使用浏览器打开 `http://YourIP:8081` 访问 `Nexus` 了。
@@ -53,7 +52,7 @@ $ docker exec nexus3 cat /nexus-data/admin.password
 
 菜单 `Security->Realms` 把 Docker Bearer Token Realm 移到右边的框中保存。
 
-添加用户规则：菜单 `Security->Roles`->`Create role`  在 `Privlleges` 选项搜索 docker 把相应的规则移动到右边的框中然后保存。
+添加用户规则：菜单 `Security->Roles`->`Create role` 在 `Privlleges` 选项搜索 docker 把相应的规则移动到右边的框中然后保存。
 
 添加用户：菜单 `Security->Users`->`Create local user` 在 `Roles` 选项中选中刚才创建的规则移动到右边的窗口保存。
 
@@ -114,7 +113,7 @@ server {
 
 ## Docker 主机访问镜像仓库
 
-如果不启用 SSL 加密可以通过 [前面章节](./registry.md) 的方法添加非 https 仓库地址到 Docker 的配置文件中然后重启 Docker。
+如果不启用 SSL 加密可以通过 [前面章节](registry.md) 的方法添加非 https 仓库地址到 Docker 的配置文件中然后重启 Docker。
 
 使用 SSL 加密以后程序需要访问就不能采用修改配置的方式了。具体方法如下：
 
