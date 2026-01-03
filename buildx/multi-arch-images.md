@@ -1,38 +1,62 @@
-# 使用 buildx 构建多种系统架构支持的 Docker 镜像
+# 构建多种系统架构支持的 Docker 镜像
 
-在之前的版本中构建多种系统架构支持的 Docker 镜像，要想使用统一的名字必须使用 [`$ docker manifest`](../image/manifest.md) 命令。
+Docker 镜像可以支持多种系统架构，这意味着你可以在 `x86_64`、`arm64` 等不同架构的机器上运行同一个镜像。这是通过一个名为 "manifest list"（或称为 "fat manifest"）的文件来实现的。
 
-在 Docker 19.03+ 版本中可以使用 `$ docker buildx build` 命令使用 `BuildKit` 构建镜像。该命令支持 `--platform` 参数可以同时构建支持多种系统架构的 Docker 镜像，大大简化了构建步骤。
+## Manifest List 是什么？
 
-## 新建 `builder` 实例
+Manifest list 是一个包含了多个指向不同架构镜像的 manifest 的文件。当你拉取一个支持多架构的镜像时，Docker 会自动根据你当前的系统架构选择并拉取对应的镜像。
 
-Docker for Linux 不支持构建 `arm` 架构镜像，我们可以运行一个新的容器让其支持该特性，Docker 桌面版无需进行此项设置。
-
-```bash
-$ docker run --rm --privileged tonistiigi/binfmt:latest --install all
-```
-
-由于 Docker 默认的 `builder` 实例不支持同时指定多个 `--platform`，我们必须首先创建一个新的 `builder` 实例。同时由于国内拉取镜像较缓慢，我们可以使用配置了 [镜像加速地址](https://github.com/moby/buildkit/blob/master/docs/buildkitd.toml.md)  的 [`dockerpracticesig/buildkit:master`](https://github.com/docker-practice/buildx) 镜像替换官方镜像。
-
-> 如果你有私有的镜像加速器，可以基于 https://github.com/docker-practice/buildx 构建自己的 buildkit 镜像并使用它。
+例如，官方的 `hello-world` 镜像就支持多种架构。你可以使用 `docker manifest inspect` 命令来查看它的 manifest list：
 
 ```bash
-# 适用于国内环境
-$ docker buildx create --use --name=mybuilder-cn --driver docker-container --driver-opt image=dockerpracticesig/buildkit:master
-
-# 适用于腾讯云环境(腾讯云主机、coding.net 持续集成)
-$ docker buildx create --use --name=mybuilder-cn --driver docker-container --driver-opt image=dockerpracticesig/buildkit:master-tencent
-
-# $ docker buildx create --name mybuilder --driver docker-container
-
-$ docker buildx use mybuilder
+$ docker manifest inspect hello-world
+{
+   "schemaVersion": 2,
+   "mediaType": "application/vnd.docker.distribution.manifest.list.v2+json",
+   "manifests": [
+      {
+         "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+         "size": 525,
+         "digest": "sha256:80852a401a974d9e923719a948cc5335a0a4435be8778b475844a7153a2382e5",
+         "platform": {
+            "architecture": "amd64",
+            "os": "linux"
+         }
+      },
+      {
+         "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+         "size": 525,
+         "digest": "sha256:3adea81344be1724b383d501736c3852939b33b3903d02474373700b25e5d6e3",
+         "platform": {
+            "architecture": "arm",
+            "os": "linux",
+            "variant": "v5"
+         }
+      },
+      // ... more architectures
+   ]
+}
 ```
 
-## 构建镜像
+## 使用 `docker buildx` 构建多架构镜像
 
-新建 Dockerfile 文件。
+在 Docker 19.03+ 版本中，`docker buildx` 是推荐的用于构建多架构镜像的工具。它使用 `BuildKit` 作为后端，可以大大简化构建过程。
 
-```docker
+### 新建 `builder` 实例
+
+首先，你需要创建一个新的 `builder` 实例，因为它支持同时为多个平台构建。
+
+```bash
+$ docker buildx create --name mybuilder --use
+$ docker buildx inspect --bootstrap
+```
+
+### 构建和推送
+
+使用 `docker buildx build` 命令并指定 `--platform` 参数，可以同时构建支持多种架构的镜像。`--push` 参数会将构建好的镜像和 manifest list 推送到 Docker 仓库。
+
+```dockerfile
+# Dockerfile
 FROM --platform=$TARGETPLATFORM alpine
 
 RUN uname -a > /os.txt
@@ -40,87 +64,58 @@ RUN uname -a > /os.txt
 CMD cat /os.txt
 ```
 
-使用 `$ docker buildx build` 命令构建镜像，注意将 `myusername` 替换为自己的 Docker Hub 用户名。
-
-`--push` 参数表示将构建好的镜像推送到 Docker 仓库。
-
 ```bash
-$ docker buildx build --platform linux/arm,linux/arm64,linux/amd64 -t myusername/hello . --push
-
-# 查看镜像信息
-$ docker buildx imagetools inspect myusername/hello
+$ docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t your-username/multi-arch-image . --push
 ```
 
-在不同架构运行该镜像，可以得到该架构的信息。
+构建完成后，你就可以在不同架构的机器上拉取并运行 `your-username/multi-arch-image` 这个镜像了。
 
-```bash
-# arm
-$ docker run -it --rm myusername/hello
-Linux buildkitsandbox 4.9.125-linuxkit #1 SMP Fri Sep 7 08:20:28 UTC 2018 armv7l Linux
+### 架构相关的构建参数
 
-# arm64
-$ docker run -it --rm myusername/hello
-Linux buildkitsandbox 4.9.125-linuxkit #1 SMP Fri Sep 7 08:20:28 UTC 2018 aarch64 Linux
+在 `Dockerfile` 中，你可以使用一些预定义的构建参数来根据目标平台定制构建过程：
 
-# amd64
-$ docker run -it --rm myusername/hello
-Linux buildkitsandbox 4.9.125-linuxkit #1 SMP Fri Sep 7 08:20:28 UTC 2018 x86_64 Linux
-```
+*   `TARGETPLATFORM`: 构建镜像的目标平台，例如 `linux/amd64`。
+*   `TARGETOS`: 目标平台的操作系统，例如 `linux`。
+*   `TARGETARCH`: 目标平台的架构，例如 `amd64`。
+*   `TARGETVARIANT`: 目标平台的变种，例如 `v7`。
+*   `BUILDPLATFORM`: 构建环境的平台。
+*   `BUILDOS`: 构建环境的操作系统。
+*   `BUILDARCH`: 构建环境的架构。
+*   `BUILDVARIANT`: 构建环境的变种。
 
-## 架构相关变量
+例如，你可以这样编写 `Dockerfile` 来拷贝特定架构的二进制文件：
 
-`Dockerfile` 支持如下架构相关的变量
-
-**TARGETPLATFORM** 
-
-构建镜像的目标平台，例如 `linux/amd64`, `linux/arm/v7`, `windows/amd64`。
-
-**TARGETOS** 
-
-`TARGETPLATFORM` 的 OS 类型，例如 `linux`, `windows`
-
-**TARGETARCH** 
-
-`TARGETPLATFORM` 的架构类型，例如 `amd64`, `arm`
-
-**TARGETVARIANT**
-
-`TARGETPLATFORM` 的变种，该变量可能为空，例如 `v7`
-
-**BUILDPLATFORM**
-
-构建镜像主机平台，例如 `linux/amd64`
-
-**BUILDOS** 
-
-`BUILDPLATFORM` 的 OS 类型，例如 `linux`
-
-**BUILDARCH** 
-
-`BUILDPLATFORM` 的架构类型，例如 `amd64`
-
-**BUILDVARIANT** 
-
-`BUILDPLATFORM` 的变种，该变量可能为空，例如 `v7`
-
-### 使用举例
-
-例如我们要构建支持 `linux/arm/v7` 和 `linux/amd64` 两种架构的镜像。假设已经生成了两个平台对应的二进制文件：
-
-* `bin/dist-linux-arm`
-* `bin/dist-linux-amd64`
-
-那么 `Dockerfile` 可以这样书写：
-
-```docker
+```dockerfile
 FROM scratch
 
-# 使用变量必须申明
 ARG TARGETOS
-
 ARG TARGETARCH
 
 COPY bin/dist-${TARGETOS}-${TARGETARCH} /dist
 
-ENTRYPOINT ["dist"]
+ENTRYPOINT ["/dist"]
 ```
+
+## 使用 `docker manifest` (底层工具)
+
+`docker manifest` 是一个更底层的命令，可以用来创建、检查和推送 manifest list。虽然 `docker buildx` 在大多数情况下更方便，但了解 `docker manifest` 仍然有助于理解其工作原理。
+
+### 创建 manifest list
+
+```bash
+# 首先，为每个架构构建并推送镜像
+$ docker buildx build --platform linux/amd64 -t your-username/my-app:amd64 . --push
+$ docker buildx build --platform linux/arm64 -t your-username/my-app:arm64 . --push
+
+# 然后，创建一个 manifest list，将它们组合在一起
+$ docker manifest create your-username/my-app:latest \
+    --amend your-username/my-app:amd64 \
+    --amend your-username/my-app:arm64
+
+# 最后，推送 manifest list
+$ docker manifest push your-username/my-app:latest
+```
+
+### 检查 manifest list
+
+你可以使用 `docker manifest inspect` 来查看一个 manifest list 的详细信息，如上文所示。
