@@ -1,6 +1,6 @@
 # 利用 commit 理解镜像构成
 
->注意：如果您是初学者，您可以暂时跳过后面的内容，直接学习 [容器](../container) 一节。
+> 注意：如果您是初学者，您可以暂时跳过后面的内容，直接学习 [容器](../container/) 一节。
 
 注意： `docker commit` 命令除了学习之外，还有一些特殊的应用场合，比如被入侵后保存现场等。但是，不要使用 `docker commit` 定制镜像，定制镜像应该使用 `Dockerfile` 来完成。如果你想要定制镜像请查看下一小节。
 
@@ -16,11 +16,11 @@ $ docker run --name webserver -d -p 80:80 nginx
 
 这条命令会用 `nginx` 镜像启动一个容器，命名为 `webserver`，并且映射了 80 端口，这样我们可以用浏览器去访问这个 `nginx` 服务器。
 
-  如果是在本机运行的 Docker，那么可以直接访问：`http://localhost` ，如果是在虚拟机、云服务器上安装的 Docker，则需要将 `localhost` 换为虚拟机地址或者实际云服务器地址。
+如果是在本机运行的 Docker，那么可以直接访问：`http://localhost` ，如果是在虚拟机、云服务器上安装的 Docker，则需要将 `localhost` 换为虚拟机地址或者实际云服务器地址。
 
 直接用浏览器访问的话，我们会看到默认的 Nginx 欢迎页面。
 
-![](./_images/images-mac-example-nginx.png)
+![](../.gitbook/assets/images-mac-example-nginx.png)
 
 现在，假设我们非常不喜欢这个欢迎页面，我们希望改成欢迎 Docker 的文字，我们可以使用 `docker exec` 命令进入容器，修改其内容。
 
@@ -37,7 +37,7 @@ exit
 
 现在我们再刷新浏览器的话，会发现内容被改变了。
 
-![](./_images/images-create-nginx-docker.png)
+![](../.gitbook/assets/images-create-nginx-docker.png)
 
 我们修改了容器的文件，也就是改动了容器的存储层。我们可以通过 `docker diff` 命令看到具体的改动。
 
