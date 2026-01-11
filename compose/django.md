@@ -49,10 +49,10 @@ services:
 
 查看 [`docker-compose.yml` 章节](compose_file.md) 了解更多详细的工作机制。
 
-现在我们就可以使用 `docker-compose run` 命令启动一个 `Django` 应用了。
+现在我们就可以使用 `docker compose run` 命令启动一个 `Django` 应用了。
 
 ```bash
-$ docker-compose run web django-admin startproject django_example .
+$ docker compose run web django-admin startproject django_example .
 ```
 
 由于 web 服务所使用的镜像并不存在，所以 Compose 会首先使用 `Dockerfile` 为 web 服务构建一个镜像，接着使用这个镜像在容器里运行 `django-admin startproject django_example` 指令。
@@ -85,10 +85,10 @@ DATABASES = {
 }
 ```
 
-这些信息是在 [postgres](https://hub.docker.com/_/postgres/) 镜像固定设置好的。然后，运行 `docker-compose up` ：
+这些信息是在 [postgres](https://hub.docker.com/_/postgres/) 镜像固定设置好的。然后，运行 `docker compose up` ：
 
 ```bash
-$ docker-compose up
+$ docker compose up
 
 django_db_1 is up-to-date
 Creating django_web_1 ...
@@ -113,8 +113,8 @@ web_1  | Quit the server with CONTROL-C.
 
 这个 `Django` 应用已经开始在你的 Docker 守护进程里监听着 `8000` 端口了。打开 `127.0.0.1:8000` 即可看到 `Django` 欢迎页面。
 
-你还可以在 Docker 上运行其它的管理命令，例如对于同步数据库结构这种事，在运行完 `docker-compose up` 后，在另外一个终端进入文件夹运行以下命令即可：
+你还可以在 Docker 上运行其它的管理命令，例如对于同步数据库结构这种事，在运行完 `docker compose up` 后，在另外一个终端进入文件夹运行以下命令即可：
 
 ```bash
-$ docker-compose run web python manage.py syncdb
+$ docker compose run web python manage.py syncdb
 ```

@@ -10,6 +10,8 @@ CentOS（Community Enterprise Operating System，中文意思是：社区企业�
 
 ### 使用 CentOS 官方镜像
 
+**注意：CentOS 8 已于 2021 年 12 月 31 日停止维护（EOL）。对于新部署，推荐使用 CentOS Stream，或 Rocky Linux、AlmaLinux 等替代发行版。**
+
 使用 `docker run` 直接运行 `CentOS 7` 镜像，并登录 `bash`。
 
 ```bash
@@ -33,7 +35,6 @@ CentOS Linux release 7.9.2009 (Core)
 
 使用 `docker run` 命令直接运行 `Fedora` 官方镜像，并登录 `bash`。
 
-```bash
 $ docker run -it fedora bash
 Unable to find image 'fedora:latest' locally
 latest: Pulling from library/fedora
@@ -41,8 +42,8 @@ latest: Pulling from library/fedora
 Digest: sha256:64a02df6aac27d1200c2572fe4b9949f1970d05f74d367ce4af994ba5dc3669e
 Status: Downloaded newer image for fedora:latest
 [root@196ca341419b /]# cat /etc/redhat-release
-Fedora release 24 (Twenty Four)
-```
+Fedora release 39 (Thirty Nine)
+
 
 ## 相关资源
 

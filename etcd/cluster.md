@@ -119,7 +119,7 @@ networks:
         subnet: 172.16.238.0/24
 ```
 
-使用 `docker-compose up` 启动集群之后使用 `docker exec` 命令登录到任一节点测试 `etcd` 集群。
+使用 `docker compose up` 启动集群之后使用 `docker exec` 命令登录到任一节点测试 `etcd` 集群。
 
 ```bash
 / # etcdctl member list

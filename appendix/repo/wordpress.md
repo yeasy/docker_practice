@@ -10,15 +10,28 @@
 
 启动容器需要 MySQL 的支持，默认端口为 `80`。
 
+首先创建网络
 ```bash
-$ docker run --name some-wordpress --link some-mysql:mysql -d wordpress
+$ docker network create my-wordpress-net
+```
+
+启动 MySQL 容器
+```bash
+$ docker run --name some-mysql -d --network my-wordpress-net -e MYSQL_ROOT_PASSWORD=mysecretpassword mysql
+```
+
+启动 WordPress 容器
+```bash
+$ docker run --name some-wordpress -d --network my-wordpress-net -e WORDPRESS_DB_HOST=some-mysql -e WORDPRESS_DB_PASSWORD=mysecretpassword wordpress
 ```
 
 启动 WordPress 容器时可以指定的一些环境变量包括：
 
-* `WORDPRESS_DB_USER` 缺省为 `root`
-* `WORDPRESS_DB_PASSWORD` 缺省为连接 mysql 容器的环境变量 `MYSQL_ROOT_PASSWORD` 的值
-* `WORDPRESS_DB_NAME` 缺省为 `wordpress`
+* `WORDPRESS_DB_HOST`: MySQL 服务的主机名
+* `WORDPRESS_DB_USER`: MySQL 数据库的用户名
+* `WORDPRESS_DB_PASSWORD`: MySQL 数据库的密码
+* `WORDPRESS_DB_NAME`: WordPress 要使用的数据库名
+
 
 ## Dockerfile
 

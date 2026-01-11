@@ -166,7 +166,7 @@ volumes:
 ## 启动
 
 ```bash
-$ docker-compose up -d
+$ docker compose up -d
 ```
 
 这样我们就搭建好了一个具有权限认证、TLS 的私有仓库，接下来我们测试其功能是否正常。

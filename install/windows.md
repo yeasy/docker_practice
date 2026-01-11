@@ -1,4 +1,4 @@
-# Windows 10
+# Windows 10/11
 
 ## 系统要求
 

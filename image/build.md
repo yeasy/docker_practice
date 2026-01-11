@@ -57,7 +57,7 @@ RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
 既然 `RUN` 就像 Shell 脚本一样可以执行命令，那么我们是否就可以像 Shell 脚本一样把每个命令对应一个 RUN 呢？比如这样：
 
 ```docker
-FROM debian:stretch
+FROM debian:bookworm
 
 RUN apt-get update
 RUN apt-get install -y gcc libc6-dev make wget
@@ -78,7 +78,7 @@ RUN make -C /usr/src/redis install
 上面的 `Dockerfile` 正确的写法应该是这样：
 
 ```docker
-FROM debian:stretch
+FROM debian:bookworm
 
 RUN set -x; buildDeps='gcc libc6-dev make wget' \
     && apt-get update \
