@@ -145,9 +145,9 @@ $ ssh-add ~/.ssh/id_rsa
 $ docker build -t test --ssh default=$SSH_AUTH_SOCK .
 ```
 
-## docker-compose build 使用 Buildkit
+## docker compose build 使用 Buildkit
 
-设置 `COMPOSE_DOCKER_CLI_BUILD=1` 环境变量即可使用。
+设置 `COMPOSE_DOCKER_CLI_BUILD=1` 和 `DOCKER_BUILDKIT=1` 环境变量即可使用。
 
 ## 官方文档
 

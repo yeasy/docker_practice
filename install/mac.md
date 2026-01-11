@@ -2,7 +2,7 @@
 
 ## 系统要求
 
-[Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/) 要求系统最低为 macOS 必须是 10.15 或更高版本， Catalina、Big Sur 或者 Monterey，建议升级到最新版本的 macOS。
+[Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/) 要求系统最低为 macOS Monterey 12.0 或更高版本，建议升级到最新版本的 macOS（如 Sonoma 或 Ventura）。
 
 ## 安装
 
@@ -42,7 +42,7 @@ $ brew install --cask docker
 
 ```bash
 $ docker --version
-Docker version 20.10.0, build 7287ab3
+Docker version 27.2.1, build 9e34c9b
 ```
 
 如果 `docker version`、`docker info` 都正常的话，可以尝试运行一个 [Nginx 服务器](https://hub.docker.com/_/nginx/)：

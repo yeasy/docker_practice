@@ -6,7 +6,7 @@
 
 ### 系统要求
 
-Docker 支持 64 位版本 CentOS 7/8，并且要求内核版本不低于 3.10。 CentOS 7 满足最低内核的要求，但由于内核版本比较低，部分功能（如 `overlay2` 存储层驱动）无法使用，并且部分功能可能不太稳定。
+Docker 支持 64 位版本 CentOS 7/8/9，以及 Rocky Linux/AlmaLinux 8/9，并且要求内核版本不低于 3.10。 CentOS 7 满足最低内核的要求，但由于内核版本比较低，部分功能（如 `overlay2` 存储层驱动）无法使用，并且部分功能可能不太稳定。对于 CentOS 8 及更高版本，以及 Rocky Linux/AlmaLinux，推荐使用 `dnf` 包管理器。
 
 ### 卸载旧版本
 
@@ -22,7 +22,9 @@ $ sudo yum remove docker \
                   docker-logrotate \
                   docker-selinux \
                   docker-engine-selinux \
-                  docker-engine
+                  docker-engine \
+                  docker-ce-cli \
+                  containerd.io
 ```
 
 ## 使用 yum 安装
@@ -30,7 +32,7 @@ $ sudo yum remove docker \
 执行以下命令安装依赖包：
 
 ```bash
-$ sudo yum install -y yum-utils
+$ sudo dnf install -y dnf-utils
 ```
 
 鉴于国内网络问题，强烈建议使用国内源，官方源请在注释中查看。
@@ -38,14 +40,14 @@ $ sudo yum install -y yum-utils
 执行下面的命令添加 `yum` 软件源：
 
 ```bash
-$ sudo yum-config-manager \
+$ sudo dnf config-manager \
     --add-repo \
     https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 
-$ sudo sed -i 's/download.docker.com/mirrors.aliyun.com\/docker-ce/g' /etc/yum.repos.d/docker-ce.repo
+$ sudo sed -i 's/download.docker.com/mirrors.aliyun.com\/docker-ce/g' /etc/dnf.repos.d/docker-ce.repo
 
 # 官方源
-# $ sudo yum-config-manager \
+# $ sudo dnf config-manager \
 #     --add-repo \
 #     https://download.docker.com/linux/centos/docker-ce.repo
 ```
@@ -53,15 +55,15 @@ $ sudo sed -i 's/download.docker.com/mirrors.aliyun.com\/docker-ce/g' /etc/yum.r
 如果需要测试版本的 Docker 请执行以下命令：
 
 ```bash
-$ sudo yum-config-manager --enable docker-ce-test
+$ sudo dnf config-manager --enable docker-ce-test
 ```
 
 ### 安装 Docker
 
-更新 `yum` 软件源缓存，并安装 `docker-ce`。
+更新 `dnf` 软件源缓存，并安装 `docker-ce`。
 
 ```bash
-$ sudo yum install docker-ce docker-ce-cli containerd.io
+$ sudo dnf install docker-ce docker-ce-cli containerd.io
 ```
 
 ## CentOS8 额外设置

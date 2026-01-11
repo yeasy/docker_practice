@@ -5,7 +5,7 @@
 默认的模板文件名称为 `docker-compose.yml`，格式为 YAML 格式。
 
 ```yaml
-version: "3"
+version: "3" # 在 Compose V2 中，version 字段已成为可选，且推荐不再使用。
 
 services:
   webapp:
@@ -306,7 +306,7 @@ labels:
 
 ## `links`
 
->注意：不推荐使用该指令。
+>注意：不推荐使用该指令。容器之间应通过 Docker 网络（networks）进行互联。
 
 ## `logging`
 

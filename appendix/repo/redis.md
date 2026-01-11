@@ -22,19 +22,28 @@ $ docker run --name some-redis -d -p 6379:6379 redis redis-server --appendonly y
 
 默认数据存储位置在 `VOLUME/data`。可以使用 `--volumes-from some-volume-container` 或 `-v /docker/host/dir:/data` 将数据存放到本地。
 
-使用其他应用连接到容器，可以用
-
+使用其他应用连接到容器，首先创建网络
 ```bash
-$ docker run --name some-app --link some-redis:redis -d application-that-uses-redis
+$ docker network create my-redis-net
+```
+
+然后启动 redis 容器
+```bash
+$ docker run --name some-redis -d --network my-redis-net redis
+```
+
+最后启动应用容器
+```bash
+$ docker run --name some-app -d --network my-redis-net application-that-uses-redis
 ```
 
 或者通过 `redis-cli`
 
 ```bash
 $ docker run -it --rm \
-    --link some-redis:redis \
+    --network my-redis-net \
     redis \
-    sh -c 'exec redis-cli -h "$REDIS_PORT_6379_TCP_ADDR" -p "$REDIS_PORT_6379_TCP_PORT"'
+    sh -c 'exec redis-cli -h some-redis'
 ```
 
 ## Dockerfile

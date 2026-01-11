@@ -107,7 +107,7 @@ oom_score = 0
     stream_idle_timeout = "4h0m0s"
     enable_selinux = false
     selinux_category_range = 1024
-    sandbox_image = "registry.cn-hangzhou.aliyuncs.com/google_containers/pause:3.5"
+    sandbox_image = "registry.cn-hangzhou.aliyuncs.com/google_containers/pause:3.9"
     stats_collect_period = 10
     # systemd_cgroup = false
     enable_tls_streaming = false
@@ -377,7 +377,7 @@ $ kubectl get node -o yaml | grep CIDR
 ```
 
 ```bash
-$ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.11.0/Documentation/kube-flannel.yml
+$ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.24.0/Documentation/kube-flannel.yml
 ```
 
 ## master 节点默认不能运行 pod

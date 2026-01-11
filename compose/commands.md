@@ -4,12 +4,12 @@
 
 对于 Compose 来说，大部分命令的对象既可以是项目本身，也可以指定为项目中的服务或者容器。如果没有特别的说明，命令对象将是项目，这意味着项目中所有的服务都会受到命令影响。
 
-执行 `docker-compose [COMMAND] --help` 或者 `docker-compose help [COMMAND]` 可以查看具体某个命令的使用格式。
+执行 `docker compose [COMMAND] --help` 或者 `docker compose help [COMMAND]` 可以查看具体某个命令的使用格式。
 
-`docker-compose` 命令的基本的使用格式是
+`docker compose` 命令的基本的使用格式是
 
 ```bash
-docker-compose [-f=<arg>...] [options] [COMMAND] [ARGS...]
+docker compose [-f=<arg>...] [options] [COMMAND] [ARGS...]
 ```
 
 ## 命令选项
@@ -26,13 +26,13 @@ docker-compose [-f=<arg>...] [options] [COMMAND] [ARGS...]
 
 ### `build`
 
-格式为 `docker-compose build [options] [SERVICE...]`。
+格式为 `docker compose build [options] [SERVICE...]`。
 
 构建（重新构建）项目中的服务容器。
 
 服务容器一旦构建后，将会带上一个标记名，例如对于 web 项目中的一个 db 容器，可能是 web_db。
 
-可以随时在项目目录下运行 `docker-compose build` 来重新构建服务。
+可以随时在项目目录下运行 `docker compose build` 来重新构建服务。
 
 选项包括：
 
@@ -64,19 +64,19 @@ docker-compose [-f=<arg>...] [options] [COMMAND] [ARGS...]
 
 ### `kill`
 
-格式为 `docker-compose kill [options] [SERVICE...]`。
+格式为 `docker compose kill [options] [SERVICE...]`。
 
 通过发送 `SIGKILL` 信号来强制停止服务容器。
 
 支持通过 `-s` 参数来指定发送的信号，例如通过如下指令发送 `SIGINT` 信号。
 
 ```bash
-$ docker-compose kill -s SIGINT
+$ docker compose kill -s SIGINT
 ```
 
 ### `logs`
 
-格式为 `docker-compose logs [options] [SERVICE...]`。
+格式为 `docker compose logs [options] [SERVICE...]`。
 
 查看服务容器的输出。默认情况下，docker-compose 将对不同的服务输出使用不同的颜色来区分。可以通过 `--no-color` 来关闭颜色。
 
@@ -84,13 +84,13 @@ $ docker-compose kill -s SIGINT
 
 ### `pause`
 
-格式为 `docker-compose pause [SERVICE...]`。
+格式为 `docker compose pause [SERVICE...]`。
 
 暂停一个服务容器。
 
 ### `port`
 
-格式为 `docker-compose port [options] SERVICE PRIVATE_PORT`。
+格式为 `docker compose port [options] SERVICE PRIVATE_PORT`。
 
 打印某个容器端口所映射的公共端口。
 
@@ -102,7 +102,7 @@ $ docker-compose kill -s SIGINT
 
 ### `ps`
 
-格式为 `docker-compose ps [options] [SERVICE...]`。
+格式为 `docker compose ps [options] [SERVICE...]`。
 
 列出项目中目前的所有容器。
 
@@ -112,7 +112,7 @@ $ docker-compose kill -s SIGINT
 
 ### `pull`
 
-格式为 `docker-compose pull [options] [SERVICE...]`。
+格式为 `docker compose pull [options] [SERVICE...]`。
 
 拉取服务依赖的镜像。
 
@@ -126,7 +126,7 @@ $ docker-compose kill -s SIGINT
 
 ### `restart`
 
-格式为 `docker-compose restart [options] [SERVICE...]`。
+格式为 `docker compose restart [options] [SERVICE...]`。
 
 重启项目中的服务。
 
@@ -136,9 +136,9 @@ $ docker-compose kill -s SIGINT
 
 ### `rm`
 
-格式为 `docker-compose rm [options] [SERVICE...]`。
+格式为 `docker compose rm [options] [SERVICE...]`。
 
-删除所有（停止状态的）服务容器。推荐先执行 `docker-compose stop` 命令来停止容器。
+删除所有（停止状态的）服务容器。推荐先执行 `docker compose stop` 命令来停止容器。
 
 选项：
 
@@ -147,14 +147,14 @@ $ docker-compose kill -s SIGINT
 * `-v` 删除容器所挂载的数据卷。
 
 ### `run`
-格式为 `docker-compose run [options] [-p PORT...] [-e KEY=VAL...] SERVICE [COMMAND] [ARGS...]`。
+格式为 `docker compose run [options] [-p PORT...] [-e KEY=VAL...] SERVICE [COMMAND] [ARGS...]`。
 
 在指定服务上执行一个命令。
 
 例如：
 
 ```bash
-$ docker-compose run ubuntu ping docker.com
+$ docker compose run ubuntu ping docker.com
 ```
 
 将会启动一个 ubuntu 服务容器，并执行 `ping docker.com` 命令。
@@ -172,7 +172,7 @@ $ docker-compose run ubuntu ping docker.com
 如果不希望自动启动关联的容器，可以使用 `--no-deps` 选项，例如
 
 ```bash
-$ docker-compose run --no-deps web python manage.py shell
+$ docker compose run --no-deps web python manage.py shell
 ```
 
 将不会启动 web 容器所关联的其它容器。
@@ -201,14 +201,14 @@ $ docker-compose run --no-deps web python manage.py shell
 
 ### `scale`
 
-格式为 `docker-compose scale [options] [SERVICE=NUM...]`。
+格式为 `docker compose scale [options] [SERVICE=NUM...]`。
 
 设置指定服务运行的容器个数。
 
 通过 `service=num` 的参数来设置数量。例如：
 
 ```bash
-$ docker-compose scale web=3 db=2
+$ docker compose scale web=3 db=2
 ```
 
 将启动 3 个容器运行 web 服务，2 个容器运行 db 服务。
@@ -221,15 +221,15 @@ $ docker-compose scale web=3 db=2
 
 ### `start`
 
-格式为 `docker-compose start [SERVICE...]`。
+格式为 `docker compose start [SERVICE...]`。
 
 启动已经存在的服务容器。
 
 ### `stop`
 
-格式为 `docker-compose stop [options] [SERVICE...]`。
+格式为 `docker compose stop [options] [SERVICE...]`。
 
-停止已经处于运行状态的容器，但不删除它。通过 `docker-compose start` 可以再次启动这些容器。
+停止已经处于运行状态的容器，但不删除它。通过 `docker compose start` 可以再次启动这些容器。
 
 选项：
 
@@ -241,13 +241,13 @@ $ docker-compose scale web=3 db=2
 
 ### `unpause`
 
-格式为 `docker-compose unpause [SERVICE...]`。
+格式为 `docker compose unpause [SERVICE...]`。
 
 恢复处于暂停状态中的服务。
 
 ### `up`
 
-格式为 `docker-compose up [options] [SERVICE...]`。
+格式为 `docker compose up [options] [SERVICE...]`。
 
 该命令十分强大，它将尝试自动完成包括构建镜像，（重新）创建服务，启动服务，并关联服务相关容器的一系列操作。
 
@@ -255,13 +255,13 @@ $ docker-compose scale web=3 db=2
 
 可以说，大部分时候都可以直接通过该命令来启动一个项目。
 
-默认情况，`docker-compose up` 启动的容器都在前台，控制台将会同时打印所有容器的输出信息，可以很方便进行调试。
+默认情况，`docker compose up` 启动的容器都在前台，控制台将会同时打印所有容器的输出信息，可以很方便进行调试。
 
 当通过 `Ctrl-C` 停止命令时，所有容器将会停止。
 
-如果使用 `docker-compose up -d`，将会在后台启动并运行所有的容器。一般推荐生产环境下使用该选项。
+如果使用 `docker compose up -d`，将会在后台启动并运行所有的容器。一般推荐生产环境下使用该选项。
 
-默认情况，如果服务容器已经存在，`docker-compose up` 将会尝试停止容器，然后重新创建（保持使用 `volumes-from` 挂载的卷），以保证新启动的服务匹配 `docker-compose.yml` 文件的最新内容。如果用户不希望容器被停止并重新创建，可以使用 `docker-compose up --no-recreate`。这样将只会启动处于停止状态的容器，而忽略已经运行的服务。如果用户只想重新部署某个服务，可以使用 `docker-compose up --no-deps -d <SERVICE_NAME>` 来重新创建服务并后台停止旧服务，启动新服务，并不会影响到其所依赖的服务。
+默认情况，如果服务容器已经存在，`docker compose up` 将会尝试停止容器，然后重新创建（保持使用 `volumes-from` 挂载的卷），以保证新启动的服务匹配 `docker-compose.yml` 文件的最新内容。如果用户不希望容器被停止并重新创建，可以使用 `docker compose up --no-recreate`。这样将只会启动处于停止状态的容器，而忽略已经运行的服务。如果用户只想重新部署某个服务，可以使用 `docker compose up --no-deps -d <SERVICE_NAME>` 来重新创建服务并后台停止旧服务，启动新服务，并不会影响到其所依赖的服务。
 
 选项：
 
@@ -281,7 +281,7 @@ $ docker-compose scale web=3 db=2
 
 ### `version`
 
-格式为 `docker-compose version`。
+格式为 `docker compose version`。
 
 打印版本信息。
 

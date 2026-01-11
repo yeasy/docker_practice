@@ -68,7 +68,67 @@ services:
 ### 运行 compose 项目
 
 ```bash
-$ docker-compose up
+$ docker compose up
 ```
 
 此时访问本地 `5000` 端口，每次刷新页面，计数就会加 1。
+
+
+按下 `Ctrl-C` 停止项目。
+
+### 后台运行
+
+```bash
+$ docker compose up -d
+```
+
+### 停止
+
+```bash
+$ docker compose stop
+```
+
+### 进入服务
+
+```bash
+$ docker compose exec redis sh
+/data # redis-cli
+127.0.0.1:6379> get hits
+"9"
+```
+
+### 查看日志
+
+```bash
+$ docker compose logs -f
+```
+
+### 构建镜像
+
+```bash
+$ docker compose build
+```
+
+### 启动服务
+
+```bash
+$ docker compose start
+```
+
+### 运行一次性命令
+
+```bash
+$ docker compose run web python app.py
+```
+
+### 验证 `docker-compose.yml`
+
+```bash
+$ docker compose config
+```
+
+### 删除项目
+
+```bash
+$ docker compose down
+```

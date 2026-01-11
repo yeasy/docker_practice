@@ -20,7 +20,8 @@
 ## 技术交流
 
 * Docker 邮件列表： https://groups.google.com/forum/#!forum/docker-user
-* Docker 的 IRC 频道：https://chat.freenode.net#docker
+* Docker 社区 Slack：https://dockercommunity.slack.com/
+* Docker Community Discord: https://discord.gg/docker
 * Docker 的 Twitter 主页：https://twitter.com/docker
 
 ## 其它
