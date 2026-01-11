@@ -1,14 +1,18 @@
 # 镜像加速器
 
-国内从 Docker Hub 拉取镜像有时会遇到困难，此时可以配置镜像加速器。~~国内很多云服务商都提供了国内加速器服务，例如：~~
+国内从 Docker Hub 拉取镜像有时会遇到困难，此时可以配置镜像加速器。
 
-* [阿里云加速器(点击管理控制台 -> 登录账号(淘宝账号) -> 左侧镜像工具 -> 镜像加速器 -> 复制加速器地址)](https://cr.console.aliyun.com/cn-hangzhou/instances)
+> ⚠️ **注意**：镜像加速器的可用性经常变化。配置前请先访问 [docker-practice/docker-registry-cn-mirror-test](https://github.com/docker-practice/docker-registry-cn-mirror-test/actions) 查看各镜像站的实时状态。
 
-**由于镜像服务可能出现宕机，建议同时配置多个镜像。各个镜像站测试结果请到 [docker-practice/docker-registry-cn-mirror-test](https://github.com/docker-practice/docker-registry-cn-mirror-test/actions) 查看。**
+## 推荐配置方案
 
-> 国内各大云服务商（腾讯云、阿里云、百度云）均提供了 Docker 镜像加速服务，建议根据运行 Docker 的云平台选择对应的镜像加速服务，具体请参考本页最后一小节。
+1. **云服务器用户**：优先使用所在云平台提供的内部加速器（见本页末尾）
+2. **本地开发用户**：使用阿里云个人加速器或其他可用的公共加速器
+3. **代理方案**：如有条件，可配置 HTTP 代理直接访问 Docker Hub
 
-本节我们以 [AtomHub 可信镜像中心](https://hub.atomgit.com/) 镜像服务 `https://hub.atomgit.com` 为例进行介绍。
+* [阿里云加速器](https://cr.console.aliyun.com/cn-hangzhou/instances)（需登录获取个人加速地址）
+
+本节以 [AtomHub 可信镜像中心](https://hub.atomgit.com/) 镜像服务 `https://hub.atomgit.com` 为例进行介绍。
 
 > `hub.atomgit.com` 仅包含部分官方镜像，可以满足初学者的使用。
 

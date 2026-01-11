@@ -6,7 +6,11 @@
 
 ### 系统要求
 
-Docker 支持 64 位版本 CentOS 7/8/9，以及 Rocky Linux/AlmaLinux 8/9，并且要求内核版本不低于 3.10。 CentOS 7 满足最低内核的要求，但由于内核版本比较低，部分功能（如 `overlay2` 存储层驱动）无法使用，并且部分功能可能不太稳定。对于 CentOS 8 及更高版本，以及 Rocky Linux/AlmaLinux，推荐使用 `dnf` 包管理器。
+> ⚠️ **重要提示**：CentOS 8 已于 2021 年 12 月 31 日停止维护，CentOS 7 已于 2024 年 6 月 30 日结束支持。建议新项目使用 **Rocky Linux** 或 **AlmaLinux** 作为替代。
+
+Docker 支持 64 位版本 CentOS 7/8/9（Stream）、Rocky Linux 8/9、AlmaLinux 8/9，并且要求内核版本不低于 3.10。CentOS 7 满足最低内核的要求，但由于内核版本比较低，部分功能（如 `overlay2` 存储层驱动）无法使用，并且部分功能可能不太稳定。
+
+对于 Rocky Linux、AlmaLinux 或 CentOS Stream，推荐使用 `dnf` 包管理器。
 
 ### 卸载旧版本
 

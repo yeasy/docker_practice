@@ -42,7 +42,7 @@ $ brew install --cask docker
 
 ```bash
 $ docker --version
-Docker version 27.2.1, build 9e34c9b
+Docker version 29.1.4, build 048e46e
 ```
 
 如果 `docker version`、`docker info` 都正常的话，可以尝试运行一个 [Nginx 服务器](https://hub.docker.com/_/nginx/)：

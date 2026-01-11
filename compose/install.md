@@ -16,12 +16,14 @@ Linux 系统请使用以下介绍的方法安装。
 
 从 [官方 GitHub Release](https://github.com/docker/compose/releases) 处直接下载编译好的二进制文件即可。
 
-例如，在 Linux 64 位系统上直接下载对应的二进制包。
+> **提示**：版本更新较快，请访问上述链接获取最新版本号，替换下方命令中的版本号。
+
+例如，在 Linux 64 位系统上直接下载对应的二进制包（以 v2.40.3 为例）。
 
 ```bash
 $ DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
 $ mkdir -p $DOCKER_CONFIG/cli-plugins
-$ curl -SL https://github.com/docker/compose/releases/download/v2.29.1/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+$ curl -SL https://github.com/docker/compose/releases/download/v2.40.3/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
 ```
 
 之后，执行
@@ -34,13 +36,13 @@ $ chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 
 ```bash
 $ docker compose version
-Docker Compose version v2.29.1
+Docker Compose version v2.40.3
 ```
 
 ## bash 补全命令
 
 ```bash
-$ curl -L https://raw.githubusercontent.com/docker/compose/v2.29.1/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
+$ curl -L https://raw.githubusercontent.com/docker/compose/v2.40.3/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
 ```
 
 ## 卸载

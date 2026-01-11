@@ -57,15 +57,15 @@ docker.io/library/centos:latest
 以下命令中的 `username` 请替换为你的 Docker 账号用户名。
 
 ```bash
-$ docker tag ubuntu:18.04 username/ubuntu:18.04
+$ docker tag ubuntu:24.04 username/ubuntu:24.04
 
 $ docker image ls
 
 REPOSITORY                                               TAG                    IMAGE ID            CREATED             SIZE
-ubuntu                                                   18.04                  275d79972a86        6 days ago          94.6MB
-username/ubuntu                                          18.04                  275d79972a86        6 days ago          94.6MB
+ubuntu                                                   24.04                  5a81c4b8502e        6 days ago          78.3MB
+username/ubuntu                                          24.04                  5a81c4b8502e        6 days ago          78.3MB
 
-$ docker push username/ubuntu:18.04
+$ docker push username/ubuntu:24.04
 
 $ docker search username
 
