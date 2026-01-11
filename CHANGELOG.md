@@ -1,6 +1,16 @@
 # 修订记录
 
-* 1.3.0 2021-YY-DD
+* 1.4.0 2026-01-11
+  * 全面支持 Docker Engine v29 新版本
+  * 更新 Docker Compose 至 v2.40.x
+  * 更新 Kubernetes 相关章节至 1.35 版本
+  * BuildKit 已成为默认稳定构建器，移除实验特性说明
+  * 新增 Docker Scout、Docker Init 相关内容
+  * 更新镜像加速器配置
+  * 添加 CentOS EOL 警告，推荐使用 Rocky Linux/AlmaLinux
+  * 扩充安全章节和底层架构章节内容
+
+* 1.3.0 2021-12-31
   * 全面支持 Docker v20.10 新版本
   * 新增 Docker Compose v2
   * Docker Hub 自动构建转为付费功能

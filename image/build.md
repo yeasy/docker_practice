@@ -4,6 +4,18 @@
 
 Dockerfile 是一个文本文件，其内包含了一条条的 **指令(Instruction)**，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。
 
+## 使用 docker init 快速创建（推荐）
+
+Docker 提供了 `docker init` 命令，可以根据项目类型自动生成 Dockerfile、.dockerignore 和 compose.yaml 文件：
+
+```bash
+$ docker init
+```
+
+该命令会交互式地询问项目类型（如 Go、Node.js、Python、Rust 等），并生成符合最佳实践的配置文件。对于新项目，这是推荐的起步方式。
+
+## 手动创建 Dockerfile
+
 还以之前定制 `nginx` 镜像为例，这次我们使用 Dockerfile 来定制。
 
 在一个空白目录中，建立一个文本文件，并命名为 `Dockerfile`：

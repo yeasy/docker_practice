@@ -2,6 +2,8 @@
 
 `kubeadm` 提供了 `kubeadm init` 以及 `kubeadm join` 这两个命令作为快速创建 `kubernetes` 集群的最佳实践。
 
+> **版本说明**：Kubernetes 版本更新较快（约每 4 个月一个新版本），本文档基于 Kubernetes 1.35 编写。请访问 [Kubernetes 官方发布页](https://kubernetes.io/releases/) 获取最新版本信息。
+
 ## 安装 containerd
 
 参考 [安装 Docker](../../install) 一节添加 apt/yum 源，之后执行如下命令。
@@ -107,7 +109,7 @@ oom_score = 0
     stream_idle_timeout = "4h0m0s"
     enable_selinux = false
     selinux_category_range = 1024
-    sandbox_image = "registry.cn-hangzhou.aliyuncs.com/google_containers/pause:3.9"
+    sandbox_image = "registry.cn-hangzhou.aliyuncs.com/google_containers/pause:3.10"
     stats_collect_period = 10
     # systemd_cgroup = false
     enable_tls_streaming = false
@@ -377,7 +379,7 @@ $ kubectl get node -o yaml | grep CIDR
 ```
 
 ```bash
-$ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.24.0/Documentation/kube-flannel.yml
+$ kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/v0.26.1/Documentation/kube-flannel.yml
 ```
 
 ## master 节点默认不能运行 pod

@@ -2,13 +2,21 @@
 
 **BuildKit** 是下一代的镜像构建组件，在 https://github.com/moby/buildkit 开源。
 
-**注意：如果您的镜像构建使用的是云服务商提供的镜像构建服务（腾讯云容器服务、阿里云容器服务等），由于上述服务提供商的 Docker 版本低于 18.09，BuildKit 无法使用，将造成镜像构建失败。建议使用 BuildKit 构建镜像时使用一个新的 Dockerfile 文件（例如 Dockerfile.buildkit）**
+> **重要**：自 Docker 23.0 起，BuildKit 已成为**默认稳定构建器**，无需手动启用。Docker Engine v29 进一步将 Containerd 镜像存储设为默认，提升与 Kubernetes 的互操作性。
 
-目前，Docker Hub 自动构建已经支持 buildkit，具体请参考 https://github.com/docker-practice/docker-hub-buildx
+目前，Docker Hub 自动构建已经支持 BuildKit，具体请参考 https://github.com/docker-practice/docker-hub-buildx
 
 ## `Dockerfile` 新增指令详解
 
-启用 `BuildKit` 之后，我们可以使用下面几个新的 `Dockerfile` 指令来加快镜像构建。
+使用 BuildKit 后，我们可以使用下面几个新的 `Dockerfile` 指令来加快镜像构建。
+
+要使用最新的 Dockerfile 语法特性，建议在 Dockerfile 开头添加语法指令：
+
+```docker
+# syntax=docker/dockerfile:1
+```
+
+这将使用最新的稳定版语法解析器，确保你可以使用所有最新特性。
 
 ### `RUN --mount=type=cache`
 
@@ -23,7 +31,7 @@ WORKDIR /app
 
 COPY package.json /app/
 
-RUN npm i --registry=https://registry.npm.taobao.org \
+RUN npm i --registry=https://registry.npmmirror.com \
         && rm -rf ~/.npm
 
 COPY src /app/src
@@ -42,7 +50,7 @@ COPY --from=builder /app/dist /app/dist
 `BuildKit` 提供了 `RUN --mount=type=cache` 指令，可以实现上边的设想。
 
 ```docker
-# syntax = docker/dockerfile:experimental
+# syntax=docker/dockerfile:1
 FROM node:alpine as builder
 
 WORKDIR /app
@@ -51,7 +59,7 @@ COPY package.json /app/
 
 RUN --mount=type=cache,target=/app/node_modules,id=my_app_npm_module,sharing=locked \
     --mount=type=cache,target=/root/.npm,id=npm_cache \
-        npm i --registry=https://registry.npm.taobao.org
+        npm i --registry=https://registry.npmmirror.com
 
 COPY src /app/src
 
@@ -69,11 +77,6 @@ RUN --mount=type=cache,target=/tmp/dist,from=builder,source=/app/dist \
     mkdir -p /app/dist && cp -r /tmp/dist/* /app/dist
 ```
 
-**由于 `BuildKit` 为实验特性，每个 `Dockerfile` 文件开头都必须加上如下指令**
-
-```docker
-# syntax = docker/dockerfile:experimental
-```
 
 第一个 `RUN` 指令执行后，`id` 为 `my_app_npm_module` 的缓存文件夹挂载到了 `/app/node_modules` 文件夹中。多次执行也不会产生多个中间层镜像。
 
@@ -97,7 +100,7 @@ RUN --mount=type=cache,target=/tmp/dist,from=builder,source=/app/dist \
 该指令可以将一个镜像（或上一构建阶段）的文件挂载到指定位置。
 
 ```docker
-# syntax = docker/dockerfile:experimental
+# syntax=docker/dockerfile:1
 RUN --mount=type=bind,from=php:alpine,source=/usr/local/bin/docker-php-entrypoint,target=/docker-php-entrypoint \
         cat /docker-php-entrypoint
 ```
@@ -107,7 +110,7 @@ RUN --mount=type=bind,from=php:alpine,source=/usr/local/bin/docker-php-entrypoin
 该指令可以将一个 `tmpfs` 文件系统挂载到指定位置。
 
 ```docker
-# syntax = docker/dockerfile:experimental
+# syntax=docker/dockerfile:1
 RUN --mount=type=tmpfs,target=/temp \
         mount | grep /temp
 ```
@@ -117,7 +120,7 @@ RUN --mount=type=tmpfs,target=/temp \
 该指令可以将一个文件(例如密钥)挂载到指定位置。
 
 ```docker
-# syntax = docker/dockerfile:experimental
+# syntax=docker/dockerfile:1
 RUN --mount=type=secret,id=aws,target=/root/.aws/credentials \
         cat /root/.aws/credentials
 ```
@@ -131,7 +134,7 @@ $ docker build -t test --secret id=aws,src=$HOME/.aws/credentials .
 该指令可以挂载 `ssh` 密钥。
 
 ```docker
-# syntax = docker/dockerfile:experimental
+# syntax=docker/dockerfile:1
 FROM alpine
 RUN apk add --no-cache openssh-client
 RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan gitlab.com >> ~/.ssh/known_hosts
@@ -145,9 +148,9 @@ $ ssh-add ~/.ssh/id_rsa
 $ docker build -t test --ssh default=$SSH_AUTH_SOCK .
 ```
 
-## docker compose build 使用 Buildkit
+## docker compose build 使用 BuildKit
 
-设置 `COMPOSE_DOCKER_CLI_BUILD=1` 和 `DOCKER_BUILDKIT=1` 环境变量即可使用。
+自 Docker 23.0 起，BuildKit 已默认启用，无需额外配置。如果使用旧版本，可设置 `DOCKER_BUILDKIT=1` 环境变量启用。
 
 ## 官方文档
 

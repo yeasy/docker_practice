@@ -11,3 +11,7 @@ node_modules/
 package-lock.json
 
 docker-compose.override.yml
+
+# Editor configs
+.obsidian/
+.vscode/
