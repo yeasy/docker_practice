@@ -13,7 +13,7 @@
 [`docker-compose.yml`](https://github.com/yeasy/docker_practice/blob/master/compose/demo/wordpress/docker-compose.yml) 文件将开启一个 `wordpress` 服务和一个独立的 `MySQL` 实例：
 
 ```yaml
-version: "3"
+
 services:
 
    db:

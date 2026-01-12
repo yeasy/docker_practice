@@ -23,7 +23,7 @@ Linux 系统请使用以下介绍的方法安装。
 ```bash
 $ DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
 $ mkdir -p $DOCKER_CONFIG/cli-plugins
-$ curl -SL https://github.com/docker/compose/releases/download/v2.40.3/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+$ curl -SL https://github.com/docker/compose/releases/download/v5.0.1/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
 ```
 
 之后，执行
@@ -36,13 +36,13 @@ $ chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 
 ```bash
 $ docker compose version
-Docker Compose version v2.40.3
+Docker Compose version v5.0.1
 ```
 
 ## bash 补全命令
 
 ```bash
-$ curl -L https://raw.githubusercontent.com/docker/compose/v2.40.3/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
+$ curl -L https://raw.githubusercontent.com/docker/compose/v5.0.1/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
 ```
 
 ## 卸载

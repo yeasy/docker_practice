@@ -30,7 +30,7 @@ psycopg2-binary>=2.9,<3.0
 第三步，`docker-compose.yml` 文件将把所有的东西关联起来。它描述了应用的构成（一个 web 服务和一个数据库）、使用的 Docker 镜像、镜像之间的连接、挂载到容器的卷，以及服务开放的端口。
 
 ```yaml
-version: "3"
+
 services:
 
   db:

@@ -5,7 +5,7 @@
 默认的模板文件名称为 `docker-compose.yml`，格式为 YAML 格式。
 
 ```yaml
-version: "3" # 在 Compose V2 中，version 字段已成为可选，且推荐不再使用。
+
 
 services:
   webapp:
@@ -27,7 +27,7 @@ services:
 指定 `Dockerfile` 所在文件夹的路径（可以是绝对路径，或者相对 docker-compose.yml 文件的路径）。 `Compose` 将会利用它自动构建这个镜像，然后使用这个镜像。
 
 ```yaml
-version: '3'
+
 services:
 
   webapp:
@@ -41,7 +41,7 @@ services:
 使用 `arg` 指令指定构建镜像时的变量。
 
 ```yaml
-version: '3'
+
 services:
 
   webapp:
@@ -130,7 +130,7 @@ devices:
 解决容器的依赖、启动先后的问题。以下例子中会先启动 `redis` `db` 再启动 `web`
 
 ```yaml
-version: '3'
+
 
 services:
   web:
@@ -352,7 +352,7 @@ network_mode: "container:[container name/id]"
 配置容器连接的网络。
 
 ```yaml
-version: "3"
+
 services:
 
   some-service:
@@ -394,7 +394,7 @@ ports:
 存储敏感数据，例如 `mysql` 服务密码。
 
 ```yaml
-version: "3.1"
+
 services:
 
 mysql:
@@ -474,7 +474,7 @@ volumes:
 如果路径为数据卷名称，必须在文件中配置数据卷。
 
 ```yaml
-version: "3"
+
 
 services:
   my_src:
@@ -553,7 +553,7 @@ Compose 模板文件支持动态读取主机的系统环境变量和当前目录
 例如，下面的 Compose 文件将从运行它的环境中读取变量 `${MONGO_VERSION}` 的值，并写入执行的指令中。
 
 ```yaml
-version: "3"
+
 services:
 
 db:
