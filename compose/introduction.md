@@ -10,6 +10,14 @@
 
 `Compose` 恰好满足了这样的需求。它允许用户通过一个单独的 `docker-compose.yml` 模板文件（YAML 格式）来定义一组相关联的应用容器为一个项目（project）。
 
+## 模板文件规范
+
+Compose 模板文件采用 YAML 格式，扩展名为 `.yml` 或 `.yaml`。
+
+> **注意**：自 Compose V2 起，`version` 字段已不再强制要求。在 Docker Compose v5 中，规范已完全不需要顶层 `version` 字段。为了保持最佳兼容性，建议不在新文件中使用该字段。
+
+Docker Compose 默认使用 `docker-compose.yml` 作为模板文件。
+
 `Compose` 中有两个重要的概念：
 
 * 服务 (`service`)：一个应用的容器，实际上可以包括若干运行相同镜像的容器实例。

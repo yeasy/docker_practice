@@ -87,7 +87,6 @@ $ openssl x509 -req -days 750 -in "site.csr" -sha256 \
 私有仓库默认的配置文件位于 `/etc/docker/registry/config.yml`，我们先在本地编辑 `config.yml`，之后挂载到容器中。
 
 ```yaml
-version: 0.1
 log:
   accesslog:
     disabled: true
@@ -140,7 +139,7 @@ $ docker run --rm \
 ## 编辑 `docker-compose.yml`
 
 ```yaml
-version: '3'
+
 
 services:
   registry:

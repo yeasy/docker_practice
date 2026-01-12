@@ -25,7 +25,7 @@
 我们通过使用 `Docker Compose` 来启动 `Drone`，编写 `docker-compose.yml` 文件。
 
 ```yaml
-version: '3'
+
 
 services:
 

@@ -53,7 +53,7 @@ CMD ["python", "app.py"]
 编写 `docker-compose.yml` 文件，这个是 Compose 使用的主模板文件。
 
 ```yaml
-version: '3'
+
 services:
 
   web:
