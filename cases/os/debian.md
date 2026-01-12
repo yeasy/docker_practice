@@ -32,25 +32,23 @@ Debian GNU/Linux 8
 
 ### 使用 Ubuntu 官方镜像
 
-下面以 `ubuntu:18.04` 为例，演示如何使用该镜像安装一些常用软件。
+下面以 `ubuntu:24.04` 为例，演示如何使用该镜像安装一些常用软件。
 
 首先使用 `-ti` 参数启动容器，登录 `bash`，查看 `ubuntu` 的发行版本号。
 
 ```bash
-$ docker run -ti ubuntu:18.04 /bin/bash
+$ docker run -ti ubuntu:24.04 /bin/bash
 root@7d93de07bf76:/# cat /etc/os-release
+PRETTY_NAME="Ubuntu 24.04 LTS"
 NAME="Ubuntu"
-VERSION="18.04.1 LTS (Bionic Beaver)"
+VERSION_ID="24.04"
+VERSION="24.04 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
 ID=ubuntu
 ID_LIKE=debian
-PRETTY_NAME="Ubuntu 18.04.1 LTS"
-VERSION_ID="18.04"
 HOME_URL="https://www.ubuntu.com/"
 SUPPORT_URL="https://help.ubuntu.com/"
 BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
-PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
-VERSION_CODENAME=bionic
-UBUNTU_CODENAME=bionic
 ```
 
 当试图直接使用 `apt-get` 安装一个软件的时候，会提示 `E: Unable to locate package`。
@@ -58,7 +56,7 @@ UBUNTU_CODENAME=bionic
 ```bash
 root@7d93de07bf76:/# apt-get install curl
 Reading package lists... Done
-Building dependency tree
+Building dependency tree... Done
 Reading state information... Done
 E: Unable to locate package curl
 ```
@@ -67,25 +65,10 @@ E: Unable to locate package curl
 
 ```bash
 root@7d93de07bf76:/# apt-get update
-Get:1 http://archive.ubuntu.com/ubuntu bionic InRelease [242 kB]
-Get:2 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
-Get:3 http://security.ubuntu.com/ubuntu bionic-security/multiverse amd64 Packages [7348 B]
-Get:4 http://security.ubuntu.com/ubuntu bionic-security/universe amd64 Packages [823 kB]
-Get:5 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
-Get:6 http://archive.ubuntu.com/ubuntu bionic-backports InRelease [74.6 kB]
-Get:7 http://archive.ubuntu.com/ubuntu bionic/universe amd64 Packages [11.3 MB]
-Get:8 http://security.ubuntu.com/ubuntu bionic-security/restricted amd64 Packages [31.0 kB]
-Get:9 http://security.ubuntu.com/ubuntu bionic-security/main amd64 Packages [835 kB]
-Get:10 http://archive.ubuntu.com/ubuntu bionic/restricted amd64 Packages [13.5 kB]
-Get:11 http://archive.ubuntu.com/ubuntu bionic/main amd64 Packages [1344 kB]
-Get:12 http://archive.ubuntu.com/ubuntu bionic/multiverse amd64 Packages [186 kB]
-Get:13 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 Packages [1127 kB]
-Get:14 http://archive.ubuntu.com/ubuntu bionic-updates/universe amd64 Packages [1350 kB]
-Get:15 http://archive.ubuntu.com/ubuntu bionic-updates/multiverse amd64 Packages [11.4 kB]
-Get:16 http://archive.ubuntu.com/ubuntu bionic-updates/restricted amd64 Packages [44.7 kB]
-Get:17 http://archive.ubuntu.com/ubuntu bionic-backports/main amd64 Packages [2496 B]
-Get:18 http://archive.ubuntu.com/ubuntu bionic-backports/universe amd64 Packages [4252 B]
-Fetched 17.6 MB in 1min 25s (207 kB/s)
+Get:1 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+Get:2 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+...
+Fetched 25.8 MB in 8s (3215 kB/s)
 Reading package lists... Done
 ```
 

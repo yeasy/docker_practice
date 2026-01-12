@@ -1,4 +1,4 @@
-FROM python:3.6-alpine
+FROM python:3.12-alpine
 ADD . /code
 WORKDIR /code
 RUN pip install redis flask

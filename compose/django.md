@@ -23,8 +23,8 @@ COPY . /code/
 第二步，在 `requirements.txt` 文件里面写明需要安装的具体依赖包名。
 
 ```bash
-Django>=2.0,<3.0
-psycopg2>=2.7,<3.0
+Django>=4.0,<5.0
+psycopg2-binary>=2.9,<3.0
 ```
 
 第三步，`docker-compose.yml` 文件将把所有的东西关联起来。它描述了应用的构成（一个 web 服务和一个数据库）、使用的 Docker 镜像、镜像之间的连接、挂载到容器的卷，以及服务开放的端口。
@@ -105,8 +105,8 @@ web_1  | Performing system checks...
 web_1  |
 web_1  | System check identified no issues (0 silenced).
 web_1  |
-web_1  | November 23, 2017 - 06:21:19
-web_1  | Django version 1.11.7, using settings 'django_example.settings'
+web_1  | November 23, 2024 - 06:21:19
+web_1  | Django version 4.2, using settings 'django_example.settings'
 web_1  | Starting development server at http://0.0.0.0:8000/
 web_1  | Quit the server with CONTROL-C.
 ```
@@ -116,5 +116,5 @@ web_1  | Quit the server with CONTROL-C.
 你还可以在 Docker 上运行其它的管理命令，例如对于同步数据库结构这种事，在运行完 `docker compose up` 后，在另外一个终端进入文件夹运行以下命令即可：
 
 ```bash
-$ docker compose run web python manage.py syncdb
+$ docker compose run web python manage.py migrate
 ```
