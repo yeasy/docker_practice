@@ -190,15 +190,15 @@ $ docker login docker.domain.com
 尝试推送、拉取镜像。
 
 ```bash
-$ docker pull ubuntu:18.04
+$ docker pull ubuntu:24.04
 
-$ docker tag ubuntu:18.04 docker.domain.com/username/ubuntu:18.04
+$ docker tag ubuntu:24.04 docker.domain.com/username/ubuntu:24.04
 
-$ docker push docker.domain.com/username/ubuntu:18.04
+$ docker push docker.domain.com/username/ubuntu:24.04
 
-$ docker image rm docker.domain.com/username/ubuntu:18.04
+$ docker image rm docker.domain.com/username/ubuntu:24.04
 
-$ docker pull docker.domain.com/username/ubuntu:18.04
+$ docker pull docker.domain.com/username/ubuntu:24.04
 ```
 
 如果我们退出登录，尝试推送镜像。
@@ -206,7 +206,7 @@ $ docker pull docker.domain.com/username/ubuntu:18.04
 ```bash
 $ docker logout docker.domain.com
 
-$ docker push docker.domain.com/username/ubuntu:18.04
+$ docker push docker.domain.com/username/ubuntu:24.04
 
 no basic auth credentials
 ```
