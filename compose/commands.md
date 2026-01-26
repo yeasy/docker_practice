@@ -78,7 +78,7 @@ $ docker compose kill -s SIGINT
 
 格式为 `docker compose logs [options] [SERVICE...]`。
 
-查看服务容器的输出。默认情况下，docker-compose 将对不同的服务输出使用不同的颜色来区分。可以通过 `--no-color` 来关闭颜色。
+查看服务容器的输出。默认情况下，docker compose 将对不同的服务输出使用不同的颜色来区分。可以通过 `--no-color` 来关闭颜色。
 
 该命令在调试问题的时候十分有用。
 
