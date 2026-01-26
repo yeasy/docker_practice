@@ -26,4 +26,8 @@ Docker Compose 默认使用 `docker-compose.yml` 作为模板文件。
 
 `Compose` 的默认管理对象是项目，通过子命令对项目中的一组容器进行便捷地生命周期管理。
 
-`Compose` 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 来对容器进行管理。因此，只要所操作的平台支持 Docker API，就可以在其上利用 `Compose` 来进行编排管理。
+`Compose` 项目早期由 Python 编写，称为 Docker Compose V1。
+
+现在的 Docker Compose V2 是一个 Go 语言编写的 Docker CLI 插件，已经集成到 Docker Desktop 和 Docker Engine 中，直接通过 `docker compose` 命令使用。它提供了更快的性能和更好的集成体验。
+
+只要所操作的平台支持 Docker API，就可以在其上利用 `Compose` 来进行编排管理。
