@@ -2,7 +2,7 @@
 
 services:
   registry:
-    image: registry
+    image: registry:2
     ports:
       - "443:5000"
     volumes:
