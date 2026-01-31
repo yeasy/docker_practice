@@ -1,0 +1,181 @@
+# RUN 执行命令
+
+## 基本语法
+
+```docker
+RUN <command>
+RUN ["executable", "param1", "param2"]
+```
+
+`RUN` 指令是 Dockerfile 中最常用的指令之一。它在**当前镜像层**之上创建一个新层，执行指定的命令，并提交结果。
+
+---
+
+## 两种格式对比
+
+### 1. Shell 格式
+
+```docker
+RUN apt-get update
+```
+
+- **特点**：默认通过 `/bin/sh -c` 执行。
+- **优势**：可以使用环境变量、管道、重定向等 Shell 特性。
+- **示例**：
+  ```docker
+  RUN echo "Hello" > /test.txt
+  ```
+
+### 2. Exec 格式
+
+```docker
+RUN ["apt-get", "update"]
+```
+
+- **特点**：直接调用可执行文件，不经过 Shell。
+- **优势**：避免 Shell 字符串解析问题，适用于参数中包含特殊字符的情况。
+- **注意**：无法使用 `$VAR` 环境变量替换（除非显式调用 shell）。
+
+---
+
+## 常见最佳实践
+
+### 1. 组合命令（减少层数）
+
+每一个 `RUN` 指令都会新建一层镜像。为了减少镜像体积和层数，应使用 `&&` 连接命令。
+
+**❌ 糟糕的写法**（创建 3 层）：
+
+```docker
+RUN apt-get update
+RUN apt-get install -y nginx
+RUN rm -rf /var/lib/apt/lists/*
+```
+
+**✅ 推荐写法**（创建 1 层）：
+
+```docker
+RUN apt-get update && \
+    apt-get install -y nginx && \
+    rm -rf /var/lib/apt/lists/*
+```
+
+### 2. 清理缓存
+
+在安装完软件后，立即清除缓存，可以显著减小镜像体积。
+
+- **Debian/Ubuntu**:
+  ```docker
+  RUN apt-get update && apt-get install -y package-bar \
+      && rm -rf /var/lib/apt/lists/*
+  ```
+- **Alpine**:
+  ```docker
+  RUN apk add --no-cache package-bar
+  ```
+
+### 3. 使用 `set -e` 和 `pipefail`
+
+默认情况下，管道命令 `cmd1 | cmd2` 只要 `cmd2` 成功，整个 `RUN` 就视为成功。
+
+**❌ 隐蔽的错误**：
+
+```docker
+# 如果下载失败，gzip 可能会报错，但如果不影响后续，构建可能继续
+RUN wget http://error-url | gzip -d > file
+```
+
+**✅ 推荐写法**：
+
+```docker
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN wget http://url | gzip -d > file
+```
+
+---
+
+## 常见问题
+
+### Q: 为什么 `RUN cd /app` 不生效？
+
+```docker
+RUN cd /app
+RUN touch hello.txt
+```
+
+**结果**：`hello.txt` 会出现在根目录 `/`，而不是 `/app`。
+
+**原因**：每个 `RUN` 都在一个新的 Shell/容器 环境中执行。`cd` 只影响当前 `RUN` 的环境。
+
+**解决**：使用 `WORKDIR` 指令。
+
+```docker
+WORKDIR /app
+RUN touch hello.txt
+```
+
+### Q: 环境变量不生效？
+
+```docker
+RUN export MY_VAR=hello
+RUN echo $MY_VAR
+```
+
+**结果**：输出为空。
+
+**原因**：同上，环境变量只在当前 `RUN` 有效。
+
+**解决**：使用 `ENV` 指令，或在同一行 `RUN` 中导出。
+
+```docker
+ENV MY_VAR=hello
+RUN echo $MY_VAR
+```
+
+---
+
+## 高级技巧
+
+### 1. 使用 BuildKit 的挂载缓存
+
+BuildKit 支持在 `RUN` 指令中使用 `--mount` 挂载缓存，加速构建。
+
+```docker
+# 缓存 apt 包
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt-get update && apt-get install -y gcc
+```
+
+```docker
+# 缓存 Go 模块
+RUN --mount=type=cache,target=/go/pkg/mod \
+    go build -o app
+```
+
+### 2. 挂载密钥
+
+安全地使用 SSH 密钥或 Token，而不将其记录在镜像中。
+
+```docker
+RUN --mount=type=secret,id=mysecret \
+    cat /run/secrets/mysecret
+```
+
+---
+
+## 本章小结
+
+| 要点 | 说明 |
+|------|------|
+| **作用** | 在新层执行命令 |
+| **原则** | 合并命令，清理缓存 |
+| **格式** | Shell (常用) vs Exec |
+| **陷阱** | `cd` 不持久，环境变量不持久 |
+| **进阶** | 使用 Cache Mount 加速构建 |
+
+## 延伸阅读
+
+- [CMD 容器启动命令](cmd.md)：容器启动时的命令
+- [WORKDIR 指定工作目录](workdir.md)：改变目录
+- [Dockerfile 最佳实践](../../appendix/best_practices.md)

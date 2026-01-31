@@ -1,57 +1,149 @@
-# 映射容器端口到宿主主机的实现
+# 外部访问容器
 
-默认情况下，容器可以主动访问到外部网络的连接，但是外部网络无法访问到容器。
+## 为什么要映射端口
 
-## 容器访问外部实现
+容器运行在自己的隔离网络环境中（通常是 Bridge 模式）。这意味着：
+- **容器之间**：可以通过 IP 或容器名（自定义网络）互通。
+- **宿主机访问容器**：可以通过容器 IP 访问。
+- **外部网络访问容器**：❌ 默认无法直接访问。
 
-容器所有到外部网络的连接，源地址都会被 NAT 成本地系统的 IP 地址。这是使用 `iptables` 的源地址伪装操作实现的。
+为了让外部（如你的浏览器、其他局域网机器）访问容器内的服务，我们需要将容器的端口**映射**到宿主机的端口。
 
-查看主机的 NAT 规则。
+```
+       外部用户 (Browser)
+             │
+             ▼
+      宿主机 (localhost:8080)
+             │
+        ┌────┴────┐ 端口映射
+        │ Docker  │ (8080 -> 80)
+        │  Proxy  │
+        └────┬────┘
+             │
+             ▼
+       容器 (Class B: 80)
+```
+
+---
+
+## 端口映射方式
+
+### 1. 指定映射 (-p)
+
+使用 `-p <宿主机端口>:<容器端口>` 格式。
 
 ```bash
-$ sudo iptables -t nat -nL
-...
-Chain POSTROUTING (policy ACCEPT)
-target     prot opt source               destination
-MASQUERADE  all  --  172.17.0.0/16       !172.17.0.0/16
-...
+# 将宿主机的 8080 端口映射到容器的 80 端口
+$ docker run -d -p 8080:80 nginx
 ```
 
-其中，上述规则将所有源地址在 `172.17.0.0/16` 网段，目标地址为其他网段（外部网络）的流量动态伪装为从系统网卡发出。MASQUERADE 跟传统 SNAT 的好处是它能动态从网卡获取地址。
+此时访问 `http://localhost:8080` 即可看到 Nginx 页面。
 
-## 外部访问容器实现
+**多种格式**：
 
-容器允许外部访问，可以在 `docker run` 时候通过 `-p` 或 `-P` 参数来启用。
+| 格式 | 含义 | 示例 |
+|------|------|------|
+| `ip:hostPort:containerPort` | 绑定指定 IP 的特定端口 | `-p 127.0.0.1:8080:80` (仅本机访问) |
+| `ip::containerPort` | 绑定指定 IP 的随机端口 | `-p 127.0.0.1::80` |
+| `hostPort:containerPort` | 绑定所有 IP (0.0.0.0) 的特定端口 | `-p 8080:80` (默认) |
+| `containerPort` | 绑定所有 IP 的随机端口 | `-p 80` |
 
-不管用那种办法，其实也是在本地的 `iptable` 的 nat 表中添加相应的规则。
+### 2. 随机映射 (-P)
 
-使用 `-P` 时：
+使用 `-P` (大写) 参数，Docker 会随机映射 Dockerfile 中 `EXPOSE` 指令暴露的所有端口到宿主机的高端口（49000-49900）。
 
 ```bash
-$ iptables -t nat -nL
-...
-Chain DOCKER (2 references)
-target     prot opt source               destination
-DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:49153 to:172.17.0.2:80
+$ docker run -d -P nginx
 ```
 
-使用 `-p 80:80` 时：
+查看映射结果：
 
 ```bash
-$ iptables -t nat -nL
-Chain DOCKER (2 references)
-target     prot opt source               destination
-DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:80 to:172.17.0.2:80
+$ docker ps
+CONTAINER ID   PORTS
+abc123456      0.0.0.0:49153->80/tcp
 ```
 
-注意：
+此时 Nginx 被映射到了宿主机的 49153 端口。
 
-* 这里的规则映射了 `0.0.0.0`，意味着将接受主机来自所有接口的流量。用户可以通过 `-p IP:host_port:container_port` 或 `-p IP::port` 来指定允许访问容器的主机上的 IP、接口等，以制定更严格的规则。
+---
 
-* 如果希望永久绑定到某个固定的 IP 地址，可以在 Docker 配置文件 `/etc/docker/daemon.json` 中添加如下内容。
+## 查看端口映射
 
-```json
-{
-  "ip": "0.0.0.0"
-}
+### docker port
+
+```bash
+$ docker port mycontainer
+80/tcp -> 0.0.0.0:8080
+80/tcp -> [::]:8080
 ```
+
+### docker ps
+
+```bash
+$ docker ps
+CONTAINER ID   IMAGE     PORTS                  NAMES
+abc123456      nginx     0.0.0.0:8080->80/tcp   web
+```
+
+---
+
+## 最佳实践与安全
+
+### 1. 限制监听 IP
+
+默认情况下，`-p 8080:80` 会监听 `0.0.0.0:8080`，这意味着任何人只要能连接你的宿主机 IP，就能访问该服务。
+
+如果不希望对外暴露（例如数据库服务），应绑定到 `127.0.0.1`：
+
+```bash
+# 仅允许本机访问
+$ docker run -d -p 127.0.0.1:3306:3306 mysql
+```
+
+### 2. 避免端口冲突
+
+如果宿主机 8080 已经被占用了，容器将无法启动。
+
+**解决**：
+- 更换宿主机端口：`-p 8081:80`
+- 让 Docker 自动分配：`-p 80`
+
+### 3. UDP 映射
+
+默认是 TCP 协议。如果要映射 UDP 服务（如 DNS, Syslog）：
+
+```bash
+$ docker run -d -p 53:53/udp dns-server
+```
+
+---
+
+## 实现原理
+
+Docker 使用 `docker-proxy` 进程（用户态）或 `iptables` DNAT 规则（内核态）来实现端口转发。
+
+当流量到达宿主机端口时，iptables 规则将其目标地址修改为容器 IP 并转发：
+
+```bash
+# 简化的 iptables 逻辑
+iptables -t nat -A DOCKER -p tcp --dport 8080 -j DNAT --to-destination 172.17.0.2:80
+```
+
+这也是为什么你在容器内部看到的访问来源 IP 通常是网关 IP（如 172.17.0.1），而不是真实的外部 Client IP（除非使用 host 网络模式）。
+
+---
+
+## 本章小结
+
+| 要点 | 说明 |
+|------|------|
+| **-p** | 指定端口映射（常用），如 `8080:80` |
+| **-P** | 随机映射所有 EXPOSE 的端口 |
+| **安全性** | 默认监听所有 IP，敏感服务应绑定 `127.0.0.1` |
+| **查看** | 使用 `docker port` 或 `docker ps` |
+
+## 延伸阅读
+
+- [EXPOSE 指令](../image/dockerfile/expose.md)：在 Dockerfile 中声明端口
+- [网络模式](README.md)：Host 模式不需要端口映射
