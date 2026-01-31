@@ -1,98 +1,126 @@
 # Docker Hub
 
-目前 Docker 官方维护了一个公共仓库 [Docker Hub](https://hub.docker.com/)，其中已经包括了数量超过 [10,000,000](https://hub.docker.com/search/?type=image) 的镜像。大部分需求都可以通过在 Docker Hub 中直接下载镜像来实现。
+## 什么是 Docker Hub
 
-## 注册
+[Docker Hub](https://hub.docker.com/) 是 Docker 官方维护的公共镜像仓库，也是全球最大的容器镜像库。
 
-你可以在 https://hub.docker.com 免费注册一个 Docker 账号。
+它提供了：
+- **官方镜像**：由 Docker 官方和软件厂商（如 Nginx, MySQL, Node.js）维护的高质量镜像。
+- **个人/组织仓库**：用户可以上传自己的镜像。
+- **自动构建**：与 GitHub/Bitbucket 集成（需付费）。
+- **Webhooks**：镜像更新时触发回调。
 
-## 登录
+---
 
-可以通过执行 `docker login` 命令交互式的输入用户名及密码来完成在命令行界面登录 Docker Hub。
+## 核心功能
 
-你可以通过 `docker logout` 退出登录。
+### 1. 搜索镜像
 
-## 拉取镜像
-
-你可以通过 `docker search` 命令来查找官方仓库中的镜像，并利用 `docker pull` 命令来将它下载到本地。
-
-例如以 `centos` 为关键词进行搜索：
+除了网页搜索，也可以使用命令行：
 
 ```bash
 $ docker search centos
-NAME                               DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
-centos                             The official build of CentOS.                   6449      [OK]
-ansible/centos7-ansible            Ansible on Centos7                              132                  [OK]
-consol/centos-xfce-vnc             Centos container with "headless" VNC session…   126                  [OK]
-jdeathe/centos-ssh                 OpenSSH / Supervisor / EPEL/IUS/SCL Repos - …   117                  [OK]
-centos/systemd                     systemd enabled base container.                 96                   [OK]
+NAME      DESCRIPTION                      STARS     OFFICIAL
+centos    The official build of CentOS.    7000+     [OK]
 ```
 
-可以看到返回了很多包含关键字的镜像，其中包括镜像名字、描述、收藏数（表示该镜像的受关注程度）、是否官方创建（`OFFICIAL`）、是否自动构建 （`AUTOMATED`）。
+> **技巧**：始终优先使用 `OFFICIAL` 标记为 `[OK]` 的镜像，安全性更有保障。
 
-根据是否是官方提供，可将镜像分为两类。
-
-一种是类似 `centos` 这样的镜像，被称为基础镜像或根镜像。这些基础镜像由 Docker 公司创建、验证、支持、提供。这样的镜像往往使用单个单词作为名字。
-
-还有一种类型，比如 `ansible/centos7-ansible` 镜像，它是由 Docker Hub 的注册用户创建并维护的，往往带有用户名称前缀。可以通过前缀 `username/` 来指定使用某个用户提供的镜像，比如 ansible 用户。
-
-另外，在查找的时候通过 `--filter=stars=N` 参数可以指定仅显示收藏数量为 `N` 以上的镜像。
-
-下载官方 `centos` 镜像到本地。
+### 2. 拉取镜像
 
 ```bash
-$ docker pull centos
-Using default tag: latest
-latest: Pulling from library/centos
-7a0437f04f83: Pull complete
-Digest: sha256:5528e8b1b1719d34604c87e11dcd1c0a20bedf46e83b5632cdeac91b8c04efc1
-Status: Downloaded newer image for centos:latest
-docker.io/library/centos:latest
+$ docker pull nginx:alpine
 ```
 
-## 推送镜像
+### 3. 推送镜像
 
-用户也可以在登录后通过 `docker push` 命令来将自己的镜像推送到 Docker Hub。
-
-以下命令中的 `username` 请替换为你的 Docker 账号用户名。
+需要先登录：
 
 ```bash
-$ docker tag ubuntu:24.04 username/ubuntu:24.04
-
-$ docker image ls
-
-REPOSITORY                                               TAG                    IMAGE ID            CREATED             SIZE
-ubuntu                                                   24.04                  5a81c4b8502e        6 days ago          78.3MB
-username/ubuntu                                          24.04                  5a81c4b8502e        6 days ago          78.3MB
-
-$ docker push username/ubuntu:24.04
-
-$ docker search username
-
-NAME                      DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED
-username/ubuntu
+$ docker login
+# 输入用户名和密码
 ```
 
-## 自动构建
+打标签并推送：
 
-> 2021 年 7 月 26 日之后，该项功能仅限[付费用户](https://www.docker.com/blog/changes-to-docker-hub-autobuilds/)使用。
+```bash
+# 1. 标记镜像
+$ docker tag myapp:v1 username/myapp:v1
 
-自动构建（`Automated Builds`）可以自动触发构建镜像，方便升级镜像。
+# 2. 推送
+$ docker push username/myapp:v1
+```
 
-有时候，用户构建了镜像，安装了某个软件，当软件发布新版本则需要手动更新镜像。
+---
 
-而自动构建允许用户通过 Docker Hub 指定跟踪一个目标网站（支持 [GitHub](https://github.com) 或 [BitBucket](https://bitbucket.org)）上的项目，一旦项目发生新的提交 （`commit`）或者创建了新的标签（`tag`），Docker Hub 会自动构建镜像并推送到 Docker Hub 中。
+## 限制与配额（重要）
 
-要配置自动构建，包括如下的步骤：
+### 镜像拉取限制 (Rate Limiting)
 
-* 登录 Docker Hub；
+自 2020 年 11 月起，Docker Hub 对匿名和免费用户实施了拉取速率限制：
 
-* 在 Docker Hub 点击右上角头像，在账号设置（`Account Settings`）中关联（`Linked Accounts`）目标网站；
+| 用户类型 | 限制 |
+|---------|------|
+| **匿名用户** (未登录) | 每 6 小时 100 次请求 |
+| **免费账户** (已登录) | 每 6 小时 200 次请求 |
+| **Pro/Team 账户** | 无限制 |
 
-* 在 Docker Hub 中新建或选择已有的仓库，在 `Builds` 选项卡中选择 `Configure Automated Builds`；
+> **提示**：如果在 CI/CD 环境中遇到 `toomanyrequests` 错误，建议：
+> 1. 在 CI 中配置 `docker login`
+> 2. 使用国内镜像加速器
+> 3. 搭建私有仓库代理
 
-* 选取一个目标网站中的项目（需要含 `Dockerfile`）和分支；
+---
 
-* 指定 `Dockerfile` 的位置，并保存。
+## 安全最佳实践
 
-之后，可以在 Docker Hub 的仓库页面的 `Timeline` 选项卡中查看每次构建的状态。
+### 1. 启用 2FA (双因素认证)
+
+在 Account Settings -> Security 中启用 2FA，保护账号安全。启用后，CLI 登录需要使用 **Access Token** 而非密码。
+
+### 2. 使用 Access Token
+
+不要在脚本或 CI/CD 中直接使用登录密码。
+1. 在 Docker Hub -> Account Settings -> Security -> Access Tokens 创建 Token。
+2. 使用 Token 作为密码登录：
+
+```bash
+$ docker login -u username -p dckr_pat_xxxxxxx
+```
+
+### 3. 关注镜像漏洞
+
+Docker Hub 会对官方镜像和付费用户的镜像进行安全扫描。在镜像标签页可以看到漏洞扫描结果。
+
+---
+
+## Webhooks
+
+当镜像被推送时，可以自动触发 HTTP 回调（例如通知 CI 系统部署）。
+
+**配置方法**：
+仓库页面 -> Webhooks -> Create Webhook。
+
+---
+
+## 自动构建 (Automated Builds)
+
+> ⚠️ 目前仅限付费用户 (Pro/Team) 使用。
+
+链接 GitHub/Bitbucket 仓库后，当代码有提交或打标签时，Docker Hub 会自动运行构建。这保证了镜像总是与代码同步，且由可信的官方环境构建。
+
+---
+
+## 本章小结
+
+| 功能 | 说明 |
+|------|------|
+| **官方镜像** | 优先使用的基础镜像 |
+| **拉取限制** | 匿名 100次/6h，登录 200次/6h |
+| **安全** | 推荐开启 2FA 并使用 Access Token |
+| **自动化** | 支持 Webhooks 和自动构建 |
+
+## 延伸阅读
+
+- [私有仓库](registry.md)：搭建自己的 Registry
+- [镜像加速器](../install/mirror.md)：加速下载

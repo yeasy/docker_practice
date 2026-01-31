@@ -1,20 +1,83 @@
-# 简介
+# Kubernetes 简介
 
 ![](../.gitbook/assets/kubernetes_logo.png)
 
-Kubernetes 是 Google 团队发起的开源项目，它的目标是管理跨多个主机的容器，提供基本的部署，维护以及应用伸缩，主要实现语言为 Go 语言。Kubernetes 是：
+## 什么是 Kubernetes
 
-* 易学：轻量级，简单，容易理解
-* 便携：支持公有云，私有云，混合云，以及多种云平台
-* 可拓展：模块化，可插拔，支持钩子，可任意组合
-* 自修复：自动重调度，自动重启，自动复制
+Kubernetes（常简称为 K8s）是 Google 开源的容器编排引擎。如果说 Docker 解决了"如何打包和运送集装箱"的问题，那么 Kubernetes 解决的就是"如何管理海量集装箱的调度、运行和维护"的问题。
 
-Kubernetes 构建于 Google 数十年经验，一大半来源于 Google 生产环境规模的经验。结合了社区最佳的想法和实践。
+它不仅仅是一个编排系统，更是一个**云原生应用操作系统**。
 
-在分布式系统中，部署，调度，伸缩一直是最为重要的也最为基础的功能。Kubernetes 就是希望解决这一序列问题的。
+> **名字由来**：Kubernetes 在希腊语中意为"舵手"或"飞行员"。K8s 是因为 k 和 s 之间有 8 个字母。
 
-Kubernetes 目前在[GitHub](https://github.com/kubernetes/kubernetes)进行维护。
+---
 
-### Kubernetes 能够运行在任何地方！
+## 为什么需要 Kubernetes
 
-虽然 Kubernetes 最初是为 GCE 定制的，但是在后续版本中陆续增加了其他云平台的支持，以及本地数据中心的支持。
+当我们在单机运行几个容器时，Docker Compose 就足够了。但在生产环境中，我们需要面对：
+
+- **多主机调度**：容器应该运行在哪台机器上？
+- **自动恢复**：容器崩溃了怎么办？节点挂了怎么办？
+- **服务发现**：容器 IP 变了，其他服务怎么找到它？
+- **负载均衡**：流量大了，如何分发给多个副本？
+- **滚动更新**：如何不中断服务升级应用？
+
+Kubernetes 完美解决了这些问题。
+
+---
+
+## 核心概念
+
+### Pod (豆荚)
+Kubernetes 的最小调度单位。一个 Pod 可以包含一个或多个紧密协作的容器（共享网络和存储）。就像豌豆荚里的豌豆一样。
+
+### Node (节点)
+运行 Pod 的物理机或虚拟机。
+
+### Deployment (部署)
+定义应用的期望状态（如：需要 3 个副本，镜像版本为 v1）。K8s 会持续确保当前状态符合期望状态。
+
+### Service (服务)
+定义一组 Pod 的访问策略。提供稳定的 Cluster IP 和 DNS 名称，负责负载均衡。
+
+### Namespace (命名空间)
+用于多租户资源隔离。
+
+---
+
+## Docker 用户如何过渡
+
+如果你已经熟悉 Docker，学习 K8s 会很容易：
+
+| Docker 概念 | Kubernetes 概念 | 说明 |
+|------------|----------------|------|
+| Container  | Pod            | K8s 增加了一层 Pod 包装 |
+| Volume     | PersistentVolume | K8s 的存储更加抽象和强大 |
+| Network    | Service/Ingress| K8s 的网络模型更扁平 |
+| Compose    | Deployment + Service | 声明式配置的理念是一致的 |
+
+---
+
+## 架构
+
+Kubernetes 也是 C/S 架构，由 **Master (控制平面)** 和 **Worker (工作节点)** 组成：
+
+- **Control Plane**：负责决策（API Server, Scheduler, Controller Manager, etcd）
+- **Worker Node**：负责干活（Kubelet, Kube-proxy, Container Runtime）
+
+---
+
+## 学习建议
+
+Kubernetes 的学习曲线较陡峭。建议的学习路径：
+1. **理解基本概念**：Pod, Deployment, Service
+2. **动手实践**：使用 Minikube 或 Kind 在本地搭建集群
+3. **部署应用**：编写 YAML 部署一个无状态应用
+4. **深入原理**：网络模型、存储机制、调度算法
+
+---
+
+## 延伸阅读
+
+- [Minikube 安装](../kubernetes/setup/README.md)：本地体验 K8s
+- [Kubernetes 官网](https://kubernetes.io/)：官方文档

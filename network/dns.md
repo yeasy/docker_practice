@@ -1,44 +1,114 @@
 # 配置 DNS
 
-如何自定义配置容器的主机名和 DNS 呢？秘诀就是 Docker 利用虚拟文件来挂载容器的 3 个相关配置文件。
+## 容器的 DNS 机制
 
-在容器中使用 `mount` 命令可以看到挂载信息：
+Docker 容器的 DNS 配置有两种情况：
+
+1. **默认 Bridge 网络**：继承宿主机的 DNS 配置（`/etc/resolv.conf`）。
+2. **自定义网络**（推荐）：使用 Docker 嵌入式 DNS 服务器 (Embedded DNS)，支持通过**容器名**进行服务发现。
+
+---
+
+## 嵌入式 DNS (Embedded DNS)
+
+这是 Docker 网络最强大的功能之一。在自定义网络中，容器可以通过"名字"找到彼此，而不需要知道对方的 IP（因为 IP 可能会变）。
 
 ```bash
-$ mount
-/dev/disk/by-uuid/1fec...ebdf on /etc/hostname type ext4 ...
-/dev/disk/by-uuid/1fec...ebdf on /etc/hosts type ext4 ...
-tmpfs on /etc/resolv.conf type tmpfs ...
+# 1. 创建自定义网络
+$ docker network create mynet
+
+# 2. 启动容器 web 并加入网络
+$ docker run -d --name web --network mynet nginx
+
+# 3. 启动容器 client 并尝试 ping web
+$ docker run -it --rm --network mynet alpine ping web
+PING web (172.18.0.2): 56 data bytes
+64 bytes from 172.18.0.2: seq=0 ttl=64 time=0.074 ms
 ```
 
-这种机制可以让宿主主机 DNS 信息发生更新后，所有 Docker 容器的 DNS 配置通过 `/etc/resolv.conf` 文件立刻得到更新。
+**原理**：
+Docker 守护进程在 `127.0.0.11` 运行了一个 DNS 服务器。容器内的 DNS 请求会被转发到这里。如果是容器名，解析为容器 IP；如果是外部域名（如 google.com），转发给上游 DNS。
 
-配置全部容器的 DNS ，也可以在 `/etc/docker/daemon.json` 文件中增加以下内容来设置。
+---
+
+## 配置 DNS 参数
+
+如果你需要手动配置容器的 DNS（例如使用内网 DNS 服务器），可以在 `docker run` 中使用以下参数：
+
+### 1. --dns
+
+指定 DNS 服务器 IP。
+
+```bash
+$ docker run -it --dns=114.114.114.114 ubuntu cat /etc/resolv.conf
+nameserver 114.114.114.114
+```
+
+### 2. --dns-search
+
+指定 DNS 搜索域。例如设置为 `example.com`，则 `ping host` 会尝试解析 `host.example.com`。
+
+```bash
+$ docker run --dns-search=example.com myapp
+```
+
+### 3. --hostname (-h)
+
+设置容器的主机名。
+
+```bash
+$ docker run -h myweb nginx
+```
+
+---
+
+## 全局 DNS 配置
+
+如果希望所有容器都使用特定的 DNS 服务器（而不是继承宿主机），可以修改 `/etc/docker/daemon.json`：
 
 ```json
 {
-  "dns" : [
+  "dns": [
     "114.114.114.114",
     "8.8.8.8"
   ]
 }
 ```
 
-这样每次启动的容器 DNS 自动配置为 `114.114.114.114` 和 `8.8.8.8`。使用以下命令来证明其已经生效。
+修改后需要重启 Docker 服务：`systemctl restart docker`。
 
-```bash
-$ docker run -it --rm ubuntu:24.04  cat etc/resolv.conf
+---
 
-nameserver 114.114.114.114
-nameserver 8.8.8.8
-```
+## 常见问题
 
-如果用户想要手动指定容器的配置，可以在使用 `docker run` 命令启动容器时加入如下参数：
+### Q: 容器无法解析域名
 
-`-h HOSTNAME` 或者 `--hostname=HOSTNAME` 设定容器的主机名，它会被写到容器内的 `/etc/hostname` 和 `/etc/hosts`。但它在容器外部看不到，既不会在 `docker container ls` 中显示，也不会在其他的容器的 `/etc/hosts` 看到。
+**现象**：`ping www.baidu.com` 失败，但 `ping 8.8.8.8` 成功。
 
-`--dns=IP_ADDRESS` 添加 DNS 服务器到容器的 `/etc/resolv.conf` 中，让容器用这个服务器来解析所有不在 `/etc/hosts` 中的主机名。
+**解决**：
+1. 宿主机的 `/etc/resolv.conf` 可能有问题（例如使用了本地回环地址 127.0.0.53，特别是 Ubuntu 系统）。Docker 可能会尝试修复，但有时会失败。
+2. 尝试手动指定 DNS：`docker run --dns 8.8.8.8 ...`
+3. 检查防火墙是否拦截了 UDP 53 端口。
 
-`--dns-search=DOMAIN` 设定容器的搜索域，当设定搜索域为 `.example.com` 时，在搜索一个名为 host 的主机时，DNS 不仅搜索 host，还会搜索 `host.example.com`。
+### Q: 无法通过容器名通信
 
->注意：如果在容器启动时没有指定最后两个参数，Docker 会默认用主机上的 `/etc/resolv.conf` 来配置容器。
+**现象**：`ping db` 提示 `bad address 'db'`。
+
+**原因**：
+- 你可能在使用**默认的 bridge 网络**。默认 bridge 网络**不支持**通过容器名进行 DNS 解析（这是一个历史遗留设计）。
+- **解决**：使用自定义网络 (`docker network create ...`)。
+
+---
+
+## 本章小结
+
+| 场景 | DNS 行为 | 备注 |
+|------|----------|------|
+| **默认网络** | 继承宿主机 | 不支持容器名解析 |
+| **自定义网络** | Docker 嵌入式 DNS | ✅ 支持容器名解析 |
+| **手动指定** | 使用 `--dns` | 覆盖默认配置 |
+
+## 延伸阅读
+
+- [网络模式](README.md)：Docker 网络概览
+- [端口映射](port_mapping.md)：外部访问

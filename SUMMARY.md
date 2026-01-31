@@ -28,6 +28,7 @@
   * [利用 commit 理解镜像构成](image/commit.md)
   * [使用 Dockerfile 定制镜像](image/build.md)
   * [Dockerfile 指令详解](image/dockerfile/README.md)
+    * [RUN 执行命令](image/dockerfile/run.md)
     * [COPY 复制文件](image/dockerfile/copy.md)
     * [ADD 更高级的复制文件](image/dockerfile/add.md)
     * [CMD 容器启动命令](image/dockerfile/cmd.md)
