@@ -90,7 +90,7 @@ command: echo "hello world"
 
 ## `configs`
 
-仅用于 `Swarm mode`，详细内容请查看 [`Swarm mode`](../swarm_mode/) 一节。
+仅用于 `Swarm mode`（已弃用，推荐使用 Kubernetes）。
 
 ## `cgroup_parent`
 
@@ -114,7 +114,7 @@ container_name: docker-web-container
 
 ## `deploy`
 
-仅用于 `Swarm mode`，详细内容请查看 [`Swarm mode`](../swarm_mode/) 一节
+仅用于 `Swarm mode`（已弃用，推荐使用 Kubernetes）。
 
 ## `devices`
 
