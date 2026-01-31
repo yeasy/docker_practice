@@ -81,7 +81,6 @@ jobs:
           echo "vuepress.mirror.docker-practice.com" > .vuepress/dist/CNAME
 
           cp -r _images .vuepress/dist
-          cp -r advanced_network/_images .vuepress/dist/advanced_network
           cp -r appendix/_images .vuepress/dist/appendix
           cp -r cases/ci/drone/_images .vuepress/dist/cases/ci/drone
           cp -r cases/os/_images .vuepress/dist/cases/os
