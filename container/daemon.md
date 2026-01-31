@@ -1,10 +1,19 @@
 # 后台运行
 
-更多的时候，需要让 Docker 在后台运行而不是直接把执行命令的结果输出在当前宿主机下。此时，可以通过添加 `-d` 参数来实现。
+在生产环境中，我们通常需要容器持续运行，不受终端关闭的影响。本节将深入讲解如何让容器在后台运行，以及理解容器生命周期的核心概念。
 
-下面举两个例子来说明一下。
+## 核心概念：前台 vs 后台
 
-如果不使用 `-d` 参数运行容器。
+当你在终端运行一个程序时，有两种模式：
+
+- **前台运行**：程序占用当前终端，输出直接显示，关闭终端程序就停止
+- **后台运行**：程序在后台执行，不占用终端，终端关闭也不影响程序
+
+Docker 容器默认是**前台运行**的。使用 `-d`（detach）参数可以让容器在后台运行。
+
+## 基本使用
+
+### 前台运行（默认）
 
 ```bash
 $ docker run ubuntu:24.04 /bin/sh -c "while true; do echo hello world; sleep 1; done"
@@ -14,33 +23,196 @@ hello world
 hello world
 ```
 
-容器会把输出的结果 (STDOUT) 打印到宿主机上面
+容器会把输出的结果（STDOUT）打印到宿主机上面。此时：
+- 终端被占用，无法执行其他命令
+- 按 `Ctrl+C` 会终止容器
+- 关闭终端窗口，容器也会停止
 
-如果使用了 `-d` 参数运行容器。
+### 后台运行（使用 -d 参数）
 
 ```bash
 $ docker run -d ubuntu:24.04 /bin/sh -c "while true; do echo hello world; sleep 1; done"
 77b2dc01fe0f3f1265df143181e7b9af5e05279a884f4776ee75350ea9d8017a
 ```
 
-此时容器会在后台运行并不会把输出的结果 (STDOUT) 打印到宿主机上面(输出结果可以用 `docker logs` 查看)。
+使用 `-d` 参数后：
+- 容器在后台运行
+- 返回容器的完整 ID
+- 终端立即释放，可以继续执行其他命令
+- 输出不会直接显示（需要用 `docker logs` 查看）
 
-**注：** 容器是否会长久运行，是和 `docker run` 指定的命令有关，和 `-d` 参数无关。
+## 深入理解：容器为什么会"立即退出"？
 
-使用 `-d` 参数启动后会返回一个唯一的 id，也可以通过 `docker container ls` 命令来查看容器信息。
+> **这是初学者最常遇到的困惑。** 理解这个问题，你就理解了 Docker 的核心设计理念。
+
+很多人尝试这样启动容器：
+
+```bash
+$ docker run -d ubuntu:24.04
+```
+
+然后用 `docker ps` 查看，发现容器根本不在运行！这是为什么？
+
+### 核心原理：容器的生命周期与主进程绑定
 
 ```
+┌─────────────────────────────────────────────────────────────────────┐
+│  Docker 容器的生命周期 = 容器内 PID 1 进程的生命周期                   │
+│                                                                     │
+│  主进程启动 → 容器运行                                                │
+│  主进程退出 → 容器停止                                                │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+当你运行 `docker run -d ubuntu:24.04` 时：
+1. 容器启动
+2. 没有指定命令，默认执行 `/bin/bash`
+3. 但没有交互式终端（没有 `-it` 参数），bash 发现没有输入源
+4. bash 立即退出
+5. 主进程退出，容器停止
+
+**关键理解**：
+- ❌ `-d` 参数**不是**让容器"一直运行"
+- ✅ `-d` 参数是让容器"在后台运行"，能运行多久取决于主进程
+
+### 常见的"立即退出"场景
+
+| 场景 | 原因 | 解决方案 |
+|------|------|---------|
+| `docker run -d ubuntu` | 默认 bash 无输入立即退出 | 指定长期运行的命令 |
+| `docker run -d nginx` 后改了配置 | 配置错误导致 nginx 启动失败 | 查看 `docker logs` |
+| 自定义镜像容器启动即退 | Dockerfile 的 CMD 执行完毕 | 确保 CMD 是前台进程 |
+
+## 查看后台容器
+
+### 查看运行中的容器
+
+```bash
 $ docker container ls
 CONTAINER ID  IMAGE         COMMAND               CREATED        STATUS       PORTS NAMES
 77b2dc01fe0f  ubuntu:24.04  /bin/sh -c 'while tr  2 minutes ago  Up 1 minute        agitated_wright
 ```
 
-要获取容器的输出信息，可以通过 `docker container logs` 命令。
+### 查看容器输出日志
 
 ```bash
-$ docker container logs [container ID or NAMES]
+$ docker container logs 77b2dc01fe0f
 hello world
 hello world
 hello world
-. . .
+...
 ```
+
+**实时查看日志**（类似 `tail -f`）：
+
+```bash
+$ docker container logs -f 77b2dc01fe0f
+```
+
+### 查看已停止的容器
+
+```bash
+$ docker container ls -a
+```
+
+加上 `-a` 参数可以看到所有容器，包括已停止的。这对于调试"容器启动即退出"的问题非常有用。
+
+## 最佳实践
+
+### 1. 长期运行的服务使用 -d
+
+```bash
+# Web 服务器
+$ docker run -d -p 80:80 nginx
+
+# 数据库
+$ docker run -d -p 3306:3306 mysql:8
+
+# 缓存服务
+$ docker run -d -p 6379:6379 redis
+```
+
+### 2. 调试时先用前台模式
+
+当容器启动有问题时，**去掉 `-d` 参数**可以直接看到输出和错误：
+
+```bash
+# 有问题的容器，先前台运行看看发生了什么
+$ docker run myimage:latest
+```
+
+### 3. 使用 --rm 自动清理
+
+对于一次性任务，使用 `--rm` 参数让容器退出后自动删除：
+
+```bash
+$ docker run --rm ubuntu:24.04 echo "Hello, World!"
+Hello, World!
+# 容器执行完后自动删除
+```
+
+### 4. 配合日志查看
+
+```bash
+# 后台启动
+$ docker run -d --name myapp myimage:latest
+
+# 查看最近 100 行日志
+$ docker logs --tail 100 myapp
+
+# 实时跟踪日志
+$ docker logs -f myapp
+
+# 查看带时间戳的日志
+$ docker logs -t myapp
+```
+
+## 常见问题排查
+
+### Q: 容器启动后立即退出
+
+1. **查看退出状态码**：
+   ```bash
+   $ docker ps -a --filter "name=mycontainer"
+   # 查看 STATUS 列，如 "Exited (1)" 表示异常退出
+   ```
+
+2. **查看容器日志**：
+   ```bash
+   $ docker logs mycontainer
+   ```
+
+3. **以交互模式调试**：
+   ```bash
+   $ docker run -it myimage:latest /bin/sh
+   # 进入容器手动执行命令，查找问题
+   ```
+
+### Q: 容器在后台运行但无法访问服务
+
+1. **检查端口映射**：
+   ```bash
+   $ docker port mycontainer
+   ```
+
+2. **检查容器内服务状态**：
+   ```bash
+   $ docker exec mycontainer ps aux
+   ```
+
+### Q: 如何让已经在后台运行的容器回到前台？
+
+使用 `docker attach`：
+
+```bash
+$ docker attach mycontainer
+```
+
+> **注意**：`attach` 会连接到容器的主进程。如果主进程不是交互式的，你可能只能看到输出。使用 `Ctrl+P` `Ctrl+Q` 可以安全退出而不停止容器。
+
+## 延伸阅读
+
+- [进入容器](attach_exec.md)：如何进入正在运行的容器执行命令
+- [容器日志](../appendix/best_practices.md)：生产环境的日志管理最佳实践
+- [HEALTHCHECK 健康检查](../image/dockerfile/healthcheck.md)：自动检测容器内服务是否正常
+- [Docker Compose](../compose/README.md)：管理多个后台容器的更好方式

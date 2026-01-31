@@ -1,46 +1,261 @@
 # COPY 复制文件
 
-格式：
-
-* `COPY [--chown=<user>:<group>] <源路径>... <目标路径>`
-* `COPY [--chown=<user>:<group>] ["<源路径1>",... "<目标路径>"]`
-
-和 `RUN` 指令一样，也有两种格式，一种类似于命令行，一种类似于函数调用。
-
-`COPY` 指令将从构建上下文目录中 `<源路径>` 的文件/目录复制到新的一层的镜像内的 `<目标路径>` 位置。比如：
+## 基本语法
 
 ```docker
-COPY package.json /usr/src/app/
+COPY [选项] <源路径>... <目标路径>
+COPY [选项] ["<源路径1>", "<源路径2>", ... "<目标路径>"]
 ```
 
-`<源路径>` 可以是多个，甚至可以是通配符，其通配符规则要满足 Go 的 [`filepath.Match`](https://golang.org/pkg/path/filepath/#Match) 规则，如：
+`COPY` 指令将构建上下文中的文件或目录复制到镜像内。
+
+---
+
+## 基本用法
+
+### 复制单个文件
 
 ```docker
-COPY hom* /mydir/
-COPY hom?.txt /mydir/
+# 复制文件到指定目录
+COPY package.json /app/
+
+# 复制文件并重命名
+COPY config.json /app/settings.json
 ```
 
-`<目标路径>` 可以是容器内的绝对路径，也可以是相对于工作目录的相对路径（工作目录可以用 `WORKDIR` 指令来指定）。目标路径不需要事先创建，如果目录不存在会在复制文件前先行创建缺失目录。
-
-此外，还需要注意一点，使用 `COPY` 指令，源文件的各种元数据都会保留。比如读、写、执行权限、文件变更时间等。这个特性对于镜像定制很有用。特别是构建相关文件都在使用 Git 进行管理的时候。
-
-在使用该指令的时候还可以加上 `--chown=<user>:<group>` 选项来改变文件的所属用户及所属组。
+### 复制多个文件
 
 ```docker
-COPY --chown=55:mygroup files* /mydir/
-COPY --chown=bin files* /mydir/
-COPY --chown=1 files* /mydir/
-COPY --chown=10:11 files* /mydir/
+# 复制多个指定文件
+COPY package.json package-lock.json /app/
+
+# 使用通配符
+COPY *.json /app/
+COPY src/*.js /app/src/
 ```
 
-如果源路径为文件夹，复制的时候不是直接复制该文件夹，而是将文件夹中的内容复制到目标路径。
-
-## 使用 `--link` 优化多阶段构建
-
-在 BuildKit 中，可以使用 `--link` 选项来优化多阶段构建的性能。使用 `--link` 后，文件会以独立层的形式添加，无需依赖前序指令的结果：
+### 复制目录
 
 ```docker
+# 复制整个目录的内容（不是目录本身）
+COPY src/ /app/src/
+```
+
+> ⚠️ **注意**：复制目录时，复制的是目录的**内容**，不包含目录本身。
+
+```
+构建上下文：              镜像内：
+src/                     /app/src/
+├── index.js      →      ├── index.js
+└── utils.js             └── utils.js
+```
+
+---
+
+## 通配符规则
+
+COPY 支持 Go 的 `filepath.Match` 通配符规则：
+
+| 通配符 | 说明 | 示例 |
+|--------|------|------|
+| `*` | 匹配任意字符序列 | `*.json` |
+| `?` | 匹配单个字符 | `config?.json` |
+| `[abc]` | 匹配括号内任一字符 | `[abc].txt` |
+| `[a-z]` | 匹配范围内字符 | `file[0-9].txt` |
+
+```docker
+COPY hom* /mydir/       # home.txt, homework.md 等
+COPY hom?.txt /mydir/   # home.txt, homy.txt 等
+COPY app[0-9].js /app/  # app0.js ~ app9.js
+```
+
+---
+
+## 目标路径
+
+### 绝对路径
+
+```docker
+COPY app.js /usr/src/app/
+```
+
+### 相对路径（基于 WORKDIR）
+
+```docker
+WORKDIR /app
+COPY package.json ./        # 复制到 /app/package.json
+COPY src/ ./src/            # 复制到 /app/src/
+```
+
+### 自动创建目录
+
+如果目标目录不存在，Docker 会自动创建：
+
+```docker
+# /app/config/ 不存在也会自动创建
+COPY settings.json /app/config/
+```
+
+---
+
+## 修改文件所有者
+
+使用 `--chown` 选项设置文件的用户和组：
+
+```docker
+# 使用用户名和组名
+COPY --chown=node:node package.json /app/
+
+# 使用 UID 和 GID
+COPY --chown=1000:1000 . /app/
+
+# 只指定用户
+COPY --chown=node . /app/
+```
+
+> 💡 结合 `USER` 指令使用，确保应用以非 root 用户运行。
+
+---
+
+## 保留文件元数据
+
+COPY 会保留源文件的元数据：
+- 读、写、执行权限
+- 修改时间
+
+这对于脚本文件特别重要：
+
+```docker
+# start.sh 的可执行权限会被保留
+COPY start.sh /app/
+```
+
+---
+
+## COPY vs ADD
+
+| 特性 | COPY | ADD |
+|------|------|-----|
+| 复制本地文件 | ✅ | ✅ |
+| 自动解压 tar | ❌ | ✅ |
+| 支持 URL | ❌ | ✅（不推荐） |
+| 推荐程度 | ✅ **推荐** | ⚠️ 特殊场景使用 |
+
+```docker
+# 推荐：使用 COPY
+COPY app.tar.gz /app/
+RUN tar -xzf /app/app.tar.gz
+
+# ADD 会自动解压（行为不明显，不推荐）
+ADD app.tar.gz /app/
+```
+
+> 笔者建议：除非需要自动解压 tar 文件，否则始终使用 COPY。明确的行为比隐式的魔法更好。
+
+---
+
+## 多阶段构建中的 COPY
+
+### 从其他构建阶段复制
+
+```docker
+# 构建阶段
+FROM node:20 AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# 生产阶段
+FROM nginx:alpine
+COPY --from=builder /app/dist /usr/share/nginx/html
+```
+
+### 使用 --link 优化缓存（BuildKit）
+
+```docker
+# 使用 --link 后，文件以独立层添加，不依赖前序指令
 COPY --link --from=builder /app/dist /usr/share/nginx/html
 ```
 
-这样可以更高效地利用缓存，加速构建过程。
+`--link` 的优势：
+- 更高效利用构建缓存
+- 并行化构建过程
+- 加速多阶段构建
+
+---
+
+## .dockerignore
+
+使用 `.dockerignore` 排除不需要复制的文件：
+
+```gitignore
+# .dockerignore
+node_modules
+.git
+.env
+*.log
+Dockerfile
+.dockerignore
+```
+
+这可以：
+- 减小构建上下文大小
+- 加速构建
+- 避免复制敏感文件
+
+---
+
+## 最佳实践
+
+### 1. 利用缓存，先复制依赖文件
+
+```docker
+# ✅ 好：先复制依赖定义，再安装，最后复制代码
+COPY package.json package-lock.json ./
+RUN npm install
+COPY . .
+
+# ❌ 差：一次性复制所有文件，代码变更会导致重新 npm install
+COPY . .
+RUN npm install
+```
+
+### 2. 使用 .dockerignore
+
+```docker
+# 确保 node_modules 不被复制
+COPY . .
+# .dockerignore 中应包含 node_modules
+```
+
+### 3. 明确复制路径
+
+```docker
+# ✅ 好：明确的路径
+COPY src/ /app/src/
+COPY package.json /app/
+
+# ❌ 差：过于宽泛
+COPY . .
+```
+
+---
+
+## 本章小结
+
+| 操作 | 示例 |
+|------|------|
+| 复制文件 | `COPY app.js /app/` |
+| 复制多个文件 | `COPY *.json /app/` |
+| 复制目录内容 | `COPY src/ /app/src/` |
+| 修改所有者 | `COPY --chown=node:node . /app/` |
+| 从构建阶段复制 | `COPY --from=builder /app/dist ./` |
+
+## 延伸阅读
+
+- [ADD 指令](add.md)：复制和解压
+- [WORKDIR 指令](workdir.md)：设置工作目录
+- [多阶段构建](../multistage-builds.md)：优化镜像大小
+- [最佳实践](../../appendix/best_practices.md)：Dockerfile 编写指南

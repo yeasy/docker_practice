@@ -1,65 +1,151 @@
 # ONBUILD 为他人做嫁衣裳
 
-格式：`ONBUILD <其它指令>`。
-
-`ONBUILD` 是一个特殊的指令，它后面跟的是其它指令，比如 `RUN`, `COPY` 等，而这些指令，在当前镜像构建时并不会被执行。只有当以当前镜像为基础镜像，去构建下一级镜像的时候才会被执行。
-
-`Dockerfile` 中的其它指令都是为了定制当前镜像而准备的，唯有 `ONBUILD` 是为了帮助别人定制自己而准备的。
-
-假设我们要制作 Node.js 所写的应用的镜像。我们都知道 Node.js 使用 `npm` 进行包管理，所有依赖、配置、启动信息等会放到 `package.json` 文件里。在拿到程序代码后，需要先进行 `npm install` 才可以获得所有需要的依赖。然后就可以通过 `npm start` 来启动应用。因此，一般来说会这样写 `Dockerfile`：
+## 基本语法
 
 ```docker
-FROM node:slim
-RUN mkdir /app
+ONBUILD <其它指令>
+```
+
+`ONBUILD` 是一个特殊的指令，它后面跟的是其它指令（如 `RUN`, `COPY` 等），这些指令**在当前镜像构建时不会执行**，只有当以当前镜像为基础镜像去构建下一级镜像时才会被执行。
+
+---
+
+## 为什么需要 ONBUILD
+
+`ONBUILD` 主要用于制作**语言栈基础镜像**或**框架基础镜像**。
+
+### 场景：维护 Node.js 项目
+
+假设你有多个 Node.js 项目，它们的构建流程都一样：
+1. 创建目录
+2. 复制 `package.json`
+3. 执行 `npm install`
+4. 复制源码
+5. 启动应用
+
+如果不使用 `ONBUILD`，每个项目的 Dockerfile 都要重复这些步骤，且通过 `COPY` 复制文件时，基础镜像无法预知子项目的文件名。
+
+### 使用 ONBUILD 的解决方案
+
+**基础镜像 (my-node-base)**：
+
+```docker
+FROM node:20-alpine
 WORKDIR /app
-COPY ./package.json /app
-RUN [ "npm", "install" ]
-COPY . /app/
-CMD [ "npm", "start" ]
+
+# 这些指令将在子镜像构建时执行
+ONBUILD COPY package*.json ./
+ONBUILD RUN npm install
+ONBUILD COPY . .
+
+CMD ["npm", "start"]
 ```
 
-把这个 `Dockerfile` 放到 Node.js 项目的根目录，构建好镜像后，就可以直接拿来启动容器运行。但是如果我们还有第二个 Node.js 项目也差不多呢？好吧，那就再把这个 `Dockerfile` 复制到第二个项目里。那如果有第三个项目呢？再复制么？文件的副本越多，版本控制就越困难，让我们继续看这样的场景维护的问题。
-
-如果第一个 Node.js 项目在开发过程中，发现这个 `Dockerfile` 里存在问题，比如敲错字了、或者需要安装额外的包，然后开发人员修复了这个 `Dockerfile`，再次构建，问题解决。第一个项目没问题了，但是第二个项目呢？虽然最初 `Dockerfile` 是复制、粘贴自第一个项目的，但是并不会因为第一个项目修复了他们的 `Dockerfile`，而第二个项目的 `Dockerfile` 就会被自动修复。
-
-那么我们可不可以做一个基础镜像，然后各个项目使用这个基础镜像呢？这样基础镜像更新，各个项目不用同步 `Dockerfile` 的变化，重新构建后就继承了基础镜像的更新？好吧，可以，让我们看看这样的结果。那么上面的这个 `Dockerfile` 就会变为：
+**子项目 Dockerfile**：
 
 ```docker
-FROM node:slim
-RUN mkdir /app
-WORKDIR /app
-CMD [ "npm", "start" ]
+FROM my-node-base
+# 只需要一行！
+# 构建时会自动执行 COPY 和 RUN
 ```
 
-这里我们把项目相关的构建指令拿出来，放到子项目里去。假设这个基础镜像的名字为 `my-node` 的话，各个项目内的自己的 `Dockerfile` 就变为：
+---
+
+## 执行机制
+
+```
+基础镜像构建：
+Dockerfile (含 ONBUILD) ──build──> 基础镜像 (记录了 ONBUILD 触发器)
+                                    (指令未执行)
+
+子镜像构建：
+FROM 基础镜像 ──build──> 读取基础镜像触发器 ──> 执行触发器指令 ──> 继续执行子 Dockerfile
+```
+
+---
+
+## 常见使用场景
+
+### 1. 自动处理依赖安装
 
 ```docker
-FROM my-node
-COPY ./package.json /app
-RUN [ "npm", "install" ]
-COPY . /app/
+# Python 基础镜像
+ONBUILD COPY requirements.txt ./
+ONBUILD RUN pip install -r requirements.txt
 ```
 
-基础镜像变化后，各个项目都用这个 `Dockerfile` 重新构建镜像，会继承基础镜像的更新。
-
-那么，问题解决了么？没有。准确说，只解决了一半。如果这个 `Dockerfile` 里面有些东西需要调整呢？比如 `npm install` 都需要加一些参数，那怎么办？这一行 `RUN` 是不可能放入基础镜像的，因为涉及到了当前项目的 `./package.json`，难道又要一个个修改么？所以说，这样制作基础镜像，只解决了原来的 `Dockerfile` 的前4条指令的变化问题，而后面三条指令的变化则完全没办法处理。
-
-`ONBUILD` 可以解决这个问题。让我们用 `ONBUILD` 重新写一下基础镜像的 `Dockerfile`:
+### 2. 自动编译代码
 
 ```docker
-FROM node:slim
-RUN mkdir /app
-WORKDIR /app
-ONBUILD COPY ./package.json /app
-ONBUILD RUN [ "npm", "install" ]
-ONBUILD COPY . /app/
-CMD [ "npm", "start" ]
+# Go 基础镜像
+ONBUILD COPY . .
+ONBUILD RUN go build -o app main.go
 ```
 
-这次我们回到原始的 `Dockerfile`，但是这次将项目相关的指令加上 `ONBUILD`，这样在构建基础镜像的时候，这三行并不会被执行。然后各个项目的 `Dockerfile` 就变成了简单地：
+### 3. 处理静态资源
 
 ```docker
-FROM my-node
+# Nginx 静态网站基础镜像
+ONBUILD COPY dist/ /usr/share/nginx/html/
 ```
 
-是的，只有这么一行。当在各个项目目录中，用这个只有一行的 `Dockerfile` 构建镜像时，之前基础镜像的那三行 `ONBUILD` 就会开始执行，成功的将当前项目的代码复制进镜像、并且针对本项目执行 `npm install`，生成应用镜像。
+---
+
+## 注意事项
+
+### 1. 继承性限制
+
+`ONBUILD` 指令**只会继承一次**。
+- 镜像 A (含 ONBUILD)
+- 镜像 B (FROM A) -> 触发 ONBUILD
+- 镜像 C (FROM B) -> **不会**再次触发 ONBUILD
+
+### 2. 构建上下文
+
+子镜像构建时，`ONBUILD COPY . .` 中的 `.` 指的是**子项目**的构建上下文，而不是基础镜像的上下文。
+
+### 3. 不允许级联
+
+`ONBUILD ONBUILD` 是非法的。你不能写 `ONBUILD ONBUILD COPY ...`。
+
+### 4. 可能会导致构建失败
+
+由于 `ONBUILD` 实际上是在子镜像中执行指令，如果子项目的上下文不满足要求（例如缺少 `package.json`），会导致子镜像构建失败，且错误信息可能比较隐晦。
+
+---
+
+## 最佳实践
+
+### 1. 命名规范
+
+建议在镜像标签中添加 `-onbuild` 后缀，明确告知使用者该镜像包含触发器。
+
+```
+node:20-onbuild
+python:3.12-onbuild
+```
+
+### 2. 避免执行耗时操作
+
+尽量不要在 `ONBUILD` 中执行过于耗时或不确定的操作（如更新系统软件），这会让子镜像构建变得缓慢且不可控。
+
+### 3. 清理工作
+
+如果 `ONBUILD` 指令产生了临时文件，最好在同一个指令链中清理，或者提供机制让子镜像清理。
+
+---
+
+## 本章小结
+
+| 要点 | 说明 |
+|------|------|
+| **作用** | 定义在子镜像构建时执行的指令 |
+| **语法** | `ONBUILD INSTRUCTION` |
+| **适用** | 基础架构镜像（Node, Python, Go 等） |
+| **限制** | 只继承一次，不可级联 |
+| **规范** | 建议使用 `-onbuild` 标签后缀 |
+
+## 延伸阅读
+
+- [COPY 指令](copy.md)：文件复制
+- [Dockerfile 最佳实践](../../appendix/best_practices.md)：基础镜像设计

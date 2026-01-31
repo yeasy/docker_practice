@@ -1,124 +1,306 @@
 # ENTRYPOINT 入口点
 
-`ENTRYPOINT` 的格式和 `RUN` 指令格式一样，分为 `exec` 格式和 `shell` 格式。
+## 什么是 ENTRYPOINT
 
-`ENTRYPOINT` 的目的和 `CMD` 一样，都是在指定容器启动程序及参数。`ENTRYPOINT` 在运行时也可以替代，不过比 `CMD` 要略显繁琐，需要通过 `docker run` 的参数 `--entrypoint` 来指定。
+`ENTRYPOINT` 指定容器启动时运行的入口程序。与 CMD 不同，ENTRYPOINT 定义的命令不会被 `docker run` 的参数覆盖，而是**接收这些参数**。
 
-当指定了 `ENTRYPOINT` 后，`CMD` 的含义就发生了改变，不再是直接的运行其命令，而是将 `CMD` 的内容作为参数传给 `ENTRYPOINT` 指令，换句话说实际执行时，将变为：
+> **核心作用**：让镜像像一个可执行程序一样使用，`docker run` 的参数作为这个程序的参数。
 
-```bash
-<ENTRYPOINT> "<CMD>"
+---
+
+## 语法格式
+
+| 格式 | 语法 | 推荐程度 |
+|------|------|---------|
+| **exec 格式** | `ENTRYPOINT ["可执行文件", "参数1"]` | ✅ **推荐** |
+| **shell 格式** | `ENTRYPOINT 命令 参数` | ⚠️ 不推荐 |
+
+```docker
+# exec 格式（推荐）
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
+
+# shell 格式（不推荐）
+ENTRYPOINT nginx -g "daemon off;"
 ```
 
-那么有了 `CMD` 后，为什么还要有 `ENTRYPOINT` 呢？这种 `<ENTRYPOINT> "<CMD>"` 有什么好处么？让我们来看几个场景。
+---
 
-#### 场景一：让镜像变成像命令一样使用
+## ENTRYPOINT vs CMD
 
-假设我们需要一个得知自己当前公网 IP 的镜像，那么可以先用 `CMD` 来实现：
+### 核心区别
+
+| 特性 | ENTRYPOINT | CMD |
+|------|------------|-----|
+| **定位** | 固定的入口程序 | 默认参数 |
+| **docker run 参数** | 追加为参数 | 完全覆盖 |
+| **覆盖方式** | `--entrypoint` | 直接指定命令 |
+| **适用场景** | 把镜像当命令用 | 提供默认行为 |
+
+### 行为对比
+
+```docker
+# 只用 CMD
+CMD ["curl", "-s", "http://example.com"]
+```
+
+```bash
+$ docker run myimage              # curl -s http://example.com
+$ docker run myimage -v           # 执行 -v（错误！）
+$ docker run myimage curl -v ...  # curl -v ...（完全替换）
+```
+
+```docker
+# 只用 ENTRYPOINT
+ENTRYPOINT ["curl", "-s"]
+```
+
+```bash
+$ docker run myimage                      # curl -s（缺参数）
+$ docker run myimage http://example.com   # curl -s http://example.com ✓
+```
+
+```docker
+# ENTRYPOINT + CMD 组合（推荐）
+ENTRYPOINT ["curl", "-s"]
+CMD ["http://example.com"]
+```
+
+```bash
+$ docker run myimage                      # curl -s http://example.com（默认）
+$ docker run myimage http://other.com     # curl -s http://other.com ✓
+$ docker run myimage -v http://other.com  # curl -s -v http://other.com ✓
+```
+
+---
+
+## 场景一：让镜像像命令一样使用
+
+### 需求
+
+创建一个查询公网 IP 的"命令"镜像。
+
+### 使用 CMD 的问题
 
 ```docker
 FROM ubuntu:24.04
-RUN apt-get update \
-    && apt-get install -y curl \
-    && rm -rf /var/lib/apt/lists/*
-CMD [ "curl", "-s", "http://myip.ipip.net" ]
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+CMD ["curl", "-s", "http://myip.ipip.net"]
 ```
-
-假如我们使用 `docker build -t myip .` 来构建镜像的话，如果我们需要查询当前公网 IP，只需要执行：
 
 ```bash
-$ docker run myip
-当前 IP：61.148.226.66 来自：北京市 联通
+$ docker run myip           # ✓ 正常工作
+当前 IP：61.148.226.66
+
+$ docker run myip -i        # ✗ 错误！
+exec: "-i": executable file not found
+# -i 替换了整个 CMD，被当作可执行文件
 ```
 
-嗯，这么看起来好像可以直接把镜像当做命令使用了，不过命令总有参数，如果我们希望加参数呢？比如从上面的 `CMD` 中可以看到实质的命令是 `curl`，那么如果我们希望显示 HTTP 头信息，就需要加上 `-i` 参数。那么我们可以直接加 `-i` 参数给 `docker run myip` 么？
-
-```bash
-$ docker run myip -i
-docker: Error response from daemon: invalid header field value "oci runtime error: container_linux.go:247: starting container process caused \"exec: \\\"-i\\\": executable file not found in $PATH\"\n".
-```
-
-我们可以看到可执行文件找不到的报错，`executable file not found`。之前我们说过，跟在镜像名后面的是 `command`，运行时会替换 `CMD` 的默认值。因此这里的 `-i` 替换了原来的 `CMD`，而不是添加在原来的 `curl -s http://myip.ipip.net` 后面。而 `-i` 根本不是命令，所以自然找不到。
-
-那么如果我们希望加入 `-i` 这参数，我们就必须重新完整的输入这个命令：
-
-```bash
-$ docker run myip curl -s http://myip.ipip.net -i
-```
-
-这显然不是很好的解决方案，而使用 `ENTRYPOINT` 就可以解决这个问题。现在我们重新用 `ENTRYPOINT` 来实现这个镜像：
+### 使用 ENTRYPOINT 解决
 
 ```docker
 FROM ubuntu:24.04
-RUN apt-get update \
-    && apt-get install -y curl \
-    && rm -rf /var/lib/apt/lists/*
-ENTRYPOINT [ "curl", "-s", "http://myip.ipip.net" ]
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+ENTRYPOINT ["curl", "-s", "http://myip.ipip.net"]
 ```
 
-这次我们再来尝试直接使用 `docker run myip -i`：
-
 ```bash
-$ docker run myip
-当前 IP：61.148.226.66 来自：北京市 联通
+$ docker run myip           # ✓ 正常工作
+当前 IP：61.148.226.66
 
-$ docker run myip -i
+$ docker run myip -i        # ✓ 添加 -i 参数
 HTTP/1.1 200 OK
-Server: nginx/1.8.0
-Date: Tue, 22 Nov 2016 05:12:40 GMT
-Content-Type: text/html; charset=UTF-8
-Vary: Accept-Encoding
-X-Powered-By: PHP/5.6.24-1~dotdeb+7.1
-X-Cache: MISS from cache-2
-X-Cache-Lookup: MISS from cache-2:80
-X-Cache: MISS from proxy-2_6
-Transfer-Encoding: chunked
-Via: 1.1 cache-2:80, 1.1 proxy-2_6:8006
-Connection: keep-alive
-
-当前 IP：61.148.226.66 来自：北京市 联通
+...
+当前 IP：61.148.226.66
 ```
 
-可以看到，这次成功了。这是因为当存在 `ENTRYPOINT` 后，`CMD` 的内容将会作为参数传给 `ENTRYPOINT`，而这里 `-i` 就是新的 `CMD`，因此会作为参数传给 `curl`，从而达到了我们预期的效果。
+### 交互图示
 
-#### 场景二：应用运行前的准备工作
+```
+ENTRYPOINT ["curl", "-s", "http://myip.ipip.net"]
+            │
+docker run myip -i
+            │
+            ▼
+curl -s http://myip.ipip.net -i
+└─────────────────────────────┘
+     ENTRYPOINT + docker run 参数
+```
 
-启动容器就是启动主进程，但有些时候，启动主进程前，需要一些准备工作。
+---
 
-比如 `mysql` 类的数据库，可能需要一些数据库配置、初始化的工作，这些工作要在最终的 mysql 服务器运行之前解决。
+## 场景二：启动前的准备工作
 
-此外，可能希望避免使用 `root` 用户去启动服务，从而提高安全性，而在启动服务前还需要以 `root` 身份执行一些必要的准备工作，最后切换到服务用户身份启动服务。或者除了服务外，其它命令依旧可以使用 `root` 身份执行，方便调试等。
+### 需求
 
-这些准备工作是和容器 `CMD` 无关的，无论 `CMD` 为什么，都需要事先进行一个预处理的工作。这种情况下，可以写一个脚本，然后放入 `ENTRYPOINT` 中去执行，而这个脚本会将接到的参数（也就是 `<CMD>`）作为命令，在脚本最后执行。比如官方镜像 `redis` 中就是这么做的：
+在启动主服务前执行初始化脚本（如数据库迁移、权限设置）。
+
+### 实现方式
 
 ```docker
-FROM alpine:3.4
-...
-RUN addgroup -S redis && adduser -S -G redis redis
-...
+FROM redis:7-alpine
+COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
-
-EXPOSE 6379
-CMD [ "redis-server" ]
+CMD ["redis-server"]
 ```
 
-可以看到其中为了 redis 服务创建了 redis 用户，并在最后指定了 `ENTRYPOINT` 为 `docker-entrypoint.sh` 脚本。
+**docker-entrypoint.sh**：
 
 ```bash
 #!/bin/sh
-...
-# allow the container to be started with `--user`
-if [ "$1" = 'redis-server' -a "$(id -u)" = '0' ]; then
-	find . \! -user redis -exec chown redis '{}' +
-	exec gosu redis "$0" "$@"
+set -e
+
+# 准备工作
+echo "Initializing..."
+
+# 如果第一个参数是 redis-server，以 redis 用户运行
+if [ "$1" = 'redis-server' ]; then
+    chown -R redis:redis /data
+    exec gosu redis "$@"
 fi
 
+# 其他命令直接执行
 exec "$@"
 ```
 
-该脚本的内容就是根据 `CMD` 的内容来判断，如果是 `redis-server` 的话，则切换到 `redis` 用户身份启动服务器，否则依旧使用 `root` 身份执行。比如：
+### 工作流程
+
+```
+docker run redis                    docker run redis bash
+        │                                    │
+        ▼                                    ▼
+docker-entrypoint.sh redis-server   docker-entrypoint.sh bash
+        │                                    │
+        ├─ 初始化                            ├─ 初始化
+        ├─ chown -R redis:redis /data        │
+        └─ exec gosu redis redis-server      └─ exec bash
+           (以 redis 用户运行)                  (以 root 用户运行)
+```
+
+### 关键点
+
+1. **exec "$@"**：用传入的参数替换当前进程，确保信号正确传递
+2. **条件判断**：根据 CMD 不同执行不同逻辑
+3. **用户切换**：使用 `gosu` 切换用户（比 `su` 更适合容器）
+
+---
+
+## 场景三：带参数的应用
+
+```docker
+FROM python:3.12-slim
+WORKDIR /app
+COPY . .
+RUN pip install -r requirements.txt
+
+ENTRYPOINT ["python", "app.py"]
+CMD ["--host", "0.0.0.0", "--port", "8080"]
+```
 
 ```bash
-$ docker run -it redis id
-uid=0(root) gid=0(root) groups=0(root)
+# 使用默认参数
+$ docker run myapp
+# 执行: python app.py --host 0.0.0.0 --port 8080
+
+# 覆盖参数
+$ docker run myapp --host 0.0.0.0 --port 9000
+# 执行: python app.py --host 0.0.0.0 --port 9000
+
+# 完全不同的参数
+$ docker run myapp --help
+# 执行: python app.py --help
 ```
+
+---
+
+## 覆盖 ENTRYPOINT
+
+使用 `--entrypoint` 参数覆盖：
+
+```bash
+# 正常运行
+$ docker run myimage
+
+# 覆盖 ENTRYPOINT 进入 shell 调试
+$ docker run --entrypoint /bin/sh myimage
+
+# 覆盖 ENTRYPOINT 并传入参数
+$ docker run --entrypoint /bin/cat myimage /etc/os-release
+```
+
+---
+
+## ENTRYPOINT 与 CMD 组合表
+
+| ENTRYPOINT | CMD | 最终执行命令 |
+|------------|-----|-------------|
+| 无 | 无 | 无（容器无法启动） |
+| 无 | `["cmd", "p1"]` | `cmd p1` |
+| `["ep", "p1"]` | 无 | `ep p1` |
+| `["ep", "p1"]` | `["cmd", "p2"]` | `ep p1 cmd p2` |
+| `ep p1`（shell） | `["cmd", "p2"]` | `/bin/sh -c "ep p1"`（CMD 被忽略） |
+
+> ⚠️ **注意**：shell 格式的 ENTRYPOINT 会忽略 CMD！
+
+---
+
+## 最佳实践
+
+### 1. 使用 exec 格式
+
+```docker
+# ✅ 推荐
+ENTRYPOINT ["python", "app.py"]
+
+# ❌ 避免 shell 格式
+ENTRYPOINT python app.py
+```
+
+### 2. 提供有意义的默认参数
+
+```docker
+ENTRYPOINT ["nginx"]
+CMD ["-g", "daemon off;"]
+```
+
+### 3. 入口脚本使用 exec
+
+```bash
+#!/bin/sh
+# 准备工作...
+
+# 使用 exec 替换当前进程
+exec "$@"
+```
+
+### 4. 处理信号
+
+确保 ENTRYPOINT 脚本能正确传递信号：
+
+```bash
+#!/bin/bash
+trap 'kill -TERM $PID' TERM INT
+
+# 启动应用
+app "$@" &
+PID=$!
+
+# 等待应用退出
+wait $PID
+```
+
+---
+
+## 本章小结
+
+| ENTRYPOINT | CMD | 适用场景 |
+|------------|-----|---------|
+| ✓ | ✗ | 镜像作为固定命令使用 |
+| ✗ | ✓ | 简单的默认命令 |
+| ✓ | ✓ | **推荐**：固定命令 + 可配置参数 |
+
+## 延伸阅读
+
+- [CMD 容器启动命令](cmd.md)：默认命令
+- [最佳实践](../../appendix/best_practices.md)：启动命令设计
+- [后台运行](../../container/daemon.md)：前台/后台概念

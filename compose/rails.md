@@ -1,117 +1,268 @@
 # 使用 Rails
 
-> 本小节内容适合 `Ruby` 开发人员阅读。
+> 本小节内容适合 Ruby 开发人员阅读。
 
-我们现在将使用 `Compose` 配置并运行一个 `Rails/PostgreSQL` 应用。
+本节使用 Docker Compose 配置并运行一个 **Rails + PostgreSQL** 应用。
 
-在一切工作开始前，需要先设置好三个必要的文件。
+## 架构概览
 
-首先，因为应用将要运行在一个满足所有环境依赖的 Docker 容器里面，那么我们可以通过编辑 `Dockerfile` 文件来指定 Docker 容器要安装内容。内容如下：
-
-```docker
-FROM ruby
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
-RUN mkdir /myapp
-WORKDIR /myapp
-ADD Gemfile /myapp/Gemfile
-RUN bundle install
-ADD . /myapp
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     Docker Compose 网络                     │
+│                                                             │
+│  ┌─────────────────────┐      ┌─────────────────────┐       │
+│  │     web 服务         │      │      db 服务        │       │
+│  │  ┌───────────────┐  │      │  ┌───────────────┐  │       │
+│  │  │   Rails       │  │──────│  │  PostgreSQL   │  │       │
+│  │  │   应用        │  │ :5432│  │   数据库      │  │       │
+│  │  └───────────────┘  │      │  └───────────────┘  │       │
+│  │       :3000         │      │                     │       │
+│  └──────────┬──────────┘      └─────────────────────┘       │
+│             │                                               │
+└─────────────┼───────────────────────────────────────────────┘
+              │
+              ▼
+         localhost:3000
 ```
 
-以上内容指定应用将使用安装了 Ruby、Bundler 以及其依赖件的镜像。更多关于如何编写 Dockerfile 文件的信息可以查看 [Dockerfile 使用](../image/dockerfile/README.md)。
+## 准备工作
 
-下一步，我们需要一个引导加载 Rails 的文件 `Gemfile` 。 等一会儿它还会被 `rails new` 命令覆盖重写。
+创建项目目录：
 
 ```bash
-source 'https://rubygems.org'
-gem 'rails', '4.0.2'
+$ mkdir rails-docker && cd rails-docker
 ```
 
-最后，`docker-compose.yml` 文件才是最神奇的地方。 `docker-compose.yml` 文件将把所有的东西关联起来。它描述了应用的构成（一个 web 服务和一个数据库）、每个镜像的来源（数据库运行在使用预定义的 PostgreSQL 镜像，web 应用侧将从本地目录创建）、镜像之间的连接，以及服务开放的端口。
+需要创建三个文件：`Dockerfile`、`Gemfile` 和 `docker-compose.yml`。
+
+## Step 1: 创建 Dockerfile
+
+```docker
+FROM ruby:3.2
+
+# 安装系统依赖
+RUN apt-get update -qq && \
+    apt-get install -y build-essential libpq-dev nodejs && \
+    rm -rf /var/lib/apt/lists/*
+
+# 设置工作目录
+WORKDIR /myapp
+
+# 先复制 Gemfile，利用缓存加速构建
+COPY Gemfile /myapp/Gemfile
+COPY Gemfile.lock /myapp/Gemfile.lock
+RUN bundle install
+
+# 复制应用代码
+COPY . /myapp
+```
+
+**配置说明**：
+
+| 指令 | 作用 |
+|------|------|
+| `build-essential` | 编译原生扩展所需 |
+| `libpq-dev` | PostgreSQL 客户端库 |
+| `nodejs` | Rails Asset Pipeline 需要 |
+| 先复制 Gemfile | 只有依赖变化时才重新 `bundle install` |
+
+## Step 2: 创建 Gemfile
+
+创建一个初始的 `Gemfile`，稍后会被 `rails new` 覆盖：
+
+```ruby
+source 'https://rubygems.org'
+gem 'rails', '~> 7.1'
+```
+
+创建空的 `Gemfile.lock`：
+
+```bash
+$ touch Gemfile.lock
+```
+
+## Step 3: 创建 docker-compose.yml
 
 ```yaml
-
 services:
-
   db:
-    image: postgres
-    ports:
-      - "5432"
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
   web:
     build: .
-    command: bundle exec rackup -p 3000
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/myapp
     ports:
       - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/myapp_development
+
+volumes:
+  postgres_data:
 ```
 
-所有文件就绪后，我们就可以通过使用 `docker compose run` 命令生成应用的骨架了。
+**配置详解**：
+
+| 配置项 | 说明 |
+|--------|------|
+| `rm -f tmp/pids/server.pid` | 清理上次异常退出留下的 PID 文件 |
+| `volumes: .:/myapp` | 挂载代码目录，支持热更新 |
+| `depends_on: db` | 确保数据库先启动 |
+| `DATABASE_URL` | Rails 12-factor 风格的数据库配置 |
+
+## Step 4: 生成 Rails 项目
+
+使用 `docker compose run` 生成项目骨架：
 
 ```bash
-$ docker compose run web rails new . --force --database=postgresql --skip-bundle
+$ docker compose run --rm web rails new . --force --database=postgresql --skip-bundle
 ```
 
-`Compose` 会先使用 `Dockerfile` 为 web 服务创建一个镜像，接着使用这个镜像在容器里运行 `rails new ` 和它之后的命令。一旦这个命令运行完后，应该就可以看一个崭新的应用已经生成了。
+**命令解释**：
+- `--rm`：执行后删除临时容器
+- `--force`：覆盖已存在的文件
+- `--database=postgresql`：配置使用 PostgreSQL
+- `--skip-bundle`：暂不安装依赖（稍后统一安装）
+
+生成的目录结构：
 
 ```bash
 $ ls
-Dockerfile   app          docker-compose.yml      tmp
-Gemfile      bin          lib          vendor
-Gemfile.lock condocker-compose       log
-README.rdoc  condocker-compose.ru    public
-Rakefile     db           test
+Dockerfile       Gemfile          Rakefile         config           lib              tmp
+Gemfile.lock     README.md        app              config.ru        log              vendor
+docker-compose.yml                bin              db               public
 ```
 
-在新的 `Gemfile` 文件去掉加载 `therubyracer` 的行的注释，这样我们便可以使用 Javascript 运行环境：
+> ⚠️ **Linux 用户**：如遇权限问题，执行 `sudo chown -R $USER:$USER .`
 
-```bash
-gem 'therubyracer', platforms: :ruby
-```
+## Step 5: 重新构建镜像
 
-现在我们已经有一个新的 `Gemfile` 文件，需要再重新创建镜像。（这个会步骤会改变 Dockerfile 文件本身，所以需要重建一次）。
+由于生成了新的 Gemfile，需要重新构建镜像以安装完整依赖：
 
 ```bash
 $ docker compose build
 ```
 
-应用现在就可以启动了，但配置还未完成。Rails 默认读取的数据库目标是 `localhost` ，我们需要手动指定容器的 `db` 。同样的，还需要把用户名修改成和 postgres 镜像预定的一致。
-打开最新生成的 `database.yml` 文件。用以下内容替换：
+## Step 6: 配置数据库连接
 
-```bash
-development: &default
+修改 `config/database.yml`：
+
+```yaml
+default: &default
   adapter: postgresql
   encoding: unicode
-  database: postgres
-  pool: 5
-  username: postgres
-  password:
-  host: db
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  url: <%= ENV['DATABASE_URL'] %>
+
+development:
+  <<: *default
 
 test:
   <<: *default
   database: myapp_test
+
+production:
+  <<: *default
 ```
 
-现在就可以启动应用了。
+> 💡 使用 `DATABASE_URL` 环境变量配置数据库，符合 12-factor 应用原则，便于在不同环境间切换。
+
+## Step 7: 启动应用
 
 ```bash
 $ docker compose up
 ```
 
-如果一切正常，你应该可以看到 PostgreSQL 的输出，几秒后可以看到这样的重复信息：
+输出示例：
 
-```bash
-myapp_web_1 | [2014-01-17 17:16:29] INFO  WEBrick 1.3.1
-myapp_web_1 | [2014-01-17 17:16:29] INFO  ruby 2.0.0 (2013-11-22) [x86_64-linux-gnu]
-myapp_web_1 | [2014-01-17 17:16:29] INFO  WEBrick::HTTPServer#start: pid=1 port=3000
+```
+db-1   | PostgreSQL init process complete; ready for start up.
+db-1   | LOG:  database system is ready to accept connections
+web-1  | => Booting Puma
+web-1  | => Rails 7.1.0 application starting in development
+web-1  | => Run `bin/rails server --help` for more startup options
+web-1  | Puma starting in single mode...
+web-1  | * Listening on http://0.0.0.0:3000
 ```
 
-最后， 我们需要做的是创建数据库，打开另一个终端，运行：
+## Step 8: 创建数据库
+
+在另一个终端执行：
 
 ```bash
-$ docker compose run web rake db:create
+$ docker compose exec web rails db:create
+Created database 'myapp_development'
+Created database 'myapp_test'
 ```
 
-这个 web 应用已经开始在你的 docker 守护进程里面监听着 3000 端口了。
+访问 http://localhost:3000 查看 Rails 欢迎页面。
+
+## 常用开发命令
+
+```bash
+# 数据库迁移
+$ docker compose exec web rails db:migrate
+
+# Rails 控制台
+$ docker compose exec web rails console
+
+# 运行测试
+$ docker compose exec web rails test
+
+# 生成脚手架
+$ docker compose exec web rails generate scaffold Post title:string body:text
+
+# 进入容器 Shell
+$ docker compose exec web bash
+```
+
+## 常见问题
+
+### Q: 数据库连接失败
+
+检查 `DATABASE_URL` 环境变量格式是否正确，确保 db 服务已启动：
+
+```bash
+$ docker compose ps
+$ docker compose logs db
+```
+
+### Q: server.pid 文件导致启动失败
+
+错误信息：`A server is already running`
+
+已在 command 中添加 `rm -f tmp/pids/server.pid` 处理。如仍有问题：
+
+```bash
+$ docker compose exec web rm -f tmp/pids/server.pid
+```
+
+### Q: Gem 安装失败
+
+可能需要更新 bundler 或清理缓存：
+
+```bash
+$ docker compose run --rm web bundle update
+```
+
+## 开发 vs 生产
+
+| 配置项 | 开发环境 | 生产环境 |
+|--------|---------|---------|
+| Rails 服务器 | Puma (开发模式) | Puma + Nginx |
+| 代码挂载 | 使用 volumes | 代码打包进镜像 |
+| 静态资源 | 动态编译 | 预编译 (`rails assets:precompile`) |
+| 数据库密码 | 明文配置 | 使用 Secrets 管理 |
+
+## 延伸阅读
+
+- [使用 Django](django.md)：Python Web 框架实战
+- [Compose 模板文件](compose_file.md)：配置详解
+- [数据管理](../data_management/README.md)：数据持久化

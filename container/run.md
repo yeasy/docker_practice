@@ -1,55 +1,166 @@
 # 启动容器
 
-启动容器有两种方式，一种是基于镜像新建一个容器并启动，另外一个是将在终止状态（`exited`）的容器重新启动。
+## 启动方式概述
 
-因为 Docker 的容器实在太轻量级了，很多时候用户都是随时删除和新创建容器。
+启动容器有两种方式：
+- **新建并启动**：基于镜像创建新容器
+- **重新启动**：将已终止的容器重新运行
+
+由于 Docker 容器非常轻量，实际使用中常常是随时删除和新建容器，而不是反复重启同一个容器。
 
 ## 新建并启动
 
-所需要的命令主要为 `docker run`。
+### 基本语法
 
-例如，下面的命令输出一个 “Hello World”，之后终止容器。
+```bash
+docker run [选项] 镜像 [命令] [参数...]
+```
+
+### 最简单的例子
+
+输出 "Hello World" 后容器自动终止：
 
 ```bash
 $ docker run ubuntu:24.04 /bin/echo 'Hello world'
 Hello world
 ```
 
-这跟在本地直接执行 `/bin/echo 'hello world'` 几乎感觉不出任何区别。
+这与直接执行 `/bin/echo 'Hello world'` 几乎没有区别，但实际上已经启动了一个完整的 Ubuntu 容器来执行这条命令。
 
-下面的命令则启动一个 bash 终端，允许用户进行交互。
+### 交互式容器
+
+启动一个可以交互的 bash 终端：
 
 ```bash
-$ docker run -t -i ubuntu:24.04 /bin/bash
+$ docker run -it ubuntu:24.04 /bin/bash
 root@af8bae53bdd3:/#
 ```
 
-其中，`-t` 选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， `-i` 则让容器的标准输入保持打开。
+**参数说明**：
 
-在交互模式下，用户可以通过所创建的终端来输入命令，例如
+| 参数 | 作用 |
+|------|------|
+| `-i` | 保持标准输入（stdin）打开，允许输入 |
+| `-t` | 分配伪终端（pseudo-TTY），提供终端界面 |
+| `-it` | 两者组合使用，获得交互式终端 |
+
+在交互模式下可以执行命令：
 
 ```bash
 root@af8bae53bdd3:/# pwd
 /
 root@af8bae53bdd3:/# ls
 bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr var
+root@af8bae53bdd3:/# exit  # 退出容器
 ```
 
-当利用 `docker run` 来创建容器时，Docker 在后台运行的标准操作包括：
+## docker run 的完整流程
 
-* 检查本地是否存在指定的镜像，不存在就从 [registry](../repository/README.md) 下载
-* 利用镜像创建并启动一个容器
-* 分配一个文件系统，并在只读的镜像层外面挂载一层可读写层
-* 从宿主主机配置的网桥接口中桥接一个虚拟接口到容器中去
-* 从地址池配置一个 ip 地址给容器
-* 执行用户指定的应用程序
-* 执行完毕后容器被终止
+执行 `docker run` 时，Docker 在后台完成以下操作：
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  docker run ubuntu:24.04 /bin/echo "Hello"                         │
+└───────────────────────────────┬─────────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  1. 检查本地是否有 ubuntu:24.04 镜像                                 │
+│     ├── 有 → 使用本地镜像                                           │
+│     └── 无 → 从 Registry 下载                                       │
+├─────────────────────────────────────────────────────────────────────┤
+│  2. 创建容器                                                        │
+│     • 基于镜像的只读层                                               │
+│     • 添加一层可读写层（容器存储层）                                   │
+├─────────────────────────────────────────────────────────────────────┤
+│  3. 配置网络                                                        │
+│     • 创建虚拟网卡                                                  │
+│     • 分配 IP 地址                                                  │
+│     • 连接到 Docker 网桥                                            │
+├─────────────────────────────────────────────────────────────────────┤
+│  4. 启动容器，执行指定命令                                           │
+├─────────────────────────────────────────────────────────────────────┤
+│  5. 命令执行完毕，容器停止                                           │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+## 常用启动选项
+
+### 基础选项
+
+| 选项 | 说明 | 示例 |
+|------|------|------|
+| `-d` | 后台运行（detach） | `docker run -d nginx` |
+| `-it` | 交互式终端 | `docker run -it ubuntu bash` |
+| `--name` | 指定容器名称 | `docker run --name myapp nginx` |
+| `--rm` | 退出后自动删除容器 | `docker run --rm ubuntu echo hi` |
+
+### 端口映射
+
+```bash
+# 将容器的 80 端口映射到宿主机的 8080 端口
+$ docker run -d -p 8080:80 nginx
+
+# 随机映射端口
+$ docker run -d -P nginx
+
+# 只绑定到 localhost
+$ docker run -d -p 127.0.0.1:8080:80 nginx
+```
+
+### 数据卷挂载
+
+```bash
+# 挂载命名卷
+$ docker run -v mydata:/data nginx
+
+# 挂载宿主机目录
+$ docker run -v /host/path:/container/path nginx
+
+# 只读挂载
+$ docker run -v /host/path:/container/path:ro nginx
+```
+
+### 环境变量
+
+```bash
+# 设置单个环境变量
+$ docker run -e MYSQL_ROOT_PASSWORD=secret mysql
+
+# 从文件加载环境变量
+$ docker run --env-file .env myapp
+```
+
+### 资源限制
+
+```bash
+# 限制内存
+$ docker run -m 512m nginx
+
+# 限制 CPU
+$ docker run --cpus=1.5 nginx
+```
 
 ## 启动已终止容器
 
-可以利用 `docker container start` 命令，直接将一个已经终止（`exited`）的容器启动运行。
+使用 `docker start` 重新启动已停止的容器：
 
-容器的核心为所执行的应用程序，所需要的资源都是应用程序运行所必需的。除此之外，并没有其它的资源。可以在伪终端中利用 `ps` 或 `top` 来查看进程信息。
+```bash
+# 查看所有容器（包括已停止的）
+$ docker ps -a
+CONTAINER ID  IMAGE   STATUS                     NAMES
+af8bae53bdd3  ubuntu  Exited (0) 2 minutes ago   myubuntu
+
+# 重新启动
+$ docker start myubuntu
+
+# 启动并附加终端
+$ docker start -ai myubuntu
+```
+
+## 容器内进程的特点
+
+容器内只运行指定的应用程序及其必需资源：
 
 ```bash
 root@ba267838cc1b:/# ps
@@ -58,4 +169,61 @@ root@ba267838cc1b:/# ps
    11 ?        00:00:00 ps
 ```
 
-可见，容器中仅运行了指定的 bash 应用。这种特点使得 Docker 对资源的利用率极高，是货真价实的轻量级虚拟化。
+可见容器中仅运行了 `bash` 进程。这种特点使得 Docker 对资源的利用率极高。
+
+> 💡 笔者提示：容器内的 PID 1 进程很重要——它是容器的主进程，该进程退出则容器停止。详见[后台运行](daemon.md)章节。
+
+## 常见问题
+
+### Q: 容器启动后立即退出
+
+**原因**：主进程执行完毕或无法保持运行
+
+```bash
+# 这个容器会立即退出（echo 执行完就结束了）
+$ docker run ubuntu echo "hello"
+
+# 解决：使用能持续运行的命令
+$ docker run -d nginx  # nginx 是持续运行的服务
+```
+
+详细解释见[后台运行](daemon.md)。
+
+### Q: 无法连接容器内的服务
+
+**原因**：未正确映射端口
+
+```bash
+# 错误：没有 -p 参数，外部无法访问
+$ docker run -d nginx
+
+# 正确：映射端口
+$ docker run -d -p 80:80 nginx
+```
+
+### Q: 容器内修改的文件丢失
+
+**原因**：未使用数据卷，数据保存在容器存储层
+
+```bash
+# 使用数据卷持久化
+$ docker run -v mydata:/app/data myapp
+```
+
+详见[数据管理](../data_management/README.md)。
+
+## 本章小结
+
+| 操作 | 命令 | 说明 |
+|------|------|------|
+| 新建并运行 | `docker run` | 最常用的启动方式 |
+| 交互式启动 | `docker run -it` | 用于调试或临时操作 |
+| 后台运行 | `docker run -d` | 用于服务类应用 |
+| 启动已停止的容器 | `docker start` | 重用已有容器 |
+
+## 延伸阅读
+
+- [后台运行](daemon.md)：理解 `-d` 参数和容器生命周期
+- [进入容器](attach_exec.md)：操作运行中的容器
+- [网络配置](../network/README.md)：理解端口映射的原理
+- [数据管理](../data_management/README.md)：数据持久化方案
