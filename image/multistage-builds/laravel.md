@@ -165,7 +165,7 @@ $ docker run -dit --rm --network=laravel -p 8080:80 my/nginx
 
 ## 生产环境优化
 
-本小节内容为了方便测试，将配置文件直接放到了镜像中，实际在使用时 **建议** 将配置文件作为 `config` 或 `secret` 挂载到容器中，请读者自行学习 `Swarm mode` 或 `Kubernetes` 的相关内容。
+本小节内容为了方便测试，将配置文件直接放到了镜像中，实际在使用时 **建议** 将配置文件作为 `config` 或 `secret` 挂载到容器中，请读者自行学习 `Kubernetes` 的相关内容。
 
 由于篇幅所限本小节只是简单列出，更多内容可以参考 https://github.com/khs1994-docker/laravel-demo 项目。
 
