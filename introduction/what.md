@@ -1,21 +1,124 @@
 # 什么是 Docker
 
-**Docker** 最初是 `dotCloud` 公司创始人 [Solomon Hykes](https://github.com/shykes) 在法国期间发起的一个公司内部项目，它是基于 `dotCloud` 公司多年云服务技术的一次革新，并于 [2013 年 3 月以 Apache 2.0 授权协议开源](https://en.wikipedia.org/wiki/Docker_\(software\))，主要项目代码在 [GitHub](https://github.com/moby/moby) 上进行维护。`Docker` 项目后来还加入了 Linux 基金会，并成立推动 [开放容器联盟（OCI）](https://opencontainers.org/)。
+## 一句话理解 Docker
 
-**Docker** 自开源后受到广泛的关注和讨论，至今其 [GitHub 项目](https://github.com/moby/moby) 已经超过 6.8 万个星标和一万多个 `fork`。甚至由于 `Docker` 项目的火爆，在 `2013` 年底，[dotCloud 公司决定改名为 Docker](https://www.docker.com/blog/dotcloud-is-becoming-docker-inc/)。`Docker` 最初是在 `Ubuntu 12.04` 上开发实现的；`Red Hat` 则从 `RHEL 6.5` 开始对 `Docker` 进行支持；`Google` 也在其 `PaaS` 产品中广泛应用 `Docker`。
+> **Docker 是一种轻量级的虚拟化技术，它让应用程序及其依赖环境可以被打包成一个标准化的单元，在任何地方都能一致地运行。**
 
-**Docker** 使用 `Google` 公司推出的 [Go 语言](https://golang.google.cn/) 进行开发实现，基于 `Linux` 内核的 [cgroup](https://zh.wikipedia.org/wiki/Cgroups)，[namespace](https://en.wikipedia.org/wiki/Linux_namespaces)，以及 [OverlayFS](https://docs.docker.com/storage/storagedriver/overlayfs-driver/) 类的 [Union FS](https://en.wikipedia.org/wiki/Union_mount) 等技术，对进程进行封装隔离，属于 [操作系统层面的虚拟化技术](https://en.wikipedia.org/wiki/Operating-system-level_virtualization)。由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容器。最初实现是基于 [LXC](https://linuxcontainers.org/lxc/introduction/)，从 `0.7` 版本以后开始去除 `LXC`，转而使用自行开发的 [libcontainer](https://github.com/docker/libcontainer)，从 `1.11` 版本开始，则进一步演进为使用 [runC](https://github.com/opencontainers/runc) 和 [containerd](https://github.com/containerd/containerd)。
+如果用一个生活中的类比：**Docker 之于软件，就像集装箱之于货物**。
 
-![Docker 架构](./_images/docker-on-linux.png)
+在集装箱发明之前，货物的运输是一件麻烦的事情——不同的货物需要不同的包装、不同的装卸方式，换一种运输工具就要重新装卸。集装箱的出现改变了这一切：无论里面装的是什么，集装箱的外形是标准的，可以用同样的方式装卸、堆放和运输。
 
-> `runc` 是一个 Linux 命令行工具，用于根据 [OCI容器运行时规范](https://github.com/opencontainers/runtime-spec) 创建和运行容器。
+Docker 做的事情类似：无论你的应用是用 Python、Java、Node.js 还是其他语言写的，无论它需要什么样的依赖库和环境，一旦被打包成 Docker 镜像，就可以用同样的方式在任何支持 Docker 的机器上运行。
 
-> `containerd` 是一个守护程序，它管理容器生命周期，提供了在一个节点上执行容器和管理镜像的最小功能集。
+## Docker 的核心价值
 
-**Docker** 在容器的基础上，进行了进一步的封装，从文件系统、网络互联到进程隔离等等，极大的简化了容器的创建和维护。使得 `Docker` 技术比虚拟机技术更为轻便、快捷。
+笔者认为，Docker 解决的是软件开发中最古老的问题之一：**"在我机器上明明能跑啊！"**
 
-下面的图片比较了 **Docker** 和传统虚拟化方式的不同之处。传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程直接运行于宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便。
+```
+开发环境                    生产环境
+┌─────────────────┐        ┌─────────────────┐
+│  Python 3.9     │   ≠    │  Python 3.7     │
+│  Ubuntu 22.04   │        │  CentOS 7       │
+│  特定版本的库    │        │  不同版本的库    │
+└─────────────────┘        └─────────────────┘
+        ↓                          ↓
+     运行正常                    运行失败！
+```
+
+有了 Docker：
+
+```
+开发环境                    生产环境
+┌─────────────────┐        ┌─────────────────┐
+│  Docker 镜像    │   =    │  同一个镜像     │
+│  (包含所有依赖)  │        │  (完全一致)     │
+└─────────────────┘        └─────────────────┘
+        ↓                          ↓
+     运行正常                    运行正常！
+```
+
+## Docker vs 虚拟机
+
+很多人第一次接触 Docker 时会问：**"这不就是虚拟机吗？"**
+
+答案是：**不是，而且差别很大。**
+
+### 传统虚拟机
+
+传统虚拟机技术是虚拟出一套完整的硬件，在其上运行一个完整的操作系统，再在该系统上运行应用：
 
 ![传统虚拟化](../.gitbook/assets/virtualization.png)
 
+### Docker 容器
+
+而 Docker 容器内的应用直接运行于宿主的内核，容器内没有自己的内核，也没有进行硬件虚拟：
+
 ![Docker](../.gitbook/assets/docker.png)
+
+### 关键区别
+
+| 特性 | Docker 容器 | 传统虚拟机 |
+|------|-------------|------------|
+| **启动速度** | 秒级 | 分钟级 |
+| **资源占用** | MB 级别 | GB 级别 |
+| **性能** | 接近原生 | 有明显损耗 |
+| **隔离级别** | 进程级隔离 | 完全隔离 |
+| **单机数量** | 可运行上千个 | 通常几十个 |
+
+> 笔者经常用这个类比来解释：虚拟机像是每个应用都住在一栋独立的房子里（有自己的地基、水电系统），而容器像是大家住在同一栋公寓楼里的不同房间（共享地基和水电系统，但各自独立）。
+
+## Docker 的技术基础
+
+Docker 使用 [Go 语言](https://golang.google.cn/) 开发，基于 Linux 内核的以下技术：
+
+- **[Namespace](https://en.wikipedia.org/wiki/Linux_namespaces)**：实现资源隔离（进程、网络、文件系统等）
+- **[Cgroups](https://zh.wikipedia.org/wiki/Cgroups)**：实现资源限制（CPU、内存、I/O 等）
+- **[Union FS](https://en.wikipedia.org/wiki/Union_mount)**：实现分层存储（如 OverlayFS）
+
+> 如果你对这些底层技术感兴趣，可以阅读本书的[底层实现](../underly/README.md)章节。
+
+### Docker 架构演进
+
+Docker 的底层实现经历了多次演进：
+
+```
+2013        2014          2015         现在
+ │           │             │            │
+ ▼           ▼             ▼            ▼
+LXC ──→ libcontainer ──→ runC ──→ containerd + runC
+                           │
+                           └── OCI 标准化
+```
+
+- **LXC**（2013）：Docker 最初基于 Linux Containers
+- **libcontainer**（2014，v0.7）：Docker 自研的容器运行时
+- **runC**（2015，v1.11）：捐献给 OCI 的标准容器运行时
+- **containerd**：高级容器运行时，管理容器生命周期
+
+![Docker 架构](./_images/docker-on-linux.png)
+
+> `runc` 是一个 Linux 命令行工具，用于根据 [OCI 容器运行时规范](https://github.com/opencontainers/runtime-spec) 创建和运行容器。
+
+> `containerd` 是一个守护程序，它管理容器生命周期，提供了在一个节点上执行容器和管理镜像的最小功能集。
+
+## Docker 的历史与生态
+
+**Docker** 最初是 `dotCloud` 公司创始人 [Solomon Hykes](https://github.com/shykes) 在法国期间发起的一个公司内部项目，于 [2013 年 3 月以 Apache 2.0 授权协议开源](https://en.wikipedia.org/wiki/Docker_(software))。
+
+Docker 的发展历程：
+
+- **2013 年 3 月**：开源发布
+- **2013 年底**：dotCloud 公司改名为 Docker, Inc.
+- **2015 年**：成立 [开放容器联盟（OCI）](https://opencontainers.org/)，推动容器标准化
+- **至今**：[GitHub 项目](https://github.com/moby/moby) 超过 6.8 万星标
+
+Docker 的成功推动了整个容器生态的发展，催生了 Kubernetes、Podman 等众多相关项目。笔者认为，Docker 最大的贡献不仅是技术本身，更是它**让容器技术从系统管理员的工具变成了每个开发者都能使用的标准工具**。
+
+## 本章小结
+
+- Docker 是一种轻量级虚拟化技术，核心价值是**环境一致性**
+- 与虚拟机相比，Docker 更轻量、更快速、资源利用率更高
+- Docker 基于 Linux 内核的 Namespace、Cgroups 和 Union FS 技术
+- Docker 推动了容器技术的标准化（OCI）和生态发展
+
+接下来，让我们了解[为什么要使用 Docker](why.md)。

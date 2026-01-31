@@ -1,35 +1,248 @@
 # ENV 设置环境变量
 
-格式有两种：
-
-* `ENV <key> <value>`
-* `ENV <key1>=<value1> <key2>=<value2>...`
-
-这个指令很简单，就是设置环境变量而已，无论是后面的其它指令，如 `RUN`，还是运行时的应用，都可以直接使用这里定义的环境变量。
+## 基本语法
 
 ```docker
-ENV VERSION=1.0 DEBUG=on \
-    NAME="Happy Feet"
+# 格式一：单个变量
+ENV <key> <value>
+
+# 格式二：多个变量（推荐）
+ENV <key1>=<value1> <key2>=<value2> ...
 ```
 
-这个例子中演示了如何换行，以及对含有空格的值用双引号括起来的办法，这和 Shell 下的行为是一致的。
+---
 
-定义了环境变量，那么在后续的指令中，就可以使用这个环境变量。比如在官方 `node` 镜像 `Dockerfile` 中，就有类似这样的代码：
+## 基本用法
+
+### 设置单个变量
 
 ```docker
-ENV NODE_VERSION 7.2.0
-
-RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" \
-  && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
-  && gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc \
-  && grep " node-v$NODE_VERSION-linux-x64.tar.xz\$" SHASUMS256.txt | sha256sum -c - \
-  && tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 \
-  && rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt \
-  && ln -s /usr/local/bin/node /usr/local/bin/nodejs
+ENV NODE_VERSION 20.10.0
+ENV APP_ENV production
 ```
 
-在这里先定义了环境变量 `NODE_VERSION`，其后的 `RUN` 这层里，多次使用 `$NODE_VERSION` 来进行操作定制。可以看到，将来升级镜像构建版本的时候，只需要更新 `7.2.0` 即可，`Dockerfile` 构建维护变得更轻松了。
+### 设置多个变量
 
-下列指令可以支持环境变量展开： `ADD`、`COPY`、`ENV`、`EXPOSE`、`FROM`、`LABEL`、`USER`、`WORKDIR`、`VOLUME`、`STOPSIGNAL`、`ONBUILD`、`RUN`。
+```docker
+ENV NODE_VERSION=20.10.0 \
+    APP_ENV=production \
+    APP_NAME="My Application"
+```
 
-可以从这个指令列表里感觉到，环境变量可以使用的地方很多，很强大。通过环境变量，我们可以让一份 `Dockerfile` 制作更多的镜像，只需使用不同的环境变量即可。
+> 💡 包含空格的值用双引号括起来。
+
+---
+
+## 环境变量的作用
+
+### 1. 后续指令中使用
+
+```docker
+ENV NODE_VERSION=20.10.0
+
+# 在 RUN 中使用
+RUN curl -fsSL https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz \
+    | tar -xJ -C /usr/local --strip-components=1
+
+# 在 WORKDIR 中使用
+ENV APP_HOME=/app
+WORKDIR $APP_HOME
+
+# 在 COPY 中使用
+COPY . $APP_HOME
+```
+
+### 2. 容器运行时使用
+
+```docker
+ENV DATABASE_URL=postgres://localhost/mydb
+```
+
+应用代码中可以读取：
+
+```python
+import os
+db_url = os.environ.get('DATABASE_URL')
+```
+
+```javascript
+const dbUrl = process.env.DATABASE_URL;
+```
+
+---
+
+## 支持环境变量的指令
+
+以下指令可以使用 `$变量名` 或 `${变量名}` 格式：
+
+| 指令 | 示例 |
+|------|------|
+| `RUN` | `RUN echo $VERSION` |
+| `CMD` | `CMD ["sh", "-c", "echo $HOME"]` |
+| `ENTRYPOINT` | 同上 |
+| `COPY` | `COPY . $APP_HOME` |
+| `ADD` | `ADD app.tar.gz $APP_HOME` |
+| `WORKDIR` | `WORKDIR $APP_HOME` |
+| `EXPOSE` | `EXPOSE $PORT` |
+| `VOLUME` | `VOLUME $DATA_DIR` |
+| `USER` | `USER $USERNAME` |
+| `LABEL` | `LABEL version=$VERSION` |
+| `FROM` | `FROM node:$NODE_VERSION` |
+
+---
+
+## 运行时覆盖
+
+使用 `-e` 或 `--env` 覆盖 Dockerfile 中定义的环境变量：
+
+```bash
+# 覆盖单个变量
+$ docker run -e APP_ENV=development myimage
+
+# 覆盖多个变量
+$ docker run -e APP_ENV=development -e DEBUG=true myimage
+
+# 从环境变量文件读取
+$ docker run --env-file .env myimage
+```
+
+### .env 文件格式
+
+```bash
+# .env
+APP_ENV=development
+DEBUG=true
+DATABASE_URL=postgres://localhost/mydb
+```
+
+---
+
+## ENV vs ARG
+
+| 特性 | ENV | ARG |
+|------|-----|-----|
+| **生效时间** | 构建时 + 运行时 | 仅构建时 |
+| **持久性** | 写入镜像，运行时可用 | 构建后消失 |
+| **覆盖方式** | `docker run -e` | `docker build --build-arg` |
+| **适用场景** | 应用配置 | 构建参数（如版本号） |
+
+### 组合使用
+
+```docker
+# ARG 接收构建时参数
+ARG NODE_VERSION=20
+
+# ENV 保存到运行时
+ENV NODE_VERSION=$NODE_VERSION
+
+# 后续指令使用
+RUN curl -fsSL https://nodejs.org/dist/v${NODE_VERSION}/...
+```
+
+```bash
+# 构建时指定版本
+$ docker build --build-arg NODE_VERSION=18 -t myapp .
+```
+
+---
+
+## 最佳实践
+
+### 1. 统一管理版本号
+
+```docker
+# ✅ 好：版本集中管理
+ENV NGINX_VERSION=1.25.0 \
+    NODE_VERSION=20.10.0 \
+    PYTHON_VERSION=3.12.0
+
+RUN apt-get install nginx=${NGINX_VERSION}
+
+# ❌ 差：版本分散在各处
+RUN apt-get install nginx=1.25.0
+```
+
+### 2. 不要存储敏感信息
+
+```docker
+# ❌ 错误：密码写入镜像
+ENV DB_PASSWORD=secret123
+
+# ✅ 正确：运行时传入
+# docker run -e DB_PASSWORD=xxx myimage
+```
+
+### 3. 为应用提供合理默认值
+
+```docker
+ENV APP_ENV=production \
+    APP_PORT=8080 \
+    LOG_LEVEL=info
+```
+
+### 4. 使用有意义的变量名
+
+```docker
+# ✅ 好：清晰的命名
+ENV REDIS_HOST=localhost \
+    REDIS_PORT=6379
+
+# ❌ 差：模糊的命名
+ENV HOST=localhost \
+    PORT=6379
+```
+
+---
+
+## 常见问题
+
+### Q: 环境变量在 CMD 中不展开
+
+exec 格式不会自动展开环境变量：
+
+```docker
+# ❌ 不会展开 $PORT
+CMD ["python", "app.py", "--port", "$PORT"]
+
+# ✅ 使用 shell 格式或显式调用 sh
+CMD ["sh", "-c", "python app.py --port $PORT"]
+```
+
+### Q: 如何查看容器的环境变量
+
+```bash
+$ docker inspect mycontainer --format '{{json .Config.Env}}'
+$ docker exec mycontainer env
+```
+
+### Q: 多行 ENV 还是多个 ENV
+
+```docker
+# ✅ 推荐：减少层数
+ENV VAR1=value1 \
+    VAR2=value2 \
+    VAR3=value3
+
+# ⚠️ 多个 ENV 会创建多层
+ENV VAR1=value1
+ENV VAR2=value2
+ENV VAR3=value3
+```
+
+---
+
+## 本章小结
+
+| 要点 | 说明 |
+|------|------|
+| **语法** | `ENV KEY=value` |
+| **作用范围** | 构建时 + 运行时 |
+| **覆盖方式** | `docker run -e KEY=value` |
+| **与 ARG** | ARG 仅构建时，ENV 持久化到运行时 |
+| **安全** | 不要存储敏感信息 |
+
+## 延伸阅读
+
+- [ARG 构建参数](arg.md)：构建时变量
+- [Compose 环境变量](../../compose/compose_file.md)：Compose 中的环境变量
+- [最佳实践](../../appendix/best_practices.md)：Dockerfile 编写指南

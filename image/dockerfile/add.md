@@ -1,32 +1,221 @@
 # ADD 更高级的复制文件
 
-`ADD` 指令和 `COPY` 的格式和性质基本一致。但是在 `COPY` 基础上增加了一些功能。
+## 基本语法
 
-比如 `<源路径>` 可以是一个 `URL`，这种情况下，Docker 引擎会试图去下载这个链接的文件放到 `<目标路径>` 去。下载后的文件权限自动设置为 `600`，如果这并不是想要的权限，那么还需要增加额外的一层 `RUN` 进行权限调整，另外，如果下载的是个压缩包，需要解压缩，也一样还需要额外的一层 `RUN` 指令进行解压缩。所以不如直接使用 `RUN` 指令，然后使用 `wget` 或者 `curl` 工具下载，处理权限、解压缩、然后清理无用文件更合理。因此，这个功能其实并不实用，而且不推荐使用。
+```docker
+ADD [选项] <源路径>... <目标路径>
+ADD [选项] ["<源路径>", ... "<目标路径>"]
+```
 
-如果 `<源路径>` 为一个 `tar` 压缩文件的话，压缩格式为 `gzip`, `bzip2` 以及 `xz` 的情况下，`ADD` 指令将会自动解压缩这个压缩文件到 `<目标路径>` 去。
+`ADD` 在 `COPY` 基础上增加了两个功能：
+1. 自动解压 tar 压缩包
+2. 支持从 URL 下载文件（不推荐）
 
-在某些情况下，这个自动解压缩的功能非常有用，比如官方镜像 `ubuntu` 中：
+---
+
+## ADD vs COPY
+
+| 特性 | COPY | ADD |
+|------|------|-----|
+| 复制本地文件 | ✅ | ✅ |
+| 自动解压 tar | ❌ | ✅ |
+| 支持 URL | ❌ | ✅（不推荐） |
+| 行为可预测性 | ✅ 高 | ⚠️ 低 |
+| 推荐程度 | ✅ **优先使用** | 仅解压场景 |
+
+> 笔者建议：除非需要自动解压 tar 文件，否则始终使用 COPY。明确的行为比隐式的魔法更好。
+
+---
+
+## 自动解压功能
+
+### 基本用法
+
+```docker
+# 自动解压 tar.gz 到目标目录
+ADD app.tar.gz /app/
+```
+
+ADD 会识别并解压以下格式：
+- `.tar`
+- `.tar.gz` / `.tgz`
+- `.tar.bz2` / `.tbz2`
+- `.tar.xz` / `.txz`
+
+### 实际应用
+
+官方基础镜像通常使用 ADD 解压根文件系统：
 
 ```docker
 FROM scratch
-ADD ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /
-...
+ADD ubuntu-noble-core-cloudimg-amd64-root.tar.gz /
 ```
 
-但在某些情况下，如果我们真的是希望复制个压缩文件进去，而不解压缩，这时就不可以使用 `ADD` 命令了。
+### 解压过程
 
-在 Docker 官方的 [Dockerfile 最佳实践文档](../../appendix/best_practices.md) 中要求，尽可能的使用 `COPY`，因为 `COPY` 的语义很明确，就是复制文件而已，而 `ADD` 则包含了更复杂的功能，其行为也不一定很清晰。最适合使用 `ADD` 的场合，就是所提及的需要自动解压缩的场合。
+```
+ADD app.tar.gz /app/
+        │
+        ├─ 识别 .tar.gz 格式
+        ├─ 自动解压
+        └─ 内容放入 /app/
 
-另外需要注意的是，`ADD` 指令会令镜像构建缓存失效，从而可能会令镜像构建变得比较缓慢。
+app.tar.gz 包含：        /app/ 目录结果：
+├── src/                 ├── src/
+│   └── main.py          │   └── main.py
+└── config.json          └── config.json
+```
 
-因此在 `COPY` 和 `ADD` 指令中选择的时候，可以遵循这样的原则，所有的文件复制均使用 `COPY` 指令，仅在需要自动解压缩的场合使用 `ADD`。
+---
 
-在使用该指令的时候还可以加上 `--chown=<user>:<group>` 选项来改变文件的所属用户及所属组。
+## URL 下载功能（不推荐）
+
+### 基本用法
 
 ```docker
-ADD --chown=55:mygroup files* /mydir/
-ADD --chown=bin files* /mydir/
-ADD --chown=1 files* /mydir/
-ADD --chown=10:11 files* /mydir/
+# 从 URL 下载文件
+ADD https://example.com/app.zip /app/app.zip
 ```
+
+### 为什么不推荐
+
+| 问题 | 说明 |
+|------|------|
+| 权限固定 | 下载的文件权限为 600，通常需要额外 RUN 修改 |
+| 不会解压 | URL 下载的压缩包不会自动解压 |
+| 缓存问题 | URL 内容变化时不会重新下载 |
+| 层数增加 | 需要额外 RUN 清理 |
+
+### 推荐替代方案
+
+```docker
+# ❌ 不推荐：使用 ADD 下载
+ADD https://example.com/app.tar.gz /tmp/
+RUN tar -xzf /tmp/app.tar.gz -C /app && rm /tmp/app.tar.gz
+
+# ✅ 推荐：使用 RUN + curl
+RUN curl -fsSL https://example.com/app.tar.gz | tar -xz -C /app
+```
+
+优势：
+- 一条 RUN 完成下载、解压、清理
+- 减少镜像层数
+- 更清晰的构建意图
+
+---
+
+## 修改文件所有者
+
+```docker
+ADD --chown=node:node app.tar.gz /app/
+ADD --chown=1000:1000 files/ /app/
+```
+
+---
+
+## 何时使用 ADD
+
+### ✅ 适合使用 ADD
+
+```docker
+# 解压本地 tar 文件
+FROM scratch
+ADD rootfs.tar.gz /
+
+# 解压应用包
+ADD dist.tar.gz /app/
+```
+
+### ❌ 不适合使用 ADD
+
+```docker
+# 复制普通文件（用 COPY）
+ADD package.json /app/          # ❌
+COPY package.json /app/         # ✅
+
+# 下载文件（用 RUN + curl）
+ADD https://example.com/file /  # ❌
+RUN curl -fsSL ... -o /file     # ✅
+
+# 需要保留 tar 不解压（用 COPY）
+ADD archive.tar.gz /archives/   # ❌ 会解压
+COPY archive.tar.gz /archives/  # ✅ 保持原样
+```
+
+---
+
+## 缓存行为
+
+ADD 可能导致构建缓存失效：
+
+```docker
+# 如果 app.tar.gz 内容变化，此层及后续层都需重建
+ADD app.tar.gz /app/
+RUN npm install
+```
+
+**优化建议**：
+
+```docker
+# 先复制依赖文件
+COPY package*.json /app/
+RUN npm install
+
+# 再添加应用代码
+ADD app.tar.gz /app/
+```
+
+---
+
+## 最佳实践
+
+### 1. 默认使用 COPY
+
+```docker
+# ✅ 大多数场景使用 COPY
+COPY . /app/
+```
+
+### 2. 仅在需要解压时使用 ADD
+
+```docker
+# ✅ 自动解压场景
+ADD app.tar.gz /app/
+```
+
+### 3. 不要用 ADD 下载文件
+
+```docker
+# ❌ 避免
+ADD https://example.com/file.tar.gz /tmp/
+
+# ✅ 推荐
+RUN curl -fsSL https://example.com/file.tar.gz | tar -xz -C /app
+```
+
+### 4. 解压后清理
+
+```docker
+# 如果需要控制解压过程
+COPY app.tar.gz /tmp/
+RUN tar -xzf /tmp/app.tar.gz -C /app && \
+    rm /tmp/app.tar.gz
+```
+
+---
+
+## 本章小结
+
+| 场景 | 推荐指令 |
+|------|---------|
+| 复制普通文件 | `COPY` |
+| 复制目录 | `COPY` |
+| 自动解压 tar | `ADD` |
+| 从 URL 下载 | `RUN curl` |
+| 保持 tar 不解压 | `COPY` |
+
+## 延伸阅读
+
+- [COPY 复制文件](copy.md)：基本复制操作
+- [多阶段构建](../multistage-builds.md)：减少镜像体积
+- [最佳实践](../../appendix/best_practices.md)：Dockerfile 编写指南

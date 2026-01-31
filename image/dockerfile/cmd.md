@@ -1,49 +1,268 @@
 # CMD 容器启动命令
 
-`CMD` 指令的格式和 `RUN` 相似，也是两种格式：
+## 什么是 CMD
 
-* `shell` 格式：`CMD <命令>`
-* `exec` 格式：`CMD ["可执行文件", "参数1", "参数2"...]`
-* 参数列表格式：`CMD ["参数1", "参数2"...]`。在指定了 `ENTRYPOINT` 指令后，用 `CMD` 指定具体的参数。
+`CMD` 指令用于指定容器启动时默认执行的命令。它定义了容器的"主进程"。
 
-之前介绍容器的时候曾经说过，Docker 不是虚拟机，容器就是进程。既然是进程，那么在启动容器的时候，需要指定所运行的程序及参数。`CMD` 指令就是用于指定默认的容器主进程的启动命令的。
+> **核心概念**：容器的生命周期 = 主进程的生命周期。CMD 指定的命令就是这个主进程。
 
-在运行时可以指定新的命令来替代镜像设置中的这个默认命令，比如，`ubuntu` 镜像默认的 `CMD` 是 `/bin/bash`，如果我们直接 `docker run -it ubuntu` 的话，会直接进入 `bash`。我们也可以在运行时指定运行别的命令，如 `docker run -it ubuntu cat /etc/os-release`。这就是用 `cat /etc/os-release` 命令替换了默认的 `/bin/bash` 命令了，输出了系统版本信息。
+---
 
-在指令格式上，一般推荐使用 `exec` 格式，这类格式在解析时会被解析为 JSON 数组，因此一定要使用双引号 `"`，而不要使用单引号。
+## 语法格式
 
-如果使用 `shell` 格式的话，实际的命令会被包装为 `sh -c` 的参数的形式进行执行。比如：
+CMD 有三种格式：
 
-```docker
-CMD echo $HOME
-```
+| 格式 | 语法 | 推荐程度 |
+|------|------|---------|
+| **exec 格式** | `CMD ["可执行文件", "参数1", "参数2"]` | ✅ **推荐** |
+| **shell 格式** | `CMD 命令 参数1 参数2` | ⚠️ 简单场景 |
+| **参数格式** | `CMD ["参数1", "参数2"]` | 配合 ENTRYPOINT |
 
-在实际执行中，会将其变更为：
-
-```docker
-CMD [ "sh", "-c", "echo $HOME" ]
-```
-
-这就是为什么我们可以使用环境变量的原因，因为这些环境变量会被 shell 进行解析处理。
-
-提到 `CMD` 就不得不提容器中应用在前台执行和后台执行的问题。这是初学者常出现的一个混淆。
-
-Docker 不是虚拟机，容器中的应用都应该以前台执行，而不是像虚拟机、物理机里面那样，用 `systemd` 去启动后台服务，容器内没有后台服务的概念。
-
-一些初学者将 `CMD` 写为：
-
-```docker
-CMD service nginx start
-```
-
-然后发现容器执行后就立即退出了。甚至在容器内去使用 `systemctl` 命令结果却发现根本执行不了。这就是因为没有搞明白前台、后台的概念，没有区分容器和虚拟机的差异，依旧在以传统虚拟机的角度去理解容器。
-
-对于容器而言，其启动程序就是容器应用进程，容器就是为了主进程而存在的，主进程退出，容器就失去了存在的意义，从而退出，其它辅助进程不是它需要关心的东西。
-
-而使用 `service nginx start` 命令，则是希望 init 系统以后台守护进程的形式启动 nginx 服务。而刚才说了 `CMD service nginx start` 会被理解为 `CMD [ "sh", "-c", "service nginx start"]`，因此主进程实际上是 `sh`。那么当 `service nginx start` 命令结束后，`sh` 也就结束了，`sh` 作为主进程退出了，自然就会令容器退出。
-
-正确的做法是直接执行 `nginx` 可执行文件，并且要求以前台形式运行。比如：
+### exec 格式（推荐）
 
 ```docker
 CMD ["nginx", "-g", "daemon off;"]
+CMD ["python", "app.py"]
+CMD ["node", "server.js"]
 ```
+
+**优点**：
+- 直接执行指定程序，是容器的 PID 1
+- 正确接收信号（如 SIGTERM）
+- 无需 shell 解析
+
+### shell 格式
+
+```docker
+CMD echo "Hello World"
+CMD nginx -g "daemon off;"
+```
+
+**实际执行**：会被包装为 `sh -c`
+
+```docker
+# 你写的
+CMD echo $HOME
+
+# 实际执行的
+CMD ["sh", "-c", "echo $HOME"]
+```
+
+**优点**：可以使用环境变量、管道等 shell 特性
+**缺点**：主进程是 sh，信号无法正确传递给应用
+
+---
+
+## exec 格式 vs shell 格式
+
+| 特性 | exec 格式 | shell 格式 |
+|------|----------|-----------|
+| 主进程 | 指定的程序 | `/bin/sh` |
+| 信号传递 | ✅ 正确 | ❌ 无法传递 |
+| 环境变量 | ❌ 需要 shell 包装 | ✅ 自动解析 |
+| 推荐使用 | ✅ 大多数场景 | 需要 shell 特性时 |
+
+### 信号传递问题示例
+
+```docker
+# ❌ shell 格式：docker stop 会超时
+CMD node server.js
+# 实际是 sh -c "node server.js"
+# SIGTERM 发给 sh，不会传递给 node
+
+# ✅ exec 格式：docker stop 正常工作
+CMD ["node", "server.js"]
+# SIGTERM 直接发给 node
+```
+
+---
+
+## 运行时覆盖 CMD
+
+`docker run` 后的命令会覆盖 Dockerfile 中的 CMD：
+
+```bash
+# ubuntu 默认 CMD 是 /bin/bash
+$ docker run -it ubuntu        # 进入 bash
+$ docker run ubuntu cat /etc/os-release  # 覆盖为 cat 命令
+```
+
+```
+Dockerfile:              docker run 命令:
+CMD ["/bin/bash"]   +    cat /etc/os-release
+        │                        │
+        └───────► 被覆盖 ◄───────┘
+                    ↓
+           执行: cat /etc/os-release
+```
+
+---
+
+## 经典错误：容器立即退出
+
+### 错误示例
+
+```docker
+# ❌ 容器启动后立即退出
+CMD service nginx start
+```
+
+### 原因分析
+
+```
+1. CMD service nginx start
+   ↓ 被转换为
+2. CMD ["sh", "-c", "service nginx start"]
+   ↓
+3. sh 启动，执行 service 命令
+   ↓
+4. service 命令将 nginx 放到后台
+   ↓
+5. service 命令结束，sh 退出
+   ↓
+6. 容器主进程（sh）退出 → 容器停止
+```
+
+### 正确做法
+
+```docker
+# ✅ 让 nginx 在前台运行
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+---
+
+## CMD vs ENTRYPOINT
+
+| 指令 | 用途 | 运行时行为 |
+|------|------|-----------|
+| **CMD** | 默认命令 | `docker run` 参数会**覆盖**它 |
+| **ENTRYPOINT** | 入口点 | `docker run` 参数会**追加**到它后面 |
+
+### 单独使用 CMD
+
+```docker
+# Dockerfile
+CMD ["curl", "-s", "http://example.com"]
+```
+
+```bash
+$ docker run myimage              # 执行默认命令
+$ docker run myimage curl -v ...  # 完全覆盖
+```
+
+### 搭配 ENTRYPOINT
+
+```docker
+# Dockerfile
+ENTRYPOINT ["curl", "-s"]
+CMD ["http://example.com"]
+```
+
+```bash
+$ docker run myimage              # curl -s http://example.com
+$ docker run myimage http://other.com  # curl -s http://other.com（参数覆盖）
+```
+
+详见 [ENTRYPOINT 入口点](entrypoint.md) 章节。
+
+---
+
+## 最佳实践
+
+### 1. 优先使用 exec 格式
+
+```docker
+# ✅ 推荐
+CMD ["python", "app.py"]
+
+# ⚠️ 仅在需要 shell 特性时使用
+CMD ["sh", "-c", "echo $PATH && python app.py"]
+```
+
+### 2. 确保应用在前台运行
+
+```docker
+# ✅ 前台运行
+CMD ["nginx", "-g", "daemon off;"]
+CMD ["apache2ctl", "-D", "FOREGROUND"]
+CMD ["java", "-jar", "app.jar"]
+
+# ❌ 不要使用后台服务命令
+CMD service nginx start
+CMD systemctl start nginx
+```
+
+### 3. 使用双引号
+
+```docker
+# ✅ 正确：双引号
+CMD ["node", "server.js"]
+
+# ❌ 错误：单引号（JSON 不支持）
+CMD ['node', 'server.js']
+```
+
+### 4. 配合 ENTRYPOINT 使用
+
+```docker
+# 用于可配置参数的场景
+ENTRYPOINT ["python", "app.py"]
+CMD ["--port", "8080"]
+
+# 运行时可以覆盖端口
+$ docker run myapp --port 9000
+```
+
+---
+
+## 常见问题
+
+### Q: CMD 可以写多个吗？
+
+不可以。多个 CMD 只有最后一个生效：
+
+```docker
+CMD ["echo", "first"]
+CMD ["echo", "second"]  # 只有这个生效
+```
+
+### Q: 如何在 CMD 中使用环境变量？
+
+```docker
+# 方法1：使用 shell 格式
+CMD echo "Port is $PORT"
+
+# 方法2：显式使用 sh -c
+CMD ["sh", "-c", "echo Port is $PORT"]
+```
+
+### Q: 为什么我的容器不响应 Ctrl+C？
+
+可能是使用了 shell 格式，信号被 sh 吃掉了：
+
+```docker
+# ❌ 信号无法传递
+CMD python app.py
+
+# ✅ 信号正确传递
+CMD ["python", "app.py"]
+```
+
+---
+
+## 本章小结
+
+| 要点 | 说明 |
+|------|------|
+| **作用** | 指定容器启动时的默认命令 |
+| **推荐格式** | exec 格式 `CMD ["程序", "参数"]` |
+| **覆盖方式** | `docker run image 新命令` |
+| **与 ENTRYPOINT** | CMD 作为 ENTRYPOINT 的默认参数 |
+| **核心原则** | 应用必须在前台运行 |
+
+## 延伸阅读
+
+- [ENTRYPOINT 入口点](entrypoint.md)：固定的启动命令
+- [后台运行](../../container/daemon.md)：容器前台/后台概念
+- [最佳实践](../../appendix/best_practices.md)：Dockerfile 编写指南
