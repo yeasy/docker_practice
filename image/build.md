@@ -73,7 +73,7 @@ FROM debian:bookworm
 
 RUN apt-get update
 RUN apt-get install -y gcc libc6-dev make wget
-RUN wget -O redis.tar.gz "http://download.redis.io/releases/redis-5.0.3.tar.gz"
+RUN wget -O redis.tar.gz "http://download.redis.io/releases/redis-7.2.4.tar.gz"
 RUN mkdir -p /usr/src/redis
 RUN tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1
 RUN make -C /usr/src/redis
@@ -95,7 +95,7 @@ FROM debian:bookworm
 RUN set -x; buildDeps='gcc libc6-dev make wget' \
     && apt-get update \
     && apt-get install -y $buildDeps \
-    && wget -O redis.tar.gz "http://download.redis.io/releases/redis-5.0.3.tar.gz" \
+    && wget -O redis.tar.gz "http://download.redis.io/releases/redis-7.2.4.tar.gz" \
     && mkdir -p /usr/src/redis \
     && tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1 \
     && make -C /usr/src/redis \

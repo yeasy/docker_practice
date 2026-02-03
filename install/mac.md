@@ -2,7 +2,7 @@
 
 ## 系统要求
 
-[Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/) 要求系统最低为 macOS Monterey 12.0 或更高版本，建议升级到最新版本的 macOS（如 Sonoma 或 Ventura）。
+[Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/) 要求系统最低为 macOS Sonora 14.0 或更高版本，建议升级到最新版本的 macOS。
 
 ## 安装
 
@@ -18,7 +18,7 @@ $ brew install --cask docker
 
 如果需要手动下载，请点击以下 [链接](https://desktop.docker.com/mac/main/amd64/Docker.dmg) 下载 Docker Desktop for Mac。
 
-> 如果你的电脑搭载的是 M1 芯片（`arm64` 架构），请点击以下 [链接](https://desktop.docker.com/mac/main/arm64/Docker.dmg) 下载 Docker Desktop for Mac。你可以在 [官方文档](https://docs.docker.com/docker-for-mac/apple-silicon/) 查阅已知的问题。
+> 如果你的电脑搭载的是 Apple Silicon 芯片（`arm64` 架构），请点击以下 [链接](https://desktop.docker.com/mac/main/arm64/Docker.dmg) 下载 Docker Desktop for Mac。你可以在 [官方文档](https://docs.docker.com/docker-for-mac/apple-silicon/) 查阅已知的问题。
 
 如同 macOS 其它软件一样，安装也非常简单，双击下载的 `.dmg` 文件，然后将那只叫 [Moby](https://www.docker.com/blog/call-me-moby-dock/) 的鲸鱼图标拖拽到 `Application` 文件夹即可（其间需要输入用户密码）。
 

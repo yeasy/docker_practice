@@ -97,7 +97,7 @@ REPOSITORY                         TAG                 IMAGE ID            CREAT
 
 这是因为 Docker 默认不允许非 `HTTPS` 方式推送镜像。我们可以通过 Docker 的配置选项来取消这个限制，或者查看下一节配置能够通过 `HTTPS` 访问的私有仓库。
 
-### Ubuntu 16.04+, Debian 8+, centos 7
+### Linux (systemd)
 
 对于使用 `systemd` 的系统，请在 `/etc/docker/daemon.json` 中写入如下内容（如果文件不存在请新建该文件）
 

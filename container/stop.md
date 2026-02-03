@@ -221,7 +221,7 @@ $ docker stop $(docker ps -q) && docker container prune -f
 
 ```dockerfile
 # Dockerfile 示例
-FROM node:18
+FROM node:22
 ...
 # 使用 exec 形式确保信号能传递给 node 进程
 CMD ["node", "server.js"]

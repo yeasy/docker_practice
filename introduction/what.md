@@ -17,8 +17,8 @@ Docker 做的事情类似：无论你的应用是用 Python、Java、Node.js 还
 ```
 开发环境                    生产环境
 ┌─────────────────┐        ┌─────────────────┐
-│  Python 3.9     │   ≠    │  Python 3.7     │
-│  Ubuntu 22.04   │        │  CentOS 7       │
+│  Python 3.14    │   ≠    │  Python 3.11    │
+│  Ubuntu 24.04   │        │  Ubuntu 22.04   │
 │  特定版本的库    │        │  不同版本的库    │
 └─────────────────┘        └─────────────────┘
         ↓                          ↓
@@ -110,7 +110,7 @@ Docker 的发展历程：
 - **2013 年 3 月**：开源发布
 - **2013 年底**：dotCloud 公司改名为 Docker, Inc.
 - **2015 年**：成立 [开放容器联盟（OCI）](https://opencontainers.org/)，推动容器标准化
-- **至今**：[GitHub 项目](https://github.com/moby/moby) 超过 6.8 万星标
+- **至今**：[GitHub 项目](https://github.com/moby/moby) 超过 7 万星标
 
 Docker 的成功推动了整个容器生态的发展，催生了 Kubernetes、Podman 等众多相关项目。笔者认为，Docker 最大的贡献不仅是技术本身，更是它**让容器技术从系统管理员的工具变成了每个开发者都能使用的标准工具**。
 

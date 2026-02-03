@@ -77,7 +77,7 @@ local     redis_data
 $ docker volume inspect my-vol
 [
     {
-        "CreatedAt": "2024-01-15T10:00:00Z",
+        "CreatedAt": "2026-01-15T10:00:00Z",
         "Driver": "local",
         "Labels": {},
         "Mountpoint": "/var/lib/docker/volumes/my-vol/_data",

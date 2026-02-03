@@ -8,8 +8,9 @@
 
 Docker 支持以下版本的 [Fedora](https://getfedora.org/) 操作系统：
 
-* 33
-* 34
+* 41
+* 42
+* 43
 
 ### 卸载旧版本
 

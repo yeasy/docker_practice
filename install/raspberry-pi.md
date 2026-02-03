@@ -8,9 +8,9 @@ Docker 不仅支持 `x86_64` 架构的计算机，同时也支持 `ARM` 架构�
 
 Docker 支持以下版本的 [Raspberry Pi OS](https://www.raspberrypi.org/software/operating-systems/) 操作系统：
 
-* Raspberry Pi OS Buster
-* Raspberry Pi OS Bullseye
+* Raspberry Pi OS Trixie
 * Raspberry Pi OS Bookworm
+* Raspberry Pi OS Bullseye
 
 *注：* `Raspberry Pi OS` 由树莓派的开发与维护机构 [树莓派基金会](https://www.raspberrypi.org/) 官方支持，并推荐用作树莓派的首选系统，其基于 `Debian`。
 

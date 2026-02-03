@@ -8,11 +8,11 @@
 
 Docker 支持诸多版本的 [Ubuntu](https://ubuntu.com/server) 操作系统。但是较旧的版本上将不会有 Docker 新版本的持续更新，以截至 2026 年初的几个 Ubuntu LTS（Long Term Support，长期支持）版本为例：
 
-* Ubuntu Noble 24.04 (LTS)，Docker v29.1.x
-* Ubuntu Jammy 22.04 (LTS), Docker v29.1.x
-* Ubuntu Focal 20.04 (LTS), Docker v29.1.x
 
-> **注意**：Ubuntu 18.04 LTS 已于 2023 年结束标准支持，不再推荐用于新部署。
+* Ubuntu Noble 24.04 (LTS)，Docker v30.x
+* Ubuntu Jammy 22.04 (LTS), Docker v30.x
+
+> **注意**：Ubuntu 20.04 LTS 已于 2025 年结束标准支持，不再推荐用于新部署。
 
 在 Ubuntu LTS 版本上，目前 Docker 支持 amd64、arm64、armhf、ppc64el、s390x 等 5 个平台；而非 LTS 版本支持的平台通常较少。同时，LTS 版本会获得 5 年的升级维护支持，这样的系统会获得更长期的安全保障，因此在生产环境中推荐使用 LTS 版本。
 

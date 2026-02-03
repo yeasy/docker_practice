@@ -8,7 +8,9 @@
 
 ![Docker-offile-install-top](../.gitbook/assets/image-20200412202617411.png)
 
-## Centos7 离线安装Docker
+## CentOS/Rocky/AlmaLinux 离线安装Docker
+
+> 注意：以下命令以 CentOS 7 为例。对于 CentOS Stream 9、Rocky Linux 9 或 AlmaLinux 9，请将 `yum` 替换为 `dnf`，并将软件包后缀 `el7` 替换为 `el9`。
 
 ### YUM本地文件安装（推荐）
 
