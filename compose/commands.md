@@ -285,6 +285,35 @@ $ docker compose scale web=3 db=2
 
 打印版本信息。
 
+### `watch`
+
+格式为 `docker compose watch [options] [SERVICE...]`。
+
+启用开发模式，自动监视源代码并在文件发生变化时刷新服务。这需要项目中有 `compose.yaml` (或 `docker-compose.yml`)，且定义了 `x-develop` 或 `develop` 配置段。
+
+例如：
+
+```yaml
+services:
+  web:
+    build: .
+    develop:
+      watch:
+        - action: sync
+          path: ./web
+          target: /src/web
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: package.json
+```
+
+选项：
+
+* `--no-up` 不自动启动服务。
+
+* `--quiet` 静默模式。
+
 ## 参考资料
 
 * [官方文档](https://docs.docker.com/compose/reference/overview/)

@@ -28,7 +28,7 @@ After=network.target local-fs.target
 
 [Service]
 ExecStartPre=-/sbin/modprobe overlay
-ExecStart=/usr/bin/containerd --config //etc/cri-containerd/config.toml
+ExecStart=/usr/bin/containerd --config /etc/cri-containerd/config.toml
 
 Type=notify
 Delegate=yes

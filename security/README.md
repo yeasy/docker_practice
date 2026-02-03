@@ -296,6 +296,36 @@ $ docker run --runtime=runsc myapp
 
 ---
 
+## 软件供应链安全
+
+随着软件供应链攻击日益频繁，仅保障运行时安全已不足够。
+
+### 1. SBOM (软件物料清单)
+
+SBOM 类似于食品的配料表，列出了容器镜像中包含的所有软件包及其版本。
+
+- **生成 SBOM**: 使用 `docker buildx build --sbom` 或 `docker scout sbom`。
+- **管理 SBOM**: 确保持续监控 SBOM 中的组件是否存在新披露的漏洞。
+
+### 2. 镜像签名 (Sigstore / Notary v2)
+
+确保镜像在构建后未被篡改，且确实来自可信的发布者。
+
+- **Cosign**: Sigstore 项目的一部分，用于签署和验证容器镜像。
+```bash
+# 签署镜像
+$ cosign sign --key cosign.key myimage:tag
+
+# 验证镜像
+$ cosign verify --key cosign.pub myimage:tag
+```
+
+### 3. SLSA (Supply-chain Levels for Software Artifacts)
+
+遵循 SLSA 框架，确保构建过程的完整性，例如使用 GitHub Actions 等受控环境进行构建，而非在开发者本地机器上构建发布。
+
+---
+
 ## 本章小结
 
 | 安全措施 | 重要程度 | 实现方式 |

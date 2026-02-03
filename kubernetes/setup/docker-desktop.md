@@ -1,16 +1,14 @@
 # Docker Desktop 启用 Kubernetes
 
-使用 Docker Desktop 可以很方便的启用 Kubernetes，由于国内获取不到 `k8s.gcr.io` 镜像，我们必须首先解决这一问题。
-
-## 获取 `k8s.gcr.io` 镜像
-
-由于国内拉取不到 `k8s.gcr.io` 镜像，我们可以使用开源项目 [AliyunContainerService/k8s-for-docker-desktop](https://github.com/AliyunContainerService/k8s-for-docker-desktop) 来获取所需的镜像。
+使用 Docker Desktop 可以很方便的启用 Kubernetes。
 
 ## 启用 Kubernetes
 
 在 Docker Desktop 设置页面，点击 `Kubernetes`，选择 `Enable Kubernetes`，稍等片刻，看到左下方 `Kubernetes` 变为 `running`，Kubernetes 启动成功。
 
-![](https://github.com/AliyunContainerService/k8s-for-docker-desktop/raw/master/images/k8s.png)
+![](https://github.com/docker/docs/raw/main/assets/images/desktop/settings-kubernetes.png)
+
+> 注意：Kubernetes 的镜像存储在 `registry.k8s.io`，如果国内网络无法直接访问，可以在 Docker Desktop 配置中的 `Docker Engine` 处配置镜像加速器，或者利用国内云服务商的镜像仓库手动拉取镜像并 retag。
 
 ## 测试
 
