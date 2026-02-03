@@ -139,8 +139,8 @@ $ docker image prune -a --filter "until=24h"
 # 删除所有 redis 镜像
 $ docker rmi $(docker images -q redis)
 
-# 删除 mongo:3.2 之前的所有镜像
-$ docker rmi $(docker images -q -f before=mongo:3.2)
+# 删除 mongo:8.0 之前的所有镜像
+$ docker rmi $(docker images -q -f before=mongo:8.0)
 
 # 删除某个时间之前的镜像
 $ docker image prune -a --filter "until=168h"  # 7天前

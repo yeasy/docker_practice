@@ -90,7 +90,7 @@ sha256:07e33465974800ce65751acc279adc6ed2dc5ed4e0838f8b86f0c87aa1795214
 $ docker image ls nginx
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 nginx               v2                  07e334659748        9 seconds ago       181.5 MB
-nginx               1.11                05a60462f8ba        12 days ago         181.5 MB
+nginx               1.27                05a60462f8ba        12 days ago         181.5 MB
 nginx               latest              e43d811ce2f4        4 weeks ago         181.5 MB
 ```
 
@@ -104,7 +104,7 @@ e43d811ce2f4        4 weeks ago         /bin/sh -c #(nop)  CMD ["nginx" "-g" "da
 <missing>           4 weeks ago         /bin/sh -c #(nop)  EXPOSE 443/tcp 80/tcp        0 B
 <missing>           4 weeks ago         /bin/sh -c ln -sf /dev/stdout /var/log/nginx/   22 B
 <missing>           4 weeks ago         /bin/sh -c apt-key adv --keyserver hkp://pgp.   58.46 MB
-<missing>           4 weeks ago         /bin/sh -c #(nop)  ENV NGINX_VERSION=1.11.5-1   0 B
+<missing>           4 weeks ago         /bin/sh -c #(nop)  ENV NGINX_VERSION=1.27.0-1   0 B
 <missing>           4 weeks ago         /bin/sh -c #(nop)  MAINTAINER NGINX Docker Ma   0 B
 <missing>           4 weeks ago         /bin/sh -c #(nop)  CMD ["/bin/bash"]            0 B
 <missing>           4 weeks ago         /bin/sh -c #(nop) ADD file:23aa4f893e3288698c   123 MB

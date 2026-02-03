@@ -159,15 +159,12 @@ RUN apt-get update && apt-get install -y \
     dpkg-sig \
     libcap-dev \
     libsqlite3-dev \
-    mercurial \
-    reprepro \
-    ruby1.9.1 \
-    ruby1.9.1-dev \
-    s3cmd=1.1.* \
+    git \
+    redis-server \
  && rm -rf /var/lib/apt/lists/*
 ```
 
-其中 `s3cmd` 指令指定了一个版本号 `1.1.*`。如果之前的镜像使用的是更旧的版本，指定新的版本会导致 `apt-get update` 缓存失效并确保安装的是新版本。
+其中 `redis-server` 是示例包。确保安装的是最新版本。
 
 另外，清理掉 apt 缓存 `var/lib/apt/lists` 可以减小镜像大小。因为 `RUN` 指令的开头为 `apt-get update`，包缓存总是会在 `apt-get install` 之前刷新。
 

@@ -8,8 +8,9 @@
 
 Docker 支持以下版本的 [Debian](https://www.debian.org/intro/about) 操作系统：
 
-* Debian Bullseye 11
-* Debian Buster 10
+* Debian Trixie 13 (stable)
+* Debian Bookworm 12 (oldstable)
+* Debian Bullseye 11 (LTS)
 
 ### 卸载旧版本
 

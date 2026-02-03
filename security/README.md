@@ -129,7 +129,7 @@ $ docker pull myregistry/myimage:latest
 > 笔者强调：这是最重要的安全实践之一。
 
 ```dockerfile
-FROM node:20-alpine
+FROM node:22-alpine
 
 # 创建非 root 用户
 RUN addgroup -g 1001 appgroup && \
@@ -201,11 +201,11 @@ $ docker run --network=isolated_net myapp
 
 ```dockerfile
 # ✅ 好：使用精简镜像
-FROM node:20-alpine        # ~50MB
+FROM node:22-alpine        # ~50MB
 FROM gcr.io/distroless/nodejs  # ~20MB
 
 # ❌ 差：使用完整镜像
-FROM node:20               # ~1GB
+FROM node:22               # ~1GB
 FROM ubuntu:24.04          # ~78MB
 ```
 
@@ -213,13 +213,13 @@ FROM ubuntu:24.04          # ~78MB
 
 ```dockerfile
 # 构建阶段
-FROM node:20 AS builder
+FROM node:22 AS builder
 WORKDIR /app
 COPY . .
 RUN npm install && npm run build
 
 # 生产阶段（不包含开发依赖和源码）
-FROM node:20-alpine
+FROM node:22-alpine
 COPY --from=builder /app/dist /app
 USER node
 CMD ["node", "/app/server.js"]
@@ -240,7 +240,7 @@ COPY .env /app/
 
 ```dockerfile
 # ✅ 固定版本
-FROM node:20.10.0-alpine3.19
+FROM node:22.12.0-alpine3.21
 RUN apk add --no-cache curl=8.5.0-r0
 
 # ❌ 使用 latest

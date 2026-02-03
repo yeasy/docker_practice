@@ -2,7 +2,7 @@
 
 ## 系统要求
 
-[Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/install/) 支持 64 位版本的 Windows 10 Pro，且必须开启 Hyper-V（若版本为 v1903 及以上则无需开启 Hyper-V），或者 64 位版本的 Windows 10 Home v1903 及以上版本。
+[Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/install/) 支持 64 位版本的 Windows 11 或 Windows 10（需开启 Hyper-V），推荐使用 Windows 11。
 
 ## 安装
 

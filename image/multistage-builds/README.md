@@ -188,5 +188,5 @@ $ docker build --target builder -t username/imagename:tag .
 上面例子中我们使用 `COPY --from=0 /go/src/github.com/go/helloworld/app .` 从上一阶段的镜像中复制文件，我们也可以复制任意镜像中的文件。
 
 ```docker
-$ COPY --from=nginx:latest /etc/nginx/nginx.conf /nginx.conf
+COPY --from=nginx:latest /etc/nginx/nginx.conf /nginx.conf
 ```
