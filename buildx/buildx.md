@@ -12,6 +12,28 @@ $ docker buildx build .
 
 Buildx 使用 [BuildKit 引擎](buildkit.md) 进行构建，支持许多新的功能，具体参考 [Buildkit](buildkit.md) 一节。
 
+### 使用 `bake`
+
+`docker buildx bake` 是一个高级构建命令，支持从 HCL、JSON 或 Compose 文件中定义构建目标，实现复杂的流水线构建。
+
+```bash
+# 从 docker-compose.yml 构建所有服务
+$ docker buildx bake
+
+# 仅构建指定目标
+$ docker buildx bake web
+```
+
+### 生成 SBOM
+
+Buildx 支持在构建时直接生成 SBOM (Software Bill of Materials)，这对于软件供应链安全至关重要。
+
+```bash
+$ docker buildx build --sbom=true -t myimage .
+```
+
+该命令会在构建结果中包含 SPDX 或 CycloneDX 格式的 SBOM 数据。
+
 ## 官方文档
 
 * https://docs.docker.com/engine/reference/commandline/buildx/
