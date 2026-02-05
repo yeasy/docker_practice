@@ -1,0 +1,81 @@
+# Kind - Kubernetes IN Docker
+
+[Kind](https://kind.sigs.k8s.io/) (Kubernetes in Docker) 是一个使用 Docker 容器作为节点运行本地 Kubernetes 集群的工具。主要用于测试 Kubernetes 本身，也非常适合本地开发和 CI 环境。
+
+## 为什么选择 Kind
+
+*   **轻量便捷**：只要有 Docker 环境即可，无需额外虚拟机。
+*   **多集群支持**：可以轻松在本地启动多个集群。
+*   **多版本支持**：支持指定 Kubernetes 版本进行测试。
+*   **HA 支持**：支持模拟高可用集群（多 Control Plane）。
+
+## 安装 Kind
+
+### macOS
+
+```bash
+brew install kind
+```
+
+### Linux / Windows (WSL2)
+
+可以下载二进制文件：
+
+```bash
+# Linux AMD64
+curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-amd64
+chmod +x ./kind
+sudo mv ./kind /usr/local/bin/kind
+```
+
+## 创建集群
+
+最简单的创建方式：
+
+```bash
+kind create cluster
+```
+
+指定集群名称：
+
+```bash
+kind create cluster --name my-cluster
+```
+
+## 与集群交互
+
+Kind 会自动将 kubeconfig 合并到 `~/.kube/config`。
+
+```bash
+kubectl cluster-info --context kind-kind
+kubectl get nodes
+```
+
+## 高级用法：配置集群
+
+创建一个 `kind-config.yaml` 来定制集群，例如映射端口到宿主机：
+
+```yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  extraPortMappings:
+  - containerPort: 80
+    hostPort: 8080
+    protocol: TCP
+- role: worker
+- role: worker
+```
+
+应用配置：
+
+```bash
+kind create cluster --config kind-config.yaml
+```
+
+## 删除集群
+
+```bash
+kind delete cluster
+```
