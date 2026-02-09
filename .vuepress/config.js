@@ -295,8 +295,8 @@ module.exports = config({
             'image/dockerfile/shell',
             'image/dockerfile/onbuild',
             'image/dockerfile/references',
-            'image/multistage-builds/',
-            'image/multistage-builds/laravel',
+            'image/dockerfile/7.17_multistage_builds.md',
+            'image/dockerfile/7.18_multistage_builds_laravel.md',
             'image/manifest',
           ]
         }, {
