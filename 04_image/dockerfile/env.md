@@ -2,11 +2,15 @@
 
 ### 基本语法
 
+具体内容如下：
+
 ```docker
 ## 格式一：单个变量
+
 ENV <key> <value>
 
 ## 格式二：多个变量（推荐）
+
 ENV <key1>=<value1> <key2>=<value2> ...
 ```
 
@@ -16,12 +20,16 @@ ENV <key1>=<value1> <key2>=<value2> ...
 
 #### 设置单个变量
 
+具体内容如下：
+
 ```docker
 ENV NODE_VERSION 20.10.0
 ENV APP_ENV production
 ```
 
 #### 设置多个变量
+
+具体内容如下：
 
 ```docker
 ENV NODE_VERSION=20.10.0 \
@@ -37,22 +45,29 @@ ENV NODE_VERSION=20.10.0 \
 
 #### 1. 后续指令中使用
 
+具体内容如下：
+
 ```docker
 ENV NODE_VERSION=20.10.0
 
 ## 在 RUN 中使用
+
 RUN curl -fsSL https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz \
     | tar -xJ -C /usr/local --strip-components=1
 
 ## 在 WORKDIR 中使用
+
 ENV APP_HOME=/app
 WORKDIR $APP_HOME
 
 ## 在 COPY 中使用
+
 COPY . $APP_HOME
 ```
 
 #### 2. 容器运行时使用
+
+具体内容如下：
 
 ```docker
 ENV DATABASE_URL=postgres://localhost/mydb
@@ -97,19 +112,25 @@ const dbUrl = process.env.DATABASE_URL;
 
 ```bash
 ## 覆盖单个变量
+
 $ docker run -e APP_ENV=development myimage
 
 ## 覆盖多个变量
+
 $ docker run -e APP_ENV=development -e DEBUG=true myimage
 
 ## 从环境变量文件读取
+
 $ docker run --env-file .env myimage
 ```
 
 #### .env 文件格式
 
+运行以下命令：
+
 ```bash
 ## .env
+
 APP_ENV=development
 DEBUG=true
 DATABASE_URL=postgres://localhost/mydb
@@ -128,19 +149,25 @@ DATABASE_URL=postgres://localhost/mydb
 
 #### 组合使用
 
+具体内容如下：
+
 ```docker
 ## ARG 接收构建时参数
+
 ARG NODE_VERSION=20
 
 ## ENV 保存到运行时
+
 ENV NODE_VERSION=$NODE_VERSION
 
 ## 后续指令使用
+
 RUN curl -fsSL https://nodejs.org/dist/v${NODE_VERSION}/...
 ```
 
 ```bash
 ## 构建时指定版本
+
 $ docker build --build-arg NODE_VERSION=18 -t myapp .
 ```
 
@@ -150,8 +177,11 @@ $ docker build --build-arg NODE_VERSION=18 -t myapp .
 
 #### 1. 统一管理版本号
 
+具体内容如下：
+
 ```docker
 ## ✅ 好：版本集中管理
+
 ENV NGINX_VERSION=1.25.0 \
     NODE_VERSION=20.10.0 \
     PYTHON_VERSION=3.12.0
@@ -159,20 +189,30 @@ ENV NGINX_VERSION=1.25.0 \
 RUN apt-get install nginx=${NGINX_VERSION}
 
 ## ❌ 差：版本分散在各处
+
 RUN apt-get install nginx=1.25.0
 ```
 
 #### 2. 不要存储敏感信息
 
+具体内容如下：
+
 ```docker
 ## ❌ 错误：密码写入镜像
+
 ENV DB_PASSWORD=secret123
 
 ## ✅ 正确：运行时传入
+
 ## docker run -e DB_PASSWORD=xxx myimage
+
+具体内容如下：
+
 ```
 
 #### 3. 为应用提供合理默认值
+
+具体内容如下：
 
 ```docker
 ENV APP_ENV=production \
@@ -182,12 +222,16 @@ ENV APP_ENV=production \
 
 #### 4. 使用有意义的变量名
 
+具体内容如下：
+
 ```docker
 ## ✅ 好：清晰的命名
+
 ENV REDIS_HOST=localhost \
     REDIS_PORT=6379
 
 ## ❌ 差：模糊的命名
+
 ENV HOST=localhost \
     PORT=6379
 ```
@@ -202,13 +246,17 @@ exec 格式不会自动展开环境变量：
 
 ```docker
 ## ❌ 不会展开 $PORT
+
 CMD ["python", "app.py", "--port", "$PORT"]
 
 ## ✅ 使用 shell 格式或显式调用 sh
+
 CMD ["sh", "-c", "python app.py --port $PORT"]
 ```
 
 #### Q: 如何查看容器的环境变量
+
+运行以下命令：
 
 ```bash
 $ docker inspect mycontainer --format '{{json .Config.Env}}'
@@ -217,13 +265,17 @@ $ docker exec mycontainer env
 
 #### Q: 多行 ENV 还是多个 ENV
 
+具体内容如下：
+
 ```docker
 ## ✅ 推荐：减少层数
+
 ENV VAR1=value1 \
     VAR2=value2 \
     VAR3=value3
 
 ## ⚠️ 多个 ENV 会创建多层
+
 ENV VAR1=value1
 ENV VAR2=value2
 ENV VAR3=value3

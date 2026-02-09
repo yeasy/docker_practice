@@ -12,14 +12,16 @@
 
 | 格式 | 语法 | 推荐程度 |
 |------|------|---------|
-| **exec 格式** | `ENTRYPOINT ["可执行文件", "参数1"]` | ✅ **推荐** |
+| **exec 格式**| `ENTRYPOINT ["可执行文件", "参数1"]` | ✅**推荐** |
 | **shell 格式** | `ENTRYPOINT 命令 参数` | ⚠️ 不推荐 |
 
 ```docker
 ## exec 格式（推荐）
+
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
 ## shell 格式（不推荐）
+
 ENTRYPOINT nginx -g "daemon off;"
 ```
 
@@ -38,8 +40,11 @@ ENTRYPOINT nginx -g "daemon off;"
 
 #### 行为对比
 
+具体内容如下：
+
 ```docker
 ## 只用 CMD
+
 CMD ["curl", "-s", "http://example.com"]
 ```
 
@@ -51,6 +56,7 @@ $ docker run myimage curl -v ...  # curl -v ...（完全替换）
 
 ```docker
 ## 只用 ENTRYPOINT
+
 ENTRYPOINT ["curl", "-s"]
 ```
 
@@ -61,6 +67,7 @@ $ docker run myimage http://example.com   # curl -s http://example.com ✓
 
 ```docker
 ## ENTRYPOINT + CMD 组合（推荐）
+
 ENTRYPOINT ["curl", "-s"]
 CMD ["http://example.com"]
 ```
@@ -81,6 +88,8 @@ $ docker run myimage -v http://other.com  # curl -s -v http://other.com ✓
 
 #### 使用 CMD 的问题
 
+具体内容如下：
+
 ```docker
 FROM ubuntu:24.04
 RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
@@ -94,9 +103,14 @@ $ docker run myip           # ✓ 正常工作
 $ docker run myip -i        # ✗ 错误！
 exec: "-i": executable file not found
 ## -i 替换了整个 CMD，被当作可执行文件
+
+具体内容如下：
+
 ```
 
 #### 使用 ENTRYPOINT 解决
+
+具体内容如下：
 
 ```docker
 FROM ubuntu:24.04
@@ -115,6 +129,8 @@ HTTP/1.1 200 OK
 ```
 
 #### 交互图示
+
+具体内容如下：
 
 ```
 ENTRYPOINT ["curl", "-s", "http://myip.ipip.net"]
@@ -137,6 +153,8 @@ curl -s http://myip.ipip.net -i
 
 #### 实现方式
 
+具体内容如下：
+
 ```docker
 FROM redis:7-alpine
 COPY docker-entrypoint.sh /usr/local/bin/
@@ -151,19 +169,24 @@ CMD ["redis-server"]
 set -e
 
 ## 准备工作
+
 echo "Initializing..."
 
 ## 如果第一个参数是 redis-server，以 redis 用户运行
+
 if [ "$1" = 'redis-server' ]; then
     chown -R redis:redis /data
     exec gosu redis "$@"
 fi
 
 ## 其他命令直接执行
+
 exec "$@"
 ```
 
 #### 工作流程
+
+具体内容如下：
 
 ```
 docker run redis                    docker run redis bash
@@ -187,6 +210,8 @@ docker-entrypoint.sh redis-server   docker-entrypoint.sh bash
 
 ### 场景三：带参数的应用
 
+具体内容如下：
+
 ```docker
 FROM python:3.12-slim
 WORKDIR /app
@@ -199,16 +224,22 @@ CMD ["--host", "0.0.0.0", "--port", "8080"]
 
 ```bash
 ## 使用默认参数
+
 $ docker run myapp
 ## 执行: python app.py --host 0.0.0.0 --port 8080
 
 ## 覆盖参数
+
 $ docker run myapp --host 0.0.0.0 --port 9000
 ## 执行: python app.py --host 0.0.0.0 --port 9000
 
 ## 完全不同的参数
+
 $ docker run myapp --help
 ## 执行: python app.py --help
+
+具体内容如下：
+
 ```
 
 ---
@@ -219,12 +250,15 @@ $ docker run myapp --help
 
 ```bash
 ## 正常运行
+
 $ docker run myimage
 
 ## 覆盖 ENTRYPOINT 进入 shell 调试
+
 $ docker run --entrypoint /bin/sh myimage
 
 ## 覆盖 ENTRYPOINT 并传入参数
+
 $ docker run --entrypoint /bin/cat myimage /etc/os-release
 ```
 
@@ -248,15 +282,21 @@ $ docker run --entrypoint /bin/cat myimage /etc/os-release
 
 #### 1. 使用 exec 格式
 
+具体内容如下：
+
 ```docker
 ## ✅ 推荐
+
 ENTRYPOINT ["python", "app.py"]
 
 ## ❌ 避免 shell 格式
+
 ENTRYPOINT python app.py
 ```
 
 #### 2. 提供有意义的默认参数
+
+具体内容如下：
 
 ```docker
 ENTRYPOINT ["nginx"]
@@ -265,11 +305,14 @@ CMD ["-g", "daemon off;"]
 
 #### 3. 入口脚本使用 exec
 
+运行以下命令：
+
 ```bash
 #!/bin/sh
 ## 准备工作...
 
 ## 使用 exec 替换当前进程
+
 exec "$@"
 ```
 
@@ -282,10 +325,12 @@ exec "$@"
 trap 'kill -TERM $PID' TERM INT
 
 ## 启动应用
+
 app "$@" &
 PID=$!
 
 ## 等待应用退出
+
 wait $PID
 ```
 

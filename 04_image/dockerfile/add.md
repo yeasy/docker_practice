@@ -2,6 +2,8 @@
 
 ### 基本语法
 
+具体内容如下：
+
 ```docker
 ADD [选项] <源路径>... <目标路径>
 ADD [选项] ["<源路径>", ... "<目标路径>"]
@@ -31,8 +33,11 @@ ADD [选项] ["<源路径>", ... "<目标路径>"]
 
 #### 基本用法
 
+具体内容如下：
+
 ```docker
 ## 自动解压 tar.gz 到目标目录
+
 ADD app.tar.gz /app/
 ```
 
@@ -53,6 +58,8 @@ ADD ubuntu-noble-core-cloudimg-amd64-root.tar.gz /
 
 #### 解压过程
 
+具体内容如下：
+
 ```
 ADD app.tar.gz /app/
         │
@@ -72,8 +79,11 @@ app.tar.gz 包含：        /app/ 目录结果：
 
 #### 基本用法
 
+具体内容如下：
+
 ```docker
 ## 从 URL 下载文件
+
 ADD https://example.com/app.zip /app/app.zip
 ```
 
@@ -88,12 +98,16 @@ ADD https://example.com/app.zip /app/app.zip
 
 #### 推荐替代方案
 
+具体内容如下：
+
 ```docker
 ## ❌ 不推荐：使用 ADD 下载
+
 ADD https://example.com/app.tar.gz /tmp/
 RUN tar -xzf /tmp/app.tar.gz -C /app && rm /tmp/app.tar.gz
 
 ## ✅ 推荐：使用 RUN + curl
+
 RUN curl -fsSL https://example.com/app.tar.gz | tar -xz -C /app
 ```
 
@@ -106,6 +120,8 @@ RUN curl -fsSL https://example.com/app.tar.gz | tar -xz -C /app
 
 ### 修改文件所有者
 
+具体内容如下：
+
 ```docker
 ADD --chown=node:node app.tar.gz /app/
 ADD --chown=1000:1000 files/ /app/
@@ -117,27 +133,36 @@ ADD --chown=1000:1000 files/ /app/
 
 #### ✅ 适合使用 ADD
 
+具体内容如下：
+
 ```docker
 ## 解压本地 tar 文件
+
 FROM scratch
 ADD rootfs.tar.gz /
 
 ## 解压应用包
+
 ADD dist.tar.gz /app/
 ```
 
 #### ❌ 不适合使用 ADD
 
+具体内容如下：
+
 ```docker
 ## 复制普通文件（用 COPY）
+
 ADD package.json /app/          # ❌
 COPY package.json /app/         # ✅
 
 ## 下载文件（用 RUN + curl）
+
 ADD https://example.com/file /  # ❌
 RUN curl -fsSL ... -o /file     # ✅
 
 ## 需要保留 tar 不解压（用 COPY）
+
 ADD archive.tar.gz /archives/   # ❌ 会解压
 COPY archive.tar.gz /archives/  # ✅ 保持原样
 ```
@@ -150,6 +175,7 @@ ADD 可能导致构建缓存失效：
 
 ```docker
 ## 如果 app.tar.gz 内容变化，此层及后续层都需重建
+
 ADD app.tar.gz /app/
 RUN npm install
 ```
@@ -158,10 +184,12 @@ RUN npm install
 
 ```docker
 ## 先复制依赖文件
+
 COPY package*.json /app/
 RUN npm install
 
 ## 再添加应用代码
+
 ADD app.tar.gz /app/
 ```
 
@@ -171,32 +199,45 @@ ADD app.tar.gz /app/
 
 #### 1. 默认使用 COPY
 
+具体内容如下：
+
 ```docker
 ## ✅ 大多数场景使用 COPY
+
 COPY . /app/
 ```
 
 #### 2. 仅在需要解压时使用 ADD
 
+具体内容如下：
+
 ```docker
 ## ✅ 自动解压场景
+
 ADD app.tar.gz /app/
 ```
 
 #### 3. 不要用 ADD 下载文件
 
+具体内容如下：
+
 ```docker
 ## ❌ 避免
+
 ADD https://example.com/file.tar.gz /tmp/
 
 ## ✅ 推荐
+
 RUN curl -fsSL https://example.com/file.tar.gz | tar -xz -C /app
 ```
 
 #### 4. 解压后清理
 
+具体内容如下：
+
 ```docker
 ## 如果需要控制解压过程
+
 COPY app.tar.gz /tmp/
 RUN tar -xzf /tmp/app.tar.gz -C /app && \
     rm /tmp/app.tar.gz

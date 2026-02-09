@@ -2,6 +2,8 @@
 
 ### 基本语法
 
+具体内容如下：
+
 ```docker
 EXPOSE <端口> [<端口>/<协议>...]
 ```
@@ -12,14 +14,19 @@ EXPOSE <端口> [<端口>/<协议>...]
 
 ### 基本用法
 
+具体内容如下：
+
 ```docker
 ## 声明单个端口
+
 EXPOSE 80
 
 ## 声明多个端口
+
 EXPOSE 80 443
 
 ## 声明 TCP 和 UDP 端口
+
 EXPOSE 80/tcp
 EXPOSE 53/udp
 ```
@@ -34,11 +41,13 @@ EXPOSE 53/udp
 
 ```docker
 ## 使用者一看就知道这是 web 应用
+
 EXPOSE 80 443
 ```
 
 ```bash
 ## 查看镜像暴露的端口
+
 $ docker inspect nginx --format '{{.Config.ExposedPorts}}'
 map[80/tcp:{}]
 ```
@@ -49,6 +58,7 @@ map[80/tcp:{}]
 
 ```docker
 ## Dockerfile
+
 EXPOSE 80
 ```
 
@@ -87,14 +97,21 @@ $ docker port $(docker ps -q)
 
 #### 没有 EXPOSE 也能 -p
 
+具体内容如下：
+
 ```docker
 ## 即使没有 EXPOSE，也可以使用 -p
+
 FROM nginx
 ## 没有 EXPOSE
+
+具体内容如下：
+
 ```
 
 ```bash
 ## 仍然可以映射端口
+
 $ docker run -p 8080:80 mynginx
 ```
 
@@ -104,8 +121,11 @@ $ docker run -p 8080:80 mynginx
 
 #### 误解：EXPOSE 会打开端口
 
+具体内容如下：
+
 ```docker
 ## ❌ 错误理解：这不会让容器可从外部访问
+
 EXPOSE 80
 ```
 
@@ -118,14 +138,18 @@ EXPOSE 只是元数据声明。容器是否实际监听该端口，取决于容�
 
 #### 正确理解
 
+具体内容如下：
+
 ```docker
 ## Dockerfile
+
 FROM nginx
 EXPOSE 80    # 1. 声明：这个容器会在 80 端口提供服务
 ```
 
 ```bash
 ## 运行：需要 -p 才能从外部访问
+
 $ docker run -p 8080:80 nginx    # 2. 映射：宿主机 8080 → 容器 80
 ```
 
@@ -135,42 +159,56 @@ $ docker run -p 8080:80 nginx    # 2. 映射：宿主机 8080 → 容器 80
 
 #### 1. 总是声明应用使用的端口
 
+具体内容如下：
+
 ```docker
 ## Web 服务
+
 FROM nginx
 EXPOSE 80 443
 
 ## 数据库
+
 FROM postgres
 EXPOSE 5432
 
 ## Redis
+
 FROM redis
 EXPOSE 6379
 ```
 
 #### 2. 使用明确的协议
 
+具体内容如下：
+
 ```docker
 ## 默认是 TCP
+
 EXPOSE 80
 
 ## 明确指定 UDP
+
 EXPOSE 53/udp
 
 ## 同时支持 TCP 和 UDP
+
 EXPOSE 53/tcp 53/udp
 ```
 
 #### 3. 与应用实际端口保持一致
 
+具体内容如下：
+
 ```docker
 ## ✅ 好：EXPOSE 与应用端口一致
+
 ENV PORT=3000
 EXPOSE 3000
 CMD ["node", "server.js"]
 
 ## ❌ 差：EXPOSE 与应用端口不一致（误导）
+
 EXPOSE 80
 CMD ["node", "server.js"]  # 实际监听 3000
 ```
@@ -178,6 +216,8 @@ CMD ["node", "server.js"]  # 实际监听 3000
 ---
 
 ### 使用环境变量
+
+具体内容如下：
 
 ```docker
 ARG PORT=80
@@ -187,6 +227,8 @@ EXPOSE $PORT
 ---
 
 ### 在 Compose 中
+
+在 Compose 中 配置如下：
 
 ```yaml
 services:

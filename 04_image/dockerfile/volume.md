@@ -2,6 +2,8 @@
 
 ### 基本语法
 
+具体内容如下：
+
 ```docker
 VOLUME ["/路径1", "/路径2"]
 VOLUME /路径
@@ -38,12 +40,16 @@ VOLUME /路径
 
 #### 定义单个卷
 
+具体内容如下：
+
 ```docker
 FROM mysql:8.0
 VOLUME /var/lib/mysql
 ```
 
 #### 定义多个卷
+
+具体内容如下：
 
 ```docker
 FROM myapp
@@ -67,15 +73,21 @@ local     a1b2c3d4e5f6...  # 自动创建的匿名卷
 
 #### 2. 可被命名卷覆盖
 
+运行以下命令：
+
 ```bash
 ## 使用命名卷替代匿名卷
+
 $ docker run -v mysql_data:/var/lib/mysql mysql:8.0
 ```
 
 #### 3. 可被 Bind Mount 覆盖
 
+运行以下命令：
+
 ```bash
 ## 使用宿主机目录替代
+
 $ docker run -v /my/data:/var/lib/mysql mysql:8.0
 ```
 
@@ -90,6 +102,7 @@ FROM ubuntu
 VOLUME /data
 
 ## ❌ 这个文件不会出现在镜像中！
+
 RUN echo "hello" > /data/test.txt
 ```
 
@@ -97,13 +110,17 @@ RUN echo "hello" > /data/test.txt
 
 #### 正确做法
 
+具体内容如下：
+
 ```docker
 FROM ubuntu
 
 ## ✅ 先写入文件
+
 RUN mkdir -p /data && echo "hello" > /data/test.txt
 
 ## 再声明 VOLUME
+
 VOLUME /data
 ```
 
@@ -113,6 +130,8 @@ VOLUME /data
 
 #### 数据库持久化
 
+具体内容如下：
+
 ```docker
 FROM postgres:15
 VOLUME /var/lib/postgresql/data
@@ -120,12 +139,16 @@ VOLUME /var/lib/postgresql/data
 
 #### 日志目录
 
+具体内容如下：
+
 ```docker
 FROM nginx
 VOLUME /var/log/nginx
 ```
 
 #### 上传文件目录
+
+具体内容如下：
 
 ```docker
 FROM myapp
@@ -136,14 +159,18 @@ VOLUME /app/uploads
 
 ### 查看 VOLUME 定义
 
+运行以下命令：
+
 ```bash
 ## 查看镜像定义的 VOLUME
+
 $ docker inspect mysql:8.0 --format '{{json .Config.Volumes}}' | jq
 {
   "/var/lib/mysql": {}
 }
 
 ## 查看容器挂载的卷
+
 $ docker inspect mycontainer --format '{{json .Mounts}}' | jq
 ```
 
@@ -161,6 +188,8 @@ $ docker inspect mycontainer --format '{{json .Mounts}}' | jq
 ---
 
 ### 在 Compose 中
+
+在 Compose 中 配置如下：
 
 ```yaml
 services:
@@ -182,10 +211,16 @@ volumes:
 
 #### 匿名卷可能导致数据丢失
 
+运行以下命令：
+
 ```bash
 ## 使用 --rm 运行的容器，匿名卷会在容器删除时一起删除
+
 $ docker run --rm mysql:8.0
 ## 容器停止后，数据丢失！
+
+具体内容如下：
+
 ```
 
 **解决**：始终使用命名卷
@@ -200,31 +235,42 @@ $ docker run -v mysql_data:/var/lib/mysql mysql:8.0
 
 #### 1. 定义必须持久化的路径
 
+具体内容如下：
+
 ```docker
 ## 数据库必须使用卷
+
 FROM postgres:15
 VOLUME /var/lib/postgresql/data
 ```
 
 #### 2. 不要在 VOLUME 后修改目录
 
+具体内容如下：
+
 ```docker
 ## ❌ 避免
+
 VOLUME /app/data
 RUN cp init-data.json /app/data/
 
 ## ✅ 正确
+
 RUN mkdir -p /app/data && cp init-data.json /app/data/
 VOLUME /app/data
 ```
 
 #### 3. 文档中说明 VOLUME 用途
 
+具体内容如下：
+
 ```docker
 ## 持久化用户上传的文件
+
 VOLUME /app/uploads
 
 ## 持久化数据库数据
+
 VOLUME /var/lib/mysql
 ```
 

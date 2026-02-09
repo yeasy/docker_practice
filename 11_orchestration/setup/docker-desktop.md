@@ -12,6 +12,8 @@
 
 ### 测试
 
+运行以下命令：
+
 ```bash
 $ kubectl version
 ```

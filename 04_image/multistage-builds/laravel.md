@@ -26,6 +26,9 @@ bootstrap/cache/*
 storage/
 
 ## 自行添加其他需要排除的文件，例如 .env.* 文件
+
+具体内容如下：
+
 ```
 
 在 `laravel.conf` 文件中写入 nginx 配置。
@@ -119,6 +122,8 @@ RUN set -x ; cd ${LARAVEL_PATH} \
 ```
 
 ### 最后一个阶段构建 NGINX 镜像
+
+具体内容如下：
 
 ```docker
 FROM nginx:alpine as nginx

@@ -69,17 +69,22 @@ volumes:
 
 ```bash
 ## 必填 服务器地址，例如 drone.domain.com
+
 DRONE_SERVER_HOST=
 DRONE_SERVER_PROTO=https
 DRONE_RPC_SECRET=secret
 HOSTNAME=demo
 ## 必填 在 GitHub 应用页面查看
+
 DRONE_GITHUB_CLIENT_ID=
 ## 必填 在 GitHub 应用页面查看
+
 DRONE_GITHUB_CLIENT_SECRET=
 ```
 
 #### 启动 Drone
+
+运行以下命令：
 
 ```bash
 $ docker-compose up -d

@@ -75,7 +75,7 @@ kubectl get svc nginx-service
 
 如果输出端口是 `80:30080/TCP`，你可以通过 `http://<NodeIP>:30080` 访问 Nginx。
 
-### 步骤 3：模拟滚动更新 (Rolling Update)
+### 步骤 3：模拟滚动更新（Rolling Update）
 
 修改 `nginx-deployment.yaml`，将镜像版本改为 `nginx:latest`。
 

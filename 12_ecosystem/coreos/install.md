@@ -10,6 +10,7 @@ FCC 是 Fedora CoreOS Configuration （Fedora CoreOS 配置）的简称。
 
 ```yaml
 ## example.fcc
+
 variant: fcos
 version: 1.0.0
 passwd:
@@ -22,6 +23,8 @@ passwd:
 将 `ssh-rsa AAAA...` 替换为自己的 SSH 公钥（位于 `~/.ssh/id_rsa.pub`）。
 
 ### 转换 FCC 为 Ignition
+
+运行以下命令：
 
 ```bash
 $ docker run -i --rm quay.io/coreos/fcct:v0.5.0 --pretty --strict < example.fcc > example.ign
@@ -40,6 +43,8 @@ $ sudo coreos-installer install /dev/sda --ignition-file example.ign
 安装之后重新启动即可使用。
 
 ### 使用
+
+运行以下命令：
 
 ```bash
 $ ssh core@虚拟机IP

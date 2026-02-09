@@ -14,23 +14,33 @@
 
 ### 关键配置示例
 
-#### 1. Dockerfile (多阶段构建)
+#### 1. Dockerfile 多阶段构建
+
+使用 Docker 多阶段构建可以有效减小镜像体积。
+
+
+Dockerfile 内容如下：
 
 ```dockerfile
 ## Build stage
+
 FROM golang:1.18 AS builder
 WORKDIR /app
 COPY . .
 RUN go build -o main .
 
 ## Final stage
+
 FROM alpine:latest
 WORKDIR /app
 COPY --from=builder /app/main .
 CMD ["./main"]
 ```
 
-#### 2. GitLab CI (.gitlab-ci.yml)
+#### 2. GitLab CI 配置
+
+GitLab CI（.gitlab-ci.yml）配置如下：
+
 
 ```yaml
 stages:

@@ -2,6 +2,8 @@
 
 ### 基本语法
 
+具体内容如下：
+
 ```docker
 HEALTHCHECK [选项] CMD <命令>
 HEALTHCHECK NONE
@@ -35,6 +37,8 @@ Starting ──成功──> Healthy ──失败N次──> Unhealthy
 ### 基本用法
 
 #### Web 服务检查
+
+具体内容如下：
 
 ```docker
 FROM nginx
@@ -80,23 +84,31 @@ HEALTHCHECK NONE
 
 ```docker
 ## 使用 curl
+
 HEALTHCHECK CMD curl -f http://localhost/ || exit 1
 
-## 使用 wget (Alpine 默认包含)
+## 使用 wget（Alpine 默认包含）
+
 HEALTHCHECK CMD wget -q --spider http://localhost/ || exit 1
 ```
 
 #### 数据库
 
+具体内容如下：
+
 ```docker
 ## MySQL
+
 HEALTHCHECK CMD mysqladmin ping -h localhost || exit 1
 
 ## Redis
+
 HEALTHCHECK CMD redis-cli ping || exit 1
 ```
 
 #### 自定义脚本
+
+具体内容如下：
 
 ```docker
 COPY healthcheck.sh /usr/local/bin/
@@ -139,14 +151,18 @@ services:
 
 ### 查看健康状态
 
+运行以下命令：
+
 ```bash
 ## 查看容器状态（包含健康信息）
+
 $ docker ps
 CONTAINER ID   STATUS
 abc123         Up 1 minute (healthy)
 def456         Up 2 minutes (unhealthy)
 
 ## 查看详细健康日志
+
 $ docker inspect --format '{{json .State.Health}}' mycontainer | jq
 {
   "Status": "healthy",
@@ -180,6 +196,7 @@ $ docker inspect --format '{{json .State.Health}}' mycontainer | jq
 
 ```docker
 ## 给应用 1 分钟启动时间
+
 HEALTHCHECK --start-period=60s CMD curl -f http://localhost/ || exit 1
 ```
 

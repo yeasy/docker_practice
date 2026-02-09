@@ -2,6 +2,8 @@
 
 ### 基本语法
 
+具体内容如下：
+
 ```docker
 SHELL ["executable", "parameters"]
 ```
@@ -24,18 +26,21 @@ SHELL ["executable", "parameters"]
 FROM ubuntu:24.04
 
 ## 切换到 bash
+
 SHELL ["/bin/bash", "-c"]
 
 ## 现在可以使用 bash 特性了
+
 RUN echo {a..z}
 ```
 
-#### 2. 增强错误处理 (pipefail)
+#### 2. 增强错误处理（pipefail）
 
 默认情况下，管道命令 `cmd1 | cmd2` 只要 `cmd2` 成功，整个指令就视为成功。这可能掩盖构建错误。
 
 ```docker
 ## ❌ 这里的 wget 失败了，但构建继续（因为 tar 成功了）
+
 RUN wget -O - https://invalid-url | tar xz
 ```
 
@@ -43,9 +48,11 @@ RUN wget -O - https://invalid-url | tar xz
 
 ```docker
 ## ✅ 启用 pipefail
+
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ## 如果 wget 失败，整个 RUN 就会失败
+
 RUN wget -O - https://invalid-url | tar xz
 ```
 
@@ -57,13 +64,16 @@ RUN wget -O - https://invalid-url | tar xz
 FROM mcr.microsoft.com/windows/servercore:ltsc2022
 
 ## 默认是 cmd
+
 RUN echo Default shell is cmd
 
 ## 切换到 powershell
+
 SHELL ["powershell", "-command"]
 RUN Write-Host "Hello from PowerShell"
 
 ## 切回 cmd
+
 SHELL ["cmd", "/S", "/C"]
 ```
 
@@ -77,14 +87,17 @@ SHELL ["cmd", "/S", "/C"]
 FROM ubuntu:24.04
 
 ## 使用默认 sh
+
 RUN echo "Using sh"
 
 SHELL ["/bin/bash", "-c"]
 ## 使用 bash
+
 RUN echo "Using bash"
 
 SHELL ["/bin/sh", "-c"]
 ## 回到 sh
+
 RUN echo "Using sh again"
 ```
 

@@ -91,6 +91,8 @@ etcd 在键的组织上采用了层次化的空间结构（类似于文件系统
 
 #### put
 
+运行以下命令：
+
 ```bash
 $ etcdctl put /testdir/testkey "Hello world"
 OK

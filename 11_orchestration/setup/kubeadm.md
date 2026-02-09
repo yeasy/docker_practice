@@ -1,4 +1,4 @@
-## 使用 kubeadm 部署 kubernetes(CRI 使用 containerd)
+## 使用 kubeadm 部署 kubernetes（CRI 使用 containerd）
 
 `kubeadm` 提供了 `kubeadm init` 以及 `kubeadm join` 这两个命令作为快速创建 `kubernetes` 集群的最佳实践。
 
@@ -10,9 +10,11 @@
 
 ```bash
 ## debian 系
+
 $ sudo apt install containerd.io
 
 ## rhel 系
+
 $ sudo yum install containerd.io
 ```
 
@@ -36,12 +38,16 @@ KillMode=process
 Restart=always
 RestartSec=5
 ## Having non-zero Limit*s causes performance problems due to accounting overhead
+
 ## in the kernel. We recommend using cgroups to do container-local accounting.
+
 LimitNPROC=infinity
 LimitCORE=infinity
 LimitNOFILE=infinity
 ## Comment TasksMax if your systemd version does not supports it.
+
 ## Only systemd 226 and above support this version.
+
 TasksMax=infinity
 OOMScoreAdjust=-999
 
@@ -54,13 +60,16 @@ WantedBy=multi-user.target
 ```toml
 version = 2
 ## persistent data location
+
 root = "/var/lib/cri-containerd"
 ## runtime state information
+
 state = "/run/cri-containerd"
 plugin_dir = ""
 disabled_plugins = []
 required_plugins = []
 ## set containerd's OOM score
+
 oom_score = 0
 
 [grpc]
@@ -203,7 +212,11 @@ oom_score = 0
 
 ### 安装 **kubelet** **kubeadm** **kubectl** **cri-tools** **kubernetes-cni**
 
+需要在每台机器上安装以下的软件包：
+
 #### Ubuntu/Debian
+
+运行以下命令：
 
 ```bash
 $ apt-get update && apt-get install -y apt-transport-https
@@ -218,6 +231,8 @@ $ apt-get install -y kubelet kubeadm kubectl
 ```
 
 #### CentOS/Fedora
+
+运行以下命令：
 
 ```bash
 $ cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
@@ -235,6 +250,8 @@ $ sudo yum install -y kubelet kubeadm kubectl
 
 ### 修改内核的运行参数
 
+运行以下命令：
+
 ```bash
 $ cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
 net.bridge.bridge-nf-call-iptables  = 1
@@ -243,10 +260,13 @@ net.bridge.bridge-nf-call-ip6tables = 1
 EOF
 
 ## 应用配置
+
 $ sysctl --system
 ```
 
 ### 配置 kubelet
+
+为了让 kubelet 正确运行，我们需要对其进行一些必要的配置。
 
 #### 修改 `kubelet.service`
 
@@ -254,6 +274,7 @@ $ sysctl --system
 
 ```bash
 ## 启用 ipvs 相关内核模块
+
 [Service]
 ExecStartPre=-/sbin/modprobe ip_vs
 ExecStartPre=-/sbin/modprobe ip_vs_rr
@@ -269,7 +290,11 @@ $ sudo systemctl daemon-reload
 
 ### 部署
 
+安装配置完成后，我们将分别在 Master 节点和 Worker 节点上进行部署操作。
+
 #### master
+
+运行以下命令：
 
 ```bash
 $ systemctl enable cri-containerd
@@ -317,7 +342,7 @@ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
 
 #### node 工作节点
 
-在 **另一主机** 重复 **部署** 小节以前的步骤，安装配置好 kubelet。根据提示，加入到集群。
+在 **另一主机**重复**部署** 小节以前的步骤，安装配置好 kubelet。根据提示，加入到集群。
 
 ```bash
 $ systemctl enable cri-containerd
@@ -374,6 +399,7 @@ CONTAINER_RUNTIME_ENDPOINT=/run/cri-containerd/cri-containerd.sock crictl ps -a
 $ kubectl get node -o yaml | grep CIDR
 
 ## 输出
+
     podCIDR: 10.244.0.0/16
     podCIDRs:
 ```
@@ -390,7 +416,11 @@ $ kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/v0.26.1/
 $ kubectl taint nodes --all node-role.kubernetes.io/master-
 
 ## 恢复默认值
+
 ## $ kubectl taint nodes NODE_NAME node-role.kubernetes.io/master=true:NoSchedule
+
+具体内容如下：
+
 ```
 
 ### 参考文档

@@ -2,6 +2,8 @@
 
 ### 基本语法
 
+具体内容如下：
+
 ```docker
 WORKDIR <工作目录路径>
 ```
@@ -11,6 +13,8 @@ WORKDIR <工作目录路径>
 ---
 
 ### 基本用法
+
+具体内容如下：
 
 ```docker
 WORKDIR /app
@@ -26,13 +30,18 @@ COPY . .         # 复制到 /app/
 
 #### 常见错误
 
+具体内容如下：
+
 ```docker
 ## ❌ 错误：cd 在下一个 RUN 中无效
+
 RUN cd /app
 RUN echo "hello" > world.txt    # 文件在根目录！
 ```
 
 #### 原因分析
+
+具体内容如下：
 
 ```
 RUN cd /app
@@ -49,8 +58,11 @@ RUN echo "hello" > world.txt
 
 #### 正确做法
 
+具体内容如下：
+
 ```docker
 ## ✅ 正确：使用 WORKDIR
+
 WORKDIR /app
 RUN echo "hello" > world.txt    # 创建 /app/world.txt
 ```
@@ -73,6 +85,8 @@ RUN pwd    # 输出 /a/b/c
 
 ### 使用环境变量
 
+具体内容如下：
+
 ```docker
 ENV APP_HOME=/app
 WORKDIR $APP_HOME
@@ -84,8 +98,11 @@ RUN pwd    # 输出 /app
 
 ### 多阶段构建中的 WORKDIR
 
+具体内容如下：
+
 ```docker
 ## 构建阶段
+
 FROM node:20 AS builder
 WORKDIR /build
 COPY package*.json ./
@@ -94,6 +111,7 @@ COPY . .
 RUN npm run build
 
 ## 生产阶段
+
 FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
 COPY --from=builder /build/dist .
@@ -104,6 +122,8 @@ COPY --from=builder /build/dist .
 ### 最佳实践
 
 #### 1. 尽早设置 WORKDIR
+
+具体内容如下：
 
 ```docker
 FROM node:20
@@ -117,26 +137,36 @@ CMD ["node", "server.js"]
 
 #### 2. 使用绝对路径
 
+具体内容如下：
+
 ```docker
 ## ✅ 推荐：绝对路径，意图明确
+
 WORKDIR /app
 
 ## ⚠️ 避免：相对路径可能造成混淆
+
 WORKDIR app
 ```
 
 #### 3. 不要用 RUN cd
 
+具体内容如下：
+
 ```docker
 ## ❌ 避免
+
 RUN cd /app && echo "hello" > world.txt
 
 ## ✅ 推荐
+
 WORKDIR /app
 RUN echo "hello" > world.txt
 ```
 
 #### 4. 适时重置 WORKDIR
+
+具体内容如下：
 
 ```docker
 WORKDIR /app
@@ -144,6 +174,9 @@ WORKDIR /app
 
 WORKDIR /data
 ## ... 数据相关操作 ...
+
+具体内容如下：
+
 ```
 
 ---

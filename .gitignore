@@ -15,3 +15,5 @@ docker-compose.override.yml
 # Editor configs
 .obsidian/
 .vscode/
+
+.agent/

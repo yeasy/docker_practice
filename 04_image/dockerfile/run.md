@@ -2,6 +2,8 @@
 
 ### 基本语法
 
+具体内容如下：
+
 ```docker
 RUN <command>
 RUN ["executable", "param1", "param2"]
@@ -15,6 +17,8 @@ RUN ["executable", "param1", "param2"]
 
 #### 1. Shell 格式
 
+具体内容如下：
+
 ```docker
 RUN apt-get update
 ```
@@ -27,6 +31,8 @@ RUN apt-get update
   ```
 
 #### 2. Exec 格式
+
+具体内容如下：
 
 ```docker
 RUN ["apt-get", "update"]
@@ -82,6 +88,7 @@ RUN apt-get update && \
 
 ```docker
 ## 如果下载失败，gzip 可能会报错，但如果不影响后续，构建可能继续
+
 RUN wget http://error-url | gzip -d > file
 ```
 
@@ -97,6 +104,8 @@ RUN wget http://url | gzip -d > file
 ### 常见问题
 
 #### Q: 为什么 `RUN cd /app` 不生效？
+
+具体内容如下：
 
 ```docker
 RUN cd /app
@@ -115,6 +124,8 @@ RUN touch hello.txt
 ```
 
 #### Q: 环境变量不生效？
+
+具体内容如下：
 
 ```docker
 RUN export MY_VAR=hello
@@ -142,6 +153,7 @@ BuildKit 支持在 `RUN` 指令中使用 `--mount` 挂载缓存，加速构建�
 
 ```docker
 ## 缓存 apt 包
+
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     apt-get update && apt-get install -y gcc
@@ -149,6 +161,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 
 ```docker
 ## 缓存 Go 模块
+
 RUN --mount=type=cache,target=/go/pkg/mod \
     go build -o app
 ```

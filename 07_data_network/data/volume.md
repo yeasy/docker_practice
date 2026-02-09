@@ -29,7 +29,9 @@ flowchart LR
 
 ### 数据卷 vs 容器存储层
 
-##### 容器存储层（不推荐存储重要数据）
+#### 容器存储层（不推荐存储重要数据）
+
+具体内容如下：
 
 ```mermaid
 graph TD
@@ -43,7 +45,9 @@ graph TD
     Delete[容器删除] -->|导致| DataLost[数据丢失 ❌]
 ```
 
-##### 数据卷（推荐）
+#### 数据卷（推荐）
+
+具体内容如下：
 
 ```mermaid
 graph TD
@@ -65,11 +69,15 @@ graph TD
 
 #### 创建数据卷
 
+运行以下命令：
+
 ```bash
 $ docker volume create my-vol
 ```
 
 #### 列出所有数据卷
+
+运行以下命令：
 
 ```bash
 $ docker volume ls
@@ -80,6 +88,8 @@ local     redis_data
 ```
 
 #### 查看数据卷详情
+
+运行以下命令：
 
 ```bash
 $ docker volume inspect my-vol
@@ -106,6 +116,8 @@ $ docker volume inspect my-vol
 
 #### 方式一：--mount（推荐）
 
+运行以下命令：
+
 ```bash
 $ docker run -d \
     --name web \
@@ -122,6 +134,8 @@ $ docker run -d \
 | `readonly` | 可选，只读挂载 |
 
 #### 方式二：-v（简写）
+
+运行以下命令：
 
 ```bash
 $ docker run -d \
@@ -142,13 +156,17 @@ $ docker run -d \
 
 #### 只读挂载
 
+运行以下命令：
+
 ```bash
 ## --mount 方式
+
 $ docker run -d \
     --mount source=my-vol,target=/data,readonly \
     nginx
 
 ## -v 方式
+
 $ docker run -d \
     -v my-vol:/data:ro \
     nginx
@@ -160,11 +178,15 @@ $ docker run -d \
 
 #### 场景一：数据库持久化
 
+运行以下命令：
+
 ```bash
 ## 创建数据卷
+
 $ docker volume create postgres_data
 
 ## 启动 PostgreSQL，数据存储在数据卷中
+
 $ docker run -d \
     --name postgres \
     -e POSTGRES_PASSWORD=secret \
@@ -172,9 +194,11 @@ $ docker run -d \
     postgres:16
 
 ## 即使删除容器，数据仍然保留
+
 $ docker rm -f postgres
 
 ## 重新启动，数据还在
+
 $ docker run -d \
     --name postgres \
     -e POSTGRES_PASSWORD=secret \
@@ -184,16 +208,21 @@ $ docker run -d \
 
 #### 场景二：多容器共享数据
 
+运行以下命令：
+
 ```bash
 ## 创建共享数据卷
+
 $ docker volume create shared-data
 
 ## 容器 A 写入数据
+
 $ docker run -d --name writer \
     -v shared-data:/data \
     alpine sh -c "while true; do date >> /data/log.txt; sleep 5; done"
 
 ## 容器 B 读取数据
+
 $ docker run --rm \
     -v shared-data:/data \
     alpine cat /data/log.txt
@@ -201,8 +230,11 @@ $ docker run --rm \
 
 #### 场景三：配置文件持久化
 
+运行以下命令：
+
 ```bash
 ## 将 nginx 配置存储在数据卷中
+
 $ docker run -d \
     -v nginx-config:/etc/nginx/conf.d \
     -v nginx-logs:/var/log/nginx \
@@ -216,24 +248,33 @@ $ docker run -d \
 
 #### 删除数据卷
 
+运行以下命令：
+
 ```bash
 ## 删除指定数据卷
+
 $ docker volume rm my-vol
 
 ## 删除容器时同时删除数据卷
+
 $ docker rm -v container_name
 ```
 
 #### 清理未使用的数据卷
 
+运行以下命令：
+
 ```bash
 ## 查看未被任何容器使用的数据卷
+
 $ docker volume ls -f dangling=true
 
 ## 删除所有未使用的数据卷
+
 $ docker volume prune
 
 ## 强制删除（不提示确认）
+
 $ docker volume prune -f
 ```
 
@@ -245,8 +286,11 @@ $ docker volume prune -f
 
 #### 备份数据卷
 
+运行以下命令：
+
 ```bash
 ## 使用临时容器挂载数据卷，打包备份
+
 $ docker run --rm \
     -v my-vol:/source:ro \
     -v $(pwd):/backup \
@@ -261,11 +305,15 @@ $ docker run --rm \
 
 #### 恢复数据卷
 
+运行以下命令：
+
 ```bash
 ## 创建新数据卷
+
 $ docker volume create my-vol-restored
 
 ## 解压备份到新数据卷
+
 $ docker run --rm \
     -v my-vol-restored:/target \
     -v $(pwd):/backup:ro \
@@ -273,6 +321,8 @@ $ docker run --rm \
 ```
 
 #### 备份脚本示例
+
+运行以下命令：
 
 ```bash
 #!/bin/bash
@@ -306,9 +356,11 @@ Docker 有两种主要的数据持久化方式：
 
 ```bash
 ## 数据卷
+
 $ docker run -v mydata:/app/data nginx
 
 ## 绑定挂载
+
 $ docker run -v /host/path:/app/data nginx
 ```
 
@@ -320,17 +372,23 @@ $ docker run -v /host/path:/app/data nginx
 
 #### Q: 如何知道容器使用了哪些数据卷？
 
+运行以下命令：
+
 ```bash
 $ docker inspect container_name --format '{{json .Mounts}}' | jq
 ```
 
 #### Q: 数据卷的数据在哪里？
 
+运行以下命令：
+
 ```bash
 ## 查看数据卷详情
+
 $ docker volume inspect my-vol
 
 ## Mountpoint 字段显示实际路径
+
 "Mountpoint": "/var/lib/docker/volumes/my-vol/_data"
 ```
 

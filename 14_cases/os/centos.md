@@ -1,4 +1,5 @@
-## CentOS Fedora
+## CentOS 和 Fedora
+
 
 ### CentOS 系统简介
 
@@ -6,9 +7,13 @@
 
 ![CentOS 操作系统](../../_images/centos-logo.png)
 
+
 CentOS（Community Enterprise Operating System，中文意思是：社区企业操作系统），它是基于 `Red Hat Enterprise Linux` 源代码编译而成。由于 `CentOS` 与 `Redhat Linux` 源于相同的代码基础，所以很多成本敏感且需要高稳定性的公司就使用 `CentOS` 来替代商业版 `Red Hat Enterprise Linux`。`CentOS` 自身不包含闭源软件。
 
 #### 使用 CentOS 官方镜像
+
+CentOS 官方镜像的使用非常简单。
+
 
 **注意：CentOS 8 已于 2021 年 12 月 31 日停止维护（EOL）。对于新部署，推荐使用 CentOS Stream，或 Rocky Linux、AlmaLinux 等替代发行版。**
 
@@ -28,6 +33,7 @@ CentOS Linux release 7.9.2009 (Core)
 ### Fedora 系统简介
 
 ![Fedora 操作系统](../../_images/fedora-logo.png)
+
 
 `Fedora` 由 `Fedora Project` 社区开发，红帽公司赞助的 `Linux` 发行版。它的目标是创建一套新颖、多功能并且自由和开源的操作系统。`Fedora` 的功能对于用户而言，它是一套功能完备的，可以更新的免费操作系统，而对赞助商 `Red Hat` 而言，它是许多新技术的测试平台。被认为可用的技术最终会加入到 `Red Hat Enterprise Linux` 中。
 
