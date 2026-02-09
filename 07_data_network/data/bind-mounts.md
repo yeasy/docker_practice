@@ -1,6 +1,6 @@
-# 挂载主机目录（Bind Mounts）
+## 挂载主机目录（Bind Mounts）
 
-## 什么是 Bind Mount
+### 什么是 Bind Mount
 
 Bind Mount（绑定挂载）将**宿主机的目录或文件**直接挂载到容器中。容器可以读写宿主机的文件系统。
 
@@ -16,7 +16,7 @@ Bind Mount（绑定挂载）将**宿主机的目录或文件**直接挂载到容
 
 ---
 
-## Bind Mount vs Volume
+### Bind Mount vs Volume
 
 | 特性 | Bind Mount | Volume |
 |------|------------|--------|
@@ -27,7 +27,7 @@ Bind Mount（绑定挂载）将**宿主机的目录或文件**直接挂载到容
 | **适用场景** | 开发环境、配置文件 | 生产数据持久化 |
 | **备份** | 直接访问文件 | 需要通过 Docker |
 
-### 选择建议
+#### 选择建议
 
 ```
 需求                          推荐方案
@@ -42,9 +42,9 @@ Bind Mount（绑定挂载）将**宿主机的目录或文件**直接挂载到容
 
 ---
 
-## 基本语法
+### 基本语法
 
-### 使用 --mount（推荐）
+#### 使用 --mount（推荐）
 
 ```bash
 $ docker run -d \
@@ -52,7 +52,7 @@ $ docker run -d \
     nginx
 ```
 
-### 使用 -v（简写）
+#### 使用 -v（简写）
 
 ```bash
 $ docker run -d \
@@ -60,7 +60,7 @@ $ docker run -d \
     nginx
 ```
 
-### 两种语法对比
+#### 两种语法对比
 
 | 特性 | --mount | -v |
 |------|---------|-----|
@@ -70,44 +70,44 @@ $ docker run -d \
 
 ---
 
-## 使用场景
+### 使用场景
 
-### 场景一：开发环境代码同步
+#### 场景一：开发环境代码同步
 
 ```bash
-# 将本地代码目录挂载到容器
+## 将本地代码目录挂载到容器
 $ docker run -d \
     -p 8080:80 \
     --mount type=bind,source=$(pwd)/src,target=/usr/share/nginx/html \
     nginx
 
-# 修改本地文件，容器内立即生效（热更新）
+## 修改本地文件，容器内立即生效（热更新）
 $ echo "Hello" > src/index.html
-# 浏览器刷新即可看到变化
+## 浏览器刷新即可看到变化
 ```
 
-### 场景二：配置文件挂载
+#### 场景二：配置文件挂载
 
 ```bash
-# 挂载自定义 nginx 配置
+## 挂载自定义 nginx 配置
 $ docker run -d \
     --mount type=bind,source=/path/to/nginx.conf,target=/etc/nginx/nginx.conf,readonly \
     nginx
 ```
 
-### 场景三：日志收集
+#### 场景三：日志收集
 
 ```bash
-# 将容器日志输出到宿主机目录
+## 将容器日志输出到宿主机目录
 $ docker run -d \
     --mount type=bind,source=/var/log/myapp,target=/app/logs \
     myapp
 ```
 
-### 场景四：共享 SSH 密钥
+#### 场景四：共享 SSH 密钥
 
 ```bash
-# 挂载 SSH 密钥（只读）
+## 挂载 SSH 密钥（只读）
 $ docker run --rm -it \
     --mount type=bind,source=$HOME/.ssh,target=/root/.ssh,readonly \
     alpine ssh user@remote
@@ -115,17 +115,17 @@ $ docker run --rm -it \
 
 ---
 
-## 只读挂载
+### 只读挂载
 
 防止容器修改宿主机文件：
 
 ```bash
-# --mount 语法
+## --mount 语法
 $ docker run -d \
     --mount type=bind,source=/config,target=/app/config,readonly \
     myapp
 
-# -v 语法
+## -v 语法
 $ docker run -d \
     -v /config:/app/config:ro \
     myapp
@@ -140,15 +140,15 @@ touch: /app/config/new.txt: Read-only file system
 
 ---
 
-## 挂载单个文件
+### 挂载单个文件
 
 ```bash
-# 挂载 bash 历史记录
+## 挂载 bash 历史记录
 $ docker run --rm -it \
     --mount type=bind,source=$HOME/.bash_history,target=/root/.bash_history \
     ubuntu bash
 
-# 挂载自定义配置文件
+## 挂载自定义配置文件
 $ docker run -d \
     --mount type=bind,source=/path/to/my.cnf,target=/etc/mysql/my.cnf \
     mysql
@@ -158,7 +158,7 @@ $ docker run -d \
 
 ---
 
-## 查看挂载信息
+### 查看挂载信息
 
 ```bash
 $ docker inspect mycontainer --format '{{json .Mounts}}' | jq
@@ -189,9 +189,9 @@ $ docker inspect mycontainer --format '{{json .Mounts}}' | jq
 
 ---
 
-## 常见问题
+### 常见问题
 
-### Q: 路径不存在报错
+#### Q: 路径不存在报错
 
 ```bash
 $ docker run --mount type=bind,source=/not/exist,target=/app nginx
@@ -201,27 +201,27 @@ bind source path does not exist: /not/exist
 
 **解决**：确保源路径存在，或改用 `-v`（会自动创建）
 
-### Q: 权限问题
+#### Q: 权限问题
 
 容器内用户可能无权访问挂载的文件：
 
 ```bash
-# 方法1：确保宿主机文件权限允许容器用户访问
+## 方法1：确保宿主机文件权限允许容器用户访问
 $ chmod -R 755 /path/to/data
 
-# 方法2：以 root 运行容器
+## 方法2：以 root 运行容器
 $ docker run -u root ...
 
-# 方法3：使用相同的 UID
+## 方法3：使用相同的 UID
 $ docker run -u $(id -u):$(id -g) ...
 ```
 
-### Q: macOS/Windows 性能问题
+#### Q: macOS/Windows 性能问题
 
 在 Docker Desktop 上，Bind Mount 性能较差（需要跨文件系统同步）：
 
 ```bash
-# 使用 :cached 或 :delegated 提高性能（macOS）
+## 使用 :cached 或 :delegated 提高性能（macOS）
 $ docker run -v /host/path:/container/path:cached myapp
 ```
 
@@ -233,41 +233,41 @@ $ docker run -v /host/path:/container/path:cached myapp
 
 ---
 
-## 最佳实践
+### 最佳实践
 
-### 1. 开发环境使用 Bind Mount
+#### 1. 开发环境使用 Bind Mount
 
 ```bash
-# 代码热更新
+## 代码热更新
 $ docker run -v $(pwd):/app -p 3000:3000 node npm run dev
 ```
 
-### 2. 生产环境使用 Volume
+#### 2. 生产环境使用 Volume
 
 ```bash
-# 数据持久化
+## 数据持久化
 $ docker run -v mysql_data:/var/lib/mysql mysql
 ```
 
-### 3. 配置文件使用只读挂载
+#### 3. 配置文件使用只读挂载
 
 ```bash
 $ docker run -v /config/nginx.conf:/etc/nginx/nginx.conf:ro nginx
 ```
 
-### 4. 注意路径安全
+#### 4. 注意路径安全
 
 ```bash
-# ❌ 危险：挂载根目录或敏感目录
+## ❌ 危险：挂载根目录或敏感目录
 $ docker run -v /:/host ...
 
-# ✅ 只挂载必要的目录
+## ✅ 只挂载必要的目录
 $ docker run -v /app/data:/data ...
 ```
 
 ---
 
-## 本章小结
+### 本章小结
 
 | 要点 | 说明 |
 |------|------|
@@ -277,8 +277,8 @@ $ docker run -v /app/data:/data ...
 | **适用场景** | 开发环境、配置文件、日志 |
 | **vs Volume** | Bind 更灵活，Volume 更适合生产 |
 
-## 延伸阅读
+### 延伸阅读
 
 - [数据卷](volume.md)：Docker 管理的持久化存储
 - [tmpfs 挂载](tmpfs.md)：内存临时存储
-- [Compose 数据管理](../compose/compose_file.md)：Compose 中的挂载配置
+- [Compose 数据管理](../compose/9.5_compose_file.md)：Compose 中的挂载配置

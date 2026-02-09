@@ -1,6 +1,6 @@
-# VOLUME 定义匿名卷
+## VOLUME 定义匿名卷
 
-## 基本语法
+### 基本语法
 
 ```docker
 VOLUME ["/路径1", "/路径2"]
@@ -11,7 +11,7 @@ VOLUME /路径
 
 ---
 
-## 为什么使用 VOLUME
+### 为什么使用 VOLUME
 
 > **核心原则**：容器存储层应该保持无状态，任何运行时数据都应该存储在卷中。
 
@@ -34,16 +34,16 @@ VOLUME /路径
 
 ---
 
-## 基本用法
+### 基本用法
 
-### 定义单个卷
+#### 定义单个卷
 
 ```docker
 FROM mysql:8.0
 VOLUME /var/lib/mysql
 ```
 
-### 定义多个卷
+#### 定义多个卷
 
 ```docker
 FROM myapp
@@ -52,9 +52,9 @@ VOLUME ["/data", "/logs", "/config"]
 
 ---
 
-## VOLUME 的行为
+### VOLUME 的行为
 
-### 1. 自动创建匿名卷
+#### 1. 自动创建匿名卷
 
 如果运行时未指定挂载，Docker 会自动创建匿名卷：
 
@@ -65,23 +65,23 @@ DRIVER    VOLUME NAME
 local     a1b2c3d4e5f6...  # 自动创建的匿名卷
 ```
 
-### 2. 可被命名卷覆盖
+#### 2. 可被命名卷覆盖
 
 ```bash
-# 使用命名卷替代匿名卷
+## 使用命名卷替代匿名卷
 $ docker run -v mysql_data:/var/lib/mysql mysql:8.0
 ```
 
-### 3. 可被 Bind Mount 覆盖
+#### 3. 可被 Bind Mount 覆盖
 
 ```bash
-# 使用宿主机目录替代
+## 使用宿主机目录替代
 $ docker run -v /my/data:/var/lib/mysql mysql:8.0
 ```
 
 ---
 
-## VOLUME 在构建时的特殊行为
+### VOLUME 在构建时的特殊行为
 
 > ⚠️ **重要**：VOLUME 之后对该目录的修改会被丢弃！
 
@@ -89,43 +89,43 @@ $ docker run -v /my/data:/var/lib/mysql mysql:8.0
 FROM ubuntu
 VOLUME /data
 
-# ❌ 这个文件不会出现在镜像中！
+## ❌ 这个文件不会出现在镜像中！
 RUN echo "hello" > /data/test.txt
 ```
 
 **原因**：VOLUME 指令之后，Docker 将该目录视为外部挂载点，不再记录对它的修改。
 
-### 正确做法
+#### 正确做法
 
 ```docker
 FROM ubuntu
 
-# ✅ 先写入文件
+## ✅ 先写入文件
 RUN mkdir -p /data && echo "hello" > /data/test.txt
 
-# 再声明 VOLUME
+## 再声明 VOLUME
 VOLUME /data
 ```
 
 ---
 
-## 常见使用场景
+### 常见使用场景
 
-### 数据库持久化
+#### 数据库持久化
 
 ```docker
 FROM postgres:15
 VOLUME /var/lib/postgresql/data
 ```
 
-### 日志目录
+#### 日志目录
 
 ```docker
 FROM nginx
 VOLUME /var/log/nginx
 ```
 
-### 上传文件目录
+#### 上传文件目录
 
 ```docker
 FROM myapp
@@ -134,22 +134,22 @@ VOLUME /app/uploads
 
 ---
 
-## 查看 VOLUME 定义
+### 查看 VOLUME 定义
 
 ```bash
-# 查看镜像定义的 VOLUME
+## 查看镜像定义的 VOLUME
 $ docker inspect mysql:8.0 --format '{{json .Config.Volumes}}' | jq
 {
   "/var/lib/mysql": {}
 }
 
-# 查看容器挂载的卷
+## 查看容器挂载的卷
 $ docker inspect mycontainer --format '{{json .Mounts}}' | jq
 ```
 
 ---
 
-## VOLUME vs docker run -v
+### VOLUME vs docker run -v
 
 | 特性 | Dockerfile VOLUME | docker run -v |
 |------|-------------------|---------------|
@@ -160,7 +160,7 @@ $ docker inspect mycontainer --format '{{json .Mounts}}' | jq
 
 ---
 
-## 在 Compose 中
+### 在 Compose 中
 
 ```yaml
 services:
@@ -178,14 +178,14 @@ volumes:
 
 ---
 
-## 安全注意事项
+### 安全注意事项
 
-### 匿名卷可能导致数据丢失
+#### 匿名卷可能导致数据丢失
 
 ```bash
-# 使用 --rm 运行的容器，匿名卷会在容器删除时一起删除
+## 使用 --rm 运行的容器，匿名卷会在容器删除时一起删除
 $ docker run --rm mysql:8.0
-# 容器停止后，数据丢失！
+## 容器停止后，数据丢失！
 ```
 
 **解决**：始终使用命名卷
@@ -196,41 +196,41 @@ $ docker run -v mysql_data:/var/lib/mysql mysql:8.0
 
 ---
 
-## 最佳实践
+### 最佳实践
 
-### 1. 定义必须持久化的路径
+#### 1. 定义必须持久化的路径
 
 ```docker
-# 数据库必须使用卷
+## 数据库必须使用卷
 FROM postgres:15
 VOLUME /var/lib/postgresql/data
 ```
 
-### 2. 不要在 VOLUME 后修改目录
+#### 2. 不要在 VOLUME 后修改目录
 
 ```docker
-# ❌ 避免
+## ❌ 避免
 VOLUME /app/data
 RUN cp init-data.json /app/data/
 
-# ✅ 正确
+## ✅ 正确
 RUN mkdir -p /app/data && cp init-data.json /app/data/
 VOLUME /app/data
 ```
 
-### 3. 文档中说明 VOLUME 用途
+#### 3. 文档中说明 VOLUME 用途
 
 ```docker
-# 持久化用户上传的文件
+## 持久化用户上传的文件
 VOLUME /app/uploads
 
-# 持久化数据库数据
+## 持久化数据库数据
 VOLUME /var/lib/mysql
 ```
 
 ---
 
-## 本章小结
+### 本章小结
 
 | 要点 | 说明 |
 |------|------|
@@ -240,8 +240,8 @@ VOLUME /var/lib/mysql
 | **覆盖方式** | `docker run -v name:/path` |
 | **注意** | VOLUME 之后的修改会丢失 |
 
-## 延伸阅读
+### 延伸阅读
 
 - [数据卷](../../07_data_network/data/volume.md)：卷的管理和使用
 - [挂载主机目录](../../07_data_network/data/bind-mounts.md)：Bind Mount
-- [Compose 数据管理](../../compose/compose_file.md)：Compose 中的卷配置
+- [Compose 数据管理](../../compose/9.5_compose_file.md)：Compose 中的卷配置

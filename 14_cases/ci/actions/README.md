@@ -1,4 +1,4 @@
-# GitHub Actions
+## GitHub Actions
 
 GitHub [Actions](https://github.com/features/actions) 是 GitHub 推出的一款 CI/CD 工具。
 
@@ -23,6 +23,6 @@ jobs:
           args: go version
 ```
 
-## 参考资料
+### 参考资料
 
 * [Actions Docs](https://docs.github.com/en/actions)

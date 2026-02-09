@@ -1,6 +1,6 @@
-# ENTRYPOINT 入口点
+## ENTRYPOINT 入口点
 
-## 什么是 ENTRYPOINT
+### 什么是 ENTRYPOINT
 
 `ENTRYPOINT` 指定容器启动时运行的入口程序。与 CMD 不同，ENTRYPOINT 定义的命令不会被 `docker run` 的参数覆盖，而是**接收这些参数**。
 
@@ -8,7 +8,7 @@
 
 ---
 
-## 语法格式
+### 语法格式
 
 | 格式 | 语法 | 推荐程度 |
 |------|------|---------|
@@ -16,18 +16,18 @@
 | **shell 格式** | `ENTRYPOINT 命令 参数` | ⚠️ 不推荐 |
 
 ```docker
-# exec 格式（推荐）
+## exec 格式（推荐）
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
-# shell 格式（不推荐）
+## shell 格式（不推荐）
 ENTRYPOINT nginx -g "daemon off;"
 ```
 
 ---
 
-## ENTRYPOINT vs CMD
+### ENTRYPOINT vs CMD
 
-### 核心区别
+#### 核心区别
 
 | 特性 | ENTRYPOINT | CMD |
 |------|------------|-----|
@@ -36,10 +36,10 @@ ENTRYPOINT nginx -g "daemon off;"
 | **覆盖方式** | `--entrypoint` | 直接指定命令 |
 | **适用场景** | 把镜像当命令用 | 提供默认行为 |
 
-### 行为对比
+#### 行为对比
 
 ```docker
-# 只用 CMD
+## 只用 CMD
 CMD ["curl", "-s", "http://example.com"]
 ```
 
@@ -50,7 +50,7 @@ $ docker run myimage curl -v ...  # curl -v ...（完全替换）
 ```
 
 ```docker
-# 只用 ENTRYPOINT
+## 只用 ENTRYPOINT
 ENTRYPOINT ["curl", "-s"]
 ```
 
@@ -60,7 +60,7 @@ $ docker run myimage http://example.com   # curl -s http://example.com ✓
 ```
 
 ```docker
-# ENTRYPOINT + CMD 组合（推荐）
+## ENTRYPOINT + CMD 组合（推荐）
 ENTRYPOINT ["curl", "-s"]
 CMD ["http://example.com"]
 ```
@@ -73,13 +73,13 @@ $ docker run myimage -v http://other.com  # curl -s -v http://other.com ✓
 
 ---
 
-## 场景一：让镜像像命令一样使用
+### 场景一：让镜像像命令一样使用
 
-### 需求
+#### 需求
 
 创建一个查询公网 IP 的"命令"镜像。
 
-### 使用 CMD 的问题
+#### 使用 CMD 的问题
 
 ```docker
 FROM ubuntu:24.04
@@ -93,10 +93,10 @@ $ docker run myip           # ✓ 正常工作
 
 $ docker run myip -i        # ✗ 错误！
 exec: "-i": executable file not found
-# -i 替换了整个 CMD，被当作可执行文件
+## -i 替换了整个 CMD，被当作可执行文件
 ```
 
-### 使用 ENTRYPOINT 解决
+#### 使用 ENTRYPOINT 解决
 
 ```docker
 FROM ubuntu:24.04
@@ -114,7 +114,7 @@ HTTP/1.1 200 OK
 当前 IP：61.148.226.66
 ```
 
-### 交互图示
+#### 交互图示
 
 ```
 ENTRYPOINT ["curl", "-s", "http://myip.ipip.net"]
@@ -129,13 +129,13 @@ curl -s http://myip.ipip.net -i
 
 ---
 
-## 场景二：启动前的准备工作
+### 场景二：启动前的准备工作
 
-### 需求
+#### 需求
 
 在启动主服务前执行初始化脚本（如数据库迁移、权限设置）。
 
-### 实现方式
+#### 实现方式
 
 ```docker
 FROM redis:7-alpine
@@ -150,20 +150,20 @@ CMD ["redis-server"]
 #!/bin/sh
 set -e
 
-# 准备工作
+## 准备工作
 echo "Initializing..."
 
-# 如果第一个参数是 redis-server，以 redis 用户运行
+## 如果第一个参数是 redis-server，以 redis 用户运行
 if [ "$1" = 'redis-server' ]; then
     chown -R redis:redis /data
     exec gosu redis "$@"
 fi
 
-# 其他命令直接执行
+## 其他命令直接执行
 exec "$@"
 ```
 
-### 工作流程
+#### 工作流程
 
 ```
 docker run redis                    docker run redis bash
@@ -177,7 +177,7 @@ docker-entrypoint.sh redis-server   docker-entrypoint.sh bash
            (以 redis 用户运行)                  (以 root 用户运行)
 ```
 
-### 关键点
+#### 关键点
 
 1. **exec "$@"**：用传入的参数替换当前进程，确保信号正确传递
 2. **条件判断**：根据 CMD 不同执行不同逻辑
@@ -185,7 +185,7 @@ docker-entrypoint.sh redis-server   docker-entrypoint.sh bash
 
 ---
 
-## 场景三：带参数的应用
+### 场景三：带参数的应用
 
 ```docker
 FROM python:3.12-slim
@@ -198,39 +198,39 @@ CMD ["--host", "0.0.0.0", "--port", "8080"]
 ```
 
 ```bash
-# 使用默认参数
+## 使用默认参数
 $ docker run myapp
-# 执行: python app.py --host 0.0.0.0 --port 8080
+## 执行: python app.py --host 0.0.0.0 --port 8080
 
-# 覆盖参数
+## 覆盖参数
 $ docker run myapp --host 0.0.0.0 --port 9000
-# 执行: python app.py --host 0.0.0.0 --port 9000
+## 执行: python app.py --host 0.0.0.0 --port 9000
 
-# 完全不同的参数
+## 完全不同的参数
 $ docker run myapp --help
-# 执行: python app.py --help
+## 执行: python app.py --help
 ```
 
 ---
 
-## 覆盖 ENTRYPOINT
+### 覆盖 ENTRYPOINT
 
 使用 `--entrypoint` 参数覆盖：
 
 ```bash
-# 正常运行
+## 正常运行
 $ docker run myimage
 
-# 覆盖 ENTRYPOINT 进入 shell 调试
+## 覆盖 ENTRYPOINT 进入 shell 调试
 $ docker run --entrypoint /bin/sh myimage
 
-# 覆盖 ENTRYPOINT 并传入参数
+## 覆盖 ENTRYPOINT 并传入参数
 $ docker run --entrypoint /bin/cat myimage /etc/os-release
 ```
 
 ---
 
-## ENTRYPOINT 与 CMD 组合表
+### ENTRYPOINT 与 CMD 组合表
 
 | ENTRYPOINT | CMD | 最终执行命令 |
 |------------|-----|-------------|
@@ -244,36 +244,36 @@ $ docker run --entrypoint /bin/cat myimage /etc/os-release
 
 ---
 
-## 最佳实践
+### 最佳实践
 
-### 1. 使用 exec 格式
+#### 1. 使用 exec 格式
 
 ```docker
-# ✅ 推荐
+## ✅ 推荐
 ENTRYPOINT ["python", "app.py"]
 
-# ❌ 避免 shell 格式
+## ❌ 避免 shell 格式
 ENTRYPOINT python app.py
 ```
 
-### 2. 提供有意义的默认参数
+#### 2. 提供有意义的默认参数
 
 ```docker
 ENTRYPOINT ["nginx"]
 CMD ["-g", "daemon off;"]
 ```
 
-### 3. 入口脚本使用 exec
+#### 3. 入口脚本使用 exec
 
 ```bash
 #!/bin/sh
-# 准备工作...
+## 准备工作...
 
-# 使用 exec 替换当前进程
+## 使用 exec 替换当前进程
 exec "$@"
 ```
 
-### 4. 处理信号
+#### 4. 处理信号
 
 确保 ENTRYPOINT 脚本能正确传递信号：
 
@@ -281,17 +281,17 @@ exec "$@"
 #!/bin/bash
 trap 'kill -TERM $PID' TERM INT
 
-# 启动应用
+## 启动应用
 app "$@" &
 PID=$!
 
-# 等待应用退出
+## 等待应用退出
 wait $PID
 ```
 
 ---
 
-## 本章小结
+### 本章小结
 
 | ENTRYPOINT | CMD | 适用场景 |
 |------------|-----|---------|
@@ -299,8 +299,8 @@ wait $PID
 | ✗ | ✓ | 简单的默认命令 |
 | ✓ | ✓ | **推荐**：固定命令 + 可配置参数 |
 
-## 延伸阅读
+### 延伸阅读
 
 - [CMD 容器启动命令](cmd.md)：默认命令
-- [最佳实践](../../15_appendix/best_practices.md)：启动命令设计
-- [后台运行](../../05_container/daemon.md)：前台/后台概念
+- [最佳实践](../../15_appendix/15.1_best_practices.md)：启动命令设计
+- [后台运行](../../05_container/5.2_daemon.md)：前台/后台概念

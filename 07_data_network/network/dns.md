@@ -1,6 +1,6 @@
-# 配置 DNS
+## 配置 DNS
 
-## 容器的 DNS 机制
+### 容器的 DNS 机制
 
 Docker 容器的 DNS 配置有两种情况：
 
@@ -9,18 +9,18 @@ Docker 容器的 DNS 配置有两种情况：
 
 ---
 
-## 嵌入式 DNS (Embedded DNS)
+### 嵌入式 DNS (Embedded DNS)
 
 这是 Docker 网络最强大的功能之一。在自定义网络中，容器可以通过"名字"找到彼此，而不需要知道对方的 IP（因为 IP 可能会变）。
 
 ```bash
-# 1. 创建自定义网络
+## 1. 创建自定义网络
 $ docker network create mynet
 
-# 2. 启动容器 web 并加入网络
+## 2. 启动容器 web 并加入网络
 $ docker run -d --name web --network mynet nginx
 
-# 3. 启动容器 client 并尝试 ping web
+## 3. 启动容器 client 并尝试 ping web
 $ docker run -it --rm --network mynet alpine ping web
 PING web (172.18.0.2): 56 data bytes
 64 bytes from 172.18.0.2: seq=0 ttl=64 time=0.074 ms
@@ -31,11 +31,11 @@ Docker 守护进程在 `127.0.0.11` 运行了一个 DNS 服务器。容器内的
 
 ---
 
-## 配置 DNS 参数
+### 配置 DNS 参数
 
 如果你需要手动配置容器的 DNS（例如使用内网 DNS 服务器），可以在 `docker run` 中使用以下参数：
 
-### 1. --dns
+#### 1. --dns
 
 指定 DNS 服务器 IP。
 
@@ -44,7 +44,7 @@ $ docker run -it --dns=114.114.114.114 ubuntu cat /etc/resolv.conf
 nameserver 114.114.114.114
 ```
 
-### 2. --dns-search
+#### 2. --dns-search
 
 指定 DNS 搜索域。例如设置为 `example.com`，则 `ping host` 会尝试解析 `host.example.com`。
 
@@ -52,7 +52,7 @@ nameserver 114.114.114.114
 $ docker run --dns-search=example.com myapp
 ```
 
-### 3. --hostname (-h)
+#### 3. --hostname (-h)
 
 设置容器的主机名。
 
@@ -62,7 +62,7 @@ $ docker run -h myweb nginx
 
 ---
 
-## 全局 DNS 配置
+### 全局 DNS 配置
 
 如果希望所有容器都使用特定的 DNS 服务器（而不是继承宿主机），可以修改 `/etc/docker/daemon.json`：
 
@@ -79,9 +79,9 @@ $ docker run -h myweb nginx
 
 ---
 
-## 常见问题
+### 常见问题
 
-### Q: 容器无法解析域名
+#### Q: 容器无法解析域名
 
 **现象**：`ping www.baidu.com` 失败，但 `ping 8.8.8.8` 成功。
 
@@ -90,7 +90,7 @@ $ docker run -h myweb nginx
 2. 尝试手动指定 DNS：`docker run --dns 8.8.8.8 ...`
 3. 检查防火墙是否拦截了 UDP 53 端口。
 
-### Q: 无法通过容器名通信
+#### Q: 无法通过容器名通信
 
 **现象**：`ping db` 提示 `bad address 'db'`。
 
@@ -100,7 +100,7 @@ $ docker run -h myweb nginx
 
 ---
 
-## 本章小结
+### 本章小结
 
 | 场景 | DNS 行为 | 备注 |
 |------|----------|------|
@@ -108,7 +108,7 @@ $ docker run -h myweb nginx
 | **自定义网络** | Docker 嵌入式 DNS | ✅ 支持容器名解析 |
 | **手动指定** | 使用 `--dns` | 覆盖默认配置 |
 
-## 延伸阅读
+### 延伸阅读
 
 - [网络模式](README.md)：Docker 网络概览
 - [端口映射](port_mapping.md)：外部访问

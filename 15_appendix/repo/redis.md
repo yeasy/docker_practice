@@ -1,12 +1,12 @@
-# [Redis](https://hub.docker.com/_/redis/)
+## [Redis](https://hub.docker.com/_/redis/)
 
-## 基本信息
+### 基本信息
 
 [Redis](https://en.wikipedia.org/wiki/Redis) 是开源的内存 Key-Value 数据库实现。
 
 该仓库位于 `https://hub.docker.com/_/redis/` ，提供了 Redis 3.x ~ 6.x 各个版本的镜像。
 
-## 使用方法
+### 使用方法
 
 默认会在 `6379` 端口启动数据库。
 
@@ -46,6 +46,6 @@ $ docker run -it --rm \
     sh -c 'exec redis-cli -h some-redis'
 ```
 
-## Dockerfile
+### Dockerfile
 
 请到 https://github.com/docker-library/docs/tree/master/redis 查看。

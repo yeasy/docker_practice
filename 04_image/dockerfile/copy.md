@@ -1,6 +1,6 @@
-# COPY 复制文件
+## COPY 复制文件
 
-## 基本语法
+### 基本语法
 
 ```docker
 COPY [选项] <源路径>... <目标路径>
@@ -11,33 +11,33 @@ COPY [选项] ["<源路径1>", "<源路径2>", ... "<目标路径>"]
 
 ---
 
-## 基本用法
+### 基本用法
 
-### 复制单个文件
+#### 复制单个文件
 
 ```docker
-# 复制文件到指定目录
+## 复制文件到指定目录
 COPY package.json /app/
 
-# 复制文件并重命名
+## 复制文件并重命名
 COPY config.json /app/settings.json
 ```
 
-### 复制多个文件
+#### 复制多个文件
 
 ```docker
-# 复制多个指定文件
+## 复制多个指定文件
 COPY package.json package-lock.json /app/
 
-# 使用通配符
+## 使用通配符
 COPY *.json /app/
 COPY src/*.js /app/src/
 ```
 
-### 复制目录
+#### 复制目录
 
 ```docker
-# 复制整个目录的内容（不是目录本身）
+## 复制整个目录的内容（不是目录本身）
 COPY src/ /app/src/
 ```
 
@@ -52,7 +52,7 @@ src/                     /app/src/
 
 ---
 
-## 通配符规则
+### 通配符规则
 
 COPY 支持 Go 的 `filepath.Match` 通配符规则：
 
@@ -71,15 +71,15 @@ COPY app[0-9].js /app/  # app0.js ~ app9.js
 
 ---
 
-## 目标路径
+### 目标路径
 
-### 绝对路径
+#### 绝对路径
 
 ```docker
 COPY app.js /usr/src/app/
 ```
 
-### 相对路径（基于 WORKDIR）
+#### 相对路径（基于 WORKDIR）
 
 ```docker
 WORKDIR /app
@@ -87,29 +87,29 @@ COPY package.json ./        # 复制到 /app/package.json
 COPY src/ ./src/            # 复制到 /app/src/
 ```
 
-### 自动创建目录
+#### 自动创建目录
 
 如果目标目录不存在，Docker 会自动创建：
 
 ```docker
-# /app/config/ 不存在也会自动创建
+## /app/config/ 不存在也会自动创建
 COPY settings.json /app/config/
 ```
 
 ---
 
-## 修改文件所有者
+### 修改文件所有者
 
 使用 `--chown` 选项设置文件的用户和组：
 
 ```docker
-# 使用用户名和组名
+## 使用用户名和组名
 COPY --chown=node:node package.json /app/
 
-# 使用 UID 和 GID
+## 使用 UID 和 GID
 COPY --chown=1000:1000 . /app/
 
-# 只指定用户
+## 只指定用户
 COPY --chown=node . /app/
 ```
 
@@ -117,7 +117,7 @@ COPY --chown=node . /app/
 
 ---
 
-## 保留文件元数据
+### 保留文件元数据
 
 COPY 会保留源文件的元数据：
 - 读、写、执行权限
@@ -126,13 +126,13 @@ COPY 会保留源文件的元数据：
 这对于脚本文件特别重要：
 
 ```docker
-# start.sh 的可执行权限会被保留
+## start.sh 的可执行权限会被保留
 COPY start.sh /app/
 ```
 
 ---
 
-## COPY vs ADD
+### COPY vs ADD
 
 | 特性 | COPY | ADD |
 |------|------|-----|
@@ -142,11 +142,11 @@ COPY start.sh /app/
 | 推荐程度 | ✅ **推荐** | ⚠️ 特殊场景使用 |
 
 ```docker
-# 推荐：使用 COPY
+## 推荐：使用 COPY
 COPY app.tar.gz /app/
 RUN tar -xzf /app/app.tar.gz
 
-# ADD 会自动解压（行为不明显，不推荐）
+## ADD 会自动解压（行为不明显，不推荐）
 ADD app.tar.gz /app/
 ```
 
@@ -154,12 +154,12 @@ ADD app.tar.gz /app/
 
 ---
 
-## 多阶段构建中的 COPY
+### 多阶段构建中的 COPY
 
-### 从其他构建阶段复制
+#### 从其他构建阶段复制
 
 ```docker
-# 构建阶段
+## 构建阶段
 FROM node:20 AS builder
 WORKDIR /app
 COPY package*.json ./
@@ -167,15 +167,15 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# 生产阶段
+## 生产阶段
 FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
 ```
 
-### 使用 --link 优化缓存（BuildKit）
+#### 使用 --link 优化缓存（BuildKit）
 
 ```docker
-# 使用 --link 后，文件以独立层添加，不依赖前序指令
+## 使用 --link 后，文件以独立层添加，不依赖前序指令
 COPY --link --from=builder /app/dist /usr/share/nginx/html
 ```
 
@@ -186,12 +186,12 @@ COPY --link --from=builder /app/dist /usr/share/nginx/html
 
 ---
 
-## .dockerignore
+### .dockerignore
 
 使用 `.dockerignore` 排除不需要复制的文件：
 
 ```gitignore
-# .dockerignore
+## .dockerignore
 node_modules
 .git
 .env
@@ -207,43 +207,43 @@ Dockerfile
 
 ---
 
-## 最佳实践
+### 最佳实践
 
-### 1. 利用缓存，先复制依赖文件
+#### 1. 利用缓存，先复制依赖文件
 
 ```docker
-# ✅ 好：先复制依赖定义，再安装，最后复制代码
+## ✅ 好：先复制依赖定义，再安装，最后复制代码
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
 
-# ❌ 差：一次性复制所有文件，代码变更会导致重新 npm install
+## ❌ 差：一次性复制所有文件，代码变更会导致重新 npm install
 COPY . .
 RUN npm install
 ```
 
-### 2. 使用 .dockerignore
+#### 2. 使用 .dockerignore
 
 ```docker
-# 确保 node_modules 不被复制
+## 确保 node_modules 不被复制
 COPY . .
-# .dockerignore 中应包含 node_modules
+## .dockerignore 中应包含 node_modules
 ```
 
-### 3. 明确复制路径
+#### 3. 明确复制路径
 
 ```docker
-# ✅ 好：明确的路径
+## ✅ 好：明确的路径
 COPY src/ /app/src/
 COPY package.json /app/
 
-# ❌ 差：过于宽泛
+## ❌ 差：过于宽泛
 COPY . .
 ```
 
 ---
 
-## 本章小结
+### 本章小结
 
 | 操作 | 示例 |
 |------|------|
@@ -253,9 +253,9 @@ COPY . .
 | 修改所有者 | `COPY --chown=node:node . /app/` |
 | 从构建阶段复制 | `COPY --from=builder /app/dist ./` |
 
-## 延伸阅读
+### 延伸阅读
 
 - [ADD 指令](add.md)：复制和解压
 - [WORKDIR 指令](workdir.md)：设置工作目录
 - [多阶段构建](../multistage-builds.md)：优化镜像大小
-- [最佳实践](../../15_appendix/best_practices.md)：Dockerfile 编写指南
+- [最佳实践](../../15_appendix/15.1_best_practices.md)：Dockerfile 编写指南

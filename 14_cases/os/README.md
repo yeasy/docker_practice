@@ -1,4 +1,4 @@
-# 操作系统
+## 操作系统
 
 目前常用的 Linux 发行版主要包括 `Debian/Ubuntu` 系列和 `CentOS/Fedora` 系列。
 

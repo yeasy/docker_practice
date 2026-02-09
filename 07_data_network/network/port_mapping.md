@@ -1,6 +1,6 @@
-# 外部访问容器
+## 外部访问容器
 
-## 为什么要映射端口
+### 为什么要映射端口
 
 容器运行在自己的隔离网络环境中（通常是 Bridge 模式）。这意味着：
 - **容器之间**：可以通过 IP 或容器名（自定义网络）互通。
@@ -26,14 +26,14 @@
 
 ---
 
-## 端口映射方式
+### 端口映射方式
 
-### 1. 指定映射 (-p)
+#### 1. 指定映射 (-p)
 
 使用 `-p <宿主机端口>:<容器端口>` 格式。
 
 ```bash
-# 将宿主机的 8080 端口映射到容器的 80 端口
+## 将宿主机的 8080 端口映射到容器的 80 端口
 $ docker run -d -p 8080:80 nginx
 ```
 
@@ -48,7 +48,7 @@ $ docker run -d -p 8080:80 nginx
 | `hostPort:containerPort` | 绑定所有 IP (0.0.0.0) 的特定端口 | `-p 8080:80` (默认) |
 | `containerPort` | 绑定所有 IP 的随机端口 | `-p 80` |
 
-### 2. 随机映射 (-P)
+#### 2. 随机映射 (-P)
 
 使用 `-P` (大写) 参数，Docker 会随机映射 Dockerfile 中 `EXPOSE` 指令暴露的所有端口到宿主机的高端口（49000-49900）。
 
@@ -68,9 +68,9 @@ abc123456      0.0.0.0:49153->80/tcp
 
 ---
 
-## 查看端口映射
+### 查看端口映射
 
-### docker port
+#### docker port
 
 ```bash
 $ docker port mycontainer
@@ -78,7 +78,7 @@ $ docker port mycontainer
 80/tcp -> [::]:8080
 ```
 
-### docker ps
+#### docker ps
 
 ```bash
 $ docker ps
@@ -88,20 +88,20 @@ abc123456      nginx     0.0.0.0:8080->80/tcp   web
 
 ---
 
-## 最佳实践与安全
+### 最佳实践与安全
 
-### 1. 限制监听 IP
+#### 1. 限制监听 IP
 
 默认情况下，`-p 8080:80` 会监听 `0.0.0.0:8080`，这意味着任何人只要能连接你的宿主机 IP，就能访问该服务。
 
 如果不希望对外暴露（例如数据库服务），应绑定到 `127.0.0.1`：
 
 ```bash
-# 仅允许本机访问
+## 仅允许本机访问
 $ docker run -d -p 127.0.0.1:3306:3306 mysql
 ```
 
-### 2. 避免端口冲突
+#### 2. 避免端口冲突
 
 如果宿主机 8080 已经被占用了，容器将无法启动。
 
@@ -109,7 +109,7 @@ $ docker run -d -p 127.0.0.1:3306:3306 mysql
 - 更换宿主机端口：`-p 8081:80`
 - 让 Docker 自动分配：`-p 80`
 
-### 3. UDP 映射
+#### 3. UDP 映射
 
 默认是 TCP 协议。如果要映射 UDP 服务（如 DNS, Syslog）：
 
@@ -119,14 +119,14 @@ $ docker run -d -p 53:53/udp dns-server
 
 ---
 
-## 实现原理
+### 实现原理
 
 Docker 使用 `docker-proxy` 进程（用户态）或 `iptables` DNAT 规则（内核态）来实现端口转发。
 
 当流量到达宿主机端口时，iptables 规则将其目标地址修改为容器 IP 并转发：
 
 ```bash
-# 简化的 iptables 逻辑
+## 简化的 iptables 逻辑
 iptables -t nat -A DOCKER -p tcp --dport 8080 -j DNAT --to-destination 172.17.0.2:80
 ```
 
@@ -134,7 +134,7 @@ iptables -t nat -A DOCKER -p tcp --dport 8080 -j DNAT --to-destination 172.17.0.
 
 ---
 
-## 本章小结
+### 本章小结
 
 | 要点 | 说明 |
 |------|------|
@@ -143,7 +143,7 @@ iptables -t nat -A DOCKER -p tcp --dport 8080 -j DNAT --to-destination 172.17.0.
 | **安全性** | 默认监听所有 IP，敏感服务应绑定 `127.0.0.1` |
 | **查看** | 使用 `docker port` 或 `docker ps` |
 
-## 延伸阅读
+### 延伸阅读
 
 - [EXPOSE 指令](../04_image/dockerfile/expose.md)：在 Dockerfile 中声明端口
 - [网络模式](README.md)：Host 模式不需要端口映射

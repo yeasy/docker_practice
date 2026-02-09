@@ -1,6 +1,6 @@
-# RUN 执行命令
+## RUN 执行命令
 
-## 基本语法
+### 基本语法
 
 ```docker
 RUN <command>
@@ -11,9 +11,9 @@ RUN ["executable", "param1", "param2"]
 
 ---
 
-## 两种格式对比
+### 两种格式对比
 
-### 1. Shell 格式
+#### 1. Shell 格式
 
 ```docker
 RUN apt-get update
@@ -26,7 +26,7 @@ RUN apt-get update
   RUN echo "Hello" > /test.txt
   ```
 
-### 2. Exec 格式
+#### 2. Exec 格式
 
 ```docker
 RUN ["apt-get", "update"]
@@ -38,9 +38,9 @@ RUN ["apt-get", "update"]
 
 ---
 
-## 常见最佳实践
+### 常见最佳实践
 
-### 1. 组合命令（减少层数）
+#### 1. 组合命令（减少层数）
 
 每一个 `RUN` 指令都会新建一层镜像。为了减少镜像体积和层数，应使用 `&&` 连接命令。
 
@@ -60,7 +60,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 ```
 
-### 2. 清理缓存
+#### 2. 清理缓存
 
 在安装完软件后，立即清除缓存，可以显著减小镜像体积。
 
@@ -74,14 +74,14 @@ RUN apt-get update && \
   RUN apk add --no-cache package-bar
   ```
 
-### 3. 使用 `set -e` 和 `pipefail`
+#### 3. 使用 `set -e` 和 `pipefail`
 
 默认情况下，管道命令 `cmd1 | cmd2` 只要 `cmd2` 成功，整个 `RUN` 就视为成功。
 
 **❌ 隐蔽的错误**：
 
 ```docker
-# 如果下载失败，gzip 可能会报错，但如果不影响后续，构建可能继续
+## 如果下载失败，gzip 可能会报错，但如果不影响后续，构建可能继续
 RUN wget http://error-url | gzip -d > file
 ```
 
@@ -94,9 +94,9 @@ RUN wget http://url | gzip -d > file
 
 ---
 
-## 常见问题
+### 常见问题
 
-### Q: 为什么 `RUN cd /app` 不生效？
+#### Q: 为什么 `RUN cd /app` 不生效？
 
 ```docker
 RUN cd /app
@@ -114,7 +114,7 @@ WORKDIR /app
 RUN touch hello.txt
 ```
 
-### Q: 环境变量不生效？
+#### Q: 环境变量不生效？
 
 ```docker
 RUN export MY_VAR=hello
@@ -134,26 +134,26 @@ RUN echo $MY_VAR
 
 ---
 
-## 高级技巧
+### 高级技巧
 
-### 1. 使用 BuildKit 的挂载缓存
+#### 1. 使用 BuildKit 的挂载缓存
 
 BuildKit 支持在 `RUN` 指令中使用 `--mount` 挂载缓存，加速构建。
 
 ```docker
-# 缓存 apt 包
+## 缓存 apt 包
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     apt-get update && apt-get install -y gcc
 ```
 
 ```docker
-# 缓存 Go 模块
+## 缓存 Go 模块
 RUN --mount=type=cache,target=/go/pkg/mod \
     go build -o app
 ```
 
-### 2. 挂载密钥
+#### 2. 挂载密钥
 
 安全地使用 SSH 密钥或 Token，而不将其记录在镜像中。
 
@@ -164,7 +164,7 @@ RUN --mount=type=secret,id=mysecret \
 
 ---
 
-## 本章小结
+### 本章小结
 
 | 要点 | 说明 |
 |------|------|
@@ -174,8 +174,8 @@ RUN --mount=type=secret,id=mysecret \
 | **陷阱** | `cd` 不持久，环境变量不持久 |
 | **进阶** | 使用 Cache Mount 加速构建 |
 
-## 延伸阅读
+### 延伸阅读
 
 - [CMD 容器启动命令](cmd.md)：容器启动时的命令
 - [WORKDIR 指定工作目录](workdir.md)：改变目录
-- [Dockerfile 最佳实践](../../15_appendix/best_practices.md)
+- [Dockerfile 最佳实践](../../15_appendix/15.1_best_practices.md)
