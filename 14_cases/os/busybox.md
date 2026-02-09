@@ -1,6 +1,6 @@
-# Busybox
+## Busybox
 
-## 简介
+### 简介
 
 ![Busybox - Linux 瑞士军刀](../../_images/busybox-logo.png)
 
@@ -8,7 +8,7 @@
 
 `BusyBox` 可运行于多款 `POSIX` 环境的操作系统中，如 `Linux`（包括 `Android`）、`Hurd`、`FreeBSD` 等。
 
-## 获取官方镜像
+### 获取官方镜像
 
 可以使用 `docker pull` 指令下载 `busybox:latest` 镜像：
 
@@ -29,7 +29,7 @@ REPOSITORY                   TAG                 IMAGE ID            CREATED    
 busybox                   latest              e72ac664f4f0        6 weeks ago         2.433 MB
 ```
 
-## 运行 busybox
+### 运行 busybox
 
 启动一个 `busybox` 容器，并在容器中执行 `grep` 命令。
 
@@ -107,7 +107,7 @@ tmpfs on /sys/firmware type tmpfs (ro,relatime)
 
 `busybox` 镜像虽然小巧，但包括了大量常见的 `Linux` 命令，读者可以用它快速熟悉 `Linux` 命令。
 
-## 相关资源
+### 相关资源
 
 * `Busybox` 官网：https://busybox.net/
 * `Busybox` 官方仓库：https://git.busybox.net/busybox/

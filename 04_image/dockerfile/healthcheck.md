@@ -1,6 +1,6 @@
-# HEALTHCHECK 健康检查
+## HEALTHCHECK 健康检查
 
-## 基本语法
+### 基本语法
 
 ```docker
 HEALTHCHECK [选项] CMD <命令>
@@ -11,7 +11,7 @@ HEALTHCHECK NONE
 
 ---
 
-## 为什么需要 HEALTHCHECK
+### 为什么需要 HEALTHCHECK
 
 在没有 HEALTHCHECK 之前，Docker 只能通过**进程退出码**来判断容器状态。
 
@@ -32,9 +32,9 @@ Starting ──成功──> Healthy ──失败N次──> Unhealthy
 
 ---
 
-## 基本用法
+### 基本用法
 
-### Web 服务检查
+#### Web 服务检查
 
 ```docker
 FROM nginx
@@ -44,13 +44,13 @@ HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
   CMD curl -fs http://localhost/ || exit 1
 ```
 
-### 命令返回值
+#### 命令返回值
 
 - `0`: 成功 (healthy)
 - `1`: 失败 (unhealthy)
 - `2`: 保留值 (不使用)
 
-### 常用选项
+#### 常用选项
 
 | 选项 | 说明 | 默认值 |
 |------|------|--------|
@@ -61,7 +61,7 @@ HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
 
 ---
 
-## 屏蔽健康检查
+### 屏蔽健康检查
 
 如果基础镜像定义了 HEALTHCHECK，但你不想使用它：
 
@@ -72,31 +72,31 @@ HEALTHCHECK NONE
 
 ---
 
-## 常见检查脚本
+### 常见检查脚本
 
-### HTTP 服务
+#### HTTP 服务
 
 使用 `curl` 或 `wget`：
 
 ```docker
-# 使用 curl
+## 使用 curl
 HEALTHCHECK CMD curl -f http://localhost/ || exit 1
 
-# 使用 wget (Alpine 默认包含)
+## 使用 wget (Alpine 默认包含)
 HEALTHCHECK CMD wget -q --spider http://localhost/ || exit 1
 ```
 
-### 数据库
+#### 数据库
 
 ```docker
-# MySQL
+## MySQL
 HEALTHCHECK CMD mysqladmin ping -h localhost || exit 1
 
-# Redis
+## Redis
 HEALTHCHECK CMD redis-cli ping || exit 1
 ```
 
-### 自定义脚本
+#### 自定义脚本
 
 ```docker
 COPY healthcheck.sh /usr/local/bin/
@@ -105,7 +105,7 @@ HEALTHCHECK CMD ["healthcheck.sh"]
 
 ---
 
-## 在 Compose 中使用
+### 在 Compose 中使用
 
 可以在 `docker-compose.yml` 中覆盖或定义健康检查：
 
@@ -137,16 +137,16 @@ services:
 
 ---
 
-## 查看健康状态
+### 查看健康状态
 
 ```bash
-# 查看容器状态（包含健康信息）
+## 查看容器状态（包含健康信息）
 $ docker ps
 CONTAINER ID   STATUS
 abc123         Up 1 minute (healthy)
 def456         Up 2 minutes (unhealthy)
 
-# 查看详细健康日志
+## 查看详细健康日志
 $ docker inspect --format '{{json .State.Health}}' mycontainer | jq
 {
   "Status": "healthy",
@@ -164,32 +164,32 @@ $ docker inspect --format '{{json .State.Health}}' mycontainer | jq
 
 ---
 
-## 最佳实践
+### 最佳实践
 
-### 1. 避免副作用
+#### 1. 避免副作用
 
 健康检查会被频繁执行，不要在检查脚本中进行写操作或消耗大量资源的操作。
 
-### 2. 使用轻量级工具
+#### 2. 使用轻量级工具
 
 优先使用镜像中已有的工具（如 `wget`），避免为了健康检查安装庞大的依赖（如 `curl`）。
 
-### 3. 设置合理的 Start Period
+#### 3. 设置合理的 Start Period
 
 应用启动可能需要时间（如 Java 应用）。设置 `--start-period` 可以防止在启动阶段因检查失败而误判。
 
 ```docker
-# 给应用 1 分钟启动时间
+## 给应用 1 分钟启动时间
 HEALTHCHECK --start-period=60s CMD curl -f http://localhost/ || exit 1
 ```
 
-### 4. 只检查核心依赖
+#### 4. 只检查核心依赖
 
 健康检查应主要关注**当前服务**是否可用，而不是检查其下游依赖（数据库等）。下游依赖的检查应由应用逻辑处理。
 
 ---
 
-## 本章小结
+### 本章小结
 
 | 要点 | 说明 |
 |------|------|
@@ -199,8 +199,8 @@ HEALTHCHECK --start-period=60s CMD curl -f http://localhost/ || exit 1
 | **Compose** | 支持 `condition: service_healthy` 依赖 |
 | **注意** | 避免副作用，节省资源 |
 
-## 延伸阅读
+### 延伸阅读
 
 - [CMD 容器启动命令](cmd.md)：启动主进程
-- [Compose 模板文件](../../compose/compose_file.md)：Compose 中的健康检查
-- [Docker 调试](../../15_appendix/debug.md)：容器排障
+- [Compose 模板文件](../../compose/9.5_compose_file.md)：Compose 中的健康检查
+- [Docker 调试](../../15_appendix/15.2_debug.md)：容器排障

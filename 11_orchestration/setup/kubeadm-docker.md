@@ -1,14 +1,14 @@
-# 使用 kubeadm 部署 kubernetes(使用 Docker)
+## 使用 kubeadm 部署 kubernetes(使用 Docker)
 
 `kubeadm` 提供了 `kubeadm init` 以及 `kubeadm join` 这两个命令作为快速创建 `kubernetes` 集群的最佳实践。
 
-## 安装 Docker
+### 安装 Docker
 
 参考 [安装 Docker](../../install) 一节安装 Docker。
 
-## 安装 **kubelet** **kubeadm** **kubectl**
+### 安装 **kubelet** **kubeadm** **kubectl**
 
-### Ubuntu/Debian
+#### Ubuntu/Debian
 
 ```bash
 $ apt-get update && apt-get install -y apt-transport-https
@@ -22,7 +22,7 @@ $ apt-get update
 $ apt-get install -y kubelet kubeadm kubectl
 ```
 
-### CentOS/Fedora
+#### CentOS/Fedora
 
 ```bash
 $ cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
@@ -38,7 +38,7 @@ EOF
 $ sudo yum install -y kubelet kubeadm kubectl
 ```
 
-## 修改内核的运行参数
+### 修改内核的运行参数
 
 ```bash
 $ cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
@@ -47,18 +47,18 @@ net.ipv4.ip_forward                 = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 EOF
 
-# 应用配置
+## 应用配置
 $ sysctl --system
 ```
 
-## 配置 kubelet
+### 配置 kubelet
 
-### 修改 `kubelet.service`
+#### 修改 `kubelet.service`
 
 `/etc/systemd/system/kubelet.service.d/10-proxy-ipvs.conf` 写入以下内容
 
 ```bash
-# 启用 ipvs 相关内核模块
+## 启用 ipvs 相关内核模块
 [Service]
 ExecStartPre=-/sbin/modprobe ip_vs
 ExecStartPre=-/sbin/modprobe ip_vs_rr
@@ -72,9 +72,9 @@ ExecStartPre=-/sbin/modprobe ip_vs_sh
 $ sudo systemctl daemon-reload
 ```
 
-## 部署
+### 部署
 
-### master
+#### master
 
 ```bash
 $ sudo kubeadm init --image-repository registry.cn-hangzhou.aliyuncs.com/google_containers \
@@ -114,7 +114,7 @@ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
     --discovery-token-ca-cert-hash sha256:5edb316fd0d8ea2792cba15cdf1c899a366f147aa03cba52d4e5c5884ad836fe
 ```
 
-### node 工作节点
+#### node 工作节点
 
 在 **另一主机** 重复 **部署** 小节以前的步骤，安装配置好 kubelet。根据提示，加入到集群。
 
@@ -123,11 +123,11 @@ $ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
     --discovery-token-ca-cert-hash sha256:5edb316fd0d8ea2792cba15cdf1c899a366f147aa03cba52d4e5c5884ad836fe
 ```
 
-## 查看服务
+### 查看服务
 
 所有服务启动后，查看本地实际运行的 Docker 容器。这些服务大概分为三类：主节点服务、工作节点服务和其它服务。
 
-### 主节点服务
+#### 主节点服务
 
 * `apiserver` 是整个系统的对外接口，提供 RESTful 方式供客户端和其它组件调用；
 
@@ -135,15 +135,15 @@ $ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
 
 * `controller-manager` 负责管理控制器，包括 endpoint-controller（刷新服务和 pod 的关联信息）和 replication-controller（维护某个 pod 的复制为配置的数值）。
 
-### 工作节点服务
+#### 工作节点服务
 
 * `proxy` 为 pod 上的服务提供访问的代理。
 
-### 其它服务
+#### 其它服务
 
 * Etcd 是所有状态的存储数据库；
 
-## 使用
+### 使用
 
 将 `/etc/kubernetes/admin.conf` 复制到 `~/.kube/config`
 
@@ -151,18 +151,18 @@ $ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
 
 由于未部署 CNI 插件，CoreDNS 未正常启动。如何使用 Kubernetes，请参考后续章节。
 
-## 部署 CNI
+### 部署 CNI
 
 这里以 `flannel` 为例进行介绍。
 
-### flannel
+#### flannel
 
 检查 podCIDR 设置
 
 ```bash
 $ kubectl get node -o yaml | grep CIDR
 
-# 输出
+## 输出
     podCIDR: 10.244.0.0/16
     podCIDRs:
 ```
@@ -171,17 +171,17 @@ $ kubectl get node -o yaml | grep CIDR
 $ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.11.0/Documentation/kube-flannel.yml
 ```
 
-## master 节点默认不能运行 pod
+### master 节点默认不能运行 pod
 
 如果用 `kubeadm` 部署一个单节点集群，默认情况下无法使用，请执行以下命令解除限制
 
 ```bash
 $ kubectl taint nodes --all node-role.kubernetes.io/master-
 
-# 恢复默认值
-# $ kubectl taint nodes NODE_NAME node-role.kubernetes.io/master=true:NoSchedule
+## 恢复默认值
+## $ kubectl taint nodes NODE_NAME node-role.kubernetes.io/master=true:NoSchedule
 ```
 
-## 参考文档
+### 参考文档
 
 * [官方文档](https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)

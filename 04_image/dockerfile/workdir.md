@@ -1,6 +1,6 @@
-# WORKDIR 指定工作目录
+## WORKDIR 指定工作目录
 
-## 基本语法
+### 基本语法
 
 ```docker
 WORKDIR <工作目录路径>
@@ -10,7 +10,7 @@ WORKDIR <工作目录路径>
 
 ---
 
-## 基本用法
+### 基本用法
 
 ```docker
 WORKDIR /app
@@ -22,17 +22,17 @@ COPY . .         # 复制到 /app/
 
 ---
 
-## 为什么需要 WORKDIR
+### 为什么需要 WORKDIR
 
-### 常见错误
+#### 常见错误
 
 ```docker
-# ❌ 错误：cd 在下一个 RUN 中无效
+## ❌ 错误：cd 在下一个 RUN 中无效
 RUN cd /app
 RUN echo "hello" > world.txt    # 文件在根目录！
 ```
 
-### 原因分析
+#### 原因分析
 
 ```
 RUN cd /app
@@ -47,17 +47,17 @@ RUN echo "hello" > world.txt
 
 每个 RUN 都在新容器中执行，**前一个 RUN 的内存状态（包括工作目录）不会保留**。
 
-### 正确做法
+#### 正确做法
 
 ```docker
-# ✅ 正确：使用 WORKDIR
+## ✅ 正确：使用 WORKDIR
 WORKDIR /app
 RUN echo "hello" > world.txt    # 创建 /app/world.txt
 ```
 
 ---
 
-## 相对路径
+### 相对路径
 
 WORKDIR 支持相对路径，基于上一个 WORKDIR：
 
@@ -71,7 +71,7 @@ RUN pwd    # 输出 /a/b/c
 
 ---
 
-## 使用环境变量
+### 使用环境变量
 
 ```docker
 ENV APP_HOME=/app
@@ -82,10 +82,10 @@ RUN pwd    # 输出 /app
 
 ---
 
-## 多阶段构建中的 WORKDIR
+### 多阶段构建中的 WORKDIR
 
 ```docker
-# 构建阶段
+## 构建阶段
 FROM node:20 AS builder
 WORKDIR /build
 COPY package*.json ./
@@ -93,7 +93,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# 生产阶段
+## 生产阶段
 FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
 COPY --from=builder /build/dist .
@@ -101,9 +101,9 @@ COPY --from=builder /build/dist .
 
 ---
 
-## 最佳实践
+### 最佳实践
 
-### 1. 尽早设置 WORKDIR
+#### 1. 尽早设置 WORKDIR
 
 ```docker
 FROM node:20
@@ -115,40 +115,40 @@ COPY . .
 CMD ["node", "server.js"]
 ```
 
-### 2. 使用绝对路径
+#### 2. 使用绝对路径
 
 ```docker
-# ✅ 推荐：绝对路径，意图明确
+## ✅ 推荐：绝对路径，意图明确
 WORKDIR /app
 
-# ⚠️ 避免：相对路径可能造成混淆
+## ⚠️ 避免：相对路径可能造成混淆
 WORKDIR app
 ```
 
-### 3. 不要用 RUN cd
+#### 3. 不要用 RUN cd
 
 ```docker
-# ❌ 避免
+## ❌ 避免
 RUN cd /app && echo "hello" > world.txt
 
-# ✅ 推荐
+## ✅ 推荐
 WORKDIR /app
 RUN echo "hello" > world.txt
 ```
 
-### 4. 适时重置 WORKDIR
+#### 4. 适时重置 WORKDIR
 
 ```docker
 WORKDIR /app
-# ... 应用相关操作 ...
+## ... 应用相关操作 ...
 
 WORKDIR /data
-# ... 数据相关操作 ...
+## ... 数据相关操作 ...
 ```
 
 ---
 
-## 与其他指令的关系
+### 与其他指令的关系
 
 | 指令 | WORKDIR 的影响 |
 |------|---------------|
@@ -168,7 +168,7 @@ CMD ["./start.sh"]         # /app/start.sh
 
 ---
 
-## 运行时覆盖
+### 运行时覆盖
 
 使用 `-w` 参数覆盖工作目录：
 
@@ -179,7 +179,7 @@ $ docker run -w /tmp myimage pwd
 
 ---
 
-## 本章小结
+### 本章小结
 
 | 要点 | 说明 |
 |------|------|
@@ -189,8 +189,8 @@ $ docker run -w /tmp myimage pwd
 | **持久性** | 影响后续所有指令，直到下次 WORKDIR |
 | **不要用** | `RUN cd /path`（无效） |
 
-## 延伸阅读
+### 延伸阅读
 
 - [COPY 复制文件](copy.md)：文件复制
-- [RUN 执行命令](../../04_image/build.md)：执行构建命令
-- [最佳实践](../../15_appendix/best_practices.md)：Dockerfile 编写指南
+- [RUN 执行命令](../../04_image/4.5_build.md)：执行构建命令
+- [最佳实践](../../15_appendix/15.1_best_practices.md)：Dockerfile 编写指南

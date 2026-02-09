@@ -1,6 +1,6 @@
-# LABEL 为镜像添加元数据
+## LABEL 为镜像添加元数据
 
-## 基本语法
+### 基本语法
 
 ```docker
 LABEL <key>=<value> <key>=<value> ...
@@ -10,7 +10,7 @@ LABEL <key>=<value> <key>=<value> ...
 
 ---
 
-## 为什么需要 LABEL
+### 为什么需要 LABEL
 
 1. **版本管理**：记录版本号、构建时间、Git Commit ID
 2. **联系信息**：维护者邮箱、文档地址、支持渠道
@@ -19,16 +19,16 @@ LABEL <key>=<value> <key>=<value> ...
 
 ---
 
-## 基本用法
+### 基本用法
 
-### 定义单个标签
+#### 定义单个标签
 
 ```docker
 LABEL version="1.0"
 LABEL description="这是一个 Web 应用服务器"
 ```
 
-### 定义多个标签（推荐）
+#### 定义多个标签（推荐）
 
 ```docker
 LABEL maintainer="user@example.com" \
@@ -41,7 +41,7 @@ LABEL maintainer="user@example.com" \
 
 ---
 
-## 常用标签规范 (OCI Annotations)
+### 常用标签规范 (OCI Annotations)
 
 为了标准和互操作性，推荐使用 [OCI Image Format Specification](https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys) 定义的标准标签：
 
@@ -57,7 +57,7 @@ LABEL maintainer="user@example.com" \
 | `org.opencontainers.image.title` | 镜像标题 | `My App` |
 | `org.opencontainers.image.description` | 描述 | `Production ready web server` |
 
-### 示例
+#### 示例
 
 ```docker
 LABEL org.opencontainers.image.authors="yeasy" \
@@ -68,27 +68,27 @@ LABEL org.opencontainers.image.authors="yeasy" \
 
 ---
 
-## MAINTAINER 指令（已废弃）
+### MAINTAINER 指令（已废弃）
 
 旧版本的 Dockerfile 中常看到 `MAINTAINER` 指令：
 
 ```docker
-# ❌ 已弃用
+## ❌ 已弃用
 MAINTAINER user@example.com
 ```
 
 现在推荐使用 `LABEL`：
 
 ```docker
-# ✅ 推荐
+## ✅ 推荐
 LABEL maintainer="user@example.com"
-# 或
+## 或
 LABEL org.opencontainers.image.authors="user@example.com"
 ```
 
 ---
 
-## 动态标签
+### 动态标签
 
 配合 `ARG` 使用，可以在构建时动态注入标签：
 
@@ -111,9 +111,9 @@ $ docker build \
 
 ---
 
-## 查看标签
+### 查看标签
 
-### docker inspect
+#### docker inspect
 
 查看镜像的标签信息：
 
@@ -124,21 +124,21 @@ $ docker inspect nginx --format '{{json .Config.Labels}}' | jq
 }
 ```
 
-### 过滤器
+#### 过滤器
 
 可以使用标签过滤镜像：
 
 ```bash
-# 列出作者是 yeasy 的所有镜像
+## 列出作者是 yeasy 的所有镜像
 $ docker images --filter "label=org.opencontainers.image.authors=yeasy"
 
-# 删除所有带有特定标签的镜像
+## 删除所有带有特定标签的镜像
 $ docker rmi $(docker images -q --filter "label=stage=builder")
 ```
 
 ---
 
-## 本章小结
+### 本章小结
 
 | 要点 | 说明 |
 |------|------|
@@ -148,7 +148,7 @@ $ docker rmi $(docker images -q --filter "label=stage=builder")
 | **弃用** | 不要再使用 `MAINTAINER` |
 | **查看** | `docker inspect` |
 
-## 延伸阅读
+### 延伸阅读
 
 - [OCI 标签规范](https://github.com/opencontainers/image-spec/blob/main/annotations.md)
-- [Dockerfile 最佳实践](../../15_appendix/best_practices.md)
+- [Dockerfile 最佳实践](../../15_appendix/15.1_best_practices.md)

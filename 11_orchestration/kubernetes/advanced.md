@@ -1,8 +1,8 @@
-# Kubernetes 高级特性
+## Kubernetes 高级特性
 
 掌握了 Kubernetes 的核心概念（Pod, Service, Deployment）后，我们需要了解更多高级特性以构建生产级应用。
 
-## Helm - 包管理工具
+### Helm - 包管理工具
 
 [Helm](https://helm.sh/) 被称为 Kubernetes 的包管理器（类似于 Linux 的 apt/yum）。它将一组 Kubernetes 资源定义文件打包为一个 **Chart**。
 
@@ -10,7 +10,7 @@
 *   **版本管理**：轻松回滚应用的发布版本。
 *   **模板化**：支持复杂的应用部署逻辑配置。
 
-## Ingress - 服务的入口
+### Ingress - 服务的入口
 
 Service 虽然提供了负载均衡，但通常是 4 层（TCP/UDP）。**Ingress** 提供了 7 层（HTTP/HTTPS）路由能力，充当集群的网关。
 
@@ -20,7 +20,7 @@ Service 虽然提供了负载均衡，但通常是 4 层（TCP/UDP）。**Ingres
 
 常见的 Ingress Controller有 Nginx Ingress Controller, Traefik, Istio Gateway 等。
 
-## Persistent Volume (PV) 与 StorageClass
+### Persistent Volume (PV) 与 StorageClass
 
 容器内的文件是临时的。对于有状态应用（如数据库），需要持久化存储。
 
@@ -28,7 +28,7 @@ Service 虽然提供了负载均衡，但通常是 4 层（TCP/UDP）。**Ingres
 *   **PV (Persistent Volume)**：实际的存储资源（NFS, AWS EBS, Ceph 等）。
 *   **StorageClass**：定义存储类，支持动态创建 PV。
 
-## Horizontal Pod Autoscaling (HPA)
+### Horizontal Pod Autoscaling (HPA)
 
 HPA 根据 CPU 利用率或其他指标（如内存、自定义指标）自动扩缩 Deployment 或 ReplicaSet 中的 Pod 数量。
 
@@ -53,7 +53,7 @@ spec:
         averageUtilization: 50
 ```
 
-## ConfigMap 与 Secret
+### ConfigMap 与 Secret
 
 *   **ConfigMap**：存储非机密的配置数据（配置文件、环境变量）。
 *   **Secret**：存储机密数据（密码、Token、证书），在 Etcd 中加密存储。

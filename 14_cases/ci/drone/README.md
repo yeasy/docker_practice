@@ -1,4 +1,4 @@
-# Drone
+## Drone
 
 基于 `Docker` 的 `CI/CD` 工具 `Drone` 所有编译、测试的流程都在 `Docker` 容器中进行。
 
@@ -6,13 +6,13 @@
 
 本小节以 `GitHub` + `Drone` 来演示 `Drone` 的工作流程。当然在实际开发过程中，你的代码也许不在 GitHub 托管，那么你可以尝试使用 `Gogs` + `Drone` 来进行 `CI/CD`。
 
-## Drone 关联项目
+### Drone 关联项目
 
 在 Github 新建一个名为 `drone-demo` 的仓库。
 
-打开我们已经 [部署好的 Drone 网站](install.md) 或者 [Drone Cloud](https://cloud.drone.io)，使用 GitHub 账号登录，在界面中关联刚刚新建的 `drone-demo` 仓库。
+打开我们已经 [部署好的 Drone 网站](9.2_install.md) 或者 [Drone Cloud](https://cloud.drone.io)，使用 GitHub 账号登录，在界面中关联刚刚新建的 `drone-demo` 仓库。
 
-## 编写项目源代码
+### 编写项目源代码
 
 初始化一个 git 仓库
 
@@ -72,7 +72,7 @@ trigger:
 └── app.go
 ```
 
-## 推送项目源代码到 GitHub
+### 推送项目源代码到 GitHub
 
 ```bash
 $ git add .
@@ -82,7 +82,7 @@ $ git commit -m "test drone ci"
 $ git push origin master
 ```
 
-## 查看项目构建过程及结果
+### 查看项目构建过程及结果
 
 打开我们部署好的 `Drone` 网站或者 Drone Cloud，即可看到构建结果。
 
@@ -92,7 +92,7 @@ $ git push origin master
 
 本书 GitBook 也使用 Drone 进行 CI/CD，具体配置信息请查看本书根目录 [`.drone.yml`](../../../.drone.yml) 文件。
 
-## 参考链接
+### 参考链接
 
 * [Drone Github](https://github.com/drone/drone)
 * [Drone 文档](https://docs.drone.io/)

@@ -1,27 +1,27 @@
-# ENV 设置环境变量
+## ENV 设置环境变量
 
-## 基本语法
+### 基本语法
 
 ```docker
-# 格式一：单个变量
+## 格式一：单个变量
 ENV <key> <value>
 
-# 格式二：多个变量（推荐）
+## 格式二：多个变量（推荐）
 ENV <key1>=<value1> <key2>=<value2> ...
 ```
 
 ---
 
-## 基本用法
+### 基本用法
 
-### 设置单个变量
+#### 设置单个变量
 
 ```docker
 ENV NODE_VERSION 20.10.0
 ENV APP_ENV production
 ```
 
-### 设置多个变量
+#### 设置多个变量
 
 ```docker
 ENV NODE_VERSION=20.10.0 \
@@ -33,26 +33,26 @@ ENV NODE_VERSION=20.10.0 \
 
 ---
 
-## 环境变量的作用
+### 环境变量的作用
 
-### 1. 后续指令中使用
+#### 1. 后续指令中使用
 
 ```docker
 ENV NODE_VERSION=20.10.0
 
-# 在 RUN 中使用
+## 在 RUN 中使用
 RUN curl -fsSL https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz \
     | tar -xJ -C /usr/local --strip-components=1
 
-# 在 WORKDIR 中使用
+## 在 WORKDIR 中使用
 ENV APP_HOME=/app
 WORKDIR $APP_HOME
 
-# 在 COPY 中使用
+## 在 COPY 中使用
 COPY . $APP_HOME
 ```
 
-### 2. 容器运行时使用
+#### 2. 容器运行时使用
 
 ```docker
 ENV DATABASE_URL=postgres://localhost/mydb
@@ -71,7 +71,7 @@ const dbUrl = process.env.DATABASE_URL;
 
 ---
 
-## 支持环境变量的指令
+### 支持环境变量的指令
 
 以下指令可以使用 `$变量名` 或 `${变量名}` 格式：
 
@@ -91,25 +91,25 @@ const dbUrl = process.env.DATABASE_URL;
 
 ---
 
-## 运行时覆盖
+### 运行时覆盖
 
 使用 `-e` 或 `--env` 覆盖 Dockerfile 中定义的环境变量：
 
 ```bash
-# 覆盖单个变量
+## 覆盖单个变量
 $ docker run -e APP_ENV=development myimage
 
-# 覆盖多个变量
+## 覆盖多个变量
 $ docker run -e APP_ENV=development -e DEBUG=true myimage
 
-# 从环境变量文件读取
+## 从环境变量文件读取
 $ docker run --env-file .env myimage
 ```
 
-### .env 文件格式
+#### .env 文件格式
 
 ```bash
-# .env
+## .env
 APP_ENV=development
 DEBUG=true
 DATABASE_URL=postgres://localhost/mydb
@@ -117,7 +117,7 @@ DATABASE_URL=postgres://localhost/mydb
 
 ---
 
-## ENV vs ARG
+### ENV vs ARG
 
 | 特性 | ENV | ARG |
 |------|-----|-----|
@@ -126,53 +126,53 @@ DATABASE_URL=postgres://localhost/mydb
 | **覆盖方式** | `docker run -e` | `docker build --build-arg` |
 | **适用场景** | 应用配置 | 构建参数（如版本号） |
 
-### 组合使用
+#### 组合使用
 
 ```docker
-# ARG 接收构建时参数
+## ARG 接收构建时参数
 ARG NODE_VERSION=20
 
-# ENV 保存到运行时
+## ENV 保存到运行时
 ENV NODE_VERSION=$NODE_VERSION
 
-# 后续指令使用
+## 后续指令使用
 RUN curl -fsSL https://nodejs.org/dist/v${NODE_VERSION}/...
 ```
 
 ```bash
-# 构建时指定版本
+## 构建时指定版本
 $ docker build --build-arg NODE_VERSION=18 -t myapp .
 ```
 
 ---
 
-## 最佳实践
+### 最佳实践
 
-### 1. 统一管理版本号
+#### 1. 统一管理版本号
 
 ```docker
-# ✅ 好：版本集中管理
+## ✅ 好：版本集中管理
 ENV NGINX_VERSION=1.25.0 \
     NODE_VERSION=20.10.0 \
     PYTHON_VERSION=3.12.0
 
 RUN apt-get install nginx=${NGINX_VERSION}
 
-# ❌ 差：版本分散在各处
+## ❌ 差：版本分散在各处
 RUN apt-get install nginx=1.25.0
 ```
 
-### 2. 不要存储敏感信息
+#### 2. 不要存储敏感信息
 
 ```docker
-# ❌ 错误：密码写入镜像
+## ❌ 错误：密码写入镜像
 ENV DB_PASSWORD=secret123
 
-# ✅ 正确：运行时传入
-# docker run -e DB_PASSWORD=xxx myimage
+## ✅ 正确：运行时传入
+## docker run -e DB_PASSWORD=xxx myimage
 ```
 
-### 3. 为应用提供合理默认值
+#### 3. 为应用提供合理默认值
 
 ```docker
 ENV APP_ENV=production \
@@ -180,50 +180,50 @@ ENV APP_ENV=production \
     LOG_LEVEL=info
 ```
 
-### 4. 使用有意义的变量名
+#### 4. 使用有意义的变量名
 
 ```docker
-# ✅ 好：清晰的命名
+## ✅ 好：清晰的命名
 ENV REDIS_HOST=localhost \
     REDIS_PORT=6379
 
-# ❌ 差：模糊的命名
+## ❌ 差：模糊的命名
 ENV HOST=localhost \
     PORT=6379
 ```
 
 ---
 
-## 常见问题
+### 常见问题
 
-### Q: 环境变量在 CMD 中不展开
+#### Q: 环境变量在 CMD 中不展开
 
 exec 格式不会自动展开环境变量：
 
 ```docker
-# ❌ 不会展开 $PORT
+## ❌ 不会展开 $PORT
 CMD ["python", "app.py", "--port", "$PORT"]
 
-# ✅ 使用 shell 格式或显式调用 sh
+## ✅ 使用 shell 格式或显式调用 sh
 CMD ["sh", "-c", "python app.py --port $PORT"]
 ```
 
-### Q: 如何查看容器的环境变量
+#### Q: 如何查看容器的环境变量
 
 ```bash
 $ docker inspect mycontainer --format '{{json .Config.Env}}'
 $ docker exec mycontainer env
 ```
 
-### Q: 多行 ENV 还是多个 ENV
+#### Q: 多行 ENV 还是多个 ENV
 
 ```docker
-# ✅ 推荐：减少层数
+## ✅ 推荐：减少层数
 ENV VAR1=value1 \
     VAR2=value2 \
     VAR3=value3
 
-# ⚠️ 多个 ENV 会创建多层
+## ⚠️ 多个 ENV 会创建多层
 ENV VAR1=value1
 ENV VAR2=value2
 ENV VAR3=value3
@@ -231,7 +231,7 @@ ENV VAR3=value3
 
 ---
 
-## 本章小结
+### 本章小结
 
 | 要点 | 说明 |
 |------|------|
@@ -241,8 +241,8 @@ ENV VAR3=value3
 | **与 ARG** | ARG 仅构建时，ENV 持久化到运行时 |
 | **安全** | 不要存储敏感信息 |
 
-## 延伸阅读
+### 延伸阅读
 
 - [ARG 构建参数](arg.md)：构建时变量
-- [Compose 环境变量](../../compose/compose_file.md)：Compose 中的环境变量
-- [最佳实践](../../15_appendix/best_practices.md)：Dockerfile 编写指南
+- [Compose 环境变量](../../compose/9.5_compose_file.md)：Compose 中的环境变量
+- [最佳实践](../../15_appendix/15.1_best_practices.md)：Dockerfile 编写指南

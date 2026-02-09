@@ -1,4 +1,4 @@
-# 其它安全特性
+## 其它安全特性
 
 除了能力机制之外，还可以利用一些现有的安全机制来增强使用 Docker 的安全性，例如 TOMOYO, AppArmor, Seccomp, SELinux, GRSEC 等。
 

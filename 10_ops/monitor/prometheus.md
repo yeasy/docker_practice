@@ -1,8 +1,8 @@
-# Prometheus + Grafana
+## Prometheus + Grafana
 
 [Prometheus](https://prometheus.io/) 是一个开源的系统监控和报警工具包。它受 Google Borgmon 的启发，由 SoundCloud 在 2012 年创建。
 
-## 架构简介
+### 架构简介
 
 Prometheus 的主要组件包括：
 
@@ -11,11 +11,11 @@ Prometheus 的主要组件包括：
 * **Alertmanager**: 处理报警发送。
 * **Pushgateway**: 用于支持短生命周期的 Job 推送数据。
 
-## 快速部署
+### 快速部署
 
 我们可以使用 Docker Compose 快速部署一套 Prometheus + Grafana 监控环境。
 
-### 1. 准备配置文件
+#### 1. 准备配置文件
 
 创建 `prometheus.yml`:
 
@@ -37,7 +37,7 @@ scrape_configs:
       - targets: ['cadvisor:8080']
 ```
 
-### 2. 编写 Docker Compose 文件
+#### 2. 编写 Docker Compose 文件
 
 创建 `docker-compose.yml`:
 
@@ -88,7 +88,7 @@ networks:
   monitoring:
 ```
 
-### 3. 启动服务
+#### 3. 启动服务
 
 ```bash
 $ docker-compose up -d
@@ -99,7 +99,7 @@ $ docker-compose up -d
 * Prometheus: `http://localhost:9090`
 * Grafana: `http://localhost:3000` (默认账号密码: admin/admin)
 
-## 配置 Grafana 面板
+### 配置 Grafana 面板
 
 1. 在 Grafana 中添加 Prometheus 数据源，URL 填写 `http://prometheus:9090`。
 2. 导入现成的 Dashboard 模板，例如 [Node Exporter Full](https://grafana.com/grafana/dashboards/1860) (ID: 1860) 和 [Docker Container](https://grafana.com/grafana/dashboards/193) (ID: 193)。

@@ -1,22 +1,22 @@
-# 使用 kubeadm 部署 kubernetes(CRI 使用 containerd)
+## 使用 kubeadm 部署 kubernetes(CRI 使用 containerd)
 
 `kubeadm` 提供了 `kubeadm init` 以及 `kubeadm join` 这两个命令作为快速创建 `kubernetes` 集群的最佳实践。
 
 > **版本说明**：Kubernetes 版本更新较快（约每 4 个月一个新版本），本文档基于 Kubernetes 1.35 编写。请访问 [Kubernetes 官方发布页](https://kubernetes.io/releases/) 获取最新版本信息。
 
-## 安装 containerd
+### 安装 containerd
 
 参考 [安装 Docker](../../install) 一节添加 apt/yum 源，之后执行如下命令。
 
 ```bash
-# debian 系
+## debian 系
 $ sudo apt install containerd.io
 
-# rhel 系
+## rhel 系
 $ sudo yum install containerd.io
 ```
 
-## 配置 containerd
+### 配置 containerd
 
 新建 `/etc/systemd/system/cri-containerd.service` 文件
 
@@ -35,13 +35,13 @@ Delegate=yes
 KillMode=process
 Restart=always
 RestartSec=5
-# Having non-zero Limit*s causes performance problems due to accounting overhead
-# in the kernel. We recommend using cgroups to do container-local accounting.
+## Having non-zero Limit*s causes performance problems due to accounting overhead
+## in the kernel. We recommend using cgroups to do container-local accounting.
 LimitNPROC=infinity
 LimitCORE=infinity
 LimitNOFILE=infinity
-# Comment TasksMax if your systemd version does not supports it.
-# Only systemd 226 and above support this version.
+## Comment TasksMax if your systemd version does not supports it.
+## Only systemd 226 and above support this version.
 TasksMax=infinity
 OOMScoreAdjust=-999
 
@@ -53,14 +53,14 @@ WantedBy=multi-user.target
 
 ```toml
 version = 2
-# persistent data location
+## persistent data location
 root = "/var/lib/cri-containerd"
-# runtime state information
+## runtime state information
 state = "/run/cri-containerd"
 plugin_dir = ""
 disabled_plugins = []
 required_plugins = []
-# set containerd's OOM score
+## set containerd's OOM score
 oom_score = 0
 
 [grpc]
@@ -201,9 +201,9 @@ oom_score = 0
     async_remove = false
 ```
 
-## 安装 **kubelet** **kubeadm** **kubectl** **cri-tools** **kubernetes-cni**
+### 安装 **kubelet** **kubeadm** **kubectl** **cri-tools** **kubernetes-cni**
 
-### Ubuntu/Debian
+#### Ubuntu/Debian
 
 ```bash
 $ apt-get update && apt-get install -y apt-transport-https
@@ -217,7 +217,7 @@ $ apt-get update
 $ apt-get install -y kubelet kubeadm kubectl
 ```
 
-### CentOS/Fedora
+#### CentOS/Fedora
 
 ```bash
 $ cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
@@ -233,7 +233,7 @@ EOF
 $ sudo yum install -y kubelet kubeadm kubectl
 ```
 
-## 修改内核的运行参数
+### 修改内核的运行参数
 
 ```bash
 $ cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
@@ -242,18 +242,18 @@ net.ipv4.ip_forward                 = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 EOF
 
-# 应用配置
+## 应用配置
 $ sysctl --system
 ```
 
-## 配置 kubelet
+### 配置 kubelet
 
-### 修改 `kubelet.service`
+#### 修改 `kubelet.service`
 
 `/etc/systemd/system/kubelet.service.d/10-proxy-ipvs.conf` 写入以下内容
 
 ```bash
-# 启用 ipvs 相关内核模块
+## 启用 ipvs 相关内核模块
 [Service]
 ExecStartPre=-/sbin/modprobe ip_vs
 ExecStartPre=-/sbin/modprobe ip_vs_rr
@@ -267,9 +267,9 @@ ExecStartPre=-/sbin/modprobe ip_vs_sh
 $ sudo systemctl daemon-reload
 ```
 
-## 部署
+### 部署
 
-### master
+#### master
 
 ```bash
 $ systemctl enable cri-containerd
@@ -315,7 +315,7 @@ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
     --discovery-token-ca-cert-hash sha256:5edb316fd0d8ea2792cba15cdf1c899a366f147aa03cba52d4e5c5884ad836fe
 ```
 
-### node 工作节点
+#### node 工作节点
 
 在 **另一主机** 重复 **部署** 小节以前的步骤，安装配置好 kubelet。根据提示，加入到集群。
 
@@ -330,7 +330,7 @@ $ kubeadm join 192.168.199.100:6443 \
     --cri-socket /run/cri-containerd/cri-containerd.sock
 ```
 
-## 查看服务
+### 查看服务
 
 所有服务启动后，通过 `crictl` 查看本地实际运行的容器。这些服务大概分为三类：主节点服务、工作节点服务和其它服务。
 
@@ -338,7 +338,7 @@ $ kubeadm join 192.168.199.100:6443 \
 CONTAINER_RUNTIME_ENDPOINT=/run/cri-containerd/cri-containerd.sock crictl ps -a
 ```
 
-### 主节点服务
+#### 主节点服务
 
 * `apiserver` 是整个系统的对外接口，提供 RESTful 方式供客户端和其它组件调用；
 
@@ -346,15 +346,15 @@ CONTAINER_RUNTIME_ENDPOINT=/run/cri-containerd/cri-containerd.sock crictl ps -a
 
 * `controller-manager` 负责管理控制器，包括 endpoint-controller（刷新服务和 pod 的关联信息）和 replication-controller（维护某个 pod 的复制为配置的数值）。
 
-### 工作节点服务
+#### 工作节点服务
 
 * `proxy` 为 pod 上的服务提供访问的代理。
 
-### 其它服务
+#### 其它服务
 
 * Etcd 是所有状态的存储数据库；
 
-## 使用
+### 使用
 
 将 `/etc/kubernetes/admin.conf` 复制到 `~/.kube/config`
 
@@ -362,18 +362,18 @@ CONTAINER_RUNTIME_ENDPOINT=/run/cri-containerd/cri-containerd.sock crictl ps -a
 
 由于未部署 CNI 插件，CoreDNS 未正常启动。如何使用 Kubernetes，请参考后续章节。
 
-## 部署 CNI
+### 部署 CNI
 
 这里以 `flannel` 为例进行介绍。
 
-### flannel
+#### flannel
 
 检查 podCIDR 设置
 
 ```bash
 $ kubectl get node -o yaml | grep CIDR
 
-# 输出
+## 输出
     podCIDR: 10.244.0.0/16
     podCIDRs:
 ```
@@ -382,18 +382,18 @@ $ kubectl get node -o yaml | grep CIDR
 $ kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/v0.26.1/Documentation/kube-flannel.yml
 ```
 
-## master 节点默认不能运行 pod
+### master 节点默认不能运行 pod
 
 如果用 `kubeadm` 部署一个单节点集群，默认情况下无法使用，请执行以下命令解除限制
 
 ```bash
 $ kubectl taint nodes --all node-role.kubernetes.io/master-
 
-# 恢复默认值
-# $ kubectl taint nodes NODE_NAME node-role.kubernetes.io/master=true:NoSchedule
+## 恢复默认值
+## $ kubectl taint nodes NODE_NAME node-role.kubernetes.io/master=true:NoSchedule
 ```
 
-## 参考文档
+### 参考文档
 
 * [官方文档](https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
 * [Container runtimes](https://kubernetes.io/docs/setup/production-environment/container-runtimes/#containerd)

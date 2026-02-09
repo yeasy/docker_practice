@@ -1,4 +1,4 @@
-# 简介
+## 简介
 
 ![](../_images/etcd_logo.png)
 
