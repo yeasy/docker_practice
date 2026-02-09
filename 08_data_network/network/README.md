@@ -327,7 +327,6 @@ $ docker network prune
 
 ## 延伸阅读
 
-- [高级网络配置](linking.md)：容器互联详解
 - [配置 DNS](dns.md)：自定义 DNS 设置
 - [端口映射](port_mapping.md)：高级端口配置
 - [Compose 网络](../compose/10.5_compose_file.md)：Compose 中的网络配置
