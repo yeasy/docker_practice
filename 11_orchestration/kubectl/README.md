@@ -1,4 +1,4 @@
-## kubectl 使用
+# kubectl 使用
 
 [kubectl](https://github.com/kubernetes/kubernetes) 是 Kubernetes 自带的客户端，可以用它来直接操作 Kubernetes。
 
@@ -8,74 +8,74 @@ kubectl [flags]
 kubectl [command]
 ```
 
-### get
+## get
 
 显示一个或多个资源
 
-### describe
+## describe
 
 显示资源详情
 
-### create
+## create
 
 从文件或标准输入创建资源
 
-### update
+## update
 
 从文件或标准输入更新资源
 
-### delete
+## delete
 
 通过文件名、标准输入、资源名或者 label selector 删除资源
 
-### log
+## log
 
 输出 pod 中一个容器的日志
 
-### rolling-update
+## rolling-update
 
 对指定的 replication controller 执行滚动升级
 
-### exec
+## exec
 
 在容器内部执行命令
 
-### port-forward
+## port-forward
 
 将本地端口转发到Pod
 
-### proxy
+## proxy
 
 为 Kubernetes API server 启动代理服务器
 
-### run
+## run
 
 在集群中使用指定镜像启动容器
 
-### expose
+## expose
 
 将 replication controller service 或 pod 暴露为新的 kubernetes service
 
-### label
+## label
 
 更新资源的 label
 
-### config
+## config
 
 修改 kubernetes 配置文件
 
-### cluster-info
+## cluster-info
 
 显示集群信息
 
-### api-versions
+## api-versions
 
 以 "组/版本" 的格式输出服务端支持的 API 版本
 
-### version
+## version
 
 输出服务端和客户端的版本信息
 
-### help
+## help
 
 显示各个命令的帮助信息

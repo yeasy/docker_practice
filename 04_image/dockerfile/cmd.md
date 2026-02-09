@@ -14,11 +14,13 @@ CMD 有三种格式：
 
 | 格式 | 语法 | 推荐程度 |
 |------|------|---------|
-| **exec 格式** | `CMD ["可执行文件", "参数1", "参数2"]` | ✅ **推荐** |
+| **exec 格式**| `CMD ["可执行文件", "参数1", "参数2"]` | ✅**推荐** |
 | **shell 格式** | `CMD 命令 参数1 参数2` | ⚠️ 简单场景 |
 | **参数格式** | `CMD ["参数1", "参数2"]` | 配合 ENTRYPOINT |
 
 #### exec 格式（推荐）
+
+具体内容如下：
 
 ```docker
 CMD ["nginx", "-g", "daemon off;"]
@@ -33,6 +35,8 @@ CMD ["node", "server.js"]
 
 #### shell 格式
 
+具体内容如下：
+
 ```docker
 CMD echo "Hello World"
 CMD nginx -g "daemon off;"
@@ -42,9 +46,11 @@ CMD nginx -g "daemon off;"
 
 ```docker
 ## 你写的
+
 CMD echo $HOME
 
 ## 实际执行的
+
 CMD ["sh", "-c", "echo $HOME"]
 ```
 
@@ -64,15 +70,23 @@ CMD ["sh", "-c", "echo $HOME"]
 
 #### 信号传递问题示例
 
+具体内容如下：
+
 ```docker
 ## ❌ shell 格式：docker stop 会超时
+
 CMD node server.js
 ## 实际是 sh -c "node server.js"
+
 ## SIGTERM 发给 sh，不会传递给 node
 
 ## ✅ exec 格式：docker stop 正常工作
+
 CMD ["node", "server.js"]
 ## SIGTERM 直接发给 node
+
+具体内容如下：
+
 ```
 
 ---
@@ -83,6 +97,7 @@ CMD ["node", "server.js"]
 
 ```bash
 ## ubuntu 默认 CMD 是 /bin/bash
+
 $ docker run -it ubuntu        # 进入 bash
 $ docker run ubuntu cat /etc/os-release  # 覆盖为 cat 命令
 ```
@@ -102,12 +117,17 @@ CMD ["/bin/bash"]   +    cat /etc/os-release
 
 #### 错误示例
 
+具体内容如下：
+
 ```docker
 ## ❌ 容器启动后立即退出
+
 CMD service nginx start
 ```
 
 #### 原因分析
+
+具体内容如下：
 
 ```
 1. CMD service nginx start
@@ -125,8 +145,11 @@ CMD service nginx start
 
 #### 正确做法
 
+具体内容如下：
+
 ```docker
 ## ✅ 让 nginx 在前台运行
+
 CMD ["nginx", "-g", "daemon off;"]
 ```
 
@@ -136,13 +159,16 @@ CMD ["nginx", "-g", "daemon off;"]
 
 | 指令 | 用途 | 运行时行为 |
 |------|------|-----------|
-| **CMD** | 默认命令 | `docker run` 参数会**覆盖**它 |
-| **ENTRYPOINT** | 入口点 | `docker run` 参数会**追加**到它后面 |
+| **CMD**| 默认命令 | `docker run` 参数会**覆盖**它 |
+| **ENTRYPOINT**| 入口点 | `docker run` 参数会**追加**到它后面 |
 
 #### 单独使用 CMD
 
+具体内容如下：
+
 ```docker
 ## Dockerfile
+
 CMD ["curl", "-s", "http://example.com"]
 ```
 
@@ -153,8 +179,11 @@ $ docker run myimage curl -v ...  # 完全覆盖
 
 #### 搭配 ENTRYPOINT
 
+具体内容如下：
+
 ```docker
 ## Dockerfile
+
 ENTRYPOINT ["curl", "-s"]
 CMD ["http://example.com"]
 ```
@@ -172,45 +201,61 @@ $ docker run myimage http://other.com  # curl -s http://other.com（参数覆盖
 
 #### 1. 优先使用 exec 格式
 
+具体内容如下：
+
 ```docker
 ## ✅ 推荐
+
 CMD ["python", "app.py"]
 
 ## ⚠️ 仅在需要 shell 特性时使用
+
 CMD ["sh", "-c", "echo $PATH && python app.py"]
 ```
 
 #### 2. 确保应用在前台运行
 
+具体内容如下：
+
 ```docker
 ## ✅ 前台运行
+
 CMD ["nginx", "-g", "daemon off;"]
 CMD ["apache2ctl", "-D", "FOREGROUND"]
 CMD ["java", "-jar", "app.jar"]
 
 ## ❌ 不要使用后台服务命令
+
 CMD service nginx start
 CMD systemctl start nginx
 ```
 
 #### 3. 使用双引号
 
+具体内容如下：
+
 ```docker
 ## ✅ 正确：双引号
+
 CMD ["node", "server.js"]
 
 ## ❌ 错误：单引号（JSON 不支持）
+
 CMD ['node', 'server.js']
 ```
 
 #### 4. 配合 ENTRYPOINT 使用
 
+具体内容如下：
+
 ```docker
 ## 用于可配置参数的场景
+
 ENTRYPOINT ["python", "app.py"]
 CMD ["--port", "8080"]
 
 ## 运行时可以覆盖端口
+
 $ docker run myapp --port 9000
 ```
 
@@ -229,11 +274,15 @@ CMD ["echo", "second"]  # 只有这个生效
 
 #### Q: 如何在 CMD 中使用环境变量？
 
+具体内容如下：
+
 ```docker
 ## 方法1：使用 shell 格式
+
 CMD echo "Port is $PORT"
 
 ## 方法2：显式使用 sh -c
+
 CMD ["sh", "-c", "echo Port is $PORT"]
 ```
 
@@ -243,9 +292,11 @@ CMD ["sh", "-c", "echo Port is $PORT"]
 
 ```docker
 ## ❌ 信号无法传递
+
 CMD python app.py
 
 ## ✅ 信号正确传递
+
 CMD ["python", "app.py"]
 ```
 

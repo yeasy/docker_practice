@@ -1,5 +1,9 @@
 ## 内核能力机制
 
+## 内核能力机制
+
+Docker 利用 Linux 的能力机制（Capabilities）来限制容器的权限，从而提高系统的安全性。
+
 [能力机制（Capability）](https://man7.org/linux/man-pages/man7/capabilities.7.html) 是 Linux 内核一个强大的特性，可以提供细粒度的权限访问控制。
 Linux 内核自 2.2 版本起就支持能力机制，它将权限划分为更加细粒度的操作能力，既可以作用在进程上，也可以作用在文件上。
 

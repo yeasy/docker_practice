@@ -2,6 +2,8 @@
 
 ### 基本语法
 
+具体内容如下：
+
 ```docker
 LABEL <key>=<value> <key>=<value> ...
 ```
@@ -23,12 +25,16 @@ LABEL <key>=<value> <key>=<value> ...
 
 #### 定义单个标签
 
+具体内容如下：
+
 ```docker
 LABEL version="1.0"
 LABEL description="这是一个 Web 应用服务器"
 ```
 
 #### 定义多个标签（推荐）
+
+具体内容如下：
 
 ```docker
 LABEL maintainer="user@example.com" \
@@ -41,7 +47,7 @@ LABEL maintainer="user@example.com" \
 
 ---
 
-### 常用标签规范 (OCI Annotations)
+### 常用标签规范（OCI Annotations）
 
 为了标准和互操作性，推荐使用 [OCI Image Format Specification](https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys) 定义的标准标签：
 
@@ -59,6 +65,8 @@ LABEL maintainer="user@example.com" \
 
 #### 示例
 
+具体内容如下：
+
 ```docker
 LABEL org.opencontainers.image.authors="yeasy" \
       org.opencontainers.image.documentation="https://yeasy.gitbooks.io" \
@@ -74,6 +82,7 @@ LABEL org.opencontainers.image.authors="yeasy" \
 
 ```docker
 ## ❌ 已弃用
+
 MAINTAINER user@example.com
 ```
 
@@ -81,8 +90,10 @@ MAINTAINER user@example.com
 
 ```docker
 ## ✅ 推荐
+
 LABEL maintainer="user@example.com"
 ## 或
+
 LABEL org.opencontainers.image.authors="user@example.com"
 ```
 
@@ -130,9 +141,11 @@ $ docker inspect nginx --format '{{json .Config.Labels}}' | jq
 
 ```bash
 ## 列出作者是 yeasy 的所有镜像
+
 $ docker images --filter "label=org.opencontainers.image.authors=yeasy"
 
 ## 删除所有带有特定标签的镜像
+
 $ docker rmi $(docker images -q --filter "label=stage=builder")
 ```
 

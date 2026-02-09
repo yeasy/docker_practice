@@ -1,5 +1,7 @@
 ## ELK/EFK 堆栈
 
+## ELK/EFK 堆栈
+
 ELK (Elasticsearch, Logstash, Kibana) 是目前业界最流行的开源日志解决方案。而在容器领域，由于 Fluentd 更加轻量级且对容器支持更好，EFK (Elasticsearch, Fluentd, Kibana) 组合也变得非常流行。
 
 ### 方案架构
@@ -13,7 +15,13 @@ ELK (Elasticsearch, Logstash, Kibana) 是目前业界最流行的开源日志解
 
 ### 部署流程
 
+### 部署流程
+
+我们将使用 Docker Compose 来一键部署整个日志堆栈。
+
 #### 1. 编写 docker-compose.yml
+
+1. 编写 docker-compose.yml 配置如下：
 
 ```yaml
 version: '3'
@@ -117,7 +125,7 @@ docker run -d \
 #### 4. 在 Kibana 中查看日志
 
 1. 访问 `http://localhost:5601`。
-2. 进入 **Management** -> **Kibana** -> **Index Patterns**。
+2. 进入 **Management**->**Kibana**->**Index Patterns**。
 3. 创建新的 Index Pattern，输入 `docker-*` (我们在 fluent.conf 中配置的前缀)。
 4. 选择 `@timestamp` 作为时间字段。
 5. 去 **Discover** 页面，你就能看到 Nginx 容器的日志了。

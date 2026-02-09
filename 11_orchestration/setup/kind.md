@@ -4,6 +4,8 @@
 
 ### 为什么选择 Kind
 
+Kind 相比其他本地集群方案（如 Minikube）有以下显著优势：
+
 *   **轻量便捷**：只要有 Docker 环境即可，无需额外虚拟机。
 *   **多集群支持**：可以轻松在本地启动多个集群。
 *   **多版本支持**：支持指定 Kubernetes 版本进行测试。
@@ -11,18 +13,23 @@
 
 ### 安装 Kind
 
+Kind 是一个二进制文件，并在 PATH 中即可使用。以下是不同系统的安装方法。
+
 #### macOS
+
+运行以下命令：
 
 ```bash
 brew install kind
 ```
 
-#### Linux / Windows (WSL2)
+#### Linux / Windows（WSL2）
 
 可以下载二进制文件：
 
 ```bash
 ## Linux AMD64
+
 curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-amd64
 chmod +x ./kind
 sudo mv ./kind /usr/local/bin/kind
@@ -75,6 +82,8 @@ kind create cluster --config kind-config.yaml
 ```
 
 ### 删除集群
+
+运行以下命令：
 
 ```bash
 kind delete cluster

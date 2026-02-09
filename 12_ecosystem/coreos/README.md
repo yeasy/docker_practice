@@ -1,4 +1,4 @@
-## Fedora CoreOS
+# Fedora CoreOS
 
 `CoreOS` 是一个专门为安全和大规模运行容器化工作负载而构建的新 Fedora 版本，它继承了 Fedora Atomic Host 和 CoreOS Container Linux 的优势。
 

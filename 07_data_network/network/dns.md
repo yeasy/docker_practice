@@ -9,18 +9,21 @@ Docker 容器的 DNS 配置有两种情况：
 
 ---
 
-### 嵌入式 DNS (Embedded DNS)
+### 嵌入式 DNS
 
 这是 Docker 网络最强大的功能之一。在自定义网络中，容器可以通过"名字"找到彼此，而不需要知道对方的 IP（因为 IP 可能会变）。
 
 ```bash
 ## 1. 创建自定义网络
+
 $ docker network create mynet
 
 ## 2. 启动容器 web 并加入网络
+
 $ docker run -d --name web --network mynet nginx
 
 ## 3. 启动容器 client 并尝试 ping web
+
 $ docker run -it --rm --network mynet alpine ping web
 PING web (172.18.0.2): 56 data bytes
 64 bytes from 172.18.0.2: seq=0 ttl=64 time=0.074 ms
@@ -52,7 +55,7 @@ nameserver 114.114.114.114
 $ docker run --dns-search=example.com myapp
 ```
 
-#### 3. --hostname (-h)
+#### 3. --hostname（-h）
 
 设置容器的主机名。
 

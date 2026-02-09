@@ -2,6 +2,8 @@
 
 ### 基本语法
 
+具体内容如下：
+
 ```docker
 ONBUILD <其它指令>
 ```
@@ -34,6 +36,7 @@ FROM node:20-alpine
 WORKDIR /app
 
 ## 这些指令将在子镜像构建时执行
+
 ONBUILD COPY package*.json ./
 ONBUILD RUN npm install
 ONBUILD COPY . .
@@ -46,12 +49,18 @@ CMD ["npm", "start"]
 ```docker
 FROM my-node-base
 ## 只需要一行！
+
 ## 构建时会自动执行 COPY 和 RUN
+
+具体内容如下：
+
 ```
 
 ---
 
 ### 执行机制
+
+具体内容如下：
 
 ```
 基础镜像构建：
@@ -68,24 +77,33 @@ FROM 基础镜像 ──build──> 读取基础镜像触发器 ──> 执行�
 
 #### 1. 自动处理依赖安装
 
+具体内容如下：
+
 ```docker
 ## Python 基础镜像
+
 ONBUILD COPY requirements.txt ./
 ONBUILD RUN pip install -r requirements.txt
 ```
 
 #### 2. 自动编译代码
 
+具体内容如下：
+
 ```docker
 ## Go 基础镜像
+
 ONBUILD COPY . .
 ONBUILD RUN go build -o app main.go
 ```
 
 #### 3. 处理静态资源
 
+具体内容如下：
+
 ```docker
 ## Nginx 静态网站基础镜像
+
 ONBUILD COPY dist/ /usr/share/nginx/html/
 ```
 

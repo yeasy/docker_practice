@@ -1,4 +1,4 @@
-## Kubernetes
+# Kubernetes
 
 `Kubernetes` 是 Google 团队发起并维护的基于 Docker 的开源容器集群管理系统，它不仅支持常见的云平台，而且支持内部数据中心。
 

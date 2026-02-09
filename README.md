@@ -2,7 +2,7 @@
 
 [![](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) [![](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases) [![](https://img.shields.io/badge/Based-Docker%20CE%20v30.x-blue.svg)](https://github.com/docker/docker-ce) [![](https://img.shields.io/badge/Docker%20%E6%8A%80%E6%9C%AF%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E6%88%98-jd.com-red.svg)][1]
 
-**v1.5.1**
+**v1.5.2**
 
 [Docker](https://www.docker.com) 是个划时代的开源项目，它彻底释放了计算虚拟化的威力，极大提高了应用的维护效率，降低了云计算应用开发的成本！使用 Docker，可以让应用的部署、测试和分发都变得前所未有的高效和轻松！
 
@@ -21,6 +21,7 @@
 ## 阅读方式
 
 ### 在线阅读
+
 > 推荐访问官方 GitBook，体验最佳。
 
 *   **GitBook**: [yeasy.gitbook.io/docker_practice](https://yeasy.gitbook.io/docker_practice/)
@@ -30,6 +31,7 @@
 ### 本地阅读
 
 #### 方式 1：Docker 镜像（推荐）
+
 无需安装任何依赖，一条命令即可启动。
 
 ```bash
@@ -39,6 +41,7 @@ docker run -it --rm -p 4000:80 ccr.ccs.tencentyun.com/dockerpracticesig/docker_p
 [详情参考](https://github.com/yeasy/docker_practice/wiki/%E7%A6%BB%E7%BA%BF%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3)
 
 #### 方式 2：本地构建（HonKit）
+
 适合想要修改内容或深度定制的读者。需要安装 Node.js 环境。
 
 ```bash

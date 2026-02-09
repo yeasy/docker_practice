@@ -20,7 +20,7 @@ Service 虽然提供了负载均衡，但通常是 4 层（TCP/UDP）。**Ingres
 
 常见的 Ingress Controller有 Nginx Ingress Controller, Traefik, Istio Gateway 等。
 
-### Persistent Volume (PV) 与 StorageClass
+### Persistent Volume（PV） 与 StorageClass
 
 容器内的文件是临时的。对于有状态应用（如数据库），需要持久化存储。
 
@@ -28,7 +28,7 @@ Service 虽然提供了负载均衡，但通常是 4 层（TCP/UDP）。**Ingres
 *   **PV (Persistent Volume)**：实际的存储资源（NFS, AWS EBS, Ceph 等）。
 *   **StorageClass**：定义存储类，支持动态创建 PV。
 
-### Horizontal Pod Autoscaling (HPA)
+### Horizontal Pod Autoscaling（HPA）
 
 HPA 根据 CPU 利用率或其他指标（如内存、自定义指标）自动扩缩 Deployment 或 ReplicaSet 中的 Pod 数量。
 

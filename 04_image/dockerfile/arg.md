@@ -2,6 +2,8 @@
 
 ### 基本语法
 
+具体内容如下：
+
 ```docker
 ARG <参数名>[=<默认值>]
 ```
@@ -35,22 +37,30 @@ ARG <参数名>[=<默认值>]
 
 #### 定义和使用
 
+具体内容如下：
+
 ```docker
 ## 定义有默认值的 ARG
+
 ARG NODE_VERSION=20
 
 ## 使用 ARG
+
 FROM node:${NODE_VERSION}-alpine
 RUN echo "Using Node.js $NODE_VERSION"
 ```
 
 #### 构建时覆盖
 
+运行以下命令：
+
 ```bash
 ## 使用默认值
+
 $ docker build -t myapp .
 
 ## 覆盖默认值
+
 $ docker build --build-arg NODE_VERSION=18 -t myapp .
 ```
 
@@ -60,18 +70,24 @@ $ docker build --build-arg NODE_VERSION=18 -t myapp .
 
 #### FROM 之前的 ARG
 
+具体内容如下：
+
 ```docker
 ## FROM 之前的 ARG 只能用于 FROM 指令
+
 ARG REGISTRY=docker.io
 ARG IMAGE_NAME=node
 
 FROM ${REGISTRY}/${IMAGE_NAME}:20
 
 ## ❌ 这里无法使用上面的 ARG
+
 RUN echo $REGISTRY  # 输出空
 ```
 
 #### FROM 之后重新声明
+
+具体内容如下：
 
 ```docker
 ARG NODE_VERSION=20
@@ -79,22 +95,27 @@ ARG NODE_VERSION=20
 FROM node:${NODE_VERSION}-alpine
 
 ## 需要再次声明才能使用
+
 ARG NODE_VERSION
 RUN echo "Node version: $NODE_VERSION"
 ```
 
 #### 多阶段构建中的 ARG
 
+具体内容如下：
+
 ```docker
 ARG BASE_VERSION=alpine
 
 FROM node:20-${BASE_VERSION} AS builder
 ## 需要重新声明
+
 ARG NODE_VERSION=20
 RUN echo "Building with Node $NODE_VERSION"
 
 FROM node:20-${BASE_VERSION}
 ## 每个阶段都需要重新声明
+
 ARG NODE_VERSION=20
 RUN echo "Running with Node $NODE_VERSION"
 ```
@@ -104,6 +125,8 @@ RUN echo "Running with Node $NODE_VERSION"
 ### 常见使用场景
 
 #### 1. 控制基础镜像版本
+
+具体内容如下：
 
 ```docker
 ARG ALPINE_VERSION=3.19
@@ -116,6 +139,8 @@ $ docker build --build-arg ALPINE_VERSION=3.18 .
 
 #### 2. 设置软件版本
 
+具体内容如下：
+
 ```docker
 ARG NGINX_VERSION=1.25.0
 
@@ -123,6 +148,8 @@ RUN curl -fsSL https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz | tar -x
 ```
 
 #### 3. 配置构建环境
+
+具体内容如下：
 
 ```docker
 ARG BUILD_ENV=production
@@ -137,6 +164,8 @@ RUN if [ "$ENABLE_DEBUG" = "true" ]; then \
 
 #### 4. 配置私有仓库
 
+具体内容如下：
+
 ```docker
 ARG NPM_TOKEN
 
@@ -147,6 +176,7 @@ RUN echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc && \
 
 ```bash
 ## 构建时传入 token
+
 $ docker build --build-arg NPM_TOKEN=xxx .
 ```
 
@@ -160,9 +190,11 @@ $ docker build --build-arg NPM_TOKEN=xxx .
 ARG VERSION=1.0.0
 
 ## 将 ARG 传递给 ENV
+
 ENV APP_VERSION=$VERSION
 
 ## 运行时可用
+
 CMD echo "App version: $APP_VERSION"
 ```
 
@@ -181,6 +213,7 @@ Docker 提供了一些预定义的 ARG，无需声明即可使用：
 
 ```bash
 ## 构建时使用代理
+
 $ docker build --build-arg HTTP_PROXY=http://proxy:8080 .
 ```
 
@@ -190,32 +223,48 @@ $ docker build --build-arg HTTP_PROXY=http://proxy:8080 .
 
 #### 1. 为 ARG 提供合理默认值
 
+具体内容如下：
+
 ```docker
 ## ✅ 好：有默认值
+
 ARG NODE_VERSION=20
 
 ## ⚠️ 需要每次传入
+
 ARG NODE_VERSION
 ```
 
 #### 2. 不要用 ARG 存储敏感信息
 
+具体内容如下：
+
 ```docker
 ## ❌ 错误：密码会被记录在镜像历史中
+
 ARG DB_PASSWORD
 RUN echo "password=$DB_PASSWORD" > /app/.env
 
 ## ✅ 正确：使用 secrets 或运行时环境变量
+
+具体内容如下：
+
 ```
 
 #### 3. 使用 ARG 提高构建灵活性
+
+具体内容如下：
 
 ```docker
 ARG BASE_IMAGE=python:3.12-slim
 FROM ${BASE_IMAGE}
 
 ## 可以构建不同基础镜像的版本
+
 ## docker build --build-arg BASE_IMAGE=python:3.11-alpine .
+
+具体内容如下：
+
 ```
 
 ---

@@ -1,4 +1,4 @@
-## 使用 kubeadm 部署 kubernetes(使用 Docker)
+## 使用 kubeadm 部署 kubernetes（使用 Docker）
 
 `kubeadm` 提供了 `kubeadm init` 以及 `kubeadm join` 这两个命令作为快速创建 `kubernetes` 集群的最佳实践。
 
@@ -8,7 +8,11 @@
 
 ### 安装 **kubelet** **kubeadm** **kubectl**
 
+需要在每台机器上安装以下的软件包：
+
 #### Ubuntu/Debian
+
+运行以下命令：
 
 ```bash
 $ apt-get update && apt-get install -y apt-transport-https
@@ -23,6 +27,8 @@ $ apt-get install -y kubelet kubeadm kubectl
 ```
 
 #### CentOS/Fedora
+
+运行以下命令：
 
 ```bash
 $ cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
@@ -40,6 +46,8 @@ $ sudo yum install -y kubelet kubeadm kubectl
 
 ### 修改内核的运行参数
 
+运行以下命令：
+
 ```bash
 $ cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
 net.bridge.bridge-nf-call-iptables  = 1
@@ -48,10 +56,13 @@ net.bridge.bridge-nf-call-ip6tables = 1
 EOF
 
 ## 应用配置
+
 $ sysctl --system
 ```
 
 ### 配置 kubelet
+
+为了让 kubelet 正确运行，我们需要对其进行一些必要的配置。
 
 #### 修改 `kubelet.service`
 
@@ -59,6 +70,7 @@ $ sysctl --system
 
 ```bash
 ## 启用 ipvs 相关内核模块
+
 [Service]
 ExecStartPre=-/sbin/modprobe ip_vs
 ExecStartPre=-/sbin/modprobe ip_vs_rr
@@ -74,7 +86,11 @@ $ sudo systemctl daemon-reload
 
 ### 部署
 
+安装配置完成后，我们将分别在 Master 节点和 Worker 节点上进行部署操作。
+
 #### master
+
+运行以下命令：
 
 ```bash
 $ sudo kubeadm init --image-repository registry.cn-hangzhou.aliyuncs.com/google_containers \
@@ -116,7 +132,7 @@ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
 
 #### node 工作节点
 
-在 **另一主机** 重复 **部署** 小节以前的步骤，安装配置好 kubelet。根据提示，加入到集群。
+在 **另一主机**重复**部署** 小节以前的步骤，安装配置好 kubelet。根据提示，加入到集群。
 
 ```bash
 $ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
@@ -163,6 +179,7 @@ $ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
 $ kubectl get node -o yaml | grep CIDR
 
 ## 输出
+
     podCIDR: 10.244.0.0/16
     podCIDRs:
 ```
@@ -179,7 +196,11 @@ $ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.11.0/Docu
 $ kubectl taint nodes --all node-role.kubernetes.io/master-
 
 ## 恢复默认值
+
 ## $ kubectl taint nodes NODE_NAME node-role.kubernetes.io/master=true:NoSchedule
+
+具体内容如下：
+
 ```
 
 ### 参考文档

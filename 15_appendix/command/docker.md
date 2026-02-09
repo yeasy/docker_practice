@@ -64,6 +64,8 @@
 
 ### 一张图总结 Docker 的命令
 
+一张图总结 Docker 的命令 示意图如下：
+
 ![Docker 命令总结](../../_images/cmd_logic.png)
 
 ### 参考

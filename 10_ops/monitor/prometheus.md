@@ -1,5 +1,9 @@
 ## Prometheus + Grafana
 
+## Prometheus + Grafana
+
+Prometheus 和 Grafana 是目前最流行的开源监控组合，前者负责数据采集与存储，后者负责数据可视化。
+
 [Prometheus](https://prometheus.io/) 是一个开源的系统监控和报警工具包。它受 Google Borgmon 的启发，由 SoundCloud 在 2012 年创建。
 
 ### 架构简介
@@ -10,6 +14,8 @@ Prometheus 的主要组件包括：
 * **Exporters**: 负责向 Prometheus 暴露监控数据（如 Node Exporter, cAdvisor）。
 * **Alertmanager**: 处理报警发送。
 * **Pushgateway**: 用于支持短生命周期的 Job 推送数据。
+
+### 快速部署
 
 ### 快速部署
 
@@ -89,6 +95,8 @@ networks:
 ```
 
 #### 3. 启动服务
+
+运行以下命令：
 
 ```bash
 $ docker-compose up -d

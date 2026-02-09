@@ -1,5 +1,7 @@
 ## 安装
 
+本节将介绍 etcd 的几种常见安装方式，包括二进制安装、Docker 镜像运行以及在 macOS 上的安装。
+
 `etcd` 基于 `Go` 语言实现，因此，用户可以从 [项目主页](https://github.com/etcd-io/etcd) 下载源代码自行编译，也可以下载编译好的二进制文件，甚至直接使用制作好的 `Docker` 镜像文件来体验。
 
 >注意：本章节内容基于 etcd `3.4.x` 版本
@@ -14,6 +16,7 @@
 $ curl -L https://github.com/etcd-io/etcd/releases/download/v3.4.0/etcd-v3.4.0-linux-amd64.tar.gz -o etcd-v3.4.0-linux-amd64.tar.gz
 
 ## 国内用户可以使用以下方式加快下载
+
 $ curl -L https://download.fastgit.org/etcd-io/etcd/releases/download/v3.4.0/etcd-v3.4.0-linux-amd64.tar.gz -o etcd-v3.4.0-linux-amd64.tar.gz
 
 $ tar xzvf etcd-v3.4.0-linux-amd64.tar.gz
@@ -89,6 +92,8 @@ quay.io/coreos/etcd:v3.4.0 \
 打开新的终端按照上一步的方法测试 `etcd` 是否成功启动。
 
 ### macOS 中运行
+
+运行以下命令：
 
 ```bash
 $ brew install etcd

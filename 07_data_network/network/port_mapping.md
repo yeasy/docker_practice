@@ -28,12 +28,16 @@
 
 ### 端口映射方式
 
-#### 1. 指定映射 (-p)
+#### 1. 指定映射
+
+Docker 提供了多种方式来指定端口映射，最常用的是 `-p` 参数。
+
 
 使用 `-p <宿主机端口>:<容器端口>` 格式。
 
 ```bash
 ## 将宿主机的 8080 端口映射到容器的 80 端口
+
 $ docker run -d -p 8080:80 nginx
 ```
 
@@ -48,7 +52,10 @@ $ docker run -d -p 8080:80 nginx
 | `hostPort:containerPort` | 绑定所有 IP (0.0.0.0) 的特定端口 | `-p 8080:80` (默认) |
 | `containerPort` | 绑定所有 IP 的随机端口 | `-p 80` |
 
-#### 2. 随机映射 (-P)
+#### 2. 随机映射
+
+如果您不关心宿主机使用哪个端口，可以使用随机映射功能。
+
 
 使用 `-P` (大写) 参数，Docker 会随机映射 Dockerfile 中 `EXPOSE` 指令暴露的所有端口到宿主机的高端口（49000-49900）。
 
@@ -72,6 +79,11 @@ abc123456      0.0.0.0:49153->80/tcp
 
 #### docker port
 
+我们可以使用 `docker port` 命令来查看当前容器的端口映射规则。
+
+
+运行以下命令：
+
 ```bash
 $ docker port mycontainer
 80/tcp -> 0.0.0.0:8080
@@ -79,6 +91,8 @@ $ docker port mycontainer
 ```
 
 #### docker ps
+
+运行以下命令：
 
 ```bash
 $ docker ps
@@ -92,12 +106,16 @@ abc123456      nginx     0.0.0.0:8080->80/tcp   web
 
 #### 1. 限制监听 IP
 
+为了保证服务的安全性，我们应该谨慎选择绑定的 IP 地址。
+
+
 默认情况下，`-p 8080:80` 会监听 `0.0.0.0:8080`，这意味着任何人只要能连接你的宿主机 IP，就能访问该服务。
 
 如果不希望对外暴露（例如数据库服务），应绑定到 `127.0.0.1`：
 
 ```bash
 ## 仅允许本机访问
+
 $ docker run -d -p 127.0.0.1:3306:3306 mysql
 ```
 
@@ -127,6 +145,7 @@ Docker 使用 `docker-proxy` 进程（用户态）或 `iptables` DNAT 规则（�
 
 ```bash
 ## 简化的 iptables 逻辑
+
 iptables -t nat -A DOCKER -p tcp --dport 8080 -j DNAT --to-destination 172.17.0.2:80
 ```
 

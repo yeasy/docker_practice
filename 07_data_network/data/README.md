@@ -1,4 +1,6 @@
-## 数据管理
+# 数据管理
+
+数据管理 示意图如下：
 
 ![](../_images/types-of-mounts.png)
 
