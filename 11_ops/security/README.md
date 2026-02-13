@@ -38,7 +38,7 @@
 | IPC | 进程通信 | 隔离共享内存 |
 | UTS | 主机名 | 独立主机名 |
 
-详见 [命名空间](../14_implementation/14.2_namespace.md) 章节。
+详见 [命名空间](../../14_implementation/14.2_namespace.md) 章节。
 
 ### 2. 控制组（Cgroups）
 
@@ -279,8 +279,7 @@ COPY .env /app/
 
 ## docker run -e DB_PASSWORD=xxx 或使用 Docker Secrets
 
-具体内容如下：
-
+...
 ```
 
 ### 4. 固定依赖版本
@@ -393,6 +392,6 @@ $ cosign verify --key cosign.pub myimage:tag
 
 ## 延伸阅读
 
-- [命名空间](../14_implementation/14.2_namespace.md)：隔离机制详解
-- [控制组](../14_implementation/14.3_cgroups.md)：资源限制详解
-- [最佳实践](../16_appendix/16.1_best_practices.md)：Dockerfile 安全配置
+- [命名空间](../../14_implementation/14.2_namespace.md)：隔离机制详解
+- [控制组](../../14_implementation/14.3_cgroups.md)：资源限制详解
+- [最佳实践](../../16_appendix/16.1_best_practices.md)：Dockerfile 安全配置

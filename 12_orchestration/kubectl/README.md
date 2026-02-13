@@ -28,13 +28,13 @@ kubectl [command]
 
 通过文件名、标准输入、资源名或者 label selector 删除资源
 
-## log
+## logs
 
 输出 pod 中一个容器的日志
 
-## rolling-update
+## rollout
 
-对指定的 replication controller 执行滚动升级
+对 Deployment 等资源执行滚动更新/回滚
 
 ## exec
 

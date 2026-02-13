@@ -4,7 +4,7 @@
 
 [MongoDB](https://en.wikipedia.org/wiki/MongoDB) 是开源的 NoSQL 数据库实现。
 
-该仓库位于 `https://hub.docker.com/_/mongo/` ，提供了 MongoDB 2.x ~ 4.x 各个版本的镜像。
+该仓库位于 `https://hub.docker.com/_/mongo/`。具体可用版本以 Docker Hub 上的 tags 列表为准。
 
 ### 使用方法
 
@@ -36,7 +36,6 @@ $ docker run -it --rm \
     --network my-mongo-net \
     mongo \
     sh -c 'exec mongo "some-mongo:27017/test"'
-```
 ```
 
 ### Dockerfile

@@ -22,11 +22,9 @@
 
 ### 配置 Drone
 
-我们通过使用 `Docker Compose` 来启动 `Drone`，编写 `docker-compose.yml` 文件。
+我们通过使用 `Docker Compose` 来启动 `Drone`，编写 `compose.yaml`（或 `docker-compose.yml`）文件。
 
 ```yaml
-
-
 services:
 
   drone-server:
@@ -87,5 +85,5 @@ DRONE_GITHUB_CLIENT_SECRET=
 运行以下命令：
 
 ```bash
-$ docker-compose up -d
+$ docker compose up -d
 ```

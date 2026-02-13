@@ -21,11 +21,11 @@ CentOS 官方镜像的使用非常简单。
 
 ```bash
 $ docker run -it centos:7 bash
-Unable to find image 'centos:latest' locally
-latest: Pulling from library/centos
+Unable to find image 'centos:7' locally
+7: Pulling from library/centos
 3d8673bd162a: Pull complete
 Digest: sha256:a66ffcb73930584413de83311ca11a4cb4938c9b2521d331026dad970c19adf4
-Status: Downloaded newer image for centos:latest
+Status: Downloaded newer image for centos:7
 [root@43eb3b194d48 /]# cat /etc/redhat-release
 CentOS Linux release 7.9.2009 (Core)
 ```
@@ -41,6 +41,7 @@ CentOS Linux release 7.9.2009 (Core)
 
 使用 `docker run` 命令直接运行 `Fedora` 官方镜像，并登录 `bash`。
 
+```bash
 $ docker run -it fedora bash
 Unable to find image 'fedora:latest' locally
 latest: Pulling from library/fedora
@@ -49,6 +50,7 @@ Digest: sha256:64a02df6aac27d1200c2572fe4b9949f1970d05f74d367ce4af994ba5dc3669e
 Status: Downloaded newer image for fedora:latest
 [root@196ca341419b /]# cat /etc/redhat-release
 Fedora release 39 (Thirty Nine)
+```
 
 
 ### 相关资源

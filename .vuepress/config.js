@@ -152,7 +152,8 @@ module.exports = config({
       //   }]
       // }
     ],
-    sidebar: {
+    sidebar: "auto",
+    legacySidebar: {
       '/cloud/': [
         'intro',
         'tencentCloud',

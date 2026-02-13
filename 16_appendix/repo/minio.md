@@ -33,7 +33,7 @@ $ docker save -o minio.tar minio/minio:latest
 把压缩文件复制到内网服务器上，使用下面的命令导入镜像
 
 ```bash
-$ docker load minio.tar 
+$ docker load -i minio.tar
 ```
 
 #### 运行 minio
@@ -55,4 +55,4 @@ $ sudo docker run -d -p 9000:9000 -p 9090:9090 --name minio1 \
 
 #### 访问 web 管理页面
 
-http://x.x.x.x:9090
+打开 `http://<server-ip>:9090` 访问 Web 控制台。

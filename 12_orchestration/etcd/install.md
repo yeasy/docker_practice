@@ -15,9 +15,7 @@
 ```bash
 $ curl -L https://github.com/etcd-io/etcd/releases/download/v3.4.0/etcd-v3.4.0-linux-amd64.tar.gz -o etcd-v3.4.0-linux-amd64.tar.gz
 
-## 国内用户可以使用以下方式加快下载
-
-$ curl -L https://download.fastgit.org/etcd-io/etcd/releases/download/v3.4.0/etcd-v3.4.0-linux-amd64.tar.gz -o etcd-v3.4.0-linux-amd64.tar.gz
+## 国内用户可选择就近的网络加速方式（以可用镜像站为准）
 
 $ tar xzvf etcd-v3.4.0-linux-amd64.tar.gz
 $ cd etcd-v3.4.0-linux-amd64

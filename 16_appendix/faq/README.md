@@ -84,7 +84,7 @@ $ docker run --network=my-net --ip=172.25.3.3 -itd --name=my-container busybox
 
 ### 可以在一个容器中同时运行多个应用进程么？
 
-答：一般并不推荐在同一个容器内运行多个应用进程。如果有类似需求，可以通过一些额外的进程管理机制，比如 `supervisord` 来管理所运行的进程。可以参考 https://docs.docker.com/config/containers/multi-service\_container/ 。
+答：一般并不推荐在同一个容器内运行多个应用进程。如果有类似需求，可以通过一些额外的进程管理机制，比如 `supervisord` 来管理所运行的进程。可以参考 https://docs.docker.com/engine/containers/multi-service_container/ 。
 
 ### 如何控制容器占用系统资源（CPU、内存）的份额？
 
@@ -168,7 +168,7 @@ lrwxrwxrwx. 1 root root 15 11月 17 13:43 docker -> /storage/docker
 
 ### Docker 能在非 Linux 平台（比如 Windows 或 macOS ）上运行么？
 
-答：完全可以。安装方法请查看 [安装 Docker](../../install/) 一节
+答：完全可以。安装方法请查看 [安装 Docker](../../03_install/README.md) 一节
 
 ### 如何将一台宿主主机的 Docker 环境迁移到另外一台宿主主机？
 

@@ -31,8 +31,6 @@ flowchart LR
 
 #### 容器存储层（不推荐存储重要数据）
 
-具体内容如下：
-
 ```mermaid
 graph TD
     subgraph Container [容器]
@@ -46,8 +44,6 @@ graph TD
 ```
 
 #### 数据卷（推荐）
-
-具体内容如下：
 
 ```mermaid
 graph TD
@@ -417,4 +413,4 @@ $ docker volume inspect my-vol
 
 - [绑定挂载](bind-mounts.md)：挂载宿主机目录
 - [tmpfs 挂载](tmpfs.md)：内存中的临时存储
-- [存储驱动](../14_implementation/14.4_ufs.md)：Docker 存储的底层原理
+- [存储驱动](../../14_implementation/14.4_ufs.md)：Docker 存储的底层原理

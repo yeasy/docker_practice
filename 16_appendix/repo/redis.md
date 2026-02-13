@@ -4,7 +4,7 @@
 
 [Redis](https://en.wikipedia.org/wiki/Redis) 是开源的内存 Key-Value 数据库实现。
 
-该仓库位于 `https://hub.docker.com/_/redis/` ，提供了 Redis 3.x ~ 6.x 各个版本的镜像。
+该仓库位于 `https://hub.docker.com/_/redis/`。具体可用版本以 Docker Hub 上的 tags 列表为准。
 
 ### 使用方法
 

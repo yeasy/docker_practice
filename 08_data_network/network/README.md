@@ -47,8 +47,6 @@ graph TD
 
 ### 数据流向
 
-具体内容如下：
-
 ```
 容器 A (172.17.0.2) → docker0 → 容器 B (172.17.0.3)  (容器间通信)
 容器 A (172.17.0.2) → docker0 → eth0 → 互联网        (访问外网)
@@ -159,8 +157,7 @@ $ docker run -d --name app --network app-net myapp
 
 ## app 容器中可以用 redis:6379 连接 Redis
 
-具体内容如下：
-
+...
 ```
 
 ### 连接到多个网络
@@ -233,8 +230,6 @@ $ docker port mycontainer
 ```
 
 ### 端口映射示意图
-
-具体内容如下：
 
 ```
 外部请求 http://宿主机IP:8080
@@ -329,4 +324,4 @@ $ docker network prune
 
 - [配置 DNS](dns.md)：自定义 DNS 设置
 - [端口映射](port_mapping.md)：高级端口配置
-- [Compose 网络](../compose/10.5_compose_file.md)：Compose 中的网络配置
+- [Compose 网络](../../10_compose/10.5_compose_file.md)：Compose 中的网络配置

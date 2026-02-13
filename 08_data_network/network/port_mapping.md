@@ -164,5 +164,5 @@ iptables -t nat -A DOCKER -p tcp --dport 8080 -j DNAT --to-destination 172.17.0.
 
 ### 延伸阅读
 
-- [EXPOSE 指令](../07_dockerfile/7.9_expose.md)：在 Dockerfile 中声明端口
+- [EXPOSE 指令](../../07_dockerfile/7.9_expose.md)：在 Dockerfile 中声明端口
 - [网络模式](README.md)：Host 模式不需要端口映射

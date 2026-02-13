@@ -2,7 +2,7 @@
 
 Kubernetes 简介 示意图如下：
 
-![](../_images/kubernetes_logo.png)
+![](./_images/kubernetes_logo.png)
 
 ### 什么是 Kubernetes
 
@@ -67,7 +67,7 @@ Kubernetes 的最小调度单位。一个 Pod 可以包含一个或多个紧密�
 
 ### 架构
 
-Kubernetes 也是 C/S 架构，由 **Master (控制平面)**和**Worker (工作节点)** 组成：
+Kubernetes 也是 C/S 架构，由 **Control Plane（控制平面）** 和 **Worker Node（工作节点）** 组成：
 
 - **Control Plane**：负责决策（API Server, Scheduler, Controller Manager, etcd）
 - **Worker Node**：负责干活（Kubelet, Kube-proxy, Container Runtime）
@@ -86,5 +86,5 @@ Kubernetes 的学习曲线较陡峭。建议的学习路径：
 
 ### 延伸阅读
 
-- [Minikube 安装](../kubernetes/setup/README.md)：本地体验 K8s
+- [Minikube 安装](../setup/README.md)：本地体验 K8s
 - [Kubernetes 官网](https://kubernetes.io/)：官方文档
