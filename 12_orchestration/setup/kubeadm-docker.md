@@ -4,7 +4,7 @@
 
 ### 安装 Docker
 
-参考 [安装 Docker](../../install) 一节安装 Docker。
+参考 [安装 Docker](../../03_install/README.md) 一节安装 Docker。
 
 ### 安装 **kubelet** **kubeadm** **kubectl**
 
@@ -199,8 +199,7 @@ $ kubectl taint nodes --all node-role.kubernetes.io/master-
 
 ## $ kubectl taint nodes NODE_NAME node-role.kubernetes.io/master=true:NoSchedule
 
-具体内容如下：
-
+...
 ```
 
 ### 参考文档

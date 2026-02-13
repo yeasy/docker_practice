@@ -1,0 +1,35 @@
+## tmpfs 挂载
+
+`tmpfs` 挂载会把数据放在宿主机内存中，而不是写入容器可写层或数据卷。
+
+### 适用场景
+
+- 临时缓存
+- 会话数据
+- 不希望落盘的敏感中间文件
+
+### 基本用法
+
+```bash
+$ docker run --tmpfs /run:rw,noexec,nosuid,size=64m nginx
+```
+
+也可以使用 `--mount` 语法：
+
+```bash
+$ docker run --mount type=tmpfs,destination=/run,tmpfs-size=67108864 nginx
+```
+
+### 注意事项
+
+- 容器停止后，`tmpfs` 数据会丢失。
+- `tmpfs` 占用宿主机内存，建议显式限制大小。
+- 不适合需要持久化的数据。
+
+### 与 Volume / Bind Mount 对比
+
+| 类型 | 数据位置 | 持久化 | 典型用途 |
+|------|---------|-------|---------|
+| Volume | Docker 管理目录 | 是 | 数据库、长期业务数据 |
+| Bind Mount | 宿主机指定目录 | 是 | 开发联调、配置文件共享 |
+| tmpfs | 内存 | 否 | 高速临时数据、敏感临时文件 |

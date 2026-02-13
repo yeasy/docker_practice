@@ -1,6 +1,5 @@
 ## Prometheus + Grafana
 
-## Prometheus + Grafana
 
 Prometheus 和 Grafana 是目前最流行的开源监控组合，前者负责数据采集与存储，后者负责数据可视化。
 
@@ -17,7 +16,6 @@ Prometheus 的主要组件包括：
 
 ### 快速部署
 
-### 快速部署
 
 我们可以使用 Docker Compose 快速部署一套 Prometheus + Grafana 监控环境。
 
@@ -45,11 +43,9 @@ scrape_configs:
 
 #### 2. 编写 Docker Compose 文件
 
-创建 `docker-compose.yml`:
+创建 `compose.yaml`（或 `docker-compose.yml`）:
 
 ```yaml
-version: '3.8'
-
 services:
   prometheus:
     image: prom/prometheus:latest
@@ -99,7 +95,7 @@ networks:
 运行以下命令：
 
 ```bash
-$ docker-compose up -d
+$ docker compose up -d
 ```
 
 启动后，访问以下地址：

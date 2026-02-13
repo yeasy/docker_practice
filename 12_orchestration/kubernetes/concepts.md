@@ -2,11 +2,11 @@
 
 基本概念 示意图如下：
 
-![](../_images/kubernetes_design.jpg)
+![](./_images/kubernetes_design.jpg)
 
 * 节点（`Node`）：一个节点是一个运行 Kubernetes 中的主机。
 * 容器组（`Pod`）：一个 Pod 对应于由若干容器组成的一个容器组，同个组内的容器共享一个存储卷(volume)。
-* 容器组生命周期（`pos-states`）：包含所有容器状态集合，包括容器组状态类型，容器组生命周期，事件，重启策略，以及 replication controllers。
+* 容器组生命周期（`pod-states`）：包含所有容器状态集合，包括容器组状态类型，容器组生命周期，事件，重启策略，以及 replication controllers。
 * Replication Controllers：主要负责指定数量的 pod 在同一时间一起运行。
 * 服务（`services`）：一个 Kubernetes 服务是容器组逻辑的高级抽象，同时也对外提供访问容器组的策略。
 * 卷（`volumes`）：一个卷就是一个目录，容器对其有访问权限。
@@ -179,35 +179,28 @@ Kubernetes 校验节点可用依赖于 ID。在当前的版本中，有两个接
 
 ### Replication Controllers
 
-> [!NOTE]
-> Replication Controller 保证指定数量的 Pod 副本在任何时候都处于运行状态。
+> 注：Replication Controller（RC）是早期的控制器类型，现代 Kubernetes 更推荐使用 ReplicaSet/Deployment。
 
 ### 服务
 
-> [!NOTE]
-> 服务（Service）定义一组 Pod 的逻辑集合和访问它们的策略。
+> 注：服务（Service）定义一组 Pod 的逻辑集合和访问它们的策略。
 
 ### 卷
 
-> [!NOTE]
-> 卷（Volume）包含可被 Pod 中容器访问的数据的目录。
+> 注：卷（Volume）包含可被 Pod 中容器访问的数据的目录。
 
 ### 标签
 
-> [!NOTE]
-> 标签（Label）是附加到对象（如 Pods）上的键值对，用于组织和选择对象子集。
+> 注：标签（Label）是附加到对象（如 Pods）上的键值对，用于组织和选择对象子集。
 
 ### 接口权限
 
-> [!NOTE]
-> 接口权限通过认证、授权和准入控制来保护 Kubernetes API 的访问。
+> 注：接口权限通过认证、授权和准入控制来保护 Kubernetes API 的访问。
 
 ### web界面
 
-> [!NOTE]
-> Kubernetes Dashboard 是一个基于 Web 的用户界面，用于管理集群。
+> 注：Kubernetes Dashboard 是一个基于 Web 的用户界面，用于管理集群。
 
 ### 命令行操作
 
-> [!NOTE]
-> kubectl 是 Kubernetes 的命令行工具，用于与集群进行交互。
+> 注：kubectl 是 Kubernetes 的命令行工具，用于与集群进行交互。

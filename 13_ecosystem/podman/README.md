@@ -83,6 +83,7 @@ $ podman run -d --pod mypod --name webbing nginx
 
 如果你习惯使用 `docker` 命令，可以简单地设置别名：
 
+```bash
 $ alias docker=podman
 ```
 

@@ -29,8 +29,6 @@ Bind Mount（绑定挂载）将**宿主机的目录或文件**直接挂载到容
 
 #### 选择建议
 
-具体内容如下：
-
 ```
 需求                          推荐方案
 ─────────────────────────────────────────
@@ -95,8 +93,7 @@ $ docker run -d \
 $ echo "Hello" > src/index.html
 ## 浏览器刷新即可看到变化
 
-具体内容如下：
-
+...
 ```
 
 #### 场景二：配置文件挂载
@@ -329,4 +326,4 @@ $ docker run -v /app/data:/data ...
 
 - [数据卷](volume.md)：Docker 管理的持久化存储
 - [tmpfs 挂载](tmpfs.md)：内存临时存储
-- [Compose 数据管理](../compose/10.5_compose_file.md)：Compose 中的挂载配置
+- [Compose 数据管理](../../10_compose/10.5_compose_file.md)：Compose 中的挂载配置

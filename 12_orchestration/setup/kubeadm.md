@@ -6,7 +6,7 @@
 
 ### 安装 containerd
 
-参考 [安装 Docker](../../install) 一节添加 apt/yum 源，之后执行如下命令。
+参考 [安装 Docker](../../03_install/README.md) 一节添加 apt/yum 源，之后执行如下命令。
 
 ```bash
 ## debian 系
@@ -419,8 +419,7 @@ $ kubectl taint nodes --all node-role.kubernetes.io/master-
 
 ## $ kubectl taint nodes NODE_NAME node-role.kubernetes.io/master=true:NoSchedule
 
-具体内容如下：
-
+...
 ```
 
 ### 参考文档
