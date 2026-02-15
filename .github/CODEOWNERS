@@ -2,28 +2,22 @@
 /.github/*            @khs1994
 /.travis/*            @khs1994
 /.vuepress/*          @khs1994
-/advanced_network/*   @yeasy @khs1994
-/appendix/*           @yeasy @khs1994
-/archive/*            @khs1994
-/basic_concept/*      @yeasy @khs1994
-/buildx/*             @khs1994
-/cases/*              @yeasy @khs1994
-/cloud/*              @khs1994
-/compose/*            @yeasy @khs1994
-/container/*          @yeasy @khs1994
-/coreos/*             @khs1994
-/data_management/*    @khs1994
-/etcd/*               @khs1994
-/IDE/*                @khs1994
-/image/*              @yeasy @khs1994
-/install/*            @khs1994
-/introduction/*       @yeasy @khs1994
-/kubernetes/*         @yeasy @khs1994
-/network/*            @yeasy @khs1994
-/opensource/*         @khs1994
-/repository/*         @khs1994
-/security/*           @yeasy @khs1994
-/underly/*            @yeasy @khs1994
+/01_introduction/*    @yeasy @khs1994
+/02_basic_concept/*   @yeasy @khs1994
+/03_install/*         @khs1994
+/04_image/*           @yeasy @khs1994
+/05_container/*       @yeasy @khs1994
+/06_repository/*      @khs1994
+/07_dockerfile/*      @yeasy @khs1994
+/08_data_network/*    @yeasy @khs1994
+/09_buildx/*          @khs1994
+/10_compose/*         @yeasy @khs1994
+/11_ops/*             @yeasy @khs1994
+/12_orchestration/*   @yeasy @khs1994
+/13_ecosystem/*       @khs1994
+/14_implementation/*  @yeasy @khs1994
+/15_cases/*           @yeasy @khs1994
+/16_appendix/*        @yeasy @khs1994
 /.drone.yml           @khs1994
 /.editorconfig/       @khs1994
 /.gitattributes       @khs1994

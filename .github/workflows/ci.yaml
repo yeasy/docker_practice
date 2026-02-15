@@ -81,17 +81,16 @@ jobs:
           echo "vuepress.mirror.docker-practice.com" > .vuepress/dist/CNAME
 
           cp -r _images .vuepress/dist
-          cp -r appendix/_images .vuepress/dist/appendix
-          cp -r cases/ci/drone/_images .vuepress/dist/cases/ci/drone
-          cp -r cases/os/_images .vuepress/dist/cases/os
-          cp -r cloud/_images .vuepress/dist/cloud
-          cp -r data_management/_images .vuepress/dist/data_management
-          cp -r etcd/_images .vuepress/dist/etcd
-          cp -r image/_images .vuepress/dist/image
-          cp -r install/_images .vuepress/dist/install
-          cp -r introduction/_images .vuepress/dist/introduction
-          cp -r kubernetes/_images .vuepress/dist/kubernetes
-          cp -r underly/_images .vuepress/dist/underly
+          cp -r 16_appendix/_images .vuepress/dist/appendix
+          cp -r 15_cases/ci/drone/_images .vuepress/dist/cases/ci/drone
+          cp -r 15_cases/os/_images .vuepress/dist/cases/os
+          cp -r 13_ecosystem/cloud/_images .vuepress/dist/cloud
+          cp -r 08_data_network/data/_images .vuepress/dist/data_management
+          cp -r 12_orchestration/etcd/_images .vuepress/dist/etcd
+          cp -r 04_image/_images .vuepress/dist/image
+          cp -r 03_install/_images .vuepress/dist/install
+          cp -r 12_orchestration/kubernetes/_images .vuepress/dist/kubernetes
+          cp -r 14_implementation/_images .vuepress/dist/underly
 
           echo "include: [_images]" > .vuepress/dist/_config.yml
       - name: Upload Vuepress dist
