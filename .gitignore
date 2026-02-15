@@ -16,4 +16,4 @@ docker-compose.override.yml
 .obsidian/
 .vscode/
 
-.agent/
+.agent/combine.py
