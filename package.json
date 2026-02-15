@@ -1,6 +1,6 @@
 {
   "name": "docker_practice",
-  "version": "1.0.0",
+  "version": "1.5.3",
   "description": "docker_practice",
   "main": "index.js",
   "devDependencies": {
