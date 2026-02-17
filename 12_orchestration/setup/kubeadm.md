@@ -219,15 +219,21 @@ oom_score = 0
 运行以下命令：
 
 ```bash
-$ apt-get update && apt-get install -y apt-transport-https
-$ curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add -
+$ K8S_MINOR="v1.35"
 
-$ cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
-deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
-EOF
+$ sudo apt-get update
+$ sudo apt-get install -y ca-certificates curl gpg
 
-$ apt-get update
-$ apt-get install -y kubelet kubeadm kubectl
+$ sudo install -m 0755 -d /etc/apt/keyrings
+$ curl -fsSL "https://pkgs.k8s.io/core:/stable:/${K8S_MINOR}/deb/Release.key" | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+$ sudo chmod a+r /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+$ echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/${K8S_MINOR}/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list > /dev/null
+
+$ sudo apt-get update
+$ sudo apt-get install -y kubelet kubeadm kubectl cri-tools kubernetes-cni
+
+$ sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
 #### CentOS/Fedora
@@ -235,20 +241,46 @@ $ apt-get install -y kubelet kubeadm kubectl
 运行以下命令：
 
 ```bash
+$ K8S_MINOR="v1.35"
+
 $ cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
-baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/
+baseurl=https://pkgs.k8s.io/core:/stable:/${K8S_MINOR}/rpm/
 enabled=1
 gpgcheck=1
 repo_gpgcheck=1
-gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
+gpgkey=https://pkgs.k8s.io/core:/stable:/${K8S_MINOR}/rpm/repodata/repomd.xml.key
 EOF
 
-$ sudo yum install -y kubelet kubeadm kubectl
+$ sudo yum install -y kubelet kubeadm kubectl cri-tools kubernetes-cni
 ```
 
 ### 修改内核的运行参数
+
+#### 加载内核模块
+
+运行以下命令：
+
+```bash
+$ cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+overlay
+br_netfilter
+EOF
+
+$ sudo modprobe overlay
+$ sudo modprobe br_netfilter
+```
+
+#### 禁用 swap（必须）
+
+kubelet 默认要求禁用 swap，否则可能导致初始化失败或节点无法加入集群。
+
+```bash
+$ sudo swapoff -a
+
+## 如需永久禁用，可在 /etc/fstab 中注释 swap 对应行
+```
 
 运行以下命令：
 
@@ -414,6 +446,9 @@ $ kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/v0.26.1/
 
 ```bash
 $ kubectl taint nodes --all node-role.kubernetes.io/master-
+
+## 部分较新版本使用 control-plane taint
+## $ kubectl taint nodes --all node-role.kubernetes.io/control-plane-
 
 ## 恢复默认值
 
