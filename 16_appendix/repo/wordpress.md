@@ -1,4 +1,4 @@
-## [WordPress](https://hub.docker.com/_/wordpress/)
+## [WordPress]
 
 ### 基本信息
 

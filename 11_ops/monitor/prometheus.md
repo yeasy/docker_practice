@@ -1,6 +1,5 @@
 ## Prometheus + Grafana
 
-
 Prometheus 和 Grafana 是目前最流行的开源监控组合，前者负责数据采集与存储，后者负责数据可视化。
 
 [Prometheus](https://prometheus.io/) 是一个开源的系统监控和报警工具包。它受 Google Borgmon 的启发，由 SoundCloud 在 2012 年创建。
@@ -15,7 +14,6 @@ Prometheus 的主要组件包括：
 * **Pushgateway**: 用于支持短生命周期的 Job 推送数据。
 
 ### 快速部署
-
 
 我们可以使用 Docker Compose 快速部署一套 Prometheus + Grafana 监控环境。
 

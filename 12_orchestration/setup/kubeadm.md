@@ -78,8 +78,10 @@ oom_score = 0
   tcp_tls_cert = ""
   tcp_tls_key = ""
   # socket uid
+
   uid = 0
   # socket gid
+
   gid = 0
   max_recv_message_size = 16777216
   max_send_message_size = 16777216
@@ -121,6 +123,7 @@ oom_score = 0
     sandbox_image = "registry.cn-hangzhou.aliyuncs.com/google_containers/pause:3.10"
     stats_collect_period = 10
     # systemd_cgroup = false
+
     enable_tls_streaming = false
     max_container_log_line_size = 16384
     disable_cgroup = false
@@ -147,36 +150,50 @@ oom_score = 0
           base_runtime_spec = ""
           [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
             # SystemdCgroup enables systemd cgroups.
+
             SystemdCgroup = true
             # BinaryName is the binary name of the runc binary.
+
             # BinaryName = "runc"
+
             # BinaryName = "crun"
+
             # NoPivotRoot disables pivot root when creating a container.
+
             # NoPivotRoot = false
 
             # NoNewKeyring disables new keyring for the container.
+
             # NoNewKeyring = false
 
             # ShimCgroup places the shim in a cgroup.
+
             # ShimCgroup = ""
 
             # IoUid sets the I/O's pipes uid.
+
             # IoUid = 0
 
             # IoGid sets the I/O's pipes gid.
+
             # IoGid = 0
 
             # Root is the runc root directory.
+
             Root = ""
 
             # CriuPath is the criu binary path.
+
             # CriuPath = ""
 
             # CriuImagePath is the criu image path
+
             # CriuImagePath = ""
 
             # CriuWorkPath is the criu work path.
+
             # CriuWorkPath = ""
+
     [plugins."io.containerd.grpc.v1.cri".cni]
       bin_dir = "/opt/cni/bin"
       conf_dir = "/etc/cni/net.d"
@@ -186,6 +203,7 @@ oom_score = 0
       config_path = "/etc/cri-containerd/certs.d"
       [plugins."io.containerd.grpc.v1.cri".registry.headers]
         # Foo = ["bar"]
+
     [plugins."io.containerd.grpc.v1.cri".image_decryption]
       key_model = ""
     [plugins."io.containerd.grpc.v1.cri".x509_key_pair_streaming]
@@ -210,7 +228,7 @@ oom_score = 0
     async_remove = false
 ```
 
-### 安装 **kubelet** **kubeadm** **kubectl** **cri-tools** **kubernetes-cni**
+### 安装 **kubelet****kubeadm****kubectl****cri-tools****kubernetes-cni**
 
 需要在每台机器上安装以下的软件包：
 
@@ -280,6 +298,7 @@ kubelet 默认要求禁用 swap，否则可能导致初始化失败或节点无�
 $ sudo swapoff -a
 
 ## 如需永久禁用，可在 /etc/fstab 中注释 swap 对应行
+
 ```
 
 运行以下命令：
@@ -448,6 +467,7 @@ $ kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/v0.26.1/
 $ kubectl taint nodes --all node-role.kubernetes.io/master-
 
 ## 部分较新版本使用 control-plane taint
+
 ## $ kubectl taint nodes --all node-role.kubernetes.io/control-plane-
 
 ## 恢复默认值

@@ -1,4 +1,4 @@
-## [Ubuntu](https://hub.docker.com/_/ubuntu/)
+## [Ubuntu]
 
 ### 基本信息
 
