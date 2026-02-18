@@ -1,4 +1,4 @@
-## [Node.js](https://hub.docker.com/_/node/)
+## [Node.js]
 
 ### 基本信息
 
@@ -29,7 +29,8 @@ $ docker run -it --rm --name my-running-app my-nodejs-app
 ```bash
 $ docker run -it --rm \
     --name my-running-script \
-    # -v "$(pwd)":/usr/src/myapp \
+    # -v "$ ":/usr/src/myapp \
+
     --mount type=bind,src="$(pwd)",target=/usr/src/myapp \
     -w /usr/src/myapp \
     node:12-alpine \

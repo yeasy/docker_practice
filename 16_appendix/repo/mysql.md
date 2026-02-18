@@ -1,4 +1,4 @@
-## [MySQL](https://hub.docker.com/_/mysql/)
+## [MySQL]
 
 ### 基本信息
 

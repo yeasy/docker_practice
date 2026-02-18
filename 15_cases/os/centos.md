@@ -1,6 +1,5 @@
 ## CentOS 和 Fedora
 
-
 ### CentOS 系统简介
 
 `CentOS` 和 `Fedora` 都是基于 `Redhat` 的常见 Linux 分支。`CentOS` 是目前企业级服务器的常用操作系统；`Fedora` 则主要面向个人桌面用户。

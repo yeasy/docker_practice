@@ -7,15 +7,16 @@
     "chalk": "^4.1.1",
     "commander": "^7.2.0",
     "esm": "^3.0.0",
+    "honkit": "^5.1.0",
     "vuepress": "1.8.2",
     "vuepress-plugin-container": "^2.1.5",
     "vuepress-theme-hope": "^1.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "gitbook:help": "gitbook help",
-    "gitbook:build": "gitbook build",
-    "gitbook:serve": "gitbook serve",
+    "honkit:help": "npx honkit help",
+    "honkit:build": "npx honkit build",
+    "honkit:serve": "npx honkit serve",
     "vuepress:build": "npx vuepress build",
     "vuepress": "npx vuepress"
   },

@@ -10,7 +10,7 @@
 
 参考 [安装 Docker](../../03_install/README.md) 一节安装 Docker。
 
-### 安装 **kubelet** **kubeadm** **kubectl**
+### 安装 **kubelet****kubeadm****kubectl**
 
 需要在每台机器上安装以下的软件包：
 
@@ -80,6 +80,7 @@ kubelet 默认要求禁用 swap，否则可能导致初始化失败或节点无�
 $ sudo swapoff -a
 
 ## 如需永久禁用，可在 /etc/fstab 中注释 swap 对应行
+
 ```
 
 运行以下命令：
@@ -232,6 +233,7 @@ $ kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/v0.26.1/
 $ kubectl taint nodes --all node-role.kubernetes.io/master-
 
 ## 部分较新版本使用 control-plane taint
+
 ## $ kubectl taint nodes --all node-role.kubernetes.io/control-plane-
 
 ## 恢复默认值

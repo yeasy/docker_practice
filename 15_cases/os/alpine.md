@@ -35,7 +35,6 @@ $ docker run alpine echo '123'
 
 ### 迁移至 Alpine 基础镜像
 
-
 目前，大部分 Docker 官方镜像都已经支持 `Alpine` 作为基础镜像，可以很容易进行迁移。
 
 例如：

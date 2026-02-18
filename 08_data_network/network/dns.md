@@ -86,18 +86,14 @@ $ docker run -h myweb nginx
 
 #### Q: 容器无法解析域名
 
-**现象**：`ping www.baidu.com` 失败，但 `ping 8.8.8.8` 成功。
-
-**解决**：
+**现象**：`ping www.baidu.com` 失败，但 `ping 8.8.8.8` 成功。**解决**：
 1. 宿主机的 `/etc/resolv.conf` 可能有问题（例如使用了本地回环地址 127.0.0.53，特别是 Ubuntu 系统）。Docker 可能会尝试修复，但有时会失败。
 2. 尝试手动指定 DNS：`docker run --dns 8.8.8.8 ...`
 3. 检查防火墙是否拦截了 UDP 53 端口。
 
 #### Q: 无法通过容器名通信
 
-**现象**：`ping db` 提示 `bad address 'db'`。
-
-**原因**：
+**现象**：`ping db` 提示 `bad address 'db'`。**原因**：
 - 你可能在使用**默认的 bridge 网络**。默认 bridge 网络**不支持**通过容器名进行 DNS 解析（这是一个历史遗留设计）。
 - **解决**：使用自定义网络 (`docker network create ...`)。
 

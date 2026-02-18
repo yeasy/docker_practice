@@ -1,4 +1,4 @@
-## [MongoDB](https://hub.docker.com/_/mongo/)
+## [MongoDB]
 
 ### 基本信息
 

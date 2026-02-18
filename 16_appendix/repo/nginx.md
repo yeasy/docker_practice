@@ -1,4 +1,4 @@
-## [Nginx](https://hub.docker.com/_/nginx/)
+## [Nginx]
 
 ### 基本信息
 

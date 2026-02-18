@@ -1,4 +1,4 @@
-## [Redis](https://hub.docker.com/_/redis/)
+## [Redis]
 
 ### 基本信息
 

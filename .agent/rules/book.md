@@ -94,6 +94,7 @@ This document serves as the single source of truth for all formatting, structure
 本节介绍 XXX 的相关内容，包括子章节A和子章节B两个方面。
 
 ### 2.1.1 子章节A
+```
 
 ## 3. Content Rules
 
@@ -122,7 +123,7 @@ print("Hello")
 
 ## 4. Validation
 
-Run `python check_project_rules.py` to validate all markdown files against these rules.
+Run `python check_rules.py` to validate all markdown files against these rules.
 
 Available options:
 - `--verbose` or `-v`: Show all scanned files

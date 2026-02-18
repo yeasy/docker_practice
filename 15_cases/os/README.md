@@ -7,4 +7,3 @@
 使用 Docker，读者只需要一个命令就能快速获取一个 Linux 发行版镜像，这是以往包括各种虚拟化技术都难以实现的。这些镜像一般都很精简，但是可以支持完整 Linux 系统的大部分功能。
 
 本章将介绍如何使用 Docker 安装和使用 `Busybox`、`Alpine`、`Debian/Ubuntu`、`CentOS/Fedora` 等操作系统。
-

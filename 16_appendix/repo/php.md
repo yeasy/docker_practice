@@ -1,4 +1,4 @@
-## [PHP](https://hub.docker.com/_/php/)
+## [PHP]
 
 ### 基本信息
 

@@ -1,4 +1,4 @@
-## [CentOS](https://hub.docker.com/_/centos)
+## [CentOS]
 
 ### 基本信息
 
