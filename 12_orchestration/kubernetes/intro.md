@@ -67,7 +67,7 @@ Kubernetes 的最小调度单位。一个 Pod 可以包含一个或多个紧密�
 
 ### 架构
 
-Kubernetes 也是 C/S 架构，由 **Control Plane（控制平面）** 和 **Worker Node（工作节点）** 组成：
+Kubernetes 也是 C/S 架构，由 **Control Plane（控制平面）**和**Worker Node（工作节点）** 组成：
 
 - **Control Plane**：负责决策（API Server, Scheduler, Controller Manager, etcd）
 - **Worker Node**：负责干活（Kubelet, Kube-proxy, Container Runtime）

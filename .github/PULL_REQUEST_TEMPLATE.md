@@ -1,6 +1,6 @@
 <!--
     Thanks for your contribution.
-    See [CONTRIBUTING](CONTRIBUTING.md) for contribution guidelines.
+    See [CONTRIBUTING](../CONTRIBUTING.md) for contribution guidelines.
 -->
 
 **Proposed changes (Mandatory)**
