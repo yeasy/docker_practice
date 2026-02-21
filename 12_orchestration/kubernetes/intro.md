@@ -8,11 +8,11 @@
 
 ### 什么是 Kubernetes
 
-Kubernetes（常简称为 K8s）是 Google 开源的容器编排引擎。如果说 Docker 解决了"如何打包和运送集装箱"的问题，那么 Kubernetes 解决的就是"如何管理海量集装箱的调度、运行和维护"的问题。
+Kubernetes (常简称为 K8s) 是 Google 开源的容器编排引擎。如果说 Docker 解决了 “如何打包和运送集装箱” 的问题，那么 Kubernetes 解决的就是 “如何管理海量集装箱的调度、运行和维护” 的问题。
 
 它不仅仅是一个编排系统，更是一个**云原生应用操作系统**。
 
-> **名字由来**：Kubernetes 在希腊语中意为"舵手"或"飞行员"。K8s 是因为 k 和 s 之间有 8 个字母。
+> **名字由来**：Kubernetes 在希腊语中意为 “舵手” 或 “飞行员”。K8s 是因为 k 和 s 之间有 8 个字母。
 
 ---
 
@@ -32,23 +32,25 @@ Kubernetes 完美解决了这些问题。
 
 ### 核心概念
 
-#### Pod（豆荚）
+本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
-Kubernetes 的最小调度单位。一个 Pod 可以包含一个或多个紧密协作的容器（共享网络和存储）。就像豌豆荚里的豌豆一样。
+#### Pod (豆荚)
 
-#### Node（节点）
+Kubernetes 的最小调度单位。一个 Pod 可以包含一个或多个紧密协作的容器 (共享网络和存储)。就像豌豆荚里的豌豆一样。
+
+#### Node (节点)
 
 运行 Pod 的物理机或虚拟机。
 
-#### Deployment（部署）
+#### Deployment (部署)
 
-定义应用的期望状态（如：需要 3 个副本，镜像版本为 v1）。K8s 会持续确保当前状态符合期望状态。
+定义应用的期望状态 (如：需要 3 个副本，镜像版本为 v1)。K8s 会持续确保当前状态符合期望状态。
 
-#### Service（服务）
+#### Service (服务)
 
 定义一组 Pod 的访问策略。提供稳定的 Cluster IP 和 DNS 名称，负责负载均衡。
 
-#### Namespace（命名空间）
+#### Namespace (命名空间)
 
 用于多租户资源隔离。
 
@@ -69,17 +71,17 @@ Kubernetes 的最小调度单位。一个 Pod 可以包含一个或多个紧密�
 
 ### 架构
 
-Kubernetes 也是 C/S 架构，由 **Control Plane（控制平面）**和**Worker Node（工作节点）** 组成：
+Kubernetes 也是 C/S 架构，由 **Control Plane (控制平面) **和** Worker Node (工作节点)** 组成：
 
-- **Control Plane**：负责决策（API Server, Scheduler, Controller Manager, etcd）
-- **Worker Node**：负责干活（Kubelet, Kube-proxy, Container Runtime）
+- **Control Plane**：负责决策 (API Server，Scheduler，Controller Manager，etcd)
+- **Worker Node**：负责干活 (Kubelet，Kube-proxy，Container Runtime)
 
 ---
 
 ### 学习建议
 
 Kubernetes 的学习曲线较陡峭。建议的学习路径：
-1. **理解基本概念**：Pod, Deployment, Service
+1. **理解基本概念**：Pod，Deployment，Service
 2. **动手实践**：使用 Minikube 或 Kind 在本地搭建集群
 3. **部署应用**：编写 YAML 部署一个无状态应用
 4. **深入原理**：网络模型、存储机制、调度算法

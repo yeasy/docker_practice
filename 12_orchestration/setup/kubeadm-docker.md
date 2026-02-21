@@ -1,14 +1,14 @@
-## 使用 kubeadm 部署 Kubernetes（使用 Docker）
+## 使用 kubeadm 部署 Kubernetes (使用 Docker)
 
 `kubeadm` 提供了 `kubeadm init` 以及 `kubeadm join` 这两个命令，作为快速创建 `Kubernetes` 集群的最佳实践。
 
-> ⚠️ **重要说明**：自 Kubernetes 1.24 起，内置 `dockershim` 已被移除，Kubernetes 默认不再直接使用 Docker Engine 作为容器运行时（CRI）。因此，**更推荐参考**同目录下的《[使用 kubeadm 部署 Kubernetes（CRI 使用 containerd）](kubeadm.md)》。
+> ⚠️ **重要说明**：自 Kubernetes 1.24 起，内置 `dockershim` 已被移除，Kubernetes 默认不再直接使用 Docker Engine 作为容器运行时 (CRI)。因此，**更推荐参考**同目录下的《[使用 kubeadm 部署 Kubernetes (CRI 使用 containerd)](kubeadm.md)》。
 >
 > 本文档主要用于历史环境/学习目的：如果你确实需要在较新版本中继续使用 Docker Engine，通常需要额外部署 `cri-dockerd` 并在 `kubeadm init/join` 中指定 `--cri-socket`。
 
 ### 安装 Docker
 
-参考 [安装 Docker](../../03_install/README.md) 一节安装 Docker。
+参考[安装 Docker](../../03_install/README.md) 一节安装 Docker。
 
 ### 安装 **kubelet****kubeadm****kubectl**
 
@@ -58,6 +58,8 @@ $ sudo yum install -y kubelet kubeadm kubectl
 
 ### 修改内核的运行参数
 
+本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
+
 #### 加载内核模块
 
 运行以下命令：
@@ -72,7 +74,7 @@ $ sudo modprobe overlay
 $ sudo modprobe br_netfilter
 ```
 
-#### 禁用 swap（必须）
+#### 禁用 swap (必须)
 
 kubelet 默认要求禁用 swap，否则可能导致初始化失败或节点无法加入集群。
 
@@ -100,6 +102,10 @@ $ sysctl --system
 ### 配置 kubelet
 
 为了让 kubelet 正确运行，我们需要对其进行一些必要的配置。
+
+#### 概述
+
+总体概述了以下内容。
 
 #### 修改 `kubelet.service`
 
@@ -169,7 +175,7 @@ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
 
 #### node 工作节点
 
-在 **另一主机**重复**部署** 小节以前的步骤，安装配置好 kubelet。根据提示，加入到集群。
+在**另一主机**重复**部署**小节以前的步骤，安装配置好 kubelet。根据提示，加入到集群。
 
 ```bash
 $ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
@@ -186,7 +192,7 @@ $ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
 
 * `scheduler` 负责对资源进行调度，分配某个 pod 到某个节点上；
 
-* `controller-manager` 负责管理控制器，包括 endpoint-controller（刷新服务和 pod 的关联信息）和 replication-controller（维护某个 pod 的复制为配置的数值）。
+* `controller-manager` 负责管理控制器，包括 endpoint-controller (刷新服务和 pod 的关联信息) 和 replication-controller (维护某个 pod 的复制为配置的数值)。
 
 #### 工作节点服务
 
@@ -207,6 +213,10 @@ $ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
 ### 部署 CNI
 
 这里以 `flannel` 为例进行介绍。
+
+#### 概述
+
+总体概述了以下内容。
 
 #### flannel
 

@@ -10,7 +10,7 @@
 
 在 Github 新建一个名为 `drone-demo` 的仓库。
 
-打开我们已经 [部署好的 Drone 网站](install.md) 或者 [Drone Cloud](https://cloud.drone.io)，使用 GitHub 账号登录，在界面中关联刚刚新建的 `drone-demo` 仓库。
+打开我们已经[部署好的 Drone 网站](install.md)或者 [Drone Cloud](https://cloud.drone.io)，使用 GitHub 账号登录，在界面中关联刚刚新建的 `drone-demo` 仓库。
 
 ## 编写项目源代码
 

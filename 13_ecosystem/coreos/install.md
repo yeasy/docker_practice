@@ -1,12 +1,14 @@
 ## 安装 Fedora CoreOS
 
+本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
+
 ### 下载 ISO
 
-在 [下载页面](https://getfedora.org/coreos/download/) `Bare Metal & Virtualized` 标签页下载 ISO。
+在[下载页面](https://getfedora.org/coreos/download/) `Bare Metal & Virtualized` 标签页下载 ISO。
 
 ### 编写 FCC
 
-FCC 是 Fedora CoreOS Configuration （Fedora CoreOS 配置）的简称。
+FCC 是 Fedora CoreOS Configuration (Fedora CoreOS 配置) 的简称。
 
 ```yaml
 ## example.fcc
@@ -20,7 +22,7 @@ passwd:
         - ssh-rsa AAAA...
 ```
 
-将 `ssh-rsa AAAA...` 替换为自己的 SSH 公钥（位于 `~/.ssh/id_rsa.pub`）。
+将 `ssh-rsa AAAA...` 替换为自己的 SSH 公钥 (位于 `~/.ssh/id_rsa.pub`)。
 
 ### 转换 FCC 为 Ignition
 

@@ -42,7 +42,7 @@ kubectl [command]
 
 ## port-forward
 
-将本地端口转发到Pod
+将本地端口转发到 Pod
 
 ## proxy
 
@@ -70,7 +70,7 @@ kubectl [command]
 
 ## api-versions
 
-以 "组/版本" 的格式输出服务端支持的 API 版本
+以 “组/版本” 的格式输出服务端支持的 API 版本
 
 ## version
 
