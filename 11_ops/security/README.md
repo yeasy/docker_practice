@@ -6,19 +6,22 @@
 
 > **核心问题**：容器共享宿主机内核，隔离性弱于虚拟机。如何在便利性和安全性之间取得平衡？
 
-```
-虚拟机安全模型：                容器安全模型：
-┌─────────────────┐            ┌─────────────────┐
-│   Guest OS      │            │    容器进程      │
-├─────────────────┤            │   (共享内核)     │
-│   Hypervisor    │◄── 隔离边界└────────┬────────┘
-├─────────────────┤                     │
-│   Host OS       │            ┌────────┴────────┐
-└─────────────────┘            │   Namespace     │◄── 隔离边界
-                               │   Cgroups       │
-完全隔离（性能损耗）            │   Capabilities  │
-                               └─────────────────┘
-                               进程隔离（轻量但需加固）
+```mermaid
+flowchart LR
+    subgraph VM ["虚拟机安全模型：<br/>完全隔离（性能损耗）"]
+        direction TB
+        Guest["Guest OS"]
+        Hyper["Hypervisor<br/>&lt;-- 隔离边界"]
+        Host["Host OS"]
+        Guest --> Hyper --> Host
+    end
+    
+    subgraph Container ["容器安全模型：<br/>进程隔离（轻量但需加固）"]
+        direction TB
+        Proc["容器进程<br/>(共享内核)"]
+        Mech["Namespace &lt;-- 隔离边界<br/>Cgroups<br/>Capabilities"]
+        Proc --> Mech
+    end
 ```
 
 ---
