@@ -10,6 +10,8 @@
 
 ### 基本用法
 
+如下代码块所示，展示了相关示例：
+
 ```bash
 $ docker run --tmpfs /run:rw,noexec,nosuid,size=64m nginx
 ```

@@ -1,8 +1,10 @@
 ## 挂载主机目录
 
+本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
+
 ### 什么是绑定挂载
 
-Bind Mount（绑定挂载）将**宿主机的目录或文件**直接挂载到容器中。容器可以读写宿主机的文件系统。
+Bind Mount (绑定挂载) 将**宿主机的目录或文件**直接挂载到容器中。容器可以读写宿主机的文件系统。
 
 ```mermaid
 flowchart LR
@@ -32,6 +34,10 @@ flowchart LR
 | **适用场景** | 开发环境、配置文件 | 生产数据持久化 |
 | **备份** | 直接访问文件 | 需要通过 Docker |
 
+#### 概述
+
+总体概述了以下内容。
+
 #### 选择建议
 
 | 需求 | 推荐方案 |
@@ -47,7 +53,9 @@ flowchart LR
 
 ### 基本语法
 
-#### 使用 --mount（推荐）
+本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
+
+#### 使用 --mount (推荐)
 
 运行以下命令：
 
@@ -57,7 +65,7 @@ $ docker run -d \
     nginx
 ```
 
-#### 使用 -v（简写）
+#### 使用 -v (简写)
 
 运行以下命令：
 
@@ -78,6 +86,8 @@ $ docker run -d \
 ---
 
 ### 使用场景
+
+本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
 #### 场景一：开发环境代码同步
 
@@ -182,7 +192,7 @@ $ docker run -d \
     mysql
 ```
 
-> ⚠️ **注意**：挂载单个文件时，如果宿主机上的文件被编辑器替换（而非原地修改），容器内仍是旧文件的 inode。建议重启容器或挂载目录。
+> ⚠️ **注意**：挂载单个文件时，如果宿主机上的文件被编辑器替换 (而非原地修改)，容器内仍是旧文件的 inode。建议重启容器或挂载目录。
 
 ---
 
@@ -221,7 +231,9 @@ $ docker inspect mycontainer --format '{{json .Mounts}}' | jq
 
 ### 常见问题
 
-#### Q: 路径不存在报错
+本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
+
+#### Q：路径不存在报错
 
 运行以下命令：
 
@@ -231,9 +243,9 @@ docker: Error response from daemon: invalid mount config for type "bind":
 bind source path does not exist: /not/exist
 ```
 
-**解决**：确保源路径存在，或改用 `-v`（会自动创建）
+**解决**：确保源路径存在，或改用 `-v` (会自动创建)
 
-#### Q: 权限问题
+#### Q：权限问题
 
 容器内用户可能无权访问挂载的文件：
 
@@ -251,9 +263,9 @@ $ docker run -u root ...
 $ docker run -u $(id -u):$(id -g) ...
 ```
 
-#### Q: macOS/Windows 性能问题
+#### Q：macOS/Windows 性能问题
 
-在 Docker Desktop 上，Bind Mount 性能较差（需要跨文件系统同步）：
+在 Docker Desktop 上，Bind Mount 性能较差 (需要跨文件系统同步)：
 
 ```bash
 ## 使用 :cached 或 :delegated 提高性能（macOS）
@@ -271,7 +283,9 @@ $ docker run -v /host/path:/container/path:cached myapp
 
 ### 最佳实践
 
-#### 1. 开发环境使用 Bind Mount
+本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
+
+#### 1。开发环境使用 Bind Mount
 
 运行以下命令：
 
@@ -281,7 +295,7 @@ $ docker run -v /host/path:/container/path:cached myapp
 $ docker run -v $(pwd):/app -p 3000:3000 node npm run dev
 ```
 
-#### 2. 生产环境使用 Volume
+#### 2。生产环境使用 Volume
 
 运行以下命令：
 
@@ -291,7 +305,7 @@ $ docker run -v $(pwd):/app -p 3000:3000 node npm run dev
 $ docker run -v mysql_data:/var/lib/mysql mysql
 ```
 
-#### 3. 配置文件使用只读挂载
+#### 3。配置文件使用只读挂载
 
 运行以下命令：
 
@@ -299,7 +313,7 @@ $ docker run -v mysql_data:/var/lib/mysql mysql
 $ docker run -v /config/nginx.conf:/etc/nginx/nginx.conf:ro nginx
 ```
 
-#### 4. 注意路径安全
+#### 4。注意路径安全
 
 运行以下命令：
 

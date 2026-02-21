@@ -1,5 +1,7 @@
 ## 部署 Drone
 
+本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
+
 ### 要求
 
 * 拥有公网 IP、域名 (如果你不满足要求，可以尝试在本地使用 Gogs + Drone)
@@ -22,7 +24,7 @@
 
 ### 配置 Drone
 
-我们通过使用 `Docker Compose` 来启动 `Drone`，编写 `compose.yaml`（或 `docker-compose.yml`）文件。
+我们通过使用 `Docker Compose` 来启动 `Drone`，编写 `compose.yaml` (或 `docker-compose.yml`) 文件。
 
 ```yaml
 services:
@@ -79,6 +81,10 @@ DRONE_GITHUB_CLIENT_ID=
 
 DRONE_GITHUB_CLIENT_SECRET=
 ```
+
+#### 概述
+
+总体概述了以下内容。
 
 #### 启动 Drone
 

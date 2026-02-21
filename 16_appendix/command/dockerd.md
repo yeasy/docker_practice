@@ -1,19 +1,21 @@
-## 服务端命令（dockerd）
+## 服务端命令
+
+本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
 ### 使用说明
 
 `dockerd` 参数会随版本变化。建议优先在目标机器上执行 `dockerd --help`，并以 `daemon.json` 为主进行持久化配置。
 
-### 常用选项（Docker Engine 29.x）
+### 常用选项 (Docker Engine 29.x)
 
 * `--config-file="/etc/docker/daemon.json"`：指定 daemon 配置文件路径；
-* `--data-root=""`：Docker 数据目录（默认 `/var/lib/docker`）；
-* `-H, --host=[]`：指定 daemon 监听地址（Unix socket / TCP）；
+* `--data-root=""`：Docker 数据目录 (默认 `/var/lib/docker`)；
+* `-H, --host=[]`：指定 daemon 监听地址 (Unix socket / TCP)；
 * `-D, --debug`：开启调试日志；
 * `-l, --log-level="debug|info|warn|error|fatal"`：日志级别；
-* `--group=""`：Unix socket 所属用户组（默认 `docker`）；
+* `--group=""`：Unix socket 所属用户组 (默认 `docker`)；
 * `--containerd=""`：指定 containerd socket；
-* `--exec-opt=[]`：运行时执行选项（如 cgroup 驱动）；
+* `--exec-opt=[]`：运行时执行选项 (如 cgroup 驱动)；
 * `--default-ulimit=[]`：设置容器默认 ulimit；
 * `--dns=[]` / `--dns-search=[]` / `--dns-opt=[]`：DNS 配置；
 * `--registry-mirror=[]`：镜像加速地址；
@@ -23,7 +25,7 @@
 * `--storage-driver=""` / `--storage-opt=[]`：存储驱动及参数；
 * `--log-driver=""` / `--log-opt=[]`：容器日志驱动与参数；
 * `--authorization-plugin=[]`：鉴权插件；
-* `--selinux-enabled=true|false`：启用 SELinux 集成（依赖发行版策略）；
+* `--selinux-enabled=true|false`：启用 SELinux 集成 (依赖发行版策略)；
 * `--userns-remap=...`：用户命名空间映射；
 * `--tls` / `--tlscacert` / `--tlscert` / `--tlskey` / `--tlsverify`：TLS 安全配置。
 

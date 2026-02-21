@@ -2,7 +2,7 @@
 
 下面我们使用 [Docker Compose](../../10_compose/README.md) 模拟启动一个 3 节点的 `etcd` 集群。
 
-编辑 `compose.yaml`（或 `docker-compose.yml`）文件
+编辑 `compose.yaml` (或 `docker-compose.yml`) 文件
 
 ```yaml
 services:
