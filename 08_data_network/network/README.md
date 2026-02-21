@@ -47,10 +47,22 @@ graph TD
 
 ### 数据流向
 
-```
-容器 A (172.17.0.2) → docker0 → 容器 B (172.17.0.3)  (容器间通信)
-容器 A (172.17.0.2) → docker0 → eth0 → 互联网        (访问外网)
-外部请求 → eth0 → docker0 → 容器 A                    (被外部访问，需端口映射)
+```mermaid
+flowchart LR
+    subgraph Comm1 ["容器间通信"]
+        direction LR
+        C1A["容器 A (172.17.0.2)"] --> D0A["docker0"] --> C1B["容器 B (172.17.0.3)"]
+    end
+    
+    subgraph Comm2 ["访问外网"]
+        direction LR
+        C2A["容器 A (172.17.0.2)"] --> D0B["docker0"] --> Eth0A["eth0"] --> InternetA["互联网"]
+    end
+    
+    subgraph Comm3 ["被外部访问，需端口映射"]
+        direction LR
+        Req["外部请求"] --> Eth0B["eth0"] --> D0C["docker0"] --> C3A["容器 A"]
+    end
 ```
 
 ---
@@ -124,17 +136,12 @@ PING db (172.18.0.3): 56 data bytes
 
 自定义网络自动提供 DNS 服务：
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                    mynet 网络                           │
-│                                                         │
-│  ┌─────────┐          DNS          ┌─────────┐         │
-│  │   web   │ ──── "db" → 172.18.0.3 ───► │   db    │   │
-│  │172.18.0.2│                       │172.18.0.3│        │
-│  └─────────┘                        └─────────┘         │
-│                                                         │
-│  web 容器可以用 "db" 作为主机名访问 db 容器              │
-└─────────────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph MyNet ["mynet 网络 : web 容器可以用 'db' 作为主机名访问 db 容器"]
+        direction LR
+        Web["web<br/>172.18.0.2"] -- "DNS: 'db' → 172.18.0.3" --> DB["db<br/>172.18.0.3"]
+    end
 ```
 
 ---
@@ -231,17 +238,10 @@ $ docker port mycontainer
 
 ### 端口映射示意图
 
-```
-外部请求 http://宿主机IP:8080
-              │
-              ▼
-        ┌─────────────┐
-        │  宿主机:8080 │  ─── iptables NAT ───┐
-        └─────────────┘                       │
-                                              ▼
-                                      ┌───────────────┐
-                                      │ 容器 nginx:80 │
-                                      └───────────────┘
+```mermaid
+flowchart TD
+    Req["外部请求 http://宿主机IP:8080"] --> Host["宿主机:8080"]
+    Host -- "iptables NAT" --> Container["容器 nginx:80"]
 ```
 
 ---

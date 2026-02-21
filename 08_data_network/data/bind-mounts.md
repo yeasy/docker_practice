@@ -4,14 +4,19 @@
 
 Bind Mount（绑定挂载）将**宿主机的目录或文件**直接挂载到容器中。容器可以读写宿主机的文件系统。
 
-```
-宿主机                           容器
-┌─────────────────────┐         ┌─────────────────────┐
-│  /home/user/code/   │         │                     │
-│  ├── index.html     │◄───────►│  /usr/share/nginx/  │
-│  ├── style.css      │ Bind    │  html/              │
-│  └── app.js         │ Mount   │  (同一份文件)        │
-└─────────────────────┘         └─────────────────────┘
+```mermaid
+flowchart LR
+    subgraph Host ["宿主机"]
+        direction TB
+        Dir1["/home/user/code/<br/>├── index.html<br/>├── style.css<br/>└── app.js"]
+    end
+    
+    subgraph Container ["容器"]
+        direction TB
+        Dir2["/usr/share/nginx/html/<br/>(同一份文件)"]
+    end
+    
+    Dir1 <-->|Bind Mount| Dir2
 ```
 
 ---
@@ -29,16 +34,14 @@ Bind Mount（绑定挂载）将**宿主机的目录或文件**直接挂载到容
 
 #### 选择建议
 
-```
-需求                          推荐方案
-─────────────────────────────────────────
-开发时同步代码              → Bind Mount
-持久化数据库数据            → Volume
-共享配置文件                → Bind Mount
-容器间共享数据              → Volume
-备份方便                    → Bind Mount（直接访问）
-生产环境                    → Volume
-```
+| 需求 | 推荐方案 |
+|------|----------|
+| 开发时同步代码 | Bind Mount |
+| 持久化数据库数据 | Volume |
+| 共享配置文件 | Bind Mount |
+| 容器间共享数据 | Volume |
+| 备份方便 | Bind Mount（直接访问） |
+| 生产环境 | Volume |
 
 ---
 
@@ -311,19 +314,3 @@ $ docker run -v /app/data:/data ...
 ```
 
 ---
-
-### 本章小结
-
-| 要点 | 说明 |
-|------|------|
-| **作用** | 将宿主机目录挂载到容器 |
-| **语法** | `-v /宿主机:/容器` 或 `--mount type=bind,...` |
-| **只读** | 添加 `readonly` 或 `:ro` |
-| **适用场景** | 开发环境、配置文件、日志 |
-| **vs Volume** | Bind 更灵活，Volume 更适合生产 |
-
-### 延伸阅读
-
-- [数据卷](volume.md)：Docker 管理的持久化存储
-- [tmpfs 挂载](tmpfs.md)：内存临时存储
-- [Compose 数据管理](../../10_compose/10.5_compose_file.md)：Compose 中的挂载配置

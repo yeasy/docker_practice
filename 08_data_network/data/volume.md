@@ -397,20 +397,3 @@ $ docker volume inspect my-vol
 3. 在目标机器恢复
 
 ---
-
-### 本章小结
-
-| 操作 | 命令 |
-|------|------|
-| 创建数据卷 | `docker volume create name` |
-| 列出数据卷 | `docker volume ls` |
-| 查看详情 | `docker volume inspect name` |
-| 删除数据卷 | `docker volume rm name` |
-| 清理未用 | `docker volume prune` |
-| 挂载数据卷 | `-v name:/path` 或 `--mount source=name,target=/path` |
-
-### 延伸阅读
-
-- [绑定挂载](bind-mounts.md)：挂载宿主机目录
-- [tmpfs 挂载](tmpfs.md)：内存中的临时存储
-- [存储驱动](../../14_implementation/14.4_ufs.md)：Docker 存储的底层原理
