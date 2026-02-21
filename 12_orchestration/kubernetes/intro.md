@@ -1,8 +1,10 @@
 ## Kubernetes 简介
 
-Kubernetes 简介 示意图如下：
+如图 12-1 所示，Kubernetes 使用舵手图标作为项目标识。
 
-![](./_images/kubernetes_logo.png)
+![Kubernetes 标识](./_images/kubernetes_logo.png)
+
+图 12-1 Kubernetes 项目标识
 
 ### 什么是 Kubernetes
 

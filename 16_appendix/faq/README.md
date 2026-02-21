@@ -102,11 +102,11 @@ $ docker run --network=my-net --ip=172.25.3.3 -itd --name=my-container busybox
 
 ### Docker 的配置文件放在哪里，如何修改配置？
 
-答：使用 `systemd` 的系统（如 Ubuntu 16.04、Centos 等）的配置文件在 `/etc/docker/daemon.json`。
+答：使用 `systemd` 的系统（如 Ubuntu 22.04+、Debian 12+、Rocky/Alma/CentOS Stream 9+）的配置文件在 `/etc/docker/daemon.json`。
 
 ### 如何更改 Docker 的默认存储位置？
 
-答：Docker 的默认存储位置是 `/var/lib/docker`，如果希望将 Docker 的本地文件存储到其他分区，可以使用 Linux 软连接的方式来完成，或者在启动 daemon 时通过 `-g` 参数指定，或者修改配置文件 `/etc/docker/daemon.json` 的 "data-root" 项 。可以使用 `docker system info | grep "Root Dir"` 查看当前使用的存储位置。
+答：Docker 的默认存储位置是 `/var/lib/docker`，如果希望将 Docker 的本地文件存储到其他分区，可以使用 Linux 软连接的方式来完成，或者修改配置文件 `/etc/docker/daemon.json` 的 `data-root` 项。可以使用 `docker info | grep "Docker Root Dir"` 查看当前使用的存储位置。
 
 例如，如下操作将默认存储位置迁移到 /storage/docker。
 

@@ -10,3 +10,5 @@
 *   [**Dockerfile 最佳实践**](16.1_best_practices.md)：提供编写高效、安全 Dockerfile 的指导原则。
 *   [**如何调试 Docker**](16.2_debug.md)：介绍 Docker 调试技巧和工具。
 *   [**资源链接**](16.3_resources.md)：推荐更多 Docker 相关的学习资源。
+*   [**术语词表（出版统一版）**](16.4_terminology.md)：统一全书中英文术语、缩写与命令写法。
+*   [**出版清稿规范（图号与章节风格）**](16.5_editorial_style.md)：统一图号命名、图题写法与章节风格。
