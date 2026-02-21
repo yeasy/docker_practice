@@ -123,16 +123,23 @@ $ snyk container test nginx:latest
 
 ### 镜像签名验证
 
-使用 Docker Content Trust (DCT) 验证镜像来源：
+当前更推荐使用 Sigstore / Notation 体系进行镜像签名。`Docker Content Trust (DCT)` 已进入退场阶段，不建议作为新项目主方案。
+
+> 注意：Cosign 默认会把签名写回镜像所在仓库，请使用你有推送权限的镜像地址。
 
 ```bash
-## 启用镜像签名验证
+## 准备示例镜像
+$ export IMAGE=<你的仓库地址>/myimage:latest
+$ docker pull nginx:1.27
+$ docker tag nginx:1.27 $IMAGE
+$ docker push $IMAGE
 
-$ export DOCKER_CONTENT_TRUST=1
+## 生成签名密钥（会生成 cosign.key / cosign.pub）
+$ cosign generate-key-pair
 
-## 此后的 pull/push 会验证签名
-
-$ docker pull myregistry/myimage:latest
+## Cosign: 签名与验证
+$ cosign sign --key cosign.key $IMAGE
+$ cosign verify --key cosign.pub $IMAGE
 ```
 
 ---
@@ -364,13 +371,18 @@ SBOM 类似于食品的配料表，列出了容器镜像中包含的所有软件
 
 - **Cosign**: Sigstore 项目的一部分，用于签署和验证容器镜像。
 ```bash
-## 签署镜像
+## 使用有写权限的仓库地址
+$ export IMAGE=<你的仓库地址>/myimage:tag
+$ docker pull nginx:1.27
+$ docker tag nginx:1.27 $IMAGE
+$ docker push $IMAGE
 
-$ cosign sign --key cosign.key myimage:tag
+## 生成签名密钥（会生成 cosign.key / cosign.pub）
+$ cosign generate-key-pair
 
-## 验证镜像
-
-$ cosign verify --key cosign.pub myimage:tag
+## 签署与验证镜像
+$ cosign sign --key cosign.key $IMAGE
+$ cosign verify --key cosign.pub $IMAGE
 ```
 
 ### 3. SLSA（Supply-chain Levels for Software Artifacts）
@@ -388,7 +400,7 @@ $ cosign verify --key cosign.pub myimage:tag
 | 资源限制 | ⭐⭐⭐ | `-m`, `--cpus` |
 | 只读文件系统 | ⭐⭐ | `--read-only` |
 | 最小能力 | ⭐⭐ | `--cap-drop=all` |
-| 镜像签名 | ⭐⭐ | Docker Content Trust |
+| 镜像签名 | ⭐⭐ | `cosign` / Notation |
 
 ## 延伸阅读
 

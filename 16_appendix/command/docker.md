@@ -9,7 +9,7 @@
 * `--tls=true|false`：是否对 Docker 守护进程启用 TLS 安全机制，默认为否；
 * `--tlscacert=/.docker/ca.pem`：TLS CA 签名的可信证书文件路径；
 * `--tlscert=/.docker/cert.pem`：TLS 可信证书文件路径；
-* `--tlscert=/.docker/key.pem`：TLS 密钥文件路径；
+* `--tlskey=/.docker/key.pem`：TLS 密钥文件路径；
 * `--tlsverify=true|false`：启用 TLS 校验，默认为否。
 
 ### 客户端命令
@@ -64,10 +64,12 @@
 
 ### 一张图总结 Docker 的命令
 
-一张图总结 Docker 的命令 示意图如下：
+如图 16-1 所示，Docker 常用客户端命令可按功能分组理解。
 
 ![Docker 命令总结](../../_images/cmd_logic.png)
 
+图 16-1 Docker 客户端命令分类示意图
+
 ### 参考
 
-* [官方文档](https://docs.docker.com/engine/reference/commandline/cli/)
+* [官方文档](https://docs.docker.com/reference/cli/docker/)
