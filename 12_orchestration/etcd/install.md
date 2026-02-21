@@ -2,7 +2,7 @@
 
 本节将介绍 etcd 的几种常见安装方式，包括二进制安装、Docker 镜像运行以及在 macOS 上的安装。
 
-`etcd` 基于 `Go` 语言实现，因此，用户可以从 [项目主页](https://github.com/etcd-io/etcd) 下载源代码自行编译，也可以下载编译好的二进制文件，甚至直接使用制作好的 `Docker` 镜像文件来体验。
+`etcd` 基于 `Go` 语言实现，因此，用户可以从[项目主页](https://github.com/etcd-io/etcd)下载源代码自行编译，也可以下载编译好的二进制文件，甚至直接使用制作好的 `Docker` 镜像文件来体验。
 
 >注意：本章节内容基于 etcd `3.4.x` 版本
 
@@ -30,7 +30,7 @@ Documentation README-etcdctl.md README.md READMEv2-etcdctl.md etcd etcdctl
 
 其中 `etcd` 是服务主文件，`etcdctl` 是提供给用户的命令客户端，其他文件是支持文档。
 
-下面将 `etcd` `etcdctl` 文件放到系统可执行目录（例如 `/usr/local/bin/`）。
+下面将 `etcd` `etcdctl` 文件放到系统可执行目录 (例如 `/usr/local/bin/`)。
 
 ```bash
 $ sudo cp etcd* /usr/local/bin/

@@ -29,7 +29,7 @@
 ### 延伸阅读
 
 - [启动容器](../05_container/5.1_run.md)：详细的容器启动选项
-- [后台运行](../05_container/5.2_daemon.md)：理解容器为什么会"立即退出"
+- [后台运行](../05_container/5.2_daemon.md)：理解容器为什么会 “立即退出”
 - [进入容器](../05_container/5.4_attach_exec.md)：如何操作运行中的容器
 - [数据管理](../08_data_network/README.md)：Volume 和数据持久化详解
 

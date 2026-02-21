@@ -1,12 +1,12 @@
-## 使用 kubeadm 部署 Kubernetes（CRI 使用 containerd）
+## 使用 kubeadm 部署 Kubernetes (CRI 使用 containerd)
 
 `kubeadm` 提供了 `kubeadm init` 以及 `kubeadm join` 这两个命令，作为快速创建 `Kubernetes` 集群的最佳实践。
 
-> **版本说明**：Kubernetes 版本更新较快（约每 4 个月一个新版本），本文档基于 Kubernetes 1.35 编写。请访问 [Kubernetes 官方发布页](https://kubernetes.io/releases/) 获取最新版本信息。
+> **版本说明**：Kubernetes 版本更新较快 (约每 4 个月一个新版本)，本文档基于 Kubernetes 1.35 编写。请访问 [Kubernetes 官方发布页](https://kubernetes.io/releases/)获取最新版本信息。
 
 ### 安装 containerd
 
-参考 [安装 Docker](../../03_install/README.md) 一节添加 apt/yum 源，之后执行如下命令。
+参考[安装 Docker](../../03_install/README.md) 一节添加 apt/yum 源，之后执行如下命令。
 
 ```bash
 ## debian 系
@@ -276,6 +276,8 @@ $ sudo yum install -y kubelet kubeadm kubectl cri-tools kubernetes-cni
 
 ### 修改内核的运行参数
 
+本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
+
 #### 加载内核模块
 
 运行以下命令：
@@ -290,7 +292,7 @@ $ sudo modprobe overlay
 $ sudo modprobe br_netfilter
 ```
 
-#### 禁用 swap（必须）
+#### 禁用 swap (必须)
 
 kubelet 默认要求禁用 swap，否则可能导致初始化失败或节点无法加入集群。
 
@@ -318,6 +320,10 @@ $ sysctl --system
 ### 配置 kubelet
 
 为了让 kubelet 正确运行，我们需要对其进行一些必要的配置。
+
+#### 概述
+
+总体概述了以下内容。
 
 #### 修改 `kubelet.service`
 
@@ -393,7 +399,7 @@ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
 
 #### node 工作节点
 
-在 **另一主机**重复**部署** 小节以前的步骤，安装配置好 kubelet。根据提示，加入到集群。
+在**另一主机**重复**部署**小节以前的步骤，安装配置好 kubelet。根据提示，加入到集群。
 
 ```bash
 $ systemctl enable cri-containerd
@@ -420,7 +426,7 @@ CONTAINER_RUNTIME_ENDPOINT=/run/cri-containerd/cri-containerd.sock crictl ps -a
 
 * `scheduler` 负责对资源进行调度，分配某个 pod 到某个节点上；
 
-* `controller-manager` 负责管理控制器，包括 endpoint-controller（刷新服务和 pod 的关联信息）和 replication-controller（维护某个 pod 的复制为配置的数值）。
+* `controller-manager` 负责管理控制器，包括 endpoint-controller (刷新服务和 pod 的关联信息) 和 replication-controller (维护某个 pod 的复制为配置的数值)。
 
 #### 工作节点服务
 
@@ -441,6 +447,10 @@ CONTAINER_RUNTIME_ENDPOINT=/run/cri-containerd/cri-containerd.sock crictl ps -a
 ### 部署 CNI
 
 这里以 `flannel` 为例进行介绍。
+
+#### 概述
+
+总体概述了以下内容。
 
 #### flannel
 

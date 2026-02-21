@@ -67,7 +67,7 @@ $ podman build -t myimage .
 
 ## Pods 的概念
 
-与 Docker 不同，Podman 支持 "Pod" 的概念（类似于 Kubernetes 的 Pod），允许你在同一个网络命名空间中运行多个容器。
+与 Docker 不同，Podman 支持 “Pod” 的概念 (类似于 Kubernetes 的 Pod)，允许你在同一个网络命名空间中运行多个容器。
 
 ```bash
 ## 创建一个 Pod
@@ -88,6 +88,8 @@ $ alias docker=podman
 ```
 
 ### 进阶用法
+
+本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
 #### Systemd 集成
 

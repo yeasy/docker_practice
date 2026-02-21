@@ -4,12 +4,12 @@
 
 ### 为什么选择 Kind
 
-Kind 相比其他本地集群方案（如 Minikube）有以下显著优势：
+Kind 相比其他本地集群方案 (如 Minikube) 有以下显著优势：
 
 *   **轻量便捷**：只要有 Docker 环境即可，无需额外虚拟机。
 *   **多集群支持**：可以轻松在本地启动多个集群。
 *   **多版本支持**：支持指定 Kubernetes 版本进行测试。
-*   **HA 支持**：支持模拟高可用集群（多 Control Plane）。
+*   **HA 支持**：支持模拟高可用集群 (多 Control Plane)。
 
 ### 安装 Kind
 
@@ -23,7 +23,7 @@ Kind 是一个二进制文件，并在 PATH 中即可使用。以下是不同系
 brew install kind
 ```
 
-#### Linux / Windows（WSL2）
+#### Linux / Windows
 
 可以下载二进制文件：
 

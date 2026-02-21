@@ -1,5 +1,7 @@
 ## [Redis]
 
+本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
+
 ### 基本信息
 
 [Redis](https://en.wikipedia.org/wiki/Redis) 是开源的内存 Key-Value 数据库实现。
@@ -14,7 +16,7 @@
 $ docker run --name some-redis -d -p 6379:6379 redis
 ```
 
-另外还可以启用 [持久存储](https://redis.io/topics/persistence)。
+另外还可以启用[持久存储](https://redis.io/topics/persistence)。
 
 ```bash
 $ docker run --name some-redis -d -p 6379:6379 redis redis-server --appendonly yes

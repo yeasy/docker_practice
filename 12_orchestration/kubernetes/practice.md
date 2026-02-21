@@ -6,7 +6,7 @@
 
 1.  部署一个 Nginx Deployment。
 2.  创建一个 Service 暴露 Nginx。
-3.  （可选）通过 Ingress 访问服务。
+3.  (可选) 通过 Ingress 访问服务。
 
 ### 步骤 1：创建 Deployment
 
@@ -75,7 +75,7 @@ kubectl get svc nginx-service
 
 如果输出端口是 `80:30080/TCP`，你可以通过 `http://<NodeIP>:30080` 访问 Nginx。
 
-### 步骤 3：模拟滚动更新（Rolling Update）
+### 步骤 3：模拟滚动更新
 
 修改 `nginx-deployment.yaml`，将镜像版本改为 `nginx:1.27-alpine`。
 

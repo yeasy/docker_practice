@@ -4,9 +4,9 @@
 
 ## 目录结构
 
-*   `app.go`: 简单的 Go Web 服务器代码。
-*   `.drone.yml`: Drone CI 的配置文件，定义了构建和测试流程。
-*   `Dockerfile`: 定义了如何将该应用构建为 Docker 镜像。
+*   `app.go`：简单的 Go Web 服务器代码。
+*   `.drone.yml`：Drone CI 的配置文件，定义了构建和测试流程。
+*   `Dockerfile`：定义了如何将该应用构建为 Docker 镜像。
 
 ## 如何运行
 

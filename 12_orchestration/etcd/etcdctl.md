@@ -83,11 +83,11 @@ OPTIONS:
 
 ### 数据库操作
 
-数据库操作围绕对键值和目录的 CRUD （符合 REST 风格的一套操作：Create）完整生命周期的管理。
+数据库操作围绕对键值和目录的 CRUD (符合 REST 风格的一套操作：Create) 完整生命周期的管理。
 
-etcd 在键的组织上采用了层次化的空间结构（类似于文件系统中目录的概念），用户指定的键可以为单独的名字，如 `testkey`，此时实际上放在根目录 `/` 下面，也可以为指定目录结构，如 `cluster1/node2/testkey`，则将创建相应的目录结构。
+etcd 在键的组织上采用了层次化的空间结构 (类似于文件系统中目录的概念)，用户指定的键可以为单独的名字，如 `testkey`，此时实际上放在根目录 `/` 下面，也可以为指定目录结构，如 `cluster1/node2/testkey`，则将创建相应的目录结构。
 
->注：CRUD 即 Create, Read, Update, Delete，是符合 REST 风格的一套 API 操作。
+>注：CRUD 即 Create，Read，Update，Delete，是符合 REST 风格的一套 API 操作。
 
 #### put
 
@@ -112,7 +112,7 @@ hello
 
 支持的选项为
 
-`--sort`	对结果进行排序
+`--sort` 对结果进行排序
 
 `--consistent` 将请求发给主节点，保证获取内容的一致性
 
@@ -126,6 +126,8 @@ $ etcdctl del testkey
 ```
 
 ### 非数据库操作
+
+本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
 #### watch
 

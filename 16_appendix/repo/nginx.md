@@ -1,5 +1,7 @@
 ## [Nginx]
 
+本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
+
 ### 基本信息
 
 [Nginx](https://en.wikipedia.org/wiki/Nginx) 是开源的高效的 Web 服务器实现，支持 HTTP、HTTPS、SMTP、POP3、IMAP 等协议。
@@ -34,7 +36,7 @@ $ docker run --name some-nginx -d some-content-nginx
 $ docker run --name some-nginx -d -p 8080:80 some-content-nginx
 ```
 
-Nginx的默认配置文件路径为 `/etc/nginx/nginx.conf`，可以通过映射它来使用本地的配置文件，例如
+Nginx 的默认配置文件路径为 `/etc/nginx/nginx.conf`，可以通过映射它来使用本地的配置文件，例如
 
 ```bash
 $ docker run -d \

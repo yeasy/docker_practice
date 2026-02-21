@@ -1,5 +1,7 @@
 ## [Node.js]
 
+本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
+
 ### 基本信息
 
 [Node.js](https://en.wikipedia.org/wiki/Node.js) 是基于 JavaScript 的可扩展服务端和网络软件开发平台。

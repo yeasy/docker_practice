@@ -11,7 +11,7 @@
 
 ### 延伸阅读
 
-- [控制组（Cgroups）](14.3_cgroups.md)：资源限制机制
+- [控制组 (Cgroups)](14.3_cgroups.md)：资源限制机制
 - [联合文件系统](14.4_ufs.md)：分层存储的实现
 - [安全](../11_ops/security/README.md)：容器安全实践
 - [Linux Namespace 官方文档](https://man7.org/linux/man-pages/man7/namespaces.7.html)

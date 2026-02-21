@@ -1,5 +1,7 @@
 ## [WordPress]
 
+本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
+
 ### 基本信息
 
 [WordPress](https://en.wikipedia.org/wiki/WordPress) 是开源的 Blog 和内容管理系统框架，它基于 PHP 和 MySQL。
@@ -27,10 +29,10 @@ $ docker run --name some-wordpress -d --network my-wordpress-net -e WORDPRESS_DB
 
 启动 WordPress 容器时可以指定的一些环境变量包括：
 
-* `WORDPRESS_DB_HOST`: MySQL 服务的主机名
-* `WORDPRESS_DB_USER`: MySQL 数据库的用户名
-* `WORDPRESS_DB_PASSWORD`: MySQL 数据库的密码
-* `WORDPRESS_DB_NAME`: WordPress 要使用的数据库名
+* `WORDPRESS_DB_HOST`：MySQL 服务的主机名
+* `WORDPRESS_DB_USER`：MySQL 数据库的用户名
+* `WORDPRESS_DB_PASSWORD`：MySQL 数据库的密码
+* `WORDPRESS_DB_NAME`：WordPress 要使用的数据库名
 
 
 ### Dockerfile

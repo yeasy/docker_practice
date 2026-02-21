@@ -19,7 +19,7 @@
 
 图 12-3 Kubernetes 运行原理图
 
-可见，Kubernetes 首先是一套分布式系统，由多个节点组成，节点分为两类：一类是属于管理平面的主节点/控制节点（Master Node）；一类是属于运行平面的工作节点（Worker Node）。
+可见，Kubernetes 首先是一套分布式系统，由多个节点组成，节点分为两类：一类是属于管理平面的主节点/控制节点 (Master Node)；一类是属于运行平面的工作节点 (Worker Node)。
 
 显然，复杂的工作肯定都交给控制节点去做了，工作节点负责提供稳定的操作接口和能力抽象即可。
 
@@ -27,7 +27,7 @@
 
 ### 控制平面
 
-控制平面（Control Plane）是 Kubernetes 集群的大脑，负责做出全局决策（如调度）以及检测和响应集群事件。
+控制平面 (Control Plane) 是 Kubernetes 集群的大脑，负责做出全局决策 (如调度) 以及检测和响应集群事件。
 
 #### 主节点服务
 
@@ -35,7 +35,7 @@
 
 * `apiserver` 是整个系统的对外接口，提供一套 RESTful 的 [Kubernetes API](https://kubernetes.io/zh/docs/concepts/overview/kubernetes-api/)，供客户端和其它组件调用；
 * `scheduler` 负责对资源进行调度，分配某个 pod 到某个节点上。是 pluggable 的，意味着很容易选择其它实现方式；
-* `controller-manager` 负责管理控制器，包括 endpoint-controller（刷新服务和 pod 的关联信息）和 replication-controller（维护某个 pod 的复制为配置的数值）。
+* `controller-manager` 负责管理控制器，包括 endpoint-controller (刷新服务和 pod 的关联信息) 和 replication-controller (维护某个 pod 的复制为配置的数值)。
 
 #### Etcd
 
@@ -48,7 +48,7 @@
 ### 工作节点
 
 * kubelet 是工作节点执行操作的 agent，负责具体的容器生命周期管理，根据从数据库中获取的信息来管理容器，并上报 pod 运行状态等；
-* kube-proxy 是一个简单的网络访问代理，同时也是一个 Load Balancer。它负责将访问到某个服务的请求具体分配给工作节点上的 Pod（同一类标签）。
+* kube-proxy 是一个简单的网络访问代理，同时也是一个 Load Balancer。它负责将访问到某个服务的请求具体分配给工作节点上的 Pod (同一类标签)。
 
 ![Proxy 代理对服务的请求](./_images/kube-proxy.png)
 
