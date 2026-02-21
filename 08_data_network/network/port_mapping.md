@@ -9,19 +9,11 @@
 
 为了让外部（如你的浏览器、其他局域网机器）访问容器内的服务，我们需要将容器的端口**映射**到宿主机的端口。
 
-```
-       外部用户 (Browser)
-             │
-             ▼
-      宿主机 (localhost:8080)
-             │
-        ┌────┴────┐ 端口映射
-        │ Docker  │ (8080 -> 80)
-        │  Proxy  │
-        └────┬────┘
-             │
-             ▼
-       容器 (Class B: 80)
+```mermaid
+flowchart TD
+    User["外部用户 (Browser)"] --> Host["宿主机 (localhost:8080)"]
+    Host --> Proxy["Docker Proxy<br/>端口映射 (8080 -> 80)"]
+    Proxy --> Container["容器 (Class B: 80)"]
 ```
 
 ---
@@ -152,17 +144,3 @@ iptables -t nat -A DOCKER -p tcp --dport 8080 -j DNAT --to-destination 172.17.0.
 这也是为什么你在容器内部看到的访问来源 IP 通常是网关 IP（如 172.17.0.1），而不是真实的外部 Client IP（除非使用 host 网络模式）。
 
 ---
-
-### 本章小结
-
-| 要点 | 说明 |
-|------|------|
-| **-p** | 指定端口映射（常用），如 `8080:80` |
-| **-P** | 随机映射所有 EXPOSE 的端口 |
-| **安全性** | 默认监听所有 IP，敏感服务应绑定 `127.0.0.1` |
-| **查看** | 使用 `docker port` 或 `docker ps` |
-
-### 延伸阅读
-
-- [EXPOSE 指令](../../07_dockerfile/7.9_expose.md)：在 Dockerfile 中声明端口
-- [网络模式](README.md)：Host 模式不需要端口映射
