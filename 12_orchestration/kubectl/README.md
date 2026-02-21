@@ -54,7 +54,7 @@ kubectl [command]
 
 ## expose
 
-将 replication controller service 或 pod 暴露为新的 kubernetes service
+将 replication controller service 或 pod 暴露为新的 Kubernetes service
 
 ## label
 
@@ -62,7 +62,7 @@ kubectl [command]
 
 ## config
 
-修改 kubernetes 配置文件
+修改 Kubernetes 配置文件
 
 ## cluster-info
 

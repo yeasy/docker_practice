@@ -13,9 +13,11 @@
 
 ### 运行原理
 
-下面这张图完整展示了 Kubernetes 的运行原理。
+如图 12-3 所示，该图完整展示了 Kubernetes 的运行原理。
 
 ![Kubernetes 架构](./_images/k8s_architecture.png)
+
+图 12-3 Kubernetes 运行原理图
 
 可见，Kubernetes 首先是一套分布式系统，由多个节点组成，节点分为两类：一类是属于管理平面的主节点/控制节点（Master Node）；一类是属于运行平面的工作节点（Worker Node）。
 
@@ -49,3 +51,5 @@
 * kube-proxy 是一个简单的网络访问代理，同时也是一个 Load Balancer。它负责将访问到某个服务的请求具体分配给工作节点上的 Pod（同一类标签）。
 
 ![Proxy 代理对服务的请求](./_images/kube-proxy.png)
+
+图 12-4 kube-proxy 请求转发示意图

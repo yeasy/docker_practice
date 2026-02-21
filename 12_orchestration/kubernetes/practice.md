@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:1.24
+        image: nginx:1.27
         ports:
         - containerPort: 80
 ```
@@ -77,7 +77,7 @@ kubectl get svc nginx-service
 
 ### 步骤 3：模拟滚动更新（Rolling Update）
 
-修改 `nginx-deployment.yaml`，将镜像版本改为 `nginx:latest`。
+修改 `nginx-deployment.yaml`，将镜像版本改为 `nginx:1.27-alpine`。
 
 ```bash
 kubectl apply -f nginx-deployment.yaml

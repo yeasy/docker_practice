@@ -1,6 +1,6 @@
-## 使用 kubeadm 部署 kubernetes（CRI 使用 containerd）
+## 使用 kubeadm 部署 Kubernetes（CRI 使用 containerd）
 
-`kubeadm` 提供了 `kubeadm init` 以及 `kubeadm join` 这两个命令作为快速创建 `kubernetes` 集群的最佳实践。
+`kubeadm` 提供了 `kubeadm init` 以及 `kubeadm join` 这两个命令，作为快速创建 `Kubernetes` 集群的最佳实践。
 
 > **版本说明**：Kubernetes 版本更新较快（约每 4 个月一个新版本），本文档基于 Kubernetes 1.35 编写。请访问 [Kubernetes 官方发布页](https://kubernetes.io/releases/) 获取最新版本信息。
 
