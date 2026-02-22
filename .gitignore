@@ -17,3 +17,7 @@ docker-compose.override.yml
 .vscode/
 
 .agent/
+__pycache__/
+
+# Check scripts
+check_project_rules.py

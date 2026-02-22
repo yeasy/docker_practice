@@ -38,8 +38,8 @@
 | 概念 | 要点 |
 |------|------|
 | **Registry** | 存储和分发镜像的服务 |
-| **仓库 (Repository) ** | 同一软件的镜像集合 |
-| **标签 (Tag) ** | 版本标识，默认为 latest |
+| **仓库 (Repository)** | 同一软件的镜像集合 |
+| **标签 (Tag)** | 版本标识，默认为 latest |
 | **Docker Hub** | 默认的公共 Registry |
 | **私有 Registry** | 企业内部使用，推荐 Harbor |
 

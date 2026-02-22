@@ -124,7 +124,7 @@ $ docker run --network=my-net --ip=172.25.3.3 -itd --name=my-container busybox
 
 例如，如下操作将默认存储位置迁移到 /storage/docker。
 
-```
+```bash
 [root@s26 ~]# df -h
 Filesystem                    Size  Used Avail Use% Mounted on
 /dev/mapper/VolGroup-lv_root   50G  5.3G   42G  12% /

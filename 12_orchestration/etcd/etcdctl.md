@@ -6,7 +6,7 @@
 
 `etcdctl` 支持如下的命令，大体上分为数据库操作和非数据库操作两类，后面将分别进行解释。
 
-```
+```bash
 NAME:
 	etcdctl - A simple command line client for etcd3.
 

@@ -18,7 +18,7 @@
 
 登录 GitHub，在 https://github.com/settings/applications/new 新建一个应用。
 
-![](https://docs.drone.io/screenshots/github_application_create.png)
+![图](https://docs.drone.io/screenshots/github_application_create.png)
 
 接下来查看这个应用的详情，记录 `Client ID` 和 `Client Secret`，之后配置 Drone 会用到。
 

@@ -6,7 +6,7 @@
 
 在 Docker Desktop 设置页面，点击 `Kubernetes`，选择 `Enable Kubernetes`，稍等片刻，看到左下方 `Kubernetes` 变为 `running`，Kubernetes 启动成功。
 
-![](https://github.com/docker/docs/raw/main/assets/images/desktop/settings-kubernetes.png)
+![图](https://github.com/docker/docs/raw/main/assets/images/desktop/settings-kubernetes.png)
 
 > 注意：Kubernetes 的镜像存储在 `registry.k8s.io`，如果国内网络无法直接访问，可以在 Docker Desktop 配置中的 `Docker Engine` 处配置镜像加速器，或者利用国内云服务商的镜像仓库手动拉取镜像并 retag。
 

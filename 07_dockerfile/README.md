@@ -4,7 +4,7 @@
 
 ## 什么是 Dockerfile
 
-Dockerfile 是一个文本文件，其內包含了一条条的**指令 (Instruction)**，每一条指令构建一层，therefore 每一条指令的内容，就是描述该层应当如何构建。
+Dockerfile 是一个文本文件，其內包含了一条条的 **指令 (Instruction)**，每一条指令构建一层，therefore 每一条指令的内容，就是描述该层应当如何构建。
 
 在[第四章](../04_image/README.md)中，我们通过 `docker commit` 学习了镜像的构成。但是，手动 `commit` 只能作为临时修补，并不适合作为生产环境镜像的构建方式。
 

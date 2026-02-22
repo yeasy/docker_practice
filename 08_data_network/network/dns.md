@@ -7,7 +7,7 @@
 Docker 容器的 DNS 配置有两种情况：
 
 1. **默认 Bridge 网络**：继承宿主机的 DNS 配置 (`/etc/resolv.conf`)。
-2. **自定义网络** (推荐)：使用 Docker 嵌入式 DNS 服务器 (Embedded DNS)，支持通过**容器名**进行服务发现。
+2. **自定义网络** (推荐)：使用 Docker 嵌入式 DNS 服务器 (Embedded DNS)，支持通过 **容器名** 进行服务发现。
 
 ---
 
@@ -58,6 +58,7 @@ $ docker run --dns-search=example.com myapp
 ```
 
 #### 3. --hostname (-h)
+
 设置容器的主机名。
 
 ```bash
@@ -99,7 +100,7 @@ $ docker run -h myweb nginx
 
 **现象**：`ping db` 提示 `bad address 'db'`。**原因**：
 
-- 你可能在使用**默认的 bridge 网络**。默认 bridge 网络**不支持**通过容器名进行 DNS 解析 (这是一个历史遗留设计)。
+- 你可能在使用 **默认的 bridge 网络**。默认 bridge 网络 **不支持** 通过容器名进行 DNS 解析 (这是一个历史遗留设计)。
 - **解决**：使用自定义网络 (`docker network create ...`)。
 
 ---

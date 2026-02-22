@@ -2,7 +2,7 @@
 
 `kubeadm` 提供了 `kubeadm init` 以及 `kubeadm join` 这两个命令，作为快速创建 `Kubernetes` 集群的最佳实践。
 
-> ⚠️ **重要说明**：自 Kubernetes 1.24 起，内置 `dockershim` 已被移除，Kubernetes 默认不再直接使用 Docker Engine 作为容器运行时 (CRI)。因此，**更推荐参考**同目录下的《[使用 kubeadm 部署 Kubernetes (CRI 使用 containerd)](kubeadm.md)》。
+> ⚠️ **重要说明**：自 Kubernetes 1.24 起，内置 `dockershim` 已被移除，Kubernetes 默认不再直接使用 Docker Engine 作为容器运行时 (CRI)。因此，**更推荐参考** 同目录下的《[使用 kubeadm 部署 Kubernetes (CRI 使用 containerd)](kubeadm.md)》。
 >
 > 本文档主要用于历史环境/学习目的：如果你确实需要在较新版本中继续使用 Docker Engine，通常需要额外部署 `cri-dockerd` 并在 `kubeadm init/join` 中指定 `--cri-socket`。
 
@@ -175,7 +175,7 @@ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
 
 #### node 工作节点
 
-在**另一主机**重复**部署**小节以前的步骤，安装配置好 kubelet。根据提示，加入到集群。
+在 **另一主机** 重复 **部署** 小节以前的步骤，安装配置好 kubelet。根据提示，加入到集群。
 
 ```bash
 $ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
