@@ -15,8 +15,8 @@
 
 - [获取镜像](../04_image/4.1_pull.md)：从 Registry 下载镜像
 - [使用 Dockerfile 定制镜像](../04_image/4.5_build.md)：创建自己的镜像
-- [Dockerfile 最佳实践](../16_appendix/16.1_best_practices.md)：构建高质量镜像的技巧
-- [底层实现 - 联合文件系统](../14_implementation/14.4_ufs.md)：深入理解分层存储的技术原理
+- [Dockerfile 最佳实践](../appendix/20.1_best_practices.md)：构建高质量镜像的技巧
+- [底层实现 - 联合文件系统](../11_implementation/18.4_ufs.md)：深入理解分层存储的技术原理
 
 | 概念 | 要点 |
 |------|------|
