@@ -29,4 +29,4 @@
 
 - [绑定挂载](bind-mounts.md)：挂载宿主机目录
 - [tmpfs 挂载](tmpfs.md)：内存中的临时存储
-- [存储驱动](../../11_implementation/18.4_ufs.md)：Docker 存储的底层原理
+- [存储驱动](../../11_implementation/11.4_ufs.md)：Docker 存储的底层原理
