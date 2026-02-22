@@ -26,7 +26,7 @@
 
 ### 7.19.2 延伸阅读
 
-- [安全](../17_security/README.md)：容器安全实践
+- [安全](../18_security/README.md)：容器安全实践
 - [ENTRYPOINT](7.5_entrypoint.md)：入口脚本中的用户切换
 - [最佳实践](../appendix/20.1_best_practices.md)：Dockerfile 安全
 
@@ -41,7 +41,7 @@
 ### 7.19.3 延伸阅读
 
 - [CMD 容器启动命令](7.4_cmd.md)：启动主进程
-- [Compose 模板文件](../10_compose/10.5_compose_file.md)：Compose 中的健康检查
+- [Compose 模板文件](../11_compose/11.5_compose_file.md)：Compose 中的健康检查
 - [Docker 调试](../appendix/20.2_debug.md)：容器排障
 
 | 要点 | 说明 |
@@ -163,7 +163,7 @@
 ### 7.19.12 延伸阅读
 
 - [ARG 构建参数](7.7_arg.md)：构建时变量
-- [Compose 环境变量](../10_compose/10.5_compose_file.md)：Compose 中的环境变量
+- [Compose 环境变量](../11_compose/11.5_compose_file.md)：Compose 中的环境变量
 - [最佳实践](../appendix/20.1_best_practices.md)：Dockerfile 编写指南
 
 | 要点 | 说明 |
@@ -191,9 +191,9 @@
 
 ### 7.19.14 延伸阅读
 
-- [数据卷](../08_data_network/data/volume.md)：卷的管理和使用
-- [挂载主机目录](../08_data_network/data/bind-mounts.md)：Bind Mount
-- [Compose 数据管理](../10_compose/10.5_compose_file.md)：Compose 中的卷配置
+- [数据卷](../08_data/volume.md)：卷的管理和使用
+- [挂载主机目录](../08_data/bind-mounts.md)：Bind Mount
+- [Compose 数据管理](../11_compose/11.5_compose_file.md)：Compose 中的卷配置
 
 | 要点 | 说明 |
 |------|------|
@@ -205,6 +205,6 @@
 
 ### 7.19.15 延伸阅读
 
-- [网络配置](../08_data_network/network/README.md)：Docker 网络详解
-- [端口映射](../08_data_network/network/port_mapping.md)：-p 参数详解
-- [Compose 端口](../10_compose/10.5_compose_file.md)：Compose 中的端口配置
+- [网络配置](../09_network/README.md)：Docker 网络详解
+- [端口映射](../09_network/port_mapping.md)：-p 参数详解
+- [Compose 端口](../11_compose/11.5_compose_file.md)：Compose 中的端口配置

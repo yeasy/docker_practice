@@ -30,7 +30,7 @@ flowchart LR
 
 本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
-### 1。命名空间
+### 1. 命名空间
 
 提供进程、网络、文件系统等资源的隔离：
 
@@ -43,9 +43,9 @@ flowchart LR
 | IPC | 进程通信 | 隔离共享内存 |
 | UTS | 主机名 | 独立主机名 |
 
-详见[命名空间](../../11_implementation/11.2_namespace.md)章节。
+详见[命名空间](../12_implementation/12.2_namespace.md)章节。
 
-### 2。控制组
+### 2. 控制组
 
 限制容器的资源使用，防止资源耗尽攻击：
 
@@ -63,7 +63,7 @@ $ docker run --cpus=1.5 myapp
 $ docker run --device-write-bps /dev/sda:10mb myapp
 ```
 
-### 3。能力机制
+### 3. 能力机制
 
 Linux 将 root 权限拆分为多个细粒度的能力。Docker 默认禁用危险能力：
 
@@ -155,7 +155,7 @@ $ cosign verify --key cosign.pub $IMAGE
 
 本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
-### 1。非 root 用户运行
+### 1. 非 root 用户运行
 
 > 笔者强调：这是最重要的安全实践之一。
 
@@ -185,7 +185,7 @@ CMD ["node", "server.js"]
 $ docker run -u 1001:1001 myapp
 ```
 
-### 2。只读文件系统
+### 2. 只读文件系统
 
 运行以下命令：
 
@@ -199,7 +199,7 @@ $ docker run --read-only myapp
 $ docker run --read-only --tmpfs /tmp --tmpfs /var/run myapp
 ```
 
-### 3。禁用特权模式
+### 3. 禁用特权模式
 
 运行以下命令：
 
@@ -213,7 +213,7 @@ $ docker run --privileged myapp
 $ docker run --cap-add=SYS_TIME myapp
 ```
 
-### 4。限制资源
+### 4. 限制资源
 
 运行以下命令：
 
@@ -226,7 +226,7 @@ $ docker run \
     myapp
 ```
 
-### 5。网络隔离
+### 5. 网络隔离
 
 运行以下命令：
 
@@ -247,7 +247,7 @@ $ docker run --network=isolated_net myapp
 
 本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
-### 1。使用精简基础镜像
+### 1. 使用精简基础镜像
 
 Dockerfile 内容如下：
 
@@ -263,7 +263,7 @@ FROM node:22               # ~1GB
 FROM ubuntu:24.04          # ~78MB
 ```
 
-### 2。多阶段构建
+### 2. 多阶段构建
 
 Dockerfile 内容如下：
 
@@ -283,7 +283,7 @@ USER node
 CMD ["node", "/app/server.js"]
 ```
 
-### 3。不存储敏感信息
+### 3. 不存储敏感信息
 
 Dockerfile 内容如下：
 
@@ -300,7 +300,7 @@ COPY .env /app/
 ...
 ```
 
-### 4。固定依赖版本
+### 4. 固定依赖版本
 
 Dockerfile 内容如下：
 
@@ -371,14 +371,14 @@ $ docker run --runtime=runsc myapp
 
 随着软件供应链攻击日益频繁，仅保障运行时安全已不足够。
 
-### 1。SBOM (软件物料清单)
+### 1. SBOM (软件物料清单)
 
 SBOM 类似于食品的配料表，列出了容器镜像中包含的所有软件包及其版本。
 
 - **生成 SBOM**：使用 `docker buildx build --sbom` 或 `docker scout sbom`。
 - **管理 SBOM**：确保持续监控 SBOM 中的组件是否存在新披露的漏洞。
 
-### 2。镜像签名 (Sigstore / Notary v2)
+### 2. 镜像签名 (Sigstore / Notary v2)
 
 确保镜像在构建后未被篡改，且确实来自可信的发布者。
 
@@ -419,6 +419,6 @@ $ cosign verify --key cosign.pub $IMAGE
 
 ## 延伸阅读
 
-- [命名空间](../../11_implementation/11.2_namespace.md)：隔离机制详解
-- [控制组](../../11_implementation/11.3_cgroups.md)：资源限制详解
-- [最佳实践](../../appendix/20.1_best_practices.md)：Dockerfile 安全配置
+- [命名空间](../12_implementation/12.2_namespace.md)：隔离机制详解
+- [控制组](../12_implementation/12.3_cgroups.md)：资源限制详解
+- [最佳实践](../appendix/20.1_best_practices.md)：Dockerfile 安全配置

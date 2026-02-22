@@ -17,7 +17,7 @@ Prometheus 的主要组件包括：
 
 我们可以使用 Docker Compose 快速部署一套 Prometheus + Grafana 监控环境。
 
-#### 1。准备配置文件
+#### 1. 准备配置文件
 
 创建 `prometheus.yml`：
 
@@ -39,7 +39,7 @@ scrape_configs:
       - targets: ['cadvisor:8080']
 ```
 
-#### 2。编写 Docker Compose 文件
+#### 2. 编写 Docker Compose 文件
 
 创建 `compose.yaml` (或 `docker-compose.yml`)：
 
@@ -88,7 +88,7 @@ networks:
   monitoring:
 ```
 
-#### 3。启动服务
+#### 3. 启动服务
 
 运行以下命令：
 
