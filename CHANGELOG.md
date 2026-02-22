@@ -59,7 +59,7 @@
   * 更新 `CoreOS` 章节
   * 更新 `etcd` 章节，基于 3.x 版本
 
-  * 删除 `Docker Compose` 中的 `links`指令
+  * 删除 `Docker Compose` 中的 `links` 指令
 
   * 替换 `docker daemon` 命令为 `dockerd`
   * 替换 `docker ps` 命令为 `docker container ls`
@@ -71,13 +71,13 @@
   * 优化文字排版
   * 调整目录结构
   * 修复内容逻辑错误
-  * 修复`404` 链接
+  * 修复 `404` 链接
 
 * 0.9.0-rc1: 2017-11-29
 
-  * 根据最新版本（v17.09）修订内容
+  * 根据最新版本 (v17.09) 修订内容
 
-  * 增加 `Dockerfile` 多阶段构建( `multistage builds` ) `Docker 17.05` 新增特性
+  * 增加 `Dockerfile` 多阶段构建 (`multistage builds`) `Docker 17.05` 新增特性
   * 增加 `docker exec` 子命令介绍
   * 增加 `docker` 管理子命令 `container` `image` `network` `volume` 介绍
   * 增加 `树莓派单片电脑` 安装 Docker
@@ -102,7 +102,7 @@
 * 0.8.0: 2017-01-08
 
   * 修正文字内容
-  * 根据最新版本（1.12）修订安装使用
+  * 根据最新版本 (1.12) 修订安装使用
   * 补充附录章节
 
 * 0.7.0: 2016-06-12
