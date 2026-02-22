@@ -81,6 +81,7 @@ Kubernetes 也是 C/S 架构，由 **Control Plane (控制平面) **和** Worker
 ### 学习建议
 
 Kubernetes 的学习曲线较陡峭。建议的学习路径：
+
 1. **理解基本概念**：Pod，Deployment，Service
 2. **动手实践**：使用 Minikube 或 Kind 在本地搭建集群
 3. **部署应用**：编写 YAML 部署一个无状态应用

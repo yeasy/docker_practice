@@ -25,11 +25,13 @@ flowchart LR
 
 ### Bind Mount vs Volume
 
+相关信息如下表：
+
 | 特性 | Bind Mount | Volume |
 |------|------------|--------|
 | **数据位置** | 宿主机任意路径 | Docker 管理的目录 |
 | **路径指定** | 必须是绝对路径 | 卷名 |
-| **可移植性** | 依赖宿主机路径 | 更好（Docker 管理） |
+| **可移植性** | 依赖宿主机路径 | 更好 (Docker 管理)|
 | **性能** | 依赖宿主机文件系统 | 优化的存储驱动 |
 | **适用场景** | 开发环境、配置文件 | 生产数据持久化 |
 | **备份** | 直接访问文件 | 需要通过 Docker |
@@ -40,13 +42,15 @@ flowchart LR
 
 #### 选择建议
 
+相关信息如下表：
+
 | 需求 | 推荐方案 |
 |------|----------|
 | 开发时同步代码 | Bind Mount |
 | 持久化数据库数据 | Volume |
 | 共享配置文件 | Bind Mount |
 | 容器间共享数据 | Volume |
-| 备份方便 | Bind Mount（直接访问） |
+| 备份方便 | Bind Mount (直接访问)|
 | 生产环境 | Volume |
 
 ---
@@ -76,6 +80,8 @@ $ docker run -d \
 ```
 
 #### 两种语法对比
+
+相关信息如下表：
 
 | 特性 | --mount | -v |
 |------|---------|-----|
@@ -221,7 +227,7 @@ $ docker inspect mycontainer --format '{{json .Mounts}}' | jq
 
 | 字段 | 说明 |
 |------|------|
-| `Type` | 挂载类型（bind） |
+| `Type` | 挂载类型 (bind)|
 | `Source` | 宿主机路径 |
 | `Destination` | 容器内路径 |
 | `RW` | 是否可读写 |
@@ -277,7 +283,7 @@ $ docker run -v /host/path:/container/path:cached myapp
 |------|------|
 | `:cached` | 宿主机权威，容器读取可能延迟 |
 | `:delegated` | 容器权威，宿主机读取可能延迟 |
-| `:consistent` | 默认，完全一致（最慢） |
+| `:consistent` | 默认，完全一致 (最慢)|
 
 ---
 

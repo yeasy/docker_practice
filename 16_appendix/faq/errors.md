@@ -1,5 +1,7 @@
 ## 常见错误速查表
 
+相关信息如下表：
+
 | 错误信息 / 现象 | 可能原因 | 解决方案 |
 | :--- | :--- | :--- |
 | `Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?` | Docker 服务未启动 | Linux: `sudo systemctl start docker`<br>Mac/Win: 启动 Docker Desktop |
