@@ -13,8 +13,8 @@
 
 ### 11.7.1 延伸阅读
 
-- [控制组 (Cgroups)](18.3_cgroups.md)：资源限制机制
-- [联合文件系统](18.4_ufs.md)：分层存储的实现
+- [控制组 (Cgroups)](11.3_cgroups.md)：资源限制机制
+- [联合文件系统](11.4_ufs.md)：分层存储的实现
 - [安全](../17_security/README.md)：容器安全实践
 - [Linux Namespace 官方文档](https://man7.org/linux/man-pages/man7/namespaces.7.html)
 
@@ -28,7 +28,7 @@
 
 ### 11.7.2 延伸阅读
 
-- [命名空间](18.2_namespace.md)：资源隔离
+- [命名空间](11.2_namespace.md)：资源隔离
 - [安全](../17_security/README.md)：容器安全概述
 - [Docker Stats](../05_container/README.md)：监控容器资源
 
