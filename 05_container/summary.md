@@ -13,8 +13,8 @@
 
 - [后台运行](5.2_daemon.md)：理解 `-d` 参数和容器生命周期
 - [进入容器](5.4_attach_exec.md)：操作运行中的容器
-- [网络配置](../08_data_network/network/README.md)：理解端口映射的原理
-- [数据管理](../08_data_network/README.md)：数据持久化方案
+- [网络配置](../09_network/README.md)：理解端口映射的原理
+- [数据管理](../08_data/README.md)：数据持久化方案
 
 | 操作 | 命令 | 说明 |
 |------|------|------|
@@ -54,4 +54,4 @@
 
 - [终止容器](5.3_stop.md)：优雅停止容器
 - [删除镜像](../04_image/4.3_rm.md)：清理镜像
-- [数据卷](../08_data_network/data/volume.md)：数据卷管理
+- [数据卷](../08_data/volume.md)：数据卷管理

@@ -91,5 +91,5 @@ Kubernetes 的学习曲线较陡峭。建议的学习路径：
 
 ### 13.1.7 延伸阅读
 
-- [Minikube 安装](../setup/README.md)：本地体验 K8s
+- [Minikube 安装](../14_kubernetes_setup/README.md)：本地体验 K8s
 - [Kubernetes 官网](https://kubernetes.io/)：官方文档

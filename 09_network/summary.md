@@ -21,4 +21,4 @@
 - [端口映射](port_mapping.md)：高级端口配置
 - [网络隔离](network_isolation.md)：网络安全与隔离策略
 - [EXPOSE 指令](../07_dockerfile/7.9_expose.md)：在 Dockerfile 中声明端口
-- [Compose 网络](../11_compose/10.5_compose_file.md)：Compose 中的网络配置
+- [Compose 网络](../11_compose/11.5_compose_file.md)：Compose 中的网络配置

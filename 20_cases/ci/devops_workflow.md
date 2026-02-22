@@ -16,7 +16,7 @@
 
 本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
-#### 1。Dockerfile 多阶段构建
+#### 1. Dockerfile 多阶段构建
 
 使用 Docker 多阶段构建可以有效减小镜像体积。
 
@@ -39,7 +39,7 @@ COPY --from=builder /app/main .
 CMD ["./main"]
 ```
 
-#### 2。GitLab CI 配置
+#### 2. GitLab CI 配置
 
 GitLab CI (。gitlab-ci.yml) 配置如下：
 

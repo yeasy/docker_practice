@@ -16,6 +16,8 @@
 - [镜像加速器](../03_install/3.9_mirror.md)：加速镜像下载
 - [Docker Hub](../06_repository/6.1_dockerhub.md)：官方镜像仓库
 
+相关信息如下表：
+
 | 操作 | 命令 |
 |------|------|
 | 列出所有镜像 | `docker images` |
@@ -32,6 +34,8 @@
 - [删除镜像](4.3_rm.md)：清理本地镜像
 - [镜像](../02_basic_concept/2.1_image.md)：理解镜像概念
 
+相关信息如下表：
+
 | 操作 | 命令 |
 |------|------|
 | 删除指定镜像 | `docker rmi 镜像名:标签` |
@@ -45,4 +49,4 @@
 
 - [列出镜像](4.2_list.md)：查看和过滤镜像
 - [删除容器](../05_container/5.6_rm.md)：清理容器
-- [数据卷](../08_data_network/data/volume.md)：清理数据卷
+- [数据卷](../08_data/volume.md)：清理数据卷

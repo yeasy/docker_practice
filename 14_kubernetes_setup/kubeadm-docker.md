@@ -8,7 +8,7 @@
 
 ### 14.2.1 安装 Docker
 
-参考[安装 Docker](../../03_install/README.md) 一节安装 Docker。
+参考[安装 Docker](../03_install/README.md) 一节安装 Docker。
 
 ### 14.2.2 安装 **kubelet****kubeadm****kubectl**
 

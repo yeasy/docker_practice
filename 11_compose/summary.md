@@ -15,7 +15,7 @@ Docker Compose 是管理多容器应用的利器，通过 YAML 文件声明式�
 
 ### 11.10.1 延伸阅读
 
-- [Compose 模板文件](10.5_compose_file.md)：详细模板语法参考
-- [Compose 命令说明](10.4_commands.md)：完整命令列表
+- [Compose 模板文件](11.5_compose_file.md)：详细模板语法参考
+- [Compose 命令说明](11.4_commands.md)：完整命令列表
 - [网络配置](../09_network/README.md)：Docker 网络基础
 - [数据管理](../08_data/README.md)：数据卷管理

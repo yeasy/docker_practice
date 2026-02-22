@@ -16,7 +16,7 @@
 - [获取镜像](../04_image/4.1_pull.md)：从 Registry 下载镜像
 - [使用 Dockerfile 定制镜像](../04_image/4.5_build.md)：创建自己的镜像
 - [Dockerfile 最佳实践](../appendix/20.1_best_practices.md)：构建高质量镜像的技巧
-- [底层实现 - 联合文件系统](../11_implementation/11.4_ufs.md)：深入理解分层存储的技术原理
+- [底层实现 - 联合文件系统](../12_implementation/12.4_ufs.md)：深入理解分层存储的技术原理
 
 | 概念 | 要点 |
 |------|------|
@@ -33,7 +33,7 @@
 - [启动容器](../05_container/5.1_run.md)：详细的容器启动选项
 - [后台运行](../05_container/5.2_daemon.md)：理解容器为什么会 “立即退出”
 - [进入容器](../05_container/5.4_attach_exec.md)：如何操作运行中的容器
-- [数据管理](../08_data_network/README.md)：Volume 和数据持久化详解
+- [数据管理](../08_data/README.md)：Volume 和数据持久化详解
 
 | 概念 | 要点 |
 |------|------|

@@ -291,7 +291,7 @@ $ docker run -v /host/path:/container/path:cached myapp
 
 本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
-#### 1。开发环境使用 Bind Mount
+#### 1. 开发环境使用 Bind Mount
 
 运行以下命令：
 
@@ -301,7 +301,7 @@ $ docker run -v /host/path:/container/path:cached myapp
 $ docker run -v $(pwd):/app -p 3000:3000 node npm run dev
 ```
 
-#### 2。生产环境使用 Volume
+#### 2. 生产环境使用 Volume
 
 运行以下命令：
 
@@ -311,7 +311,7 @@ $ docker run -v $(pwd):/app -p 3000:3000 node npm run dev
 $ docker run -v mysql_data:/var/lib/mysql mysql
 ```
 
-#### 3。配置文件使用只读挂载
+#### 3. 配置文件使用只读挂载
 
 运行以下命令：
 
@@ -319,7 +319,7 @@ $ docker run -v mysql_data:/var/lib/mysql mysql
 $ docker run -v /config/nginx.conf:/etc/nginx/nginx.conf:ro nginx
 ```
 
-#### 4。注意路径安全
+#### 4. 注意路径安全
 
 运行以下命令：
 
