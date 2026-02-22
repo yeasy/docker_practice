@@ -4,10 +4,12 @@
 
 ### 三大公有云 Kubernetes 服务对比
 
+相关信息如下表：
+
 | 特性 | Google GKE | AWS EKS | Azure AKS |
 | :--- | :--- | :--- | :--- |
 | **版本更新** | 最快，通常是 K8s 新特性的首发地 | 相对保守，注重稳定性 | 跟随社区，更新速度适中 |
-| **控制平面管理** | 全托管，自动升级，免费（部分区域） | 托管，每小时收费 | 全托管，控制平面免费 |
+| **控制平面管理** | 全托管，自动升级，免费 (部分区域)| 托管，每小时收费 | 全托管，控制平面免费 |
 | **节点管理** | GKE Autopilot 模式完全托管节点 | Managed Node Groups 简化管理 | Virtual Machine Scale Sets |
 | **网络模型** | VPC-native, 性能优秀 | AWS VPC CNI, Pod 直接获取 VPC IP | Azure CNI (消耗 IP 多) 或 Kubenet |
 | **集成度** | 与 GCP 数据分析、AI 服务集成紧密 | 与 AWS IAM, ALB, CloudWatch 集成深度高 | 与 Active Directory, Azure DevOps 集成好 |

@@ -398,13 +398,14 @@ $ cosign sign --key cosign.key $IMAGE
 $ cosign verify --key cosign.pub $IMAGE
 ```
 
-### 3. SLSA（Supply-chain Levels for Software Artifacts）
-
+### 3. SLSA (Supply-chain Levels for Software Artifacts)
 遵循 SLSA 框架，确保构建过程的完整性，例如使用 GitHub Actions 等受控环境进行构建，而非在开发者本地机器上构建发布。
 
 ---
 
 ## 本章小结
+
+相关信息如下表：
 
 | 安全措施 | 重要程度 | 实现方式 |
 |---------|---------|---------|

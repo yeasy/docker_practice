@@ -15,8 +15,10 @@
     ```bash
     docker build -t drone-demo-app .
     ```
+
 3.  运行容器：
     ```bash
     docker run -p 8080:8080 drone-demo-app
     ```
+
 4.  访问 `http://localhost:8080` 查看效果。
