@@ -6,7 +6,7 @@
 
 ### 14.1.1 安装 containerd
 
-参考[安装 Docker](../../03_install/README.md) 一节添加 apt/yum 源，之后执行如下命令。
+参考[安装 Docker](../03_install/README.md) 一节添加 apt/yum 源，之后执行如下命令。
 
 ```bash
 ## debian 系

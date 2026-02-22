@@ -14,7 +14,7 @@
 
 - [数据卷](volume.md)：Docker 管理的持久化存储
 - [tmpfs 挂载](tmpfs.md)：内存临时存储
-- [Compose 数据管理](../../10_compose/10.5_compose_file.md)：Compose 中的挂载配置
+- [Compose 数据管理](../11_compose/11.5_compose_file.md)：Compose 中的挂载配置
 
 | 操作 | 命令 |
 |------|------|
@@ -29,4 +29,4 @@
 
 - [绑定挂载](bind-mounts.md)：挂载宿主机目录
 - [tmpfs 挂载](tmpfs.md)：内存中的临时存储
-- [存储驱动](../../11_implementation/11.4_ufs.md)：Docker 存储的底层原理
+- [存储驱动](../12_implementation/12.4_ufs.md)：Docker 存储的底层原理
