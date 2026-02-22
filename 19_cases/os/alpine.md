@@ -1,8 +1,8 @@
-## Alpine
+## 19.3 Alpine
 
 本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
-### 简介
+### 19.3.1 简介
 
 下图直观地展示了本节内容：
 
@@ -28,7 +28,7 @@ ubuntu              latest        b39b81afc8ca      188.3 MB
 centos              latest        8efe422e6104      210 MB
 ```
 
-### 获取并使用官方镜像
+### 19.3.2 获取并使用官方镜像
 
 由于镜像很小，下载时间往往很短，读者可以直接使用 `docker run` 指令直接运行一个 `Alpine` 容器，并指定运行的 Linux 指令，例如：
 
@@ -37,7 +37,7 @@ $ docker run alpine echo '123'
 123
 ```
 
-### 迁移至 Alpine 基础镜像
+### 19.3.3 迁移至 Alpine 基础镜像
 
 目前，大部分 Docker 官方镜像都已经支持 `Alpine` 作为基础镜像，可以很容易进行迁移。
 
@@ -67,7 +67,7 @@ RUN sed -i "s/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g" /etc/apk/repositories
       && apk add --no-cache <package>
 ```
 
-### 相关资源
+### 19.3.4 相关资源
 
 * `Alpine` 官网：https://www.alpinelinux.org/
 * `Alpine` 官方仓库：https://github.com/alpinelinux

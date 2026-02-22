@@ -1,4 +1,4 @@
-## 安装
+## 14.2 安装
 
 本节将介绍 etcd 的几种常见安装方式，包括二进制安装、Docker 镜像运行以及在 macOS 上的安装。
 
@@ -6,7 +6,7 @@
 
 >注意：本章节内容基于 etcd `3.4.x` 版本
 
-### 二进制文件方式下载
+### 14.2.1 二进制文件方式下载
 
 编译好的二进制文件都在 [github.com/etcd-io/etcd/releases](https://github.com/etcd-io/etcd/releases/) 页面，用户可以选择需要的版本，或通过下载工具下载。
 
@@ -61,7 +61,7 @@ hello world
 
 说明 etcd 服务已经成功启动了。
 
-### Docker 镜像方式运行
+### 14.2.2 Docker 镜像方式运行
 
 镜像名称为 `quay.io/coreos/etcd`，可以通过下面的命令启动 `etcd` 服务监听到 `2379` 和 `2380` 端口。
 
@@ -89,7 +89,7 @@ quay.io/coreos/etcd:v3.4.0 \
 
 打开新的终端按照上一步的方法测试 `etcd` 是否成功启动。
 
-### macOS 中运行
+### 14.2.3 macOS 中运行
 
 运行以下命令：
 

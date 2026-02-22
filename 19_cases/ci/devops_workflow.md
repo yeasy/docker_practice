@@ -1,8 +1,8 @@
-## DevOps 工作流完整示例
+## 19.8 DevOps 工作流完整示例
 
 本章将演示一个基于 Docker，Kubernetes 和 Jenkins/GitLab CI 的完整 DevOps 工作流。
 
-### 工作流概览
+### 19.8.1 工作流概览
 
 1. **Code**：开发人员提交代码到 GitLab。
 2. **Build**：GitLab CI 触发构建任务。
@@ -12,7 +12,7 @@
 6. **Verify**：人工或自动化验证。
 7. **Release (Production)**：审批后自动部署到生产环境。
 
-### 关键配置示例
+### 19.8.2 关键配置示例
 
 本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
@@ -79,7 +79,7 @@ deploy_staging:
     - develop
 ```
 
-### 最佳实践
+### 19.8.3 最佳实践
 
 1. **不可变基础设施**：一旦镜像构建完成，在各个环境 (Dev，Staging，Prod) 中都应该使用同一个镜像 tag (通常是 commit hash)，而不是重新构建。
 2. **配置分离**：使用 ConfigMap 和 Secret 管理环境特定的配置，不要打包进镜像。

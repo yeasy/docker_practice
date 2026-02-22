@@ -1,8 +1,8 @@
-## Fedora CoreOS 介绍
+## 16.1 Fedora CoreOS 介绍
 
 [Fedora CoreOS](https://getfedora.org/coreos/) 是一个自动更新的，最小的，整体的，以容器为中心的操作系统，不仅适用于集群，而且可独立运行，并针对运行 Kubernetes 进行了优化。它旨在结合 CoreOS Container Linux 和 Fedora Atomic Host 的优点，将 Container Linux 中的 [Ignition](https://github.com/coreos/ignition) 与 [rpm-ostree](https://github.com/coreos/rpm-ostree) 和 Project Atomic 中的 SELinux 强化等技术相集成。其目标是提供最佳的容器主机，以安全，大规模地运行容器化的工作负载。
 
-### FCOS 特性
+### 16.1.1 FCOS 特性
 
 本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
@@ -24,7 +24,7 @@ FCOS 使用 rpm-ostree 系统进行事务性升级。无需像 yum 升级那样�
 
 对于诸如构建，复制和其他管理容器的任务，FCOS 用一组容器工具代替了 **Docker CLI**。**podman CLI** 工具支持许多容器运行时功能，例如运行，启动，停止，列出和删除容器和镜像。**skopeo CLI** 工具可以复制，认证和签名镜像。您还可以使用 **crictl CLI** 工具来处理 CRI-O 容器引擎中的容器和镜像。
 
-### 参考文档
+### 16.1.2 参考文档
 
 * [官方文档](https://docs.fedoraproject.org/en-US/fedora-coreos/)
 * [openshift 官方文档](https://docs.openshift.com/container-platform/4.3/architecture/architecture-rhcos.html)

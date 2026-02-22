@@ -1,8 +1,8 @@
-## CentOS 和 Fedora
+## 19.5 CentOS 和 Fedora
 
 本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
-### CentOS 系统简介
+### 19.5.1 CentOS 系统简介
 
 `CentOS` 和 `Fedora` 都是基于 `Redhat` 的常见 Linux 分支。`CentOS` 是目前企业级服务器的常用操作系统；`Fedora` 则主要面向个人桌面用户。
 
@@ -35,7 +35,7 @@ Status: Downloaded newer image for centos:7
 CentOS Linux release 7.9.2009 (Core)
 ```
 
-### Fedora 系统简介
+### 19.5.2 Fedora 系统简介
 
 下图直观地展示了本节内容：
 
@@ -64,7 +64,7 @@ Fedora release 39 (Thirty Nine)
 ```
 
 
-### 相关资源
+### 19.5.3 相关资源
 
 * `Fedora` 官网：https://getfedora.org/
 * `Fedora` 官方仓库：https://github.com/fedora-infra

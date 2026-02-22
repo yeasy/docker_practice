@@ -1,8 +1,8 @@
-## Kind - Kubernetes IN Docker
+## 13.4 Kind - Kubernetes IN Docker
 
 [Kind](https://kind.sigs.k8s.io/) (Kubernetes in Docker) 是一个使用 Docker 容器作为节点运行本地 Kubernetes 集群的工具。主要用于测试 Kubernetes 本身，也非常适合本地开发和 CI 环境。
 
-### 为什么选择 Kind
+### 13.4.1 为什么选择 Kind
 
 Kind 相比其他本地集群方案 (如 Minikube) 有以下显著优势：
 
@@ -11,7 +11,7 @@ Kind 相比其他本地集群方案 (如 Minikube) 有以下显著优势：
 *   **多版本支持**：支持指定 Kubernetes 版本进行测试。
 *   **HA 支持**：支持模拟高可用集群 (多 Control Plane)。
 
-### 安装 Kind
+### 13.4.2 安装 Kind
 
 Kind 是一个二进制文件，并在 PATH 中即可使用。以下是不同系统的安装方法。
 
@@ -35,7 +35,7 @@ chmod +x ./kind
 sudo mv ./kind /usr/local/bin/kind
 ```
 
-### 创建集群
+### 13.4.3 创建集群
 
 最简单的创建方式：
 
@@ -49,7 +49,7 @@ kind create cluster
 kind create cluster --name my-cluster
 ```
 
-### 与集群交互
+### 13.4.4 与集群交互
 
 Kind 会自动将 kubeconfig 合并到 `~/.kube/config`。
 
@@ -58,7 +58,7 @@ kubectl cluster-info --context kind-kind
 kubectl get nodes
 ```
 
-### 高级用法：配置集群
+### 13.4.5 高级用法：配置集群
 
 创建一个 `kind-config.yaml` 来定制集群，例如映射端口到宿主机：
 
@@ -81,7 +81,7 @@ nodes:
 kind create cluster --config kind-config.yaml
 ```
 
-### 删除集群
+### 13.4.6 删除集群
 
 运行以下命令：
 

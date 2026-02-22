@@ -1,4 +1,4 @@
-## 使用 kubeadm 部署 Kubernetes (使用 Docker)
+## 13.2 使用 kubeadm 部署 Kubernetes (使用 Docker)
 
 `kubeadm` 提供了 `kubeadm init` 以及 `kubeadm join` 这两个命令，作为快速创建 `Kubernetes` 集群的最佳实践。
 
@@ -6,11 +6,11 @@
 >
 > 本文档主要用于历史环境/学习目的：如果你确实需要在较新版本中继续使用 Docker Engine，通常需要额外部署 `cri-dockerd` 并在 `kubeadm init/join` 中指定 `--cri-socket`。
 
-### 安装 Docker
+### 13.2.1 安装 Docker
 
 参考[安装 Docker](../../03_install/README.md) 一节安装 Docker。
 
-### 安装 **kubelet****kubeadm****kubectl**
+### 13.2.2 安装 **kubelet****kubeadm****kubectl**
 
 需要在每台机器上安装以下的软件包：
 
@@ -56,7 +56,7 @@ EOF
 $ sudo yum install -y kubelet kubeadm kubectl
 ```
 
-### 修改内核的运行参数
+### 13.2.3 修改内核的运行参数
 
 本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
@@ -99,7 +99,7 @@ EOF
 $ sysctl --system
 ```
 
-### 配置 kubelet
+### 13.2.4 配置 kubelet
 
 为了让 kubelet 正确运行，我们需要对其进行一些必要的配置。
 
@@ -127,7 +127,7 @@ ExecStartPre=-/sbin/modprobe ip_vs_sh
 $ sudo systemctl daemon-reload
 ```
 
-### 部署
+### 13.2.5 部署
 
 安装配置完成后，我们将分别在 Master 节点和 Worker 节点上进行部署操作。
 
@@ -182,7 +182,7 @@ $ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
     --discovery-token-ca-cert-hash sha256:5edb316fd0d8ea2792cba15cdf1c899a366f147aa03cba52d4e5c5884ad836fe
 ```
 
-### 查看服务
+### 13.2.6 查看服务
 
 所有服务启动后，查看本地实际运行的 Docker 容器。这些服务大概分为三类：主节点服务、工作节点服务和其它服务。
 
@@ -202,7 +202,7 @@ $ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
 
 * Etcd 是所有状态的存储数据库；
 
-### 使用
+### 13.2.7 使用
 
 将 `/etc/kubernetes/admin.conf` 复制到 `~/.kube/config`
 
@@ -210,7 +210,7 @@ $ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
 
 由于未部署 CNI 插件，CoreDNS 未正常启动。如何使用 Kubernetes，请参考后续章节。
 
-### 部署 CNI
+### 13.2.8 部署 CNI
 
 这里以 `flannel` 为例进行介绍。
 
@@ -235,7 +235,7 @@ $ kubectl get node -o yaml | grep CIDR
 $ kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/v0.26.1/Documentation/kube-flannel.yml
 ```
 
-### master 节点默认不能运行 pod
+### 13.2.9 master 节点默认不能运行 pod
 
 如果用 `kubeadm` 部署一个单节点集群，默认情况下无法使用，请执行以下命令解除限制
 
@@ -253,6 +253,6 @@ $ kubectl taint nodes --all node-role.kubernetes.io/master-
 ...
 ```
 
-### 参考文档
+### 13.2.10 参考文档
 
 * [官方文档](https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)

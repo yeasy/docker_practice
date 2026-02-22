@@ -1,4 +1,4 @@
-## 本章小结
+## 7.19 本章小结
 
 相关信息如下表：
 
@@ -10,7 +10,7 @@
 | **持久性** | 影响后续所有指令，直到下次 WORKDIR |
 | **不要用** | `RUN cd /path` (无效)|
 
-### 延伸阅读
+### 7.19.1 延伸阅读
 
 - [COPY 复制文件](7.2_copy.md)：文件复制
 - [RUN 执行命令](../04_image/4.5_build.md)：执行构建命令
@@ -24,7 +24,7 @@
 | **运行时覆盖** | `docker run -u` |
 | **切换工具** | 使用 gosu，不用 su/sudo |
 
-### 延伸阅读
+### 7.19.2 延伸阅读
 
 - [安全](../17_security/README.md)：容器安全实践
 - [ENTRYPOINT](7.5_entrypoint.md)：入口脚本中的用户切换
@@ -38,7 +38,7 @@
 | **Compose** | 支持 `condition: service_healthy` 依赖 |
 | **注意** | 避免副作用，节省资源 |
 
-### 延伸阅读
+### 7.19.3 延伸阅读
 
 - [CMD 容器启动命令](7.4_cmd.md)：启动主进程
 - [Compose 模板文件](../10_compose/10.5_compose_file.md)：Compose 中的健康检查
@@ -52,7 +52,7 @@
 | **限制** | 只继承一次，不可级联 |
 | **规范** | 建议使用 `-onbuild` 标签后缀 |
 
-### 延伸阅读
+### 7.19.4 延伸阅读
 
 - [COPY 指令](7.2_copy.md)：文件复制
 - [Dockerfile 最佳实践](../appendix/20.1_best_practices.md)：基础镜像设计
@@ -65,7 +65,7 @@
 | **弃用** | 不要再使用 `MAINTAINER` |
 | **查看** | `docker inspect` |
 
-### 延伸阅读
+### 7.19.5 延伸阅读
 
 - [OCI 标签规范](https://github.com/opencontainers/image-spec/blob/main/annotations.md)
 - [Dockerfile 最佳实践](../appendix/20.1_best_practices.md)
@@ -78,7 +78,7 @@
 | **推荐用法** | `SHELL ["/bin/bash", "-o", "pipefail", "-c"]` |
 | **影响范围** | 后续所有使用 shell 格式的指令 |
 
-### 延伸阅读
+### 7.19.6 延伸阅读
 
 - [RUN 指令](../04_image/4.5_build.md)：执行命令
 - [Dockerfile 最佳实践](../appendix/20.1_best_practices.md)：错误处理与调试
@@ -91,7 +91,7 @@
 | **陷阱** | `cd` 不持久，环境变量不持久 |
 | **进阶** | 使用 Cache Mount 加速构建 |
 
-### 延伸阅读
+### 7.19.7 延伸阅读
 
 - [CMD 容器启动命令](7.4_cmd.md)：容器启动时的命令
 - [WORKDIR 指定工作目录](7.10_workdir.md)：改变目录
@@ -105,7 +105,7 @@
 | 修改所有者 | `COPY --chown=node:node . /app/` |
 | 从构建阶段复制 | `COPY --from=builder /app/dist ./` |
 
-### 延伸阅读
+### 7.19.8 延伸阅读
 
 - [ADD 指令](7.3_add.md)：复制和解压
 - [WORKDIR 指令](7.10_workdir.md)：设置工作目录
@@ -120,7 +120,7 @@
 | 从 URL 下载 | `RUN curl` |
 | 保持 tar 不解压 | `COPY` |
 
-### 延伸阅读
+### 7.19.9 延伸阅读
 
 - [COPY 复制文件](7.2_copy.md)：基本复制操作
 - [多阶段构建](7.17_multistage_builds.md)：减少镜像体积
@@ -134,7 +134,7 @@
 | **与 ENTRYPOINT** | CMD 作为 ENTRYPOINT 的默认参数 |
 | **核心原则** | 应用必须在前台运行 |
 
-### 延伸阅读
+### 7.19.10 延伸阅读
 
 - [ENTRYPOINT 入口点](7.5_entrypoint.md)：固定的启动命令
 - [后台运行](../05_container/5.2_daemon.md)：容器前台/后台概念
@@ -146,7 +146,7 @@
 | ✗ | ✓ | 简单的默认命令 |
 | ✓ | ✓ | **推荐**：固定命令 + 可配置参数 |
 
-### 延伸阅读
+### 7.19.11 延伸阅读
 
 - [CMD 容器启动命令](7.4_cmd.md)：默认命令
 - [最佳实践](../appendix/20.1_best_practices.md)：启动命令设计
@@ -160,7 +160,7 @@
 | **与 ARG** | ARG 仅构建时，ENV 持久化到运行时 |
 | **安全** | 不要存储敏感信息 |
 
-### 延伸阅读
+### 7.19.12 延伸阅读
 
 - [ARG 构建参数](7.7_arg.md)：构建时变量
 - [Compose 环境变量](../10_compose/10.5_compose_file.md)：Compose 中的环境变量
@@ -175,7 +175,7 @@
 | **vs ENV** | ARG 仅构建时，ENV 构建+运行时 |
 | **安全** | 不要存储敏感信息 |
 
-### 延伸阅读
+### 7.19.13 延伸阅读
 
 - [ENV 设置环境变量](7.6_env.md)：运行时环境变量
 - [FROM 指令](../04_image/4.5_build.md)：基础镜像指定
@@ -189,7 +189,7 @@
 | **覆盖方式** | `docker run -v name:/path` |
 | **注意** | VOLUME 之后的修改会丢失 |
 
-### 延伸阅读
+### 7.19.14 延伸阅读
 
 - [数据卷](../08_data_network/data/volume.md)：卷的管理和使用
 - [挂载主机目录](../08_data_network/data/bind-mounts.md)：Bind Mount
@@ -203,7 +203,7 @@
 | **外部访问** | 需要 `-p 宿主机端口:容器端口` |
 | **语法** | `EXPOSE 80` 或 `EXPOSE 80/tcp` |
 
-### 延伸阅读
+### 7.19.15 延伸阅读
 
 - [网络配置](../08_data_network/network/README.md)：Docker 网络详解
 - [端口映射](../08_data_network/network/port_mapping.md)：-p 参数详解

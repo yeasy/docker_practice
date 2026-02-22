@@ -1,12 +1,12 @@
-## 安装 Fedora CoreOS
+## 16.2 安装 Fedora CoreOS
 
 本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
-### 下载 ISO
+### 16.2.1 下载 ISO
 
 在[下载页面](https://getfedora.org/coreos/download/) `Bare Metal & Virtualized` 标签页下载 ISO。
 
-### 编写 FCC
+### 16.2.2 编写 FCC
 
 FCC 是 Fedora CoreOS Configuration (Fedora CoreOS 配置) 的简称。
 
@@ -24,7 +24,7 @@ passwd:
 
 将 `ssh-rsa AAAA...` 替换为自己的 SSH 公钥 (位于 `~/.ssh/id_rsa.pub`)。
 
-### 转换 FCC 为 Ignition
+### 16.2.3 转换 FCC 为 Ignition
 
 运行以下命令：
 
@@ -32,7 +32,7 @@ passwd:
 $ docker run -i --rm quay.io/coreos/fcct:v0.5.0 --pretty --strict < example.fcc > example.ign
 ```
 
-### 挂载 ISO 启动虚拟机并安装
+### 16.2.4 挂载 ISO 启动虚拟机并安装
 
 > 虚拟机需要分配 3GB 以上内存，否则会无法启动。
 
@@ -44,7 +44,7 @@ $ sudo coreos-installer install /dev/sda --ignition-file example.ign
 
 安装之后重新启动即可使用。
 
-### 使用
+### 16.2.5 使用
 
 运行以下命令：
 
@@ -54,6 +54,6 @@ $ ssh core@虚拟机IP
 $ docker --version
 ```
 
-### 参考链接
+### 16.2.6 参考链接
 
 * [官方文档](https://docs.fedoraproject.org/en-US/fedora-coreos/bare-metal/)

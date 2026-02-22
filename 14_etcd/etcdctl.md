@@ -1,4 +1,4 @@
-## 使用 etcdctl
+## 14.4 使用 etcdctl
 
 `etcdctl` 是一个命令行客户端，它能提供一些简洁的命令，供用户直接跟 `etcd` 服务打交道，而无需基于 `HTTP API` 方式。这在某些情况下将很方便，例如用户对服务进行测试或者手动修改数据库内容。我们也推荐在刚接触 `etcd` 时通过 `etcdctl` 命令来熟悉相关的操作，这些操作跟 `HTTP API` 实际上是对应的。
 
@@ -81,7 +81,7 @@ OPTIONS:
   -w, --write-out="simple"			set the output format (fields, json, protobuf, simple, table)
 ```
 
-### 数据库操作
+### 14.4.1 数据库操作
 
 数据库操作围绕对键值和目录的 CRUD (符合 REST 风格的一套操作：Create) 完整生命周期的管理。
 
@@ -125,7 +125,7 @@ $ etcdctl del testkey
 1
 ```
 
-### 非数据库操作
+### 14.4.2 非数据库操作
 
 本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
