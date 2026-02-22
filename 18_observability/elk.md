@@ -1,8 +1,8 @@
-## ELK/EFK 堆栈
+## 18.2 ELK/EFK 堆栈
 
 ELK (Elasticsearch，Logstash，Kibana) 是目前业界最流行的开源日志解决方案。而在容器领域，由于 Fluentd 更加轻量级且对容器支持更好，EFK (Elasticsearch，Fluentd，Kibana) 组合也变得非常流行。
 
-### 方案架构
+### 18.2.1 方案架构
 
 我们将采用以下架构：
 
@@ -11,7 +11,7 @@ ELK (Elasticsearch，Logstash，Kibana) 是目前业界最流行的开源日志�
 3. **Elasticsearch**：存储从 Fluentd 接收到的日志数据。
 4. **Kibana**：从 Elasticsearch 读取数据并进行可视化展示。
 
-### 部署流程
+### 18.2.2 部署流程
 
 我们将使用 Docker Compose 来一键部署整个日志堆栈。
 
@@ -125,6 +125,6 @@ docker run -d \
 4. 选择 `@timestamp` 作为时间字段。
 5. 去 **Discover** 页面，你就能看到 Nginx 容器的日志了。
 
-### 总结
+### 18.2.3 总结
 
 通过 Docker 的日志驱动机制，结合 ELK/EFK 强大的收集和分析能力，我们可以轻松构建一个能够处理海量日志的监控平台，这对于排查生产问题至关重要。

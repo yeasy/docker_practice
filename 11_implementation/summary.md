@@ -1,4 +1,4 @@
-## 本章小结
+## 11.7 本章小结
 
 相关信息如下表：
 
@@ -11,7 +11,7 @@
 | IPC | 进程间通信 | 容器间 IPC 隔离 |
 | USER | 用户 ID | 容器 root ≠ 宿主机 root |
 
-### 延伸阅读
+### 11.7.1 延伸阅读
 
 - [控制组 (Cgroups)](18.3_cgroups.md)：资源限制机制
 - [联合文件系统](18.4_ufs.md)：分层存储的实现
@@ -26,7 +26,7 @@
 | **磁盘 I/O** | `--device-write-bps` | `--device-write-bps /dev/sda:10mb` |
 | **进程数** | `--pids-limit` | `--pids-limit=100` |
 
-### 延伸阅读
+### 11.7.2 延伸阅读
 
 - [命名空间](18.2_namespace.md)：资源隔离
 - [安全](../17_security/README.md)：容器安全概述
@@ -39,7 +39,7 @@
 | **overlay2** | Docker 默认推荐的存储驱动 |
 | **分层好处** | 镜像复用、快速构建、快速启动 |
 
-### 延伸阅读
+### 11.7.3 延伸阅读
 
 - [镜像](../02_basic_concept/2.1_image.md)：理解镜像分层
 - [容器](../02_basic_concept/2.2_container.md)：容器存储层
