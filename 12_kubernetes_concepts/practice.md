@@ -1,14 +1,14 @@
-## Kubernetes 实战练习
+## 12.5 Kubernetes 实战练习
 
 本章将通过一个具体的案例：部署一个 Nginx 网站，并为其配置 Service 和 Ingress，来串联前面学到的知识。
 
-### 目标
+### 12.5.1 目标
 
 1.  部署一个 Nginx Deployment。
 2.  创建一个 Service 暴露 Nginx。
 3.  (可选) 通过 Ingress 访问服务。
 
-### 步骤 1：创建 Deployment
+### 12.5.2 步骤 1：创建 Deployment
 
 创建一个名为 `nginx-deployment.yaml` 的文件：
 
@@ -42,7 +42,7 @@ spec:
 kubectl apply -f nginx-deployment.yaml
 ```
 
-### 步骤 2：创建 Service
+### 12.5.3 步骤 2：创建 Service
 
 创建一个名为 `nginx-service.yaml` 的文件：
 
@@ -75,7 +75,7 @@ kubectl get svc nginx-service
 
 如果输出端口是 `80:30080/TCP`，你可以通过 `http://<NodeIP>:30080` 访问 Nginx。
 
-### 步骤 3：模拟滚动更新
+### 12.5.4 步骤 3：模拟滚动更新
 
 修改 `nginx-deployment.yaml`，将镜像版本改为 `nginx:1.27-alpine`。
 
@@ -89,7 +89,7 @@ kubectl apply -f nginx-deployment.yaml
 kubectl rollout status deployment/nginx-deployment
 ```
 
-### 步骤 4：清理资源
+### 12.5.5 步骤 4：清理资源
 
 练习结束后，记得清理资源：
 

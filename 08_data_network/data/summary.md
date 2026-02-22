@@ -1,4 +1,4 @@
-## 本章小结
+## 8.5 本章小结
 
 相关信息如下表：
 
@@ -10,7 +10,7 @@
 | **适用场景** | 开发环境、配置文件、日志 |
 | **vs Volume** | Bind 更灵活，Volume 更适合生产 |
 
-### 延伸阅读
+### 8.5.1 延伸阅读
 
 - [数据卷](volume.md)：Docker 管理的持久化存储
 - [tmpfs 挂载](tmpfs.md)：内存临时存储
@@ -25,7 +25,7 @@
 | 清理未用 | `docker volume prune` |
 | 挂载数据卷 | `-v name:/path` 或 `--mount source=name,target=/path` |
 
-### 延伸阅读
+### 8.5.2 延伸阅读
 
 - [绑定挂载](bind-mounts.md)：挂载宿主机目录
 - [tmpfs 挂载](tmpfs.md)：内存中的临时存储

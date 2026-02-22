@@ -1,8 +1,8 @@
-## 多云部署策略比较
+## 15.6 多云部署策略比较
 
 企业在选择容器云平台时，通常会在 AWS EKS，Azure AKS，Google GKE 以及国内的阿里云 ACK，腾讯云 TKE 之间进行权衡。
 
-### 三大公有云 Kubernetes 服务对比
+### 15.6.1 三大公有云 Kubernetes 服务对比
 
 相关信息如下表：
 
@@ -14,7 +14,7 @@
 | **网络模型** | VPC-native, 性能优秀 | AWS VPC CNI, Pod 直接获取 VPC IP | Azure CNI (消耗 IP 多) 或 Kubenet |
 | **集成度** | 与 GCP 数据分析、AI 服务集成紧密 | 与 AWS IAM, ALB, CloudWatch 集成深度高 | 与 Active Directory, Azure DevOps 集成好 |
 
-### 多云部署策略
+### 15.6.2 多云部署策略
 
 随着企业业务的扩展，单一云平台可能无法满足所有需求，多云部署成为趋势。
 
@@ -38,7 +38,7 @@
 
 * **工具**：Google Anthos，AWS Outposts，Azure Arc 都是为了解决混合云统一管理而生。
 
-### 建议
+### 15.6.3 建议
 
 * **技术选型**：尽量使用标准的 Kubernetes API，避免过度依赖特定云厂商的 CRD 或专有服务，以保持应用的可移植性。
 * **IaC 管理**：使用 Terraform 或 Pulumi 等工具统一管理多云基础设施。

@@ -1,4 +1,4 @@
-## 本章小结
+## 2.4 本章小结
 
 相关信息如下表：
 
@@ -11,7 +11,7 @@
 
 理解了镜像，接下来让我们学习[容器](2.2_container.md)——镜像的运行实例。
 
-### 延伸阅读
+### 2.4.1 延伸阅读
 
 - [获取镜像](../04_image/4.1_pull.md)：从 Registry 下载镜像
 - [使用 Dockerfile 定制镜像](../04_image/4.5_build.md)：创建自己的镜像
@@ -28,7 +28,7 @@
 
 理解了镜像和容器，接下来让我们学习[仓库](2.3_repository.md)——存储和分发镜像的服务。
 
-### 延伸阅读
+### 2.4.2 延伸阅读
 
 - [启动容器](../05_container/5.1_run.md)：详细的容器启动选项
 - [后台运行](../05_container/5.2_daemon.md)：理解容器为什么会 “立即退出”
@@ -45,7 +45,7 @@
 
 现在你已经了解了 Docker 的三个核心概念：[镜像](2.1_image.md)、[容器](2.2_container.md)和仓库。接下来，让我们开始[安装 Docker](../03_install/README.md)，动手实践！
 
-### 延伸阅读
+### 2.4.3 延伸阅读
 
 - [Docker Hub](../06_repository/6.1_dockerhub.md)：Docker Hub 的详细使用
 - [私有仓库](../06_repository/6.2_registry.md)：搭建私有 Registry

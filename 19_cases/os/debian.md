@@ -1,8 +1,8 @@
-## Debian Ubuntu
+## 19.4 Debian Ubuntu
 
 `Debian` 和 `Ubuntu` 都是目前较为流行的 **Debian 系** 的服务器操作系统，十分适合研发场景。`Docker Hub` 上提供了官方镜像，国内各大容器云服务也基本都提供了相应的支持。
 
-### Debian 系统简介
+### 19.4.1 Debian 系统简介
 
 下图直观地展示了本节内容：
 
@@ -34,7 +34,7 @@ Debian GNU/Linux 8
 
 `Debian` 镜像很适合作为基础镜像，构建自定义镜像。
 
-### Ubuntu 系统简介
+### 19.4.2 Ubuntu 系统简介
 
 下图直观地展示了本节内容：
 
@@ -143,7 +143,7 @@ root@7d93de07bf76:/# curl 127.0.0.1
 
 配合使用 `-p` 参数对外映射服务端口，可以允许容器外来访问该服务。
 
-### 相关资源
+### 19.4.3 相关资源
 
 * `Debian` 官网：https://www.debian.org/
 * `Neuro Debian` 官网：http://neuro.debian.net/

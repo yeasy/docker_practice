@@ -1,8 +1,8 @@
-## 部署 Drone
+## 19.11 部署 Drone
 
 本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
-### 要求
+### 19.11.1 要求
 
 * 拥有公网 IP、域名 (如果你不满足要求，可以尝试在本地使用 Gogs + Drone)
 
@@ -14,7 +14,7 @@
 
 * 对 `CI/CD` 有一定了解
 
-### 新建 GitHub 应用
+### 19.11.2 新建 GitHub 应用
 
 登录 GitHub，在 https://github.com/settings/applications/new 新建一个应用。
 
@@ -22,7 +22,7 @@
 
 接下来查看这个应用的详情，记录 `Client ID` 和 `Client Secret`，之后配置 Drone 会用到。
 
-### 配置 Drone
+### 19.11.3 配置 Drone
 
 我们通过使用 `Docker Compose` 来启动 `Drone`，编写 `compose.yaml` (或 `docker-compose.yml`) 文件。
 

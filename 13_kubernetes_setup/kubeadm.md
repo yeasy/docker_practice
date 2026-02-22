@@ -1,10 +1,10 @@
-## 使用 kubeadm 部署 Kubernetes (CRI 使用 containerd)
+## 13.1 使用 kubeadm 部署 Kubernetes (CRI 使用 containerd)
 
 `kubeadm` 提供了 `kubeadm init` 以及 `kubeadm join` 这两个命令，作为快速创建 `Kubernetes` 集群的最佳实践。
 
 > **版本说明**：Kubernetes 版本更新较快 (约每 4 个月一个新版本)，本文档基于 Kubernetes 1.35 编写。请访问 [Kubernetes 官方发布页](https://kubernetes.io/releases/)获取最新版本信息。
 
-### 安装 containerd
+### 13.1.1 安装 containerd
 
 参考[安装 Docker](../../03_install/README.md) 一节添加 apt/yum 源，之后执行如下命令。
 
@@ -18,7 +18,7 @@ $ sudo apt install containerd.io
 $ sudo yum install containerd.io
 ```
 
-### 配置 containerd
+### 13.1.2 配置 containerd
 
 新建 `/etc/systemd/system/cri-containerd.service` 文件
 
@@ -228,7 +228,7 @@ oom_score = 0
     async_remove = false
 ```
 
-### 安装 **kubelet****kubeadm****kubectl****cri-tools****kubernetes-cni**
+### 13.1.3 安装 **kubelet****kubeadm****kubectl****cri-tools****kubernetes-cni**
 
 需要在每台机器上安装以下的软件包：
 
@@ -274,7 +274,7 @@ EOF
 $ sudo yum install -y kubelet kubeadm kubectl cri-tools kubernetes-cni
 ```
 
-### 修改内核的运行参数
+### 13.1.4 修改内核的运行参数
 
 本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
@@ -317,7 +317,7 @@ EOF
 $ sysctl --system
 ```
 
-### 配置 kubelet
+### 13.1.5 配置 kubelet
 
 为了让 kubelet 正确运行，我们需要对其进行一些必要的配置。
 
@@ -345,7 +345,7 @@ ExecStartPre=-/sbin/modprobe ip_vs_sh
 $ sudo systemctl daemon-reload
 ```
 
-### 部署
+### 13.1.6 部署
 
 安装配置完成后，我们将分别在 Master 节点和 Worker 节点上进行部署操作。
 
@@ -412,7 +412,7 @@ $ kubeadm join 192.168.199.100:6443 \
     --cri-socket /run/cri-containerd/cri-containerd.sock
 ```
 
-### 查看服务
+### 13.1.7 查看服务
 
 所有服务启动后，通过 `crictl` 查看本地实际运行的容器。这些服务大概分为三类：主节点服务、工作节点服务和其它服务。
 
@@ -436,7 +436,7 @@ CONTAINER_RUNTIME_ENDPOINT=/run/cri-containerd/cri-containerd.sock crictl ps -a
 
 * Etcd 是所有状态的存储数据库；
 
-### 使用
+### 13.1.8 使用
 
 将 `/etc/kubernetes/admin.conf` 复制到 `~/.kube/config`
 
@@ -444,7 +444,7 @@ CONTAINER_RUNTIME_ENDPOINT=/run/cri-containerd/cri-containerd.sock crictl ps -a
 
 由于未部署 CNI 插件，CoreDNS 未正常启动。如何使用 Kubernetes，请参考后续章节。
 
-### 部署 CNI
+### 13.1.9 部署 CNI
 
 这里以 `flannel` 为例进行介绍。
 
@@ -469,7 +469,7 @@ $ kubectl get node -o yaml | grep CIDR
 $ kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/v0.26.1/Documentation/kube-flannel.yml
 ```
 
-### master 节点默认不能运行 pod
+### 13.1.10 master 节点默认不能运行 pod
 
 如果用 `kubeadm` 部署一个单节点集群，默认情况下无法使用，请执行以下命令解除限制
 
@@ -487,7 +487,7 @@ $ kubectl taint nodes --all node-role.kubernetes.io/master-
 ...
 ```
 
-### 参考文档
+### 13.1.11 参考文档
 
 * [官方文档](https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
 * [Container runtimes](https://kubernetes.io/docs/setup/production-environment/container-runtimes/#containerd)
