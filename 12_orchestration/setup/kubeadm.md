@@ -22,7 +22,7 @@ $ sudo yum install containerd.io
 
 新建 `/etc/systemd/system/cri-containerd.service` 文件
 
-```
+```bash
 [Unit]
 Description=containerd container runtime for kubernetes
 Documentation=https://containerd.io
@@ -399,7 +399,7 @@ kubeadm join 192.168.199.100:6443 --token cz81zt.orsy9gm9v649e5lf \
 
 #### node 工作节点
 
-在**另一主机**重复**部署**小节以前的步骤，安装配置好 kubelet。根据提示，加入到集群。
+在 **另一主机** 重复 **部署** 小节以前的步骤，安装配置好 kubelet。根据提示，加入到集群。
 
 ```bash
 $ systemctl enable cri-containerd

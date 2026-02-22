@@ -32,7 +32,7 @@ sudo k3s kubectl get nodes
 ```
 
 输出类似：
-```
+```bash
 NAME          STATUS   ROLES                  AGE   VERSION
 k3s-master    Ready    control-plane,master   1m    v1.35.1+k3s1
 ```
