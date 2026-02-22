@@ -1,0 +1,62 @@
+## 9.5 容器互联
+
+容器之间的网络通信是 Docker 网络的核心功能之一。本节介绍容器互联的几种方式。
+
+### 9.5.1 同一网络内的容器
+
+同一自定义网络内的容器可以直接通过容器名通信，这是推荐的容器互联方式：
+
+```bash
+## 创建网络
+
+$ docker network create app-net
+
+## 启动应用和数据库
+
+$ docker run -d --name redis --network app-net redis
+$ docker run -d --name app --network app-net myapp
+
+## app 容器中可以用 redis:6379 连接 Redis
+
+...
+```
+
+### 9.5.2 连接到多个网络
+
+一个容器可以同时连接到多个网络，这对于需要跨网络通信的中间件容器特别有用：
+
+```bash
+## 启动容器
+
+$ docker run -d --name multi-net-container --network frontend nginx
+
+## 再连接到另一个网络
+
+$ docker network connect backend multi-net-container
+
+## 查看容器的网络
+
+$ docker inspect multi-net-container --format '{{json .NetworkSettings.Networks}}'
+```
+
+### 9.5.3 ⚠️ --link 已废弃
+
+`--link` 是 Docker 早期用于容器互联的方式，**已经被废弃**，不建议在新项目中使用。请使用自定义网络替代：
+
+```bash
+## 旧方式（不推荐）
+
+$ docker run --link db:database myapp
+
+## 新方式（推荐）
+
+$ docker network create mynet
+$ docker run --network mynet --name db postgres
+$ docker run --network mynet --name app myapp
+```
+
+使用自定义网络的优势在于：
+
+- 原生支持 DNS 解析
+- 不需要在容器启动时显式声明依赖
+- 更灵活，可以动态 connect/disconnect
