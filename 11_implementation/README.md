@@ -1,4 +1,4 @@
-# 第十四章底层实现
+# 第十一章 底层实现
 
 Docker 底层的核心技术包括 Linux 上的命名空间 (Namespaces)、控制组 (Control groups)、Union 文件系统 (Union file systems) 和容器格式 (Container format)。
 
@@ -12,9 +12,9 @@ Docker 底层的核心技术包括 Linux 上的命名空间 (Namespaces)、控�
 
 随着 Linux 系统对于命名空间功能的完善实现，程序员已经可以实现上面的所有需求，让某些进程在彼此隔离的命名空间中运行。大家虽然都共用一个内核和某些运行时环境 (例如一些系统命令和系统库)，但是彼此却看不到，都以为系统中只有自己的存在。这种机制就是容器 (Container)，利用命名空间来做权限的隔离控制，利用 cgroups 来做资源分配。
 
-* [基本架构](14.1_arch.md)
-* [命名空间](14.2_namespace.md)
-* [控制组](14.3_cgroups.md)
-* [联合文件系统](14.4_ufs.md)
-* [容器格式](14.5_container_format.md)
-* [网络](14.6_network.md)
+* [基本架构](18.1_arch.md)
+* [命名空间](18.2_namespace.md)
+* [控制组](18.3_cgroups.md)
+* [联合文件系统](18.4_ufs.md)
+* [容器格式](18.5_container_format.md)
+* [网络](18.6_network.md)
