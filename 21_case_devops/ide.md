@@ -1,0 +1,53 @@
+# 21.5 在 IDE 中使用 Docker
+
+使用 IDE 进行开发，往往要求本地安装好工具链。一些 IDE 支持 Docker 容器中的工具链，这样充分利用了 Docker 的优点，而无需在本地安装。
+
+本节关注一个核心目标：**把“开发依赖”放进容器，把“源码编辑体验”留在本地 IDE**。
+
+## 21.5.1 适用场景
+
+* 团队希望统一开发环境（Go/Node/Python 版本、系统依赖、编译链）。
+* 本地系统不方便安装依赖（例如 Windows、公司管控环境）。
+* 项目依赖较重（例如需要 `gcc`、数据库客户端、特定系统库）。
+
+不太适合的场景：强依赖本机 GPU/USB 设备、或需要非常低延迟文件 IO 的工程（此时可能需要额外调优挂载/同步策略）。
+
+## 21.5.2 最小可用模式：docker compose + 开发容器
+
+下面用一个“长期运行的开发容器”作为例子（以 Go 为例，你可以替换为 Node/Python）。
+
+1. 在项目中创建 `compose.yaml`（或复用你已有的 compose 文件）：
+
+   ```yaml
+   services:
+     dev:
+       image: golang:1.22
+       working_dir: /work
+       volumes:
+         - ./:/work
+       command: sleep infinity
+   ```
+
+1. 启动开发容器：
+
+   ```bash
+   docker compose up -d
+   ```
+
+1. 进入容器安装依赖/执行命令：
+
+   ```bash
+   docker compose exec dev bash
+   go version
+   go test ./...
+   ```
+
+这个模式的优点是“简单直接、IDE 无关”，缺点是 IDE 需要额外配置
+（例如配置远程解释器/语言服务，或使用 VS Code Dev Containers）。
+
+## 21.5.3 目录挂载与权限建议
+
+* Linux 下如果遇到容器内写文件权限问题，优先确保容器内用户与宿主机 UID/GID 对齐。
+  VS Code Dev Containers 支持自动处理；手写 Dockerfile/compose 时也可以显式设置用户。
+* 如果遇到文件变更监听不生效（常见于 macOS/Windows 的虚拟化文件系统），
+  优先使用语言/工具支持的轮询模式或提高 watcher 限制。

@@ -1,8 +1,8 @@
-## 20.8 DevOps 工作流完整示例
+# 21.1 DevOps 工作流完整示例
 
-本章将演示一个基于 Docker，Kubernetes 和 Jenkins/GitLab CI 的完整 DevOps 工作流。
+本章将演示一个基于 Docker、Kubernetes 和 Jenkins/GitLab CI 的完整 DevOps 工作流。
 
-### 20.8.1 工作流概览
+## 21.1.1 工作流概览
 
 1. **Code**：开发人员提交代码到 GitLab。
 2. **Build**：GitLab CI 触发构建任务。
@@ -12,14 +12,13 @@
 6. **Verify**：人工或自动化验证。
 7. **Release (Production)**：审批后自动部署到生产环境。
 
-### 20.8.2 关键配置示例
+## 21.1.2 关键配置示例
 
-本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
+本节通过一组最小可用的片段，展示典型 DevOps 流程中与 Docker 相关的关键配置。
 
-#### 1. Dockerfile 多阶段构建
+### 1. Dockerfile 多阶段构建
 
 使用 Docker 多阶段构建可以有效减小镜像体积。
-
 
 Dockerfile 内容如下：
 
@@ -39,10 +38,9 @@ COPY --from=builder /app/main .
 CMD ["./main"]
 ```
 
-#### 2. GitLab CI 配置
+### 2. GitLab CI 配置
 
-GitLab CI (。gitlab-ci.yml) 配置如下：
-
+GitLab CI（`.gitlab-ci.yml`）配置如下：
 
 ```yaml
 stages:
@@ -62,7 +60,8 @@ build_image:
   services:
     - docker:20.10.16-dind
   script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD \
+      $CI_REGISTRY
     - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
 
@@ -74,13 +73,14 @@ deploy_staging:
     - kubectl config set-credentials admin --token=$KUBE_TOKEN
     - kubectl config set-context default --cluster=k8s --user=admin
     - kubectl config use-context default
-    - kubectl set image deployment/myapp myapp=$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA -n staging
+    - kubectl set image deployment/myapp myapp=$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+      -n staging
   only:
     - develop
 ```
 
-### 20.8.3 最佳实践
+## 21.1.3 最佳实践
 
-1. **不可变基础设施**：一旦镜像构建完成，在各个环境 (Dev，Staging，Prod) 中都应该使用同一个镜像 tag (通常是 commit hash)，而不是重新构建。
+1. **不可变基础设施**：一旦镜像构建完成，在各个环境（Dev、Staging、Prod）中都应该使用同一个镜像 tag（通常是 commit hash），而不是重新构建。
 2. **配置分离**：使用 ConfigMap 和 Secret 管理环境特定的配置，不要打包进镜像。
 3. **GitOps**：考虑引入 ArgoCD，将部署配置也作为代码存储在 Git 中，实现 Git 驱动的部署同步。

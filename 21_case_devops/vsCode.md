@@ -1,0 +1,62 @@
+# 21.6 VS Code 中使用 Docker
+
+VS Code 的 [Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers)
+可以把“开发环境”放进容器，同时保留 VS Code 的编辑、补全、调试体验。
+
+本节提供一个最小可用示例：把任意项目（以 Go 为例）变成“打开即开发”的容器化环境。
+
+## 21.6.1 前置条件
+
+* 安装 Docker Desktop（或 Linux 上的 Docker Engine）。
+* VS Code 安装扩展：Dev Containers（`ms-vscode-remote.remote-containers`）。
+
+## 21.6.2 最小示例：.devcontainer/devcontainer.json
+
+在项目根目录创建 `.devcontainer/devcontainer.json`：
+
+```json
+{
+  "name": "docker-practice-dev",
+  "image": "golang:1.22",
+  "workspaceFolder": "/work",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/work,type=bind",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "golang.Go"
+      ]
+    }
+  },
+  "postCreateCommand": "go version"
+}
+```
+
+然后在 VS Code 命令面板选择：
+
+* `Dev Containers: Reopen in Container`
+
+VS Code 会拉取镜像并启动容器，随后你就可以在容器内运行：
+
+```bash
+go test ./...
+```
+
+## 21.6.3 结合 Docker Compose（可选）
+
+如果项目同时依赖数据库/缓存（例如 Postgres/Redis），可以使用 `dockerComposeFile`
+把依赖一起拉起。
+
+示例（`devcontainer.json` 片段）：
+
+```json
+{
+  "name": "compose-dev",
+  "dockerComposeFile": [
+    "../docker-compose.yml"
+  ],
+  "service": "dev",
+  "workspaceFolder": "/work"
+}
+```
+
+注意：`service` 需要对应 compose 里的服务名。
