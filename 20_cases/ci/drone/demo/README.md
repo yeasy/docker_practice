@@ -1,14 +1,16 @@
-# Drone CI Demo 项目
+# 20.2.3.2 Drone Demo
+
+## Drone CI Demo 项目
 
 这是一个基于 Go 语言编写的简单 Web 应用示例，用于演示 Drone CI 的持续集成流程。
 
-## 20.12 目录结构
+## 20.2.3.2.1 目录结构
 
 *   `app.go`：简单的 Go Web 服务器代码。
 *   `.drone.yml`：Drone CI 的配置文件，定义了构建和测试流程。
 *   `Dockerfile`：定义了如何将该应用构建为 Docker 镜像。
 
-## 20.12 如何运行
+## 20.2.3.2.2 如何运行
 
 1.  确保本地已安装 Docker 环境。
 2.  进入本目录构建镜像：
