@@ -1,7 +1,5 @@
 # Docker — 从入门到实践
 
-下图直观地展示了本节内容：
-
 [![图](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) [![图](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases) [![图](https://img.shields.io/badge/Based-Docker%20Engine%20v29.x-blue.svg)](https://docs.docker.com/engine/release-notes/) [![图](https://img.shields.io/badge/Docker%20%E6%8A%80%E6%9C%AF%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E6%88%98-jd.com-red.svg)][1]
 
 **v1.5.7**
@@ -14,15 +12,12 @@
 
 ## 内容特色
 
-*   **入门基础**：前六章为基础内容，帮助深入理解 Docker 的基本概念 (镜像、容器、仓库) 和核心操作。
-*   **进阶应用**：7 ~ 10 章涵盖数据管理、网络配置、Buildx、Compose、运维管理等高级操作。
-*   **深入原理**：11 ~ 13 章介绍容器编排 (Kubernetes、Etcd)、容器生态、底层实现技术。
-*   **实战扩展**：14 ~ 15 章展示操作系统、CI/CD 等典型应用场景和实践案例，以及工具参考。
-*   **广泛扩展**：涵盖 Fedora CoreOS、容器云等热门开源项目，并展示典型的应用场景和实践案例。
+*   **入门基础**：第 1 ~ 6 章为基础内容，帮助深入理解 Docker 的基本概念 (镜像、容器、仓库) 和核心操作。
+*   **进阶应用**：第 7 ~ 10 章涵盖 Dockerfile 指令详解、数据与网络管理、Buildx、Compose 等高级配置和管理操作。
+*   **深入原理**：第 11 ~ 16 章介绍其底层实现技术，深入探讨容器编排体系 (Kubernetes、Etcd)，并延伸涉及容器与云计算及其它关键生态项目 (Fedora CoreOS、Podman 等)。
+*   **实战扩展**：第 17 ~ 19 章重点讨论容器安全防护机制、监控与日志聚合系统 (Prometheus、ELK)，并展示操作系统、CI/CD 自动化构建等典型实践案例。
 
 ## 阅读方式
-
-本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
 ### 在线阅读
 
@@ -31,8 +26,6 @@
 *   **Mirror**: [docker-practice.com](https://vuepress.mirror.docker-practice.com/)
 
 ### 本地阅读
-
-本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
 #### 方式 1：Docker 镜像 (推荐)
 
@@ -74,8 +67,6 @@ npx honkit serve
 
 ## 进阶学习
 
-下图直观地展示了本节内容：
-
 [![图](https://github.com/yeasy/docker_practice/raw/master/_images/docker_primer4.jpg)][1]
 
 《[Docker 技术入门与实战][1]》已更新到第 4 版，讲解最新容器技术栈知识，欢迎大家阅读并反馈建议。
@@ -92,8 +83,6 @@ npx honkit serve
 <p align="center"><strong>欢迎鼓励项目一杯 coffee~</strong></p>
 
 ## Star History
-
-下图直观地展示了本节内容：
 
 [![Star History Chart](https://api.star-history.com/svg?repos=yeasy/docker_practice&type=Date)](https://star-history.com/#yeasy/docker_practice&Date)
 
