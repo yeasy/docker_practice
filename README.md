@@ -19,6 +19,8 @@
 
 ## 阅读方式
 
+本书按需提供多种阅读模式，具体如下：
+
 ### 在线阅读
 
 *   **GitBook**: [yeasy.gitbook.io/docker_practice](https://yeasy.gitbook.io/docker_practice/)
@@ -26,6 +28,8 @@
 *   **Mirror**: [docker-practice.com](https://vuepress.mirror.docker-practice.com/)
 
 ### 本地阅读
+
+您也可以选择以下方式在本地离线阅读。
 
 #### 方式 1：Docker 镜像 (推荐)
 
