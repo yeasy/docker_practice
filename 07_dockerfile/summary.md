@@ -191,8 +191,8 @@
 
 ### 7.19.14 延伸阅读
 
-- [数据卷](../08_data/volume.md)：卷的管理和使用
-- [挂载主机目录](../08_data/bind-mounts.md)：Bind Mount
+- [数据卷](../08_data/8.1_volume.md)：卷的管理和使用
+- [挂载主机目录](../08_data/8.2_bind-mounts.md)：Bind Mount
 - [Compose 数据管理](../11_compose/11.5_compose_file.md)：Compose 中的卷配置
 
 | 要点 | 说明 |
@@ -206,5 +206,5 @@
 ### 7.19.15 延伸阅读
 
 - [网络配置](../09_network/README.md)：Docker 网络详解
-- [端口映射](../09_network/port_mapping.md)：-p 参数详解
+- [端口映射](../09_network/9.5_port_mapping.md)：-p 参数详解
 - [Compose 端口](../11_compose/11.5_compose_file.md)：Compose 中的端口配置

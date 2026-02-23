@@ -13,5 +13,5 @@
 ### 14.9.1 延伸阅读
 
 - [容器编排基础](../13_kubernetes_concepts/README.md)：Kubernetes 核心概念
-- [Dashboard](dashboard.md)：部署可视化管理界面
-- [kubectl](kubectl.md)：命令行工具使用指南
+- [Dashboard](14.7_dashboard.md)：部署可视化管理界面
+- [kubectl](14.8_kubectl.md)：命令行工具使用指南

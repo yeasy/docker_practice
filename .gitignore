@@ -3,6 +3,7 @@
 *.tmp
 .idea/
 _book/
+format_report.txt
 *.swp
 *.edx
 .DS_Store
@@ -21,3 +22,10 @@ __pycache__/
 
 # Check scripts
 check_project_rules.py
+check_dashes.py
+checker.py
+find_lists_no_space.py
+fix_missing_spaces.py
+fix_project_rules.py
+fixer.py
+format_headings.py
