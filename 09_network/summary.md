@@ -14,11 +14,11 @@
 
 ### 9.8.1 延伸阅读
 
-- [配置 DNS](dns.md)：自定义 DNS 设置
-- [网络类型](network_types.md)：Bridge、Host、None 等网络模式
-- [自定义网络](custom_network.md)：创建和管理自定义网络
-- [容器互联](container_linking.md)：容器间通信方式
-- [端口映射](port_mapping.md)：高级端口配置
-- [网络隔离](network_isolation.md)：网络安全与隔离策略
+- [配置 DNS](9.1_dns.md)：自定义 DNS 设置
+- [网络类型](9.2_network_types.md)：Bridge、Host、None 等网络模式
+- [自定义网络](9.3_custom_network.md)：创建和管理自定义网络
+- [容器互联](9.4_container_linking.md)：容器间通信方式
+- [端口映射](9.5_port_mapping.md)：高级端口配置
+- [网络隔离](9.6_network_isolation.md)：网络安全与隔离策略
 - [EXPOSE 指令](../07_dockerfile/7.9_expose.md)：在 Dockerfile 中声明端口
 - [Compose 网络](../11_compose/11.5_compose_file.md)：Compose 中的网络配置
