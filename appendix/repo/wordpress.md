@@ -1,7 +1,5 @@
 ## [WordPress]
 
-本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
-
 ### 基本信息
 
 [WordPress](https://en.wikipedia.org/wiki/WordPress) 是开源的 Blog 和内容管理系统框架，它基于 PHP 和 MySQL。

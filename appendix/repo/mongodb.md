@@ -1,7 +1,5 @@
 ## [MongoDB]
 
-本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
-
 ### 基本信息
 
 [MongoDB](https://en.wikipedia.org/wiki/MongoDB) 是开源的 NoSQL 数据库实现。

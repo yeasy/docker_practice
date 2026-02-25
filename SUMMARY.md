@@ -142,7 +142,7 @@
   * [16.2 腾讯云](16_cloud/16.2_tencentCloud.md)
   * [16.3 阿里云](16_cloud/16.3_alicloud.md)
   * [16.4 亚马逊云](16_cloud/16.4_aws.md)
-  * [16.6 多云部署策略](16_cloud/16.6_multicloud.md)
+  * [16.5 多云部署策略](16_cloud/16.6_multicloud.md)
   * [本章小结](16_cloud/summary.md)
 * [第十七章 容器其它生态](17_ecosystem/README.md)
   * [17.1 Fedora CoreOS 简介](17_ecosystem/17.1_coreos_intro.md)

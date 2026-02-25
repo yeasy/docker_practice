@@ -1,7 +1,5 @@
 ## [CentOS]
 
-本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
-
 ### 基本信息
 
 [CentOS](https://en.wikipedia.org/wiki/CentOS) 是流行的 Linux 发行版，其软件包大多跟 RedHat 系列保持一致。

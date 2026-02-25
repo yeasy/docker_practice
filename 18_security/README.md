@@ -1,4 +1,4 @@
-# 安全
+# 第十八章 安全
 
 容器安全是生产环境部署的核心考量。本章介绍 Docker 的安全机制和最佳实践。
 
@@ -27,8 +27,6 @@ flowchart LR
 ---
 
 ## 核心安全机制
-
-本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
 ### 1. 命名空间
 
@@ -89,11 +87,7 @@ $ docker exec myapp cat /proc/1/status | grep Cap
 
 ## 镜像安全
 
-本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
-
 ### 使用可信镜像
-
-运行以下命令：
 
 ```bash
 ## ✅ 使用官方镜像
@@ -153,8 +147,6 @@ $ cosign verify --key cosign.pub $IMAGE
 
 ## 运行时安全
 
-本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
-
 ### 1. 非 root 用户运行
 
 > 笔者强调：这是最重要的安全实践之一。
@@ -187,8 +179,6 @@ $ docker run -u 1001:1001 myapp
 
 ### 2. 只读文件系统
 
-运行以下命令：
-
 ```bash
 ## 根文件系统只读
 
@@ -200,8 +190,6 @@ $ docker run --read-only --tmpfs /tmp --tmpfs /var/run myapp
 ```
 
 ### 3. 禁用特权模式
-
-运行以下命令：
 
 ```bash
 ## ❌ 绝对不要在生产环境使用
@@ -215,8 +203,6 @@ $ docker run --cap-add=SYS_TIME myapp
 
 ### 4. 限制资源
 
-运行以下命令：
-
 ```bash
 $ docker run \
     -m 512m \                    # 内存限制
@@ -227,8 +213,6 @@ $ docker run \
 ```
 
 ### 5. 网络隔离
-
-运行以下命令：
 
 ```bash
 ## 禁用网络（适用于不需要网络的任务）
@@ -245,11 +229,7 @@ $ docker run --network=isolated_net myapp
 
 ## Dockerfile 安全实践
 
-本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
-
 ### 1. 使用精简基础镜像
-
-Dockerfile 内容如下：
 
 ```dockerfile
 ## ✅ 好：使用精简镜像
@@ -264,8 +244,6 @@ FROM ubuntu:24.04          # ~78MB
 ```
 
 ### 2. 多阶段构建
-
-Dockerfile 内容如下：
 
 ```dockerfile
 ## 构建阶段
@@ -285,8 +263,6 @@ CMD ["node", "/app/server.js"]
 
 ### 3. 不存储敏感信息
 
-Dockerfile 内容如下：
-
 ```dockerfile
 ## ❌ 错误：敏感信息写入镜像
 
@@ -301,8 +277,6 @@ COPY .env /app/
 ```
 
 ### 4. 固定依赖版本
-
-Dockerfile 内容如下：
 
 ```dockerfile
 ## ✅ 固定版本
@@ -336,8 +310,6 @@ RUN apk add curl
 ---
 
 ## 高级安全方案
-
-本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
 
 ### Seccomp 系统调用过滤
 
@@ -405,8 +377,6 @@ $ cosign verify --key cosign.pub $IMAGE
 ---
 
 ## 本章小结
-
-相关信息如下表：
 
 | 安全措施 | 重要程度 | 实现方式 |
 |---------|---------|---------|

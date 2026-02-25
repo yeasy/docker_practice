@@ -4,10 +4,6 @@ Docker Buildx 是一个 docker CLI 插件，其扩展了 docker 命令，支持 
 
 > Buildx 需要 Docker v19.03+。在较新版本中已更常用且功能更完整。
 
-## 概述
-
-总体概述了以下内容。
-
 ## 本章内容
 
 本章将详细介绍 Docker Buildx 的使用，包括：

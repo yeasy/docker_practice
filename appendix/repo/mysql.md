@@ -1,7 +1,5 @@
 ## [MySQL]
 
-本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
-
 ### 基本信息
 
 [MySQL](https://en.wikipedia.org/wiki/MySQL) 是开源的关系数据库实现。
