@@ -9,15 +9,21 @@
 /05_container/*       @yeasy @khs1994
 /06_repository/*      @khs1994
 /07_dockerfile/*      @yeasy @khs1994
-/08_data_network/*    @yeasy @khs1994
-/09_buildx/*          @khs1994
-/10_compose/*         @yeasy @khs1994
-/11_ops/*             @yeasy @khs1994
-/12_orchestration/*   @yeasy @khs1994
-/13_ecosystem/*       @khs1994
-/14_implementation/*  @yeasy @khs1994
-/15_cases/*           @yeasy @khs1994
-/16_appendix/*        @yeasy @khs1994
+/08_data/*            @yeasy @khs1994
+/09_network/*         @yeasy @khs1994
+/10_buildx/*          @khs1994
+/11_compose/*         @yeasy @khs1994
+/12_implementation/*  @yeasy @khs1994
+/13_kubernetes_concepts/* @yeasy @khs1994
+/14_kubernetes_setup/* @yeasy @khs1994
+/15_etcd/*            @yeasy @khs1994
+/16_cloud/*           @khs1994
+/17_ecosystem/*       @khs1994
+/18_security/*        @yeasy @khs1994
+/19_observability/*   @yeasy @khs1994
+/20_cases_os/*        @yeasy @khs1994
+/21_case_devops/*     @yeasy @khs1994
+/appendix/*           @yeasy @khs1994
 /.drone.yml           @khs1994
 /.editorconfig/       @khs1994
 /.gitattributes       @khs1994

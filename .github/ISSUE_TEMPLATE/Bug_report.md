@@ -36,9 +36,4 @@ about: Create a report to help us improve
 <!--describe problem with detailed steps and logs-->
 
 
-
-
-
-
-
 <!--提交问题之前请点击预览标签，符合要求之后再提交问题-->
