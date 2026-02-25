@@ -1,7 +1,5 @@
 ## [PHP]
 
-本节涵盖了相关内容与详细描述，主要探讨以下几个方面：
-
 ### 基本信息
 
 [PHP](https://en.wikipedia.org/wiki/Php) (Hypertext Preprocessor 超文本预处理器的字母缩写) 是一种被广泛应用的开放源代码的多用途脚本语言，它可嵌入到 HTML 中，尤其适合 web 开发。

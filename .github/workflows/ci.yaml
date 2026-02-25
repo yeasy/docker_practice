@@ -82,25 +82,15 @@ jobs:
 
           cp -r _images .vuepress/dist
           mkdir -p .vuepress/dist/appendix
-          cp -r 16_appendix/_images .vuepress/dist/appendix
-          mkdir -p .vuepress/dist/cases/ci/drone
-          cp -r 15_cases/ci/drone/_images .vuepress/dist/cases/ci/drone
-          mkdir -p .vuepress/dist/cases/os
-          cp -r 15_cases/os/_images .vuepress/dist/cases/os
+          cp -r appendix/_images .vuepress/dist/appendix
           mkdir -p .vuepress/dist/cloud
-          cp -r 13_ecosystem/cloud/_images .vuepress/dist/cloud
+          cp -r 16_cloud/_images .vuepress/dist/cloud
           mkdir -p .vuepress/dist/data_management
-          cp -r 08_data_network/data/_images .vuepress/dist/data_management
+          cp -r 08_data/_images .vuepress/dist/data_management
           mkdir -p .vuepress/dist/etcd
-          cp -r 12_orchestration/etcd/_images .vuepress/dist/etcd
-          mkdir -p .vuepress/dist/image
-          cp -r 04_image/_images .vuepress/dist/image
-          mkdir -p .vuepress/dist/install
-          cp -r 03_install/_images .vuepress/dist/install
+          cp -r 15_etcd/_images .vuepress/dist/etcd
           mkdir -p .vuepress/dist/kubernetes
-          cp -r 12_orchestration/kubernetes/_images .vuepress/dist/kubernetes
-          mkdir -p .vuepress/dist/underly
-          cp -r 14_implementation/_images .vuepress/dist/underly
+          cp -r 13_kubernetes_concepts/_images .vuepress/dist/kubernetes
 
           echo "include: [_images]" > .vuepress/dist/_config.yml
       - name: Upload Vuepress dist
