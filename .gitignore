@@ -17,7 +17,7 @@ docker-compose.override.yml
 .obsidian/
 .vscode/
 
-.agents/
+.agent/
 __pycache__/
 
 # Check scripts
