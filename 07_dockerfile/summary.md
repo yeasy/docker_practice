@@ -1,4 +1,4 @@
-## 7.19 本章小结
+## 本章小结
 
 | 要点 | 说明 |
 |------|------|
@@ -12,7 +12,7 @@
 
 - [COPY 复制文件](7.2_copy.md)：文件复制
 - [RUN 执行命令](../04_image/4.5_build.md)：执行构建命令
-- [最佳实践](../appendix/20.1_best_practices.md)：Dockerfile 编写指南
+- [最佳实践](../appendix/best_practices.md)：Dockerfile 编写指南
 
 | 要点 | 说明 |
 |------|------|
@@ -26,7 +26,7 @@
 
 - [安全](../18_security/README.md)：容器安全实践
 - [ENTRYPOINT](7.5_entrypoint.md)：入口脚本中的用户切换
-- [最佳实践](../appendix/20.1_best_practices.md)：Dockerfile 安全
+- [最佳实践](../appendix/best_practices.md)：Dockerfile 安全
 
 | 要点 | 说明 |
 |------|------|
@@ -40,7 +40,7 @@
 
 - [CMD 容器启动命令](7.4_cmd.md)：启动主进程
 - [Compose 模板文件](../11_compose/11.5_compose_file.md)：Compose 中的健康检查
-- [Docker 调试](../appendix/20.2_debug.md)：容器排障
+- [Docker 调试](../appendix/debug.md)：容器排障
 
 | 要点 | 说明 |
 |------|------|
@@ -53,7 +53,7 @@
 ### 7.19.4 延伸阅读
 
 - [COPY 指令](7.2_copy.md)：文件复制
-- [Dockerfile 最佳实践](../appendix/20.1_best_practices.md)：基础镜像设计
+- [Dockerfile 最佳实践](../appendix/best_practices.md)：基础镜像设计
 
 | 要点 | 说明 |
 |------|------|
@@ -66,7 +66,7 @@
 ### 7.19.5 延伸阅读
 
 - [OCI 标签规范](https://github.com/opencontainers/image-spec/blob/main/annotations.md)
-- [Dockerfile 最佳实践](../appendix/20.1_best_practices.md)
+- [Dockerfile 最佳实践](../appendix/best_practices.md)
 
 | 要点 | 说明 |
 |------|------|
@@ -79,7 +79,7 @@
 ### 7.19.6 延伸阅读
 
 - [RUN 指令](../04_image/4.5_build.md)：执行命令
-- [Dockerfile 最佳实践](../appendix/20.1_best_practices.md)：错误处理与调试
+- [Dockerfile 最佳实践](../appendix/best_practices.md)：错误处理与调试
 
 | 要点 | 说明 |
 |------|------|
@@ -93,7 +93,7 @@
 
 - [CMD 容器启动命令](7.4_cmd.md)：容器启动时的命令
 - [WORKDIR 指定工作目录](7.10_workdir.md)：改变目录
-- [Dockerfile 最佳实践](../appendix/20.1_best_practices.md)
+- [Dockerfile 最佳实践](../appendix/best_practices.md)
 
 | 操作 | 示例 |
 |------|------|
@@ -108,7 +108,7 @@
 - [ADD 指令](7.3_add.md)：复制和解压
 - [WORKDIR 指令](7.10_workdir.md)：设置工作目录
 - [多阶段构建](7.17_multistage_builds.md)：优化镜像大小
-- [最佳实践](../appendix/20.1_best_practices.md)：Dockerfile 编写指南
+- [最佳实践](../appendix/best_practices.md)：Dockerfile 编写指南
 
 | 场景 | 推荐指令 |
 |------|---------|
@@ -122,7 +122,7 @@
 
 - [COPY 复制文件](7.2_copy.md)：基本复制操作
 - [多阶段构建](7.17_multistage_builds.md)：减少镜像体积
-- [最佳实践](../appendix/20.1_best_practices.md)：Dockerfile 编写指南
+- [最佳实践](../appendix/best_practices.md)：Dockerfile 编写指南
 
 | 要点 | 说明 |
 |------|------|
@@ -136,7 +136,7 @@
 
 - [ENTRYPOINT 入口点](7.5_entrypoint.md)：固定的启动命令
 - [后台运行](../05_container/5.2_daemon.md)：容器前台/后台概念
-- [最佳实践](../appendix/20.1_best_practices.md)：Dockerfile 编写指南
+- [最佳实践](../appendix/best_practices.md)：Dockerfile 编写指南
 
 | ENTRYPOINT | CMD | 适用场景 |
 |------------|-----|---------|
@@ -147,7 +147,7 @@
 ### 7.19.11 延伸阅读
 
 - [CMD 容器启动命令](7.4_cmd.md)：默认命令
-- [最佳实践](../appendix/20.1_best_practices.md)：启动命令设计
+- [最佳实践](../appendix/best_practices.md)：启动命令设计
 - [后台运行](../05_container/5.2_daemon.md)：前台/后台概念
 
 | 要点 | 说明 |
@@ -162,7 +162,7 @@
 
 - [ARG 构建参数](7.7_arg.md)：构建时变量
 - [Compose 环境变量](../11_compose/11.5_compose_file.md)：Compose 中的环境变量
-- [最佳实践](../appendix/20.1_best_practices.md)：Dockerfile 编写指南
+- [最佳实践](../appendix/best_practices.md)：Dockerfile 编写指南
 
 | 要点 | 说明 |
 |------|------|

@@ -1,4 +1,4 @@
-# 目录
+## 目录
 
 * [前言](README.md)
 * [修订记录](CHANGELOG.md)
@@ -142,7 +142,7 @@
   * [16.2 腾讯云](16_cloud/16.2_tencentCloud.md)
   * [16.3 阿里云](16_cloud/16.3_alicloud.md)
   * [16.4 亚马逊云](16_cloud/16.4_aws.md)
-  * [16.5 多云部署策略](16_cloud/16.6_multicloud.md)
+  * [16.5 多云部署策略](16_cloud/16.5_multicloud.md)
   * [本章小结](16_cloud/summary.md)
 * [第十七章 容器其它生态](17_ecosystem/README.md)
   * [17.1 Fedora CoreOS 简介](17_ecosystem/17.1_coreos_intro.md)
@@ -169,7 +169,7 @@
   * [20.3 Debian Ubuntu](20_cases_os/20.3_debian.md)
   * [20.4 CentOS Fedora](20_cases_os/20.4_centos.md)
   * [本章小结](20_cases_os/summary.md)
-* [第二十一章 实战案例 - Devops](21_case_devops/README.md)
+* [第二十一章 实战案例 - DevOps](21_case_devops/README.md)
   * [21.1 DevOps 完整工作流](21_case_devops/21.1_devops_workflow.md)
   * [21.2 GitHub Actions](21_case_devops/21.2_github_actions.md)
   * [21.3 Drone](21_case_devops/21.3_drone.md)
@@ -196,6 +196,6 @@
   * [附录三：Docker 命令查询](appendix/command/README.md)
     * [客户端命令 - docker](appendix/command/docker.md)
     * [服务端命令 - dockerd](appendix/command/dockerd.md)
-  * [附录四：Dockerfile 最佳实践](appendix/20.1_best_practices.md)
-  * [附录五：如何调试 Docker](appendix/20.2_debug.md)
-  * [附录六：资源链接](appendix/20.3_resources.md)
+  * [附录四：Dockerfile 最佳实践](appendix/best_practices.md)
+  * [附录五：如何调试 Docker](appendix/debug.md)
+  * [附录六：资源链接](appendix/resources.md)

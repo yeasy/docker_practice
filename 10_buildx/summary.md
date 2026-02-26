@@ -1,4 +1,4 @@
-## 10.4 本章小结
+## 本章小结
 
 Docker Buildx 是 Docker 构建系统的重要进化，提供了高效、安全且支持多平台的镜像构建能力。
 
@@ -16,4 +16,4 @@ Docker Buildx 是 Docker 构建系统的重要进化，提供了高效、安全�
 
 - [Dockerfile 指令详解](../07_dockerfile/README.md)：Dockerfile 编写基础
 - [多阶段构建](../07_dockerfile/7.17_multistage_builds.md)：优化镜像体积
-- [Dockerfile 最佳实践](../appendix/20.1_best_practices.md)：编写高效 Dockerfile
+- [Dockerfile 最佳实践](../appendix/best_practices.md)：编写高效 Dockerfile

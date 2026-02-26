@@ -1,4 +1,4 @@
-## [WordPress]
+## WordPress
 
 ### 基本信息
 
