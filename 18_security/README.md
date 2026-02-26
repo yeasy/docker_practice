@@ -391,4 +391,4 @@ $ cosign verify --key cosign.pub $IMAGE
 
 - [命名空间](../12_implementation/12.2_namespace.md)：隔离机制详解
 - [控制组](../12_implementation/12.3_cgroups.md)：资源限制详解
-- [最佳实践](../appendix/20.1_best_practices.md)：Dockerfile 安全配置
+- [最佳实践](../appendix/best_practices.md)：Dockerfile 安全配置
