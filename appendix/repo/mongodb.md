@@ -1,4 +1,4 @@
-## [MongoDB]
+## MongoDB
 
 ### 基本信息
 

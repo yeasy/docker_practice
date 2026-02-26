@@ -1,4 +1,4 @@
-# 附录一：常见问题总结
+# 附录一：常见问题与错误速查
 
 ## 镜像相关
 
@@ -25,7 +25,7 @@
 * 如果安装应用时候需要配置一些特殊的环境变量，在安装后要还原不需要保持的变量值；
 * 使用 Dockerfile 创建镜像时候要添加。dockerignore 文件或使用干净的工作目录。
 
-更多内容请查看 [Dockerfile 最佳实践](../20.1_best_practices.md)
+更多内容请查看 [Dockerfile 最佳实践](../best_practices.md)
 
 ### 碰到网络问题，无法 pull 镜像，命令行指定 http\_proxy 无效？
 
