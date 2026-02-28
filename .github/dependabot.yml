@@ -8,6 +8,10 @@ updates:
       prefix: "chore(deps)"
     labels:
       - "dependencies"
+    groups:
+      dependencies:
+        patterns:
+          - "*"
 
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -17,3 +21,7 @@ updates:
       prefix: "chore(deps)"
     labels:
       - "dependencies"
+    groups:
+      dependencies:
+        patterns:
+          - "*"
