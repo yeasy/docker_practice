@@ -66,7 +66,7 @@
 
 如图 16-1 所示，Docker 常用客户端命令可按功能分组理解。
 
-![Docker 命令总结](../../_images/cmd_logic.png)
+![Docker 命令总结](../../_images/cmd_logic.jpg)
 
 图 16-1 Docker 客户端命令分类示意图
 
