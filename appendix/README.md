@@ -11,3 +11,4 @@
 *   [**如何调试 Docker**](debug.md)：介绍 Docker 调试技巧和工具。
 *   [**资源链接**](resources.md)：推荐更多 Docker 相关的学习资源。
 *   [**术语词表**](glossary.md)：统一全书中英文术语、缩写与命令写法。
+*   [**示例规范与写作公约**](example_guidelines.md)：全书修改与贡献必须遵守的安全、格式及内容基线要求。
