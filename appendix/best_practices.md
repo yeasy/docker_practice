@@ -174,9 +174,9 @@ RUN apt-get update && apt-get install -y \
 
 #### CMD
 
-`CMD` 指令用于执行目标镜像中包含的软件，可以包含参数。`CMD` 大多数情况下都应该以 `CMD ["executable", "param1", "param2"...]` 的形式使用。因此，如果创建镜像的目的是为了部署某个服务 (比如 `Apache`)，你可能会执行类似于 `CMD ["apache2", "-DFOREGROUND"]` 形式的命令。我们建议任何服务镜像都使用这种形式的命令。
+`CMD` 指令用于执行目标镜像中包含的软件，可以包含参数。`CMD` 大多数情况下都应该以 `CMD ['executable', 'param1', 'param2'...]` 的形式使用。因此，如果创建镜像的目的是为了部署某个服务 (比如 `Apache`)，你可能会执行类似于 `CMD ['apache2', '-DFOREGROUND']` 形式的命令。我们建议任何服务镜像都使用这种形式的命令。
 
-多数情况下，`CMD` 都需要一个交互式的 `shell` (bash，Python，perl 等)，例如 `CMD ["perl", "-de0"]`，或者 `CMD ["PHP", "-a"]`。使用这种形式意味着，当你执行类似 `docker run -it python` 时，你会进入一个准备好的 `shell` 中。`CMD` 应该在极少的情况下才能以 `CMD ["param", "param"]` 的形式与 `ENTRYPOINT` 协同使用，除非你和你的镜像使用者都对 `ENTRYPOINT` 的工作方式十分熟悉。
+多数情况下，`CMD` 都需要一个交互式的 `shell` (bash，Python，perl 等)，例如 `CMD ['perl', '-de0']`，或者 `CMD ['PHP', '-a']`。使用这种形式意味着，当你执行类似 `docker run -it python` 时，你会进入一个准备好的 `shell` 中。`CMD` 应该在极少的情况下才能以 `CMD ['param', 'param']` 的形式与 `ENTRYPOINT` 协同使用，除非你和你的镜像使用者都对 `ENTRYPOINT` 的工作方式十分熟悉。
 
 #### EXPOSE
 
