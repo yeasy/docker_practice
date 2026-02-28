@@ -7,7 +7,7 @@
     "chalk": "^4.1.1",
     "commander": "^7.2.0",
     "esm": "^3.0.0",
-    "honkit": "^5.1.0",
+    "honkit": "^6.1.6",
     "vuepress": "1.8.2",
     "vuepress-plugin-container": "^2.1.5",
     "vuepress-theme-hope": "^1.0.0"
