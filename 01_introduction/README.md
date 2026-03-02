@@ -2,13 +2,15 @@
 
 本章将带领你进入 **Docker** 的世界。
 
+> **版本提示**：本书内容及示例基于 **Docker Engine v29.x** 及以上版本。值得注意的是，自 Docker Engine v29 起，官方在全新安装场景下**默认启用了 `containerd image store` 作为镜像存储后端**（取代了传统的经典存储引擎如 overlay2 graph driver）。这项底层革新极大增强了 Docker 对多架构镜像（Multi-platform）、以及软件供应链安全元数据（Attestations, SBOM, Provenance）的本地支持原生性。
+
 ## 本章内容
 
 * [快速上手](1.1_quickstart.md)
   * 通过一个简单的 Web 应用例子，带你快速体验 Docker 的核心流程：构建镜像、运行容器。
 
 * [什么是 Docker](1.2_what.md)
-  * 介绍 Docker 的起源、发展历程以及其背后的核心技术 (Cgroups，Namespaces，UnionFS)。
+  * 介绍 Docker 的起源、发展历程以及其背后的核心技术 (Cgroups，Namespaces，UnionFS，以及 `containerd` 引擎的演进)。
   * 了解 Docker 是如何改变软件交付方式的。
 
 * [为什么要用 Docker](1.3_why.md)
