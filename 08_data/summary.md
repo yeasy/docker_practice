@@ -1,18 +1,12 @@
 ## 本章小结
 
-| 要点 | 说明 |
-|------|------|
-| **作用** | 将宿主机目录挂载到容器 |
-| **语法** | `-v /宿主机:/容器` 或 `--mount type=bind,...` |
-| **只读** | 添加 `readonly` 或 `:ro` |
-| **适用场景** | 开发环境、配置文件、日志 |
-| **vs Volume** | Bind 更灵活，Volume 更适合生产 |
+本章介绍了 Docker 的三种数据管理方式：数据卷 (Volume)、绑定挂载 (Bind Mount) 和 tmpfs 挂载。
 
-### 8.4.1 延伸阅读
-
-- [数据卷](8.1_volume.md)：Docker 管理的持久化存储
-- [tmpfs 挂载](8.3_tmpfs.md)：内存临时存储
-- [Compose 数据管理](../11_compose/11.5_compose_file.md)：Compose 中的挂载配置
+| 方式 | 特点 | 适用场景 |
+|------|------|---------|
+| **数据卷 (Volume)** | Docker 管理，生命周期独立于容器 | 数据库、应用数据（推荐生产环境） |
+| **绑定挂载 (Bind Mount)** | 挂载宿主机目录，更灵活 | 开发环境、配置文件、日志 |
+| **tmpfs 挂载** | 仅存储在内存中，容器停止即消失 | 临时敏感数据、高速缓存 |
 
 | 操作 | 命令 |
 |------|------|
@@ -23,8 +17,10 @@
 | 清理未用 | `docker volume prune` |
 | 挂载数据卷 | `-v name:/path` 或 `--mount source=name,target=/path` |
 
-### 8.4.2 延伸阅读
+### 延伸阅读
 
+- [数据卷](8.1_volume.md)：Docker 管理的持久化存储
 - [绑定挂载](8.2_bind-mounts.md)：挂载宿主机目录
 - [tmpfs 挂载](8.3_tmpfs.md)：内存中的临时存储
 - [存储驱动](../12_implementation/12.4_ufs.md)：Docker 存储的底层原理
+- [Compose 数据管理](../11_compose/11.5_compose_file.md)：Compose 中的挂载配置
