@@ -1,5 +1,16 @@
 # 修订记录
 
+* 1.6.1 2026-02-28
+  * 修正数据卷 `--mount` 与 `-v` 的行为差异及数据卷管理说明
+  * 补充 Docker Hub 限流机制说明，区分 pull rate limit 与 abuse rate limit
+  * 完善安全权限警告，强化用户加入 docker 组等同于 root 的风险意识
+  * 增补 Docker Engine v29 containerd image store 与 BuildKit provenance attestations 默认行为说明
+
+* 1.6.0 2026-02-20
+  * 全面统一使用 `docker compose` (V2) 为默认标准，提供 V1 迁移说明
+  * 修复全书大量排版错误，建立附录与正文的双向索引与引用
+  * 更新 Kubernetes 至 1.35 兼容说明及运行时环境提示
+
 * 1.5.4 2026-02-15
   * 移除 combine.py
   * 修复若干问题
