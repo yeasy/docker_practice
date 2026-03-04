@@ -5,3 +5,10 @@
 一个容易混淆的概念是注册服务器 (`Registry`)。实际上注册服务器是管理仓库的具体服务器，每个服务器上可以有多个仓库，而每个仓库下面有多个镜像。从这方面来说，仓库可以被认为是一个具体的项目或目录。例如对于仓库地址 `docker.io/ubuntu` 来说，`docker.io` 是注册服务器地址，`ubuntu` 是仓库名。
 
 大部分时候，并不需要严格区分这两者的概念。
+
+## 本章内容
+
+* [Docker Hub](6.1_dockerhub.md)
+* [私有仓库](6.2_registry.md)
+* [私有仓库高级配置](6.3_registry_auth.md)
+* [Nexus 3](6.4_nexus3_registry.md)
