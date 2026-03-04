@@ -2,7 +2,7 @@
 
 ## 什么是 Dockerfile
 
-Dockerfile 是一个文本文件，其內包含了一条条的 **指令 (Instruction)**，每一条指令构建一层，therefore 每一条指令的内容，就是描述该层应当如何构建。
+Dockerfile 是一个文本文件，其内包含了一条条的 **指令 (Instruction)**，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。
 
 在[第四章](../04_image/README.md)中，我们通过 `docker commit` 学习了镜像的构成。但是，手动 `commit` 只能作为临时修补，并不适合作为生产环境镜像的构建方式。
 
@@ -21,6 +21,7 @@ Dockerfile 一般分为四部分：基础镜像信息、维护者信息、镜像
 
 本章将详细讲解 Dockerfile 中的各个指令：
 
+*   [RUN 执行命令](7.1_run.md)
 *   [COPY 复制文件](7.2_copy.md)
 *   [ADD 更高级的复制文件](7.3_add.md)
 *   [CMD 容器启动命令](7.4_cmd.md)
@@ -35,7 +36,6 @@ Dockerfile 一般分为四部分：基础镜像信息、维护者信息、镜像
 *   [ONBUILD 为他人作嫁衣裳](7.13_onbuild.md)
 *   [LABEL 为镜像添加元数据](7.14_label.md)
 *   [SHELL 指令](7.15_shell.md)
-*   [RUN 执行命令](7.1_run.md)
 
 此外，我们还将介绍 Dockerfile 的最佳实践和常见问题。
 
