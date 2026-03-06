@@ -43,6 +43,9 @@ flowchart LR
 * [其它安全特性](18.5_other_feature.md)
   * 镜像安全（漏洞扫描、签名验证）、运行时安全（非 root 运行、只读文件系统、Seccomp、AppArmor）、Dockerfile 安全实践、软件供应链安全（SBOM、SLSA）。
 
+* [镜像安全](18.6_image_security.md)
+  * 容器镜像的安全扫描、漏洞检测与签名验证。
+
 ## 安全扫描清单
 
 部署前检查：
