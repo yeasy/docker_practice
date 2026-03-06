@@ -37,6 +37,15 @@ Dockerfile 一般分为四部分：基础镜像信息、维护者信息、镜像
 *   [LABEL 为镜像添加元数据](7.14_label.md)
 *   [SHELL 指令](7.15_shell.md)
 
+### 高级特性
+
+本章还将介绍 Dockerfile 的高级特性：
+
+*   [多阶段构建](7.17_multistage_builds.md)
+*   [多阶段构建实战：Laravel 应用](7.18_multistage_builds_laravel.md)
+
+### 参考与最佳实践
+
 此外，我们还将介绍 Dockerfile 的最佳实践和常见问题。
 
 *   [参考文档](7.16_references.md)

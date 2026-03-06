@@ -86,6 +86,7 @@
   * [9.4 容器互联](09_network/9.4_container_linking.md)
   * [9.5 外部访问容器](09_network/9.5_port_mapping.md)
   * [9.6 网络隔离](09_network/9.6_network_isolation.md)
+  * [9.7 容器网络高级特性](09_network/9.7_advanced_networking.md)
   * [本章小结](09_network/summary.md)
 * [第十章 Docker Buildx](10_buildx/README.md)
   * [10.1 BuildKit](10_buildx/10.1_buildkit.md)
@@ -163,10 +164,12 @@
   * [18.3 服务端防护](18_security/18.3_daemon_sec.md)
   * [18.4 内核能力机制](18_security/18.4_kernel_capability.md)
   * [18.5 其它安全特性](18_security/18.5_other_feature.md)
+  * [18.6 容器镜像安全扫描与供应链安全](18_security/18.6_image_security.md)
   * [本章小结](18_security/summary.md)
 * [第十九章 容器监控与日志](19_observability/README.md)
   * [19.1 Prometheus](19_observability/19.1_prometheus.md)
   * [19.2 ELK 套件](19_observability/19.2_elk.md)
+  * [19.3 容器性能优化与故障诊断](19_observability/19.3_performance_optimization.md)
   * [本章小结](19_observability/summary.md)
 * [第二十章 实战案例 - 操作系统](20_cases_os/README.md)
   * [20.1 Busybox](20_cases_os/20.1_busybox.md)
@@ -181,6 +184,7 @@
   * [21.4 Drone Demo](21_case_devops/21.4_drone_demo.md)
   * [21.5 在 IDE 中使用 Docker](21_case_devops/21.5_ide.md)
   * [21.6 VS Code](21_case_devops/21.6_vsCode.md)
+  * [21.7 实战案例：Go/Rust/数据库/微服务](21_case_devops/21.7_practical_examples.md)
   * [本章小结](21_case_devops/summary.md)
 
 ## 附录
@@ -205,3 +209,4 @@
   * [附录五：如何调试 Docker](appendix/debug.md)
   * [附录六：资源链接](appendix/resources.md)
   * [附录七：术语表](appendix/glossary.md)
+  * [附录八：Docker 学习路线图与知识体系](appendix/learning_roadmap.md)
