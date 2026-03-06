@@ -39,3 +39,4 @@ graph TD
 * [容器互联](9.4_container_linking.md)
 * [外部访问容器](9.5_port_mapping.md)
 * [网络隔离](9.6_network_isolation.md)
+* [高级网络配置](9.7_advanced_networking.md)
