@@ -34,3 +34,6 @@
 - [镜像](../02_basic_concept/2.1_image.md)：理解镜像分层
 - [容器](../02_basic_concept/2.2_container.md)：容器存储层
 - [构建镜像](../04_image/4.5_build.md)：Dockerfile 层的创建
+---
+
+> 📝 **发现错误或有改进建议？** 欢迎提交 [Issue](https://github.com/yeasy/docker_practice/issues) 或 [PR](https://github.com/yeasy/docker_practice/pulls)。

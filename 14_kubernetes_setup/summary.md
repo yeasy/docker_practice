@@ -15,3 +15,6 @@
 - [容器编排基础](../13_kubernetes_concepts/README.md)：Kubernetes 核心概念
 - [Dashboard](14.7_dashboard.md)：部署可视化管理界面
 - [kubectl](14.8_kubectl.md)：命令行工具使用指南
+---
+
+> 📝 **发现错误或有改进建议？** 欢迎提交 [Issue](https://github.com/yeasy/docker_practice/issues) 或 [PR](https://github.com/yeasy/docker_practice/pulls)。

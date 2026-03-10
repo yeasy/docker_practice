@@ -31,3 +31,6 @@
 - [镜像](../02_basic_concept/2.1_image.md)：理解镜像概念
 - [删除容器](../05_container/5.6_rm.md)：清理容器
 - [数据卷](../08_data/8.1_volume.md)：清理数据卷
+---
+
+> 📝 **发现错误或有改进建议？** 欢迎提交 [Issue](https://github.com/yeasy/docker_practice/issues) 或 [PR](https://github.com/yeasy/docker_practice/pulls)。

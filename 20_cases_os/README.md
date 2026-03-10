@@ -1,9 +1,23 @@
 # 第二十章 实战案例 - 操作系统
 
-本章将介绍 Docker 在不同操作系统镜像场景下的实战案例。
+## 章节概述
 
-* [Busybox](20.1_busybox.md)
-* [Alpine](20.2_alpine.md)
-* [Debian Ubuntu](20.3_debian.md)
-* [CentOS Fedora](20.4_centos.md)
+本章将介绍 Docker 在不同操作系统镜像场景下的实战案例。当你构建容器化应用时，选择合适的基础镜像至关重要。不同的操作系统镜像在大小、功能和性能方面各有特点，适用于不同的使用场景。本章通过具体的案例，详细讲解如何在 Docker 中使用主流操作系统镜像，包括轻量级镜像 (Busybox、Alpine) 和完整功能镜像 (Debian、Ubuntu、CentOS 等)。
+
+## 学习目标
+
+通过学习本章内容，你将能够：
+
+- 理解不同操作系统镜像的特点和适用场景
+- 掌握在 Docker 中使用各类操作系统镜像的方法
+- 学习如何根据实际需求选择合适的基础镜像
+- 了解如何在容器中安装和配置应用程序
+- 掌握镜像优化和大小控制的最佳实践
+
+## 章节内容导航
+
+* [Busybox](20.1_busybox.md) — 超轻量级工具集镜像，适合嵌入式和最小化容器
+* [Alpine](20.2_alpine.md) — 轻量级 Linux 镜像，广泛用于生产环境微服务
+* [Debian Ubuntu](20.3_debian.md) — 功能完整的通用 Linux 镜像，生态丰富
+* [CentOS Fedora](20.4_centos.md) — 企业级 Linux 镜像，适合复杂系统应用
 * [本章小结](summary.md)

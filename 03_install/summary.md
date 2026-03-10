@@ -25,3 +25,6 @@ $ docker run --rm hello-world
 - [镜像加速器](3.9_mirror.md)：解决国内拉取镜像慢的问题
 - [开启实验特性](3.10_experimental.md)：使用最新功能
 - [Docker Hub](../06_repository/6.1_dockerhub.md)：官方镜像仓库
+---
+
+> 📝 **发现错误或有改进建议？** 欢迎提交 [Issue](https://github.com/yeasy/docker_practice/issues) 或 [PR](https://github.com/yeasy/docker_practice/pulls)。

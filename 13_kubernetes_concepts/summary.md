@@ -17,3 +17,6 @@ Kubernetes 是当前最主流的容器编排平台，其声明式管理模型和
 - [部署 Kubernetes](../14_kubernetes_setup/README.md)：搭建 Kubernetes 集群
 - [Etcd](../15_etcd/README.md)：Kubernetes 使用的分布式存储
 - [底层实现](../12_implementation/README.md)：容器技术原理
+---
+
+> 📝 **发现错误或有改进建议？** 欢迎提交 [Issue](https://github.com/yeasy/docker_practice/issues) 或 [PR](https://github.com/yeasy/docker_practice/pulls)。

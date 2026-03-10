@@ -1,12 +1,31 @@
 # 第二十一章 实战案例 - DevOps
 
-本章将介绍 Docker 在 DevOps 场景下的实战案例。
+## DevOps 背景介绍
 
-* [DevOps 完整工作流](21.1_devops_workflow.md)
-* [GitHub Actions](21.2_github_actions.md)
-* [Drone](21.3_drone.md)
-* [Drone Demo](21.4_drone_demo.md)
-* [在 IDE 中使用 Docker](21.5_ide.md)
-* [VS Code](21.6_vsCode.md)
-* [实战例子](21.7_practical_examples.md)
+DevOps 是一种重要的开发和运维文化，强调开发团队和运维团队之间的协作和自动化。它致力于通过自动化和流程优化，加快软件交付速度，同时提高系统的稳定性和可靠性。Docker 作为容器化技术的领导者，已成为现代 DevOps 工作流中不可或缺的工具。通过容器化应用，开发团队可以确保"一次构建，处处运行"，消除开发、测试和生产环境的差异，大大简化了部署流程。
+
+## Docker 在 DevOps 中的角色
+
+Docker 在 DevOps 工作流中承担多个关键角色。首先，它标准化了应用的开发和部署环境，使得团队成员在相同的 Docker 容器中工作，避免了"在我的机器上可以运行"的问题。其次，Docker 与 CI/CD 流程无缝集成，通过自动化的镜像构建、测试和部署，实现快速的迭代周期。此外，Docker 还支持微服务架构和容器编排，使团队能够更灵活地扩展应用和管理基础设施。
+
+## 本章学习目标
+
+通过学习本章内容，你将能够：
+
+- 理解 DevOps 的核心原则和 Docker 的作用
+- 掌握完整的 Docker 工作流，从代码提交到线上部署
+- 学习如何使用 GitHub Actions 实现自动化 CI/CD
+- 了解 Drone 等第三方 CI/CD 工具的集成方式
+- 学会在本地 IDE 中集成 Docker，提升开发效率
+- 掌握实战中常见的 DevOps 场景和最佳实践
+
+## 章节内容导航
+
+* [DevOps 完整工作流](21.1_devops_workflow.md) — 从代码到部署的全流程
+* [GitHub Actions](21.2_github_actions.md) — 使用 GitHub Actions 实现 CI/CD
+* [Drone](21.3_drone.md) — Drone CI/CD 平台简介和配置
+* [Drone Demo](21.4_drone_demo.md) — Drone 实战演示和应用
+* [在 IDE 中使用 Docker](21.5_ide.md) — IDE 与 Docker 集成的好处
+* [VS Code](21.6_vsCode.md) — Visual Studio Code 容器开发指南
+* [实战例子](21.7_practical_examples.md) — 真实项目中的 DevOps 应用案例
 * [本章小结](summary.md)
