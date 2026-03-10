@@ -68,7 +68,7 @@
 
 ![Docker 命令总结](../../_images/cmd_logic.jpg)
 
-图 16-1 Docker 客户端命令分类示意图
+图 A-1：Docker 客户端命令分类示意图
 
 ### 参考
 
