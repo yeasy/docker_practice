@@ -15,3 +15,6 @@ etcd 是 Kubernetes 的核心存储组件，为分布式系统提供可靠的键
 
 - [容器编排基础](../13_kubernetes_concepts/README.md)：Kubernetes 如何使用 etcd
 - [部署 Kubernetes](../14_kubernetes_setup/README.md)：在集群中部署 etcd
+---
+
+> 📝 **发现错误或有改进建议？** 欢迎提交 [Issue](https://github.com/yeasy/docker_practice/issues) 或 [PR](https://github.com/yeasy/docker_practice/pulls)。

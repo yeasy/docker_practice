@@ -24,3 +24,6 @@
 - [tmpfs 挂载](8.3_tmpfs.md)：内存中的临时存储
 - [存储驱动](../12_implementation/12.4_ufs.md)：Docker 存储的底层原理
 - [Compose 数据管理](../11_compose/11.5_compose_file.md)：Compose 中的挂载配置
+---
+
+> 📝 **发现错误或有改进建议？** 欢迎提交 [Issue](https://github.com/yeasy/docker_practice/issues) 或 [PR](https://github.com/yeasy/docker_practice/pulls)。

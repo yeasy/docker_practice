@@ -13,3 +13,6 @@
 
 - [私有仓库](6.2_registry.md)：搭建自己的 Registry
 - [镜像加速器](../03_install/3.9_mirror.md)：加速下载
+---
+
+> 📝 **发现错误或有改进建议？** 欢迎提交 [Issue](https://github.com/yeasy/docker_practice/issues) 或 [PR](https://github.com/yeasy/docker_practice/pulls)。

@@ -28,3 +28,6 @@
 - [Dockerfile 最佳实践](../appendix/best_practices.md)：编写指南
 - [安全](../18_security/README.md)：容器安全实践
 - [Compose 模板文件](../11_compose/11.5_compose_file.md)：Compose 中的配置
+---
+
+> 📝 **发现错误或有改进建议？** 欢迎提交 [Issue](https://github.com/yeasy/docker_practice/issues) 或 [PR](https://github.com/yeasy/docker_practice/pulls)。

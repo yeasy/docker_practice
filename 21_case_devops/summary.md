@@ -14,3 +14,6 @@
 
 * 已在用 GitHub：优先补全 Actions 的缓存、制品、发布策略。
 * 自建体系：结合私有 Registry、Kubernetes 与 GitOps 工具完善部署与审计。
+---
+
+> 📝 **发现错误或有改进建议？** 欢迎提交 [Issue](https://github.com/yeasy/docker_practice/issues) 或 [PR](https://github.com/yeasy/docker_practice/pulls)。

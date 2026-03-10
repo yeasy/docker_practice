@@ -6,3 +6,6 @@
 - Docker 推动了容器技术的标准化 (OCI) 和生态发展
 
 Docker 的核心价值可以用一句话概括：**让应用的开发、测试、部署保持一致，同时极大提高资源利用效率。** 笔者认为，对于现代软件开发者来说，Docker 已经不是 “要不要学” 的问题，而是 **必备技能**。无论你是前端、后端、运维还是全栈开发者，掌握 Docker 都能让你的工作更高效。
+---
+
+> 📝 **发现错误或有改进建议？** 欢迎提交 [Issue](https://github.com/yeasy/docker_practice/issues) 或 [PR](https://github.com/yeasy/docker_practice/pulls)。

@@ -47,3 +47,6 @@ Docker 提供了多种日志驱动 (Log Driver)，用于将容器标准输出的
 * Elasticsearch 数据目录已持久化，并有明确的日志保留周期与容量上限策略。
 * Kibana 能查询到最新日志；当 UI 异常时能用 Elasticsearch API 验证入库。
 * 可观测性组件未直接暴露到公网，访问已加鉴权或置于内网。
+---
+
+> 📝 **发现错误或有改进建议？** 欢迎提交 [Issue](https://github.com/yeasy/docker_practice/issues) 或 [PR](https://github.com/yeasy/docker_practice/pulls)。
