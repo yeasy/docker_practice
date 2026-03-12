@@ -19,7 +19,7 @@
 
 ## 五分钟快速上手
 
-"5分钟运行第一个容器"——跟随以下步骤快速体验 Docker：
+“5分钟运行第一个容器”——跟随以下步骤快速体验 Docker：
 
 1. **安装 Docker**（第1章）：根据操作系统完成 Docker 的安装与验证
 2. **第一个容器**：执行 `docker run hello-world`，体验最简单的容器运行
@@ -127,7 +127,7 @@ npx honkit serve
 <img width="200" src="https://github.com/yeasy/docker_practice/raw/master/_images/donate.jpeg">
 </p>
 
-<p align=“center”><strong>欢迎鼓励项目一杯 coffee~</strong></p>
+<p align="center"><strong>欢迎鼓励项目一杯 coffee~</strong></p>
 
 ## Star History
 
