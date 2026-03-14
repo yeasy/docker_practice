@@ -11,7 +11,7 @@
 在项目中创建一个 Dockerfile。
 
 ```docker
-FROM node:12
+FROM node:20
 ## replace this with your application's default port
 
 EXPOSE 8888
@@ -33,7 +33,7 @@ $ docker run -it --rm \
 
     --mount type=bind,src="$(pwd)",target=/usr/src/myapp \
     -w /usr/src/myapp \
-    node:12-alpine \
+    node:20-alpine \
     node your-daemon-or-script.js
 ```
 
