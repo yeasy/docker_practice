@@ -86,7 +86,7 @@ $ docker run --network=my-net --ip=172.25.3.3 -itd --name=my-container busybox
 
 答：一般并不推荐在同一个容器内运行多个应用进程。如果有类似需求，可以通过一些额外的进程管理机制，比如 `supervisord` 来管理所运行的进程。可以参考 https://docs.docker.com/engine/containers/multi-service_container/ 。
 
-### 如何控制容器占用系统资源 (CPU、内存) 的份额？
+### 如何控制容器占用 CPU、内存等系统资源的份额？
 
 答：在使用 `docker create` 命令创建容器或使用 `docker run` 创建并启动容器的时候，可以使用 -c|--cpu-shares\[=0] 参数来调整容器使用 CPU 的权重；使用 -m|--memory\[=MEMORY] 参数来调整容器使用内存的大小。
 
@@ -166,7 +166,7 @@ lrwxrwxrwx. 1 root root 15 11月 17 13:43 docker -> /storage/docker
 
 ## 其它
 
-### Docker 能在非 Linux 平台 (比如 Windows 或 macOS) 上运行么？
+### Docker 能在非 Linux 平台上运行么？比如 Windows 或 macOS
 
 答：完全可以。安装方法请查看[安装 Docker](../../03_install/README.md) 一节
 
