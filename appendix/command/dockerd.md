@@ -4,7 +4,7 @@
 
 `dockerd` 参数会随版本变化。建议优先在目标机器上执行 `dockerd --help`，并以 `daemon.json` 为主进行持久化配置。
 
-### 常用选项 (Docker Engine 29.x)
+### 常用选项：Docker Engine 29.x
 
 * `--config-file="/etc/docker/daemon.json"`：指定 daemon 配置文件路径；
 * `--data-root=""`：Docker 数据目录 (默认 `/var/lib/docker`)；
