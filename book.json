@@ -9,17 +9,14 @@
   },
   "plugins": [
     "-livereload",
-    "image-captions",
+    "mermaid-gb3",
     "github",
     "page-treeview",
     "editlink"
   ],
   "pluginsConfig": {
-    "image-captions": {
-      "attributes": {
-        "width": "600"
-      },
-      "caption": "图 _PAGE_LEVEL_._PAGE_IMAGE_NUMBER_ - _CAPTION_"
+    "mermaid-gb3": {
+      "theme": "default"
     },
     "github": {
       "url": "https://github.com/yeasy/docker_practice"
