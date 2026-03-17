@@ -39,4 +39,4 @@ $ docker run -it --rm \
 
 ### Dockerfile
 
-请到 https://github.com/docker-library/docs/tree/master/node 查看。
+请到 [Node 官方镜像文档目录](https://github.com/docker-library/docs/tree/master/node) 查看。

@@ -340,4 +340,4 @@ $ docker run --rm -it postgres bash
 
 ### 官方镜像示例
 
-这些官方镜像的 Dockerfile 都是参考典范：https://github.com/docker-library/docs
+这些官方镜像的 Dockerfile 都是参考典范，详见 [docker-library/docs](https://github.com/docker-library/docs)。

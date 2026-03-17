@@ -35,4 +35,4 @@ $ docker run --name some-wordpress -d --network my-wordpress-net -e WORDPRESS_DB
 
 ### Dockerfile
 
-请到 https://github.com/docker-library/docs/tree/master/wordpress 查看。
+请到 [WordPress 官方镜像文档目录](https://github.com/docker-library/docs/tree/master/wordpress) 查看。
