@@ -4,7 +4,7 @@
 
 [MySQL](https://en.wikipedia.org/wiki/MySQL) 是开源的关系数据库实现。
 
-该仓库位于 `https://hub.docker.com/_/mysql/`。具体可用版本以 Docker Hub 上的 tags 列表为准。
+该仓库位于 [Docker Hub 的 MySQL 官方镜像页](https://hub.docker.com/_/mysql/)。具体可用版本以 Docker Hub 上的 tags 列表为准。
 
 ### 使用方法
 
@@ -43,4 +43,4 @@ $ docker run -it --rm \
 
 ### Dockerfile
 
-请到 https://github.com/docker-library/docs/tree/master/mysql 查看
+请到 [MySQL 官方镜像文档目录](https://github.com/docker-library/docs/tree/master/mysql) 查看。

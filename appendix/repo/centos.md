@@ -11,7 +11,7 @@
 > - [AlmaLinux](https://hub.docker.com/_/almalinux)：由 CloudLinux 支持的企业级发行版，提供长期支持。
 > - [CentOS Stream](https://hub.docker.com/r/centos/centos)：RHEL 的上游开发分支 (适合开发测试，不建议用于生产环境)。
 
-该仓库位于 `https://hub.docker.com/_/centos`，提供了 CentOS 从 5 ~ 8 各个版本的镜像 (仅作为历史归档，不再更新)。
+该仓库位于 [Docker Hub 的 CentOS 官方镜像页](https://hub.docker.com/_/centos)，提供了 CentOS 从 5 ~ 8 各个版本的镜像（仅作为历史归档，不再更新）。
 
 ### 使用方法
 
@@ -29,4 +29,4 @@ $ docker run --name centos -it centos:7 bash
 
 ### Dockerfile
 
-请到 https://github.com/docker-library/docs/tree/master/centos 查看。
+请到 [CentOS 官方镜像文档目录](https://github.com/docker-library/docs/tree/master/centos) 查看。

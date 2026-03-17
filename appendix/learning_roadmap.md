@@ -113,8 +113,8 @@ Docker Compose
 
 **学习资源：**
 - 本书第 4-11 章：进阶篇
-- Docker 官方最佳实践：https://docs.docker.com/develop/dev-best-practices/
-- Dockerfile 参考：https://docs.docker.com/engine/reference/builder/
+- [Docker 官方最佳实践](https://docs.docker.com/develop/dev-best-practices/)
+- [Dockerfile 参考](https://docs.docker.com/engine/reference/builder/)
 
 **时间投入：**
 - 理论学习：8-10 小时
@@ -222,8 +222,8 @@ CI/CD 集成
 
 **学习资源：**
 - 本书第 12-21 章：深入篇和实战篇
-- Kubernetes 官方文档：https://kubernetes.io/docs/
-- CNCF 学习路线：https://landscape.cncf.io/
+- [Kubernetes 官方文档](https://kubernetes.io/docs/)
+- [CNCF 学习路线](https://landscape.cncf.io/)
 
 **时间投入：**
 - 理论学习：15-20 小时
@@ -411,10 +411,10 @@ Kubernetes 进阶 (Week 24-36)
 
 #### 博客和社区
 
-- Docker 官方博客：https://www.docker.com/blog/
-- Kubernetes 官方博客：https://kubernetes.io/blog/
-- CNCF 博客：https://www.cncf.io/blog/
-- DZone：https://dzone.com/containers-cloud
+- [Docker 官方博客](https://www.docker.com/blog/)
+- [Kubernetes 官方博客](https://kubernetes.io/blog/)
+- [CNCF 博客](https://www.cncf.io/blog/)
+- [DZone](https://dzone.com/containers-cloud)
 
 ### 认证指南
 

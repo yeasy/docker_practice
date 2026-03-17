@@ -84,7 +84,7 @@ $ docker run --network=my-net --ip=172.25.3.3 -itd --name=my-container busybox
 
 ### 可以在一个容器中同时运行多个应用进程么？
 
-答：一般并不推荐在同一个容器内运行多个应用进程。如果有类似需求，可以通过一些额外的进程管理机制，比如 `supervisord` 来管理所运行的进程。可以参考 https://docs.docker.com/engine/containers/multi-service_container/ 。
+答：一般并不推荐在同一个容器内运行多个应用进程。如果有类似需求，可以通过一些额外的进程管理机制，比如 `supervisord` 来管理所运行的进程。可以参考 [Docker 官方说明](https://docs.docker.com/engine/containers/multi-service_container/)。
 
 ### 如何控制容器占用 CPU、内存等系统资源的份额？
 
