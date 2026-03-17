@@ -15,10 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6.0.2
-      - name: Build Gitbook
-        uses: docker://yeasy/docker_practice
+      - uses: actions/setup-node@v6
         with:
-          args: build
+          node-version: 20
+      - name: Install docs dependencies
+        run: npm install
+      - name: Build Gitbook
+        run: npm run honkit:build
       - name: Build Gitbook Docker Image
         if: github.repository == 'docker-practice/docker_practice'
         run: |
@@ -68,7 +71,6 @@ jobs:
         run: |
           export NODE_OPTIONS=--openssl-legacy-provider
           sudo rm -rf _book
-          npm i
 
           git clone https://github.com/docker-practice/.vuepress  .vuepress2
           cp -r .vuepress2/. .vuepress/
