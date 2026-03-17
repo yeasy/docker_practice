@@ -24,8 +24,8 @@
 1. **安装 Docker**（第1章）：根据操作系统完成 Docker 的安装与验证
 2. **第一个容器**：执行 `docker run hello-world`，体验最简单的容器运行
 3. **交互式容器**：执行 `docker run -it ubuntu bash`，进入容器内部与系统交互
-4. **镜像与仓库**（第2-3章）：理解镜像的概念、查找镜像、拉取和使用官方镜像
-5. **自定义镜像**（第5章）：学习如何编写 Dockerfile 创建自己的镜像
+4. **镜像与仓库**（第2章）：理解镜像的概念、查找镜像、拉取和使用官方镜像
+5. **自定义镜像**（第7章）：学习如何编写 Dockerfile 创建自己的镜像
 
 ## 学习路线图
 
@@ -57,9 +57,9 @@ graph LR
 
 ### 在线阅读
 
-*   **GitBook**: [yeasy.gitbook.io/docker_practice](https://yeasy.gitbook.io/docker_practice/)
-*   **GitHub**: [github.com/yeasy/docker_practice](https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md)
-*   **Mirror**: [docker-practice.com](https://vuepress.mirror.docker-practice.com/)
+*   **GitBook**: [在线阅读](https://yeasy.gitbook.io/docker_practice/)
+*   **GitHub**: [仓库目录](https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md)
+*   **Mirror**: [镜像站点](https://vuepress.mirror.docker-practice.com/)
 
 ### 本地阅读
 
@@ -72,8 +72,8 @@ graph LR
 ```bash
 docker run -it --rm -p 4000:80 ccr.ccs.tencentyun.com/dockerpracticesig/docker_practice:vuepress
 ```
-启动后访问 [http://localhost:4000](http://localhost:4000)。
-[详情参考](https://github.com/yeasy/docker_practice/wiki/%E7%A6%BB%E7%BA%BF%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3)
+启动后访问 [本地阅读地址](http://localhost:4000)。
+[离线阅读说明](https://github.com/yeasy/docker_practice/wiki/%E7%A6%BB%E7%BA%BF%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3)
 
 #### 方式 2：本地构建
 
@@ -83,7 +83,7 @@ docker run -it --rm -p 4000:80 ccr.ccs.tencentyun.com/dockerpracticesig/docker_p
 npm install
 npx honkit serve
 ```
-启动后访问 [http://localhost:4000](http://localhost:4000)。
+启动后访问 [本地阅读地址](http://localhost:4000)。
 
 ## 社区交流
 
