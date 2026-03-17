@@ -37,9 +37,9 @@ Docker 安装配置
 ```
 
 **学习资源：**
-- 官方教程：https://docs.docker.com/get-started/
+- [官方教程](https://docs.docker.com/get-started/)
 - 本书第 1-3 章：入门篇基础概念
-- Docker CLI 参考：https://docs.docker.com/engine/reference/commandline/
+- [Docker CLI 参考](https://docs.docker.com/engine/reference/commandline/)
 
 **时间投入：**
 - 理论学习：3-4 小时
@@ -322,10 +322,10 @@ DevOps 工程化
 ```
 
 **贡献机会：**
-- Kubernetes（https://github.com/kubernetes/kubernetes）
-- Cilium（https://github.com/cilium/cilium）
-- Prometheus（https://github.com/prometheus/prometheus）
-- Docker/Moby（https://github.com/moby/moby）
+- [Kubernetes](https://github.com/kubernetes/kubernetes)
+- [Cilium](https://github.com/cilium/cilium)
+- [Prometheus](https://github.com/prometheus/prometheus)
+- [Docker/Moby](https://github.com/moby/moby)
 
 ### 知识点依赖关系
 
@@ -390,10 +390,10 @@ Kubernetes 进阶 (Week 24-36)
 
 | 资源 | URL | 推荐程度 |
 |------|-----|--------|
-| Docker 官方文档 | https://docs.docker.com | ⭐⭐⭐⭐⭐ |
-| Docker Hub | https://hub.docker.com | ⭐⭐⭐⭐⭐ |
-| Kubernetes 官方 | https://kubernetes.io/docs | ⭐⭐⭐⭐⭐ |
-| CNCF 景观 | https://landscape.cncf.io | ⭐⭐⭐⭐ |
+| Docker 官方文档 | [docs.docker.com](https://docs.docker.com) | ⭐⭐⭐⭐⭐ |
+| Docker Hub | [hub.docker.com](https://hub.docker.com) | ⭐⭐⭐⭐⭐ |
+| Kubernetes 官方 | [kubernetes.io/docs](https://kubernetes.io/docs) | ⭐⭐⭐⭐⭐ |
+| CNCF 景观 | [landscape.cncf.io](https://landscape.cncf.io) | ⭐⭐⭐⭐ |
 
 #### 在线课程
 
