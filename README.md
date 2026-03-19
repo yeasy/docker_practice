@@ -124,7 +124,7 @@ npx honkit serve
 ## 鼓励项目
 
 <p align="center">
-<img width="200" src="https://github.com/yeasy/docker_practice/raw/master/_images/donate.jpeg">
+<img width="200" src="_images/donate.jpeg">
 </p>
 
 <p align="center"><strong>欢迎鼓励项目一杯 coffee~</strong></p>
