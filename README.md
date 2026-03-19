@@ -85,6 +85,15 @@ npx honkit serve
 ```
 启动后访问 [本地阅读地址](http://localhost:4000)。
 
+#### 方式 3：mdpress
+
+使用 [mdpress](https://github.com/yeasy/mdpress) 构建，需要安装 Go 环境。
+
+```bash
+go install github.com/yeasy/mdpress@latest
+mdpress serve
+```
+
 ## 社区交流
 
 欢迎加入 Docker 技术交流群，分享 Docker 资源，交流 Docker 技术。
