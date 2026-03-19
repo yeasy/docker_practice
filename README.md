@@ -65,7 +65,17 @@ graph LR
 
 您也可以选择以下方式在本地离线阅读。
 
-#### 方式 1：Docker 镜像：推荐
+#### 方式 1：mdPress（推荐）
+
+使用 [mdPress](https://github.com/yeasy/mdpress) 构建：
+
+```bash
+brew tap yeasy/tap && brew install mdpress
+mdpress serve
+```
+启动后访问 [本地阅读地址](http://localhost:4000)。
+
+#### 方式 2：Docker 镜像
 
 无需安装任何依赖，一条命令即可启动。
 
@@ -74,25 +84,6 @@ docker run -it --rm -p 4000:80 ccr.ccs.tencentyun.com/dockerpracticesig/docker_p
 ```
 启动后访问 [本地阅读地址](http://localhost:4000)。
 [离线阅读说明](https://github.com/yeasy/docker_practice/wiki/%E7%A6%BB%E7%BA%BF%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3)
-
-#### 方式 2：本地构建
-
-适合想要修改内容或深度定制的读者。需要安装 Node.js 环境。
-
-```bash
-npm install
-npx honkit serve
-```
-启动后访问 [本地阅读地址](http://localhost:4000)。
-
-#### 方式 3：mdpress
-
-使用 [mdpress](https://github.com/yeasy/mdpress) 构建，需要安装 Go 环境。
-
-```bash
-go install github.com/yeasy/mdpress@latest
-mdpress serve
-```
 
 ## 社区交流
 
