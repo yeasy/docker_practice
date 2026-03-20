@@ -481,7 +481,7 @@ curl https://docker.training.kodekloud.com/dca-guide
 docker build / push / pull / tag
 docker run / exec / logs / inspect / ps
 docker volume / network / service
-docker-compose up / down / logs / ps
+docker compose up / down / logs / ps
 docker stats / events / inspect
 ```
 
@@ -864,10 +864,10 @@ docker volume rm name                     # 删除卷
 docker volume inspect name                # 查看卷详情
 
 # Docker Compose
-docker-compose up [-d]                    # 启动服务
-docker-compose down                       # 停止服务
-docker-compose ps                         # 列出服务
-docker-compose logs [-f] [service]        # 查看日志
-docker-compose exec service cmd           # 在服务中执行命令
-docker-compose build                      # 构建服务镜像
+docker compose up [-d]                    # 启动服务
+docker compose down                       # 停止服务
+docker compose ps                         # 列出服务
+docker compose logs [-f] [service]        # 查看日志
+docker compose exec service cmd           # 在服务中执行命令
+docker compose build                      # 构建服务镜像
 ```
