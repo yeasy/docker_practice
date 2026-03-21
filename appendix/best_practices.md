@@ -73,6 +73,7 @@ RUN apt-get update && apt-get install -y \
 > 注意：如果你的字符串中包含空格，必须将字符串放入引号中或者对空格使用转义。如果字符串内容本身就包含引号，必须对引号使用转义。
 
 ```docker
+
 ## Set one or more individual labels
 
 LABEL com.example.version="0.0.1-beta"
@@ -87,6 +88,7 @@ LABEL com.example.version.is-production=""
 一个镜像可以包含多个标签，但建议将多个标签放入到一个 `LABEL` 指令中。
 
 ```docker
+
 ## Set multiple labels at once, using line-continuation characters to break long lines
 
 LABEL vendor=ACME\ Incorporated \

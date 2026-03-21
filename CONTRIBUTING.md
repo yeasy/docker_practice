@@ -13,6 +13,7 @@ $ cd docker_practice
 修改代码后提交，并推送到自己的仓库，注意修改提交消息为对应 Issue 号和描述。
 
 ```bash
+
 # Update the content
 
 $ git commit -a -s
