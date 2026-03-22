@@ -35,7 +35,6 @@ Docker 安装配置
 ├── 镜像加速器配置
 └── 权限和用户配置
 ```
-
 **学习资源：**
 - [官方教程](https://docs.docker.com/get-started/)
 - 本书第 1-3 章：入门篇基础概念
@@ -48,14 +47,12 @@ Docker 安装配置
 
 **验证学习成果：**
 ```bash
-
 # 完成以下任务说明基础入门完成
 1. 运行官方 nginx 镜像，访问 http://localhost
 2. 使用 docker exec 进入容器修改首页
 3. 提交修改为新镜像
 4. 推送镜像到 Docker Hub（需创建账户）
 ```
-
 #### 第二阶段：核心开发（2-6 周）
 
 **学习目标：**
@@ -111,7 +108,6 @@ Docker Compose
     ├── exec / run
     └── build / push
 ```
-
 **学习资源：**
 - 本书第 4-11 章：进阶篇
 - [Docker 官方最佳实践](https://docs.docker.com/develop/dev-best-practices/)
@@ -139,7 +135,6 @@ Docker Compose
 - 数据持久化
 - 备份恢复策略
 ```
-
 #### 第三阶段：生产优化（6-12 周）
 
 **学习目标：**
@@ -220,7 +215,6 @@ CI/CD 集成
 ├── Buildah（镜像构建）
 └── Kollabot
 ```
-
 **学习资源：**
 - 本书第 12-21 章：深入篇和实战篇
 - [Kubernetes 官方文档](https://kubernetes.io/docs/)
@@ -254,7 +248,6 @@ CI/CD 集成
 - 部署有状态应用
 - 配置持久化存储
 ```
-
 #### 第四阶段：专家深造（12+ 周）
 
 **学习目标：**
@@ -321,7 +314,6 @@ DevOps 工程化
     ├── 代码审查
     └── 文档和最佳实践传播
 ```
-
 **贡献机会：**
 - [Kubernetes](https://github.com/kubernetes/kubernetes)
 - [Cilium](https://github.com/cilium/cilium)
@@ -384,7 +376,6 @@ Kubernetes 进阶 (Week 24-36)
 ├── 成本优化
 └── 开源贡献
 ```
-
 ### 推荐学习资源
 
 #### 官方文档
@@ -466,10 +457,8 @@ Kubernetes 进阶 (Week 24-36)
 - Logging drivers
 - 事件处理
 ```
-
 准备建议：
 ```bash
-
 # 1. 学习本书第 1-11 章（基础到中级）
 # 2. 完成 20+ 个实战项目
 # 3. 参考官方学习指南
@@ -486,7 +475,6 @@ docker volume / network / service
 docker compose up / down / logs / ps
 docker stats / events / inspect
 ```
-
 #### Kubernetes 认证
 
 **认证路径：**
@@ -530,7 +518,6 @@ A（要点）：
 
 总结：容器更轻量、更快、密度更高
 ```
-
 **Q2: 什么是 Docker 镜像？它如何存储的？**
 
 A（要点）：
@@ -550,7 +537,6 @@ A（要点）：
 - 层级缓存加快构建
 - 支持高效分发
 ```
-
 **Q3: 容器如何实现隔离？**
 
 A（要点）：
@@ -575,7 +561,6 @@ A（要点）：
 
 4. SELinux / AppArmor（强制访问控制）
 ```
-
 #### Dockerfile 面试题
 
 **Q4: 如何优化 Docker 镜像大小？**
@@ -608,7 +593,6 @@ A（要点）：
 7. 压缩资源：
    gzip 静态文件，压缩图片
 ```
-
 **Q5: CMD 和 ENTRYPOINT 有什么区别？**
 
 A（要点）：
@@ -630,7 +614,6 @@ CMD ["--port", "8000"]
 # 运行 docker run image --debug 会执行：
 # python app.py --debug
 ```
-
 #### 网络和存储面试题
 
 **Q6: Docker 网络驱动的区别？**
@@ -660,7 +643,6 @@ macvlan：
 None：
 - 无网络，完全隔离
 ```
-
 **Q7: Volume 和 Bind Mount 有什么区别？**
 
 A（要点）：
@@ -682,7 +664,6 @@ tmpfs：
 - 用于临时文件、敏感数据
 - 性能最好，重启丢失
 ```
-
 #### 安全和生产面试题
 
 **Q8: 如何提高 Docker 安全性？**
@@ -712,7 +693,6 @@ A（要点）：
 - 配置网络策略
 - 限制出入站流量
 ```
-
 **Q9: 容器被 OOM 杀死，如何诊断和解决？**
 
 A（要点）：
@@ -744,7 +724,6 @@ A（要点）：
 4. 使用内存交换（最后手段）：
    docker run -m 512m --memory-swap 1g
 ```
-
 **Q10: 如何在 CI/CD 中集成 Docker？**
 
 A（要点）：
@@ -779,11 +758,9 @@ A（要点）：
 5. 触发 ArgoCD / Flux 自动部署
 6. 监控部署状态
 ```
-
 ### 学习进度跟踪模板
 
 ```markdown
-
 # Docker 学习进度跟踪
 
 ## 第一阶段：基础入门（目标：2 周）
@@ -828,13 +805,11 @@ A（要点）：
 - [ ] 监控和日志系统
 - [ ] CI/CD 流程实现
 ```
-
 ### 快速参考速查表
 
 **常用命令速查：**
 
 ```bash
-
 # 镜像管理
 docker build -t image:tag .              # 构建镜像
 docker images                             # 列出镜像

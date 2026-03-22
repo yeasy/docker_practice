@@ -14,17 +14,14 @@
 ```bash
 $ docker network create my-wordpress-net
 ```
-
 启动 MySQL 容器
 ```bash
 $ docker run --name some-mysql -d --network my-wordpress-net -e MYSQL_ROOT_PASSWORD=mysecretpassword mysql
 ```
-
 启动 WordPress 容器
 ```bash
 $ docker run --name some-wordpress -d --network my-wordpress-net -e WORDPRESS_DB_HOST=some-mysql -e WORDPRESS_DB_PASSWORD=mysecretpassword wordpress
 ```
-
 启动 WordPress 容器时可以指定的一些环境变量包括：
 
 * `WORDPRESS_DB_HOST`：MySQL 服务的主机名

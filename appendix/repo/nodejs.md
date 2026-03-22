@@ -17,14 +17,12 @@ FROM node:20
 
 EXPOSE 8888
 ```
-
 然后创建镜像，并启动容器。
 
 ```bash
 $ docker build -t my-nodejs-app
 $ docker run -it --rm --name my-running-app my-nodejs-app
 ```
-
 也可以直接运行一个简单容器。
 
 ```bash
@@ -37,7 +35,6 @@ $ docker run -it --rm \
     node:20-alpine \
     node your-daemon-or-script.js
 ```
-
 ### Dockerfile
 
 请到 [Node 官方镜像文档目录](https://github.com/docker-library/docs/tree/master/node) 查看。

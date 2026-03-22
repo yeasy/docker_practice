@@ -20,13 +20,11 @@
 ```bash
 $ docker run --name rocky -it rockylinux:9 bash
 ```
-
 使用旧版 CentOS 7 (**仅用于维护旧项目，不推荐**)：
 
 ```bash
 $ docker run --name centos -it centos:7 bash
 ```
-
 ### Dockerfile
 
 请到 [CentOS 官方镜像文档目录](https://github.com/docker-library/docs/tree/master/centos) 查看。

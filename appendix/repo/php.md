@@ -13,7 +13,6 @@
 ```bash
 $ docker run -it --rm -v "$PWD":/app -w /app php:alpine php your-script.php
 ```
-
 ### Dockerfile
 
 请到 [PHP 官方镜像文档目录](https://github.com/docker-library/docs/tree/master/php) 查看。

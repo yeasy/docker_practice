@@ -13,30 +13,25 @@
 ```bash
 $ docker run --name some-redis -d -p 6379:6379 redis
 ```
-
 另外还可以启用[持久存储](https://redis.io/topics/persistence)。
 
 ```bash
 $ docker run --name some-redis -d -p 6379:6379 redis redis-server --appendonly yes
 ```
-
 默认数据存储位置在 `VOLUME/data`。可以使用 `--volumes-from some-volume-container` 或 `-v /docker/host/dir:/data` 将数据存放到本地。
 
 使用其他应用连接到容器，首先创建网络
 ```bash
 $ docker network create my-redis-net
 ```
-
 然后启动 redis 容器
 ```bash
 $ docker run --name some-redis -d --network my-redis-net redis
 ```
-
 最后启动应用容器
 ```bash
 $ docker run --name some-app -d --network my-redis-net application-that-uses-redis
 ```
-
 或者通过 `redis-cli`
 
 ```bash
@@ -45,7 +40,6 @@ $ docker run -it --rm \
     redis \
     sh -c 'exec redis-cli -h some-redis'
 ```
-
 ### Dockerfile
 
 请到 [Redis 官方镜像文档目录](https://github.com/docker-library/docs/tree/master/redis) 查看。

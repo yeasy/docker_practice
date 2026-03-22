@@ -57,11 +57,9 @@ Dockerfile 一般分为四部分：基础镜像信息、维护者信息、镜像
 ```bash
 docker build [选项] <上下文路径/URL/->
 ```
-
 例如，在 Dockerfile 所在目录执行：
 
 ```bash
 docker build -t my-image:v1 .
 ```
-
 更多关于 `docker build` 的用法，我们在实战中会结合具体指令进行演示。

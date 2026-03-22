@@ -13,24 +13,20 @@
 ```bash
 $ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=mysecretpassword -d mysql
 ```
-
 之后就可以使用其它应用来连接到该容器。
 
 首先创建网络
 ```bash
 $ docker network create my-mysql-net
 ```
-
 然后启动 MySQL 容器
 ```bash
 $ docker run --name some-mysql -d --network my-mysql-net -e MYSQL_ROOT_PASSWORD=mysecretpassword mysql
 ```
-
 最后启动应用容器
 ```bash
 $ docker run --name some-app -d --network my-mysql-net application-that-uses-mysql
 ```
-
 或者通过 `mysql` 命令行连接。
 
 ```bash
@@ -39,7 +35,6 @@ $ docker run -it --rm \
     mysql \
     sh -c 'exec mysql -hsome-mysql -P3306 -uroot -pmysecretpassword'
 ```
-
 
 ### Dockerfile
 
