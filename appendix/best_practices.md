@@ -44,7 +44,6 @@ RUN apt-get update && apt-get install -y \
   mercurial \
   subversion
 ```
-
 #### 构建缓存
 
 在镜像的构建过程中，Docker 会遍历 `Dockerfile` 文件中的指令，然后按顺序执行。在执行每条指令之前，Docker 都会在缓存中查找是否已经存在可重用的镜像，如果有就使用现存的镜像，不再重复创建。如果你不想在构建过程中使用缓存，你可以在 `docker build` 命令中使用 `--no-cache=true` 选项。
@@ -73,7 +72,6 @@ RUN apt-get update && apt-get install -y \
 > 注意：如果你的字符串中包含空格，必须将字符串放入引号中或者对空格使用转义。如果字符串内容本身就包含引号，必须对引号使用转义。
 
 ```docker
-
 ## Set one or more individual labels
 
 LABEL com.example.version="0.0.1-beta"
@@ -84,11 +82,9 @@ LABEL com.example.release-date="2015-02-12"
 
 LABEL com.example.version.is-production=""
 ```
-
 一个镜像可以包含多个标签，但建议将多个标签放入到一个 `LABEL` 指令中。
 
 ```docker
-
 ## Set multiple labels at once, using line-continuation characters to break long lines
 
 LABEL vendor=ACME\ Incorporated \
@@ -97,7 +93,6 @@ LABEL vendor=ACME\ Incorporated \
       com.example.version="0.0.1-beta" \
       com.example.release-date="2015-02-12"
 ```
-
 关于标签可以接受的键值对，参考 [Understanding object labels](https://docs.docker.com/config/labels-custom-metadata/)。关于查询标签信息，参考 [Managing labels on objects](https://docs.docker.com/config/labels-custom-metadata/)。
 
 #### RUN
@@ -118,7 +113,6 @@ RUN apt-get update && apt-get install -y \
         package-baz \
         package-foo
 ```
-
 将 `apt-get update` 放在一条单独的 `RUN` 声明中会导致缓存问题以及后续的 `apt-get install` 失败。比如，假设你有一个 `Dockerfile` 文件：
 
 ```docker
@@ -128,7 +122,6 @@ RUN apt-get update
 
 RUN apt-get install -y curl
 ```
-
 构建镜像后，所有的层都在 Docker 的缓存中。假设你后来又修改了其中的 `apt-get install` 添加了一个包：
 
 ```docker
@@ -138,7 +131,6 @@ RUN apt-get update
 
 RUN apt-get install -y curl nginx
 ```
-
 Docker 发现修改后的 `RUN apt-get update` 指令和之前的完全一样。所以，`apt-get update` 不会执行，而是使用之前的缓存镜像。因为 `apt-get update` 没有运行，后面的 `apt-get install` 可能安装的是过时的 `curl` 和 `nginx` 版本。
 
 使用 `RUN apt-get update && apt-get install -y` 可以确保你的 Dockerfiles 每次安装的都是包的最新的版本，而且这个过程不需要进一步的编码或额外干预。这项技术叫作 `cache busting`。你也可以显示指定一个包的版本号来达到 `cache-busting`，这就是所谓的固定版本，例如：
@@ -149,7 +141,6 @@ RUN apt-get update && apt-get install -y \
     package-baz \
     package-foo=1.3.*
 ```
-
 固定版本会迫使构建过程检索特定的版本，而不管缓存中有什么。这项技术也可以减少因所需包中未预料到的变化而导致的失败。
 
 下面是一个 `RUN` 指令的示例模板，展示了所有关于 `apt-get` 的建议。
@@ -167,7 +158,6 @@ RUN apt-get update && apt-get install -y \
     redis-server \
  && rm -rf /var/lib/apt/lists/*
 ```
-
 其中 `redis-server` 是示例包。确保安装的是最新版本。
 
 另外，清理掉 apt 缓存 `var/lib/apt/lists` 可以减小镜像大小。因为 `RUN` 指令的开头为 `apt-get update`，包缓存总是会在 `apt-get install` 之前刷新。
@@ -203,7 +193,6 @@ RUN curl -SL http://example.com/postgres-$PG_VERSION.tar.xz | tar -xJC /usr/src/
 
 ENV PATH /usr/local/postgres-$PG_MAJOR/bin:$PATH
 ```
-
 类似于程序中的常量，这种方法可以让你只需改变 `ENV` 指令来自动的改变容器中的软件版本。
 
 #### ADD 和 COPY
@@ -219,7 +208,6 @@ RUN pip install --requirement /tmp/requirements.txt
 
 COPY . /tmp/
 ```
-
 如果将 `COPY . /tmp/` 放置在 `RUN` 指令之前，只要 `.` 目录中任何一个文件变化，都会导致后续指令的缓存失效。
 
 为了让镜像尽量小，最好不要使用 `ADD` 指令从远程 URL 获取包，而是使用 `curl` 和 `wget`。这样你可以在文件提取完之后删掉不再需要的文件来避免在镜像中额外添加一层。比如尽量避免下面的用法：
@@ -231,7 +219,6 @@ RUN tar -xJf /usr/src/things/big.tar.xz -C /usr/src/things
 
 RUN make -C /usr/src/things all
 ```
-
 而是应该使用下面这种方法：
 
 ```docker
@@ -240,7 +227,6 @@ RUN mkdir -p /usr/src/things \
     | tar -xJC /usr/src/things \
     && make -C /usr/src/things all
 ```
-
 上面使用的管道操作，所以没有中间文件需要删除。
 
 对于其他不需要 `ADD` 的自动提取功能的文件或目录，你应该使用 `COPY`。
@@ -256,19 +242,16 @@ ENTRYPOINT ["s3cmd"]
 
 CMD ["--help"]
 ```
-
 现在直接运行该镜像创建的容器会显示命令帮助：
 
 ```bash
 $ docker run s3cmd
 ```
-
 或者提供正确的参数来执行某个命令：
 
 ```bash
 $ docker run s3cmd ls s3://mybucket
 ```
-
 这样镜像名可以当成命令行的参考。
 
 `ENTRYPOINT` 指令也可以结合一个辅助脚本使用，和前面命令行风格类似，即使启动工具需要不止一个步骤。
@@ -291,7 +274,6 @@ fi
 
 exec "$@"
 ```
-
 > 注意：该脚本使用了 Bash 的内置命令 exec，所以最后运行的进程就是容器的 PID 为 1 的进程。这样，进程就可以接收到任何发送给容器的 Unix 信号了。
 
 该辅助脚本被拷贝到容器，并在容器启动时通过 `ENTRYPOINT` 执行：
@@ -301,7 +283,6 @@ COPY ./docker-entrypoint.sh /
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 ```
-
 该脚本可以让用户用几种不同的方式和 `Postgres` 交互。
 
 你可以很简单地启动 `Postgres`：
@@ -309,19 +290,16 @@ ENTRYPOINT ["/docker-entrypoint.sh"]
 ```bash
 $ docker run postgres
 ```
-
 也可以执行 `Postgres` 并传递参数：
 
 ```bash
 $ docker run postgres postgres --help
 ```
-
 最后，你还可以启动另外一个完全不同的工具，比如 `Bash`：
 
 ```bash
 $ docker run --rm -it postgres bash
 ```
-
 #### VOLUME
 
 `VOLUME` 指令用于暴露任何数据库存储文件，配置文件，或容器创建的文件和目录。强烈建议使用 `VOLUME` 来管理镜像中的可变部分和用户可以改变的部分。

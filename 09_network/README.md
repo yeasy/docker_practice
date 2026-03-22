@@ -28,7 +28,6 @@ graph TD
     
     Internet((互联网)) <--> eth0
 ```
-
 本章将详细介绍 Docker 网络配置的各个方面。
 
 ## 本章内容

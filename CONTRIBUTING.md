@@ -9,11 +9,9 @@ $ git clone git@github.com:docker_user/docker_practice.git
 
 $ cd docker_practice
 ```
-
 修改代码后提交，并推送到自己的仓库，注意修改提交消息为对应 Issue 号和描述。
 
 ```bash
-
 # Update the content
 
 $ git commit -a -s
@@ -22,7 +20,6 @@ $ git commit -a -s
 
 $ git push
 ```
-
 在 [GitHub](https://github.com/yeasy/docker_practice/pulls) 上提交 `Pull Request`，添加标签，并邀请维护者进行 `Review`。
 
 定期使用项目仓库内容更新自己仓库内容。
@@ -36,7 +33,6 @@ $ git rebase upstream/master
 
 $ git push -f origin master
 ```
-
 ## 排版规范
 
 本开源书籍遵循[中文排版指南](https://github.com/mzlogin/chinese-copywriting-guidelines)规范。
