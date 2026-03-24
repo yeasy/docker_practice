@@ -35,6 +35,7 @@ $ docker run -it --rm \
     node:20-alpine \
     node your-daemon-or-script.js
 ```
+
 ### Dockerfile
 
 请到 [Node 官方镜像文档目录](https://github.com/docker-library/docs/tree/master/node) 查看。

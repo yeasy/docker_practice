@@ -44,6 +44,7 @@ RUN apt-get update && apt-get install -y \
   mercurial \
   subversion
 ```
+
 #### 构建缓存
 
 在镜像的构建过程中，Docker 会遍历 `Dockerfile` 文件中的指令，然后按顺序执行。在执行每条指令之前，Docker 都会在缓存中查找是否已经存在可重用的镜像，如果有就使用现存的镜像，不再重复创建。如果你不想在构建过程中使用缓存，你可以在 `docker build` 命令中使用 `--no-cache=true` 选项。
@@ -300,6 +301,7 @@ $ docker run postgres postgres --help
 ```bash
 $ docker run --rm -it postgres bash
 ```
+
 #### VOLUME
 
 `VOLUME` 指令用于暴露任何数据库存储文件，配置文件，或容器创建的文件和目录。强烈建议使用 `VOLUME` 来管理镜像中的可变部分和用户可以改变的部分。

@@ -33,6 +33,7 @@ $ docker run -it --rm \
     mongo \
     sh -c 'exec mongo "some-mongo:27017/test"'
 ```
+
 ### Dockerfile
 
 请到 [Mongo 官方镜像文档目录](https://github.com/docker-library/docs/tree/master/mongo) 查看。

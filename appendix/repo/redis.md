@@ -40,6 +40,7 @@ $ docker run -it --rm \
     redis \
     sh -c 'exec redis-cli -h some-redis'
 ```
+
 ### Dockerfile
 
 请到 [Redis 官方镜像文档目录](https://github.com/docker-library/docs/tree/master/redis) 查看。

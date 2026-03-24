@@ -22,6 +22,7 @@ $ sudo kill -SIGHUP $(pidof dockerd)
 $ sudo dmesg |grep dockerd
 $ sudo dmesg |grep runc
 ```
+
 ### Docker 不响应时处理
 
 可以杀死 dockerd 进程查看其堆栈调用情况。
@@ -29,6 +30,7 @@ $ sudo dmesg |grep runc
 ```bash
 $ sudo kill -SIGUSR1 $(pidof dockerd)
 ```
+
 ### 重置 Docker 本地数据
 
 *注意，本操作会移除所有的 Docker 本地数据，包括镜像和容器等。*
@@ -43,6 +45,7 @@ $ docker system prune
 ```bash
 $ sudo rm -rf /var/lib/docker
 ```
+
 ### 常见故障排查
 
 #### 容器启动失败

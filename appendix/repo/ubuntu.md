@@ -14,6 +14,7 @@
 $ docker run --name some-ubuntu -it ubuntu:20.04
 root@523c70904d54:/#
 ```
+
 ### Dockerfile
 
 请到 [Ubuntu 官方镜像文档目录](https://github.com/docker-library/docs/tree/master/ubuntu) 查看。
