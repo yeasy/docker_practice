@@ -39,6 +39,7 @@ $ docker run -d \
     -v /path/nginx.conf:/etc/nginx/nginx.conf:ro \
     nginx
 ```
+
 ### Dockerfile
 
 请到 [Nginx 官方镜像文档目录](https://github.com/docker-library/docs/tree/master/nginx) 查看。

@@ -52,6 +52,7 @@
 ```bash
 docker inspect --format '{{ .State.Pid }}' <CONTAINER ID or NAME>
 ```
+
 ### 如何获取某个容器的 IP 地址？
 
 答：可以使用
@@ -59,6 +60,7 @@ docker inspect --format '{{ .State.Pid }}' <CONTAINER ID or NAME>
 ```bash
 docker inspect --format '{{ .NetworkSettings.IPAddress }}' <CONTAINER ID or NAME>
 ```
+
 ### 如何给容器指定一个固定 IP 地址，而不是每次重启容器 IP 地址都会变？
 
 答：使用以下命令启动容器可以使容器 IP 固定不变
@@ -68,6 +70,7 @@ $ docker network create -d bridge --subnet 172.25.0.0/16 my-net
 
 $ docker run --network=my-net --ip=172.25.3.3 -itd --name=my-container busybox
 ```
+
 ### 如何临时退出一个正在交互的容器的终端，而不终止它？
 
 答：按 `Ctrl-p Ctrl-q`。如果按 `Ctrl-c` 往往会让容器内应用进程终止，进而会终止容器。
@@ -123,6 +126,7 @@ tmpfs                          48G  228K   48G   1% /dev/shm
 lrwxrwxrwx. 1 root root 15 11月 17 13:43 docker -> /storage/docker
 [root@s26 lib]# service docker start
 ```
+
 ### 使用内存和 swap 限制启动容器时候报警告：“WARNING：Your kernel does not support cgroup swap limit。WARNING：Your kernel does not support swap limit capabilities。Limitation discarded。”？
 
 答：这是因为系统默认没有开启对内存和 swap 使用的统计功能，引入该功能会带来性能的下降。要开启该功能，可以采取如下操作：
@@ -198,6 +202,7 @@ $ sudo ip netns show
 ```bash
 $ sudo ip netns exec 1234 ifconfig eth0 172.17.0.100/16
 ```
+
 ### 如何获取容器绑定到本地那个 veth 接口上？
 
 答：Docker 容器启动后，会通过 veth 接口对连接到本地网桥，veth 接口命名跟容器命名毫无关系，十分难以找到对应关系。
