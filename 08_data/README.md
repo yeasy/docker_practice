@@ -2,7 +2,9 @@
 
 如图 8-1 所示，Docker 数据管理主要围绕三类挂载方式展开。
 
-![Docker 数据挂载类型](./_images/types-of-mounts.png)
+<p align="center">
+  <img src="./_images/types-of-mounts.png" alt="Docker 数据挂载类型">
+</p>
 
 图 8-1：Docker 数据挂载类型示意图
 
