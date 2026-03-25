@@ -3,6 +3,7 @@
 *.tmp
 .idea/
 _book/
+_site*
 format_report.txt
 *.swp
 *.edx

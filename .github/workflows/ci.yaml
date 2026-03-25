@@ -20,14 +20,14 @@ jobs:
           node-version: 20
       - name: Install docs dependencies
         run: npm install
-      - name: Build Gitbook
-        run: npm run honkit:build
-      - name: Build Gitbook Docker Image
+      - name: Build mdPress site
+        run: npm run build
+      - name: Build mdPress Docker Image
         if: github.repository == 'docker-practice/docker_practice'
         run: |
-          sudo chmod -R 777 _book
+          sudo chmod -R 777 _site
           echo "FROM nginx:alpine" >> Dockerfile
-          echo "COPY _book /usr/share/nginx/html" >> Dockerfile
+          echo "COPY _site /usr/share/nginx/html" >> Dockerfile
           echo "COPY .docker/docker-entrypoint.sh /" >> Dockerfile
           echo "ENTRYPOINT [\"/docker-entrypoint.sh\"]" >> Dockerfile
 
@@ -35,7 +35,7 @@ jobs:
 
           docker build \
           -t dockerpracticesig/docker_practice \
-          -t dockerpracticesig/docker_practice:gitbook \
+          -t dockerpracticesig/docker_practice:mdpress \
           --label org.opencontainers.image.revision=$VCS_REF \
           --label org.opencontainers.image.source="https://github.com/yeasy/docker_practice" \
           --label maintainer="https://github.com/docker-practice" \
@@ -51,11 +51,11 @@ jobs:
 
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
           docker push dockerpracticesig/docker_practice
-          docker push dockerpracticesig/docker_practice:gitbook
+          docker push dockerpracticesig/docker_practice:mdpress
         env:
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
           DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-      - name: Upload Gitbook dist
+      - name: Upload mdPress dist
         uses: docker://pcit/pages
         if: github.repository == 'docker-practice/docker_practice'
         env:
@@ -63,7 +63,7 @@ jobs:
           PCIT_GIT_TOKEN: ${{ secrets.PCIT_GIT_TOKEN }}
           PCIT_GIT_URL: github.com/docker-practice/zh-cn
           PCIT_KEEP_HISTORY: "true"
-          PCIT_LOCAL_DIR: _book
+          PCIT_LOCAL_DIR: _site
           PCIT_MESSAGE: Build from yeasy/docker_practice@${{github.sha}}
           PCIT_TARGET_BRANCH: master
           PCIT_USERNAME: khs1994

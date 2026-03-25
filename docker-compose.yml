@@ -2,29 +2,29 @@ version: "3"
 
 services:
 
-  gitbook-build:
-    &gitbook-build
+  mdpress-build:
+    &mdpress-build
     image: yeasy/docker_practice:latest
     volumes:
       - ./:/srv/gitbook-src
     command: build
 
-  gitbook-server:
-    << : *gitbook-build
+  mdpress-server:
+    << : *mdpress-build
     ports:
       - 4000:4000
     command: server
 
   # docker run -it --rm -p 4000:80 dockerpracticesig/docker_practice
-  gitbook-offline:
-    &gitbook-offline
+  mdpress-offline:
+    &mdpress-offline
     # this image build by GitHub Action
-    image: dockerpracticesig/docker_practice:gitbook
+    image: dockerpracticesig/docker_practice:mdpress
     ports:
       - 4000:80
 
   vuepress-offline:
-    << : *gitbook-offline
+    << : *mdpress-offline
     image: dockerpracticesig/docker_practice:vuepress
 
   # developer test docker image

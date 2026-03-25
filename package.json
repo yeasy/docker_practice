@@ -11,16 +11,17 @@
     "gitbook-plugin-github": "^3.0.0",
     "gitbook-plugin-mermaid-gb3": "^2.1.0",
     "gitbook-plugin-page-treeview": "^3.0.6",
-    "honkit": "^6.1.6",
     "vuepress": "1.9.10",
     "vuepress-plugin-container": "^2.1.5",
     "vuepress-theme-hope": "^1.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "honkit:help": "npx honkit help",
-    "honkit:build": "npx honkit build",
-    "honkit:serve": "npx honkit serve",
+    "mdpress:help": "mdpress --help",
+    "build": "rm -rf _site _site_site && mdpress build --format site --output _site && rm -rf _site && mv _site_site _site",
+    "serve": "mdpress serve",
+    "start": "mdpress serve",
+    "pdf": "mdpress build --format pdf",
     "vuepress:build": "npx vuepress build",
     "vuepress": "npx vuepress"
   },
