@@ -2,7 +2,7 @@
 
 [![图](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) [![图](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases) [![图](https://img.shields.io/badge/Based-Docker%20Engine%20v29.x-blue.svg)](https://docs.docker.com/engine/release-notes/) [![图](https://img.shields.io/badge/Docker%20%E6%8A%80%E6%9C%AF%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E6%88%98-jd.com-red.svg)][1]
 
-**v1.7.0** | [PDF 下载](https://github.com/yeasy/docker_practice/releases/latest/download/docker_practice.pdf)
+[**v1.7.0**](https://github.com/yeasy/docker_practice/releases/tag/v1.7.0) | [PDF 下载](https://github.com/yeasy/docker_practice/releases/latest/download/docker_practice.pdf)
 
 [Docker](https://www.docker.com) 是个划时代的开源项目，它彻底释放了计算虚拟化的威力，极大提高了应用的维护效率，降低了云计算应用开发的成本！使用 Docker，可以让应用的部署、测试和分发都变得前所未有的高效和轻松！
 
@@ -114,15 +114,6 @@ docker run -it --rm -p 4000:80 ccr.ccs.tencentyun.com/dockerpracticesig/docker_p
 
 *   [京东图书][1]
 *   [天猫图书](https://detail.tmall.com/item.htm?id=997383773726&skuId=6143496614475)
-
-## 推荐阅读
-
-本书是技术丛书的一部分。以下书籍与本书形成互补：
-
-| 书名 | 与本书的关系 |
-|------|------------|
-| [《区块链技术指南》](https://github.com/yeasy/blockchain_guide) | 利用 Docker 部署区块链节点 |
-| [《OpenClaw 从入门到精通》](https://github.com/yeasy/openclaw_guide) | 利用 Docker 部署 AI 智能体 |
 
 ## 鼓励项目
 
