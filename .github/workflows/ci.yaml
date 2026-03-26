@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: Install Chromium
+      - name: Install Chromium and CJK fonts
         run: |
           sudo apt-get update
-          sudo apt-get install -y chromium-browser
+          sudo apt-get install -y chromium-browser fonts-noto-cjk fonts-noto-cjk-extra
       - name: Install mdpress (latest)
         run: |
           LATEST_TAG=$(curl -fsSL https://api.github.com/repos/yeasy/mdpress/releases/latest | jq -r .tag_name)
