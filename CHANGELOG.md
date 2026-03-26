@@ -1,5 +1,12 @@
 # 修订记录
 
+* 1.7.0 2026-03-25
+  * 精简 CI 流程，移除遗留的 vuepress 构建，统一使用 mdpress
+  * 升级 etcd 集群示例从 v3.4.0 到 v3.5.17
+  * 更新 npm 镜像为 npmmirror.com，PHP 升级到 8.3
+  * 移除 Compose 已废弃的 version 字段
+  * 升级所有 CI Actions 到最新版本
+
 * 1.6.1 2026-02-28
   * 修正数据卷 `--mount` 与 `-v` 的行为差异及数据卷管理说明
   * 补充 Docker Hub 限流机制说明，区分 pull rate limit 与 abuse rate limit
