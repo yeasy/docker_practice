@@ -5,9 +5,8 @@ on:
   pull_request:
   workflow_dispatch:
 
-defaults:
-  run:
-    shell: bash --noprofile --norc -exo pipefail {0}
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -15,142 +14,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 20
-      - name: Install docs dependencies
-        run: npm install
-      - name: Build mdPress site
-        run: npm run build
-      - name: Build mdPress Docker Image
-        if: github.repository == 'docker-practice/docker_practice'
+      - name: Install Chromium
         run: |
-          sudo chmod -R 777 _site
-          echo "FROM nginx:alpine" >> Dockerfile
-          echo "COPY _site /usr/share/nginx/html" >> Dockerfile
-          echo "COPY .docker/docker-entrypoint.sh /" >> Dockerfile
-          echo "ENTRYPOINT [\"/docker-entrypoint.sh\"]" >> Dockerfile
-
-          export VCS_REF=`git rev-parse --short HEAD`
-
-          docker build \
-          -t dockerpracticesig/docker_practice \
-          -t dockerpracticesig/docker_practice:mdpress \
-          --label org.opencontainers.image.revision=$VCS_REF \
-          --label org.opencontainers.image.source="https://github.com/yeasy/docker_practice" \
-          --label maintainer="https://github.com/docker-practice" \
-          .
-
-          docker run -d --rm -p 4000:80 dockerpracticesig/docker_practice
-
-          sleep 5
-
-          echo "::group::Test"
-          curl 127.0.0.1:4000
-          echo "::endgroup::"
-
-          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-          docker push dockerpracticesig/docker_practice
-          docker push dockerpracticesig/docker_practice:mdpress
-        env:
-          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-      - name: Upload mdPress dist
-        uses: docker://pcit/pages
-        if: github.repository == 'docker-practice/docker_practice'
-        env:
-          PCIT_EMAIL: khs1994@khs1994.com
-          PCIT_GIT_TOKEN: ${{ secrets.PCIT_GIT_TOKEN }}
-          PCIT_GIT_URL: github.com/docker-practice/zh-cn
-          PCIT_KEEP_HISTORY: "true"
-          PCIT_LOCAL_DIR: _site
-          PCIT_MESSAGE: Build from yeasy/docker_practice@${{github.sha}}
-          PCIT_TARGET_BRANCH: master
-          PCIT_USERNAME: khs1994
-      - name: vuepress
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser
+      - name: Install mdpress (latest)
         run: |
-          export NODE_OPTIONS=--openssl-legacy-provider
-          sudo rm -rf _site
-
-          git clone https://github.com/docker-practice/.vuepress  .vuepress2
-          cp -r .vuepress2/. .vuepress/
-          rm -rf .vuepress2
-          find . \( -path "./mesos" -o -path "./swarm_mode" -o -path "./node_modules" -o -path "./.vuepress" -o -path "./_site" -o -path "./CHANGELOG.md" -o -path "./CONTRIBUTING.md" \) -prune -o -name "*.md" -exec sed -i 'N;2a\<AdSenseTitle/>\n' {} \;
-
-          npx vuepress --version
-
-          npm run vuepress:build
-          echo "vuepress.mirror.docker-practice.com" > .vuepress/dist/CNAME
-
-          cp -r _images .vuepress/dist
-          mkdir -p .vuepress/dist/appendix
-          cp -r appendix/_images .vuepress/dist/appendix
-          mkdir -p .vuepress/dist/cloud
-          cp -r 16_cloud/_images .vuepress/dist/cloud
-          mkdir -p .vuepress/dist/data_management
-          cp -r 08_data/_images .vuepress/dist/data_management
-          mkdir -p .vuepress/dist/etcd
-          cp -r 15_etcd/_images .vuepress/dist/etcd
-          mkdir -p .vuepress/dist/kubernetes
-          cp -r 13_kubernetes_concepts/_images .vuepress/dist/kubernetes
-
-          echo "include: [_images]" > .vuepress/dist/_config.yml
-      - name: Upload Vuepress dist
-        uses: docker://pcit/pages
-        if: github.repository == 'docker-practice/docker_practice'
-        env:
-          PCIT_EMAIL: khs1994@khs1994.com
-          PCIT_GIT_TOKEN: ${{ secrets.PCIT_GIT_TOKEN }}
-          PCIT_GIT_URL: github.com/docker-practice/vuepress
-          PCIT_KEEP_HISTORY: "true"
-          PCIT_LOCAL_DIR: .vuepress/dist
-          PCIT_MESSAGE: Build from yeasy/docker_practice@${{github.sha}}
-          PCIT_TARGET_BRANCH: master
-          PCIT_USERNAME: khs1994
-      # - name: Set coding.net CNAME
-      #   run: |
-      #     echo "vuepress.mirror.docker-practice.com" > .vuepress/dist/CNAME
-      # - name: Upload Vuepress dist to coding.net
-      #   uses: docker://pcit/pages
-      #   if: github.repository == 'docker-practice/docker_practice'
-      #   env:
-      #     PCIT_EMAIL: khs1994@khs1994.com
-      #     PCIT_GIT_TOKEN: ${{ secrets.CODING_GIT_TOKEN }}
-      #     PCIT_GIT_URL: e.coding.net/dpsigs/docker_practice
-      #     PCIT_KEEP_HISTORY: "true"
-      #     PCIT_LOCAL_DIR: .vuepress/dist
-      #     PCIT_MESSAGE: Build from yeasy/docker_practice@${{github.sha}}
-      #     PCIT_TARGET_BRANCH: master
-      #     PCIT_USERNAME: ptt0xjqzbke3
-      - name: Build vuepress docker image
-        if: github.repository == 'docker-practice/docker_practice'
-        run: |
-          sudo rm -rf .vuepress/dist/.git
-
-          echo "FROM nginx:alpine" > Dockerfile
-          echo "COPY .vuepress/dist /usr/share/nginx/html" >> Dockerfile
-          echo "COPY .docker/docker-entrypoint.sh /" >> Dockerfile
-          echo "ENTRYPOINT [\"/docker-entrypoint.sh\"]" >> Dockerfile
-
-          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-
-          VCS_REF=`git rev-parse --short HEAD`
-
-          docker build -t dockerpracticesig/docker_practice:vuepress \
-          --label org.opencontainers.image.revision=$VCS_REF \
-          --label org.opencontainers.image.source="https://github.com/yeasy/docker_practice" \
-          --label maintainer="https://github.com/docker-practice" \
-          .
-
-          docker push dockerpracticesig/docker_practice:vuepress
-
-          docker run -it --rm -d -p 4001:80 dockerpracticesig/docker_practice:vuepress
-
-          sleep 5
-
-          echo "::group::Test"
-          curl 127.0.0.1:4001
-          echo "::endgroup::"
-        env:
-          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+          LATEST_TAG=$(curl -fsSL https://api.github.com/repos/yeasy/mdpress/releases/latest | jq -r .tag_name)
+          VERSION="${LATEST_TAG#v}"
+          echo "Installing mdpress $VERSION"
+          curl -fsSL "https://github.com/yeasy/mdPress/releases/download/$LATEST_TAG/mdpress_${VERSION}_linux_amd64.tar.gz" -o mdpress.tar.gz
+          tar xzf mdpress.tar.gz
+          sudo mv mdpress /usr/local/bin/
+          mdpress --version
+      - name: Build site
+        run: mdpress build --format site

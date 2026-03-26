@@ -3,7 +3,7 @@ FROM node:alpine as frontend
 COPY package.json /app/
 
 RUN set -x ; cd /app \
-      && npm install --registry=https://registry.npm.taobao.org
+      && npm install --registry=https://registry.npmmirror.com
 
 COPY webpack.mix.js webpack.config.js tailwind.config.js /app/
 COPY resources/ /app/resources/
@@ -27,7 +27,7 @@ RUN set -x ; cd /app \
            --no-scripts \
            --prefer-dist
 
-FROM php:7.4-fpm-alpine as laravel
+FROM php:8.3-fpm-alpine as laravel
 
 ARG LARAVEL_PATH=/app/laravel
 
