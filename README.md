@@ -106,7 +106,7 @@ docker run -it --rm -p 4000:80 ccr.ccs.tencentyun.com/dockerpracticesig/docker_p
 
 <p align="center">
   <a href="https://item.jd.com/10200902362001.html">
-    <img src="https://github.com/yeasy/docker_practice/raw/master/_images/docker_primer4.jpg" alt="图">
+    <img src="_images/docker_primer4.jpg" alt="图">
   </a>
 </p>
 
