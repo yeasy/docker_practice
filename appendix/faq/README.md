@@ -127,9 +127,9 @@ lrwxrwxrwx. 1 root root 15 11月 17 13:43 docker -> /storage/docker
 [root@s26 lib]# service docker start
 ```
 
-### 使用内存和 swap 限制启动容器时候报警告：“WARNING：Your kernel does not support cgroup swap limit。WARNING：Your kernel does not support swap limit capabilities。Limitation discarded。”？
+### 使用内存和 swap 限制启动容器时候报内核不支持警告？
 
-答：这是因为系统默认没有开启对内存和 swap 使用的统计功能，引入该功能会带来性能的下降。要开启该功能，可以采取如下操作：
+答：如果遇到 `WARNING: Your kernel does not support cgroup swap limit` 等警告，这是因为系统默认没有开启对内存和 swap 使用的统计功能，引入该功能会带来性能的下降。要开启该功能，可以采取如下操作：
 
 * 编辑 `/etc/default/grub` 文件 (Ubuntu 系统为例)，配置 `GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"`
 * 更新 grub：`$ sudo update-grub`
