@@ -32,19 +32,22 @@ jobs:
           sudo mv mdpress /usr/local/bin/
           mdpress --version
 
+      - name: Extract tag name
+        id: tag
+        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
       - name: Build PDF
-        run: mdpress build --format pdf --output docker_practice.pdf
+        run: mdpress build --format pdf --output docker_practice-${{ steps.tag.outputs.TAG_NAME || 'latest' }}.pdf
 
       - name: Create Release and upload PDF
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
           generate_release_notes: true
-          files: docker_practice.pdf
+          files: docker_practice-${{ steps.tag.outputs.TAG_NAME }}.pdf
 
       - name: Upload PDF as artifact
-        if: github.event_name == 'workflow_dispatch'
         uses: actions/upload-artifact@v7
         with:
           name: docker_practice-pdf
-          path: docker_practice.pdf
+          path: "docker_practice-*.pdf"
