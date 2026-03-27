@@ -29,3 +29,10 @@ jobs:
           mdpress --version
       - name: Build site
         run: mdpress build --format site
+      - name: Build PDF
+        run: mdpress build --format pdf --output docker_practice.pdf
+      - name: Upload PDF as artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: docker_practice-pdf
+          path: docker_practice.pdf
