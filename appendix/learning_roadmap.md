@@ -574,7 +574,7 @@ A（要点）：
 A（要点）：
 ```text
 1. 选择合适的基础镜像：
-   scratch < alpine:3.17 < python:3.11-slim < python:3.11
+   scratch < alpine:3.17 < python:3.14-slim < python:3.14
 
 2. 多阶段构建：
    - 构建阶段只保留编译工具
