@@ -12,6 +12,12 @@
 * [Docker Hub 文档](https://docs.docker.com/docker-hub/)
 * [Docker Blog](https://www.docker.com/blog/)
 * [Docker Roadmap](https://github.com/docker/roadmap)
+* [Kubernetes 文档](https://kubernetes.io/docs/)
+* [Kubernetes 发布页](https://kubernetes.io/releases/)
+* [kubeadm 安装文档](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
+* [containerd 文档](https://containerd.io/docs/)
+* [GitHub Actions 文档](https://docs.github.com/en/actions)
+* [Drone 文档](https://docs.drone.io/)
 
 ### 参考文档
 
@@ -19,6 +25,8 @@
 * [Dockerfile 参考](https://docs.docker.com/reference/dockerfile/)
 * [Docker 构建最佳实践](https://docs.docker.com/build/building/best-practices/)
 * [Docker 远端应用 API](https://docs.docker.com/develop/sdk/)
+* [Docker 存储文档](https://docs.docker.com/engine/storage/)
+* [Docker 网络文档](https://docs.docker.com/engine/network/)
 
 ### 源码仓库
 

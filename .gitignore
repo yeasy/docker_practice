@@ -20,6 +20,9 @@ docker-compose.override.yml
 
 .agent/
 __pycache__/
+.mdpress/
+Docker -- *.html
+Docker -- *_site/
 
 # Check scripts
 check*.py
