@@ -29,7 +29,7 @@ jobs:
 
       - name: Install mdpress (latest)
         run: |
-          LATEST_TAG=$(curl -fsSL https://api.github.com/repos/yeasy/mdpress/releases/latest | jq -r .tag_name)
+          LATEST_TAG=$(curl -fsSL -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ github.token }}" https://api.github.com/repos/yeasy/mdpress/releases/latest | jq -r .tag_name)
           VERSION="${LATEST_TAG#v}"
           echo "Installing mdpress $VERSION"
           curl -fsSL "https://github.com/yeasy/mdPress/releases/download/$LATEST_TAG/mdpress_${VERSION}_linux_amd64.tar.gz" -o /tmp/mdpress.tar.gz
