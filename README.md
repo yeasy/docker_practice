@@ -8,7 +8,7 @@
 
 本书提供 PDF 版本供离线阅读，可前往 [GitHub Releases](https://github.com/yeasy/docker_practice/releases/latest) 页面下载最新版本。
 
-如需获取默认分支自动更新的预览版，可直接下载 [latest preview PDF](https://github.com/yeasy/docker_practice/releases/download/preview-pdf/latest.pdf)。该文件会随主线更新覆盖，不代表正式发布版本。
+如需获取默认分支自动更新的预览版，可直接下载 [docker_practice.pdf](https://github.com/yeasy/docker_practice/releases/download/preview-pdf/docker_practice.pdf)。该文件会随主线更新覆盖，不代表正式发布版本。
 
 [Docker](https://www.docker.com) 是个划时代的开源项目，它彻底释放了计算虚拟化的威力，极大提高了应用的维护效率，降低了云计算应用开发的成本！使用 Docker，可以让应用的部署、测试和分发都变得前所未有的高效和轻松！
 

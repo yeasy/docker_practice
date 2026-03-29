@@ -40,7 +40,7 @@ jobs:
       - name: Build latest preview PDF
         run: |
           mkdir -p dist
-          mdpress build --format pdf --output dist/latest.pdf
+          mdpress build --format pdf --output dist/docker_practice.pdf
 
       - name: Write release notes
         run: |
@@ -70,5 +70,8 @@ jobs:
             --prerelease \
             --target "$GITHUB_SHA"
 
+      - name: Remove legacy preview asset
+        run: gh release delete-asset preview-pdf latest.pdf -y || true
+
       - name: Upload preview PDF
-        run: gh release upload preview-pdf dist/latest.pdf --clobber
+        run: gh release upload preview-pdf dist/docker_practice.pdf --clobber
