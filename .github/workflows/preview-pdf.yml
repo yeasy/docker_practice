@@ -1,0 +1,74 @@
+name: Update Preview PDF
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: preview-pdf
+  cancel-in-progress: true
+
+jobs:
+  update-preview-pdf:
+    name: Update preview release
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install Chromium and CJK fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser fonts-noto-cjk fonts-noto-cjk-extra
+
+      - name: Install mdpress (latest)
+        run: |
+          LATEST_TAG=$(curl -fsSL https://api.github.com/repos/yeasy/mdpress/releases/latest | jq -r .tag_name)
+          VERSION="${LATEST_TAG#v}"
+          echo "Installing mdpress $VERSION"
+          curl -fsSL "https://github.com/yeasy/mdPress/releases/download/$LATEST_TAG/mdpress_${VERSION}_linux_amd64.tar.gz" -o /tmp/mdpress.tar.gz
+          tar xzf /tmp/mdpress.tar.gz -C /tmp mdpress
+          sudo mv /tmp/mdpress /usr/local/bin/
+          mdpress --version
+
+      - name: Build latest preview PDF
+        run: |
+          mkdir -p dist
+          mdpress build --format pdf --output dist/latest.pdf
+
+      - name: Write release notes
+        run: |
+          cat > dist/release-notes.md <<EOF
+          Auto-updated preview PDF from \`${GITHUB_SHA::7}\`.
+
+          - Branch: \`${GITHUB_REF_NAME}\`
+          - Commit: https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}
+          - Run: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
+          EOF
+
+      - name: Create preview release
+        run: |
+          gh release view preview-pdf >/dev/null 2>&1 || \
+            gh release create preview-pdf \
+              --title "Latest Preview PDF" \
+              --notes-file dist/release-notes.md \
+              --prerelease \
+              --latest=false \
+              --target "$GITHUB_SHA"
+
+      - name: Update preview release metadata
+        run: |
+          gh release edit preview-pdf \
+            --title "Latest Preview PDF" \
+            --notes-file dist/release-notes.md \
+            --prerelease \
+            --target "$GITHUB_SHA"
+
+      - name: Upload preview PDF
+        run: gh release upload preview-pdf dist/latest.pdf --clobber
