@@ -10,7 +10,7 @@
 | **K3s** | 边缘计算/IoT | 轻量级，资源占用少 |
 | **手动部署** | 学习原理 | 逐步配置每个组件，加深理解 |
 
-### 14.9.1 延伸阅读
+### 延伸阅读
 
 - [容器编排基础](../13_kubernetes_concepts/README.md)：Kubernetes 核心概念
 - [Dashboard](14.7_dashboard.md)：部署可视化管理界面

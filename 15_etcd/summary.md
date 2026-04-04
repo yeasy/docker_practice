@@ -11,7 +11,7 @@ etcd 是 Kubernetes 的核心存储组件，为分布式系统提供可靠的键
 | **etcdctl** | 命令行管理工具，支持 put/get/del/watch 等操作 |
 | **安全** | 支持 TLS 加密通信和 RBAC 访问控制 |
 
-### 15.5.1 延伸阅读
+### 延伸阅读
 
 - [容器编排基础](../13_kubernetes_concepts/README.md)：Kubernetes 如何使用 etcd
 - [部署 Kubernetes](../14_kubernetes_setup/README.md)：在集群中部署 etcd
