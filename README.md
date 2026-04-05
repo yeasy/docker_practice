@@ -101,6 +101,16 @@ docker run -it --rm -p 4000:80 ccr.ccs.tencentyun.com/dockerpracticesig/docker_p
 > *   341410255 (I), 419042067 (II), 210028779 (III), 483702734 (IV), 460598761 (V)
 > *   581983671 (VI), 252403484 (VII), 544818750 (VIII), 571502246 (IX), 145983035 (X)
 
+## 推荐阅读
+
+本书是技术丛书的一部分。以下书籍与本书形成互补：
+
+| 书名 | 与本书的关系 |
+|------|------------|
+| [《智能体 Harness 工程指南》](https://yeasy.gitbook.io/harness_engineering_guide) | Agent 基础设施中的容器化部署与隔离 |
+| [《大模型安全权威指南》](https://yeasy.gitbook.io/ai_security_guide) | 容器安全与 AI 系统安全的交叉实践 |
+| [《区块链技术指南》](https://yeasy.gitbook.io/blockchain_guide) | 区块链节点的容器化部署 |
+
 ## 参与贡献
 
 欢迎[参与项目维护](CONTRIBUTING.md)。
@@ -136,5 +146,11 @@ docker run -it --rm -p 4000:80 ccr.ccs.tencentyun.com/dockerpracticesig/docker_p
     <img src="https://api.star-history.com/svg?repos=yeasy/docker_practice&type=Date" alt="Star History Chart">
   </a>
 </p>
+
+## 许可证
+
+本书采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 许可证。
+
+您可以自由分享和演绎，但需署名、非商业使用、相同方式共享。
 
 [1]: https://item.jd.com/10200902362001.html
