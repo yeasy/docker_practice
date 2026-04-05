@@ -1,4 +1,4 @@
-name: Build PDF on Release
+name: Auto Release
 
 on:
   push:
@@ -10,12 +10,10 @@ permissions:
   contents: write
 
 jobs:
-  build-pdf:
-    name: Generate PDF
+  release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
+      - uses: actions/checkout@v6
 
       - name: Install Chromium and CJK fonts
         run: |
@@ -27,9 +25,9 @@ jobs:
           LATEST_TAG=$(curl -fsSL -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ github.token }}" https://api.github.com/repos/yeasy/mdpress/releases/latest | jq -r .tag_name)
           VERSION="${LATEST_TAG#v}"
           echo "Installing mdpress $VERSION"
-          curl -fsSL "https://github.com/yeasy/mdPress/releases/download/$LATEST_TAG/mdpress_${VERSION}_linux_amd64.tar.gz" -o mdpress.tar.gz
-          tar xzf mdpress.tar.gz
-          sudo mv mdpress /usr/local/bin/
+          curl -fsSL "https://github.com/yeasy/mdPress/releases/download/$LATEST_TAG/mdpress_${VERSION}_linux_amd64.tar.gz" -o /tmp/mdpress.tar.gz
+          tar xzf /tmp/mdpress.tar.gz -C /tmp mdpress
+          sudo mv /tmp/mdpress /usr/local/bin/
           mdpress --version
 
       - name: Extract tag name
@@ -39,7 +37,7 @@ jobs:
       - name: Build PDF
         run: mdpress build --format pdf --output docker_practice-${{ steps.tag.outputs.TAG_NAME || 'latest' }}.pdf
 
-      - name: Create Release and upload PDF
+      - name: Create Release with PDF
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
