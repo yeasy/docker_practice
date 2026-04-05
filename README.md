@@ -78,7 +78,7 @@ graph LR
 brew tap yeasy/tap && brew install mdpress
 mdpress serve
 ```
-启动后访问 [本地阅读地址](http://localhost:4000)。
+启动后访问 [本地阅读地址](http://localhost:9000)。
 
 #### 方式 2：Docker 镜像
 
