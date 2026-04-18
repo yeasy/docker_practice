@@ -1,14 +1,23 @@
+<div align="center">
+
 # Docker 从入门到实践
 
-[![图](https://img.shields.io/github/stars/yeasy/docker_practice.svg?style=social&label=Stars)](https://github.com/yeasy/docker_practice) [![图](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases) [![图](https://img.shields.io/badge/Based-Docker%20Engine%20v29.x-blue.svg)](https://docs.docker.com/engine/release-notes/) [![图](https://img.shields.io/badge/Docker%20%E6%8A%80%E6%9C%AF%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E6%88%98-jd.com-red.svg)][1]
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+[![GitHub stars](https://img.shields.io/github/stars/yeasy/docker_practice?style=social)](https://github.com/yeasy/docker_practice)
+[![Release](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases)
+[![Online Reading](https://img.shields.io/badge/在线阅读-GitBook-brightgreen)](https://yeasy.gitbook.io/docker_practice)
+[![PDF](https://img.shields.io/badge/PDF-下载-orange)](https://github.com/yeasy/docker_practice/releases/latest)
+[![Based on Docker Engine v29.x](https://img.shields.io/badge/Based-Docker%20Engine%20v29.x-blue.svg)](https://docs.docker.com/engine/release-notes/)
 
-[**v1.7.2**](https://github.com/yeasy/docker_practice/releases/tag/v1.7.2) | [PDF 下载](https://github.com/yeasy/docker_practice/releases/latest)
+> 从零开始，系统掌握 Docker 容器技术的核心概念、原理与实战技巧
 
-## 下载离线版本
+<img src="cover.jpg" width="300" alt="Docker 从入门到实践封面">
 
-本书提供 PDF 版本供离线阅读，可前往 [GitHub Releases](https://github.com/yeasy/docker_practice/releases/latest) 页面下载最新版本。
+</div>
 
-如需获取默认分支自动更新的预览版，可直接下载 [docker_practice.pdf](https://github.com/yeasy/docker_practice/releases/download/preview-pdf/docker_practice.pdf)。该文件会随主线更新覆盖，不代表正式发布版本。
+---
+
+## 关于本书
 
 [Docker](https://www.docker.com) 是个划时代的开源项目，它彻底释放了计算虚拟化的威力，极大提高了应用的维护效率，降低了云计算应用开发的成本！使用 Docker，可以让应用的部署、测试和分发都变得前所未有的高效和轻松！
 
@@ -56,21 +65,17 @@ graph LR
 | **DevOps 工程师** | 第1章 → 第9-14章 → 第18章 | 实现容器编排与自动化部署流程 |
 | **架构师** | 第1章 → 第15-21章 | 设计高可用、高性能的容器基础设施 |
 
-## 阅读方式
+## 在线阅读
 
-本书按需提供多种阅读模式，具体如下：
+本书在线阅读，可直接访问 [GitBook](https://yeasy.gitbook.io/docker_practice/)。也可访问 [GitHub 仓库目录](https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md) 或 [镜像站点](https://vuepress.mirror.docker-practice.com/)。
 
-### 在线阅读
+## 下载离线版本
 
-*   **GitBook**: [在线阅读](https://yeasy.gitbook.io/docker_practice/)
-*   **GitHub**: [仓库目录](https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md)
-*   **Mirror**: [镜像站点](https://vuepress.mirror.docker-practice.com/)
+本书提供 PDF 版本供离线阅读，可前往 [GitHub Releases](https://github.com/yeasy/docker_practice/releases/latest) 页面下载最新版本。
 
-### 本地阅读
+如需获取默认分支自动更新的预览版，可直接下载 [docker_practice.pdf](https://github.com/yeasy/docker_practice/releases/download/preview-pdf/docker_practice.pdf)。该文件会随主线更新覆盖，不代表正式发布版本。
 
-您也可以选择以下方式在本地离线阅读。
-
-#### 方式 1：mdPress（推荐）
+## 本地阅读
 
 先安装 [mdPress](https://github.com/yeasy/mdpress)：
 
@@ -78,28 +83,17 @@ graph LR
 brew tap yeasy/tap && brew install mdpress
 mdpress serve
 ```
-启动后访问 [本地阅读地址](http://localhost:9000)。
 
-#### 方式 2：Docker 镜像
-
-无需安装任何依赖，一条命令即可启动。
+或使用 Docker 镜像一条命令启动：
 
 ```bash
 docker run -it --rm -p 4000:80 ccr.ccs.tencentyun.com/dockerpracticesig/docker_practice:vuepress
 ```
-启动后访问 [本地阅读地址](http://localhost:4000)。
-[离线阅读说明](https://github.com/yeasy/docker_practice/wiki/%E7%A6%BB%E7%BA%BF%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3)
 
 ## 社区交流
 
-欢迎加入 Docker 技术交流群，分享 Docker 资源，交流 Docker 技术。
-
-*   **GitHub Discussions**：[点击前往](https://github.com/yeasy/docker_practice/discussions) (技术问答、交流)
-*   **GitHub Issues**：[提交 Bug](https://github.com/yeasy/docker_practice/issues/new/choose) (内容错误、建议)
-
-> **交流 QQ 群** (部分已满，建议优先使用 GitHub Discussions)：
-> *   341410255 (I), 419042067 (II), 210028779 (III), 483702734 (IV), 460598761 (V)
-> *   581983671 (VI), 252403484 (VII), 544818750 (VIII), 571502246 (IX), 145983035 (X)
+- [GitHub Discussions](https://github.com/yeasy/docker_practice/discussions)（技术问答、交流）
+- [GitHub Issues](https://github.com/yeasy/docker_practice/issues/new/choose)（内容错误、建议）
 
 ## 推荐阅读
 
@@ -120,24 +114,15 @@ docker run -it --rm -p 4000:80 ccr.ccs.tencentyun.com/dockerpracticesig/docker_p
 
 ## 进阶学习
 
-<p align="center">
-  <a href="https://item.jd.com/10200902362001.html">
-    <img src="_images/docker_primer4.jpg" alt="图">
-  </a>
-</p>
+《[Docker 技术入门与实战][1]》已更新到第 4 版，讲解最新容器技术栈知识，欢迎大家阅读并反馈建议。[京东图书][1] | [天猫图书](https://detail.tmall.com/item.htm?id=997383773726&skuId=6143496614475)
 
-《[Docker 技术入门与实战][1]》已更新到第 4 版，讲解最新容器技术栈知识，欢迎大家阅读并反馈建议。
+## 支持鼓励
 
-*   [京东图书][1]
-*   [天猫图书](https://detail.tmall.com/item.htm?id=997383773726&skuId=6143496614475)
-
-## 鼓励项目
+欢迎鼓励项目一杯 coffee~
 
 <p align="center">
 <img width="200" src="_images/donate.jpeg">
 </p>
-
-<p align="center"><strong>欢迎鼓励项目一杯 coffee~</strong></p>
 
 ## Star History
 
