@@ -2,7 +2,7 @@
 
 本章将带领你进入 **Docker** 的世界。
 
-> **版本提示**：本书内容及示例基于 **Docker Engine v29.x** 及以上版本。值得注意的是，自 Docker Engine v29 起，官方在全新安装场景下 **默认启用 `containerd image store` 作为镜像存储后端**（取代传统 classic store 路径下的 graph driver 体系）。这项底层革新极大增强了 Docker 对多架构镜像（Multi-platform）以及软件供应链安全元数据（Attestations, SBOM, Provenance）的本地支持原生性。
+> **版本提示**：本书内容及示例基于 **Docker Engine v29.x** 及以上版本。自 Docker Engine v29 起，全新安装默认启用 `containerd image store` 作为镜像存储后端；这意味着后续涉及多架构镜像、本地镜像元数据和供应链安全能力的章节，会以这一路径为背景展开说明。
 
 ## 本章内容
 
