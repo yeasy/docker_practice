@@ -8,8 +8,6 @@
 
 理解了这三个概念，就理解了 **Docker** 的整个生命周期。
 
-## 本章内容
-
 * [Docker 镜像](2.1_image.md)
 * [Docker 容器](2.2_container.md)
 * [Docker 仓库](2.3_repository.md)
