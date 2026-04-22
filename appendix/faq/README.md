@@ -183,7 +183,7 @@ lrwxrwxrwx. 1 root root 15 11月 17 13:43 docker -> /storage/docker
 首先，使用下面的命令查看容器进程信息，比如这里的 1234。
 
 ```bash
-$ docker inspect --format='{{. State.Pid}} ' $container_id
+$ docker inspect --format='{{ .State.Pid }}' $container_id
 1234
 ```
 接下来，在 `/proc` 目录下，把对应的网络命名空间文件链接到 `/var/run/netns` 目录。
