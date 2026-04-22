@@ -7,6 +7,30 @@
       "GitHub": "https://github.com/yeasy/docker_practice"
     }
   },
+  "plugins": [
+    "-livereload",
+    "mermaid-gb3",
+    "github",
+    "page-treeview",
+    "editlink"
+  ],
+  "pluginsConfig": {
+    "mermaid-gb3": {
+      "theme": "default"
+    },
+    "github": {
+      "url": "https://github.com/yeasy/docker_practice"
+    },
+    "editlink": {
+      "base": "https://github.com/yeasy/docker_practice/blob/master/",
+      "label": "编辑本页"
+    },
+    "page-treeview": {
+      "copyright": "Copyright &#169; yeasy",
+      "minHeaderCount": "2",
+      "minHeaderDeep": "2"
+    }
+  },
   "pdf": {
     "pageNumbers": true,
     "fontSize": 12,

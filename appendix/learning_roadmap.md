@@ -403,7 +403,7 @@ Kubernetes 进阶 (Week 24-36)
 - 《Docker 深入浅出》- 本书的原版
 - 《Kubernetes 权威指南》- 深入 Kubernetes 的必读书
 - 《容器技术核心技术与应用》- 理解底层实现
-- 《SRE Google 运维之道》- 生产环保最佳实践
+- 《SRE Google 运维之道》- 生产环境最佳实践
 
 #### 博客和社区
 
