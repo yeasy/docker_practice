@@ -1,8 +1,8 @@
 # 第三章 安装 Docker
 
-Docker 分为 `stable` `test` 和 `nightly` 三个更新频道。
+Docker Engine 主要提供 `stable` 和 `test` 两个更新频道；`test.docker.com` 对应测试频道，适合预发布验证，不建议直接用于生产环境。
 
-官方网站上有各种环境下的[安装指南](https://docs.docker.com/get-docker/)，这里主要介绍 Docker 在 `Linux`、`Windows 10` 和 `macOS` 上的安装。
+官方网站上有各种环境下的[安装指南](https://docs.docker.com/get-docker/)，这里主要介绍 Docker 在 `Linux`、`Windows 10/11` 和 `macOS` 上的安装。
 
 ## 安装方式选择指南
 
