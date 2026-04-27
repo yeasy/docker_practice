@@ -1,4 +1,4 @@
-FROM node:alpine as frontend
+FROM node:20-alpine as frontend
 
 COPY package.json /app/
 
@@ -13,7 +13,7 @@ RUN set -x ; cd /app \
       && mkdir -p public \
       && npm run production
 
-FROM composer as composer
+FROM composer:2 as composer
 
 COPY database/ /app/database/
 COPY composer.json /app/
@@ -47,7 +47,7 @@ RUN set -x ; cd ${LARAVEL_PATH} \
       && chmod -R 777 storage \
       && php artisan package:discover
 
-FROM nginx:alpine as nginx
+FROM nginx:1.25-alpine as nginx
 
 ARG LARAVEL_PATH=/app/laravel
 
