@@ -28,6 +28,8 @@ $ docker run -it --rm --name my-running-app my-nodejs-app
 ```bash
 $ docker run -it --rm \
     --name my-running-script \
+    # -v "$ ":/usr/src/myapp \
+
     --mount type=bind,src="$(pwd)",target=/usr/src/myapp \
     -w /usr/src/myapp \
     node:20-alpine \
