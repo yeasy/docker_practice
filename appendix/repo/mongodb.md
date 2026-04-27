@@ -25,13 +25,13 @@ $ docker run --name some-mongo -d --network my-mongo-net mongo
 ```bash
 $ docker run --name some-app -d --network my-mongo-net application-that-uses-mongo
 ```
-或者通过 `mongo`
+或者通过 `mongosh`（MongoDB 6.0+ 已弃用 `mongo`，请使用 `mongosh`）
 
 ```bash
 $ docker run -it --rm \
     --network my-mongo-net \
     mongo \
-    sh -c 'exec mongo "some-mongo:27017/test"'
+    sh -c 'exec mongosh "mongodb://some-mongo:27017/test"'
 ```
 
 ### Dockerfile

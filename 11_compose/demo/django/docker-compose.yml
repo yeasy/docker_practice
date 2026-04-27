@@ -5,6 +5,11 @@ services:
     image: postgres
     environment:
       POSTGRES_PASSWORD: 'postgres'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   web:
     build: .
@@ -13,3 +18,6 @@ services:
       - .:/code
     ports:
       - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
