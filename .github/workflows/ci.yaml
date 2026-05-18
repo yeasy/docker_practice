@@ -36,10 +36,10 @@ jobs:
           tar xzf "$archive"
           sudo mv mdpress /usr/local/bin/
           mdpress --version
-      - name: Build site
-        run: npm run build
       - name: Build PDF
         run: mdpress build --format pdf --output docker_practice.pdf
+      - name: Build site
+        run: npm run build
       - name: Upload PDF as artifact
         uses: actions/upload-artifact@v7
         with:
