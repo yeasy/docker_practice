@@ -1,5 +1,31 @@
 # 修订记录
 
+* 1.9.2 2026-05-16
+  * 刷新 Docker 生态说明，更新 Fedora CoreOS、Podman、containerd 等章节中的维护状态
+  * 修复镜像事实、演示 TLS 密钥等后续审阅发现的问题
+
+* 1.9.1 2026-05-08
+  * 使用 `browser-actions/setup-chrome` 替代 Ubuntu runner 上不稳定的 Chromium snap 安装
+  * 修正 Docker Engine 29 日期、TLS 协议、healthcheck 与交互式调试示例
+
+* 1.9.0 2026-05-02
+  * 更新 Docker Engine 29、nginx、MySQL 8.4 LTS、Node.js 22 LTS 与 Kubernetes 相关版本说明
+  * 补充 ipvlan、nftables、Gateway API、Docker Scout、镜像安全与供应链安全内容
+  * 修复 Docker Hub 限流、etcdctl API、Compose healthcheck、Docker Debug 等时效性内容
+
+* 1.8.0 2026-04-27
+  * 补全 Dockerfile 指令参考与多处章节编号、标题层级、代码块和表格格式
+  * 增加预览 PDF 自动发布流程，修复 mdpress 端口和导出相关配置
+
+* 1.7.5 2026-04-05
+  * 将失效的 AtomHub 镜像替换为可用镜像源
+
+* 1.7.4 2026-03-31
+  * 修复标题层级格式
+
+* 1.7.3 2026-03-29
+  * 修复 Wikipedia URL 编码
+
 * 1.7.2 2026-03-28
   * 修正 macOS、Windows、Compose 与 Kubernetes 章节中的时效性内容和错误前提
   * 收缩越界网络内容，补充 bind mount、tmpfs 与端口映射的关键限制说明

@@ -31,13 +31,16 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra
 
-      - name: Install mdpress (latest)
+      - name: Install mdpress 0.7.10
+        env:
+          MDPRESS_VERSION: "0.7.10"
+          MDPRESS_SHA256: "17e53e455996940bbbce64c69c43b3fb543f1501e03b74cf0434074efebd2db4"
         run: |
-          LATEST_TAG=$(curl -fsSL -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ github.token }}" https://api.github.com/repos/yeasy/mdpress/releases/latest | jq -r .tag_name)
-          VERSION="${LATEST_TAG#v}"
-          echo "Installing mdpress $VERSION"
-          curl -fsSL "https://github.com/yeasy/mdPress/releases/download/$LATEST_TAG/mdpress_${VERSION}_linux_amd64.tar.gz" -o /tmp/mdpress.tar.gz
-          tar xzf /tmp/mdpress.tar.gz -C /tmp mdpress
+          archive="/tmp/mdpress_${MDPRESS_VERSION}_linux_amd64.tar.gz"
+          echo "Installing mdpress ${MDPRESS_VERSION}"
+          curl -fsSL "https://github.com/yeasy/mdPress/releases/download/v${MDPRESS_VERSION}/mdpress_${MDPRESS_VERSION}_linux_amd64.tar.gz" -o "$archive"
+          echo "${MDPRESS_SHA256}  $archive" | sha256sum -c -
+          tar xzf "$archive" -C /tmp mdpress
           sudo mv /tmp/mdpress /usr/local/bin/
           mdpress --version
 

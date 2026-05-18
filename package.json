@@ -1,6 +1,6 @@
 {
   "name": "docker_practice",
-  "version": "1.7.2",
+  "version": "1.9.2",
   "description": "docker_practice",
   "main": "index.js",
   "devDependencies": {
@@ -9,7 +9,7 @@
     "vuepress-theme-hope": "^1.0.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node scripts/check_metadata.js",
     "mdpress:help": "mdpress --help",
     "build": "rm -rf _site _site_site && mdpress build --format site --output _site && rm -rf _site && mv _site_site _site",
     "serve": "mdpress serve",
@@ -23,7 +23,7 @@
     "url": "git+https://github.com/yeasy/docker_practice.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "CC-BY-NC-SA-4.0",
   "bugs": {
     "url": "https://github.com/yeasy/docker_practice/issues"
   },
