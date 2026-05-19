@@ -101,6 +101,7 @@ docker run -it --rm -p 4000:80 ccr.ccs.tencentyun.com/dockerpracticesig/docker_p
 
 | 书名 | 与本书的关系 |
 |------|------------|
+| [《前线部署工程实践指南》](https://yeasy.gitbook.io/forward_deployed_engineering_guide/) | 讲容器、Kubernetes、GitOps、IaC、供应链、安全、观测与 SLO 如何组合成可交付、可审计、可运营的部署工程体系 |
 | [《智能体 Harness 工程指南》](https://yeasy.gitbook.io/harness_engineering_guide) | Agent 基础设施中的容器化部署与隔离 |
 | [《大模型安全权威指南》](https://yeasy.gitbook.io/ai_security_guide) | 容器安全与 AI 系统安全的交叉实践 |
 | [《区块链技术指南》](https://yeasy.gitbook.io/blockchain_guide) | 区块链节点的容器化部署 |
