@@ -26,6 +26,7 @@ Docker -- *_site/
 
 # Check scripts
 check*.py
+!check_project_rules.py
 find*.py
 fix*.py
 format*.py

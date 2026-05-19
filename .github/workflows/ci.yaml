@@ -16,6 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - name: Check project rules
+        run: python3 check_project_rules.py
       - name: Install Chromium and CJK fonts
         uses: browser-actions/setup-chrome@v2
         with:
