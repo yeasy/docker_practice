@@ -71,7 +71,7 @@
 
 ## S
 
-* **Swarm (Docker Swarm)**：Docker 原生的集群和编排管理工具，可将多个 Docker 主机组合成一个统一的虚拟 Docker 主机池。
+* **Swarm (Docker Swarm)**：Docker 原生的集群和编排管理工具，可将多个 Docker 主机组合成一个统一的虚拟 Docker 主机池。维护节点时通常将节点可用性设为 `Drain`，这只影响 Swarm service 调度，不会停止该节点上独立运行的容器。
 
 ## U
 

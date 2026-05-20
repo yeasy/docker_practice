@@ -652,7 +652,8 @@ Host：
 
 Overlay：
 - 跨主机通信，基于 VXLAN
-- Swarm 和 Kubernetes 标准
+- Docker overlay 网络默认使用 UDP 4789 传输数据
+- Swarm 标准；Kubernetes 通常由 CNI 插件实现跨主机网络
 - 性能略低，支持分布式
 
 macvlan：

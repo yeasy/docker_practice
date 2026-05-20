@@ -5,6 +5,7 @@
 你可以使用以下几种方式部署 Kubernetes，接下来的小节会对各种方式进行详细介绍。
 
 * [使用 kubeadm 部署 (CRI 使用 containerd)](14.1_kubeadm.md)
+  * Kubernetes 也支持 CRI-O 等符合 CRI 的运行时；本文以 containerd 为主线。
 * [使用 kubeadm 部署 (使用 Docker)](14.2_kubeadm-docker.md)
 * [在 Docker Desktop 使用](14.3_docker-desktop.md)
 * [Kind - Kubernetes IN Docker](14.4_kind.md)
