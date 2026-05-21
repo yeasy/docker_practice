@@ -29,7 +29,7 @@
 
 ### 碰到网络问题，无法 pull 镜像，命令行指定 http\_proxy 无效？
 
-答：在 Docker 配置文件中添加 `export http_proxy="http://<PROXY_HOST>:<PROXY_PORT>"`，之后重启 Docker 服务即可。
+答：先区分代理要作用在哪一层。Docker daemon 拉取镜像时，推荐在 `daemon.json` 的 `proxies` 字段或 systemd drop-in 中配置 `HTTP_PROXY` / `HTTPS_PROXY` / `NO_PROXY`，然后重启 Docker 服务。Docker CLI、构建过程和容器内应用的代理应分别使用 `~/.docker/config.json`、`--build-arg` 或 `docker run --env` 配置；不要把 `export http_proxy=...` 当作 `daemon.json` 内容写入。
 
 ## 容器相关
 
@@ -79,8 +79,9 @@ $ docker run --network=my-net --ip=172.25.3.3 -itd --name=my-container busybox
 
 答：
 
-* 创建镜像时 `Dockerfile` 要通过 `EXPOSE` 指定正确的开放端口；
-* 容器启动时指定 `PublishAllPort = true`。
+* 创建容器时用 `-p HOST_PORT:CONTAINER_PORT` 或 `--publish` 显式发布端口，例如 `docker run -p 8080:80 nginx`；
+* 只想把镜像声明的 `EXPOSE` 端口随机发布到宿主机端口时，用 `-P` / `--publish-all`，之后通过 `docker ps` 查看实际端口；
+* `Dockerfile` 中的 `EXPOSE` 只是镜像元数据，不会自动发布端口。
 
 ### 可以在一个容器中同时运行多个应用进程么？
 
