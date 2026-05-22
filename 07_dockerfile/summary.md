@@ -21,6 +21,21 @@
 | **LABEL** | 添加元数据 | 推荐 OCI 标准标签，替代 MAINTAINER |
 | **SHELL** | 更改默认 shell | 推荐 `["/bin/bash", "-o", "pipefail", "-c"]` |
 
+### 生产镜像快速检查清单
+
+在将镜像推向生产之前，建议逐条过一遍以下清单：
+
+- [ ] 基础镜像选择了最小化版本（如 `alpine`、`distroless`）
+- [ ] 使用了[多阶段构建](7.17_multistage_builds.md)，最终镜像不含编译工具链
+- [ ] 以非 root 用户运行（`USER` 指令）
+- [ ] `COPY` 优先于 `ADD`，且仅复制必要文件
+- [ ] `RUN` 指令合并了 `apt-get update && install && rm -rf /var/lib/apt/lists/*`
+- [ ] 设置了 `HEALTHCHECK`
+- [ ] 使用了 `.dockerignore` 排除 `.git`、`node_modules` 等无关文件
+- [ ] 镜像标签使用了具体版本号或 commit hash，而非 `latest`
+
+> 更完整的编写指南见[附录：Dockerfile 最佳实践](../appendix/best_practices.md)。
+
 ### 延伸阅读
 
 - [使用 Dockerfile 定制镜像](../04_image/4.5_build.md)：Dockerfile 入门

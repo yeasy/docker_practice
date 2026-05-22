@@ -13,3 +13,8 @@
 * [一步步部署 Kubernetes 集群](14.6_systemd.md)
 * [部署 Dashboard](14.7_dashboard.md)
 * [Kubernetes 命令行 kubectl](14.8_kubectl.md)
+
+除了上述方式，企业生产环境中还有两个常见的部署工具值得关注：
+
+* **[KubeKey](https://github.com/kubesphere/kubekey)**：KubeSphere 社区开源的集群部署工具（CNCF 认证），支持一条命令从裸机部署到高可用集群，内置对 containerd 和多 Linux 发行版的适配，适合需要快速搭建私有化 Kubernetes 的团队。
+* **[RKE2](https://docs.rke2.io/)**：SUSE Rancher 出品的安全加固型 Kubernetes 发行版，默认启用 CIS 基准合规、SELinux 支持和 etcd 自动快照，适合对安全审计有严格要求的企业场景。
