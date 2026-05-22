@@ -191,6 +191,7 @@
 
 * [附录](appendix/README.md)
   * [附录一：常见问题与错误速查](appendix/faq/README.md)
+    * [常见错误处理](appendix/faq/errors.md)
   * [附录二：热门镜像介绍](appendix/repo/README.md)
     * [Ubuntu](appendix/repo/ubuntu.md)
     * [CentOS](appendix/repo/centos.md)
