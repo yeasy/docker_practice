@@ -42,8 +42,13 @@ $ docker system prune
 ```
 如果你只是想 “恢复出厂设置”，在 Docker Desktop 里也提供了相应入口。
 
+只有在确认要丢弃本机全部镜像、容器、卷和构建缓存，并且已经停止 Docker 服务、完成备份或导出后，才考虑删除 Docker 数据目录：
+
 ```bash
+$ sudo systemctl stop docker containerd
+$ sudo cp -a /var/lib/docker /var/lib/docker.backup
 $ sudo rm -rf /var/lib/docker
+$ sudo systemctl start docker
 ```
 
 ### 常见故障排查

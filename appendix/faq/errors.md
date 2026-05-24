@@ -3,7 +3,7 @@
 | 错误信息 / 现象 | 可能原因 | 解决方案 |
 | :--- | :--- | :--- |
 | `Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?` | Docker 服务未启动 | Linux: `sudo systemctl start docker`<br>Mac/Win: 启动 Docker Desktop |
-| `permission denied while trying to connect to the Docker daemon socket` | 当前用户不在 `docker` 用户组 | `sudo usermod -aG docker $USER` (需重新登录) |
+| `permission denied while trying to connect to the Docker daemon socket` | 当前用户无权访问 Docker socket | 临时使用 `sudo docker ...`，或确认风险后执行 `sudo usermod -aG docker $USER` 并重新登录；`docker` 用户组等同授予 root 级权限，安全要求较高的环境优先评估 Rootless mode |
 | `manifest for ... not found: manifest unknown` | 镜像 tag 不存在 | 检查 Docker Hub 该镜像是否存在该 tag，或拼写是否正确 |
 | `connection refused` (pull image) | 网络不通或镜像源无法访问 | 检查网络，配置[镜像加速器](../../03_install/3.9_mirror.md) |
 | `Bind for 0.0.0.0:8080 failed: port is already allocated` | 端口被占用 | 检查占用端口的进程 (`lsof -i:8080`) 并杀掉，或换个端口映射 (`-p 8081:80`) |

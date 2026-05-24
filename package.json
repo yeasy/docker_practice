@@ -2,7 +2,7 @@
   "name": "docker_practice",
   "version": "1.9.2",
   "description": "docker_practice",
-  "main": "index.js",
+  "private": true,
   "devDependencies": {
     "vuepress": "1.9.10",
     "vuepress-plugin-container": "^2.1.5",
