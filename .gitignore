@@ -13,6 +13,7 @@ node_modules/
 package-lock.json
 
 docker-compose.override.yml
+06_repository/demo/auth/nginx.htpasswd
 
 # Editor configs
 .obsidian/
