@@ -14,7 +14,7 @@ services:
     environment:
       - DRONE_SERVER_HOST=${DRONE_SERVER_HOST:-drone.domain.com}
       - DRONE_SERVER_PROTO=${DRONE_SERVER_PROTO:-https}
-      - DRONE_RPC_SECRET=${DRONE_RPC_SECRET:-secret}
+      - DRONE_RPC_SECRET=${DRONE_RPC_SECRET:?set DRONE_RPC_SECRET}
       - DRONE_GITHUB_SERVER=https://github.com
       - DRONE_GITHUB_CLIENT_ID=${DRONE_GITHUB_CLIENT_ID}
       - DRONE_GITHUB_CLIENT_SECRET=${DRONE_GITHUB_CLIENT_SECRET}
@@ -29,7 +29,7 @@ services:
     environment:
       - DRONE_RPC_PROTO=http
       - DRONE_RPC_HOST=drone-server
-      - DRONE_RPC_SECRET=${DRONE_RPC_SECRET:-secret}
+      - DRONE_RPC_SECRET=${DRONE_RPC_SECRET:?set DRONE_RPC_SECRET}
       - DRONE_RUNNER_NAME=${HOSTNAME:-demo}
       - DRONE_RUNNER_CAPACITY=2
     dns: 114.114.114.114

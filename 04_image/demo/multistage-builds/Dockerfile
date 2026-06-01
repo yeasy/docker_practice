@@ -1,10 +1,6 @@
 FROM golang:alpine as builder
 
-RUN apk --no-cache add git
-
 WORKDIR /go/src/github.com/go/helloworld/
-
-RUN go get -d -v github.com/go-sql-driver/mysql
 
 COPY app.go .
 
