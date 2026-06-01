@@ -221,8 +221,7 @@ CI/CD 集成
 ├── Buildx（多架构构建）
 ├── Skopeo（镜像管理）
 ├── Podman（替代方案）
-├── Buildah（镜像构建）
-└── Kollabot
+└── Buildah（镜像构建）
 ```
 **学习资源：**
 
