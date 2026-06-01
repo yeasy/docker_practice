@@ -206,7 +206,7 @@ $ sudo ip netns show
 $ sudo ip netns exec 1234 ifconfig eth0 172.17.0.100/16
 ```
 
-### 如何获取容器绑定到本地那个 veth 接口上？
+### 如何获取容器绑定到本地哪个 veth 接口上？
 
 答：Docker 容器启动后，会通过 veth 接口对连接到本地网桥，veth 接口命名跟容器命名毫无关系，十分难以找到对应关系。
 

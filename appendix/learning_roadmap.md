@@ -135,7 +135,7 @@ Docker Compose
 项目 2: Node.js 微服务
 - 优化镜像大小
 - 配置 Compose 多个服务
-- 设置网络和环保境变量
+- 设置网络和环境变量
 
 项目 3: 数据库容器化
 - PostgreSQL/MySQL 配置
