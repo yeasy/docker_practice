@@ -33,7 +33,7 @@ $ docker run --name some-app -d --network my-mysql-net application-that-uses-mys
 $ docker run -it --rm \
     --network my-mysql-net \
     mysql \
-    sh -c 'exec mysql -hsome-mysql -P3306 -uroot -pmysecretpassword'
+    sh -c 'exec mysql -hsome-mysql -P3306 -uroot -p'
 ```
 
 ### Dockerfile
