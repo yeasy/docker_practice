@@ -4,7 +4,8 @@ WORKDIR /go/src/github.com/go/helloworld/
 
 COPY app.go .
 
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
+RUN go mod init helloworld \
+  && CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
 
 FROM alpine:latest as prod
 

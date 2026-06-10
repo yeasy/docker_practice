@@ -4,7 +4,7 @@ services:
   db:
     image: postgres
     environment:
-      POSTGRES_PASSWORD: 'postgres'
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
 
   web:
     build: .
@@ -13,3 +13,6 @@ services:
       - .:/code
     ports:
       - "8000:8000"
+    environment:
+      # 与书中 11.6 节一致：settings.py 从环境变量读取数据库密码
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
