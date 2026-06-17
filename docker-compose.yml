@@ -24,15 +24,3 @@ services:
   vuepress-offline:
     << : *mdpress-offline
     image: dockerpracticesig/docker_practice:vuepress
-
-  # developer test docker image
-
-  development:
-    build: ./.travis
-    image: yeasy/docker_practice:latest
-    ports:
-      - 4000:4000
-    volumes:
-      - ./:/srv/gitbook-src
-    command: server
-    # command: build

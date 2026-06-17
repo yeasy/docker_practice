@@ -129,7 +129,7 @@
   * [14.4 Kind - Kubernetes IN Docker](14_kubernetes_setup/14.4_kind.md)
   * [14.5 K3s - 轻量级 Kubernetes](14_kubernetes_setup/14.5_k3s.md)
   * [14.6 一步步部署 Kubernetes 集群](14_kubernetes_setup/14.6_systemd.md)
-  * [14.7 部署 Dashboard](14_kubernetes_setup/14.7_dashboard.md)
+  * [14.7 可视化管理界面](14_kubernetes_setup/14.7_dashboard.md)
   * [14.8 Kubernetes 命令行 kubectl](14_kubernetes_setup/14.8_kubectl.md)
   * [本章小结](14_kubernetes_setup/summary.md)
 * [第十五章 Etcd 项目](15_etcd/README.md)

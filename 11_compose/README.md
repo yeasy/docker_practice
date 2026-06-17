@@ -1,6 +1,6 @@
 # 第十一章 Docker Compose
 
-`Docker Compose` 是 Docker 官方编排 (Orchestration) 项目之一，负责快速的部署分布式应用。
+`Docker Compose` 是 Docker 官方编排 (Orchestration) 项目之一，负责快速定义和启动本地或单机多容器应用。跨主机集群编排应交给 Swarm、Kubernetes 或云厂商托管服务。
 
 > ⚠️ **重要提示：Compose V1 已停止支持**
 >

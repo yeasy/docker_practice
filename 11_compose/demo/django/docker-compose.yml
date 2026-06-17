@@ -2,9 +2,18 @@
 services:
 
   db:
-    image: postgres
+    image: postgres:16
     environment:
+      POSTGRES_DB: django_db
+      POSTGRES_USER: django_user
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U django_user -d django_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   web:
     build: .
@@ -13,6 +22,13 @@ services:
       - .:/code
     ports:
       - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
     environment:
       # 与书中 11.6 节一致：settings.py 从环境变量读取数据库密码
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+      DATABASE_URL: postgres://django_user:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}@db:5432/django_db
+
+volumes:
+  postgres_data:

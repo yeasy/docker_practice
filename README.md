@@ -48,10 +48,10 @@
 graph LR
     Start[Docker 学习入口] --> Ch1[第1章：Docker 简介]
 
-    Ch1 --> Role1["运维新手<br/>第1-4章"]
-    Ch1 --> Role2["开发者<br/>第1-3章 → 第5-8章"]
-    Ch1 --> Role3["DevOps 工程师<br/>第1章 → 第9-14章 → 第18章"]
-    Ch1 --> Role4["架构师<br/>第1章 → 第15-21章"]
+    Ch1 --> Role1["运维新手<br/>第1-6章"]
+    Ch1 --> Role2["开发者<br/>第1-8章 → 第11章"]
+    Ch1 --> Role3["DevOps 工程师<br/>第1-11章 → 第13-14章 → 第18-21章"]
+    Ch1 --> Role4["架构师<br/>第1-6章 → 第12-17章 → 第18-19章"]
 
     Role1 --> End1["掌握基本操作"]
     Role2 --> End2["构建与部署应用"]
@@ -60,14 +60,14 @@ graph LR
 ```
 | 读者角色 | 学习重点 | 核心成果 |
 |---------|---------|---------|
-| **运维新手** | 第1-4章 | 掌握容器的基本概念与操作 |
-| **开发者** | 第1-3章 → 第5-8章 | 学会容器化应用的构建与部署 |
-| **DevOps 工程师** | 第1章 → 第9-14章 → 第18章 | 实现容器编排与自动化部署流程 |
-| **架构师** | 第1章 → 第15-21章 | 设计高可用、高性能的容器基础设施 |
+| **运维新手** | 第1-6章 | 掌握容器的基本概念与操作 |
+| **开发者** | 第1-8章 → 第11章 | 学会容器化应用的构建与部署 |
+| **DevOps 工程师** | 第1-11章 → 第13-14章 → 第18-21章 | 实现容器编排与自动化部署流程 |
+| **架构师** | 第1-6章 → 第12-17章 → 第18-19章 | 设计高可用、高性能的容器基础设施 |
 
 ## 在线阅读
 
-本书在线阅读，可直接访问 [GitBook](https://yeasy.gitbook.io/docker_practice/)。也可访问 [GitHub 仓库目录](https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md) 或 [镜像站点](https://vuepress.mirror.docker-practice.com/)。
+本书在线阅读，可直接访问 [GitBook](https://yeasy.gitbook.io/docker_practice/)。也可访问 [GitHub 仓库目录](https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md)。
 
 ## 下载离线版本
 

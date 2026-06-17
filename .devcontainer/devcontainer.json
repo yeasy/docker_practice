@@ -11,12 +11,9 @@
   "forwardPorts": [
     4000
   ],
-  "runArgs": [
-    "--cap-add=SYS_ADMIN"
-  ],
   "postStartCommand": [
     "sh",
     "-cx",
-    "pwd ; cd /workspaces/docker_practice ; mkdir -p ${PWD}/node_modules; mkdir -p ${PWD}/_book; mount --bind /srv/gitbook/node_modules ${PWD}/node_modules ; mount --bind /mnt ${PWD}/_book"
+    "pwd ; cd /workspaces/docker_practice ; mkdir -p ${PWD}/node_modules ${PWD}/_book"
   ]
 }

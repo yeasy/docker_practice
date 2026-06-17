@@ -1,6 +1,6 @@
 # 第十四章 部署 Kubernetes
 
-目前，Kubernetes 支持在多种环境下使用，包括本地主机 (Ubuntu、Debian、CentOS、Fedora 等)、云服务 ([腾讯云](https://cloud.tencent.com/act/cps/redirect?redirect=10058&cps_key=3a5255852d5db99dcd5da4c72f05df61)、[阿里云](https://www.aliyun.com/product/kubernetes?source=5176.11533457&userCode=8lx5zmtu&type=copy)、[百度云](https://cloud.baidu.com/product/cce.html)等)。
+目前，Kubernetes 支持在多种环境下使用，包括本地主机 (Ubuntu、Debian、CentOS、Fedora 等)、云服务 ([腾讯云 TKE](https://cloud.tencent.com/product/tke)、[阿里云 ACK](https://cn.aliyun.com/product/ack)、[百度云](https://cloud.baidu.com/product/cce.html)等)。
 
 你可以使用以下几种方式部署 Kubernetes，接下来的小节会对各种方式进行详细介绍。
 
@@ -11,7 +11,7 @@
 * [Kind - Kubernetes IN Docker](14.4_kind.md)
 * [K3s - 轻量级 Kubernetes](14.5_k3s.md)
 * [一步步部署 Kubernetes 集群](14.6_systemd.md)
-* [部署 Dashboard](14.7_dashboard.md)
+* [可视化管理界面：Headlamp 与历史 Dashboard](14.7_dashboard.md)
 * [Kubernetes 命令行 kubectl](14.8_kubectl.md)
 
 除了上述方式，企业生产环境中还有两个常见的部署工具值得关注：

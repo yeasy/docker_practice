@@ -73,6 +73,8 @@ $ docker network create -d bridge --subnet 172.25.0.0/16 my-net
 $ docker run --network=my-net --ip=172.25.3.3 -itd --name=my-container busybox
 ```
 
+这个固定 IP 主要用于同一 Docker daemon 内的容器间通信。Docker Desktop 上不要依赖宿主机直接访问 Linux 容器 IP；宿主机访问容器服务仍应使用端口映射或 `host.docker.internal` 等机制。
+
 ### 如何临时退出一个正在交互的容器的终端，而不终止它？
 
 答：按 `Ctrl-p Ctrl-q`。如果按 `Ctrl-c` 往往会让容器内应用进程终止，进而会终止容器。

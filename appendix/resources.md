@@ -24,7 +24,7 @@
 * [Docker CLI 参考](https://docs.docker.com/engine/reference/commandline/docker/)
 * [Dockerfile 参考](https://docs.docker.com/reference/dockerfile/)
 * [Docker 构建最佳实践](https://docs.docker.com/build/building/best-practices/)
-* [Docker 远端应用 API](https://docs.docker.com/develop/sdk/)
+* [Docker 远端应用 API](https://docs.docker.com/reference/api/engine/sdk/)
 * [Docker 存储文档](https://docs.docker.com/engine/storage/)
 * [Docker 网络文档](https://docs.docker.com/engine/network/)
 

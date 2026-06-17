@@ -14,6 +14,7 @@ package-lock.json
 
 docker-compose.override.yml
 06_repository/demo/auth/nginx.htpasswd
+11_compose/demo/wordpress/secrets/
 
 # Editor configs
 .obsidian/

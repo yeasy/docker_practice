@@ -25,6 +25,7 @@ services:
     depends_on:
       - drone-server
     volumes:
+      # Trusted single-tenant demo only: Docker socket access is host-root equivalent.
       - /var/run/docker.sock:/var/run/docker.sock:rw
     environment:
       - DRONE_RPC_PROTO=http

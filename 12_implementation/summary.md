@@ -4,9 +4,9 @@
 
 | 技术 | 作用 | 要点 |
 |------|------|------|
-| **Namespace** | 资源隔离 | PID、NET、MNT、UTS、IPC、USER 六种命名空间 |
+| **Namespace** | 资源隔离 | 常见核心包括 PID、NET、MNT、UTS、IPC、USER、Cgroup；Time namespace 通常默认不启用 |
 | **Cgroups** | 资源限制 | 限制 CPU、内存、磁盘 I/O、进程数 |
-| **Union FS** | 分层存储 | overlay2 为推荐驱动，支持 Copy-on-Write |
+| **Union FS** | 分层存储 | 镜像分层与 Copy-on-Write 是核心；Engine 29 新装默认 containerd image store，overlay2 是经典 graph driver 场景的主要后备 |
 
 | Namespace | 隔离内容 | 一句话说明 |
 |-----------|---------|-----------|

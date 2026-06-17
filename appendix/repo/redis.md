@@ -13,7 +13,7 @@
 ```bash
 $ docker run --name some-redis -d -p 6379:6379 redis
 ```
-另外还可以启用[持久存储](https://redis.io/topics/persistence)。
+另外还可以启用[持久存储](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/)。
 
 ```bash
 $ docker run --name some-redis -d -p 6379:6379 redis redis-server --appendonly yes

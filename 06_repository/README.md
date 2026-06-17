@@ -10,7 +10,7 @@
 
 本章涉及的 Registry 和相关工具版本说明：
 
-- **Docker Registry**：使用 `registry:2` 推荐版本，已停止维护的 `registry:1` 不建议使用
+- **Docker Registry / CNCF Distribution**：本章示例使用 `registry:2` 兼容路径；新生产部署应评估 Distribution 3.x，并核对配置路径、迁移说明和生态兼容性。已停止维护的 `registry:1` 不建议使用
 - **Nexus 3**：建议指定具体版本（如 `sonatype/nexus3:3.69`）而非 `latest`，避免自动升级带来的兼容性问题
 - **镜像标签规范**：
   - 生产环境推送至仓库时应明确指定版本号（如 `myapp:v1.0.0`）

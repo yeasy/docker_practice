@@ -116,8 +116,8 @@ Docker Compose
 **学习资源：**
 
 - 本书第 4-11 章：进阶篇
-- [Docker 官方最佳实践](https://docs.docker.com/develop/dev-best-practices/)
-- [Dockerfile 参考](https://docs.docker.com/engine/reference/builder/)
+- [Docker 官方最佳实践](https://docs.docker.com/build/building/best-practices/)
+- [Dockerfile 参考](https://docs.docker.com/reference/dockerfile/)
 
 **时间投入：**
 
@@ -477,7 +477,7 @@ Kubernetes 进阶 (Week 24-36)
 # 1. 学习本书第 1-11 章（基础到中级）
 # 2. 完成 20+ 个实战项目
 # 3. 参考官方学习指南
-# 参考 KodeKloud DCA 认证指南：https://kodekloud.com/blog/docker-certified-associate-guide/
+# 参考 Docker 官方学习入口：https://www.docker.com/resources/
 
 # 4. 模拟考试
 - Linux Academy DCA 练习题

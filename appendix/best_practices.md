@@ -1,6 +1,6 @@
 ## 附录四：Dockerfile 最佳实践
 
-本附录是笔者对 Docker 官方文档中 [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) 的理解与翻译。
+本附录是笔者对 Docker 官方文档中 [Building best practices](https://docs.docker.com/build/building/best-practices/) 的理解与翻译。
 
 ### 一般性的指南和建议
 
