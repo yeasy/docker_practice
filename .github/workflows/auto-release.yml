@@ -46,7 +46,12 @@ jobs:
 
       - name: Extract tag name
         id: tag
-        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/* ]]; then
+            echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
+          else
+            echo "TAG_NAME=latest" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Build PDF
         run: mdpress build --format pdf --output docker_practice-${{ steps.tag.outputs.TAG_NAME || 'latest' }}.pdf
