@@ -22,6 +22,7 @@ jobs:
         run: npm test
 
       - name: Install Chromium and CJK fonts
+        id: setupchrome
         uses: browser-actions/setup-chrome@v2
         with:
           chrome-version: stable
@@ -62,3 +63,34 @@ jobs:
         with:
           name: docker_practice-pdf
           path: "docker_practice-*.pdf"
+
+      - name: Build HTML reader
+        id: htmlreader
+        continue-on-error: true
+        env:
+          CHROME_BIN: ${{ steps.setupchrome.outputs.chrome-path }}
+        run: |
+          # recent pandoc (apt's is too old for --embed-resources); + mermaid-cli using system Chrome
+          curl -fsSL https://github.com/jgm/pandoc/releases/download/3.5/pandoc-3.5-1-amd64.deb -o /tmp/pandoc.deb
+          sudo dpkg -i /tmp/pandoc.deb && pandoc --version | head -1
+          PUPPETEER_SKIP_DOWNLOAD=true npm install -g @mermaid-js/mermaid-cli@10
+          TITLE=$(python3 -c "import json,os;print((json.load(open('book.json')).get('title') if os.path.exists('book.json') else '') or '${{ github.event.repository.name }}')")
+          TAG=$(echo "${{ steps.tag.outputs.TAG_NAME || 'latest' }}" | sed 's#.*/##')   # slash-free (handles non-tag dispatch)
+          python3 tools/render_mermaid.py --book-dir . --svg-out /tmp/mmsvg
+          python3 tools/build_html_reader.py --book-dir . --title "$TITLE" --svg-dir /tmp/mmsvg \
+            --out "${{ github.event.repository.name }}-${TAG}.html"
+          ls -lh ${{ github.event.repository.name }}-${TAG}.html
+
+      - name: Attach HTML to release
+        if: steps.htmlreader.outcome == 'success' && startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.TAG_NAME }}
+          files: "${{ github.event.repository.name }}-${{ steps.tag.outputs.TAG_NAME }}.html"
+
+      - name: Upload HTML as artifact
+        if: steps.htmlreader.outcome == 'success'
+        uses: actions/upload-artifact@v7
+        with:
+          name: html-edition
+          path: "${{ github.event.repository.name }}-*.html"
