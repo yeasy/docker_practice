@@ -9,12 +9,12 @@
     "vuepress-theme-hope": "^1.0.0"
   },
   "scripts": {
-    "test": "node scripts/check_metadata.js",
+    "test": "node scripts/check_metadata.js && python3 -m unittest tools.test_prepare_pdf_sources",
     "mdpress:help": "mdpress --help",
     "build": "rm -rf _site _site_site && mdpress build --format site --output _site && rm -rf _site && mv _site_site _site",
     "serve": "mdpress serve",
     "start": "mdpress serve",
-    "pdf": "mdpress build --format pdf",
+    "pdf": "rm -rf /tmp/docker_practice-pdf-src && python3 tools/prepare_pdf_sources.py --book-dir . --out /tmp/docker_practice-pdf-src && cd /tmp/docker_practice-pdf-src && mdpress build --format pdf --output \"${INIT_CWD:-$PWD}/docker_practice.pdf\"",
     "vuepress:build": "npx vuepress build",
     "vuepress": "npx vuepress"
   },

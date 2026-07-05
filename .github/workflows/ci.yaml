@@ -40,8 +40,11 @@ jobs:
           tar xzf "$archive"
           sudo mv mdpress /usr/local/bin/
           mdpress --version
+      - name: Prepare PDF sources
+        run: python3 tools/prepare_pdf_sources.py --book-dir . --out "$RUNNER_TEMP/docker_practice-pdf-src"
       - name: Build PDF
-        run: mdpress build --format pdf --output docker_practice.pdf
+        working-directory: ${{ runner.temp }}/docker_practice-pdf-src
+        run: mdpress build --format pdf --output "$GITHUB_WORKSPACE/docker_practice.pdf"
       - name: Build site
         run: npm run build
       - name: Upload PDF as artifact

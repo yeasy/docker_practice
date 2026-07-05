@@ -50,10 +50,14 @@ jobs:
           sudo mv /tmp/mdpress /usr/local/bin/
           mdpress --version
 
+      - name: Prepare PDF sources
+        run: python3 tools/prepare_pdf_sources.py --book-dir . --out "$RUNNER_TEMP/docker_practice-pdf-src"
+
       - name: Build latest preview PDF
+        working-directory: ${{ runner.temp }}/docker_practice-pdf-src
         run: |
-          mkdir -p dist
-          mdpress build --format pdf --output dist/docker_practice.pdf
+          mkdir -p "$GITHUB_WORKSPACE/dist"
+          mdpress build --format pdf --output "$GITHUB_WORKSPACE/dist/docker_practice.pdf"
 
       - name: Write release notes
         run: |

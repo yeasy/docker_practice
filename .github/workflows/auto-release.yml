@@ -57,8 +57,12 @@ jobs:
           echo "TAG_NAME=${tag_name}" >> "$GITHUB_OUTPUT"
           echo "SAFE_TAG_NAME=${safe_tag_name}" >> "$GITHUB_OUTPUT"
 
+      - name: Prepare PDF sources
+        run: python3 tools/prepare_pdf_sources.py --book-dir . --out "$RUNNER_TEMP/docker_practice-pdf-src"
+
       - name: Build PDF
-        run: mdpress build --format pdf --output docker_practice-${{ steps.tag.outputs.SAFE_TAG_NAME || 'latest' }}.pdf
+        working-directory: ${{ runner.temp }}/docker_practice-pdf-src
+        run: mdpress build --format pdf --output "${GITHUB_WORKSPACE}/docker_practice-${{ steps.tag.outputs.SAFE_TAG_NAME || 'latest' }}.pdf"
 
       - name: Create Release with PDF
         if: startsWith(github.ref, 'refs/tags/')
