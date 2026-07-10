@@ -29,6 +29,8 @@ Dockerfile 是一个文本文件，其内包含了一条条的 **指令 (Instruc
 
 Dockerfile 一般分为四部分：基础镜像信息、维护者信息、镜像操作指令和容器启动时执行指令。
 
+可运行 `docker buildx build --check` 校验的[完整 Dockerfile 示例](../examples/validated/dockerfile/Dockerfile)与配套 `index.html` 保存在仓库中。章节内的指令片段用于聚焦语法；需要完整构建上下文时，应使用这份示例。
+
 ### 指令详解
 
 本章将详细讲解 Dockerfile 中的各个指令：

@@ -6,46 +6,71 @@ on:
       - 'v*'
   workflow_dispatch:
 
-permissions:
-  contents: write
+permissions: {}
 
 jobs:
-  release:
+  build:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
 
-      - name: Check project rules
-        run: python3 check_project_rules.py
+      - name: Install locked Node dependencies
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: "true"
+        run: npm ci
 
-      - name: Check release metadata
-        run: npm test
+      - name: Check project rules and metadata
+        run: |
+          python3 check_project_rules.py
+          npm test
 
-      - name: Install Chromium and CJK fonts
+      - name: Install Chromium, CJK fonts, and PDF inspection tools
         id: setupchrome
-        uses: browser-actions/setup-chrome@v2
+        uses: browser-actions/setup-chrome@2e1d749697dd1612b833dba4a722266286fbefcd # v2.1.2
         with:
           chrome-version: stable
-      - name: Install CJK fonts
+
+      - name: Install CJK fonts and PDF inspection tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra
+          sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra poppler-utils
 
-      - name: Install mdpress 0.7.10
+      - name: Install mdPress 0.7.10
         env:
           MDPRESS_VERSION: "0.7.10"
           MDPRESS_SHA256: "17e53e455996940bbbce64c69c43b3fb543f1501e03b74cf0434074efebd2db4"
         run: |
-          archive="/tmp/mdpress_${MDPRESS_VERSION}_linux_amd64.tar.gz"
-          echo "Installing mdpress ${MDPRESS_VERSION}"
-          curl -fsSL "https://github.com/yeasy/mdPress/releases/download/v${MDPRESS_VERSION}/mdpress_${MDPRESS_VERSION}_linux_amd64.tar.gz" -o "$archive"
+          archive="$RUNNER_TEMP/mdpress_${MDPRESS_VERSION}_linux_amd64.tar.gz"
+          curl -fsSL --retry 3 \
+            "https://github.com/yeasy/mdPress/releases/download/v${MDPRESS_VERSION}/mdpress_${MDPRESS_VERSION}_linux_amd64.tar.gz" \
+            -o "$archive"
           echo "${MDPRESS_SHA256}  $archive" | sha256sum -c -
-          tar xzf "$archive" -C /tmp mdpress
-          sudo mv /tmp/mdpress /usr/local/bin/
-          mdpress --version
+          tar xzf "$archive" -C "$RUNNER_TEMP" mdpress
+          mkdir -p "$RUNNER_TEMP/bin"
+          install -m 0755 "$RUNNER_TEMP/mdpress" "$RUNNER_TEMP/bin/mdpress"
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
 
-      - name: Extract tag name
+      - name: Install Pandoc 3.5
+        env:
+          PANDOC_VERSION: "3.5"
+          PANDOC_SHA256: "4f41d817d262ef3d17953a3e6e0fefddb971aa4f2f121544a9a86db449d945e1"
+        run: |
+          package="$RUNNER_TEMP/pandoc-${PANDOC_VERSION}-1-amd64.deb"
+          curl -fsSL --retry 3 \
+            "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-1-amd64.deb" \
+            -o "$package"
+          echo "${PANDOC_SHA256}  $package" | sha256sum -c -
+          sudo dpkg -i "$package"
+          pandoc --version | head -1
+
+      - name: Extract safe tag name
         id: tag
+        shell: bash
         run: |
           if [[ "$GITHUB_REF" == refs/tags/* ]]; then
             tag_name="${GITHUB_REF#refs/tags/}"
@@ -61,49 +86,69 @@ jobs:
         run: python3 tools/prepare_pdf_sources.py --book-dir . --out "$RUNNER_TEMP/docker_practice-pdf-src"
 
       - name: Build PDF
+        env:
+          SAFE_TAG_NAME: ${{ steps.tag.outputs.SAFE_TAG_NAME }}
         working-directory: ${{ runner.temp }}/docker_practice-pdf-src
-        run: mdpress build --format pdf --output "${GITHUB_WORKSPACE}/docker_practice-${{ steps.tag.outputs.SAFE_TAG_NAME || 'latest' }}.pdf"
-
-      - name: Create Release with PDF
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: softprops/action-gh-release@v3
-        with:
-          generate_release_notes: true
-          files: docker_practice-${{ steps.tag.outputs.SAFE_TAG_NAME }}.pdf
-
-      - name: Upload PDF as artifact
-        uses: actions/upload-artifact@v7
-        with:
-          name: docker_practice-pdf
-          path: "docker_practice-*.pdf"
+        run: |
+          mkdir -p "$GITHUB_WORKSPACE/dist"
+          mdpress build --format pdf \
+            --output "$GITHUB_WORKSPACE/dist/docker_practice-${SAFE_TAG_NAME}.pdf"
 
       - name: Build HTML reader
-        id: htmlreader
-        continue-on-error: true
         env:
           CHROME_BIN: ${{ steps.setupchrome.outputs.chrome-path }}
+          SAFE_TAG_NAME: ${{ steps.tag.outputs.SAFE_TAG_NAME }}
         run: |
-          # recent pandoc (apt's is too old for --embed-resources); + mermaid-cli using system Chrome
-          curl -fsSL https://github.com/jgm/pandoc/releases/download/3.5/pandoc-3.5-1-amd64.deb -o /tmp/pandoc.deb
-          sudo dpkg -i /tmp/pandoc.deb && pandoc --version | head -1
-          PUPPETEER_SKIP_DOWNLOAD=true npm install -g @mermaid-js/mermaid-cli@10
-          TITLE=$(python3 -c "import json,os;print((json.load(open('book.json')).get('title') if os.path.exists('book.json') else '') or '${{ github.event.repository.name }}')")
-          TAG="${{ steps.tag.outputs.SAFE_TAG_NAME || 'latest' }}"
-          python3 tools/render_mermaid.py --book-dir . --svg-out /tmp/mmsvg
-          python3 tools/build_html_reader.py --book-dir . --title "$TITLE" --svg-dir /tmp/mmsvg \
-            --out "${{ github.event.repository.name }}-${TAG}.html"
-          ls -lh ${{ github.event.repository.name }}-${TAG}.html
+          title=$(python3 -c 'import json; print(json.load(open("book.json", encoding="utf-8"))["title"])')
+          PATH="$GITHUB_WORKSPACE/node_modules/.bin:$PATH" \
+            python3 tools/render_mermaid.py --book-dir . --svg-out "$RUNNER_TEMP/mmsvg"
+          python3 tools/build_html_reader.py \
+            --book-dir . \
+            --title "$title" \
+            --svg-dir "$RUNNER_TEMP/mmsvg" \
+            --out "dist/docker_practice-${SAFE_TAG_NAME}.html"
 
-      - name: Attach HTML to release
-        if: steps.htmlreader.outcome == 'success' && startsWith(github.ref, 'refs/tags/')
-        uses: softprops/action-gh-release@v3
-        with:
-          tag_name: ${{ steps.tag.outputs.TAG_NAME }}
-          files: "${{ github.event.repository.name }}-${{ steps.tag.outputs.SAFE_TAG_NAME }}.html"
+      - name: Verify release artifacts
+        env:
+          SAFE_TAG_NAME: ${{ steps.tag.outputs.SAFE_TAG_NAME }}
+        run: |
+          title=$(python3 -c 'import json; print(json.load(open("book.json", encoding="utf-8"))["title"])')
+          python3 tools/verify_artifacts.py \
+            --title "$title" \
+            --pdf "dist/docker_practice-${SAFE_TAG_NAME}.pdf" \
+            --html "dist/docker_practice-${SAFE_TAG_NAME}.html" \
+            --checksums dist/SHA256SUMS
+          (cd dist && sha256sum -c SHA256SUMS)
 
-      - name: Upload HTML as artifact
-        if: steps.htmlreader.outcome == 'success'
-        uses: actions/upload-artifact@v7
+      - name: Upload verified release bundle
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: html-edition
-          path: "${{ github.event.repository.name }}-*.html"
+          name: docker-practice-release-bundle
+          path: dist/
+          if-no-files-found: error
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/')
+    permissions:
+      contents: write
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download verified release bundle
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: docker-practice-release-bundle
+          path: dist
+
+      - name: Recheck artifact checksums
+        run: (cd dist && sha256sum -c SHA256SUMS)
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@718ea10b132b3b2eba29c1007bb80653f286566b # v3.0.1
+        with:
+          generate_release_notes: true
+          fail_on_unmatched_files: true
+          files: |
+            dist/docker_practice-*.pdf
+            dist/docker_practice-*.html
+            dist/SHA256SUMS

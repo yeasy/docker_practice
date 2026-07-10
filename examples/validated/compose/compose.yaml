@@ -1,0 +1,8 @@
+name: docker-practice
+
+services:
+  web:
+    image: nginx:1.28-alpine
+    ports:
+      - "8080:80"
+    restart: unless-stopped

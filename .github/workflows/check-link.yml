@@ -3,63 +3,69 @@ name: Check link
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   check-link:
-    name: check-link
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      # search Issues :-(
-      - run: |
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+
+      - name: Check Markdown links
+        run: |
           docker run -i --rm \
-          -v $PWD:/mnt:ro \
-          dkhamsing/awesome_bot \
-          --white-list "localhost","0.0.0.0",\
-          "server","example.com","docker",\
-          "docker.domain.com","YourIP","register",\
-          "172.16.238.100","172.16.238.101","172.16.238.102",\
-          "192.168.199.100",\
-          "github.com/settings",\
-          "github.com/docker/compose/releases/download",\
-          "github.com/etcd-io/etcd/releases/download",\
-          "github.com/tianon/gosu/releases/download",\
-          "github.com/yeasy/docker_practice",\
-          "github.com/AliyunContainerService/k8s-for-docker-desktop/raw",\
-          "dl-cdn.alpinelinux.org/alpine/edge/testing",\
-          "www.w3.org/1999/xhtml",\
-          "cr.console.aliyun.com",\
-          "cloud.tencent.com",\
-          "nodejs.org/dist/",\
-          "c.163.com/hub",\
-          "drone.yeasy.com",\
-          "docs.docker.com",\
-          "dockerhub.azk8s.cn",\
-          "reg-mirror.qiniu.com",\
-          "registry.docker-cn.com",\
-          "mirror.ccs.tencentyun.com",\
-          "vuepress.mirror.docker-practice.com",\
-          "mc.qcloudimg.com/static/img",\
-          "www.daocloud.io/mirror",\
-          "download.docker.com",\
-          "www.ubuntu.com",\
-          "archive.ubuntu.com",\
-          "security.ubuntu.com/ubuntu",\
-          "nginx.com",\
-          "img.shields.io/github/release/yeasy/docker_practice",\
-          "launchpad.net",\
-          "www.w3.org/1999",\
-          "chat.freenode.net",\
-          "en.wikipedia.org/wiki/UnionFS",\
-          "product.china-pub.com",\
-          "union-click.jd.com",\
-          "x.x.x.x/base",\
-          "x.x.x.x:9090",\
-          "yeasy.gitbooks.io",\
-          "download.fastgit.org",\
-          "www.aliyun.com" \
-          --allow-dupe \
-          --skip-save-results \
-          -t 10 \
-          `find . \( -path "./mesos" -o -path "./swarm_mode" \) -prune -o -name "*.md" -exec ls {} \;`
-        name: check-link
+            -v "$GITHUB_WORKSPACE:/mnt:ro" \
+            -w /mnt \
+            dkhamsing/awesome_bot@sha256:a8adaeb3b3bd5745304743e4d8a6d512127646e420544a6d22d9f58a07f35884 \
+            --white-list "localhost","0.0.0.0",\
+            "server","example.com","docker",\
+            "docker.domain.com","YourIP","register",\
+            "172.16.238.100","172.16.238.101","172.16.238.102",\
+            "192.168.199.100",\
+            "github.com/settings",\
+            "github.com/docker/compose/releases/download",\
+            "github.com/etcd-io/etcd/releases/download",\
+            "github.com/tianon/gosu/releases/download",\
+            "github.com/yeasy/docker_practice",\
+            "github.com/AliyunContainerService/k8s-for-docker-desktop/raw",\
+            "dl-cdn.alpinelinux.org/alpine/edge/testing",\
+            "www.w3.org/1999/xhtml",\
+            "cr.console.aliyun.com",\
+            "cloud.tencent.com",\
+            "nodejs.org/dist/",\
+            "c.163.com/hub",\
+            "drone.yeasy.com",\
+            "docs.docker.com",\
+            "dockerhub.azk8s.cn",\
+            "reg-mirror.qiniu.com",\
+            "registry.docker-cn.com",\
+            "mirror.ccs.tencentyun.com",\
+            "vuepress.mirror.docker-practice.com",\
+            "mc.qcloudimg.com/static/img",\
+            "www.daocloud.io/mirror",\
+            "download.docker.com",\
+            "www.ubuntu.com",\
+            "archive.ubuntu.com",\
+            "security.ubuntu.com/ubuntu",\
+            "nginx.com",\
+            "img.shields.io/github/release/yeasy/docker_practice",\
+            "launchpad.net",\
+            "www.w3.org/1999",\
+            "chat.freenode.net",\
+            "en.wikipedia.org/wiki/UnionFS",\
+            "product.china-pub.com",\
+            "union-click.jd.com",\
+            "x.x.x.x/base",\
+            "x.x.x.x:9090",\
+            "yeasy.gitbooks.io",\
+            "download.fastgit.org",\
+            "www.aliyun.com" \
+            --allow-dupe \
+            --skip-save-results \
+            -t 10 \
+            $(find . \( -path "./mesos" -o -path "./swarm_mode" \) -prune -o -name "*.md" -print)
         timeout-minutes: 25

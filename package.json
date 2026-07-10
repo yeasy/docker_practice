@@ -4,12 +4,13 @@
   "description": "docker_practice",
   "private": true,
   "devDependencies": {
+    "@mermaid-js/mermaid-cli": "10.9.1",
     "vuepress": "1.9.10",
     "vuepress-plugin-container": "^2.1.5",
     "vuepress-theme-hope": "^1.0.0"
   },
   "scripts": {
-    "test": "node scripts/check_metadata.js && python3 -m unittest tools.test_prepare_pdf_sources",
+    "test": "node scripts/check_metadata.js && python3 -m unittest tools.test_prepare_pdf_sources && python3 -m unittest discover -s tests -p 'test_*.py' && python3 tools/test_examples.py",
     "mdpress:help": "mdpress --help",
     "build": "rm -rf _site _site_site && mdpress build --format site --output _site && rm -rf _site && mv _site_site _site",
     "serve": "mdpress serve",
