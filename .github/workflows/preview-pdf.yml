@@ -112,23 +112,35 @@ jobs:
           This is a mutable preview without formal provenance. Use a tagged release for attested artifacts.
           EOF
 
-      - name: Create preview release when absent
+      - name: Synchronize mutable preview tag
         run: |
-          gh release view preview-pdf >/dev/null 2>&1 || \
+          if gh api --silent "repos/${GITHUB_REPOSITORY}/git/ref/tags/preview-pdf" 2>/dev/null; then
+            gh api --silent --method PATCH \
+              "repos/${GITHUB_REPOSITORY}/git/refs/tags/preview-pdf" \
+              --raw-field sha="$GITHUB_SHA" \
+              --field force=true
+          else
+            gh api --silent --method POST \
+              "repos/${GITHUB_REPOSITORY}/git/refs" \
+              --raw-field ref="refs/tags/preview-pdf" \
+              --raw-field sha="$GITHUB_SHA"
+          fi
+
+      - name: Create or update preview release
+        run: |
+          if gh release view preview-pdf >/dev/null 2>&1; then
+            gh release edit preview-pdf \
+              --title "Latest Preview PDF" \
+              --notes-file dist/release-notes.md \
+              --prerelease
+          else
             gh release create preview-pdf \
               --title "Latest Preview PDF" \
               --notes-file dist/release-notes.md \
               --prerelease \
               --latest=false \
-              --target "$GITHUB_SHA"
-
-      - name: Update preview release metadata
-        run: |
-          gh release edit preview-pdf \
-            --title "Latest Preview PDF" \
-            --notes-file dist/release-notes.md \
-            --prerelease \
-            --target "$GITHUB_SHA"
+              --verify-tag
+          fi
 
       - name: Replace preview assets
         run: |

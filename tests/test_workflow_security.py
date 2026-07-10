@@ -62,6 +62,28 @@ class WorkflowSecurityTests(unittest.TestCase):
                     name,
                 )
 
+    def test_mutable_preview_explicitly_moves_tag_before_updating_release(self):
+        preview = (WORKFLOW_DIR / "preview-pdf.yml").read_text(encoding="utf-8")
+        publish = preview.split("\n  publish:\n", 1)[1]
+
+        get_ref = 'gh api --silent "repos/${GITHUB_REPOSITORY}/git/ref/tags/preview-pdf"'
+        update_ref = '"repos/${GITHUB_REPOSITORY}/git/refs/tags/preview-pdf"'
+        create_ref = '"repos/${GITHUB_REPOSITORY}/git/refs"'
+        self.assertIn(get_ref, publish)
+        self.assertIn("--method PATCH", publish)
+        self.assertIn(update_ref, publish)
+        self.assertIn('--raw-field sha="$GITHUB_SHA"', publish)
+        self.assertIn("--field force=true", publish)
+        self.assertIn("--method POST", publish)
+        self.assertIn(create_ref, publish)
+        self.assertIn('--raw-field ref="refs/tags/preview-pdf"', publish)
+        self.assertIn("--verify-tag", publish)
+        self.assertLess(publish.index(get_ref), publish.index("gh release view preview-pdf"))
+        self.assertNotRegex(
+            publish,
+            r"(?ms)gh release edit preview-pdf.*?--target\s+\"?\$GITHUB_SHA",
+        )
+
     def test_downloads_dependencies_and_link_checker_are_integrity_pinned(self):
         combined = "\n".join(path.read_text(encoding="utf-8") for path in self.workflows())
         link_text = (WORKFLOW_DIR / "check-link.yml").read_text(encoding="utf-8")
