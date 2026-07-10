@@ -11,6 +11,60 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW_DIR = ROOT / ".github" / "workflows"
 FULL_ACTION_SHA = re.compile(r"^[^@\s]+@[0-9a-f]{40}$")
+TEST_REPOSITORY = "owner/repo"
+TEST_SHA = "a" * 40
+GET_REF_COMMAND = [
+    "api",
+    "--include",
+    "--method",
+    "GET",
+    f"repos/{TEST_REPOSITORY}/git/ref/tags/preview-pdf",
+]
+PATCH_REF_COMMAND = [
+    "api",
+    "--silent",
+    "--method",
+    "PATCH",
+    f"repos/{TEST_REPOSITORY}/git/refs/tags/preview-pdf",
+    "--raw-field",
+    f"sha={TEST_SHA}",
+    "--field",
+    "force=true",
+]
+POST_REF_COMMAND = [
+    "api",
+    "--silent",
+    "--method",
+    "POST",
+    f"repos/{TEST_REPOSITORY}/git/refs",
+    "--raw-field",
+    "ref=refs/tags/preview-pdf",
+    "--raw-field",
+    f"sha={TEST_SHA}",
+]
+EDIT_RELEASE_COMMAND = [
+    "release",
+    "edit",
+    "preview-pdf",
+    "--title",
+    "Latest Preview PDF",
+    "--notes-file",
+    "dist/release-notes.md",
+    "--prerelease",
+]
+VIEW_RELEASE_COMMAND = ["release", "view", "preview-pdf"]
+CREATE_RELEASE_COMMAND = [
+    "release",
+    "create",
+    "preview-pdf",
+    "--title",
+    "Latest Preview PDF",
+    "--notes-file",
+    "dist/release-notes.md",
+    "--prerelease",
+    "--latest=false",
+    "--verify-tag",
+]
 
 FAKE_GH = r'''#!/usr/bin/env python3
 import json
@@ -22,6 +76,8 @@ with open(os.environ["GH_LOG"], "a", encoding="utf-8") as stream:
     stream.write(json.dumps(args) + "\n")
 
 scenario = os.environ["GH_SCENARIO"]
+repository = "owner/repo"
+sha = "a" * 40
 reasons = {
     "401": "Unauthorized",
     "403": "Forbidden",
@@ -35,20 +91,46 @@ def fail_http(code):
     print(f"fake gh HTTP {code}", file=sys.stderr)
     raise SystemExit(1)
 
-if args and args[0] == "api":
-    endpoint = next((arg for arg in args if arg.startswith("repos/")), "")
-    if "/git/ref/tags/preview-pdf" in endpoint:
-        if scenario.startswith("ref_network"):
-            print("fake gh network failure", file=sys.stderr)
-            raise SystemExit(1)
-        for code in reasons:
-            if scenario.startswith(f"ref_{code}"):
-                fail_http(code)
-        print("HTTP/2.0 200 OK")
-        print('Content-Type: application/json\n\n{"ref":"refs/tags/preview-pdf"}')
+get_ref = ["api", "--include", "--method", "GET", f"repos/{repository}/git/ref/tags/preview-pdf"]
+patch_ref = [
+    "api", "--silent", "--method", "PATCH",
+    f"repos/{repository}/git/refs/tags/preview-pdf",
+    "--raw-field", f"sha={sha}", "--field", "force=true",
+]
+post_ref = [
+    "api", "--silent", "--method", "POST", f"repos/{repository}/git/refs",
+    "--raw-field", "ref=refs/tags/preview-pdf", "--raw-field", f"sha={sha}",
+]
+edit_release = [
+    "release", "edit", "preview-pdf", "--title", "Latest Preview PDF",
+    "--notes-file", "dist/release-notes.md", "--prerelease",
+]
+create_release = [
+    "release", "create", "preview-pdf", "--title", "Latest Preview PDF",
+    "--notes-file", "dist/release-notes.md", "--prerelease",
+    "--latest=false", "--verify-tag",
+]
+view_release = ["release", "view", "preview-pdf"]
+
+if os.environ.get("GH_REPO") != repository:
+    print("fake gh requires explicit GH_REPO", file=sys.stderr)
+    raise SystemExit(2)
+
+if args == get_ref:
+    if scenario.startswith("ref_network"):
+        print("fake gh network failure", file=sys.stderr)
+        raise SystemExit(1)
+    for code in reasons:
+        if scenario.startswith(f"ref_{code}"):
+            fail_http(code)
+    print("HTTP/2.0 200 OK")
+    print('Content-Type: application/json\n\n{"ref":"refs/tags/preview-pdf"}')
     raise SystemExit(0)
 
-if args[:3] == ["release", "view", "preview-pdf"]:
+if args in (patch_ref, post_ref, edit_release, create_release):
+    raise SystemExit(0)
+
+if args == view_release:
     if "release_missing" in scenario:
         print("release not found", file=sys.stderr)
         raise SystemExit(1)
@@ -61,7 +143,8 @@ if args[:3] == ["release", "view", "preview-pdf"]:
             raise SystemExit(1)
     raise SystemExit(0)
 
-raise SystemExit(0)
+print(f"unexpected gh argv: {args!r}", file=sys.stderr)
+raise SystemExit(2)
 '''
 
 
@@ -129,7 +212,13 @@ class WorkflowSecurityTests(unittest.TestCase):
                     name,
                 )
 
-    def run_preview_scripts(self, scenario):
+    def run_preview_scripts(
+        self,
+        scenario,
+        *,
+        repository=TEST_REPOSITORY,
+        sha=TEST_SHA,
+    ):
         preview = (WORKFLOW_DIR / "preview-pdf.yml").read_text(encoding="utf-8")
         scripts = (
             workflow_step_script(preview, "Synchronize mutable preview tag"),
@@ -148,9 +237,9 @@ class WorkflowSecurityTests(unittest.TestCase):
                     "GH_LOG": str(log),
                     "GH_SCENARIO": scenario,
                     "GH_TOKEN": "test-token",
-                    "GH_REPO": "owner/repo",
-                    "GITHUB_REPOSITORY": "owner/repo",
-                    "GITHUB_SHA": "a" * 40,
+                    "GH_REPO": repository,
+                    "GITHUB_REPOSITORY": repository,
+                    "GITHUB_SHA": sha,
                 }
             )
             result = None
@@ -164,38 +253,56 @@ class WorkflowSecurityTests(unittest.TestCase):
                 )
                 if result.returncode != 0:
                     break
-            commands = [
-                json.loads(line)
-                for line in log.read_text(encoding="utf-8").splitlines()
-            ]
+            commands = []
+            if log.exists():
+                commands = [
+                    json.loads(line)
+                    for line in log.read_text(encoding="utf-8").splitlines()
+                ]
             return result, commands
 
     def test_mutable_preview_updates_existing_tag_and_release(self):
         result, commands = self.run_preview_scripts("ref_200_release_exists")
 
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-        self.assertTrue(any("PATCH" in command for command in commands), commands)
-        self.assertFalse(any("POST" in command for command in commands), commands)
-        self.assertIn(["release", "edit", "preview-pdf", "--title", "Latest Preview PDF", "--notes-file", "dist/release-notes.md", "--prerelease"], commands)
+        self.assertEqual(
+            commands,
+            [GET_REF_COMMAND, PATCH_REF_COMMAND, VIEW_RELEASE_COMMAND, EDIT_RELEASE_COMMAND],
+        )
 
     def test_mutable_preview_creates_only_on_explicit_not_found(self):
         result, commands = self.run_preview_scripts("ref_404_release_missing")
 
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-        self.assertTrue(any("POST" in command for command in commands), commands)
-        self.assertFalse(any("PATCH" in command for command in commands), commands)
-        self.assertTrue(
-            any(command[:3] == ["release", "create", "preview-pdf"] for command in commands),
+        self.assertEqual(
             commands,
+            [GET_REF_COMMAND, POST_REF_COMMAND, VIEW_RELEASE_COMMAND, CREATE_RELEASE_COMMAND],
         )
+        flattened = [argument for command in commands for argument in command]
+        self.assertNotIn("--target", flattened)
+
+    def test_preview_rejects_invalid_repository_and_sha_before_calling_gh(self):
+        cases = (
+            {"repository": "owner/repo/extra", "sha": TEST_SHA, "message": "Invalid GITHUB_REPOSITORY"},
+            {"repository": TEST_REPOSITORY, "sha": "a" * 39, "message": "Invalid GITHUB_SHA"},
+        )
+        for case in cases:
+            with self.subTest(case=case):
+                result, commands = self.run_preview_scripts(
+                    "ref_200_release_exists",
+                    repository=case["repository"],
+                    sha=case["sha"],
+                )
+                self.assertNotEqual(result.returncode, 0)
+                self.assertEqual(commands, [])
+                self.assertIn(case["message"], result.stderr)
 
     def test_preview_tag_lookup_fails_closed_on_non_404_errors(self):
         for scenario in ("ref_401", "ref_403", "ref_429", "ref_503", "ref_network"):
             with self.subTest(scenario=scenario):
                 result, commands = self.run_preview_scripts(scenario)
                 self.assertNotEqual(result.returncode, 0)
-                self.assertEqual(len(commands), 1, commands)
-                self.assertEqual(commands[0][0], "api")
+                self.assertEqual(commands, [GET_REF_COMMAND])
                 expected = "network failure" if scenario.endswith("network") else scenario.removeprefix("ref_")
                 self.assertIn(expected, result.stderr)
 
@@ -212,14 +319,9 @@ class WorkflowSecurityTests(unittest.TestCase):
             with self.subTest(scenario=scenario):
                 result, commands = self.run_preview_scripts(scenario)
                 self.assertNotEqual(result.returncode, 0)
-                self.assertTrue(any("PATCH" in command for command in commands), commands)
-                self.assertTrue(
-                    any(command[:3] == ["release", "view", "preview-pdf"] for command in commands),
+                self.assertEqual(
                     commands,
-                )
-                self.assertFalse(
-                    any(command[:2] in (["release", "create"], ["release", "edit"]) for command in commands),
-                    commands,
+                    [GET_REF_COMMAND, PATCH_REF_COMMAND, VIEW_RELEASE_COMMAND],
                 )
                 expected = "network failure" if scenario.endswith("network") else scenario.rsplit("release_", 1)[1]
                 self.assertIn(expected, result.stderr)
