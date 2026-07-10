@@ -8,6 +8,8 @@ and HTML image paths in a temporary copy so PDF builds can embed local assets
 without changing source Markdown used by GitHub or HTML readers.
 """
 
+from __future__ import annotations
+
 import argparse
 import base64
 import mimetypes
