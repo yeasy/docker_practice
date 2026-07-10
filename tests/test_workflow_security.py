@@ -159,6 +159,14 @@ def workflow_step_script(workflow_text, step_name):
     return textwrap.dedent(workflow_text[script_start:script_end])
 
 
+def workflow_step_scripts_in_document_order(workflow_text, step_names):
+    ordered_names = sorted(
+        step_names,
+        key=lambda name: workflow_text.index(f"      - name: {name}\n"),
+    )
+    return tuple(workflow_step_script(workflow_text, name) for name in ordered_names)
+
+
 class WorkflowSecurityTests(unittest.TestCase):
     @staticmethod
     def workflows():
@@ -212,6 +220,15 @@ class WorkflowSecurityTests(unittest.TestCase):
                     name,
                 )
 
+    def test_preview_publish_steps_follow_tag_release_asset_order(self):
+        preview = (WORKFLOW_DIR / "preview-pdf.yml").read_text(encoding="utf-8")
+        synchronize = preview.index("      - name: Synchronize mutable preview tag\n")
+        release = preview.index("      - name: Create or update preview release\n")
+        upload = preview.index("      - name: Replace preview assets\n")
+
+        self.assertLess(synchronize, release)
+        self.assertLess(release, upload)
+
     def run_preview_scripts(
         self,
         scenario,
@@ -220,9 +237,12 @@ class WorkflowSecurityTests(unittest.TestCase):
         sha=TEST_SHA,
     ):
         preview = (WORKFLOW_DIR / "preview-pdf.yml").read_text(encoding="utf-8")
-        scripts = (
-            workflow_step_script(preview, "Synchronize mutable preview tag"),
-            workflow_step_script(preview, "Create or update preview release"),
+        scripts = workflow_step_scripts_in_document_order(
+            preview,
+            (
+                "Synchronize mutable preview tag",
+                "Create or update preview release",
+            ),
         )
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
