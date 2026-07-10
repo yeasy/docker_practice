@@ -1,3 +1,3 @@
-FROM nginx:1.28-alpine
+FROM scratch
 
-COPY --chown=nginx:nginx index.html /usr/share/nginx/html/index.html
+COPY index.html /index.html

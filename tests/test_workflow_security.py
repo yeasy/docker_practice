@@ -96,6 +96,29 @@ class WorkflowSecurityTests(unittest.TestCase):
         auto_release = (WORKFLOW_DIR / "auto-release.yml").read_text(encoding="utf-8")
         self.assertNotIn("continue-on-error: true", auto_release)
 
+    def test_tagged_release_attests_every_formal_artifact_with_minimum_permissions(self):
+        release = (WORKFLOW_DIR / "auto-release.yml").read_text(encoding="utf-8")
+        preview = (WORKFLOW_DIR / "preview-pdf.yml").read_text(encoding="utf-8")
+        build_part, release_job = release.split("\n  release:\n", 1)
+
+        self.assertIn("contents: write", release_job)
+        self.assertIn("id-token: write", release_job)
+        self.assertIn("attestations: write", release_job)
+        self.assertIn(
+            "actions/attest-build-provenance@0f67c3f4856b2e3261c31976d6725780e5e4c373 # v4.1.1",
+            release_job,
+        )
+        self.assertIn("subject-path: |", release_job)
+        self.assertIn("dist/docker_practice-*.pdf", release_job)
+        self.assertIn("dist/docker_practice-*.html", release_job)
+        self.assertIn("dist/SHA256SUMS", release_job)
+        self.assertNotIn("attest-build-provenance", build_part)
+        self.assertNotIn("attestations: write", build_part)
+        self.assertNotIn("id-token: write", build_part)
+        self.assertNotIn("attest-build-provenance", preview)
+        self.assertIn("mutable preview", preview.lower())
+        self.assertIn("tagged release", preview.lower())
+
 
 if __name__ == "__main__":
     unittest.main()

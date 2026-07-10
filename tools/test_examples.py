@@ -11,6 +11,13 @@ from typing import List, Optional
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURE_ROOT = ROOT / "examples" / "validated"
+KUBERNETES_SCHEMA_ROOT = (
+    FIXTURE_ROOT / "kubernetes" / "schemas" / "v1.31.0-standalone-strict"
+)
+KUBERNETES_SCHEMA_LOCATION = (
+    f"file://{KUBERNETES_SCHEMA_ROOT.as_posix()}/"
+    "{{ .ResourceKind }}{{ .KindSuffix }}.json"
+)
 
 
 @dataclass(frozen=True)
@@ -56,6 +63,8 @@ CHECKS = (
             "kubeconform",
             "-strict",
             "-summary",
+            "-schema-location",
+            KUBERNETES_SCHEMA_LOCATION,
             "-kubernetes-version",
             "1.31.0",
             str(FIXTURE_ROOT / "kubernetes" / "web.yaml"),

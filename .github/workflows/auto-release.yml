@@ -131,6 +131,8 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/')
     permissions:
       contents: write
+      id-token: write
+      attestations: write
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -142,6 +144,14 @@ jobs:
 
       - name: Recheck artifact checksums
         run: (cd dist && sha256sum -c SHA256SUMS)
+
+      - name: Attest tagged release artifacts
+        uses: actions/attest-build-provenance@0f67c3f4856b2e3261c31976d6725780e5e4c373 # v4.1.1
+        with:
+          subject-path: |
+            dist/docker_practice-*.pdf
+            dist/docker_practice-*.html
+            dist/SHA256SUMS
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@718ea10b132b3b2eba29c1007bb80653f286566b # v3.0.1

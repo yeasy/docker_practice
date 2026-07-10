@@ -26,6 +26,16 @@ class PagesWorkflowTests(unittest.TestCase):
         self.assertRegex(text, r"path:\s*_site\b")
         self.assertNotIn("jekyll", text.lower())
 
+    def test_verifies_built_site_title_before_upload(self):
+        text = self.workflow_text()
+        verify_at = text.find("tools/verify_artifacts.py")
+        upload_at = text.find("actions/upload-pages-artifact@")
+
+        self.assertGreaterEqual(verify_at, 0)
+        self.assertGreater(upload_at, verify_at)
+        self.assertIn('json.load(open("book.json", encoding="utf-8"))["title"]', text)
+        self.assertIn("--site _site", text)
+
     def test_build_and_deploy_jobs_have_minimum_permissions(self):
         text = self.workflow_text()
 

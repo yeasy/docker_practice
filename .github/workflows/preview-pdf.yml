@@ -108,6 +108,8 @@ jobs:
           - Branch: \`${GITHUB_REF_NAME}\`
           - Commit: https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}
           - Run: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
+
+          This is a mutable preview without formal provenance. Use a tagged release for attested artifacts.
           EOF
 
       - name: Create preview release when absent
