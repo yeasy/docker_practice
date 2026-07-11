@@ -114,7 +114,8 @@ class ExampleValidationTests(unittest.TestCase):
         self.assertIn("tools/test_examples.py --require-tools", text)
 
     def test_local_run_reports_skips_when_tools_are_unavailable(self):
-        result = self.run_runner(path="/usr/bin:/bin")
+        with tempfile.TemporaryDirectory() as tmp:
+            result = self.run_runner(path=tmp)
 
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assertEqual(result.stdout.count("SKIP"), 4, result.stdout)
@@ -124,7 +125,8 @@ class ExampleValidationTests(unittest.TestCase):
         self.assertIn("actionlint", result.stdout)
 
     def test_required_run_fails_when_tools_are_unavailable(self):
-        result = self.run_runner("--require-tools", path="/usr/bin:/bin")
+        with tempfile.TemporaryDirectory() as tmp:
+            result = self.run_runner("--require-tools", path=tmp)
 
         self.assertNotEqual(result.returncode, 0)
         self.assertEqual(result.stdout.count("UNAVAILABLE"), 4, result.stdout)

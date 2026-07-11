@@ -96,7 +96,6 @@ jobs:
 
       - name: Build HTML reader
         env:
-          CHROME_BIN: ${{ steps.setupchrome.outputs.chrome-path }}
           SAFE_TAG_NAME: ${{ steps.tag.outputs.SAFE_TAG_NAME }}
         run: |
           title=$(python3 -c 'import json; print(json.load(open("book.json", encoding="utf-8"))["title"])')
