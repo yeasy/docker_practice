@@ -4,7 +4,7 @@
   "description": "docker_practice",
   "private": true,
   "devDependencies": {
-    "@mermaid-js/mermaid-cli": "10.9.1",
+    "@mermaid-js/mermaid-cli": "11.16.0",
     "vuepress": "1.9.10",
     "vuepress-plugin-container": "^2.1.5",
     "vuepress-theme-hope": "^1.0.0"
