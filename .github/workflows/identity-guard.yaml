@@ -1,0 +1,120 @@
+name: Identity Guard
+
+# 拒绝把 AI 助手写成提交作者/提交者，或写进 Co-authored-by 尾注。
+# 本地 .git/hooks 不随仓库分发，云端会话推上来的提交不受其保护，
+# 因此这道检查必须放在服务端。
+
+on:
+  push:
+    tags-ignore: ['**']
+  pull_request:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  check-commit-identity:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Reject AI assistant identities and co-author trailers
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BEFORE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+
+          ZERO=0000000000000000000000000000000000000000
+          US=$'\037'   # 用不可能出现在姓名/邮箱里的 unit separator 作分隔符
+
+          # 确定扫描范围。三种情况：
+          #   1. pull_request：base..head，只看本 PR 新增的提交
+          #   2. push 且 before 指向一个真实存在的提交：before..head
+          #   3. 其余（新建分支 before 全 0、force-push 后 before 不可达、
+          #      workflow_dispatch）：退化为全量审计，扫描 HEAD 的完整历史
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            RANGE="${PR_BASE_SHA}..${PR_HEAD_SHA}"
+          elif [ "$EVENT_NAME" = "push" ] \
+               && [ -n "${BEFORE_SHA:-}" ] \
+               && [ "$BEFORE_SHA" != "$ZERO" ] \
+               && git cat-file -e "${BEFORE_SHA}^{commit}" 2>/dev/null; then
+            RANGE="${BEFORE_SHA}..${HEAD_SHA}"
+          else
+            RANGE="$HEAD_SHA"
+          fi
+          echo "Scanning range: ${RANGE}"
+
+          # 只有"确实没有 head 提交"（例如删除分支的 push）才允许放行；
+          # 其余任何解析不出范围的情况一律 fail closed，不能静默通过。
+          if [ -z "${HEAD_SHA:-}" ] || [ "$HEAD_SHA" = "$ZERO" ]; then
+            echo "No head commit (branch deletion?); nothing to check."
+            exit 0
+          fi
+          if ! COMMITS="$(git rev-list "$RANGE" 2>&1)"; then
+            echo "::error::cannot resolve commit range ${RANGE}: ${COMMITS}"
+            exit 1
+          fi
+          COUNT="$(printf '%s' "$COMMITS" | grep -c . || true)"
+          echo "Commits in range: ${COUNT}"
+          if [ "$COUNT" -eq 0 ]; then
+            echo "No commits to check."
+            exit 0
+          fi
+
+          # 身份判定刻意收窄，避免误伤：
+          #   - 邮箱在 AI 厂商域名下（含子域）
+          #   - 姓名恰好等于助手名，因此真人 "Claude Dubois" 不受影响
+          # 正文里出现 Claude/Anthropic 是完全合法的（本仓库群里有专讲 Claude
+          # 的书），所以只检查身份字段与 Co-authored-by 尾注，绝不扫描自由文本。
+          BAD_EMAIL='@([a-z0-9.-]+\.)?(anthropic|openai)\.com$'
+          BAD_NAME='^(claude([ ._-]?code)?|codex|chatgpt|copilot|anthropic|openai)(\[bot\])?$'
+          BAD_TRAILER='^[[:space:]]*co-authored-by:.*(claude|anthropic|codex|copilot|openai)'
+
+          failed=0
+
+          # 身份检查。命令替换先落地，set -e 才能捕获 git 失败；
+          # while 循环用 here-string 喂数据，避免管道子 shell 吞掉 failed 赋值。
+          IDENTS="$(git log --format="%H${US}%an${US}%ae${US}%cn${US}%ce" "$RANGE")"
+          while IFS="$US" read -r sha an ae cn ce; do
+            [ -n "$sha" ] || continue
+            for role in author committer; do
+              if [ "$role" = author ]; then name="$an"; mail="$ae"; else name="$cn"; mail="$ce"; fi
+              lname="$(printf '%s' "$name" | tr '[:upper:]' '[:lower:]')"
+              lmail="$(printf '%s' "$mail" | tr '[:upper:]' '[:lower:]')"
+              if printf '%s' "$lmail" | grep -qE "$BAD_EMAIL" \
+                 || printf '%s' "$lname" | grep -qE "$BAD_NAME"; then
+                echo "::error::${sha} ${role} identity is an AI assistant: ${name} <${mail}>"
+                failed=1
+              fi
+            done
+          done <<< "$IDENTS"
+
+          # Co-authored-by 尾注检查（行首锚定并要求冒号，避免匹配正文叙述）
+          while read -r sha; do
+            [ -n "$sha" ] || continue
+            body="$(git log -1 --format='%B' "$sha")"
+            if printf '%s' "$body" | grep -qiE "$BAD_TRAILER"; then
+              echo "::error::${sha} has a Co-authored-by trailer referencing an AI assistant"
+              printf '%s' "$body" | grep -iE "$BAD_TRAILER" | sed 's/^/    /'
+              failed=1
+            fi
+          done <<< "$COMMITS"
+
+          if [ "$failed" -ne 0 ]; then
+            echo ""
+            echo "AI assistant attribution found in the commits above."
+            echo "Rewrite them before pushing, e.g.:"
+            echo "  git rebase -i --exec 'git commit --amend --no-edit --reset-author' <base>"
+            exit 1
+          fi
+
+          echo "OK: no AI assistant identity or Co-authored-by trailer in ${COUNT} commit(s)."

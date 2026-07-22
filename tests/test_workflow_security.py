@@ -375,7 +375,7 @@ class WorkflowSecurityTests(unittest.TestCase):
             if line.strip() and not line.lstrip().startswith("#")
         }
         self.assertNotIn("package-lock.json", ignored)
-        self.assertTrue(all("npm ci" in path.read_text(encoding="utf-8") for path in self.workflows() if path.name != "check-link.yml" and path.name != "dependabot-automerge.yml"))
+        self.assertTrue(all("npm ci" in path.read_text(encoding="utf-8") for path in self.workflows() if path.name not in {"check-link.yml", "dependabot-automerge.yml", "identity-guard.yaml"}))
 
     def test_artifacts_are_smoke_tested_and_html_failures_are_not_silent(self):
         verifier = ROOT / "tools" / "verify_artifacts.py"
