@@ -92,7 +92,6 @@ docker run -it --rm -p 4000:80 ccr.ccs.tencentyun.com/dockerpracticesig/docker_p
 
 ## 社区交流
 
-- [GitHub Discussions](https://github.com/yeasy/docker_practice/discussions)（技术问答、交流）
 - [GitHub Issues](https://github.com/yeasy/docker_practice/issues/new/choose)（内容错误、建议）
 
 ## 推荐阅读

@@ -28,4 +28,4 @@ $ docker run --name centos -it centos:7 bash
 
 ### Dockerfile
 
-请到 [CentOS 官方镜像文档目录](https://github.com/docker-library/docs/tree/master/centos) 查看。
+请到 [CentOS 官方镜像文档目录](https://hub.docker.com/_/centos) 查看。
