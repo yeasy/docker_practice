@@ -6,7 +6,10 @@ name: Identity Guard
 
 on:
   push:
-    tags-ignore: ['**']
+    # 'branches: [**]' 覆盖所有分支且天然排除 tag。
+    # 注意不能写成只有 tags-ignore：GitHub 的规则是"只给了 tag 过滤器就只跑 tag"，
+    # 于是 tags-ignore: ['**'] 等于"只跑 tag，但忽略所有 tag" —— 工作流永不触发。
+    branches: ['**']
   pull_request:
   workflow_dispatch:
 
