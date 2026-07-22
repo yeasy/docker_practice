@@ -78,12 +78,19 @@ jobs:
           BAD_EMAIL='@([a-z0-9.-]+\.)?(anthropic|openai)\.com$'
           BAD_NAME='^(claude([ ._-]?code)?|codex|chatgpt|copilot|anthropic|openai)(\[bot\])?$'
           BAD_TRAILER='^[[:space:]]*co-authored-by:.*(claude|anthropic|codex|copilot|openai)'
+          # 粗筛：BAD_EMAIL 与 BAD_NAME 命中的行必然含下列词之一，
+          # 因此它是二者的超集，用来跳过绝大多数干净提交，不会漏判。
+          BAD_ANY='(claude|anthropic|codex|chatgpt|copilot|openai)'
 
           failed=0
 
           # 身份检查。命令替换先落地，set -e 才能捕获 git 失败；
           # while 循环用 here-string 喂数据，避免管道子 shell 吞掉 failed 赋值。
           IDENTS="$(git log --format="%H${US}%an${US}%ae${US}%cn${US}%ce" "$RANGE")"
+          # 用 here-string 而不是管道：set -o pipefail 下 grep -q 命中即退出会让
+          # 左侧进程收到 SIGPIPE，整条管道返回非 0，if 就会跳过检查——
+          # 而且只在输入大到写不进管道缓冲区时才发生，是典型的隐性漏判。
+          if grep -qiE "$BAD_ANY" <<< "$IDENTS"; then
           while IFS="$US" read -r sha an ae cn ce; do
             [ -n "$sha" ] || continue
             for role in author committer; do
@@ -97,17 +104,23 @@ jobs:
               fi
             done
           done <<< "$IDENTS"
+          fi
 
-          # Co-authored-by 尾注检查（行首锚定并要求冒号，避免匹配正文叙述）
-          while read -r sha; do
-            [ -n "$sha" ] || continue
-            body="$(git log -1 --format='%B' "$sha")"
-            if printf '%s' "$body" | grep -qiE "$BAD_TRAILER"; then
-              echo "::error::${sha} has a Co-authored-by trailer referencing an AI assistant"
-              printf '%s' "$body" | grep -iE "$BAD_TRAILER" | sed 's/^/    /'
-              failed=1
-            fi
-          done <<< "$COMMITS"
+          # Co-authored-by 尾注检查（行首锚定并要求冒号，避免匹配正文叙述）。
+          # 先用一次 git log 流式扫全部正文；只有确实命中时才逐个提交定位，
+          # 否则全量审计要为每个提交起一个 git 子进程（1500+ 提交约 50 秒）。
+          BODIES="$(git log --format='%B' "$RANGE")"
+          if grep -qiE "$BAD_TRAILER" <<< "$BODIES"; then
+            while read -r sha; do
+              [ -n "$sha" ] || continue
+              body="$(git log -1 --format='%B' "$sha")"
+              if printf '%s' "$body" | grep -qiE "$BAD_TRAILER"; then
+                echo "::error::${sha} has a Co-authored-by trailer referencing an AI assistant"
+                printf '%s' "$body" | grep -iE "$BAD_TRAILER" | sed 's/^/    /'
+                failed=1
+              fi
+            done <<< "$COMMITS"
+          fi
 
           if [ "$failed" -ne 0 ]; then
             echo ""
