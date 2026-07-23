@@ -81,7 +81,7 @@ jobs:
           # 的书），所以只检查身份字段与 Co-authored-by 尾注，绝不扫描自由文本。
           BAD_EMAIL='@([a-z0-9.-]+\.)?(anthropic|openai)\.com$'
           BAD_NAME='^(claude([ ._-]?code)?|codex|chatgpt|copilot|anthropic|openai)(\[bot\])?$'
-          BAD_TRAILER='^[[:space:]]*co-authored-by:.*(claude|anthropic|codex|copilot|openai)'
+          BAD_TRAILER='^[[:space:]]*co-authored-by:.*(claude|anthropic|codex|copilot|openai|chatgpt)'
           # 粗筛：BAD_EMAIL 与 BAD_NAME 命中的行必然含下列词之一，
           # 因此它是二者的超集，用来跳过绝大多数干净提交，不会漏判。
           BAD_ANY='(claude|anthropic|codex|chatgpt|copilot|openai)'
@@ -101,8 +101,8 @@ jobs:
               if [ "$role" = author ]; then name="$an"; mail="$ae"; else name="$cn"; mail="$ce"; fi
               lname="$(printf '%s' "$name" | tr '[:upper:]' '[:lower:]')"
               lmail="$(printf '%s' "$mail" | tr '[:upper:]' '[:lower:]')"
-              if printf '%s' "$lmail" | grep -qE "$BAD_EMAIL" \
-                 || printf '%s' "$lname" | grep -qE "$BAD_NAME"; then
+              if grep -qE "$BAD_EMAIL" <<<"$lmail" \
+                 || grep -qE "$BAD_NAME" <<<"$lname"; then
                 echo "::error::${sha} ${role} identity is an AI assistant: ${name} <${mail}>"
                 failed=1
               fi
@@ -118,7 +118,7 @@ jobs:
             while read -r sha; do
               [ -n "$sha" ] || continue
               body="$(git log -1 --format='%B' "$sha")"
-              if printf '%s' "$body" | grep -qiE "$BAD_TRAILER"; then
+              if grep -qiE "$BAD_TRAILER" <<<"$body"; then
                 echo "::error::${sha} has a Co-authored-by trailer referencing an AI assistant"
                 printf '%s' "$body" | grep -iE "$BAD_TRAILER" | sed 's/^/    /'
                 failed=1
