@@ -15,12 +15,7 @@ services:
 
   # docker run -it --rm -p 4000:80 dockerpracticesig/docker_practice
   mdpress-offline:
-    &mdpress-offline
     # this image build by GitHub Action
     image: dockerpracticesig/docker_practice:mdpress
     ports:
       - 4000:80
-
-  vuepress-offline:
-    << : *mdpress-offline
-    image: dockerpracticesig/docker_practice:vuepress

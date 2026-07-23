@@ -84,12 +84,6 @@ brew tap yeasy/tap && brew install mdpress
 mdpress serve
 ```
 
-或使用 Docker 镜像一条命令启动：
-
-```bash
-docker run -it --rm -p 4000:80 ccr.ccs.tencentyun.com/dockerpracticesig/docker_practice:vuepress
-```
-
 ## 社区交流
 
 - [GitHub Issues](https://github.com/yeasy/docker_practice/issues/new/choose)（内容错误、建议）

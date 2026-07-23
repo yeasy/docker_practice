@@ -21,7 +21,6 @@ SKIP_DIRS = {
     ".obsidian",
     ".playwright-cli",
     ".pytest_cache",
-    ".vuepress",
     "__pycache__",
     "_book",
     "dist",
