@@ -20,7 +20,7 @@ class PagesWorkflowTests(unittest.TestCase):
         text = self.workflow_text()
 
         self.assertIn("npm run build", text)
-        self.assertIn("MDPRESS_SHA256", text)
+        self.assertIn("checksums.txt", text)
         self.assertIn('install -m 0755 "$RUNNER_TEMP/mdpress" "$RUNNER_TEMP/bin/mdpress"', text)
         self.assertIn('echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"', text)
         self.assertRegex(text, r"path:\s*_site\b")
