@@ -10,6 +10,7 @@ jobs:
       pull-requests: write
       checks: read
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     if: github.actor == 'dependabot[bot]'
     steps:
       - name: Dependabot metadata
