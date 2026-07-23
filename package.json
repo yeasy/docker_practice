@@ -4,10 +4,7 @@
   "description": "docker_practice",
   "private": true,
   "devDependencies": {
-    "@mermaid-js/mermaid-cli": "11.16.0",
-    "vuepress": "1.9.10",
-    "vuepress-plugin-container": "^2.1.5",
-    "vuepress-theme-hope": "^1.0.0"
+    "@mermaid-js/mermaid-cli": "11.16.0"
   },
   "scripts": {
     "test": "node scripts/check_metadata.js && python3 -m unittest tools.test_prepare_pdf_sources && python3 -m unittest discover -s tests -p 'test_*.py' && python3 tools/test_examples.py",
@@ -15,9 +12,7 @@
     "build": "rm -rf _site _site_site && mdpress build --format site --output _site && rm -rf _site && mv _site_site _site",
     "serve": "mdpress serve",
     "start": "mdpress serve",
-    "pdf": "rm -rf /tmp/docker_practice-pdf-src && python3 tools/prepare_pdf_sources.py --book-dir . --out /tmp/docker_practice-pdf-src && cd /tmp/docker_practice-pdf-src && mdpress build --format pdf --output \"${INIT_CWD:-$PWD}/docker_practice.pdf\"",
-    "vuepress:build": "npx vuepress build",
-    "vuepress": "npx vuepress"
+    "pdf": "rm -rf /tmp/docker_practice-pdf-src && python3 tools/prepare_pdf_sources.py --book-dir . --out /tmp/docker_practice-pdf-src && cd /tmp/docker_practice-pdf-src && mdpress build --format pdf --output \"${INIT_CWD:-$PWD}/docker_practice.pdf\""
   },
   "repository": {
     "type": "git",
