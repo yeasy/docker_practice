@@ -5,7 +5,8 @@ Extracts ```mermaid blocks in SUMMARY.md order and renders them with mermaid-cli
 pointing puppeteer at a system Chrome (CHROME_BIN env or auto-detected). Chunked +
 retried because a single large mmdc pass can crash headless Chrome. Diagrams that
 still fail are simply left out — build_mobile_book.py shows their source as fallback.
-Writes d-1.svg .. d-N.svg into --svg-out. Exits 0 even if some/all fail (non-fatal).
+Writes d-1.svg .. d-N.svg into --svg-out. Exits 0 even if some/all fail, so local
+mobile-reader builds still work; pass --strict (CI does) to exit 1 instead.
 """
 import os, re, sys, glob, time, shutil, subprocess, argparse
 
@@ -13,6 +14,8 @@ ap = argparse.ArgumentParser()
 ap.add_argument("--book-dir", default=".")
 ap.add_argument("--svg-out", required=True)
 ap.add_argument("--chunk", type=int, default=25)
+ap.add_argument("--strict", action="store_true",
+                help="exit 1 if Chrome is missing or any diagram fails to render")
 a = ap.parse_args()
 BOOK, SVG = os.path.abspath(a.book_dir), os.path.abspath(a.svg_out)
 shutil.rmtree(SVG, ignore_errors=True); os.makedirs(SVG)
@@ -39,7 +42,10 @@ if N == 0:
 chrome = os.environ.get("CHROME_BIN") or next(
     (shutil.which(n) for n in ["google-chrome-stable","google-chrome","chromium-browser","chromium","chrome"] if shutil.which(n)), None)
 if not chrome:
-    print("WARNING: no Chrome found -> all diagrams will fall back to source"); sys.exit(0)
+    msg = "no Chrome found -> all diagrams would fall back to source"
+    if a.strict:
+        print(f"Mermaid rendering failed: {msg}", file=sys.stderr); sys.exit(1)
+    print(f"WARNING: {msg}"); sys.exit(0)
 print(f"using Chrome: {chrome}")
 pptr = os.path.join(SVG, "_pptr.json")
 open(pptr, "w").write('{"executablePath":"%s","args":["--no-sandbox","--disable-gpu","--disable-dev-shm-usage"]}' % chrome)
@@ -74,3 +80,7 @@ for att in range(4):
 for f in glob.glob(os.path.join(SVG, "*.json")) + glob.glob(os.path.join(SVG, "_chunk.md")):
     os.remove(f)
 print(f"RENDERED {done()}/{N} diagrams")
+if a.strict and done() < N:
+    missing = [i + 1 for i in range(N) if not os.path.isfile(os.path.join(SVG, f"d-{i+1}.svg"))]
+    print(f"Mermaid rendering failed for diagrams: {missing}", file=sys.stderr)
+    sys.exit(1)

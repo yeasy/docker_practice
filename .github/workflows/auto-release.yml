@@ -100,7 +100,7 @@ jobs:
         run: |
           title=$(python3 -c 'import json; print(json.load(open("book.json", encoding="utf-8"))["title"])')
           PATH="$GITHUB_WORKSPACE/node_modules/.bin:$PATH" \
-            python3 tools/render_mermaid.py --book-dir . --svg-out "$RUNNER_TEMP/mmsvg"
+            python3 tools/render_mermaid.py --book-dir . --svg-out "$RUNNER_TEMP/mmsvg" --strict
           python3 tools/build_html_reader.py \
             --book-dir . \
             --title "$title" \
