@@ -51,7 +51,7 @@ jobs:
 
       - name: Check project rules, metadata, and canonical examples
         run: |
-          python3 check_project_rules.py
+          python3 check_project_rules.py && python3 check_emphasis.py
           npm test
           python3 tools/test_examples.py --require-tools
 
