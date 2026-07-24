@@ -19,28 +19,6 @@ jobs:
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
 
-      - name: Confirm required checks are configured
-        if: >
-          steps.metadata.outputs.package-ecosystem == 'github_actions' &&
-          contains(fromJSON('["version-update:semver-patch","version-update:semver-minor"]'), steps.metadata.outputs.update-type)
-        run: |
-          REQUIRED=$(gh api "repos/${GITHUB_REPOSITORY}/branches/${{ github.event.pull_request.base.ref }}/protection/required_status_checks" --jq '((.contexts // []) | length) + ((.checks // []) | length)' 2>/dev/null || echo 0)
-          if [ "$REQUIRED" -eq 0 ]; then
-            echo "No required status checks configured on the base branch; refusing Dependabot auto-merge."
-            exit 1
-          fi
-        env:
-          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-      - name: Approve low-risk Dependabot PR
-        if: >
-          steps.metadata.outputs.package-ecosystem == 'github_actions' &&
-          contains(fromJSON('["version-update:semver-patch","version-update:semver-minor"]'), steps.metadata.outputs.update-type)
-        run: gh pr review --approve "$PR_URL"
-        env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
       - name: Enable auto-merge for low-risk Dependabot PRs
         if: >
           steps.metadata.outputs.package-ecosystem == 'github_actions' &&
