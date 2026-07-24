@@ -72,6 +72,10 @@ jobs:
       - name: Build latest preview PDF
         working-directory: ${{ runner.temp }}/docker_practice-pdf-src
         run: |
+          # mdPress PDF generation drives headless Chrome, which intermittently dies with
+          # "websocket url timeout reached" + dbus errors. Retry the build, not the whole job.
+          mdpress() { local a; for a in 1 2 3; do command mdpress "$@" && return 0;
+            echo "::warning::mdpress attempt $a failed; retrying in 10s"; sleep 10; done; return 1; }
           mkdir -p "$GITHUB_WORKSPACE/dist"
           mdpress build --format pdf --output "$GITHUB_WORKSPACE/dist/docker_practice.pdf"
 
