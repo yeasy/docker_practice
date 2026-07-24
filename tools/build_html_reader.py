@@ -218,7 +218,7 @@ def main():
     tpl = "/tmp/_book_template.html"; out_tmp = "/tmp/_book_out.html"
     with open(tmp_md, "w", encoding="utf-8") as f: f.write(combined)
     with open(tpl, "w", encoding="utf-8") as f: f.write(TEMPLATE)
-    cmd = ["pandoc", "_combined_tmp.md", "-f", "markdown", "-t", "html5",
+    cmd = ["pandoc", "_combined_tmp.md", "-f", "markdown+lists_without_preceding_blankline", "-t", "html5",
            "--standalone", "--embed-resources", "--mathml",
            "--template", tpl, "--metadata", f"title={a.title}", "-o", out_tmp]
     print("  running pandoc ...")
