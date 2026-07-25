@@ -39,7 +39,7 @@ SKIP_DIRS = {
     "output",
 }
 
-FENCE_RE = re.compile(r"^\s*(`{3,}|~{3,})(.*)$")
+FENCE_RE = re.compile(r"^[ \t]{0,3}(?:>[ \t]?)*(`{3,}|~{3,})(.*)$")
 PUNCT_CATEGORIES = {"Pc", "Pd", "Pe", "Pf", "Pi", "Po", "Ps"}
 ASCII_PUNCT = set("!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~")
 CJK_RE = re.compile(r"[㐀-鿿豈-﫿]")
