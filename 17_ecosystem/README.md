@@ -1,6 +1,6 @@
 # 第十七章 容器其它生态
 
-> **版本说明（核验日期：2026-05-16）**：本章介绍的工具和运行时（Podman、Buildah、Skopeo、containerd、Kata Containers、gVisor、WasmEdge 等）都保持活跃的开发。建议：
+> **版本说明**：本章介绍的工具和运行时（Podman、Buildah、Skopeo、containerd、Kata Containers、gVisor、WasmEdge 等）都保持活跃的开发。建议：
 > - 查阅各项目官方文档获取最新版本
 > - 在生产环境使用前验证版本兼容性
 > - 关注官方发布说明了解重大变更
