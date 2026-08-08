@@ -4,7 +4,7 @@
 
 | 技术 | 作用 | 要点 |
 |------|------|------|
-| **Namespace** | 资源隔离 | 常见核心包括 PID、NET、MNT、UTS、IPC、USER、Cgroup；Time namespace 通常默认不启用 |
+| **Namespace** | 资源隔离 | Docker 默认启用 PID、NET、MNT、UTS、IPC（cgroup v2 主机上还有 Cgroup）；USER 默认**不**启用，Time 未被使用 |
 | **Cgroups** | 资源限制 | 限制 CPU、内存、磁盘 I/O、进程数 |
 | **Union FS** | 分层存储 | 镜像分层与 Copy-on-Write 是核心；Engine 29 新装默认 containerd image store，overlay2 是经典 graph driver 场景的主要后备 |
 
@@ -15,7 +15,7 @@
 | MNT | 文件系统 | 容器有自己的根目录 |
 | UTS | 主机名 | 容器有自己的 hostname |
 | IPC | 进程间通信 | 容器间 IPC 隔离 |
-| USER | 用户 ID | 容器 root ≠ 宿主机 root |
+| USER | 用户 ID | 启用 `userns-remap` 后容器 root 才 ≠ 宿主机 root；**默认不启用** |
 
 | 资源 | 限制参数 | 示例 |
 |------|---------|------|
