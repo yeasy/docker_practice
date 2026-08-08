@@ -167,9 +167,11 @@ RUN apt-get update && apt-get install -y \
 
 #### CMD
 
-`CMD` 指令用于执行目标镜像中包含的软件，可以包含参数。`CMD` 大多数情况下都应该以 `CMD ['executable', 'param1', 'param2'...]` 的形式使用。因此，如果创建镜像的目的是为了部署某个服务 (比如 `Apache`)，你可能会执行类似于 `CMD ['apache2', '-DFOREGROUND']` 形式的命令。我们建议任何服务镜像都使用这种形式的命令。
+`CMD` 指令用于执行目标镜像中包含的软件，可以包含参数。`CMD` 大多数情况下都应该以 `CMD ["executable", "param1", "param2"...]` 的形式使用。因此，如果创建镜像的目的是为了部署某个服务 (比如 `Apache`)，你可能会执行类似于 `CMD ["apache2", "-DFOREGROUND"]` 形式的命令。我们建议任何服务镜像都使用这种形式的命令。
 
-多数情况下，`CMD` 都需要一个交互式的 `shell` (bash，Python，perl 等)，例如 `CMD ['perl', '-de0']`，或者 `CMD ['PHP', '-a']`。使用这种形式意味着，当你执行类似 `docker run -it python` 时，你会进入一个准备好的 `shell` 中。`CMD` 应该在极少的情况下才能以 `CMD ['param', 'param']` 的形式与 `ENTRYPOINT` 协同使用，除非你和你的镜像使用者都对 `ENTRYPOINT` 的工作方式十分熟悉。
+> 注意：exec 形式是 JSON 数组，**必须用双引号**。写成 `CMD ['apache2', '-DFOREGROUND']` 并不会报错，但 Docker 解析不出 JSON，会退回 shell 形式执行整串字符，导致启动失败。参见 [7.4 CMD](../07_dockerfile/7.4_cmd.md)。
+
+多数情况下，`CMD` 都需要一个交互式的 `shell` (bash，Python，perl 等)，例如 `CMD ["perl", "-de0"]`，或者 `CMD ["php", "-a"]`。使用这种形式意味着，当你执行类似 `docker run -it python` 时，你会进入一个准备好的 `shell` 中。`CMD` 应该在极少的情况下才能以 `CMD ["param", "param"]` 的形式与 `ENTRYPOINT` 协同使用，除非你和你的镜像使用者都对 `ENTRYPOINT` 的工作方式十分熟悉。
 
 #### EXPOSE
 
@@ -179,20 +181,20 @@ RUN apt-get update && apt-get install -y \
 
 #### ENV
 
-为了方便新程序运行，你可以使用 `ENV` 来为容器中安装的程序更新 `PATH` 环境变量。例如使用 `ENV PATH /usr/local/nginx/bin:$PATH` 来确保 `CMD ["nginx"]` 能正确运行。
+为了方便新程序运行，你可以使用 `ENV` 来为容器中安装的程序更新 `PATH` 环境变量。例如使用 `ENV PATH=/usr/local/nginx/bin:$PATH` 来确保 `CMD ["nginx"]` 能正确运行。
 
 `ENV` 指令也可用于为你想要容器化的服务提供必要的环境变量，比如 Postgres 需要的 `PGDATA`。
 
 最后，`ENV` 也能用于设置常见的版本号，比如下面的示例：
 
 ```docker
-ENV PG_MAJOR 9.3
+ENV PG_MAJOR=9.3
 
-ENV PG_VERSION 9.3.4
+ENV PG_VERSION=9.3.4
 
 RUN curl -SL http://example.com/postgres-$PG_VERSION.tar.xz | tar -xJC /usr/src/postgres && …
 
-ENV PATH /usr/local/postgres-$PG_MAJOR/bin:$PATH
+ENV PATH=/usr/local/postgres-$PG_MAJOR/bin:$PATH
 ```
 类似于程序中的常量，这种方法可以让你只需改变 `ENV` 指令来自动的改变容器中的软件版本。
 

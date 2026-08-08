@@ -20,7 +20,7 @@ EXPOSE 8888
 然后创建镜像，并启动容器。
 
 ```bash
-$ docker build -t my-nodejs-app
+$ docker build -t my-nodejs-app .
 $ docker run -it --rm --name my-running-app my-nodejs-app
 ```
 也可以直接运行一个简单容器。
@@ -28,8 +28,6 @@ $ docker run -it --rm --name my-running-app my-nodejs-app
 ```bash
 $ docker run -it --rm \
     --name my-running-script \
-    # -v "$ ":/usr/src/myapp \
-
     --mount type=bind,src="$(pwd)",target=/usr/src/myapp \
     -w /usr/src/myapp \
     node:22-alpine \
