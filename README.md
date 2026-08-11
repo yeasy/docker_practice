@@ -121,8 +121,8 @@ mdpress serve
 ## Star History
 
 <p align="center">
-  <a href="https://star-history.com/#yeasy/docker_practice&Date">
-    <img src="https://api.star-history.com/svg?repos=yeasy/docker_practice&type=Date" alt="Star History Chart">
+  <a href="https://star-history.dera.page/#yeasy/docker_practice&Date">
+    <img src="https://star-history.dera.page/svg?repos=yeasy/docker_practice&type=Date" alt="Star History Chart">
   </a>
 </p>
 
