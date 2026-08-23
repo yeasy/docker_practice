@@ -94,7 +94,7 @@ LABEL vendor=ACME\ Incorporated \
       com.example.version="0.0.1-beta" \
       com.example.release-date="2015-02-12"
 ```
-关于标签可以接受的键值对，参考 [Understanding object labels](https://docs.docker.com/config/labels-custom-metadata/)。关于查询标签信息，参考 [Managing labels on objects](https://docs.docker.com/config/labels-custom-metadata/)。
+关于标签可以接受的键值对，参考 [Label keys and values](https://docs.docker.com/engine/manage-resources/labels/#label-keys-and-values)。关于查询标签信息，参考 [Manage labels on objects](https://docs.docker.com/engine/manage-resources/labels/#manage-labels-on-objects)。
 
 #### RUN
 

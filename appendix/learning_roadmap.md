@@ -40,7 +40,7 @@ Docker 安装配置
 
 - [官方教程](https://docs.docker.com/get-started/)
 - 本书第 1-3 章：入门篇基础概念
-- [Docker CLI 参考](https://docs.docker.com/engine/reference/commandline/)
+- [Docker CLI 参考](https://docs.docker.com/reference/cli/docker/)
 
 **时间投入：**
 
