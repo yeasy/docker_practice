@@ -18,7 +18,7 @@ Docker 提供了多种日志驱动 (Log Driver)，用于将容器标准输出的
 * `syslog`：将日志转发到 syslog 服务器。
 * `journald`：将日志写入 systemd journal。
 * `fluentd`：将日志转发到 fluentd 收集器。
-* `gelf`：支持 GELF 协议的日志后端 (如 Graylog)。
+* `gelf`：支持 GELF 协议的日志后端（如 Graylog）。
 * `awslogs`：发送到 Amazon CloudWatch Logs。
 
 生产建议：无论采用哪种驱动，都要明确日志的保留周期、容量上限与传输可靠性，避免“日志把磁盘写满”或“链路抖动导致丢日志”。
@@ -42,7 +42,7 @@ Docker 提供了多种日志驱动 (Log Driver)，用于将容器标准输出的
 你可以用下面的清单快速检查“是否具备最小生产可用性”：
 
 * Prometheus 数据目录已持久化，并设置了合理的保留周期。
-* Prometheus Targets 全部为 `UP`，并且关键查询 (CPU/内存/容器指标) 有数据。
+* Prometheus Targets 全部为 `UP`，并且关键查询（CPU/内存/容器指标）有数据。
 * Grafana 已导入面板并能定位到具体实例/容器；默认账号密码已修改。
 * 至少有一条关键告警已打通 Alertmanager 的接收链路，并验证告警能被正确发送与抑制。
 * Elasticsearch 数据目录已持久化，并有明确的日志保留周期与容量上限策略。

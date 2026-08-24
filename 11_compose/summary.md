@@ -5,7 +5,7 @@ Docker Compose 是管理多容器应用的利器，通过 YAML 文件声明式�
 | 概念 | 要点 |
 |------|------|
 | **核心概念** | 服务 (service) 和项目 (project) |
-| **配置文件** | `compose.yaml` (推荐) 或 `docker-compose.yml` |
+| **配置文件** | `compose.yaml`（推荐）或 `docker-compose.yml` |
 | **版本** | Compose V2 为 Go 编写的 CLI 插件，通过 `docker compose` 使用 |
 | **启动** | `docker compose up -d` 启动所有服务 |
 | **停止** | `docker compose down` 停止并移除容器 |

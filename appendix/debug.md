@@ -2,7 +2,7 @@
 
 ### 开启 Debug 模式
 
-在 dockerd 配置文件 daemon.json (默认位于 /etc/docker/) 中添加
+在 dockerd 配置文件 daemon.json（默认位于 /etc/docker/）中添加
 
 ```json
 {
@@ -69,11 +69,11 @@ $ sudo systemctl start docker
 
 1. 检查 Docker DNS 配置 (`/etc/docker/daemon.json`)。
 2. 检查宿主机防火墙 (iptables/firewalld) 是否拦截了转发。
-3. 容器内测试：`ping 8.8.8.8` (测试连通性)，`nslookup google.com` (测试 DNS)。
+3. 容器内测试：`ping 8.8.8.8`（测试连通性），`nslookup google.com`（测试 DNS）。
 
 ##### 端口映射不通
 
-1. 检查容器端口是否正确监听：`netstat -tunlp` (宿主机) 或 `docker exec <container> netstat -tunlp`。
+1. 检查容器端口是否正确监听：`netstat -tunlp`（宿主机）或 `docker exec <container> netstat -tunlp`。
 2. 确认应用监听地址是 `0.0.0.0` 而不是 `127.0.0.1`。
    * 如果应用监听在 `127.0.0.1`，只有容器内部能访问，映射到宿主机外部也无法被外部请求访问。
 

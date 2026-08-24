@@ -10,7 +10,7 @@ Dockerfile 是一个文本文件，其内包含了一条条的 **指令 (Instruc
 
 *   **自动化**：可以通过 `docker build` 命令自动构建镜像。
 *   **可重复性**：由于 Dockerfile 是文本文件，可以确保每次构建的结果一致。
-*   **版本控制**：Dockerfile 可以纳入版本控制系统 (如 Git)，便于追踪变更。
+*   **版本控制**：Dockerfile 可以纳入版本控制系统（如 Git），便于追踪变更。
 *   **透明性**：任何人都可以通过阅读 Dockerfile 了解镜像的构建过程。
 
 ## Dockerfile 编写哲学
