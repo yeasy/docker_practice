@@ -13,7 +13,7 @@
 ```bash
 $ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=mysecretpassword -d mysql
 ```
-之后就可以使用其它应用来连接到该容器。
+之后就可以使用其他应用来连接到该容器。
 
 首先创建网络
 ```bash

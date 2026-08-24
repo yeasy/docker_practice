@@ -1,4 +1,4 @@
-# 第十七章 容器其它生态
+# 第十七章 容器其他生态
 
 > **版本说明**：本章介绍的工具和运行时（Podman、Buildah、Skopeo、containerd、Kata Containers、gVisor、WasmEdge 等）都保持活跃的开发。建议：
 > - 查阅各项目官方文档获取最新版本

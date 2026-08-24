@@ -169,7 +169,7 @@ lrwxrwxrwx. 1 root root 15 11月 17 13:43 docker -> /storage/docker
 
 如果本地使用的是 macOS 或者 Windows 环境，那就需要开虚拟机，单一开发环境下 Vagrant 更简单；多环境开发下推荐在 Vagrant 里面再使用 Docker 进行环境隔离。
 
-## 其它
+## 其他
 
 ### Docker 能在非 Linux 平台上运行么？比如 Windows 或 macOS
 
