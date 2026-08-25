@@ -1,12 +1,12 @@
 # 第十四章 部署 Kubernetes
 
-目前，Kubernetes 支持在多种环境下使用，包括本地主机 (Ubuntu、Debian、CentOS、Fedora 等)、云服务 ([腾讯云 TKE](https://cloud.tencent.com/product/tke)、[阿里云 ACK](https://cn.aliyun.com/product/ack)、[百度云](https://cloud.baidu.com/product/cce.html)等)。
+目前，Kubernetes 支持在多种环境下使用，包括本地主机（Ubuntu、Debian、CentOS、Fedora 等）、云服务（[腾讯云 TKE](https://cloud.tencent.com/product/tke)、[阿里云 ACK](https://cn.aliyun.com/product/ack)、[百度云](https://cloud.baidu.com/product/cce.html)等）。
 
 你可以使用以下几种方式部署 Kubernetes，接下来的小节会对各种方式进行详细介绍。
 
-* [使用 kubeadm 部署 (CRI 使用 containerd)](14.1_kubeadm.md)
+* [使用 kubeadm 部署（CRI 使用 containerd）](14.1_kubeadm.md)
   * Kubernetes 也支持 CRI-O 等符合 CRI 的运行时；本文以 containerd 为主线。
-* [使用 kubeadm 部署 (使用 Docker)](14.2_kubeadm-docker.md)
+* [使用 kubeadm 部署（使用 Docker）](14.2_kubeadm-docker.md)
 * [在 Docker Desktop 使用](14.3_docker-desktop.md)
 * [Kind - Kubernetes IN Docker](14.4_kind.md)
 * [K3s - 轻量级 Kubernetes](14.5_k3s.md)

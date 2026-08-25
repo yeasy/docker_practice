@@ -40,7 +40,7 @@ $ docker load -i minio.tar
 - 把 `/mnt/data` 改成要替换的数据目录
 - 替换 `MINIO_ROOT_USER` 的值
 - 替换 `MINIO_ROOT_PASSWORD` 的值
-- 替换 name,minio1 (可选)
+- 替换 name,minio1（可选）
 - 如果 9000、9090 端口冲突，替换端口前面的如 `9009:9000`
 
 ```bash

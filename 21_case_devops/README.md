@@ -4,10 +4,10 @@
 
 本章示例中使用的镜像版本遵循以下原则：
 
-- **GitHub Actions** (`actions/checkout@v7` 等) 采用大版本标签，代表最新的功能版本与稳定性的平衡
-- **编程语言镜像** (`golang:1.26-alpine`、`rust:1.95-alpine` 等) 采用次版本标签，确保 API 稳定性同时获得安全更新
-- **数据库镜像** (`postgres:16-alpine`、`redis:8-alpine` 等) 采用大版本标签，便于获得修复和改进
-- **基础镜像** (`alpine:3.21`、`debian:12` 等) 采用大版本或次版本标签，避免 `latest` 以确保可再现性
+- **GitHub Actions**（`actions/checkout@v7` 等）采用大版本标签，代表最新的功能版本与稳定性的平衡
+- **编程语言镜像**（`golang:1.26-alpine`、`rust:1.95-alpine` 等）采用次版本标签，确保 API 稳定性同时获得安全更新
+- **数据库镜像**（`postgres:16-alpine`、`redis:8-alpine` 等）采用大版本标签，便于获得修复和改进
+- **基础镜像**（`alpine:3.21`、`debian:12` 等）采用大版本或次版本标签，避免 `latest` 以确保可再现性
 - 实际项目中应根据需求调整版本，生产环境建议定期更新以获取安全补丁
 
 ## DevOps 背景介绍

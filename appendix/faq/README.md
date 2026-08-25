@@ -107,7 +107,7 @@ $ docker run --network=my-net --ip=172.25.3.3 -itd --name=my-container busybox
 
 ### Docker 的配置文件放在哪里，如何修改配置？
 
-答：使用 `systemd` 的系统 (如 Ubuntu 22.04+、Debian 12+、Rocky/Alma/CentOS Stream 9+) 的配置文件在 `/etc/docker/daemon.json`。
+答：使用 `systemd` 的系统（如 Ubuntu 22.04+、Debian 12+、Rocky/Alma/CentOS Stream 9+）的配置文件在 `/etc/docker/daemon.json`。
 
 ### 如何更改 Docker 的默认存储位置？
 
@@ -136,7 +136,7 @@ lrwxrwxrwx. 1 root root 15 11月 17 13:43 docker -> /storage/docker
 
 答：如果遇到 `WARNING: Your kernel does not support cgroup swap limit` 等警告，这是因为系统默认没有开启对内存和 swap 使用的统计功能，引入该功能会带来性能的下降。要开启该功能，可以采取如下操作：
 
-* 编辑 `/etc/default/grub` 文件 (Ubuntu 系统为例)，配置 `GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"`
+* 编辑 `/etc/default/grub` 文件（Ubuntu 系统为例），配置 `GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"`
 * 更新 grub：`$ sudo update-grub`
 * 重启系统，即可。
 
@@ -150,13 +150,13 @@ lrwxrwxrwx. 1 root root 15 11月 17 13:43 docker -> /storage/docker
 * 镜像系统：基于 OverlayFS 的镜像系统为容器的分发带来了很多的便利，同时共同的镜像层只需要存储一份，实现高效率的存储；
 * 版本管理：类似于 Git 的版本管理理念，用户可以更方便的创建、管理镜像文件；
 * 仓库系统：仓库系统大大降低了镜像的分发和管理的成本；
-* 周边工具：各种现有工具 (配置管理、云平台) 对 Docker 的支持，以及基于 Docker 的 PaaS、CI 等系统，让 Docker 的应用更加方便和多样化。
+* 周边工具：各种现有工具（配置管理、云平台）对 Docker 的支持，以及基于 Docker 的 PaaS、CI 等系统，让 Docker 的应用更加方便和多样化。
 
 ### Docker 与 Vagrant 有何不同？
 
 答：两者的定位完全不同。
 
-* Vagrant 类似 Boot2Docker (一款运行 Docker 的最小内核)，是一套虚拟机的管理环境。Vagrant 可以在多种系统上和虚拟机软件中运行，可以在 Windows，Mac 等非 Linux 平台上为 Docker 提供支持，自身具有较好的包装性和移植性。
+* Vagrant 类似 Boot2Docker（一款运行 Docker 的最小内核），是一套虚拟机的管理环境。Vagrant 可以在多种系统上和虚拟机软件中运行，可以在 Windows，Mac 等非 Linux 平台上为 Docker 提供支持，自身具有较好的包装性和移植性。
 * 原生的 Docker 自身只能运行在 Linux 平台上，但启动和运行的性能都比虚拟机要快，往往更适合快速开发和部署应用的场景。
 
 简单说：Vagrant 适合用来管理虚拟机，而 Docker 适合用来管理应用环境。
@@ -169,7 +169,7 @@ lrwxrwxrwx. 1 root root 15 11月 17 13:43 docker -> /storage/docker
 
 如果本地使用的是 macOS 或者 Windows 环境，那就需要开虚拟机，单一开发环境下 Vagrant 更简单；多环境开发下推荐在 Vagrant 里面再使用 Docker 进行环境隔离。
 
-## 其它
+## 其他
 
 ### Docker 能在非 Linux 平台上运行么？比如 Windows 或 macOS
 

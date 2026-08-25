@@ -9,18 +9,18 @@
 > 2026 年了，对于任何新项目，**强烈建议** 使用以下生产级替代方案：
 > - [Rocky Linux](https://hub.docker.com/r/rockylinux/rockylinux)：CentOS 原创始人发起的社区驱动项目，目前主流为 Rocky Linux 9。
 > - [AlmaLinux](https://hub.docker.com/_/almalinux)：由 CloudLinux 支持的企业级发行版，提供长期支持。
-> - [CentOS Stream](https://quay.io/repository/centos/centos)：RHEL 的上游开发分支，镜像已迁移至 Quay.io (适合开发测试，不建议用于生产环境)。
+> - [CentOS Stream](https://quay.io/repository/centos/centos)：RHEL 的上游开发分支，镜像已迁移至 Quay.io（适合开发测试，不建议用于生产环境）。
 
 该仓库位于 [Docker Hub 的 CentOS 官方镜像页](https://hub.docker.com/_/centos)，提供了 CentOS 从 5 ~ 8 各个版本的镜像（仅作为历史归档，不再更新）。
 
 ### 使用方法
 
-使用 Rocky Linux 9 替代 (**推荐**)：
+使用 Rocky Linux 9 替代（**推荐**）：
 
 ```bash
 $ docker run --name rocky -it rockylinux/rockylinux:9 bash
 ```
-使用旧版 CentOS 7 (**仅用于维护旧项目，不推荐**)：
+使用旧版 CentOS 7（**仅用于维护旧项目，不推荐**）：
 
 ```bash
 $ docker run --name centos -it centos:7 bash
