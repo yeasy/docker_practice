@@ -16,7 +16,7 @@ RUN set -x ; cd /app \
 FROM composer:2 as composer
 
 COPY database/ /app/database/
-COPY composer.json /app/
+COPY composer.json composer.lock /app/
 
 RUN set -x ; cd /app \
       && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/ \
@@ -44,10 +44,11 @@ RUN set -x ; cd ${LARAVEL_PATH} \
       && mkdir -p storage/framework/testing \
       && mkdir -p storage/framework/views \
       && mkdir -p storage/logs \
-      && chmod -R 777 storage \
+      && chown -R www-data:www-data storage \
+      && chmod -R 775 storage \
       && php artisan package:discover
 
-FROM nginx:1.30-alpine as nginx
+FROM nginx:1.28-alpine as nginx
 
 ARG LARAVEL_PATH=/app/laravel
 

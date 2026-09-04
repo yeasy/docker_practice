@@ -1,39 +1,62 @@
-
 services:
+  # 数据库服务
 
-   db:
-     image: mysql:8.4
-     command:
+  db:
+    image: mysql:8.4
+    container_name: wordpress_db
+    restart: always
+    command:
+      # 启用原生密码认证（MySQL 8.4 默认禁用，旧版 WP 兼容性需要）
+
       - --mysql-native-password=ON
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
-     volumes:
-       - db_data:/var/lib/mysql
-     restart: always
-     environment:
-       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
-       MYSQL_DATABASE: wordpress
-       MYSQL_USER: wordpress
-       MYSQL_PASSWORD_FILE: /run/secrets/db_password
-     secrets:
-       - db_root_password
-       - db_password
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
+    secrets:
+      - db_root_password
+      - db_password
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - wp_net
 
-   wordpress:
-     depends_on:
-       - db
-     image: wordpress:latest
-     ports:
-       - "127.0.0.1:8000:80"
-     restart: always
-     environment:
-       WORDPRESS_DB_HOST: db:3306
-       WORDPRESS_DB_USER: wordpress
-       WORDPRESS_DB_PASSWORD_FILE: /run/secrets/db_password
-     secrets:
-       - db_password
+  # WordPress 服务
+
+  wordpress:
+    # 示例保留 latest 以便读者快速体验；生产环境请固定到经过测试的明确版本标签
+    image: wordpress:latest
+    container_name: wordpress_app
+    restart: always
+    ports:
+      # 本机调试入口；生产环境请通过反向代理发布 HTTPS
+      - "127.0.0.1:8000:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD_FILE: /run/secrets/db_password
+      WORDPRESS_DB_NAME: wordpress
+    secrets:
+      - db_password
+    volumes:
+      - wp_data:/var/www/html
+      # 增加上传文件大小限制
+
+      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    depends_on:
+      - db
+    networks:
+      - wp_net
+
 volumes:
-  db_data:
+  db_data:  # 数据库持久化
+  wp_data:  # WordPress 文件(插件/主题/上传)持久化
+
+networks:
+  wp_net:
 
 secrets:
   db_root_password:
