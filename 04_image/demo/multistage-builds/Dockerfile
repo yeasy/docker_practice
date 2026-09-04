@@ -1,4 +1,4 @@
-FROM golang:alpine as builder
+FROM golang:alpine AS builder
 
 WORKDIR /go/src/github.com/go/helloworld/
 
@@ -7,7 +7,7 @@ COPY app.go .
 RUN go mod init helloworld \
   && CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
 
-FROM alpine:latest as prod
+FROM alpine:latest AS prod
 
 RUN apk --no-cache add ca-certificates
 

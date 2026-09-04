@@ -1,4 +1,4 @@
-FROM node:22-alpine as frontend
+FROM node:22-alpine AS frontend
 
 COPY package.json /app/
 
@@ -13,7 +13,7 @@ RUN set -x ; cd /app \
       && mkdir -p public \
       && npm run production
 
-FROM composer:2 as composer
+FROM composer:2 AS composer
 
 COPY database/ /app/database/
 COPY composer.json composer.lock /app/
@@ -27,7 +27,7 @@ RUN set -x ; cd /app \
            --no-scripts \
            --prefer-dist
 
-FROM php:8.3-fpm-alpine as laravel
+FROM php:8.3-fpm-alpine AS laravel
 
 ARG LARAVEL_PATH=/app/laravel
 
@@ -48,7 +48,7 @@ RUN set -x ; cd ${LARAVEL_PATH} \
       && chmod -R 775 storage \
       && php artisan package:discover
 
-FROM nginx:1.28-alpine as nginx
+FROM nginx:1.28-alpine AS nginx
 
 ARG LARAVEL_PATH=/app/laravel
 
