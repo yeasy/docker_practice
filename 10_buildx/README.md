@@ -2,7 +2,7 @@
 
 Docker Buildx 是一个 docker CLI 插件，其扩展了 docker 命令，支持 [Moby BuildKit](10.1_buildkit.md) 提供的功能。提供了与 docker build 相同的用户体验，并增加了许多新功能。
 
-> Buildx 需要 Docker v23.0+（该版本起 BuildKit 成为默认构建引擎）。推荐使用 Docker v28 及以上版本以获得最完整的 Buildx 功能支持。
+> Buildx 需要 Docker v23.0+（该版本起 BuildKit 成为默认构建引擎）。推荐使用 Docker v29 及以上版本以获得最完整的 Buildx 功能支持。
 
 ## 本章内容
 
