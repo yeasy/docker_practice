@@ -4,7 +4,7 @@
   "description": "docker_practice",
   "private": true,
   "devDependencies": {
-    "@mermaid-js/mermaid-cli": "11.17.0"
+    "@mermaid-js/mermaid-cli": "12.0.0"
   },
   "scripts": {
     "test": "node scripts/check_metadata.js && python3 -m unittest tools.test_prepare_pdf_sources && python3 -m unittest discover -s tests -p 'test_*.py' && python3 tools/test_examples.py",
