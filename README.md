@@ -1,21 +1,12 @@
-<div align="center">
-
 # Docker 从入门到实践
 
-[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-[![GitHub stars](https://img.shields.io/github/stars/yeasy/docker_practice?style=social)](https://github.com/yeasy/docker_practice)
-[![Release](https://img.shields.io/github/release/yeasy/docker_practice/all.svg)](https://github.com/yeasy/docker_practice/releases)
-[![Online Reading](https://img.shields.io/badge/在线阅读-GitBook-brightgreen)](https://yeasy.gitbook.io/docker_practice)
-[![PDF](https://img.shields.io/badge/PDF-下载-orange)](https://github.com/yeasy/docker_practice/releases/latest)
-[![Based on Docker Engine v29.x](https://img.shields.io/badge/Based-Docker%20Engine%20v29.x-blue.svg)](https://docs.docker.com/engine/release-notes/)
+从运行第一个容器开始，学习镜像构建、多服务应用部署与 Kubernetes 编排。
 
-> 从零开始，系统掌握 Docker 容器技术的核心概念、原理与实战技巧
+**[在 GitBook 阅读第一章 · Docker 简介](https://yeasy.gitbook.io/docker_practice/di-yi-bu-fen-ru-men-pian/01_introduction)**
 
-<img src="cover.jpg" width="300" alt="Docker 从入门到实践封面">
+[全书目录（GitHub）](https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md) · [正式 PDF（发布页）](https://github.com/yeasy/docker_practice/releases/latest)
 
-</div>
-
----
+<img src="cover.jpg" width="210" alt="Docker 从入门到实践封面">
 
 ## 关于本书
 
@@ -25,39 +16,20 @@
 
 本书既适用于具备基础 Linux 知识的 Docker 初学者，也希望可供理解原理和实现的高级用户参考。同时，书中给出的实践案例，可供在进行实际部署时借鉴。
 
-## 内容特色
+书中内容与示例以 [Docker Engine v29.x](https://docs.docker.com/engine/release-notes/29/) 为基础。
 
-*   **入门基础**：第 1 ~ 6 章为基础内容，帮助深入理解 Docker 的基本概念（镜像、容器、仓库）和核心操作。
-*   **进阶应用**：第 7 ~ 11 章涵盖 Dockerfile 指令详解、数据与网络管理、Buildx、Compose 等高级配置和管理操作。
-*   **深入原理**：第 12 ~ 17 章介绍其底层实现技术，深入探讨容器编排体系 (Kubernetes、Etcd)，并延伸涉及容器与云计算及其他关键生态项目（Fedora CoreOS、Podman 等）。
-*   **实战扩展**：第 18 ~ 21 章重点讨论容器安全防护机制、监控与日志聚合系统 (Prometheus、ELK)，并展示操作系统、CI/CD 自动化构建等典型实践案例。
+## 从哪里开始
 
-## 五分钟快速上手
+- **运行第一个容器** · [安装并验证 Docker](https://yeasy.gitbook.io/docker_practice/di-yi-bu-fen-ru-men-pian/03_install) 后，跟随 [1.1 快速上手](https://yeasy.gitbook.io/docker_practice/di-yi-bu-fen-ru-men-pian/01_introduction/1.1_quickstart) 构建 Nginx 镜像，启动容器并在浏览器中打开页面。
+- **用 Compose 启动多服务应用** · [安装 Docker Compose](https://yeasy.gitbook.io/docker_practice/di-er-bu-fen-jin-jie-pian/11_compose/11.2_install)后，跟随[多服务应用示例](https://yeasy.gitbook.io/docker_practice/di-er-bu-fen-jin-jie-pian/11_compose/11.3_usage)启动 Flask 应用和 Redis，刷新页面验证访问计数。
+- **用 Kubernetes 部署应用** · [用 kind 创建本地集群](https://yeasy.gitbook.io/docker_practice/di-san-bu-fen-shen-ru-pian/14_kubernetes_setup/14.4_kind)，再完成 [13.5 实战练习](https://yeasy.gitbook.io/docker_practice/di-san-bu-fen-shen-ru-pian/13_kubernetes_concepts/13.5_practice)，用 Deployment 部署 Nginx，通过 Service 访问并观察滚动更新。
 
-“5 分钟运行第一个容器”——跟随以下步骤快速体验 Docker：
+按阶段学习、练习与自测，见[附录八 · Docker 学习路线图与知识体系](https://yeasy.gitbook.io/docker_practice/fu-lu/appendix/learning_roadmap)。
 
-1. **安装 Docker**（第 3 章）：根据操作系统完成 Docker 的安装与验证
-2. **第一个容器**（第 1 章 `1.1`）：快速体验构建镜像与启动容器的完整流程
-3. **交互式容器**（第 5 章）：执行 `docker run -it ubuntu bash`，进入容器内部与系统交互
-4. **镜像与仓库**（第 2 章、第 4 章、第 6 章）：理解核心概念，并学会拉取、使用与管理镜像和仓库
-5. **自定义镜像**（第 7 章）：学习如何编写 Dockerfile 创建自己的镜像
+<details>
 
-## 学习路线图
+<summary>按角色选读</summary>
 
-```mermaid
-graph LR
-    Start[Docker 学习入口] --> Ch1[第1章：Docker 简介]
-
-    Ch1 --> Role1["运维新手<br/>第1-6章"]
-    Ch1 --> Role2["开发者<br/>第1-8章 → 第11章"]
-    Ch1 --> Role3["DevOps 工程师<br/>第1-11章 → 第13-14章 → 第18-21章"]
-    Ch1 --> Role4["架构师<br/>第1-6章 → 第12-17章 → 第18-19章"]
-
-    Role1 --> End1["掌握基本操作"]
-    Role2 --> End2["构建与部署应用"]
-    Role3 --> End3["自动化与运维"]
-    Role4 --> End4["设计容器方案"]
-```
 | 读者角色 | 学习重点 | 核心成果 |
 |---------|---------|---------|
 | **运维新手** | 第 1-6 章 | 掌握容器的基本概念与操作 |
@@ -65,66 +37,74 @@ graph LR
 | **DevOps 工程师** | 第 1-11 章 → 第 13-14 章 → 第 18-21 章 | 实现容器编排与自动化部署流程 |
 | **架构师** | 第 1-6 章 → 第 12-17 章 → 第 18-19 章 | 设计高可用、高性能的容器基础设施 |
 
-## 在线阅读
+</details>
 
-本书在线阅读，可直接访问 [GitBook](https://yeasy.gitbook.io/docker_practice/)。也可访问 [GitHub 仓库目录](https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md)。
+## 全书结构
 
-## 下载离线版本
+- **入门篇（第 1–6 章）** · 从[第一章](https://yeasy.gitbook.io/docker_practice/di-yi-bu-fen-ru-men-pian/01_introduction)开始，学习镜像、容器和仓库的概念与操作。
+- **进阶篇（第 7–11 章）** · 从[第七章 Dockerfile 指令详解](https://yeasy.gitbook.io/docker_practice/di-er-bu-fen-jin-jie-pian/07_dockerfile)开始，学习镜像定制、数据与网络管理、Buildx 和 Compose。
+- **深入篇（第 12–17 章）** · 从[底层实现](https://yeasy.gitbook.io/docker_practice/di-san-bu-fen-shen-ru-pian/12_implementation)开始，了解 Kubernetes、Etcd、容器云服务和 Podman 等生态项目。
+- **实战篇（第 18–21 章）** · 从[容器安全](https://yeasy.gitbook.io/docker_practice/di-si-bu-fen-shi-zhan-pian/18_security)开始，学习安全防护、监控与日志，以及操作系统和 CI/CD 案例。
 
-本书提供 PDF 版本供离线阅读，可前往 [GitHub Releases](https://github.com/yeasy/docker_practice/releases/latest) 页面下载最新版本。
+## 延伸阅读
 
-如需获取默认分支自动更新的预览版，可直接下载 [docker_practice.pdf](https://github.com/yeasy/docker_practice/releases/download/preview-pdf/docker_practice.pdf)。该文件会随主线更新覆盖，不代表正式发布版本。
+- [《前线部署工程实践指南》](https://yeasy.gitbook.io/forward_deployed_engineering_guide/) · 将容器、Kubernetes、GitOps、IaC、供应链、安全、观测与 SLO 组合成可交付、可审计、可运营的部署工程体系。
+- 《[Docker 技术入门与实战][1]》（第 4 版） · [京东图书][1] · [天猫图书](https://detail.tmall.com/item.htm?id=997383773726&skuId=6143496614475)
 
-## 本地阅读
+<details>
 
-先安装 [mdPress](https://github.com/yeasy/mdpress)：
+<summary>更多系列图书</summary>
+
+- [《智能体 Harness 工程指南》](https://yeasy.gitbook.io/harness_engineering_guide) · Agent 基础设施中的容器化部署与隔离。
+- [《大模型安全权威指南》](https://yeasy.gitbook.io/ai_security_guide) · 容器安全与 AI 系统安全的交叉实践。
+- [《区块链技术指南》](https://yeasy.gitbook.io/blockchain_guide) · 区块链节点的容器化部署。
+
+</details>
+
+## 反馈与贡献
+
+欢迎在 [GitHub Issues](https://github.com/yeasy/docker_practice/issues/new/choose) 报告勘误或提出建议，也欢迎[参与项目维护](CONTRIBUTING.md)。
+
+[修订记录](CHANGELOG.md) · [贡献者名单](https://github.com/yeasy/docker_practice/graphs/contributors)
+
+<details>
+
+<summary>本地阅读与 PDF 预览版</summary>
+
+安装 [mdPress](https://github.com/yeasy/mdpress) 后，在仓库根目录启动本地预览，再打开 `http://localhost:9000`。
 
 ```bash
 brew tap yeasy/tap && brew install mdpress
 mdpress serve
 ```
 
-## 社区交流
+[默认分支 PDF 预览版](https://github.com/yeasy/docker_practice/releases/download/preview-pdf/docker_practice.pdf)随主线更新，正式版本以发布页为准。
 
-- [GitHub Issues](https://github.com/yeasy/docker_practice/issues/new/choose)（内容错误、建议）
+</details>
 
-## 推荐阅读
+<details>
 
-本书是技术丛书的一部分。以下书籍与本书形成互补：
-
-| 书名 | 与本书的关系 |
-|------|------------|
-| [《前线部署工程实践指南》](https://yeasy.gitbook.io/forward_deployed_engineering_guide/) | 讲容器、Kubernetes、GitOps、IaC、供应链、安全、观测与 SLO 如何组合成可交付、可审计、可运营的部署工程体系 |
-| [《智能体 Harness 工程指南》](https://yeasy.gitbook.io/harness_engineering_guide) | Agent 基础设施中的容器化部署与隔离 |
-| [《大模型安全权威指南》](https://yeasy.gitbook.io/ai_security_guide) | 容器安全与 AI 系统安全的交叉实践 |
-| [《区块链技术指南》](https://yeasy.gitbook.io/blockchain_guide) | 区块链节点的容器化部署 |
-
-## 参与贡献
-
-欢迎[参与项目维护](CONTRIBUTING.md)。
-
-*   [修订记录](CHANGELOG.md)
-*   [贡献者名单](https://github.com/yeasy/docker_practice/graphs/contributors)
-
-## 进阶学习
-
-《[Docker 技术入门与实战][1]》已更新到第 4 版，讲解最新容器技术栈知识，欢迎大家阅读并反馈建议。[京东图书][1] | [天猫图书](https://detail.tmall.com/item.htm?id=997383773726&skuId=6143496614475)
-
-## 支持鼓励
+<summary>支持项目</summary>
 
 欢迎鼓励项目一杯 coffee~
 
 <p align="center">
-<img width="200" src="_images/donate.jpeg">
+<img width="200" src="_images/donate.jpeg" alt="项目赞赏二维码">
 </p>
 
-## Star History
+</details>
+
+<details>
+
+<summary>Star History</summary>
 
 <p align="center">
   <a href="https://star-history.com/#yeasy/docker_practice&Date">
     <img src="https://api.star-history.com/svg?repos=yeasy/docker_practice&type=Date" alt="Star History Chart">
   </a>
 </p>
+
+</details>
 
 ## 许可证
 
