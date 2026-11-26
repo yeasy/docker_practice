@@ -39,7 +39,7 @@ Docker 安装配置
 **学习资源：**
 
 - [官方教程](https://docs.docker.com/get-started/)
-- 本书第 1-3 章：入门篇基础概念
+- 本书入门篇的第 1–3 章：Docker 简介、基本概念与安装
 - [Docker CLI 参考](https://docs.docker.com/reference/cli/docker/)
 
 **时间投入：**
@@ -115,7 +115,7 @@ Docker Compose
 ```
 **学习资源：**
 
-- 本书第 4-11 章：进阶篇
+- 本书入门篇的第 4–6 章（镜像、容器、仓库）和进阶篇的第 7–11 章
 - [Docker 官方最佳实践](https://docs.docker.com/build/building/best-practices/)
 - [Dockerfile 参考](https://docs.docker.com/reference/dockerfile/)
 
