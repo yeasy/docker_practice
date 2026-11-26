@@ -14,7 +14,7 @@
 
 ### 本地的镜像文件都存放在哪里？
 
-答：与 Docker 相关的本地资源默认存放在 `/var/lib/docker/` 目录下，以 `overlay2` 文件系统为例，其中 `containers` 目录存放容器信息，`image` 目录存放镜像信息，`overlay2` 目录下存放具体的镜像层文件。
+答：在 Linux 上，全新安装的 Docker Engine 29 及以后版本默认使用 containerd 镜像存储。独立运行的 containerd 默认将镜像内容和容器快照保存在 `/var/lib/containerd`，卷和 Docker 配置等数据仍保存在 `/var/lib/docker`。沿用经典 `overlay2` 驱动的安装将镜像层保存在 Docker 数据目录下的 `overlay2/`。具体路径取决于后端和配置，详见 [Docker 数据目录](https://docs.docker.com/engine/daemon/#daemon-data-directory)。
 
 ### 构建 Docker 镜像应该遵循哪些原则？
 
@@ -111,26 +111,7 @@ $ docker run --network=my-net --ip=172.25.3.3 -itd --name=my-container busybox
 
 ### 如何更改 Docker 的默认存储位置？
 
-答：Docker 的默认存储位置是 `/var/lib/docker`，如果希望将 Docker 的本地文件存储到其他分区，可以使用 Linux 软连接的方式来完成，或者修改配置文件 `/etc/docker/daemon.json` 的 `data-root` 项。可以使用 `docker info | grep "Docker Root Dir"` 查看当前使用的存储位置。
-
-例如，如下操作将默认存储位置迁移到 /storage/docker。
-
-```bash
-[root@s26 ~]# df -h
-Filesystem                    Size  Used Avail Use% Mounted on
-/dev/mapper/VolGroup-lv_root   50G  5.3G   42G  12% /
-tmpfs                          48G  228K   48G   1% /dev/shm
-/dev/sda1                     485M   40M  420M   9% /boot
-/dev/mapper/VolGroup-lv_home  222G  188M  210G   1% /home
-/dev/sdb2                     2.7T  323G  2.3T  13% /storage
-[root@s26 ~]# service docker stop
-[root@s26 ~]# cd /var/lib/
-[root@s26 lib]# mv docker /storage/
-[root@s26 lib]# ln -s /storage/docker/ docker
-[root@s26 lib]# ls -la docker
-lrwxrwxrwx. 1 root root 15 11月 17 13:43 docker -> /storage/docker
-[root@s26 lib]# service docker start
-```
+答：在 Linux 上，运行 `docker info --format '{{.DockerRootDir}}'` 可查看 Docker 的数据目录。可通过 `/etc/docker/daemon.json` 的 `data-root` 指定新位置。使用独立的 containerd 镜像存储时，还需单独设置 containerd 的 `root`。配置新路径前先备份原数据；修改路径本身不会搬迁已有数据。详见 [Docker 数据目录配置](https://docs.docker.com/engine/daemon/#configure-the-data-directory-location)。
 
 ### 使用内存和 swap 限制启动容器时候报内核不支持警告？
 
@@ -154,20 +135,11 @@ lrwxrwxrwx. 1 root root 15 11月 17 13:43 docker -> /storage/docker
 
 ### Docker 与 Vagrant 有何不同？
 
-答：两者的定位完全不同。
-
-* Vagrant 类似 Boot2Docker（一款运行 Docker 的最小内核），是一套虚拟机的管理环境。Vagrant 可以在多种系统上和虚拟机软件中运行，可以在 Windows，Mac 等非 Linux 平台上为 Docker 提供支持，自身具有较好的包装性和移植性。
-* 原生的 Docker 自身只能运行在 Linux 平台上，但启动和运行的性能都比虚拟机要快，往往更适合快速开发和部署应用的场景。
-
-简单说：Vagrant 适合用来管理虚拟机，而 Docker 适合用来管理应用环境。
+答：Docker 将应用及其依赖打包为镜像，并在容器中运行。Vagrant 用配置文件描述开发机器，可以通过虚拟机提供程序创建整套客户操作系统。
 
 ### 开发环境中 Docker 和 Vagrant 该如何选择？
 
-答：Docker 不是虚拟机，而是进程隔离，对于资源的消耗很少，但是目前需要 Linux 环境支持。Vagrant 是虚拟机上做的封装，虚拟机本身会消耗资源。
-
-如果本地使用的 Linux 环境，推荐都使用 Docker。
-
-如果本地使用的是 macOS 或者 Windows 环境，那就需要开虚拟机，单一开发环境下 Vagrant 更简单；多环境开发下推荐在 Vagrant 里面再使用 Docker 进行环境隔离。
+答：若要让团队复用同一套应用服务，可用 Docker Compose 描述服务，并在 macOS 或 Windows 上用 [Docker Desktop](https://docs.docker.com/desktop/) 运行 Linux 容器。若需要测试特定内核、系统启动过程或整台虚拟机的配置，可用 Vagrant 管理相应的虚拟机。
 
 ## 其他
 
@@ -177,35 +149,17 @@ lrwxrwxrwx. 1 root root 15 11月 17 13:43 docker -> /storage/docker
 
 ### 如何将一台宿主主机的 Docker 环境迁移到另外一台宿主主机？
 
-答：停止 Docker 服务。将整个 Docker 存储文件夹复制到另外一台宿主主机，然后调整另外一台宿主主机的配置即可。
+答：在新主机上用原部署配置重新创建服务，重新拉取镜像，并备份、恢复数据卷和绑定挂载中的应用数据。对运行中的数据库，先制作一致性备份。仅复制 `/var/lib/docker` 会遗漏绑定挂载和独立 containerd 数据目录中的内容。
 
 ### 如何进入 Docker 容器的网络命名空间？
 
-答：Docker 在创建容器后，删除了宿主主机上 `/var/run/netns` 目录中的相关的网络命名空间文件。因此，在宿主主机上是无法看到或访问容器的网络命名空间的。
-
-用户可以通过如下方法来手动恢复它。
-
-首先，使用下面的命令查看容器进程信息，比如这里的 1234。
+答：在运行 Docker Engine 的 Linux 主机上，可以通过容器主进程的 PID 找到其网络命名空间。下例为它注册一个临时名称，查看网络接口后移除名称。先将 `container_id` 设为运行中容器的名称或 ID。
 
 ```bash
-$ docker inspect --format='{{ .State.Pid }}' $container_id
-1234
-```
-接下来，在 `/proc` 目录下，把对应的网络命名空间文件链接到 `/var/run/netns` 目录。
-
-```bash
-$ sudo ln -s /proc/1234/ns/net /var/run/netns/
-```
-然后，在宿主主机上就可以看到容器的网络命名空间信息。例如
-
-```bash
-$ sudo ip netns show
-1234
-```
-此时，用户可以通过正常的系统命令来查看或操作容器的命名空间了。例如修改容器的 IP 地址信息为 `172.17.0.100/16`。
-
-```bash
-$ sudo ip netns exec 1234 ifconfig eth0 172.17.0.100/16
+$ pid=$(docker inspect --format='{{.State.Pid}}' "$container_id")
+$ sudo ip netns attach "docker-$pid" "$pid"
+$ sudo ip netns exec "docker-$pid" ip address show
+$ sudo ip netns delete "docker-$pid"
 ```
 
 ### 如何获取容器绑定到本地哪个 veth 接口上？
